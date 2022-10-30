@@ -8,7 +8,18 @@ This is a listening and speaking language learning app.
 
 ## Setting up the project
 
-- Nothing
+Here are the steps:
+
+1. Get the project and setup:
+
+```bash
+# Clone the repo to your current directory
+git clone https://github.com/sinProject-Inc/talk.git
+
+# Install the dependencies
+cd /talk
+npm install
+```
 
 ## Run locally
 
