@@ -18,7 +18,7 @@
 	// 	language_selector = language_selector
 	// }
 
-	function speech(text: string, lang: string) {
+	function speech(text: string, lang: string): void {
 		const utterance = new SpeechSynthesisUtterance();
 
 		utterance.text = text;
@@ -28,6 +28,14 @@
 		utterance.volume = 1;
 		
 		speechSynthesis.speak(utterance);
+	}
+
+	function speechInEnglish(): void {
+		speech(english_textarea.value, "en-US")
+	}
+
+	function speechInJapanese(): void {
+		speech(japanese_textarea.value, "ja-JP")
 	}
 
 	// onMount(() => {
@@ -41,12 +49,12 @@
 <!-- <select bind:this={language_selector}></select> -->
 
 <textarea placeholder="Enter text to speech in English" size=60 value="Hello world!" bind:this={english_textarea} />
-<button on:click={() => speech(english_textarea.value, 'en-US')}>Speech in English</button>
+<button on:click={speechInEnglish}>Speech in English</button>
 
 <br><br>
 
 <textarea placeholder="Enter text to speech in Japanese" size=60 value="こんにちは、世界" bind:this={japanese_textarea} />
-<button on:click={() => speech(japanese_textarea.value, 'ja-JP')}>Speech in Japanese</button>
+<button on:click={speechInJapanese}>Speech in Japanese</button>
 
 <style>
 	textarea {
