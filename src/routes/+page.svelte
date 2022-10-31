@@ -31,11 +31,11 @@
 		speechSynthesis.speak(utterance);
 	}
 
-	function speechInEnglish(): void {
+	function speech_in_english(): void {
 		speech(english_textarea.value, 'en-US');
 	}
 
-	function speechInJapanese(): void {
+	function speech_in_japanese(): void {
 		speech(japanese_textarea.value, 'ja-JP');
 	}
 
@@ -63,11 +63,11 @@
 		recognition.start();
 	}
 
-	function recognitionInEnglish(): void {
+	function recognition_in_english(): void {
 		recognition('en-US');
 	}
 
-	function recognitionInJapanese(): void {
+	function recognition_in_japanese(): void {
 		recognition('ja-JP');
 	}
 
@@ -93,8 +93,8 @@ Speech Recognition
 	size="60"
 	bind:this={recognition_textarea}
 />
-<button on:click={recognitionInEnglish}>English</button>
-<button on:click={recognitionInJapanese}>Japanese</button>
+<button on:click={recognition_in_english}>English</button>
+<button on:click={recognition_in_japanese}>Japanese</button>
 
 <br /><br />
 
@@ -105,7 +105,7 @@ English
 	value="Hello world!"
 	bind:this={english_textarea}
 />
-<button on:click={speechInEnglish}>Text-to-Speech</button>
+<button on:click={speech_in_english}>Text-to-Speech</button>
 
 <br /><br />
 
@@ -116,7 +116,7 @@ Japanese
 	value="こんにちは、世界"
 	bind:this={japanese_textarea}
 />
-<button on:click={speechInJapanese}>Text-to-Speech</button>
+<button on:click={speech_in_japanese}>Text-to-Speech</button>
 
 <style>
 	textarea {

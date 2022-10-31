@@ -33,18 +33,18 @@ module.exports = {
 			{
 				selector: ['method', 'function'],
 				modifiers: ['private'],
-				format: ['camelCase'],
+				format: ['snake_case'],
 				leadingUnderscore: 'require'
 			},
 			{
 				selector: ['method', 'function'],
 				modifiers: ['protected'],
-				format: ['camelCase'],
+				format: ['snake_case'],
 				leadingUnderscore: 'require'
 			},
 			{
 				selector: ['method', 'function'],
-				format: ['camelCase', 'UPPER_CASE']
+				format: ['snake_case']
 			},
 			{
 				selector: [
