@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	// import { onMount } from "svelte";
 
-
-	let english_text_input: HTMLInputElement
-	let japanese_text_input: HTMLInputElement
-	let language_selector: HTMLSelectElement
+	let english_textarea: HTMLTextAreaElement
+	let japanese_textarea: HTMLTextAreaElement
+	// let language_selector: HTMLSelectElement
 
 	// function getVoices() {
 	// 	const voices = speechSynthesis.getVoices()
@@ -41,11 +40,17 @@
 
 <!-- <select bind:this={language_selector}></select> -->
 
-<input type="text" placeholder="Enter text to speech in English" size=60 value="Hello world!" bind:this={english_text_input}>
-<button on:click={() => speech(english_text_input.value, 'en-US')}>Speech in English</button>
+<textarea placeholder="Enter text to speech in English" size=60 value="Hello world!" bind:this={english_textarea} />
+<button on:click={() => speech(english_textarea.value, 'en-US')}>Speech in English</button>
 
 <br><br>
 
-<input type="text" placeholder="Enter text to speech in Japanese" size=60 value="こんにちは、世界" bind:this={japanese_text_input}>
-<button on:click={() => speech(japanese_text_input.value, 'ja-JP')}>Speech in Japanese</button>
+<textarea placeholder="Enter text to speech in Japanese" size=60 value="こんにちは、世界" bind:this={japanese_textarea} />
+<button on:click={() => speech(japanese_textarea.value, 'ja-JP')}>Speech in Japanese</button>
 
+<style>
+	textarea {
+		width : 100%;
+		height: 200px;
+	}
+</style>
