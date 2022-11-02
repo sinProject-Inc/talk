@@ -34,16 +34,22 @@ npm install
 npm run dev -- --open
 ```
 
-## Support
+## Feedback
 
 👉 [**Ask a question**](https://github.com/sinProject-Inc/talk/discussions/new)
 
-👉 [**Create bug report**](https://github.com/sinProject-Inc/talk/issues/new)
+👉 [**Request a new feature**](https://github.com/sinProject-Inc/talk/issues/new)
 
-👉 [**Submit feature request**](https://github.com/sinProject-Inc/talk/issues/new)
+👉 [**Upvote popular feature requests**](https://github.com/sinProject-Inc/talk/issues/)
+
+👉 [**Create a bug report**](https://github.com/sinProject-Inc/talk/issues/new)
 
 👉 [**Become a sponsor**](https://github.com/sponsors/sinproject-iwasaki)
 
 ## License
 
-[MIT](https://github.com/sinProject-Inc/talk/blob/main/LICENSE)
+Copyright (c) sinProject Inc. All rights reserved.
+
+Licensed under the [MIT](https://github.com/sinProject-Inc/talk/blob/main/LICENSE) license.
+
+
