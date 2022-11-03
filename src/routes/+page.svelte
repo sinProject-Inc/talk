@@ -154,13 +154,31 @@
 		const recognition = new speech_recognition()
 
 		recognition.lang = lang
-		recognition.interimResults = false
-		recognition.maxAlternatives = 1
+		recognition.interimResults = true
+		// recognition.continuous = true;
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		// recognition.onresult = (event: any): void => {
+		// 	const result = event.results[0][0].transcript
+		// 	textarea.value = result
+		// }
+
+		let finalTranscript = ''
+
 		recognition.onresult = (event: any): void => {
-			const result = event.results[0][0].transcript
-			textarea.value = result
+			let interimTranscript = ''
+
+			for (let i = event.resultIndex; i < event.results.length; i++) {
+				let transcript = event.results[i][0].transcript
+
+				if (event.results[i].isFinal) {
+					finalTranscript += transcript
+				} else {
+					interimTranscript = transcript
+				}
+			}
+
+			textarea.value = finalTranscript + interimTranscript
 		}
 
 		recognition.start()
