@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Langage {
+model Language {
   id         Int      @id @default(autoincrement())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -20,10 +20,10 @@ model Langage {
 }
 
 model Text {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  langage_id Int
-  langage    Langage  @relation(fields: [langage_id], references: [id])
-  text       String   @unique
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  language_id Int
+  text        String   @unique
+  language    Language @relation(fields: [language_id], references: [id])
 }
