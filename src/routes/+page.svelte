@@ -16,14 +16,27 @@
 
 		const lang_set: Set<string> = new Set()
 
+		voices.sort((a, b) => {
+			const a_name = a.lang + a.name
+			const b_name = b.lang + b.name
+
+			if ( a_name < b_name ) return -1
+			if ( a_name == b_name ) return 0
+			return +1
+		})
+
 		voices.forEach((voice) => {
 			const option = document.createElement('option')
 			const default_text = voice.default ? ' -- DEFAULT' : ''
 
-			option.textContent = `${voice.name} (${voice.lang}) ${default_text}`
+			option.textContent = `${voice.lang} (${voice.name}) ${default_text}`
 
 			option.setAttribute('data-lang', voice.lang)
 			option.setAttribute('data-name', voice.name)
+
+			if (voice.default) {
+				option.setAttribute('selected', 'selected')
+			}
 
 			voice_select.appendChild(option)
 
