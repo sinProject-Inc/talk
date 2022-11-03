@@ -1,29 +1,66 @@
 <script lang="ts">
-	// import { onMount } from "svelte";
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
-	let recognition_textarea: HTMLTextAreaElement;
-	let english_textarea: HTMLTextAreaElement;
-	let japanese_textarea: HTMLTextAreaElement;
-	// let language_selector: HTMLSelectElement
+	let voice_select: HTMLSelectElement;
+	let language_select: HTMLSelectElement;
+	let textarea: HTMLTextAreaElement;
 
-	// function getVoices() {
-	// 	const voices = speechSynthesis.getVoices()
+	// eslint-disable-next-line no-undef
+	let synth: SpeechSynthesis;
+	// eslint-disable-next-line no-undef
+	let voices: SpeechSynthesisVoice[] = []
 
-	// 	voices.forEach((voice) => {
-	// 		const option = document.createElement('option')
-	// 		option.value = voice.name
-	// 		option.innerText = `${voice.name} ${voice.lang}`
-	// 		language_selector.appendChild(option)
-	// 	})
+	function populate_voice_list(): void {
+		voices = synth.getVoices();
+		console.log(voices)
 
-	// 	language_selector = language_selector
-	// }
+		const lang_set: Set<string> = new Set();
 
-	function speech(text: string, lang: string): void {
-		const utterance = new SpeechSynthesisUtterance();
+		voices.forEach((voice) => {
+			const option = document.createElement('option');
+			const default_text = voice.default ? ' -- DEFAULT' : '';
 
-		utterance.text = text;
-		utterance.lang = lang;
+			option.textContent = `${voice.name} (${voice.lang}) ${default_text}`;
+
+			option.setAttribute('data-lang', voice.lang);
+			option.setAttribute('data-name', voice.name);
+
+			voice_select.appendChild(option);
+
+			lang_set.add(voice.lang);
+		});
+
+		const language_array = Array.from(lang_set)
+
+		language_array.sort()
+
+		language_array.forEach((lang) => {
+			const option = document.createElement('option');
+			option.textContent = lang;
+			option.setAttribute('data-lang', lang);
+			option.setAttribute('data-name', lang);
+
+			if (lang === 'en-US') {
+				option.setAttribute('selected', 'selected');
+			}
+
+			language_select.appendChild(option);
+		});
+
+		voice_select = voice_select;
+		language_select = language_select;
+	}
+
+	function speech(text: string, voice_name: string): void {
+		const utterance = new SpeechSynthesisUtterance(text);
+
+		voices.find((voice) => {
+			if (voice.name === voice_name) {
+				utterance.voice = voice;
+			}
+		});
+
 		utterance.rate = 1;
 		utterance.pitch = 1;
 		utterance.volume = 1;
@@ -31,21 +68,19 @@
 		speechSynthesis.speak(utterance);
 	}
 
-	function speech_in_english(): void {
-		speech(english_textarea.value, 'en-US');
-	}
+	function text_to_speech(): void {
+		const selected_voice_name = voice_select.selectedOptions[0].getAttribute('data-name') ?? '';
 
-	function speech_in_japanese(): void {
-		speech(japanese_textarea.value, 'ja-JP');
+		speech(textarea.value, selected_voice_name);
 	}
 
 	function recognition(lang: string): void {
 		if (!('webkitSpeechRecognition' in window)) {
-			recognition_textarea.value = 'Speech Recognition Not Available'
-			return
+			textarea.value = 'Speech Recognition Not Available';
+			return;
 		}
 
-		recognition_textarea.value = 'Recognition...'
+		textarea.value = 'Recognition...';
 
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 		const recognition = new speech_recognition();
@@ -57,25 +92,28 @@
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		recognition.onresult = (event: any): void => {
 			const result = event.results[0][0].transcript;
-			recognition_textarea.value = result;
+			textarea.value = result;
 		};
 
 		recognition.start();
 	}
 
-	function recognition_in_english(): void {
-		recognition('en-US');
+	function speech_to_text(): void {
+		const selected_language = language_select.selectedOptions[0].getAttribute('data-lang') ?? '';
+
+		recognition(selected_language);
 	}
 
-	function recognition_in_japanese(): void {
-		recognition('ja-JP');
-	}
+	onMount(() => {
+		if (browser) {
+			synth = window.speechSynthesis;
+			synth.onvoiceschanged = populate_voice_list;
 
-
-
-	// onMount(() => {
-	// 	getVoices()
-	// })
+			setTimeout(() => {
+				populate_voice_list();
+			}, 10);
+		}
+	});
 </script>
 
 <h1>Welcome to Talk</h1>
@@ -84,39 +122,23 @@
 	read the documentation
 </p>
 
-<!-- <select bind:this={language_selector}></select> -->
-
-Speech Recognition
 <textarea
-	readonly
-	placeholder="Press the button and say something"
-	size="60"
-	bind:this={recognition_textarea}
-/>
-<button on:click={recognition_in_english}>English</button>
-<button on:click={recognition_in_japanese}>Japanese</button>
-
-<br /><br />
-
-English
-<textarea
-	placeholder="Enter text to speech in English"
+	placeholder="Enter text"
 	size="60"
 	value="Hello world!"
-	bind:this={english_textarea}
+	bind:this={textarea}
 />
-<button on:click={speech_in_english}>Text-to-Speech</button>
+<select bind:this={voice_select} />
+<button on:click={text_to_speech}>Text-to-Speech</button>
+
+<br>
+<br>
+
+<select bind:this={language_select} />
+<button on:click={speech_to_text}>Speech-to-Text</button>
+
 
 <br /><br />
-
-Japanese
-<textarea
-	placeholder="Enter text to speech in Japanese"
-	size="60"
-	value="こんにちは、世界"
-	bind:this={japanese_textarea}
-/>
-<button on:click={speech_in_japanese}>Text-to-Speech</button>
 
 <style>
 	textarea {
