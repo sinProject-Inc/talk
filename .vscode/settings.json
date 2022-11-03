@@ -3,7 +3,8 @@
 		"autoincrement",
 		"datasource",
 		"onresult",
-		"onvoiceschanged"
+		"onvoiceschanged",
+		"sveltejs"
 	],
 	"cSpell.enabledLanguageIds": [
 		"asciidoc",
