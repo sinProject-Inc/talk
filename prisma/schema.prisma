@@ -14,7 +14,8 @@ model Langage {
   id         Int      @id @default(autoincrement())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  langage    String   @unique
+  code       String   @unique
+  name       String   @unique
   texts      Text[]
 }
 
