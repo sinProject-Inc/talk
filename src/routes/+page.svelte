@@ -13,7 +13,6 @@
 
 	function populate_voice_list(): void {
 		voices = synth.getVoices()
-		console.log(voices)
 
 		const lang_set: Set<string> = new Set()
 
