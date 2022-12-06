@@ -11,6 +11,9 @@
 	let voice_select: HTMLSelectElement
 	let speech_to_text_language_select: HTMLSelectElement
 	let textarea: HTMLTextAreaElement
+
+	let selected_text = ''
+
 	// let search_text: HTMLInputElement
 
 	// eslint-disable-next-line no-undef
@@ -201,10 +204,12 @@
 	function on_change_text_select(): void {
 		const language_code =
 			language_select_for_texts.selectedOptions[0].getAttribute('data-code') ?? ''
-		const selected_text = text_select.selectedOptions[0].textContent ?? ''
-		const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
+		
+			selected_text = text_select.selectedOptions[0].textContent ?? ''
+		
+		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
-		speech(selected_text, language_code, voice_name)
+		// speech(selected_text, language_code, voice_name)
 	}
 
 	onMount(() => {
@@ -227,18 +232,18 @@
 	})
 </script>
 
-<h1>Welcome to Talk</h1>
-<p>
-	Visit <a href="https://github.com/sinProject-Inc/talk">https://github.com/sinProject-Inc/talk</a> to
-	read the documentation
-</p>
+<h1>Talk</h1>
 
 <select bind:this={language_select_for_texts} />
 
 <br />
 <select class="texts" bind:this={text_select} />
 
-<button on:click={on_change_text_select}>Speech Selected Text</button>
+{#if selected_text}
+	<audio src="/api/text-to-speech/{selected_text}" controls autoplay />
+{/if}
+
+<!-- <button on:click={on_change_text_select}>Speech Selected Text</button> -->
 
 <br />
 <br />

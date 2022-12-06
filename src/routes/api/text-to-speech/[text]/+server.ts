@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit'
-import fs from 'fs'
+// import fs from 'fs'
 import text_to_speech from '@google-cloud/text-to-speech'
 
 export const GET: RequestHandler = async ({ params }) => {
@@ -12,8 +12,7 @@ export const GET: RequestHandler = async ({ params }) => {
 	const text_to_speech_client = new text_to_speech.TextToSpeechClient()
 	const [response] = await text_to_speech_client.synthesizeSpeech(request)
 
-	console.log(response.audioContent)
-
+	// console.log(response.audioContent)
 	// fs.writeFileSync('output.mp3', response.audioContent, 'binary')
 	console.log(`'${text}' to speech`)
 
