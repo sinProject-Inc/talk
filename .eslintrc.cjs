@@ -6,16 +6,16 @@ module.exports = {
 	ignorePatterns: ['*.cjs'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
-		'svelte3/typescript': () => require('typescript')
+		'svelte3/typescript': () => require('typescript'),
 	},
 	parserOptions: {
 		sourceType: 'module',
-		ecmaVersion: 2020
+		ecmaVersion: 2020,
 	},
 	env: {
 		browser: true,
 		es2017: true,
-		node: true
+		node: true,
 	},
 	rules: {
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
@@ -24,27 +24,27 @@ module.exports = {
 			'error',
 			{
 				selector: 'typeParameter',
-				format: ['UPPER_CASE']
+				format: ['UPPER_CASE'],
 			},
 			{
 				selector: ['class', 'interface', 'typeAlias'],
-				format: ['PascalCase']
+				format: ['PascalCase'],
 			},
 			{
 				selector: ['method', 'function'],
 				modifiers: ['private'],
 				format: ['snake_case'],
-				leadingUnderscore: 'require'
+				leadingUnderscore: 'require',
 			},
 			{
 				selector: ['method', 'function'],
 				modifiers: ['protected'],
 				format: ['snake_case'],
-				leadingUnderscore: 'require'
+				leadingUnderscore: 'require',
 			},
 			{
 				selector: ['method', 'function'],
-				format: ['snake_case']
+				format: ['snake_case'],
 			},
 			{
 				selector: [
@@ -53,11 +53,11 @@ module.exports = {
 					'parameter',
 					'parameterProperty',
 					'variable',
-					'enumMember'
+					'enumMember',
 				],
 				modifiers: ['private'],
 				format: ['snake_case'],
-				leadingUnderscore: 'require'
+				leadingUnderscore: 'require',
 			},
 			{
 				selector: [
@@ -66,21 +66,21 @@ module.exports = {
 					'parameter',
 					'parameterProperty',
 					'variable',
-					'enumMember'
+					'enumMember',
 				],
 				modifiers: ['protected'],
 				format: ['snake_case'],
-				leadingUnderscore: 'require'
+				leadingUnderscore: 'require',
 			},
 			{
 				selector: ['accessor', 'parameter', 'parameterProperty', 'enumMember'],
-				format: ['snake_case']
+				format: ['snake_case'],
 			},
 			{
 				selector: ['property', 'variable'],
-				format: ['snake_case', 'UPPER_CASE', 'camelCase']
-			}
+				format: ['snake_case', 'UPPER_CASE', 'camelCase'],
+			},
 			// TODO: 引数、関数、クラス、インターフェイス、enumのメンバー名のルール
-		]
-	}
-};
+		],
+	},
+}
