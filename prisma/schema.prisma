@@ -17,6 +17,7 @@ model Language {
   code       String   @unique
   name       String   @unique
   texts      Text[]
+  sounds     Sound[]
 }
 
 model Text {
@@ -25,5 +26,14 @@ model Text {
   updated_at  DateTime @updatedAt
   language_id Int
   text        String   @unique
+  language    Language @relation(fields: [language_id], references: [id])
+}
+
+model Sound {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  language_id Int
+  sound_text  String   @unique
   language    Language @relation(fields: [language_id], references: [id])
 }

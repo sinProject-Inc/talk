@@ -240,7 +240,8 @@
 <select class="texts" bind:this={text_select} />
 
 {#if selected_text}
-	<audio src="/api/text-to-speech/{selected_text}" controls autoplay />
+	{@const encoded_text = encodeURIComponent(selected_text)}
+	<audio src="/api/text-to-speech/{encoded_text}" controls autoplay />
 {/if}
 
 <!-- <button on:click={on_change_text_select}>Speech Selected Text</button> -->
