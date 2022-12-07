@@ -13,6 +13,7 @@
 	let textarea: HTMLTextAreaElement
 
 	let selected_text = ''
+	let translated_text = ''
 
 	// let search_text: HTMLInputElement
 
@@ -206,6 +207,7 @@
 			language_select_for_texts.selectedOptions[0].getAttribute('data-code') ?? ''
 		
 			selected_text = text_select.selectedOptions[0].textContent ?? ''
+			translated_text = ''
 		
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
@@ -230,6 +232,16 @@
 			populate_voice_list()
 		}, 10)
 	})
+
+
+	async function translate(): Promise<void> {
+		const encoded_text = encodeURIComponent(selected_text)
+		const url = `/api/translate_by_deepl/${encoded_text}/ja`
+		// TODO: LANG
+		const response = await fetch(url)
+
+		translated_text = await response.json() as string
+	}
 </script>
 
 <h1>Talk</h1>
@@ -243,6 +255,10 @@
 	{@const encoded_text = encodeURIComponent(selected_text)}
 	<audio src="/api/text-to-speech/{encoded_text}" controls autoplay />
 {/if}
+
+<button on:click={translate}>Translate</button>
+
+{translated_text}
 
 <!-- <button on:click={on_change_text_select}>Speech Selected Text</button> -->
 

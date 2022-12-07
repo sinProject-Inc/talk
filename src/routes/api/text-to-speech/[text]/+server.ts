@@ -62,11 +62,11 @@ async function get_buffers(sentences: string[]): Promise<Buffer[]> {
 			try {
 				const buffer = fs.readFileSync(read_path)
 
-				console.info('found sound file', read_path)
+				console.info(`Found #${sound.id} sound for "${sentence}"`)
 				buffers.push(buffer)
 				continue
 			} catch (e) {
-				console.info('not found sound file')
+				// console.info(`'Not found #${sound.id} sound for "${sentence}"'`)
 			}
 		}
 
@@ -75,7 +75,7 @@ async function get_buffers(sentences: string[]): Promise<Buffer[]> {
 		const wright_path = `${SOUND_DIR}${id}.mp3`
 		
 		fs.writeFileSync(wright_path, audio_content, 'binary')
-		console.info('write sound file', wright_path)
+		console.info(`Created #${id} sound for "${sentence}"`)
 		buffers.push(audio_content)
 	}
 
@@ -86,7 +86,7 @@ async function get_buffers(sentences: string[]): Promise<Buffer[]> {
 
 export const GET: RequestHandler = async ({ url, params }) => {
 	const text = params.text ?? ''
-	console.log(text)
+	// console.info('text-to-speech: ', text)
 
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
