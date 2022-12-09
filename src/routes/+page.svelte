@@ -3,15 +3,17 @@
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
+	import '../app.css'
 
 	export let data: PageData
 
 	let language_select_for_texts: HTMLSelectElement
-	let text_select: HTMLSelectElement
 	let voice_select: HTMLSelectElement
 	let speech_to_text_language_select: HTMLSelectElement
 	let textarea: HTMLTextAreaElement
+	let audio_element: HTMLAudioElement
 
+	let texts: Text[] = []
 	let selected_text = ''
 	let translated_text = ''
 
@@ -37,32 +39,10 @@
 		})
 	}
 
-	function remove_all_child_nodes(parent: HTMLElement): void {
-		while (parent.firstChild) {
-			parent.removeChild(parent.firstChild)
-		}
-	}
-
 	async function fetch_texts(language_code: string): Promise<void> {
 		const response = await fetch(`/api/text?language_code=${language_code}`)
 
-		const texts = (await response.json()) as Text[]
-
-		remove_all_child_nodes(text_select)
-
-		const option = document.createElement('option')
-		option.textContent = '(select a text)'
-		text_select.appendChild(option)
-
-		texts.forEach((text) => {
-			const option = document.createElement('option')
-
-			option.textContent = text.text
-
-			text_select.appendChild(option)
-		})
-
-		text_select = text_select
+		texts = (await response.json()) as Text[]
 	}
 
 	function populate_voice_list(): void {
@@ -202,13 +182,18 @@
 		fetch_texts(selected_language_code)
 	}
 
-	function on_change_text_select(): void {
+	function on_text_selected(text: string): void {
 		const language_code =
 			language_select_for_texts.selectedOptions[0].getAttribute('data-code') ?? ''
-		
-			selected_text = text_select.selectedOptions[0].textContent ?? ''
+
+		if (text === selected_text) {
+			console.log('same text')
+			audio_element.play()
+		} else {
+			selected_text = text
 			translated_text = ''
-		
+		}
+
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
 		// speech(selected_text, language_code, voice_name)
@@ -222,9 +207,6 @@
 		language_select_for_texts.onchange = on_change_language_select_for_texts
 		on_change_language_select_for_texts()
 
-		// text_select.onchange = on_change_text_select
-		text_select.onchange = on_change_text_select
-
 		synth = window.speechSynthesis
 		synth.onvoiceschanged = populate_voice_list
 
@@ -233,52 +215,72 @@
 		}, 10)
 	})
 
-
 	async function translate(): Promise<void> {
 		const encoded_text = encodeURIComponent(selected_text)
 		const url = `/api/translate_by_deepl/${encoded_text}/ja`
 		// TODO: LANG
 		const response = await fetch(url)
 
-		translated_text = await response.json() as string
+		translated_text = (await response.json()) as string
 	}
 </script>
 
-<h1>Talk</h1>
+<div class="flex_row root_container header header_background_color">
+	<div class="center_container">
+		<div class="header flex_row align_items_center">Talk</div>
+	</div>
+</div>
 
-<select bind:this={language_select_for_texts} />
+<div class="flex_row root_container">
+	<div />
+	<div class="center_container">
+		<div class="scroll_area flex_column gap_8px">
+			<select bind:this={language_select_for_texts} />
+			<div class="border_radius flex_column gap_border">
+				{#each texts as text}
+					<div
+						class="padding_10px_16px cursor_pointer hover"
+						on:click={() => on_text_selected(text.text)}
+						on:keydown
+					>
+						{text.text}
+					</div>
+				{/each}
+			</div>
+		</div>
 
-<br />
-<select class="texts" bind:this={text_select} />
+		<div class="footer flex_column gap_8px">
+			{#if selected_text}
+				{@const encoded_text = encodeURIComponent(selected_text)}
+				<audio
+					src="/api/text-to-speech/{encoded_text}"
+					controls
+					autoplay
+					bind:this={audio_element}
+				/>
+			{/if}
 
-{#if selected_text}
-	{@const encoded_text = encodeURIComponent(selected_text)}
-	<audio src="/api/text-to-speech/{encoded_text}" controls autoplay />
-{/if}
+			<div>
+				<button on:click={translate}>Translate</button>
+				{translated_text}
+			</div>
 
-<button on:click={translate}>Translate</button>
+			<!-- <button on:click={on_change_text_select}>Speech Selected Text</button> -->
 
-{translated_text}
+			<div>
+				<textarea placeholder="Enter text" value="Hello world!" bind:this={textarea} />
+			</div>
+			<select bind:this={voice_select} />
+			<button on:click={text_to_speech}>Text-to-Speech</button>
 
-<!-- <button on:click={on_change_text_select}>Speech Selected Text</button> -->
-
-<br />
-<br />
-
-<textarea placeholder="Enter text" size="60" value="Hello world!" bind:this={textarea} />
-<select bind:this={voice_select} />
-<button on:click={text_to_speech}>Text-to-Speech</button>
-
-<br />
-<br />
-
-<select bind:this={speech_to_text_language_select} />
-<button on:click={speech_to_text}>Speech-to-Text</button>
+			<select bind:this={speech_to_text_language_select} />
+			<button on:click={speech_to_text}>Speech-to-Text</button>
+		</div>
+	</div>
+	<div />
+</div>
 
 <!-- <input type="text" bind:this={search_text} /> -->
-
-<br /><br />
-
 <style>
 	.texts {
 		width: 100%;
