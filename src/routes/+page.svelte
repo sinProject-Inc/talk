@@ -30,7 +30,7 @@
 		languages.forEach((language) => {
 			const option = document.createElement('option')
 
-			option.textContent = `${language.name} (${language.code})`
+			option.textContent = `${language.name} [${language.code}]`
 
 			option.setAttribute('data-code', language.code)
 			option.setAttribute('data-name', language.name)

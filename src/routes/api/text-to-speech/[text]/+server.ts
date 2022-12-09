@@ -26,20 +26,20 @@ async function fetch_audio(text: string): Promise<Buffer> {
 
 async function upsert_data(sentence: string): Promise<number> {
 	// TODO: language_code を指定する
-	const language = await db.language.upsert({
-		where: {
-			code: 'en-US',
-		},
-		update: {},
-		create: { code: 'en-US', name: 'English' },
-	})
+	// const language = await db.language.upsert({
+	// 	where: {
+	// 		code: 'en-US',
+	// 	},
+	// 	update: {},
+	// 	create: { code: 'en-US', name: 'English' },
+	// })
 
 	const sound = await db.sound.upsert({
 		where: {
 			sound_text: sentence,
 		},
 		update: {},
-		create: { language_id: language.id, sound_text: sentence },
+		create: { locale_id: 1, sound_text: sentence },
 	})
 
 	return sound.id
