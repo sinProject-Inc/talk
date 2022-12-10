@@ -5,7 +5,10 @@
 		"deepl",
 		"onresult",
 		"onvoiceschanged",
-		"sveltejs"
+		"protos",
+		"sveltejs",
+		"texttospeech",
+		"Wavenet"
 	],
 	"cSpell.enabledLanguageIds": [
 		"asciidoc",

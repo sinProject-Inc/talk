@@ -1,90 +1,41 @@
-import { SOUND_DIR } from '$env/static/private'
-import { db } from '$lib/database'
-import text_to_speech from '@google-cloud/text-to-speech'
+import { Database } from '$lib/database'
+import { File } from '$lib/file'
+import { GoogleSpeech } from '$lib/google-speech'
 import type { RequestHandler } from '@sveltejs/kit'
-import fs from 'fs'
-
-// HACK: 結合方法不明のため保留
-// async function split_sentences(text: string, url: URL): Promise<string[]> {
-// 	const split_response = await fetch(`${url.origin}/api/split-sentence/${text}`)
-// 	const sentences = (await split_response.json()) as string[]
-
-// 	return sentences
-// }
-
-async function fetch_audio(text: string): Promise<Buffer> {
-	const request = {
-		input: { text },
-		voice: { languageCode: 'en-US', name: 'en-US-Neural2-C' },
-		audioConfig: { audioEncoding: 'MP3' },
-	}
-	const text_to_speech_client = new text_to_speech.TextToSpeechClient()
-	const [response] = await text_to_speech_client.synthesizeSpeech(request)
-
-	return response.audioContent
-}
-
-async function upsert_data(sentence: string): Promise<number> {
-	// TODO: language_code を指定する
-	// const language = await db.language.upsert({
-	// 	where: {
-	// 		code: 'en-US',
-	// 	},
-	// 	update: {},
-	// 	create: { code: 'en-US', name: 'English' },
-	// })
-
-	const sound = await db.sound.upsert({
-		where: {
-			sound_text: sentence,
-		},
-		update: {},
-		create: { locale_id: 1, sound_text: sentence },
-	})
-
-	return sound.id
-}
 
 async function get_buffers(sentences: string[]): Promise<Buffer[]> {
 	const buffers: Buffer[] = []
 
 	for (const sentence of sentences) {
 		// console.log('sentence', sentence)
-		const sound = await db.sound.findUnique({
-			where: {
-				sound_text: sentence,
-			},
-		})
+		const sound = await Database.sound_find_by_text(sentence)
 
 		if (sound) {
-			const read_path = `${SOUND_DIR}${sound.id}.mp3`
-
 			try {
-				const buffer = fs.readFileSync(read_path)
+				const buffer = File.read_sound(sound.id)
 
 				console.info(`Found #${sound.id} sound for "${sentence}"`)
 				buffers.push(buffer)
 				continue
 			} catch (e) {
-				// console.info(`'Not found #${sound.id} sound for "${sentence}"'`)
+				// DO NOTHING
 			}
 		}
 
-		const audio_content = await fetch_audio(sentence)
-		const id = await upsert_data(sentence)
-		const wright_path = `${SOUND_DIR}${id}.mp3`
-		
-		fs.writeFileSync(wright_path, audio_content, 'binary')
-		console.info(`Created #${id} sound for "${sentence}"`)
+		// TODO: locale を指定する
+		const audio_content = (await GoogleSpeech.synthesize_speech(sentence, 'en-US')) as Buffer
+		// TODO: locale_id を指定する
+		const {id: sound_id} = await Database.sound_upsert(sentence, 1)
+
+		File.write_sound(sound_id, audio_content)
+		console.info(`Created #${sound_id} sound for "${sentence}"`)
 		buffers.push(audio_content)
 	}
 
 	return buffers
 }
 
-// export joinBase64Strings(base64_strings: string[]): string {
-
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const text = params.text ?? ''
 	// console.info('text-to-speech: ', text)
 

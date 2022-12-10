@@ -5,6 +5,7 @@ import type { TargetLanguageCode } from 'deepl-node'
 
 export const GET: RequestHandler = async ({ params }) => {
 	const trimmed_text = params.text?.trim() ?? ''
+	// TODO: 言語を指定する
 	const target_lang = (params.target_lang?.trim() ?? 'en') as TargetLanguageCode
 
 	if (trimmed_text === '') return json('')
