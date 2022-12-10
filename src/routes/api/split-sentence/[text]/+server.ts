@@ -1,16 +1,13 @@
 
+import { Util } from '$lib/util'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ params }) => {
-	console.info('\nsource text:', params.text)
+	const text = params.text ?? ''
 
-	const trimmed_text = params.text?.trim() ?? ''
-	const replaced_text = trimmed_text.replace(/([.!?。！？])(\s+|([^.!?。！？]))/g, '$1\n$3')
-	const sentences = replaced_text.split('\n')
+	console.info('\nsource text:', text)
 
-	for (const sentence of sentences) {
-		console.info(sentence)
-	}
+	const sentences = Util.split_sentences(text)
 
 	return json(sentences)
 }

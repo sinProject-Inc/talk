@@ -32,16 +32,28 @@ textarea {
 	background: var(--border-color);
 }
 
-button, select {
+button,
+select {
 	cursor: pointer;
 }
 
 button {
-	padding: 7px 16px;
+	padding: 6px 8px;
+	/* min-width: 80px; */
 }
 
 select {
 	padding: 6px 12px;
+}
+
+input {
+	padding: 7px 16px;
+}
+
+textarea {
+	font-family: inherit;
+	font-size: 100%;
+	padding: 10px 16px;
 }
 
 .header_background_color {
@@ -55,7 +67,6 @@ select {
 	top: 0;
 	height: 53px;
 	backdrop-filter: blur(12px);
-	background-color: rgba(245, 245, 245, 0.85);
 	padding-left: 16px;
 	padding-right: 16px;
 	font-size: 22px;
@@ -90,8 +101,16 @@ select {
 	width: auto;
 }
 
+.flex_auto {
+	flex: auto !important;
+}
+
 .align_items_center {
 	align-items: center;
+}
+
+.justify_content_center {
+	justify-content: center;
 }
 
 .gap_border {
@@ -131,6 +150,10 @@ select {
 	gap: 8px;
 }
 
+.gap_16px {
+	gap: 16px;
+}
+
 .cursor_pointer {
 	cursor: pointer;
 }
@@ -138,4 +161,17 @@ select {
 .hover:hover {
 	background-color: var(--border-color);
 	transition: 0.2s;
+}
+
+.title {
+	padding: 8px 0;
+	margin: 0;
+	border-bottom: 1px solid var(--border-color);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.height_24px {
+	height: 24px !important;
+	min-height: 24px !important;
 }
