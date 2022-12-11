@@ -3,12 +3,12 @@ import { File } from '$lib/file'
 import { GoogleSpeech } from '$lib/google-speech'
 import type { RequestHandler } from '@sveltejs/kit'
 
-async function get_buffers(sentences: string[]): Promise<Buffer[]> {
+async function get_buffers(sentences: string[], locale_code: string): Promise<Buffer[]> {
 	const buffers: Buffer[] = []
 
 	for (const sentence of sentences) {
 		// console.log('sentence', sentence)
-		const sound = await Database.sound_find_by_text(sentence)
+		const sound = await Database.sound_find_by_text(sentence, locale_code)
 
 		if (sound) {
 			try {
@@ -22,10 +22,8 @@ async function get_buffers(sentences: string[]): Promise<Buffer[]> {
 			}
 		}
 
-		// TODO: locale を指定する
-		const audio_content = (await GoogleSpeech.synthesize_speech(sentence, 'en-US')) as Buffer
-		// TODO: locale_id を指定する
-		const {id: sound_id} = await Database.sound_upsert(sentence, 1)
+		const audio_content = (await GoogleSpeech.synthesize_speech(sentence, locale_code)) as Buffer
+		const {id: sound_id} = await Database.sound_upsert(sentence, locale_code)
 
 		File.write_sound(sound_id, audio_content)
 		console.info(`Created #${sound_id} sound for "${sentence}"`)
@@ -35,13 +33,16 @@ async function get_buffers(sentences: string[]): Promise<Buffer[]> {
 	return buffers
 }
 
-export const GET: RequestHandler = async ({ params }) => {
+export const GET: RequestHandler = async ({ url, params }) => {
+	console.log(url.href)
+
 	const text = params.text ?? ''
+	const locale_code = params.locale_code ?? ''
 	// console.info('text-to-speech: ', text)
 
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
-	const buffers = await get_buffers([text])
+	const buffers = await get_buffers([text], locale_code)
 
 	// // return new Response('success')
 
