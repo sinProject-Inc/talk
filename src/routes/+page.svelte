@@ -4,7 +4,7 @@
 	import { Html } from '$lib/html'
 	import { WebSpeech } from '$lib/web-speech'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
-	import type { Language, Text } from '@prisma/client'
+	import type { Language, Locale, Text } from '@prisma/client'
 	import VoiceIcon from '$lib/icons/voice_icon.svelte'
 	import { onMount } from 'svelte'
 	import '../app.css'
@@ -15,7 +15,7 @@
 
 	let from_language_select: HTMLSelectElement
 	let to_language_select: HTMLSelectElement
-	// let locale_select: HTMLSelectElement
+	let locale_select: HTMLSelectElement
 	let speech_text_element: HTMLElement
 	let audio_element: HTMLAudioElement
 
@@ -23,8 +23,8 @@
 	let selected_text = ''
 	let translated_text = ''
 
-	function set_languages_for_texts(): void {
-		const languages = JSON.parse(data.languages_json_string) as Language[]
+	function init_language_select(): void {
+		const languages = JSON.parse(data.languages) as Language[]
 
 		Html.append_language_select_options(from_language_select, languages)
 		Html.append_language_select_options(to_language_select, languages)
@@ -38,10 +38,13 @@
 	}
 
 	async function on_change_language_select_for_texts(): Promise<void> {
-		const selected_language_code =
-			from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
+		const language_code = from_language_select.selectedOptions[0].value ?? ''
 
-		texts = await Api.get_texts(selected_language_code)
+		texts = await new Api().texts(language_code)
+
+		const locales = JSON.parse(data.locales) as Locale[]
+
+		Html.append_locale_select_options(locale_select, locales, language_code)
 	}
 
 	function on_text_selected(text: string): void {
@@ -65,12 +68,21 @@
 		// TODO:
 	}
 
+	// async function fetch_languages(): Promise<void> {
+	// 	const response = await fetch('/api/languages')
+	// 	const languages = response.json()
+
+	// 	console.log(languages)
+	// }
+
+	// fetch_languages()
+
 	onMount(() => {
 		if (!browser) return
 
 		speech_text_element.textContent = '(No speech text)'
 
-		set_languages_for_texts()
+		init_language_select()
 
 		from_language_select.onchange = on_change_language_select_for_texts
 		on_change_language_select_for_texts()
@@ -102,10 +114,7 @@
 		<div class="scroll_area flex_column gap_8px">
 			<div>
 				<select bind:this={from_language_select} />
-				<select>
-					<option value="en-US">United States</option>
-					<option value="ja-JP">日本</option>
-				</select>
+				<select bind:this={locale_select} />
 			</div>
 			<div class="border_radius flex_column gap_border">
 				{#each texts as text}
