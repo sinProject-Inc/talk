@@ -1,11 +1,13 @@
-import { Database } from '$lib/database'
+import { Api } from '$lib/api'
 import type { PageServerLoad } from './$types'
 
-export const load: PageServerLoad = async () => {
-	const languages = await Database.language_find_many()
-	const languages_json_string = JSON.stringify(languages)
+export const load: PageServerLoad = async ({ url }) => {
+	const api = new Api(url.origin)
+	const languages = await api.languages()
+	const locales = await api.locales()
 
-	return {
-		languages_json_string,
+	return { 
+		languages: JSON.stringify(languages),
+		locales: JSON.stringify(locales)
 	}
 }

@@ -1,4 +1,4 @@
-import { PrismaClient, type Language, type Sound, type Text } from '@prisma/client'
+import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
 
 export const db = new PrismaClient()
 export class Database {
@@ -31,5 +31,11 @@ export class Database {
 		const languages = await db.language.findMany()
 
 		return languages
+	}
+
+	public static async locale_find_many(): Promise<Locale[]> {
+		const locales = await db.locale.findMany()
+
+		return locales
 	}
 }

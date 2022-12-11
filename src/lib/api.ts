@@ -1,11 +1,25 @@
-import type { Text } from '@prisma/client'
+import type { Language, Locale, Text } from '@prisma/client'
 
 export class Api {
-	public static async get_texts(language_code: string): Promise<Text[]> {
-		const response = await fetch(`/api/text/${language_code}`)
-		const texts = (await response.json()) as Text[]
+	public constructor(private readonly _origin = '') {}
 
-		return texts
+	private async _fetch<T>(path: string): Promise<T> {
+		const response = await fetch(`${this._origin}${path}`)
+		const result = (await response.json()) as T
+
+		return result
+	}
+
+	public async texts(language_code: string): Promise<Text[]> {
+		return await this._fetch<Text[]>(`/api/text/${language_code}`)
+	}
+
+	public async languages(): Promise<Language[]> {
+		return await this._fetch<Language[]>('/api/languages')
+	}
+
+	public async locales(): Promise<Locale[]> {
+		return await this._fetch<Locale[]>('/api/locales')
 	}
 
 	// HACK: 結合方法不明のため保留
