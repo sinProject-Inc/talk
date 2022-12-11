@@ -42,6 +42,8 @@ model Sound {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   locale_id  Int
-  sound_text String   @unique
+  sound_text String   
   locale     Locale   @relation(fields: [locale_id], references: [id])
+
+  @@unique([locale_id, sound_text])
 }
