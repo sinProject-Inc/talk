@@ -32,10 +32,10 @@
 	}
 
 	function speech_to_text(): void {
-		// const selected_language =
-		// 	speech_to_text_language_select.selectedOptions[0].getAttribute('data-lang') ?? ''
 
-		WebSpeech.recognition('en-US', speech_text_element)
+		const locale_code = locale_select.selectedOptions[0].value ?? ''
+
+		WebSpeech.recognition(locale_code, speech_text_element)
 	}
 
 	async function on_change_from_language_select(): Promise<void> {
