@@ -10,6 +10,8 @@ export class GoogleSpeech {
 				return 'en-GB-Neural2-B'
 			case 'ja-JP':
 				return 'ja-JP-Wavenet-D'
+			case 'yue-HK':
+				return 'yue-HK-Standard-B'
 		}
 
 		return 'en-US-Neural2-J'
