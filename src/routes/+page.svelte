@@ -100,8 +100,8 @@
 		}
 
 		const encoded_text = encodeURIComponent(selected_text)
-		const url = `/api/translate_by_deepl/${encoded_text}/ja`
-		// TODO: Translate to selected language #77
+		const language_code = to_language_select.selectedOptions[0].value ?? ''
+		const url = `/api/translate-by-google/${encoded_text}/${language_code}`
 		const response = await fetch(url)
 
 		translated_text = (await response.json()) as string

@@ -34,6 +34,7 @@
 	"type": "module",
 	"dependencies": {
 		"@google-cloud/text-to-speech": "^4.0.4",
+		"@google-cloud/translate": "^7.0.4",
 		"@prisma/client": "^4.5.0",
 		"deepl-node": "^1.7.2"
 	}
