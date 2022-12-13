@@ -24,6 +24,7 @@
 	let texts: Text[] = []
 	let selected_text = ''
 	let translated_text = ''
+	let language_from_code = ''
 	let locale_code = ''
 	let language_to_code = ''
 
@@ -41,24 +42,24 @@
 	}
 
 	async function on_change_from_language_select(store_language = true): Promise<void> {
-		const language_code = from_language_select.selectedOptions[0].value ?? ''
+		language_from_code = from_language_select.selectedOptions[0].value ?? ''
 
-		texts = await new Api().texts(language_code)
+		texts = await new Api().texts(language_from_code)
 
 		const locales = JSON.parse(data.locales) as Locale[]
 
 		selected_text = ''
 
-		Html.append_locale_select_options(locale_select, locales, language_code)
+		Html.append_locale_select_options(locale_select, locales, language_from_code)
 		on_change_locale_select(store_language)
 
 		// console.log(language_code)
 
-		$locale = Lang.to_text_language_code(language_code)
+		$locale = Lang.to_text_language_code(language_from_code)
 		await waitLocale()
 
 		if (store_language) {
-			localStorage.setItem('language_from', language_code)
+			localStorage.setItem('language_from', language_from_code)
 		}
 
 		setTimeout(() => {
@@ -74,6 +75,7 @@
 		if (language_to) to_language_select.value = language_to
 
 		await on_change_from_language_select(false)
+		on_change_translation_language_select(false)
 	}
 
 	function on_change_locale_select(store_locale = true): void {
@@ -131,8 +133,14 @@
 	// fetch_languages()
 
 	async function show_translation(): Promise<void> {
+		if (language_from_code === language_to_code) {
+			translated_text = `(${$_('select_different_language')})`
+			return
+		}
+
 		if (!selected_text) {
 			translated_text = `(${$_('select_text_first')})`
+			return
 		}
 
 		const encoded_text = encodeURIComponent(selected_text)
@@ -148,10 +156,12 @@
 		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
 
-	function on_change_translation_language(): void {
+	function on_change_translation_language_select(store_language = true): void {
 		language_to_code = to_language_select.selectedOptions[0].value ?? ''
 
-		localStorage.setItem('language_to', language_to_code)
+		if (store_language) {
+			localStorage.setItem('language_to', language_to_code)
+		}
 	}
 
 	onMount(async () => {
@@ -217,7 +227,7 @@
 			<div class="flex_column gap_8px">
 				<div class="title flex_row gap_16px align_items_center">
 					{$_('translation')}
-					<select bind:this={to_language_select} on:change={on_change_translation_language} />
+					<select bind:this={to_language_select} on:change={() => on_change_translation_language_select()} />
 				</div>
 				<div class="flex_row gap_8px align_items_center">
 					<button on:click={show_translation}>
