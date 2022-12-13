@@ -33,7 +33,7 @@ export class Html {
 
 		if (language_code === '') return
 
-		console.log('language_code', language_code)
+		console.info('language_code', language_code)
 
 		locales
 			.filter((locale) => locale.code.split('-')[0] === language_code)

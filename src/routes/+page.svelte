@@ -10,6 +10,8 @@
 	import '../app.css'
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import AddIcon from '$lib/icons/add_icon.svelte'
+	import { _, locale } from 'svelte-i18n'
+	import { Lang } from '$lib/lang'
 
 	export let data: PageData
 
@@ -53,6 +55,12 @@
 
 	function on_change_locale_select(): void {
 		locale_code = locale_select.selectedOptions[0].value ?? ''
+
+		const language_code = Lang.to_language_code(locale_code)
+
+		console.log(language_code)
+
+		$locale = language_code
 	}
 
 	function on_click_text(text: string): void {
@@ -121,7 +129,7 @@
 
 <div class="flex_row root_container header header_background_color">
 	<div class="center_container">
-		<div class="header flex_row align_items_center">Talk</div>
+		<div class="header flex_row align_items_center">{$_('talk_title')}</div>
 	</div>
 </div>
 
@@ -158,7 +166,7 @@
 
 			<div class="flex_column gap_8px">
 				<div class="title flex_row gap_16px align_items_center">
-					Speech
+					{$_('speech')}
 					<button on:click={speech_to_text}
 						><div class="flex_row justify_content_center height_24px"><VoiceIcon /></div></button
 					>
@@ -168,7 +176,7 @@
 
 			<div class="flex_column gap_8px">
 				<div class="title flex_row gap_16px align_items_center">
-					Translation
+					{$_('translation')}
 					<select bind:this={to_language_select} />
 				</div>
 				<div class="flex_row gap_8px align_items_center">

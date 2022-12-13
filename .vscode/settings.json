@@ -51,5 +51,10 @@
 		"yaml",
 		"yml",
 		"prisma"
+	],
+	"i18n-ally.localesPaths": [
+		"src/locales",
+		"src/routes/api/languages",
+		"src/routes/api/locales"
 	]
 }
