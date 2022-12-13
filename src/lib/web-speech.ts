@@ -1,12 +1,12 @@
 export class WebSpeech {
-		public static recognition(lang: string, speech_text_element: HTMLElement): void {
+	public static recognition(lang: string, speech_text_element: HTMLElement, recognizing_text: string): void {
 		if (!('webkitSpeechRecognition' in window)) {
 			speech_text_element.textContent = 'Speech Recognition Not Available'
 			return
 		}
 
 		console.log('element', speech_text_element)
-		speech_text_element.textContent = 'Recognition...'
+		speech_text_element.textContent = `${recognizing_text}...`
 
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
 		const recognition = new speech_recognition()
@@ -41,5 +41,4 @@ export class WebSpeech {
 
 		recognition.start()
 	}
-
 }

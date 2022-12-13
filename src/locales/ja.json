@@ -1,5 +1,8 @@
 {
 	"talk_title": "トーク",
 	"speech": "スピーチ",
-	"translation": "翻訳"
+	"translation": "翻訳",
+	"select_text_first": "テキストを選択してください",
+	"lets_talk": "話してみましょう",
+	"recognizing": "認識中"
 }
