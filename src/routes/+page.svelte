@@ -25,6 +25,7 @@
 	let selected_text = ''
 	let translated_text = ''
 	let locale_code = ''
+	let language_to_code = ''
 
 	function init_language_select(): void {
 		const languages = JSON.parse(data.languages) as Language[]
@@ -52,7 +53,7 @@
 		on_change_locale_select(store_language)
 
 		// console.log(language_code)
-		
+
 		$locale = Lang.to_text_language_code(language_code)
 		await waitLocale()
 
@@ -148,9 +149,9 @@
 	}
 
 	function on_change_translation_language(): void {
-		const language_code = to_language_select.selectedOptions[0].value ?? ''
+		language_to_code = to_language_select.selectedOptions[0].value ?? ''
 
-		localStorage.setItem('language_to', language_code)
+		localStorage.setItem('language_to', language_to_code)
 	}
 
 	onMount(async () => {
@@ -174,7 +175,10 @@
 	<div class="center_container">
 		<div class="scroll_area flex_column gap_8px">
 			<div>
-				<select bind:this={from_language_select} on:change={() => on_change_from_language_select()} />
+				<select
+					bind:this={from_language_select}
+					on:change={() => on_change_from_language_select()}
+				/>
 				<select bind:this={locale_select} on:change={() => on_change_locale_select()} />
 			</div>
 			<div class="border_radius flex_column gap_border">
@@ -216,17 +220,15 @@
 					<select bind:this={to_language_select} on:change={on_change_translation_language} />
 				</div>
 				<div class="flex_row gap_8px align_items_center">
-					<button on:click={show_translation}
-						><div class="flex_row justify_content_center height_24px">
-							<TranslateIcon />
-						</div></button
-					>
-					{translated_text}
+					<button on:click={show_translation}>
+						<div class="flex_row justify_content_center height_24px"><TranslateIcon /></div>
+					</button>
+					<div lang="{Lang.to_text_language_code(language_to_code)}">{translated_text}</div>
 				</div>
 				<div class="flex_row gap_8px align_items_center">
-					<button on:click={add_translation}
-						><div class="flex_row justify_content_center height_24px"><AddIcon /></div></button
-					>
+					<button on:click={add_translation}>
+						<div class="flex_row justify_content_center height_24px"><AddIcon /></div>
+					</button>
 					<input type="text" class="flex_auto" />
 				</div>
 			</div>
