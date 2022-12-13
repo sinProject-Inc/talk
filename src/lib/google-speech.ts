@@ -12,6 +12,8 @@ export class GoogleSpeech {
 				return 'ja-JP-Wavenet-D'
 			case 'yue-HK':
 				return 'yue-HK-Standard-B'
+			case 'ko-KR':
+				return 'ko-KR-Wavenet-C'
 		}
 
 		return 'en-US-Neural2-J'

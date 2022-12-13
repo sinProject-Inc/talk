@@ -6,6 +6,7 @@ const defaultLocale = 'en'
 
 register('en', () => import('../locales/en.json'))
 register('ja', () => import('../locales/ja.json'))
+register('ko', () => import('../locales/ko.json'))
 register('zh-TW', () => import('../locales/zh-TW.json'))
 
 function get_initial_locale(): string {
