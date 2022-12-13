@@ -37,7 +37,7 @@
 
 		const locale_code = locale_select.selectedOptions[0].value ?? ''
 
-		WebSpeech.recognition(locale_code, speech_text_element)
+		WebSpeech.recognition(locale_code, speech_text_element, $_('recognizing'))
 	}
 
 	async function on_change_from_language_select(): Promise<void> {
@@ -61,6 +61,8 @@
 		console.log(language_code)
 
 		$locale = language_code
+
+		init()
 	}
 
 	function on_click_text(text: string): void {
@@ -104,7 +106,7 @@
 
 	async function show_translation(): Promise<void> {
 		if (!selected_text) {
-			translated_text = '(Select text first)'
+			translated_text = `(${$_('select_text_first')})`
 		}
 
 		const encoded_text = encodeURIComponent(selected_text)
@@ -115,15 +117,18 @@
 		translated_text = (await response.json()) as string
 	}
 
+	function init() {
+		translated_text = ''
+		speech_text_element.textContent = `(${$_("lets_talk")})`
+	}
+
 	onMount(() => {
 		if (!browser) return
 
-		speech_text_element.textContent = '(No speech text)'
-
 		init_language_select()
-
 		// from_language_select.onchange = on_change_language_select_for_texts
 		on_change_from_language_select()
+		init()
 	})
 </script>
 

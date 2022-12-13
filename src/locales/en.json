@@ -1,5 +1,8 @@
 {
 	"talk_title": "Talk",
 	"speech": "Speech",
-	"translation": "Translation"
+	"translation": "Translation",
+	"select_text_first": "Select text first",
+	"lets_talk": "Let's talk",
+	"recognizing": "recognizing"
 }
