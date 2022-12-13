@@ -10,7 +10,7 @@
 	import '../app.css'
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import AddIcon from '$lib/icons/add_icon.svelte'
-	import { _, locale } from 'svelte-i18n'
+	import { _, locale, waitLocale } from 'svelte-i18n'
 	import { Lang } from '$lib/lang'
 
 	export let data: PageData
@@ -34,13 +34,12 @@
 	}
 
 	function speech_to_text(): void {
-
 		const locale_code = locale_select.selectedOptions[0].value ?? ''
 
 		WebSpeech.recognition(locale_code, speech_text_element, $_('recognizing'))
 	}
 
-	async function on_change_from_language_select(): Promise<void> {
+	async function on_change_from_language_select(store_language = true): Promise<void> {
 		const language_code = from_language_select.selectedOptions[0].value ?? ''
 
 		texts = await new Api().texts(language_code)
@@ -50,19 +49,45 @@
 		selected_text = ''
 
 		Html.append_locale_select_options(locale_select, locales, language_code)
-		on_change_locale_select()
+		on_change_locale_select(store_language)
+
+		// console.log(language_code)
+		
+		$locale = Lang.to_text_language_code(language_code)
+		await waitLocale()
+
+		if (store_language) {
+			localStorage.setItem('language_from', language_code)
+		}
+
+		setTimeout(() => {
+			init()
+		}, 10)
 	}
 
-	function on_change_locale_select(): void {
+	async function select_default_language(): Promise<void> {
+		const language_from = localStorage.getItem('language_from')
+		if (language_from) from_language_select.value = language_from
+
+		const language_to = localStorage.getItem('language_to')
+		if (language_to) to_language_select.value = language_to
+
+		await on_change_from_language_select(false)
+	}
+
+	function on_change_locale_select(store_locale = true): void {
+		console.log('on_change_locale_select')
+
+		if (!store_locale) {
+			const locale = localStorage.getItem('locale')
+			if (locale) locale_select.value = locale
+		}
+
 		locale_code = locale_select.selectedOptions[0].value ?? ''
 
-		const language_code = Lang.to_language_code(locale_code)
-
-		console.log(language_code)
-
-		$locale = language_code
-
-		init()
+		if (store_locale) {
+			localStorage.setItem('locale', locale_code)
+		}
 	}
 
 	function on_click_text(text: string): void {
@@ -117,18 +142,24 @@
 		translated_text = (await response.json()) as string
 	}
 
-	function init() {
+	function init(): void {
 		translated_text = ''
-		speech_text_element.textContent = `(${$_("lets_talk")})`
+		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
 
-	onMount(() => {
+	function on_change_translation_language(): void {
+		const language_code = to_language_select.selectedOptions[0].value ?? ''
+
+		localStorage.setItem('language_to', language_code)
+	}
+
+	onMount(async () => {
 		if (!browser) return
 
 		init_language_select()
 		// from_language_select.onchange = on_change_language_select_for_texts
-		on_change_from_language_select()
-		init()
+		// on_change_from_language_select()
+		await select_default_language()
 	})
 </script>
 
@@ -143,8 +174,8 @@
 	<div class="center_container">
 		<div class="scroll_area flex_column gap_8px">
 			<div>
-				<select bind:this={from_language_select} on:change={on_change_from_language_select} />
-				<select bind:this={locale_select} on:change={on_change_locale_select} />
+				<select bind:this={from_language_select} on:change={() => on_change_from_language_select()} />
+				<select bind:this={locale_select} on:change={() => on_change_locale_select()} />
 			</div>
 			<div class="border_radius flex_column gap_border">
 				{#each texts as text}
@@ -182,7 +213,7 @@
 			<div class="flex_column gap_8px">
 				<div class="title flex_row gap_16px align_items_center">
 					{$_('translation')}
-					<select bind:this={to_language_select} />
+					<select bind:this={to_language_select} on:change={on_change_translation_language} />
 				</div>
 				<div class="flex_row gap_8px align_items_center">
 					<button on:click={show_translation}
