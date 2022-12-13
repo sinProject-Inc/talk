@@ -1,3 +1,4 @@
+import { Lang } from "$lib/lang";
 import { Translate } from "@google-cloud/translate/build/src/v2";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
@@ -7,7 +8,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	const trimmed_text = params.text?.trim() ?? ''
 	const target_lang = params.target_lang?.trim() ?? 'en'
-	const target_lang2 = target_lang === 'yue' ? 'zh-TW' : target_lang
+	const target_lang2 = Lang.to_language_code(target_lang)
 
 	if (trimmed_text === '') return json('')
 
