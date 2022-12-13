@@ -11,10 +11,12 @@ register('zh-TW', () => import('../locales/zh-TW.json'))
 function get_initial_locale(): string {
 	if (!browser) return defaultLocale
 
-	const current_locale = localStorage.getItem('locale') || window.navigator.language
-	const language_code = Lang.to_language_code(current_locale)
+	const current_locale = localStorage.getItem('language_from') || window.navigator.language
+	const text_language_code = Lang.to_text_language_code(current_locale)
 
-	return language_code
+	// console.log('get_initial_locale', current_locale, text_language_code)
+
+	return text_language_code
 }
 
 init({
