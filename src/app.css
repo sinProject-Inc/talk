@@ -101,8 +101,12 @@ textarea {
 	width: auto;
 }
 
-.flex_auto {
-	flex: auto !important;
+.flex_1 {
+	flex: 1;
+}
+
+.overflow_wrap_anywhere {
+	overflow-wrap: anywhere;
 }
 
 .align_items_center {

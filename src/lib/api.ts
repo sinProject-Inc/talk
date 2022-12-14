@@ -22,6 +22,29 @@ export class Api {
 		return await this._fetch<Locale[]>('/api/locales')
 	}
 
+	public get_speech_to_text_url(selected_text: string, locale_code: string): string {
+		if (selected_text === '' || locale_code === '') return ''
+
+		const encoded_text = encodeURIComponent(selected_text)
+		const url = `/api/text-to-speech/${encoded_text}/${locale_code}`
+
+		return url
+	}
+
+	public async translate_by_google(text: string, target_language_code: string): Promise<string> {
+		if (text === '' || target_language_code === '') return ''
+
+		const encoded_text = encodeURIComponent(text)
+		const url = `/api/translate-by-google/${encoded_text}/${target_language_code}`
+		const result = await this._fetch<string>(url)
+
+		return result
+	}
+
+	public async add_text(text: string, language_code: string): Promise<Text> {
+		return await this._fetch<Text>(`/api/add-text/${text}/${language_code}`)
+	}
+
 	// HACK: 結合方法不明のため保留
 	// async function split_sentences(text: string, url: URL): Promise<string[]> {
 	// 	const split_response = await fetch(`${url.origin}/api/split-sentence/${text}`)
