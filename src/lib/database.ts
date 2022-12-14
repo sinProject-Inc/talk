@@ -3,7 +3,7 @@ import { PrismaClient, type Language, type Locale, type Sound, type Text } from 
 export const db = new PrismaClient()
 export class Database {
 	public static async get_texts(language_code: string): Promise<Text[]> {
-		const texts = await db.text.findMany({ where: { language: { code: language_code } } })
+		const texts = await db.text.findMany({ where: { language: { code: language_code } }, orderBy: { updated_at: 'desc' } })
 
 		return texts
 	}
@@ -20,7 +20,7 @@ export class Database {
 				locale_id_sound_text: {
 					locale_id,
 					sound_text,
-				}
+				},
 			},
 			update: {},
 			create: { locale_id, sound_text },
@@ -50,5 +50,26 @@ export class Database {
 		const locales = await db.locale.findMany()
 
 		return locales
+	}
+
+	public static async text_upsert(text: string, language_code: string): Promise<Text> {
+		const language = await db.language.findUnique({ where: { code: language_code } })
+
+		if (!language) throw new Error('language not found')
+
+		const language_id = language.id
+
+		const result = await db.text.upsert({
+			where: {
+				language_id_text: {
+					language_id,
+					text,
+				},
+			},
+			update: {},
+			create: { language_id, text },
+		})
+
+		return result
 	}
 }
