@@ -29,14 +29,17 @@ model Locale {
 }
 
 model Text {
-  id          Int      @id @default(autoincrement())
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  language_id Int
-  text        String   
-  language    Language @relation(fields: [language_id], references: [id])
+  id          Int          @id @default(autoincrement())
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
+  language_id Int          
+  text        String
+  language    Language     @relation(fields: [language_id], references: [id])
+  TextToText1 TextToText[] @relation("TextToText1")
+  TextToText2 TextToText[] @relation("TextToText2")
 
   @@unique([language_id, text])
+  @@index([language_id])
 }
 
 model Sound {
@@ -44,8 +47,22 @@ model Sound {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   locale_id  Int
-  sound_text String   
+  sound_text String
   locale     Locale   @relation(fields: [locale_id], references: [id])
 
   @@unique([locale_id, sound_text])
+}
+
+model TextToText {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  text_id_1  Int
+  text_id_2  Int
+  text_1     Text     @relation(name: "TextToText1", fields: [text_id_1], references: [id])
+  text_2     Text     @relation(name: "TextToText2", fields: [text_id_2], references: [id])
+
+  @@unique([text_id_1, text_id_2])
+  @@index([text_id_1])
+  @@index([text_id_2])
 }

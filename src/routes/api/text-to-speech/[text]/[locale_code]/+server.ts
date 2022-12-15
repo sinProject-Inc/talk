@@ -23,7 +23,7 @@ async function get_buffers(sentences: string[], locale_code: string): Promise<Bu
 		}
 
 		const audio_content = (await GoogleSpeech.synthesize_speech(sentence, locale_code)) as Buffer
-		const {id: sound_id} = await Database.sound_upsert(sentence, locale_code)
+		const { id: sound_id } = await Database.sound_upsert(locale_code, sentence)
 
 		File.write_sound(sound_id, audio_content)
 		console.info(`Created #${sound_id} sound for "${sentence}"`)
@@ -34,7 +34,7 @@ async function get_buffers(sentences: string[], locale_code: string): Promise<Bu
 }
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	console.log(url.href)
+	console.info(url.href)
 
 	const text = params.text ?? ''
 	const locale_code = params.locale_code ?? ''
