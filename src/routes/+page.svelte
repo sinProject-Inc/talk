@@ -23,11 +23,12 @@
 	let audio_element: HTMLAudioElement
 
 	let texts: Text[] = []
-	let selected_text = ''
-	let translated_text = ''
+	let selected_text: Text | undefined
+	let translations: string[] = []
 	let language_from_code = ''
 	let locale_code = ''
 	let language_to_code = ''
+	let add_translation_string = ''
 
 	function init_language_select(): void {
 		const languages = JSON.parse(data.languages) as Language[]
@@ -53,7 +54,7 @@
 
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		selected_text = ''
+		selected_text = undefined
 
 		Html.append_locale_select_options(locale_select_element, locales, language_from_code)
 		on_change_locale_select(store_language)
@@ -84,7 +85,7 @@
 	}
 
 	function on_change_locale_select(store_locale = true): void {
-		console.log('on_change_locale_select')
+		// console.log('on_change_locale_select')
 
 		if (!store_locale) {
 			const locale = localStorage.getItem('locale')
@@ -98,16 +99,16 @@
 		}
 	}
 
-	function on_click_text(text: string): void {
+	function on_click_text(text: Text): void {
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
 		if (text === selected_text) {
-			console.log('same text')
+			// console.log('same text')
 			audio_element.play()
 		} else {
 			selected_text = text
-			translated_text = ''
+			translations = []
 		}
 
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
@@ -115,26 +116,60 @@
 		// speech(selected_text, language_code, voice_name)
 	}
 
-	function add_translation(): void {
-		// TODO:
+	async function find_translation(): Promise<string[]> {
+		if (!selected_text) return []
+
+		const translation_texts = await new Api().find_translation(selected_text.id, language_to_code)
+		const translations = translation_texts.map((translation_text) => translation_text.text)
+
+		return translations
 	}
 
 	async function show_translation(): Promise<void> {
 		if (language_from_code === language_to_code) {
-			translated_text = `(${$_('select_different_language')})`
+			translations = [(`(${$_('select_different_language')})`)]
 			return
 		}
 
 		if (!selected_text) {
-			translated_text = `(${$_('select_text_first')})`
+			translations = [(`(${$_('select_text_first')})`)]
 			return
 		}
 
-		translated_text = await new Api().translate_by_google(selected_text, language_to_code)
+		const find_translation_result = await find_translation()
+
+		if (find_translation_result.length > 0) {
+			translations = find_translation_result
+			// console.info('translations found.', translations)
+		} else {
+			const translation = await new Api().translate_by_google(selected_text.text, language_to_code)
+			
+			await new Api().add_translation(selected_text.id, language_to_code, translation)
+			
+			translations = await find_translation()
+			// console.info('translated', translation)
+		}
+	}
+
+	async function add_translation(): Promise<void> {
+		if (!selected_text) return
+		if (!add_translation_string) return
+
+		// console.log('add_translation', selected_text)
+		// console.log('language_to_code', language_to_code)
+
+		await new Api().add_translation(selected_text.id, language_to_code, add_translation_string)
+
+		add_translation_string = ''
+
+		await show_translation()
+		// TODO: 選択されているテキストを探す
+		// TODO: 翻訳を登録する
+		// TODO: 選択されているテキストと翻訳を関連付ける
 	}
 
 	function init(): void {
-		translated_text = ''
+		translations = []
 		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
 
@@ -151,7 +186,7 @@
 
 		if (!new_text_element.value) return
 
-		await new Api().add_text(new_text_element.value, language_from_code)
+		await new Api().add_text(language_from_code, new_text_element.value)
 
 		// console.info('add_text', text)
 
@@ -205,7 +240,7 @@
 				{#each texts as text}
 					<div
 						class="padding_10px_16px cursor_pointer hover"
-						on:click={() => on_click_text(text.text)}
+						on:click={() => on_click_text(text)}
 						on:keydown
 					>
 						{text.text}
@@ -217,7 +252,7 @@
 		<div class="footer flex_column gap_16px">
 			<div>
 				<audio
-					src={new Api().get_speech_to_text_url(selected_text, locale_code)}
+					src={new Api().get_speech_to_text_url(selected_text?.text ?? '', locale_code)}
 					controls
 					autoplay
 					bind:this={audio_element}
@@ -250,11 +285,16 @@
 						lang={Lang.to_text_language_code(language_to_code)}
 						class="flex_1 overflow_wrap_anywhere"
 					>
-						{translated_text}
+						{@html translations.join('<br />')}
 					</div>
 				</div>
 				<div class="flex_row gap_8px align_items_center">
-					<input type="text" class="flex_1" placeholder={$_('enter_new_translation')} />
+					<input
+						type="text"
+						class="flex_1"
+						placeholder={$_('enter_new_translation')}
+						bind:value={add_translation_string}
+					/>
 					<button on:click={add_translation}>
 						<div class="flex_row justify_content_center height_24px"><AddIcon /></div>
 					</button>

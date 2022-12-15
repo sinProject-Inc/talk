@@ -41,9 +41,20 @@ export class Api {
 		return result
 	}
 
-	public async add_text(text: string, language_code: string): Promise<Text> {
-		return await this._fetch<Text>(`/api/add-text/${text}/${language_code}`)
+	public async add_text(language_code: string, text: string): Promise<Text> {
+		return await this._fetch<Text>(`/api/add-text/${language_code}/${text}`)
 	}
+
+	public async add_translation(text_id: number, language_to_code: string, translation: string): Promise<Text> {
+		return await this._fetch<Text>(
+			`/api/add-translation/${text_id}/${language_to_code}/${translation}`
+		)
+	}
+
+	public async find_translation(text_id: number, language_to_code: string): Promise<Text[]> {
+		return await this._fetch<Text[]>(`/api/find-translation/${text_id}/${language_to_code}`)
+	}
+
 
 	// HACK: 結合方法不明のため保留
 	// async function split_sentences(text: string, url: URL): Promise<string[]> {

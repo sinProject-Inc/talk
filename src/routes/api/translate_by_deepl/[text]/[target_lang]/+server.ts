@@ -4,7 +4,7 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 import type { TargetLanguageCode } from 'deepl-node'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	console.log(url.href)
+	console.info(url.href)
 
 	const trimmed_text = params.text?.trim() ?? ''
 	// TODO: Translate to selected language #77
