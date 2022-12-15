@@ -49,6 +49,8 @@
 	}
 
 	async function on_change_from_language_select(store_language = true): Promise<void> {
+		reset_background_color()
+
 		language_from_code = from_language_select_element.selectedOptions[0].value ?? ''
 
 		fetch_texts()
@@ -100,15 +102,24 @@
 		}
 	}
 
-	function on_click_text(text: Text): void {
-		const child_array = Array.from(text_list_element.children)
+	function reset_background_color(): void {
+		console.log('reset_color')
+		const child_array = Array.from(text_list_element.children) as HTMLElement[]
 
 		child_array.forEach((child) => {
-			const background_color =
-				child.id === text.id.toString() ? '--border-color' : ('--background-color' as string)
-
-			;(child as HTMLElement).style.backgroundColor = `var(${background_color})`
+			child.style.backgroundColor = 'var(--background-color)'
 		})
+	}
+
+	function on_click_text(text: Text): void {
+		reset_background_color()
+
+		const child_array = Array.from(text_list_element.children) as HTMLElement[]
+		const select_element = child_array.find((child) => child.id === text.id.toString())
+
+		if (select_element) {
+			select_element.style.backgroundColor = 'var(--border-color)'
+		}
 
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''

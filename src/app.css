@@ -162,6 +162,10 @@ textarea {
 	cursor: pointer;
 }
 
+.hover {
+	background-color: var(--background-color);
+}
+
 .hover:hover {
 	background-color: var(--border-color);
 	transition: 0.2s;
