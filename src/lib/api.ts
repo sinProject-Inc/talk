@@ -42,13 +42,19 @@ export class Api {
 	}
 
 	public async add_text(language_code: string, text: string): Promise<Text> {
-		return await this._fetch<Text>(`/api/add-text/${language_code}/${text}`)
+		const encoded_text = encodeURIComponent(text)
+		const result = await this._fetch<Text>(`/api/add-text/${language_code}/${encoded_text}`)
+
+		return result
 	}
 
 	public async add_translation(text_id: number, language_to_code: string, translation: string): Promise<Text> {
-		return await this._fetch<Text>(
-			`/api/add-translation/${text_id}/${language_to_code}/${translation}`
+		const encoded_translation = translation
+		const result = await this._fetch<Text>(
+			`/api/add-translation/${text_id}/${language_to_code}/${encoded_translation}`
 		)
+
+		return result
 	}
 
 	public async find_translation(text_id: number, language_to_code: string): Promise<Text[]> {
