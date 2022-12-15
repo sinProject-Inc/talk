@@ -19,6 +19,7 @@
 	let to_language_select_element: HTMLSelectElement
 	let locale_select_element: HTMLSelectElement
 	let new_text_element: HTMLInputElement
+	let text_list_element: HTMLDivElement
 	let speech_text_element: HTMLElement
 	let audio_element: HTMLAudioElement
 
@@ -100,6 +101,15 @@
 	}
 
 	function on_click_text(text: Text): void {
+		const child_array = Array.from(text_list_element.children)
+
+		child_array.forEach((child) => {
+			const background_color =
+				child.id === text.id.toString() ? '--border-color' : ('--background-color' as string)
+
+			;(child as HTMLElement).style.backgroundColor = `var(${background_color})`
+		})
+
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
@@ -127,12 +137,12 @@
 
 	async function show_translation(): Promise<void> {
 		if (language_from_code === language_to_code) {
-			translations = [(`(${$_('select_different_language')})`)]
+			translations = [`(${$_('select_different_language')})`]
 			return
 		}
 
 		if (!selected_text) {
-			translations = [(`(${$_('select_text_first')})`)]
+			translations = [`(${$_('select_text_first')})`]
 			return
 		}
 
@@ -143,9 +153,9 @@
 			// console.info('translations found.', translations)
 		} else {
 			const translation = await new Api().translate_by_google(selected_text.text, language_to_code)
-			
+
 			await new Api().add_translation(selected_text.id, language_to_code, translation)
-			
+
 			translations = await find_translation()
 			// console.info('translated', translation)
 		}
@@ -236,10 +246,11 @@
 				</button>
 			</div>
 
-			<div class="border_radius flex_column gap_border">
+			<div class="border_radius flex_column gap_border" bind:this={text_list_element}>
 				{#each texts as text}
 					<div
 						class="padding_10px_16px cursor_pointer hover"
+						id={text.id.toString()}
 						on:click={() => on_click_text(text)}
 						on:keydown
 					>
