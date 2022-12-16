@@ -213,12 +213,13 @@
 
 		if (!new_text_element.value) return
 
-		await new Api().add_text(language_from_code, new_text_element.value)
+		const added_text = await new Api().add_text(language_from_code, new_text_element.value)
 
 		// console.info('add_text', text)
 
 		new_text_element.value = ''
-		fetch_texts()
+		await fetch_texts()
+		on_click_text(added_text)
 
 		return
 	}
