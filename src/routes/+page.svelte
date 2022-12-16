@@ -65,15 +65,13 @@
 		// console.log(language_code)
 
 		$locale = Lang.to_text_language_code(language_from_code)
-		await waitLocale()
+		await waitLocale($locale)
 
 		if (store_language) {
 			localStorage.setItem('language_from', language_from_code)
 		}
 
-		setTimeout(() => {
-			init()
-		}, 10)
+		init()
 	}
 
 	async function select_default_language(): Promise<void> {
@@ -146,16 +144,23 @@
 		return translations
 	}
 
-	async function show_translation(): Promise<void> {
+	function validate_for_translation(): boolean {
 		if (language_from_code === language_to_code) {
 			translations = [`(${$_('select_different_language')})`]
-			return
+			return false
 		}
 
 		if (!selected_text) {
 			translations = [`(${$_('select_text_first')})`]
-			return
+			return false
 		}
+
+		return true
+	}
+
+	async function show_translation(): Promise<void> {
+		if (!validate_for_translation()) return
+		if (!selected_text) return
 
 		const find_translation_result = await find_translation()
 
@@ -173,6 +178,7 @@
 	}
 
 	async function add_translation(): Promise<void> {
+		if (!validate_for_translation()) return
 		if (!selected_text) return
 		if (!add_translation_string) return
 
