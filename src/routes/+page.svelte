@@ -122,12 +122,14 @@
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
-		if (text === selected_text) {
-			// console.log('same text')
+		if (text.text === selected_text?.text) {
+			console.log('same text')
+			audio_element.currentTime = 0
 			audio_element.play()
 		} else {
 			selected_text = text
 			translations = []
+			console.log('selected')
 		}
 
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
