@@ -81,7 +81,7 @@ export class Database {
 					text,
 				},
 			},
-			update: {},
+			update: { updated_at: new Date() },
 			create: { language_id, text },
 		})
 
