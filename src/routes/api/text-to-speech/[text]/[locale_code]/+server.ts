@@ -1,10 +1,19 @@
 import { Database } from '$lib/database'
 import { File } from '$lib/file'
-import { GoogleSpeech } from '$lib/google-speech'
+import { SpeechByGoogle } from '$lib/speech_by_google'
+import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
 import type { RequestHandler } from '@sveltejs/kit'
 
-async function get_buffers(sentences: string[], locale_code: string): Promise<Buffer[]> {
-	const buffers: Buffer[] = []
+async function speak_text(text: string, locale_code: string): Promise<Uint8Array> {
+	if (locale_code === 'km-KH') {
+		return await SpeechByMicrosoft.speak_text(text, locale_code)
+	} else {
+		return await SpeechByGoogle.synthesize_speech(text, locale_code)
+	}
+}
+
+async function get_uint8arrays(sentences: string[], locale_code: string): Promise<Uint8Array[]> {
+	const uint8Arrays: Uint8Array[] = []
 
 	for (const sentence of sentences) {
 		// console.log('sentence', sentence)
@@ -15,22 +24,22 @@ async function get_buffers(sentences: string[], locale_code: string): Promise<Bu
 				const buffer = File.read_sound(sound.id)
 
 				console.info(`Found #${sound.id} sound for "${sentence}"`)
-				buffers.push(buffer)
+				uint8Arrays.push(buffer)
 				continue
 			} catch (e) {
 				// DO NOTHING
 			}
 		}
 
-		const audio_content = (await GoogleSpeech.synthesize_speech(sentence, locale_code)) as Buffer
+		const audio_content = await speak_text(sentence, locale_code)
 		const { id: sound_id } = await Database.sound_upsert(locale_code, sentence)
 
 		File.write_sound(sound_id, audio_content)
 		console.info(`Created #${sound_id} sound for "${sentence}"`)
-		buffers.push(audio_content)
+		uint8Arrays.push(audio_content)
 	}
 
-	return buffers
+	return uint8Arrays
 }
 
 export const GET: RequestHandler = async ({ url, params }) => {
@@ -42,16 +51,16 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
-	const buffers = await get_buffers([text], locale_code)
+	const uint8arrays = await get_uint8arrays([text], locale_code)
 
 	// // return new Response('success')
 
-	return new Response(buffers[0], {
+	return new Response(uint8arrays[0], {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'audio/mp3',
 			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'Content-Length': buffers[0].length.toString(),
+			'Content-Length': uint8arrays[0].length.toString(),
 		},
 	})
 }

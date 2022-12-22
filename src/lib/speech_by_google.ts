@@ -1,8 +1,8 @@
 import text_to_speech from '@google-cloud/text-to-speech'
 import { google } from '@google-cloud/text-to-speech/build/protos/protos'
 
-export class GoogleSpeech {
-	private static _get_name(locale_code: string): string {
+export class SpeechByGoogle {
+	private static _get_voice_name(locale_code: string): string {
 		switch (locale_code) {
 			case 'en-US':
 				return 'en-US-Neural2-J'
@@ -19,9 +19,9 @@ export class GoogleSpeech {
 		return 'en-US-Neural2-J'
 	}
 
-	public static async synthesize_speech(text: string, locale_code: string): Promise<Uint8Array | string | null | undefined> {
+	public static async synthesize_speech(text: string, locale_code: string): Promise<Uint8Array> {
 		const languageCode = locale_code
-		const name = this._get_name(locale_code)
+		const name = this._get_voice_name(locale_code)
 
 		const request = {
 			input: { text },
@@ -30,7 +30,8 @@ export class GoogleSpeech {
 		}
 		const text_to_speech_client = new text_to_speech.TextToSpeechClient()
 		const [response] = await text_to_speech_client.synthesizeSpeech(request)
+		const uint8array = response.audioContent as Uint8Array
 
-		return response.audioContent
+		return uint8array
 	}
 }
