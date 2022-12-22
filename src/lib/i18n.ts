@@ -8,6 +8,7 @@ register('en', () => import('../locales/en.json'))
 register('ja', () => import('../locales/ja.json'))
 register('ko', () => import('../locales/ko.json'))
 register('zh-TW', () => import('../locales/zh-TW.json'))
+register('km', () => import('../locales/km.json'))
 
 function get_initial_locale(): string {
 	if (!browser) return defaultLocale

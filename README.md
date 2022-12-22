@@ -55,7 +55,7 @@ npm run dev -- --open
 ```
 
 7. Insert initial data only for the first time
-- visit http://localhost:5173/init_db 
+- visit http://localhost:5173/init-db 
 
 ## Feedback
 
