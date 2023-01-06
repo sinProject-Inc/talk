@@ -31,11 +31,21 @@ export class Api {
 		return url
 	}
 
-	public async translate_by_google(text: string, target_language_code: string): Promise<string> {
+	public async translate_by_google_basic(text: string, target_language_code: string): Promise<string> {
 		if (text === '' || target_language_code === '') return ''
 
 		const encoded_text = encodeURIComponent(text)
-		const url = `/api/translate-by-google/${encoded_text}/${target_language_code}`
+		const url = `/api/translate-by-google-basic/${encoded_text}/${target_language_code}`
+		const result = await this._fetch<string>(url)
+
+		return result
+	}
+
+	public async translate_by_google_advanced(text: string, target_language_code: string): Promise<string> {
+		if (text === '' || target_language_code === '') return ''
+
+		const encoded_text = encodeURIComponent(text)
+		const url = `/api/translate-by-google-advanced/${encoded_text}/${target_language_code}`
 		const result = await this._fetch<string>(url)
 
 		return result
@@ -48,7 +58,11 @@ export class Api {
 		return result
 	}
 
-	public async add_translation(text_id: number, language_to_code: string, translation: string): Promise<Text> {
+	public async add_translation(
+		text_id: number,
+		language_to_code: string,
+		translation: string
+	): Promise<Text> {
 		const encoded_translation = translation
 		const result = await this._fetch<Text>(
 			`/api/add-translation/${text_id}/${language_to_code}/${encoded_translation}`
@@ -60,7 +74,6 @@ export class Api {
 	public async find_translation(text_id: number, language_to_code: string): Promise<Text[]> {
 		return await this._fetch<Text[]>(`/api/find-translation/${text_id}/${language_to_code}`)
 	}
-
 
 	// HACK: 結合方法不明のため保留
 	// async function split_sentences(text: string, url: URL): Promise<string[]> {

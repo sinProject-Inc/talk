@@ -170,7 +170,7 @@
 			translations = find_translation_result
 			// console.info('translations found.', translations)
 		} else {
-			const translation = await new Api().translate_by_google(selected_text.text, language_to_code)
+			const translation = await new Api().translate_by_google_advanced(selected_text.text, language_to_code)
 
 			await new Api().add_translation(selected_text.id, language_to_code, translation)
 
