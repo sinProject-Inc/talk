@@ -1,5 +1,5 @@
 import * as microsoft_speech_sdk from 'microsoft-cognitiveservices-speech-sdk'
-import { SPEECH_KEY } from '$env/static/private'
+import { MICROSOFT_SPEECH_KEY } from '$env/static/private'
 
 export class SpeechByMicrosoft {
 	// Language and voice support for the Speech service
@@ -25,7 +25,7 @@ export class SpeechByMicrosoft {
 
 	public static async speak_text(text: string, locale_code: string): Promise<Uint8Array> {
 		const speech_config = microsoft_speech_sdk.SpeechConfig.fromSubscription(
-			SPEECH_KEY,
+			MICROSOFT_SPEECH_KEY,
 			'japanwest'
 		)
 
