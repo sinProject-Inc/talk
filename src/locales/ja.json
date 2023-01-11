@@ -7,5 +7,7 @@
 	"recognizing": "認識中",
 	"select_different_language": "他の言語を選択してください",
 	"enter_new_text": "新しいテキストを入力する",
-	"enter_new_translation": "新しい翻訳を入力する"
+	"enter_new_translation": "新しい翻訳を入力する",
+	"sign_in": "サインイン",
+	"sign_up": "サインアップ"
 }

@@ -7,5 +7,7 @@
 	"recognizing": "認識",
 	"select_different_language": "選擇另一種語言",
 	"enter_new_text": "輸入新文本",
-	"enter_new_translation": "輸入新翻譯"
+	"enter_new_translation": "輸入新翻譯",
+  "sign_in": "登入",
+	"sign_up": "報名"
 }

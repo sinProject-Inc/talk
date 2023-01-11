@@ -7,5 +7,7 @@
 	"recognizing": "인식",
 	"select_different_language": "다른 언어 선택",
 	"enter_new_text": "새 텍스트 입력",
-	"enter_new_translation": "새 번역 입력"
+	"enter_new_translation": "새 번역 입력",
+	"sign_in": "로그인",
+	"sign_up": "가입하기"
 }
