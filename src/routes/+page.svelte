@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
 	import { Api } from '$lib/api'
 	import { Html } from '$lib/html'
 	import { WebSpeech } from '$lib/web-speech'
@@ -239,7 +240,17 @@
 <div class="flex_row root_container header header_background_color">
 	<div class="center_container flex_row">
 		<div class="header flex_row align_items_center">{$_('talk_title')}</div>
+
+		{#if $page.data.user}
+		<div class="header sign_in flex_row align_items_center">
+			<div>{$page.data.user.email}</div>
+			<form action="/sign_out" method="POST">
+				<button type="submit">{$_('logout')}</button>
+			</form>
+		</div>
+		{:else}
 		<a class="header sign_in flex_row align_items_center" href="/sign_in">{$_('sign_in')} / {$_('sign_up')}</a>
+		{/if}
 	</div>
 </div>
 
