@@ -2,6 +2,8 @@
 	import { enhance } from '$app/forms'
 	import { onMount } from 'svelte'
 	import type { ActionData } from './$types'
+    import { _ } from 'svelte-i18n'
+    import '../../app.css'
 
 	export let form: ActionData
 
@@ -18,16 +20,16 @@
 	})
 </script>
 
-<h1>Enter pin code</h1>
+<h1>　{$_('enter_pin_code')}</h1>
 
 We’ve sent a 6-character code to {form?.email}. The code expires shortly, so please enter it soon.
 
 <form method="POST" action="?/submit" use:enhance>
 	<input type="hidden" name="email" value={form?.email} />
-	<input type="text" name="pin_code" placeholder="Pin code" required bind:this={pin_input_element} />
+	<input type="text" name="pin_code" placeholder={$_('pin_code')} required bind:this={pin_input_element} />
 
-	{#if form?.missing}<p class="error">Pin code is required.</p>{/if}
-	{#if form?.credentials}<p class="error">You have entered the wrong credentials.</p>{/if}
+	{#if form?.missing}<p class="error">{$_('pin_code_is_required')}</p>{/if}
+	{#if form?.credentials}<p class="error">{$_('wrong_credentials')}</p>{/if}
 
-	<button type="submit">Submit</button>
+	<button type="submit">{$_('submit')}</button>
 </form>

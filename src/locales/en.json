@@ -9,5 +9,11 @@
 	"enter_new_text": "Enter new text",
 	"enter_new_translation": "Enter new translation",
 	"sign_in": "Sign in",
-	"sign_up": "Sign up"
+	"sign_up": "Sign up",
+	"enter_pin_code": "Enter pin code",
+	"pin_code_is_required": "Pin code is required.",
+	"wrong_credentials": "You have entered the wrong credentials.",
+	"submit": "Submit",
+	"pin_code": "Pin code",
+	"logout": "Logout"
 }
