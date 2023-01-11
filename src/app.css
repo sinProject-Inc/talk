@@ -73,6 +73,10 @@ textarea {
 	font-weight: 700;
 }
 
+.sign_in {
+	margin: 0 0 0 auto;
+}
+
 .scroll_area {
 	padding: 16px 16px 0 16px;
 }

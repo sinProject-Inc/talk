@@ -237,8 +237,9 @@
 </script>
 
 <div class="flex_row root_container header header_background_color">
-	<div class="center_container">
+	<div class="center_container flex_row">
 		<div class="header flex_row align_items_center">{$_('talk_title')}</div>
+		<a class="header sign_in flex_row align_items_center" href="/sign_in">{$_('sign_in')} / {$_('sign_up')}</a>
 	</div>
 </div>
 
