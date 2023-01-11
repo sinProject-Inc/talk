@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
+    import { _ } from 'svelte-i18n'
     import '../../app.css'
 
 	let pin_input_element: HTMLInputElement
@@ -17,12 +18,12 @@
 	})
 </script>
 
-<h1>Sign in / Sign up</h1>
+<h1>{$_('sign_in')} / {$_('sign_up')}</h1>
 
 <div class="flex_column">
 	<form method="POST" action="/pin_code?/sign_in&redirect_url={encoded_redirect_url}">
 		<input type="email" name="email" placeholder="Email" required bind:this={pin_input_element} />
 
-		<button type="submit">Sign in / Sign up</button>
+		<button type="submit">{$_('sign_in')} / {$_('sign_up')}</button>
 	</form>
 </div>
