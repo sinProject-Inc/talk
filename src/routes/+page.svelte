@@ -237,19 +237,19 @@
 	})
 </script>
 
-<div class="flex_row root_container header header_background_color">
+<div class="flex_row root_container header_left header_background_color">
 	<div class="center_container flex_row">
-		<div class="header flex_row align_items_center">{$_('talk_title')}</div>
+		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
 
 		{#if $page.data.user}
-		<div class="header sign_in flex_row align_items_center">
+		<div class="header_right flex_row align_items_center">
 			<div>{$page.data.user.email}</div>
 			<form action="/sign_out" method="POST">
 				<button type="submit">{$_('logout')}</button>
 			</form>
 		</div>
 		{:else}
-		<a class="header sign_in flex_row align_items_center" href="/sign_in">{$_('sign_in')} / {$_('sign_up')}</a>
+		<a class="header_right flex_row align_items_center" href="/sign_in">{$_('sign_in')} / {$_('sign_up')}</a>
 		{/if}
 	</div>
 </div>
