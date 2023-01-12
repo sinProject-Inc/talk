@@ -2,8 +2,8 @@
 	import { enhance } from '$app/forms'
 	import { onMount } from 'svelte'
 	import type { ActionData } from './$types'
-    import { _ } from 'svelte-i18n'
-    import '../../app.css'
+	import { _ } from 'svelte-i18n'
+	import '../../app.css'
 
 	export let form: ActionData
 

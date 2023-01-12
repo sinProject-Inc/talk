@@ -2,8 +2,6 @@ import { Auth } from '$lib/auth'
 import { CookiesManager } from '$lib/cookies_manager'
 import type { Handle } from '@sveltejs/kit'
 
-// export const handle: Handle = async ({ event, resolve }) => resolve(event)
-
 export const handle: Handle = async ({ event, resolve }) => {
 	const cookiesManager = new CookiesManager(event.cookies) 
 	const session_id = cookiesManager.session_id
