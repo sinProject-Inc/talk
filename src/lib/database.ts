@@ -1,18 +1,20 @@
 import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
+import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
+import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 
 export const db = new PrismaClient()
 export class Database {
-	public static async get_texts(language_code: string): Promise<Text[]> {
+	public static async get_texts(speech_language_code: SpeechLanguageCode): Promise<Text[]> {
 		const texts = await db.text.findMany({
-			where: { language: { code: language_code } },
+			where: { language: { code: speech_language_code.toString() } },
 			orderBy: { updated_at: 'desc' },
 		})
 
 		return texts
 	}
 
-	public static async sound_upsert(locale_code: string, sound_text: string): Promise<Sound> {
-		const locale = await db.locale.findUnique({ where: { code: locale_code } })
+	public static async sound_upsert(locale_code: LocaleCode, sound_text: string): Promise<Sound> {
+		const locale = await db.locale.findUnique({ where: { code: locale_code.toString() } })
 
 		if (!locale) throw new Error('locale not found')
 
@@ -34,10 +36,10 @@ export class Database {
 
 	public static async sound_find_by_text(
 		sound_text: string,
-		locale_code: string
+		locale_code: LocaleCode
 	): Promise<Sound | null> {
 		const sound = await db.sound.findFirst({
-			where: { sound_text, locale: { code: locale_code } },
+			where: { sound_text, locale: { code: locale_code.toString() } },
 		})
 
 		return sound
@@ -55,7 +57,10 @@ export class Database {
 		return locales
 	}
 
-	public static async language_find_by_code(code: string): Promise<Language | null> {
+	public static async language_find_by_code(
+		speech_language_code: SpeechLanguageCode
+	): Promise<Language | null> {
+		const code = speech_language_code.toString()
 		const language = await db.language.findUnique({ where: { code } })
 
 		return language
@@ -67,8 +72,11 @@ export class Database {
 		return text
 	}
 
-	public static async text_upsert(language_code: string, text: string): Promise<Text> {
-		const language = await this.language_find_by_code(language_code)
+	public static async text_upsert(
+		speech_language_code: SpeechLanguageCode,
+		text: string
+	): Promise<Text> {
+		const language = await this.language_find_by_code(speech_language_code)
 
 		if (!language) throw new Error('language not found')
 
@@ -90,10 +98,10 @@ export class Database {
 
 	public static async find_translation(
 		text_id: number,
-		language_code: string
+		speech_language_code: SpeechLanguageCode
 	): Promise<Text[]> {
 		const text = await this.text_find_by_id(text_id)
-		const language = await this.language_find_by_code(language_code)
+		const language = await this.language_find_by_code(speech_language_code)
 
 		if (!text) throw new Error('text not found')
 		if (!language) throw new Error('language not found')
@@ -130,14 +138,18 @@ export class Database {
 		return texts
 	}
 
-	public static async add_translation(text_id: number, language_code: string, translation: string): Promise<Text> {
+	public static async add_translation(
+		text_id: number,
+		speech_language_code: SpeechLanguageCode,
+		translation: string
+	): Promise<Text> {
 		const text = await this.text_find_by_id(text_id)
-		const language = await this.language_find_by_code(language_code)
+		const language = await this.language_find_by_code(speech_language_code)
 
 		if (!text) throw new Error('text not found')
 		if (!language) throw new Error('language not found')
 
-		const translation_text = await this.text_upsert(language_code, translation)
+		const translation_text = await this.text_upsert(speech_language_code, translation)
 
 		await db.textToText.upsert({
 			where: {

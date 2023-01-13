@@ -1,4 +1,5 @@
 import type { Language, Locale } from '@prisma/client'
+import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 
 export class Html {
 	public static remove_children(html_element: HTMLElement): void {
@@ -27,16 +28,14 @@ export class Html {
 	public static append_locale_select_options(
 		html_select_element: HTMLSelectElement,
 		locales: Locale[],
-		language_code: string
+		language_code: SpeechLanguageCode
 	): void {
 		this.remove_children(html_select_element)
-
-		if (language_code === '') return
 
 		console.info('language_code', language_code)
 
 		locales
-			.filter((locale) => locale.code.split('-')[0] === language_code)
+			.filter((locale) => locale.code.split('-')[0] === language_code.toString())
 			.forEach((locale) => {
 				const option = document.createElement('option')
 

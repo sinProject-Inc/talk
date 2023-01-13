@@ -1,4 +1,5 @@
 import { Database } from '$lib/database'
+import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
@@ -12,7 +13,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	}
 
 	try {
-		const result = await Database.text_upsert(language_code, text)
+		const speech_language_code = SpeechLanguageCode.create(params.language_code)
+		const result = await Database.text_upsert(speech_language_code, text)
 
 		return json(result)
 	} catch (e) {
