@@ -44,7 +44,7 @@ module.exports = {
 			},
 			{
 				selector: ['method', 'function'],
-				format: ['snake_case'],
+				format: ['snake_case', 'camelCase'],
 			},
 			{
 				selector: [

@@ -1,4 +1,4 @@
-import { Lang } from "$lib/lang";
+import { AppLocale } from "$lib/value/value_object/string_value_object/app_locale";
 import { Translate } from "@google-cloud/translate/build/src/v2";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
@@ -11,10 +11,10 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	if (trimmed_text === '') return json('')
 
 	const target_lang = params.target_lang?.trim() ?? 'en'
-	const target_lang2 = Lang.to_text_language_code(target_lang)
+	const target_app_locale = AppLocale.create(target_lang)
 
 	const translate = new Translate()
-	const [translations] = await translate.translate(trimmed_text, target_lang2)
+	const [translations] = await translate.translate(trimmed_text, target_app_locale.toString())
 
 	return json(translations)
 }
