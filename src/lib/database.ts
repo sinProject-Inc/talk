@@ -1,4 +1,5 @@
 import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
+import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 
 export const db = new PrismaClient()
@@ -12,8 +13,8 @@ export class Database {
 		return texts
 	}
 
-	public static async sound_upsert(locale_code: string, sound_text: string): Promise<Sound> {
-		const locale = await db.locale.findUnique({ where: { code: locale_code } })
+	public static async sound_upsert(locale_code: LocaleCode, sound_text: string): Promise<Sound> {
+		const locale = await db.locale.findUnique({ where: { code: locale_code.toString() } })
 
 		if (!locale) throw new Error('locale not found')
 
@@ -35,10 +36,10 @@ export class Database {
 
 	public static async sound_find_by_text(
 		sound_text: string,
-		locale_code: string
+		locale_code: LocaleCode
 	): Promise<Sound | null> {
 		const sound = await db.sound.findFirst({
-			where: { sound_text, locale: { code: locale_code } },
+			where: { sound_text, locale: { code: locale_code.toString() } },
 		})
 
 		return sound

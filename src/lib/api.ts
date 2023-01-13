@@ -1,5 +1,6 @@
 import type { Language, Locale, Text } from '@prisma/client'
 import type { AppLocale } from './value/value_object/string_value_object/app_locale'
+import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 
 export class Api {
@@ -24,8 +25,8 @@ export class Api {
 		return await this._fetch<Locale[]>('/api/locales')
 	}
 
-	public get_speech_to_text_url(selected_text: string, locale_code: string): string {
-		if (selected_text === '' || locale_code === '') return ''
+	public get_speech_to_text_url(selected_text: string, locale_code: LocaleCode): string {
+		if (selected_text === '') return ''
 
 		const encoded_text = encodeURIComponent(selected_text)
 		const url = `/api/text-to-speech/${encoded_text}/${locale_code}`

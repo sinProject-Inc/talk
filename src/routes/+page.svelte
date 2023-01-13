@@ -13,6 +13,7 @@
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
 	import { AppLocale } from '$lib/value/value_object/string_value_object/app_locale'
+	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 
 	export let data: PageData
 
@@ -28,7 +29,7 @@
 	let selected_text: Text | undefined
 	let translations: string[] = []
 	let from_speech_language_code = SpeechLanguageCode.english
-	let locale_code = ''
+	let locale_code = LocaleCode.english_united_states
 	let to_speech_language_code = SpeechLanguageCode.japanese
 	let add_translation_string = ''
 
@@ -40,7 +41,8 @@
 	}
 
 	function speech_to_text(): void {
-		const locale_code = locale_select_element.selectedOptions[0].value ?? ''
+		const selected_value = locale_select_element.selectedOptions[0].value
+		const locale_code = LocaleCode.create(selected_value)
 
 		WebSpeech.recognition(locale_code, speech_text_element, $_('recognizing'))
 	}
@@ -98,10 +100,12 @@
 			if (locale) locale_select_element.value = locale
 		}
 
-		locale_code = locale_select_element.selectedOptions[0].value ?? ''
+		const selected_value = locale_select_element.selectedOptions[0].value
+
+		locale_code = LocaleCode.create(selected_value)
 
 		if (store_locale) {
-			localStorage.setItem('locale', locale_code)
+			localStorage.setItem('locale', locale_code.toString())
 		}
 	}
 
