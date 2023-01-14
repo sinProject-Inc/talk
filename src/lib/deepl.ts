@@ -1,13 +1,14 @@
 import * as deepl from 'deepl-node'
 import { DEEPL_AUTH_KEY } from '$env/static/private'
 import type { SourceLanguageCode, TargetLanguageCode } from 'deepl-node'
+import type { TranslationText } from './value/value_object/string_value_object/translation_text'
 
 export class DeepL {
-	public static async translate(text: string, target_lang: TargetLanguageCode, source_lang: SourceLanguageCode | null = null): Promise<string> {
+	public static async translate(translation_text: TranslationText, target_language_code: TargetLanguageCode, source_language_code: SourceLanguageCode | null = null): Promise<string> {
 		const translator = new deepl.Translator(DEEPL_AUTH_KEY)
-		const result = await translator.translateText(text, source_lang, target_lang, { splitSentences: 'off'})
+		const result = await translator.translateText(translation_text.toString(), source_language_code, target_language_code, { splitSentences: 'off'})
 
-		console.info(`DeepL: ${text} -> ${result.text}`)
+		console.info(`DeepL: ${translation_text} -> ${result.text}`)
 
 		return result.text
 	}

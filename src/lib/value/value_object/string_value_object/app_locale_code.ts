@@ -23,27 +23,17 @@ export class AppLocaleCode extends StringValueObject {
 		return AppLocaleCode.english
 	}
 
-	private constructor(value: string) {
-		super(value)
-	}
+	public constructor(value: string | undefined) {
+		const trimmed_locale_code = value?.trim() ?? ''
 
-	public static create(locale_code: string | undefined): AppLocaleCode {
-		if (!locale_code) {
+		if (!trimmed_locale_code) {
 			return AppLocaleCode.default
 			// throw new Error('locale_code is empty')
 		}
 
-		const language_code = locale_code.trim().toLowerCase().split('-')[0] ?? locale_code
+		const language_code = trimmed_locale_code.toLowerCase().split('-')[0]
 
-		return new AppLocaleCode(language_code)
-
-		// const found = AppLocale.values.find((v) => v.toString() === language_code2)
-
-		// if (!found) {
-		// 	throw new Error(`invalid locale_code: ${locale_code}`)
-		// }
-
-		// return found
+		super(language_code)
 	}
 
 	public static fromSpeechLanguageCode(speech_language_code: SpeechLanguageCode): AppLocaleCode {
@@ -51,6 +41,6 @@ export class AppLocaleCode extends StringValueObject {
 		const language_code =
 			speech_language_code_string === 'yue' ? 'zh-TW' : speech_language_code_string
 
-		return AppLocaleCode.create(language_code)
+		return new AppLocaleCode(language_code)
 	}
 }

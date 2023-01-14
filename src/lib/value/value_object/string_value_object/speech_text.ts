@@ -4,9 +4,11 @@ import { StringValueObject } from "../string_value_object"
 export class SpeechText extends StringValueObject {
 	public speech_text!: PreferNominal
 
-	public constructor(value: string) {
-		if (!value) throw new Error("speech_text is empty")
+	public constructor(value: string | undefined) {
+		const trimmed_text = value?.trim() ?? ''
 
-		super(value)
+		if (!trimmed_text) throw new Error('speech_text is empty')
+
+		super(trimmed_text)
 	}
 }

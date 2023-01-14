@@ -23,12 +23,13 @@ export class SpeechLanguageCode extends StringValueObject {
 	}
 
 	public static create(language_code: string | undefined): SpeechLanguageCode {
-		if (!language_code) {
+		const lower_case_language_code = language_code?.trim().toLowerCase() ?? ''
+
+		if (!lower_case_language_code) {
 			throw new Error('language_code is empty')
 		}
 
-		const lc = language_code.trim().toLowerCase()
-		const found = SpeechLanguageCode.values.find((v) => v.toString() === lc)
+		const found = SpeechLanguageCode.values.find((v) => v.toString() === lower_case_language_code)
 
 		if (!found) {
 			throw new Error(`invalid language_code: ${language_code}`)

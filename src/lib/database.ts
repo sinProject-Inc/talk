@@ -1,6 +1,7 @@
 import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
 import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
+import type { SpeechText } from './value/value_object/string_value_object/speech_text'
 
 export const db = new PrismaClient()
 export class Database {
@@ -74,7 +75,7 @@ export class Database {
 
 	public static async text_upsert(
 		speech_language_code: SpeechLanguageCode,
-		text: string
+		speech_text: SpeechText
 	): Promise<Text> {
 		const language = await this.language_find_by_code(speech_language_code)
 
@@ -86,11 +87,11 @@ export class Database {
 			where: {
 				language_id_text: {
 					language_id,
-					text,
+					text: speech_text.toString(),
 				},
 			},
 			update: { updated_at: new Date() },
-			create: { language_id, text },
+			create: { language_id, text: speech_text.toString() },
 		})
 
 		return result

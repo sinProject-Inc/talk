@@ -25,21 +25,18 @@ export class LanguageCode extends StringValueObject {
 	}
 
 	public static create(language_code: string | undefined): LanguageCode {
-		if (!language_code) {
+		const lower_case_language_code = language_code?.trim().toLowerCase() ?? ''
+
+		if (!lower_case_language_code) {
 			throw new Error('language_code is empty')
 		}
 
-		const lc = language_code.trim().toLowerCase()
-		const found = LanguageCode.values.find((v) => v.toString() === lc)
+		const found = LanguageCode.values.find((v) => v.toString() === lower_case_language_code)
 
 		if (!found) {
 			throw new Error(`invalid language_code: ${language_code}`)
 		}
 
 		return found
-	}
-
-	public for_text(): string {
-		return this._value === 'yue' ? 'zh-TW' : this._value
 	}
 }
