@@ -305,7 +305,7 @@
 		<div class="footer flex_column gap_16px">
 			<div>
 				<audio
-					src={new Api().get_speech_to_text_url(selected_text?.text ?? '', locale_code)}
+					src={new Api().get_text_to_speech_url(selected_text?.text ?? '', locale_code)}
 					controls
 					autoplay
 					bind:this={audio_element}

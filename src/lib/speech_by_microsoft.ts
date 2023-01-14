@@ -1,6 +1,7 @@
 import * as microsoft_speech_sdk from 'microsoft-cognitiveservices-speech-sdk'
 import { MICROSOFT_SPEECH_KEY } from '$env/static/private'
 import { LocaleCode } from './value/value_object/string_value_object/locale_code'
+import type { SpeechText } from './value/value_object/string_value_object/speech_text'
 
 export class SpeechByMicrosoft {
 	// Language and voice support for the Speech service
@@ -17,7 +18,7 @@ export class SpeechByMicrosoft {
 		return 'en-US-AriaNeural'
 	}
 
-	public static async speak_text(text: string, locale_code: LocaleCode): Promise<Uint8Array> {
+	public static async speak_text(speech_text: SpeechText, locale_code: LocaleCode): Promise<Uint8Array> {
 		const speech_config = microsoft_speech_sdk.SpeechConfig.fromSubscription(
 			MICROSOFT_SPEECH_KEY,
 			'japanwest'
@@ -31,7 +32,7 @@ export class SpeechByMicrosoft {
 
 		return new Promise((resolve, reject) => {
 			synthesizer.speakTextAsync(
-				text,
+				speech_text.toString(),
 				(result) => {
 					if (result) {
 						// console.log('result', result)

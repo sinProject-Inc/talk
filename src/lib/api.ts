@@ -25,7 +25,7 @@ export class Api {
 		return await this._fetch<Locale[]>('/api/locales')
 	}
 
-	public get_speech_to_text_url(selected_text: string, locale_code: LocaleCode): string {
+	public get_text_to_speech_url(selected_text: string, locale_code: LocaleCode): string {
 		if (selected_text === '') return ''
 
 		const encoded_text = encodeURIComponent(selected_text)
