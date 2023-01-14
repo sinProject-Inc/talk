@@ -2,11 +2,13 @@ import { Database } from '$lib/database'
 import { File } from '$lib/file'
 import { SpeechByGoogle } from '$lib/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
+import { Id } from '$lib/value/value_object/string_value_object/id'
 import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
+import type { SpeechSound } from '$lib/value/value_object/string_value_object/speech_sound'
 import { SpeechText } from '$lib/value/value_object/string_value_object/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
-async function speak_text(speech_text: SpeechText, locale_code: LocaleCode): Promise<Uint8Array> {
+async function speak_text(speech_text: SpeechText, locale_code: LocaleCode): Promise<SpeechSound> {
 	if (locale_code.useMicrosoftSpeech()) {
 		return await SpeechByMicrosoft.speak_text(speech_text, locale_code)
 	} else {
@@ -14,8 +16,8 @@ async function speak_text(speech_text: SpeechText, locale_code: LocaleCode): Pro
 	}
 }
 
-async function get_uint8arrays(sentences: string[], locale_code: LocaleCode): Promise<Uint8Array[]> {
-	const uint8Arrays: Uint8Array[] = []
+async function get_speech_sounds(sentences: string[], locale_code: LocaleCode): Promise<SpeechSound[]> {
+	const speech_sounds: SpeechSound[] = []
 
 	for (const sentence of sentences) {
 		// console.log('sentence', sentence)
@@ -23,10 +25,11 @@ async function get_uint8arrays(sentences: string[], locale_code: LocaleCode): Pr
 
 		if (sound) {
 			try {
-				const buffer = File.read_sound(sound.id)
+				const sound_id = new Id(sound.id)
+				const speech_sound = File.read_sound(sound_id)
 
 				console.info(`Found #${sound.id} sound for "${sentence}"`)
-				uint8Arrays.push(buffer)
+				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
 				// DO NOTHING
@@ -35,14 +38,15 @@ async function get_uint8arrays(sentences: string[], locale_code: LocaleCode): Pr
 
 		const speech_text = new SpeechText(sentence)
 		const audio_content = await speak_text(speech_text, locale_code)
-		const { id: sound_id } = await Database.sound_upsert(locale_code, sentence)
+		const { id } = await Database.sound_upsert(locale_code, sentence)
+		const sound_id = new Id(id)
 
 		File.write_sound(sound_id, audio_content)
 		console.info(`Created #${sound_id} sound for "${sentence}"`)
-		uint8Arrays.push(audio_content)
+		speech_sounds.push(audio_content)
 	}
 
-	return uint8Arrays
+	return speech_sounds
 }
 
 export const GET: RequestHandler = async ({ url, params }) => {
@@ -55,16 +59,16 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
-	const uint8arrays = await get_uint8arrays([text], locale_code)
+	const speech_sounds = await get_speech_sounds([text], locale_code)
 
 	// // return new Response('success')
 
-	return new Response(uint8arrays[0], {
+	return new Response(speech_sounds[0].value, {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'audio/mp3',
 			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'Content-Length': uint8arrays[0].length.toString(),
+			'Content-Length': speech_sounds[0].value.length.toString(),
 		},
 	})
 }

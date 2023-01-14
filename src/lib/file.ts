@@ -1,21 +1,24 @@
 import { SOUND_DIR } from '$env/static/private'
 import fs from 'fs'
+import type { Id } from './value/value_object/string_value_object/id'
+import { SpeechSound } from './value/value_object/string_value_object/speech_sound'
 
 export class File {
-	private static _get_sound_file_path(sound_id: number): string {
+	private static _get_sound_file_path(sound_id: Id): string {
 		return `${SOUND_DIR}${sound_id}.mp3`
 	}
 
-	public static read_sound(sound_id: number): Uint8Array {
+	public static read_sound(sound_id: Id): SpeechSound {
 		const sound_file_path = this._get_sound_file_path(sound_id)
 		const sound_file_buffer = fs.readFileSync(sound_file_path)
-		const sound_file_unit8array = new Uint8Array(sound_file_buffer)
+		const sound_file_unit8_array = new Uint8Array(sound_file_buffer)
+		const speech_sound = new SpeechSound(sound_file_unit8_array)
 
-		return sound_file_unit8array
+		return speech_sound
 	}
 
-	public static write_sound(sound_id: number, sound_file_buffer: Uint8Array): void {
+	public static write_sound(sound_id: Id, speech_sound: SpeechSound): void {
 		const sound_file_path = this._get_sound_file_path(sound_id)
-		fs.writeFileSync(sound_file_path, sound_file_buffer, 'binary')
+		fs.writeFileSync(sound_file_path, speech_sound.value, 'binary')
 	}
 }
