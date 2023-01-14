@@ -14,7 +14,7 @@ function get_initial_locale(): AppLocaleCode {
 	if (!browser) return AppLocaleCode.default
 
 	const current_locale = localStorage.getItem('language_from') || window.navigator.language
-	const app_locale_code = AppLocaleCode.create(current_locale)
+	const app_locale_code = new AppLocaleCode(current_locale)
 
 	return app_locale_code
 }
