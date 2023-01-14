@@ -1,5 +1,5 @@
 import { GOOGLE_PROJECT_ID, GOOGLE_LOCATION } from '$env/static/private'
-import { AppLocale } from '$lib/value/value_object/string_value_object/app_locale'
+import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
@@ -13,8 +13,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	const source_lang_code = params.source_lang_code?.trim() ?? 'en'
 	const target_lang_code = params.target_lang_code?.trim() ?? 'en'
 
-	const source_app_locale = AppLocale.create(source_lang_code)
-	const target_app_locale = AppLocale.create(target_lang_code)
+	const source_app_locale_code = AppLocaleCode.create(source_lang_code)
+	const target_app_locale_code = AppLocaleCode.create(target_lang_code)
 
 	const translationClient = new TranslationServiceClient()
 
@@ -22,14 +22,14 @@ export const GET: RequestHandler = async ({ url, params }) => {
 		glossary: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}/glossaries/glossary`,
 	}
 
-	console.log('target_language_code', target_app_locale.toString)
+	console.log('target_language_code', target_app_locale_code.toString)
 
 	const request = {
 		parent: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
 		contents: [trimmed_text],
 		mimeType: 'text/plain',
-		sourceLanguageCode: source_app_locale.toString(),
-		targetLanguageCode: target_app_locale.toString(),
+		sourceLanguageCode: source_app_locale_code.toString(),
+		targetLanguageCode: target_app_locale_code.toString(),
 		glossaryConfig,
 	}
 

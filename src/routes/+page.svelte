@@ -12,7 +12,7 @@
 	import AddIcon from '$lib/icons/add_icon.svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
-	import { AppLocale } from '$lib/value/value_object/string_value_object/app_locale'
+	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
 	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 
 	export let data: PageData
@@ -69,9 +69,9 @@
 
 		// console.log(language_code)
 
-		const app_locale = AppLocale.fromSpeechLanguageCode(from_speech_language_code)
+		const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(from_speech_language_code)
 
-		$locale = app_locale.toString()
+		$locale = app_locale_code.toString()
 		await waitLocale($locale)
 
 		if (store_language) {
@@ -182,10 +182,10 @@
 			translations = find_translation_result
 			// console.info('translations found.', translations)
 		} else {
-			const app_locale = AppLocale.fromSpeechLanguageCode(to_speech_language_code)
+			const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code)
 			const translation = await new Api().translate_by_google_advanced(
 				selected_text.text,
-				app_locale
+				app_locale_code
 			)
 
 			await new Api().add_translation(selected_text.id, to_speech_language_code, translation)
@@ -335,7 +335,7 @@
 						<div class="flex_row justify_content_center height_24px"><TranslateIcon /></div>
 					</button>
 					<div
-						lang={AppLocale.fromSpeechLanguageCode(to_speech_language_code).toString()}
+						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).toString()}
 						class="flex_1 overflow_wrap_anywhere"
 					>
 						{@html translations.join('<br />')}

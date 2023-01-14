@@ -1,5 +1,5 @@
 import type { Language, Locale, Text } from '@prisma/client'
-import type { AppLocale } from './value/value_object/string_value_object/app_locale'
+import type { AppLocaleCode } from './value/value_object/string_value_object/app_locale_code'
 import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 
@@ -44,11 +44,11 @@ export class Api {
 		return result
 	}
 
-	public async translate_by_google_advanced(text: string, app_locale: AppLocale): Promise<string> {
+	public async translate_by_google_advanced(text: string, app_locale_code: AppLocaleCode): Promise<string> {
 		if (text === '') return ''
 
 		const encoded_text = encodeURIComponent(text)
-		const url = `/api/translate-by-google-advanced/${encoded_text}/${app_locale}`
+		const url = `/api/translate-by-google-advanced/${encoded_text}/${app_locale_code}`
 		const result = await this._fetch<string>(url)
 
 		return result

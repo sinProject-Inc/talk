@@ -1,5 +1,5 @@
 import { GOOGLE_PROJECT_ID } from '$env/static/private'
-import { AppLocale } from '$lib/value/value_object/string_value_object/app_locale'
+import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
@@ -11,7 +11,7 @@ export const GET: RequestHandler = async ({url, params }) => {
 	if (trimmed_text === '') return json('')
 
 	const target_lang_code = params.target_lang_code?.trim() ?? 'en'
-	const app_locale = AppLocale.create(target_lang_code)
+	const app_locale_code = AppLocaleCode.create(target_lang_code)
 
 	const translationClient = new TranslationServiceClient()
 
@@ -20,7 +20,7 @@ export const GET: RequestHandler = async ({url, params }) => {
 		contents: [trimmed_text],
 		mimeType: 'text/plain',
 		// sourceLanguageCode: 'XX',
-		targetLanguageCode: app_locale.toString(),
+		targetLanguageCode: app_locale_code.toString(),
 	}
 
 	const [response] = await translationClient.translateText(request)
