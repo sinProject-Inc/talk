@@ -1,4 +1,5 @@
 import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
+import type { TextId } from './value/value_object/number_value_object/text_id'
 import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 import type { SpeechText } from './value/value_object/string_value_object/speech_text'
@@ -67,8 +68,8 @@ export class Database {
 		return language
 	}
 
-	public static async text_find_by_id(id: number): Promise<Text | null> {
-		const text = await db.text.findUnique({ where: { id } })
+	public static async text_find_by_id(text_id: TextId): Promise<Text | null> {
+		const text = await db.text.findUnique({ where: { id: text_id.number } })
 
 		return text
 	}
@@ -98,7 +99,7 @@ export class Database {
 	}
 
 	public static async find_translation(
-		text_id: number,
+		text_id: TextId,
 		speech_language_code: SpeechLanguageCode
 	): Promise<Text[]> {
 		const text = await this.text_find_by_id(text_id)
@@ -111,7 +112,7 @@ export class Database {
 
 		const translation_to = await db.textToText.findMany({
 			where: {
-				text_id_1: text_id,
+				text_id_1: text_id.number,
 				text_2: { language_id: language.id },
 			},
 		})
@@ -120,7 +121,7 @@ export class Database {
 
 		const translation_from = await db.textToText.findMany({
 			where: {
-				text_id_2: text_id,
+				text_id_2: text_id.number,
 				text_1: { language_id: language.id },
 			},
 		})
@@ -140,9 +141,9 @@ export class Database {
 	}
 
 	public static async add_translation(
-		text_id: number,
+		text_id: TextId,
 		speech_language_code: SpeechLanguageCode,
-		translation: string
+		translation_speech_text: SpeechText
 	): Promise<Text> {
 		const text = await this.text_find_by_id(text_id)
 		const language = await this.language_find_by_code(speech_language_code)
@@ -150,7 +151,7 @@ export class Database {
 		if (!text) throw new Error('text not found')
 		if (!language) throw new Error('language not found')
 
-		const translation_text = await this.text_upsert(speech_language_code, translation)
+		const translation_text = await this.text_upsert(speech_language_code, translation_speech_text)
 
 		await db.textToText.upsert({
 			where: {

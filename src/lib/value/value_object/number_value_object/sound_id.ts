@@ -1,12 +1,6 @@
 import type { PreferNominal } from "$lib/value/value_object"
-import { NumberValueObject } from "../number_value_object"
+import { Id } from "./id"
 
-export class SoundId extends NumberValueObject {
+export class SoundId extends Id {
 	public sound_id!: PreferNominal
-
-	public constructor(value: number) {
-		if (value <= 0) throw new Error('id is not positive number')
-
-		super(value)
-	}
 }
