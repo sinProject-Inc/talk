@@ -2,7 +2,7 @@ import { Database } from '$lib/database'
 import { File } from '$lib/file'
 import { SpeechByGoogle } from '$lib/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
-import { Id } from '$lib/value/value_object/string_value_object/id'
+import { SoundId } from '$lib/value/value_object/number_value_object/sound_id'
 import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 import type { SpeechSound } from '$lib/value/value_object/string_value_object/speech_sound'
 import { SpeechText } from '$lib/value/value_object/string_value_object/speech_text'
@@ -25,7 +25,7 @@ async function get_speech_sounds(sentences: string[], locale_code: LocaleCode): 
 
 		if (sound) {
 			try {
-				const sound_id = new Id(sound.id)
+				const sound_id = new SoundId(sound.id)
 				const speech_sound = File.read_sound(sound_id)
 
 				console.info(`Found #${sound.id} sound for "${sentence}"`)
@@ -39,7 +39,7 @@ async function get_speech_sounds(sentences: string[], locale_code: LocaleCode): 
 		const speech_text = new SpeechText(sentence)
 		const audio_content = await speak_text(speech_text, locale_code)
 		const { id } = await Database.sound_upsert(locale_code, sentence)
-		const sound_id = new Id(id)
+		const sound_id = new SoundId(id)
 
 		File.write_sound(sound_id, audio_content)
 		console.info(`Created #${sound_id} sound for "${sentence}"`)

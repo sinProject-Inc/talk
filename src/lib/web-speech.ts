@@ -1,14 +1,15 @@
 import type { LocaleCode } from "./value/value_object/string_value_object/locale_code"
+import type { Message } from "./value/value_object/string_value_object/message"
 
 export class WebSpeech {
-	public static recognition(locale_code: LocaleCode, speech_text_element: HTMLElement, recognizing_text: string): void {
+	public static recognition(locale_code: LocaleCode, speech_text_element: HTMLElement, recognizing_message: Message): void {
 		if (!('webkitSpeechRecognition' in window)) {
 			speech_text_element.textContent = 'Speech Recognition Not Available'
 			return
 		}
 
 		console.log('element', speech_text_element)
-		speech_text_element.textContent = `${recognizing_text}...`
+		speech_text_element.textContent = `${recognizing_message}...`
 
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
 		const recognition = new speech_recognition()

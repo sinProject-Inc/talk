@@ -14,6 +14,7 @@
 	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
 	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
 	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
+	import { Message } from '$lib/value/value_object/string_value_object/message'
 
 	export let data: PageData
 
@@ -43,8 +44,9 @@
 	function speech_to_text(): void {
 		const selected_value = locale_select_element.selectedOptions[0].value
 		const locale_code = LocaleCode.create(selected_value)
+		const recognizing_message = new Message($_('recognizing'))
 
-		WebSpeech.recognition(locale_code, speech_text_element, $_('recognizing'))
+		WebSpeech.recognition(locale_code, speech_text_element, recognizing_message)
 	}
 
 	async function fetch_texts(): Promise<void> {
