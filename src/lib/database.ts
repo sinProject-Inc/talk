@@ -15,7 +15,7 @@ export class Database {
 		return texts
 	}
 
-	public static async sound_upsert(locale_code: LocaleCode, sound_text: string): Promise<Sound> {
+	public static async sound_upsert(locale_code: LocaleCode, speech_text: SpeechText): Promise<Sound> {
 		const locale = await db.locale.findUnique({ where: { code: locale_code.string } })
 
 		if (!locale) throw new Error('locale not found')
@@ -26,22 +26,22 @@ export class Database {
 			where: {
 				locale_id_sound_text: {
 					locale_id,
-					sound_text,
+					sound_text: speech_text.string,
 				},
 			},
 			update: {},
-			create: { locale_id, sound_text },
+			create: { locale_id, sound_text: speech_text.string },
 		})
 
 		return sound
 	}
 
 	public static async sound_find_by_text(
-		sound_text: string,
+		speech_text: SpeechText,
 		locale_code: LocaleCode
 	): Promise<Sound | null> {
 		const sound = await db.sound.findFirst({
-			where: { sound_text, locale: { code: locale_code.string } },
+			where: { sound_text: speech_text.string, locale: { code: locale_code.string } },
 		})
 
 		return sound

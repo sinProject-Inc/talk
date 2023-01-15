@@ -15,6 +15,7 @@
 	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
 	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 	import { Message } from '$lib/value/value_object/string_value_object/text_value_object/message'
+	import { TextId } from '$lib/value/value_object/number_value_object/text_id'
 
 	export let data: PageData
 
@@ -151,8 +152,9 @@
 	async function find_translation(): Promise<string[]> {
 		if (!selected_text) return []
 
+		const text_id = new TextId(selected_text.id)
 		const translation_texts = await new Api().find_translation(
-			selected_text.id,
+			text_id,
 			to_speech_language_code
 		)
 		const translations = translation_texts.map((translation_text) => translation_text.text)
@@ -190,7 +192,9 @@
 				app_locale_code
 			)
 
-			await new Api().add_translation(selected_text.id, to_speech_language_code, translation)
+			const text_id = new TextId(selected_text.id)
+
+			await new Api().add_translation(text_id, to_speech_language_code, translation)
 
 			translations = await find_translation()
 			// console.info('translated', translation)
@@ -205,8 +209,10 @@
 		// console.log('add_translation', selected_text)
 		// console.log('language_to_code', language_to_code)
 
+		const text_id = new TextId(selected_text.id)
+
 		await new Api().add_translation(
-			selected_text.id,
+			text_id,
 			to_speech_language_code,
 			add_translation_string
 		)

@@ -16,19 +16,19 @@ async function speak_text(speech_text: SpeechText, locale_code: LocaleCode): Pro
 	}
 }
 
-async function get_speech_sounds(sentences: string[], locale_code: LocaleCode): Promise<SpeechSound[]> {
+async function get_speech_sounds(speech_texts: SpeechText[], locale_code: LocaleCode): Promise<SpeechSound[]> {
 	const speech_sounds: SpeechSound[] = []
 
-	for (const sentence of sentences) {
+	for (const speech_text of speech_texts) {
 		// console.log('sentence', sentence)
-		const sound = await Database.sound_find_by_text(sentence, locale_code)
+		const sound = await Database.sound_find_by_text(speech_text, locale_code)
 
 		if (sound) {
 			try {
 				const sound_id = new SoundId(sound.id)
 				const speech_sound = File.read_sound(sound_id)
 
-				console.info(`Found #${sound.id} sound for "${sentence}"`)
+				console.info(`Found #${sound.id} sound for "${speech_text}"`)
 				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
@@ -36,13 +36,12 @@ async function get_speech_sounds(sentences: string[], locale_code: LocaleCode): 
 			}
 		}
 
-		const speech_text = new SpeechText(sentence)
 		const audio_content = await speak_text(speech_text, locale_code)
-		const { id } = await Database.sound_upsert(locale_code, sentence)
+		const { id } = await Database.sound_upsert(locale_code, speech_text)
 		const sound_id = new SoundId(id)
 
 		File.write_sound(sound_id, audio_content)
-		console.info(`Created #${sound_id} sound for "${sentence}"`)
+		console.info(`Created #${sound_id} sound for "${speech_text}"`)
 		speech_sounds.push(audio_content)
 	}
 
@@ -59,7 +58,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
-	const speech_sounds = await get_speech_sounds([text], locale_code)
+	const speech_text = new SpeechText(text)
+	const speech_sounds = await get_speech_sounds([speech_text], locale_code)
 
 	// // return new Response('success')
 

@@ -1,4 +1,5 @@
 import type { Language, Locale, Text } from '@prisma/client'
+import type { TextId } from './value/value_object/number_value_object/text_id'
 import type { AppLocaleCode } from './value/value_object/string_value_object/app_locale_code'
 import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
@@ -62,7 +63,7 @@ export class Api {
 	}
 
 	public async add_translation(
-		text_id: number,
+		text_id: TextId,
 		to_speech_language_code: SpeechLanguageCode,
 		translation: string
 	): Promise<Text> {
@@ -74,7 +75,7 @@ export class Api {
 		return result
 	}
 
-	public async find_translation(text_id: number, to_speech_language_code: SpeechLanguageCode): Promise<Text[]> {
+	public async find_translation(text_id: TextId, to_speech_language_code: SpeechLanguageCode): Promise<Text[]> {
 		return await this._fetch<Text[]>(`/api/find-translation/${text_id}/${to_speech_language_code}`)
 	}
 
