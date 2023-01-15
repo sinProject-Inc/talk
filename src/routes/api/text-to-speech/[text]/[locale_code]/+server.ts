@@ -5,7 +5,7 @@ import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
 import { SoundId } from '$lib/value/value_object/number_value_object/sound_id'
 import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 import type { SpeechSound } from '$lib/value/value_object/string_value_object/speech_sound'
-import { SpeechText } from '$lib/value/value_object/string_value_object/speech_text'
+import { SpeechText } from '$lib/value/value_object/string_value_object/text_value_object/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
 async function speak_text(speech_text: SpeechText, locale_code: LocaleCode): Promise<SpeechSound> {

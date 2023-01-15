@@ -1,5 +1,5 @@
 import type { LocaleCode } from "./value/value_object/string_value_object/locale_code"
-import type { Message } from "./value/value_object/string_value_object/message"
+import type { Message } from "./value/value_object/string_value_object/text_value_object/message"
 
 export class WebSpeech {
 	public static recognition(locale_code: LocaleCode, speech_text_element: HTMLElement, recognizing_message: Message): void {

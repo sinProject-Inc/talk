@@ -1,5 +1,5 @@
 import { DeepL } from '$lib/deepl'
-import { TranslationText } from '$lib/value/value_object/string_value_object/translation_text'
+import { TranslationText } from '$lib/value/value_object/string_value_object/text_value_object/translation_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import type { TargetLanguageCode } from 'deepl-node'
 

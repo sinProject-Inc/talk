@@ -14,7 +14,7 @@
 	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
 	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
 	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
-	import { Message } from '$lib/value/value_object/string_value_object/message'
+	import { Message } from '$lib/value/value_object/string_value_object/text_value_object/message'
 
 	export let data: PageData
 

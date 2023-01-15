@@ -1,6 +1,6 @@
 import { Database } from '$lib/database'
 import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
-import { SpeechText } from '$lib/value/value_object/string_value_object/speech_text'
+import { SpeechText } from '$lib/value/value_object/string_value_object/text_value_object/speech_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {

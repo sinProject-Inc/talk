@@ -2,7 +2,7 @@ import { PrismaClient, type Language, type Locale, type Sound, type Text } from 
 import type { TextId } from './value/value_object/number_value_object/text_id'
 import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
-import type { SpeechText } from './value/value_object/string_value_object/speech_text'
+import type { SpeechText } from './value/value_object/string_value_object/text_value_object/speech_text'
 
 export const db = new PrismaClient()
 export class Database {

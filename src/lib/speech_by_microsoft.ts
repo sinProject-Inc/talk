@@ -1,7 +1,7 @@
 import * as microsoft_speech_sdk from 'microsoft-cognitiveservices-speech-sdk'
 import { MICROSOFT_SPEECH_KEY } from '$env/static/private'
 import { LocaleCode } from './value/value_object/string_value_object/locale_code'
-import type { SpeechText } from './value/value_object/string_value_object/speech_text'
+import type { SpeechText } from './value/value_object/string_value_object/text_value_object/speech_text'
 import { SpeechSound } from './value/value_object/string_value_object/speech_sound'
 
 export class SpeechByMicrosoft {
