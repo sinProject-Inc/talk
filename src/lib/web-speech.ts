@@ -14,7 +14,7 @@ export class WebSpeech {
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
 		const recognition = new speech_recognition()
 
-		recognition.lang = locale_code.toString()
+		recognition.lang = locale_code.string
 		recognition.interimResults = true
 		// recognition.continuous = true;
 

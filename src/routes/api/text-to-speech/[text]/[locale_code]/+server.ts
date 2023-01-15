@@ -63,12 +63,12 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	// // return new Response('success')
 
-	return new Response(speech_sounds[0].value, {
+	return new Response(speech_sounds[0].unit8_array, {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'audio/mp3',
 			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'Content-Length': speech_sounds[0].value.length.toString(),
+			'Content-Length': speech_sounds[0].length_string,
 		},
 	})
 }

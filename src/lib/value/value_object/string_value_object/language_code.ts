@@ -31,7 +31,7 @@ export class LanguageCode extends StringValueObject {
 			throw new Error('language_code is empty')
 		}
 
-		const found = LanguageCode.values.find((v) => v.toString() === lower_case_language_code)
+		const found = LanguageCode.values.find((v) => v.string === lower_case_language_code)
 
 		if (!found) {
 			throw new Error(`invalid language_code: ${language_code}`)

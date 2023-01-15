@@ -21,5 +21,5 @@ function get_initial_locale(): AppLocaleCode {
 
 init({
 	fallbackLocale: defaultLocale,
-	initialLocale: get_initial_locale().toString(),
+	initialLocale: get_initial_locale().string,
 })

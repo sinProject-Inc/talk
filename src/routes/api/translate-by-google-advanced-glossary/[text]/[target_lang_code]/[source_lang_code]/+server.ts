@@ -22,10 +22,10 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 		const request = {
 			parent: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
-			contents: [translation_text.toString()],
+			contents: [translation_text.string],
 			mimeType: 'text/plain',
-			sourceLanguageCode: source_app_locale_code.toString(),
-			targetLanguageCode: target_app_locale_code.toString(),
+			sourceLanguageCode: source_app_locale_code.string,
+			targetLanguageCode: target_app_locale_code.string,
 			glossaryConfig,
 		}
 

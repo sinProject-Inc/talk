@@ -16,11 +16,11 @@ export class SpeechByGoogle {
 	}
 
 	public static async synthesize_speech(speech_text: SpeechText, locale_code: LocaleCode): Promise<SpeechSound> {
-		const languageCode = locale_code.toString()
+		const languageCode = locale_code.string
 		const name = this._get_voice_name(locale_code)
 
 		const request = {
-			input: { text: speech_text.toString() },
+			input: { text: speech_text.string },
 			voice: { languageCode, name },
 			audioConfig: { audioEncoding: google.cloud.texttospeech.v1.AudioEncoding.MP3 },
 		}

@@ -19,6 +19,6 @@ export class File {
 
 	public static write_sound(sound_id: SoundId, speech_sound: SpeechSound): void {
 		const sound_file_path = this._get_sound_file_path(sound_id)
-		fs.writeFileSync(sound_file_path, speech_sound.value, 'binary')
+		fs.writeFileSync(sound_file_path, speech_sound.unit8_array, 'binary')
 	}
 }

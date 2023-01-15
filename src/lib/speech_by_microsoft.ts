@@ -33,7 +33,7 @@ export class SpeechByMicrosoft {
 
 		return new Promise((resolve, reject) => {
 			synthesizer.speakTextAsync(
-				speech_text.toString(),
+				speech_text.string,
 				(result) => {
 					if (result) {
 						// console.log('result', result)

@@ -8,7 +8,7 @@ export const db = new PrismaClient()
 export class Database {
 	public static async get_texts(speech_language_code: SpeechLanguageCode): Promise<Text[]> {
 		const texts = await db.text.findMany({
-			where: { language: { code: speech_language_code.toString() } },
+			where: { language: { code: speech_language_code.string } },
 			orderBy: { updated_at: 'desc' },
 		})
 
@@ -16,7 +16,7 @@ export class Database {
 	}
 
 	public static async sound_upsert(locale_code: LocaleCode, sound_text: string): Promise<Sound> {
-		const locale = await db.locale.findUnique({ where: { code: locale_code.toString() } })
+		const locale = await db.locale.findUnique({ where: { code: locale_code.string } })
 
 		if (!locale) throw new Error('locale not found')
 
@@ -41,7 +41,7 @@ export class Database {
 		locale_code: LocaleCode
 	): Promise<Sound | null> {
 		const sound = await db.sound.findFirst({
-			where: { sound_text, locale: { code: locale_code.toString() } },
+			where: { sound_text, locale: { code: locale_code.string } },
 		})
 
 		return sound
@@ -62,7 +62,7 @@ export class Database {
 	public static async language_find_by_code(
 		speech_language_code: SpeechLanguageCode
 	): Promise<Language | null> {
-		const code = speech_language_code.toString()
+		const code = speech_language_code.string
 		const language = await db.language.findUnique({ where: { code } })
 
 		return language
@@ -88,11 +88,11 @@ export class Database {
 			where: {
 				language_id_text: {
 					language_id,
-					text: speech_text.toString(),
+					text: speech_text.string,
 				},
 			},
 			update: { updated_at: new Date() },
-			create: { language_id, text: speech_text.toString() },
+			create: { language_id, text: speech_text.string },
 		})
 
 		return result

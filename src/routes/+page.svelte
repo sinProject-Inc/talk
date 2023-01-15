@@ -73,11 +73,11 @@
 
 		const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(from_speech_language_code)
 
-		$locale = app_locale_code.toString()
+		$locale = app_locale_code.string
 		await waitLocale($locale)
 
 		if (store_language) {
-			localStorage.setItem('language_from', from_speech_language_code.toString())
+			localStorage.setItem('language_from', from_speech_language_code.string)
 		}
 
 		init()
@@ -107,7 +107,7 @@
 		locale_code = LocaleCode.create(selected_value)
 
 		if (store_locale) {
-			localStorage.setItem('locale', locale_code.toString())
+			localStorage.setItem('locale', locale_code.string)
 		}
 	}
 
@@ -230,7 +230,7 @@
 		to_speech_language_code = SpeechLanguageCode.create(selected_value)
 
 		if (store_language) {
-			localStorage.setItem('language_to', to_speech_language_code.toString())
+			localStorage.setItem('language_to', to_speech_language_code.string)
 		}
 	}
 
@@ -337,7 +337,7 @@
 						<div class="flex_row justify_content_center height_24px"><TranslateIcon /></div>
 					</button>
 					<div
-						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).toString()}
+						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).string}
 						class="flex_1 overflow_wrap_anywhere"
 					>
 						{@html translations.join('<br />')}

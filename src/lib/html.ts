@@ -35,7 +35,7 @@ export class Html {
 		console.info('language_code', language_code)
 
 		locales
-			.filter((locale) => locale.code.split('-')[0] === language_code.toString())
+			.filter((locale) => locale.code.split('-')[0] === language_code.string)
 			.forEach((locale) => {
 				const option = document.createElement('option')
 

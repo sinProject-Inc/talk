@@ -12,4 +12,8 @@ export abstract class ValueObject<T> {
 		if (this.constructor.name != other.constructor.name) return false
 		return this._value === other._value
 	}
+
+	public get string(): string {
+		return this.toString()
+	}
 }

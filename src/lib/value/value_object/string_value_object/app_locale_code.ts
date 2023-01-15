@@ -37,7 +37,7 @@ export class AppLocaleCode extends StringValueObject {
 	}
 
 	public static fromSpeechLanguageCode(speech_language_code: SpeechLanguageCode): AppLocaleCode {
-		const speech_language_code_string = speech_language_code.toString()
+		const speech_language_code_string = speech_language_code.string
 		const language_code =
 			speech_language_code_string === 'yue' ? 'zh-TW' : speech_language_code_string
 

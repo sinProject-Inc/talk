@@ -13,8 +13,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 		const translate = new Translate()
 		const [translations] = await translate.translate(
-			translation_text.toString(),
-			target_app_locale_code.toString()
+			translation_text.string,
+			target_app_locale_code.string
 		)
 
 		return json(translations)

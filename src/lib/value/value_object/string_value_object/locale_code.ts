@@ -33,7 +33,7 @@ export class LocaleCode extends StringValueObject {
 			throw new Error('locale_code is empty')
 		}
 
-		const found = LocaleCode.values.find((v) => v.toString() === locale_code)
+		const found = LocaleCode.values.find((v) => v.string === locale_code)
 
 		if (!found) {
 			throw new Error(`invalid locale_code: ${locale_code}`)
