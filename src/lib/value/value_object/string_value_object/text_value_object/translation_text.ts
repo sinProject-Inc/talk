@@ -5,7 +5,9 @@ export class TranslationText extends TextValueObject {
 	public translation_text!: PreferNominal
 
 	public constructor(value: string | undefined) {
-		if (value?.length ?? 0 > 200) throw new Error(`translation_text is too long: ${value}`)
+		const length = value?.length ?? 0
+
+		if (length > 200) throw new Error(`translation_text is too long: ${value} (${length})}`)
 
 		super(value)
 	}

@@ -2,20 +2,22 @@
 	import { browser } from '$app/environment'
 	import { Api } from '$lib/api'
 	import { Html } from '$lib/html'
+	import AddIcon from '$lib/icons/add_icon.svelte'
+	import TranslateIcon from '$lib/icons/translate_icon.svelte'
+	import VoiceIcon from '$lib/icons/voice_icon.svelte'
+	import { TextId } from '$lib/value/value_object/number_value_object/text_id'
+	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
+	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
+	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
+	import { Message } from '$lib/value/value_object/string_value_object/text_value_object/message'
+	import { SpeechText } from '$lib/value/value_object/string_value_object/text_value_object/speech_text'
+	import { TranslationText } from '$lib/value/value_object/string_value_object/text_value_object/translation_text'
 	import { WebSpeech } from '$lib/web-speech'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Locale, Text } from '@prisma/client'
-	import VoiceIcon from '$lib/icons/voice_icon.svelte'
 	import { onMount } from 'svelte'
+	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import '../app.css'
-	import TranslateIcon from '$lib/icons/translate_icon.svelte'
-	import AddIcon from '$lib/icons/add_icon.svelte'
-	import { _, locale, waitLocale } from 'svelte-i18n'
-	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
-	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
-	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
-	import { Message } from '$lib/value/value_object/string_value_object/text_value_object/message'
-	import { TextId } from '$lib/value/value_object/number_value_object/text_id'
 
 	export let data: PageData
 
@@ -184,17 +186,17 @@
 
 		if (find_translation_result.length > 0) {
 			translations = find_translation_result
-			// console.info('translations found.', translations)
 		} else {
+			const source_translation_text = new TranslationText(selected_text.text)
 			const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code)
-			const translation = await new Api().translate_by_google_advanced(
-				selected_text.text,
+			const output_translation_text = await new Api().translate_by_google_advanced(
+				source_translation_text,
 				app_locale_code
 			)
 
 			const text_id = new TextId(selected_text.id)
 
-			await new Api().add_translation(text_id, to_speech_language_code, translation)
+			await new Api().add_translation(text_id, to_speech_language_code, output_translation_text)
 
 			translations = await find_translation()
 			// console.info('translated', translation)
@@ -210,11 +212,12 @@
 		// console.log('language_to_code', language_to_code)
 
 		const text_id = new TextId(selected_text.id)
+		const translation_text = new TranslationText(add_translation_string)
 
 		await new Api().add_translation(
 			text_id,
 			to_speech_language_code,
-			add_translation_string
+			translation_text
 		)
 
 		add_translation_string = ''
@@ -245,7 +248,8 @@
 
 		if (!new_text_element.value) return
 
-		const added_text = await new Api().add_text(from_speech_language_code, new_text_element.value)
+		const speech_text = new SpeechText(new_text_element.value)
+		const added_text = await new Api().add_text(from_speech_language_code, speech_text)
 
 		// console.info('add_text', text)
 

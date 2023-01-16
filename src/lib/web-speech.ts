@@ -26,6 +26,7 @@ export class WebSpeech {
 
 		let finalTranscript = ''
 
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		recognition.onresult = (event: any): void => {
 			let interimTranscript = ''
 
