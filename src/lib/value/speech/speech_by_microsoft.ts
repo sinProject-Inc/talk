@@ -1,13 +1,12 @@
-import * as microsoft_speech_sdk from 'microsoft-cognitiveservices-speech-sdk'
 import { MICROSOFT_SPEECH_KEY } from '$env/static/private'
-import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
-import type { SpeechText } from './value/value_object/string_value_object/text_value_object/speech_text'
-import { SpeechSound } from './value/value_object/string_value_object/speech_sound'
-import { MicrosoftVoice } from './value/value_object/string_value_object/microsoft_voice'
+import { Speech } from '$lib/speech'
+import * as microsoft_speech_sdk from 'microsoft-cognitiveservices-speech-sdk'
+import { MicrosoftVoice } from '../value_object/string_value_object/microsoft_voice'
+import { SpeechSound } from '../value_object/string_value_object/speech_sound'
 
-export class SpeechByMicrosoft {
-	public static async speak_text(speech_text: SpeechText, locale_code: LocaleCode): Promise<SpeechSound> {
-		const microsoft_voice = MicrosoftVoice.fromLocaleCode(locale_code)
+export class SpeechByMicrosoft extends Speech {
+	public async speak(): Promise<SpeechSound> {
+		const microsoft_voice = MicrosoftVoice.fromLocaleCode(this._locale_code)
 		const speech_config = microsoft_speech_sdk.SpeechConfig.fromSubscription(
 			MICROSOFT_SPEECH_KEY,
 			'japanwest'
@@ -21,7 +20,7 @@ export class SpeechByMicrosoft {
 
 		return new Promise((resolve, reject) => {
 			synthesizer.speakTextAsync(
-				speech_text.string,
+				this._speech_text.string,
 				(result) => {
 					if (result) {
 						// console.log('result', result)

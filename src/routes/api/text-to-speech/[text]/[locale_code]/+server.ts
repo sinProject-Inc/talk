@@ -1,18 +1,19 @@
 import { Database } from '$lib/database'
 import { File } from '$lib/file'
-import { SpeechByGoogle } from '$lib/speech_by_google'
-import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
+import type { Speech } from '$lib/speech'
+import { SpeechByGoogle } from '$lib/value/speech/speech_by_google'
+import { SpeechByMicrosoft } from '$lib/value/speech/speech_by_microsoft'
 import { SoundId } from '$lib/value/value_object/number_value_object/sound_id'
 import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 import type { SpeechSound } from '$lib/value/value_object/string_value_object/speech_sound'
 import { SpeechText } from '$lib/value/value_object/string_value_object/text_value_object/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
-async function speak_text(speech_text: SpeechText, locale_code: LocaleCode): Promise<SpeechSound> {
+function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
 	if (locale_code.useMicrosoftSpeech()) {
-		return await SpeechByMicrosoft.speak_text(speech_text, locale_code)
+		return new SpeechByMicrosoft(speech_text, locale_code)
 	} else {
-		return await SpeechByGoogle.synthesize_speech(speech_text, locale_code)
+		return new SpeechByGoogle(speech_text, locale_code)
 	}
 }
 
@@ -36,7 +37,8 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 			}
 		}
 
-		const audio_content = await speak_text(speech_text, locale_code)
+		const speech = create_speech(speech_text, locale_code)
+		const audio_content = await speech.speak()
 		const { id } = await Database.sound_upsert(locale_code, speech_text)
 		const sound_id = new SoundId(id)
 
