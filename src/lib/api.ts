@@ -49,14 +49,14 @@ export class Api {
 	public async translate_by_google_basic(
 		translation_text: TranslationText,
 		target_app_locale_code: AppLocaleCode
-	): Promise<string> {
+	): Promise<TranslationText> {
 		const api_path = ApiPath.translate_by_google_basic
 			.connect_with_encoding(translation_text)
 			.connect(target_app_locale_code)
 
-		const result = await this._fetch<string>(api_path)
+		const translated_text = await this._fetch<TranslationText>(api_path)
 
-		return result
+		return translated_text
 	}
 
 	public async translate_by_google_advanced(
