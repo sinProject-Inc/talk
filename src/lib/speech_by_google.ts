@@ -1,23 +1,19 @@
 import text_to_speech from '@google-cloud/text-to-speech'
 import { google } from '@google-cloud/text-to-speech/build/protos/protos'
-import { LocaleCode } from './value/value_object/string_value_object/locale_code'
+import { GoogleVoice } from './value/value_object/string_value_object/google_voice'
+import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
 import { SpeechSound } from './value/value_object/string_value_object/speech_sound'
 import type { SpeechText } from './value/value_object/string_value_object/text_value_object/speech_text'
 
 export class SpeechByGoogle {
-	private static _get_voice_name(locale_code: LocaleCode): string {
-		if (locale_code.equals(LocaleCode.english_united_states)) return 'en-US-Neural2-J'
-		if (locale_code.equals(LocaleCode.english_great_britain)) return 'en-GB-Neural2-B'
-		if (locale_code.equals(LocaleCode.japanese_japan)) return 'ja-JP-Wavenet-D'
-		if (locale_code.equals(LocaleCode.cantonese_hongkong)) return 'yue-HK-Standard-B'
-		if (locale_code.equals(LocaleCode.korean_korea)) return 'ko-KR-Wavenet-C'
-
-		return 'en-US-Neural2-J'
-	}
-
 	public static async synthesize_speech(speech_text: SpeechText, locale_code: LocaleCode): Promise<SpeechSound> {
+		const microsoft_voice = GoogleVoice.fromLocaleCode(locale_code)
+
 		const languageCode = locale_code.string
-		const name = this._get_voice_name(locale_code)
+		const name = microsoft_voice.string
+
+		// console.log('languageCode', languageCode)
+		// console.log('name', name)
 
 		const request = {
 			input: { text: speech_text.string },
