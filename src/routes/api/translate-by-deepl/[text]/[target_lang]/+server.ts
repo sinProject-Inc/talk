@@ -10,9 +10,9 @@ export const GET: RequestHandler = async ({ url, params }) => {
 		const translation_text = new TranslationText(params.text)
 		// TODO: Translate to selected language #77
 		const target_lang = (params.target_lang?.trim() ?? 'en') as TargetLanguageCode
-		const result_text = await DeepL.translate(translation_text, target_lang)
+		const translated_text = await DeepL.translate(translation_text, target_lang)
 
-		return json(result_text)
+		return json(translated_text.string)
 	} catch (error) {
 		console.error(error)
 		return json('')
