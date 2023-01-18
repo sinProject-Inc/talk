@@ -1,8 +1,7 @@
-import { AppLocaleCode } from "$lib/value/value_object/string_value_object/app_locale_code";
-import { TranslationText } from "$lib/value/value_object/string_value_object/text_value_object/translation_text";
-import { Translate } from "@google-cloud/translate/build/src/v2";
-import { json, type RequestHandler } from "@sveltejs/kit";
-
+import { AppLocaleCode } from '$lib/string/app_locale_code'
+import { TranslationText } from '$lib/string/valid_text/translation_text'
+import { Translate } from '@google-cloud/translate/build/src/v2'
+import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
 	console.info(url.href)
@@ -13,15 +12,13 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 		const translate = new Translate()
 		const [translations] = await translate.translate(
-			translation_text.string,
-			target_app_locale_code.string
+			translation_text.text,
+			target_app_locale_code.code
 		)
 
 		return json(translations)
-	}
-	catch (error) {
+	} catch (error) {
 		console.error(error)
 		return json('')
 	}
-
 }

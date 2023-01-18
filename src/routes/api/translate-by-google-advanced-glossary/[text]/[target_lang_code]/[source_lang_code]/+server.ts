@@ -1,6 +1,6 @@
-import { GOOGLE_PROJECT_ID, GOOGLE_LOCATION } from '$env/static/private'
-import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
-import { TranslationText } from '$lib/value/value_object/string_value_object/text_value_object/translation_text'
+import { GOOGLE_LOCATION, GOOGLE_PROJECT_ID } from '$env/static/private'
+import { AppLocaleCode } from '$lib/string/app_locale_code'
+import { TranslationText } from '$lib/string/valid_text/translation_text'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
@@ -22,10 +22,10 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 		const request = {
 			parent: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
-			contents: [translation_text.string],
+			contents: [translation_text.text],
 			mimeType: 'text/plain',
-			sourceLanguageCode: source_app_locale_code.string,
-			targetLanguageCode: target_app_locale_code.string,
+			sourceLanguageCode: source_app_locale_code.code,
+			targetLanguageCode: target_app_locale_code.code,
 			glossaryConfig,
 		}
 

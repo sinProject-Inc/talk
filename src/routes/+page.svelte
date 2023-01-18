@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import { Api } from '$lib/api'
-	import { Html } from '$lib/html'
 	import AddIcon from '$lib/icons/add_icon.svelte'
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/icons/voice_icon.svelte'
-	import { TextId } from '$lib/value/value_object/number_value_object/text_id'
-	import { AppLocaleCode } from '$lib/value/value_object/string_value_object/app_locale_code'
-	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
-	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
-	import { Message } from '$lib/value/value_object/string_value_object/text_value_object/message'
-	import { SpeechText } from '$lib/value/value_object/string_value_object/text_value_object/speech_text'
-	import { TranslationText } from '$lib/value/value_object/string_value_object/text_value_object/translation_text'
-	import { WebSpeech } from '$lib/web-speech'
+	import { TextId } from '$lib/number/valid_id/text_id'
+	import { Html } from '$lib/static/html'
+	import { WebSpeech } from '$lib/static/web-speech'
+	import { AppLocaleCode } from '$lib/string/app_locale_code'
+	import { LocaleCode } from '$lib/string/locale_code'
+	import { SpeechLanguageCode } from '$lib/string/speech_language_code'
+	import { Message } from '$lib/string/valid_text/message'
+	import { SpeechText } from '$lib/string/valid_text/speech_text'
+	import { TranslationText } from '$lib/string/valid_text/translation_text'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
@@ -76,11 +76,11 @@
 
 		const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(from_speech_language_code)
 
-		$locale = app_locale_code.string
+		$locale = app_locale_code.code
 		await waitLocale($locale)
 
 		if (store_language) {
-			localStorage.setItem('language_from', from_speech_language_code.string)
+			localStorage.setItem('language_from', from_speech_language_code.code)
 		}
 
 		init()
@@ -110,7 +110,7 @@
 		locale_code = LocaleCode.create(selected_value)
 
 		if (store_locale) {
-			localStorage.setItem('locale', locale_code.string)
+			localStorage.setItem('locale', locale_code.code)
 		}
 	}
 
@@ -155,10 +155,7 @@
 		if (!selected_text) return []
 
 		const text_id = new TextId(selected_text.id)
-		const translation_texts = await new Api().find_translation(
-			text_id,
-			to_speech_language_code
-		)
+		const translation_texts = await new Api().find_translation(text_id, to_speech_language_code)
 		const translations = translation_texts.map((translation_text) => translation_text.text)
 
 		return translations
@@ -214,11 +211,7 @@
 		const text_id = new TextId(selected_text.id)
 		const translation_text = new TranslationText(add_translation_string)
 
-		await new Api().add_translation(
-			text_id,
-			to_speech_language_code,
-			translation_text
-		)
+		await new Api().add_translation(text_id, to_speech_language_code, translation_text)
 
 		add_translation_string = ''
 
@@ -239,7 +232,7 @@
 		to_speech_language_code = SpeechLanguageCode.create(selected_value)
 
 		if (store_language) {
-			localStorage.setItem('language_to', to_speech_language_code.string)
+			localStorage.setItem('language_to', to_speech_language_code.code)
 		}
 	}
 
@@ -316,12 +309,14 @@
 
 		<div class="footer flex_column gap_16px">
 			<div>
-				<audio
-					src={new Api().get_text_to_speech_url(selected_text?.text ?? '', locale_code)}
-					controls
-					autoplay
-					bind:this={audio_element}
-				/>
+				{#if selected_text}
+					<audio
+						src={new Api().get_text_to_speech_url(selected_text?.text ?? '', locale_code)}
+						controls
+						autoplay
+						bind:this={audio_element}
+					/>
+				{/if}
 			</div>
 
 			<div class="flex_column gap_8px">
@@ -347,7 +342,7 @@
 						<div class="flex_row justify_content_center height_24px"><TranslateIcon /></div>
 					</button>
 					<div
-						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).string}
+						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
 						class="flex_1 overflow_wrap_anywhere"
 					>
 						{@html translations.join('<br />')}

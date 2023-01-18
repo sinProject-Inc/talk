@@ -1,11 +1,11 @@
 import type { Language, Locale, Text } from '@prisma/client'
-import type { TextId } from './value/value_object/number_value_object/text_id'
-import { ApiPath } from './value/value_object/string_value_object/api_path'
-import type { AppLocaleCode } from './value/value_object/string_value_object/app_locale_code'
-import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
-import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
-import { SpeechText } from './value/value_object/string_value_object/text_value_object/speech_text'
-import { TranslationText } from './value/value_object/string_value_object/text_value_object/translation_text'
+import type { TextId } from './number/valid_id/text_id'
+import { ApiPath } from './string/api_path'
+import type { AppLocaleCode } from './string/app_locale_code'
+import type { LocaleCode } from './string/locale_code'
+import type { SpeechLanguageCode } from './string/speech_language_code'
+import { SpeechText } from './string/valid_text/speech_text'
+import { TranslationText } from './string/valid_text/translation_text'
 
 export class Api {
 	public constructor(private readonly _origin = '') {}
@@ -19,7 +19,7 @@ export class Api {
 	}
 
 	public async texts(speech_language_code: SpeechLanguageCode): Promise<Text[]> {
-		const api_path = ApiPath.text.connect(speech_language_code)
+		const api_path = ApiPath.text.connect(speech_language_code.code)
 
 		return await this._fetch<Text[]>(api_path)
 	}
@@ -36,10 +36,10 @@ export class Api {
 		try {
 			const speech_text = new SpeechText(selected_text)
 			const api_path = ApiPath.text_to_speech
-				.connect_with_encoding(speech_text)
-				.connect(locale_code)
+				.connect_with_encoding(speech_text.text)
+				.connect(locale_code.code)
 
-			return api_path.string
+			return api_path.get_url()
 		} catch (error) {
 			console.error(error)
 			return ''
@@ -51,8 +51,8 @@ export class Api {
 		target_app_locale_code: AppLocaleCode
 	): Promise<TranslationText> {
 		const api_path = ApiPath.translate_by_google_basic
-			.connect_with_encoding(translation_text)
-			.connect(target_app_locale_code)
+			.connect_with_encoding(translation_text.text)
+			.connect(target_app_locale_code.code)
 
 		const translated_text = await this._fetch<TranslationText>(api_path)
 
@@ -64,8 +64,8 @@ export class Api {
 		target_app_locale_code: AppLocaleCode
 	): Promise<TranslationText> {
 		const api_path = ApiPath.translate_by_google_advanced
-			.connect_with_encoding(translation_text)
-			.connect(target_app_locale_code)
+			.connect_with_encoding(translation_text.text)
+			.connect(target_app_locale_code.code)
 
 		const result = await this._fetch<string>(api_path)
 		const translated_text = new TranslationText(result)
@@ -74,7 +74,9 @@ export class Api {
 	}
 
 	public async add_text(language_code: SpeechLanguageCode, speech_text: SpeechText): Promise<Text> {
-		const api_path = ApiPath.add_text.connect(language_code).connect_with_encoding(speech_text)
+		const api_path = ApiPath.add_text
+			.connect(language_code.code)
+			.connect_with_encoding(speech_text.text)
 		const result = await this._fetch<Text>(api_path)
 
 		return result
@@ -86,9 +88,9 @@ export class Api {
 		translation_text: TranslationText
 	): Promise<Text> {
 		const api_path = ApiPath.add_translation
-			.connect(text_id)
-			.connect(to_speech_language_code)
-			.connect_with_encoding(translation_text)
+			.connect(text_id.id.toString())
+			.connect(to_speech_language_code.code)
+			.connect_with_encoding(translation_text.text)
 
 		const result = await this._fetch<Text>(api_path)
 
@@ -99,7 +101,7 @@ export class Api {
 		text_id: TextId,
 		to_speech_language_code: SpeechLanguageCode
 	): Promise<Text[]> {
-		const app_path = ApiPath.find_translation.connect(text_id).connect(to_speech_language_code)
+		const app_path = ApiPath.find_translation.connect(text_id.id.toString()).connect(to_speech_language_code.code)
 
 		return await this._fetch<Text[]>(app_path)
 	}

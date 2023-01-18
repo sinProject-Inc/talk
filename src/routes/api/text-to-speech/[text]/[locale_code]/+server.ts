@@ -1,12 +1,12 @@
-import { Database } from '$lib/database'
-import { File } from '$lib/file'
-import type { Speech } from '$lib/speech'
-import { SpeechByGoogle } from '$lib/value/speech/speech_by_google'
-import { SpeechByMicrosoft } from '$lib/value/speech/speech_by_microsoft'
-import { SoundId } from '$lib/value/value_object/number_value_object/sound_id'
-import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
-import type { SpeechSound } from '$lib/value/value_object/string_value_object/speech_sound'
-import { SpeechText } from '$lib/value/value_object/string_value_object/text_value_object/speech_text'
+import type { Speech } from '$lib/interface/speech'
+import { SoundId } from '$lib/number/valid_id/sound_id'
+import { SpeechByGoogle } from '$lib/speech/speech_by_google'
+import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
+import { Database } from '$lib/static/database'
+import { File } from '$lib/static/file'
+import { LocaleCode } from '$lib/string/locale_code'
+import type { SpeechSound } from '$lib/string/speech_sound'
+import { SpeechText } from '$lib/string/valid_text/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
 function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
@@ -29,7 +29,7 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 				const sound_id = new SoundId(sound.id)
 				const speech_sound = File.read_sound(sound_id)
 
-				console.info(`Found #${sound.id} sound for "${speech_text}"`)
+				console.info(`Found #${sound.id} sound for "${speech_text.text}"`)
 				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
@@ -43,7 +43,7 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 		const sound_id = new SoundId(id)
 
 		File.write_sound(sound_id, audio_content)
-		console.info(`Created #${sound_id} sound for "${speech_text}"`)
+		console.info(`Created #${sound_id.id} sound for "${speech_text.text}"`)
 		speech_sounds.push(audio_content)
 	}
 
@@ -65,7 +65,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	// // return new Response('success')
 
-	return new Response(speech_sounds[0].unit8_array, {
+	return new Response(speech_sounds[0].data, {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'audio/mp3',
