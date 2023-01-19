@@ -1,11 +1,11 @@
-import type { Speech } from '$lib/interface/speech'
-import { SoundId } from '$lib/number/valid_id/sound_id'
+import type { Speech } from '$lib/speech/speech'
+import { SoundId } from '$lib/speech/sound/sound_id'
 import { SpeechByGoogle } from '$lib/speech/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
-import { Database } from '$lib/static/database'
-import { LocaleCode } from '$lib/string/locale_code'
-import { SpeechSound } from '$lib/string/speech_sound'
-import { SpeechText } from '$lib/string/valid_text/speech_text'
+import { Database } from '$lib/general/database'
+import { LocaleCode } from '$lib/language/locale_code'
+import { SpeechSound } from '$lib/speech/sound/speech_sound'
+import { SpeechText } from '$lib/speech/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
 function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {

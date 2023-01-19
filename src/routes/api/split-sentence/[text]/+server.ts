@@ -1,5 +1,5 @@
 
-import { StringUtil } from '$lib/static/string_util'
+import { StringUtil } from '$lib/general/string_util'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ params }) => {

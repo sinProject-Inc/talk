@@ -1,4 +1,4 @@
-import { ValidId } from "../valid_id"
+import { ValidId } from "../../general/valid_id"
 
 export class SoundId {
 	private readonly _sound_id: undefined

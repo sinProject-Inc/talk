@@ -1,6 +1,6 @@
 import { GOOGLE_PROJECT_ID } from '$env/static/private'
-import { AppLocaleCode } from '$lib/string/app_locale_code'
-import { TranslationText } from '$lib/string/valid_text/translation_text'
+import { AppLocaleCode } from '$lib/language/app_locale_code'
+import { TranslationText } from '$lib/translation/translation_text'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 

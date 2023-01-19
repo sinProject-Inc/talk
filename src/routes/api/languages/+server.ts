@@ -1,4 +1,4 @@
-import { Database } from '$lib/static/database'
+import { Database } from '$lib/general/database'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async () => {

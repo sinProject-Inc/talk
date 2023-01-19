@@ -1,6 +1,6 @@
 import fs from 'fs'
-import type { SoundId } from '$lib/number/valid_id/sound_id'
-import { SoundFilePath } from './valid_text/sound_file_path'
+import type { SoundId } from '$lib/speech/sound/sound_id'
+import { SoundFilePath } from './sound_file_path'
 
 export class SpeechSound {
 	private readonly _speech_sound: undefined

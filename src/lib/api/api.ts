@@ -1,11 +1,11 @@
 import type { Language, Locale, Text } from '@prisma/client'
-import type { TextId } from './number/valid_id/text_id'
-import { ApiPath } from './string/api_path'
-import type { AppLocaleCode } from './string/app_locale_code'
-import type { LocaleCode } from './string/locale_code'
-import type { SpeechLanguageCode } from './string/speech_language_code'
-import { SpeechText } from './string/valid_text/speech_text'
-import { TranslationText } from './string/valid_text/translation_text'
+import type { TextId } from '../general/text_id'
+import { ApiPath } from './api_path'
+import type { AppLocaleCode } from '../language/app_locale_code'
+import type { LocaleCode } from '../language/locale_code'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
+import { SpeechText } from '../speech/speech_text'
+import { TranslationText } from '../translation/translation_text'
 
 export class Api {
 	public constructor(private readonly _origin = '') {}

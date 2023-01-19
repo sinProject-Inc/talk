@@ -1,8 +1,8 @@
 import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
-import type { TextId } from '../number/valid_id/text_id'
-import type { LocaleCode } from '../string/locale_code'
-import type { SpeechLanguageCode } from '../string/speech_language_code'
-import type { SpeechText } from '../string/valid_text/speech_text'
+import type { TextId } from './text_id'
+import type { LocaleCode } from '../language/locale_code'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
+import type { SpeechText } from '../speech/speech_text'
 
 export const db = new PrismaClient()
 export class Database {

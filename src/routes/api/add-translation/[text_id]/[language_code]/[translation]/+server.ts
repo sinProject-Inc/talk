@@ -1,7 +1,7 @@
-import { TextId } from '$lib/number/valid_id/text_id'
-import { Database } from '$lib/static/database'
-import { SpeechLanguageCode } from '$lib/string/speech_language_code'
-import { SpeechText } from '$lib/string/valid_text/speech_text'
+import { TextId } from '$lib/general/text_id'
+import { Database } from '$lib/general/database'
+import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+import { SpeechText } from '$lib/speech/speech_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {

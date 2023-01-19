@@ -1,8 +1,8 @@
-import { ValidText } from "../../string/valid_text"
-import { ValidId } from "../valid_id"
+import { ValidText } from "./valid_text"
+import { ValidId } from "./valid_id"
 
 export class TextId {
-	private readonly _sound_id: undefined
+	private readonly _text_id: undefined
 	private readonly _id: number
 
 	public constructor(id: number) {

@@ -1,5 +1,5 @@
-import { DeeplTranslator } from '$lib/deepl_translator'
-import { TranslationText } from '$lib/string/valid_text/translation_text'
+import { DeeplTranslator } from '$lib/translation/deepl_translator'
+import { TranslationText } from '$lib/translation/translation_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import type { TargetLanguageCode } from 'deepl-node'
 

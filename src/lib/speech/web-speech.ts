@@ -1,5 +1,5 @@
-import type { LocaleCode } from "./string/locale_code"
-import type { Message } from "./string/valid_text/message"
+import type { LocaleCode } from "../language/locale_code"
+import type { Message } from "../ view/message"
 
 export class WebSpeech {
 	public constructor(private readonly _speech_text_element: HTMLElement, private readonly _recognizing_message: Message) {}

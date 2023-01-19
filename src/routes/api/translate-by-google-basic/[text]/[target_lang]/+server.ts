@@ -1,5 +1,5 @@
-import { AppLocaleCode } from '$lib/string/app_locale_code'
-import { TranslationText } from '$lib/string/valid_text/translation_text'
+import { AppLocaleCode } from '$lib/language/app_locale_code'
+import { TranslationText } from '$lib/translation/translation_text'
 import { Translate } from '@google-cloud/translate/build/src/v2'
 import { json, type RequestHandler } from '@sveltejs/kit'
 

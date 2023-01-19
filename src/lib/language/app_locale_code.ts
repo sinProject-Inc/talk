@@ -1,4 +1,4 @@
-import type { SpeechLanguageCode } from './speech_language_code'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
 
 export class AppLocaleCode {
 	private readonly _app_locale_code: undefined

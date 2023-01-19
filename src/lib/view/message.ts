@@ -1,10 +1,10 @@
-import { ValidText } from "../valid_text"
+import { ValidText } from "../general/valid_text"
 
-export class SpeechText {
-	private readonly _speech_text: undefined
+export class Message {
+	private readonly _message: undefined
 	private readonly _text: string
 
-	public constructor(text: string | undefined) {
+	public constructor(text: string) {
 		const valid_text = new ValidText(text)
 
 		this._text = valid_text.text

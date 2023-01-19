@@ -1,10 +1,10 @@
 import { MICROSOFT_SPEECH_KEY } from '$env/static/private'
-import type { Speech } from '$lib/interface/speech'
+import type { Speech } from '$lib/speech/speech'
 import * as microsoft_speech_sdk from 'microsoft-cognitiveservices-speech-sdk'
-import type { LocaleCode } from '../string/locale_code'
-import { MicrosoftVoice } from '../string/microsoft_voice'
-import { SpeechSound } from '../string/speech_sound'
-import type { SpeechText } from '../string/valid_text/speech_text'
+import type { LocaleCode } from '../language/locale_code'
+import { MicrosoftVoice } from './voice/microsoft_voice'
+import { SpeechSound } from './sound/speech_sound'
+import type { SpeechText } from './speech_text'
 
 export class SpeechByMicrosoft implements Speech {
 	public constructor(

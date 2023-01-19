@@ -1,5 +1,5 @@
 import type { Language, Locale } from '@prisma/client'
-import type { SpeechLanguageCode } from '../string/speech_language_code'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
 
 export class Html {
 	public static remove_children(html_element: HTMLElement): void {
