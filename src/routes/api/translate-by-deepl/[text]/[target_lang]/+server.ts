@@ -1,4 +1,4 @@
-import { DeepL } from '$lib/static/deepl'
+import { DeeplTranslator } from '$lib/deepl_translator'
 import { TranslationText } from '$lib/string/valid_text/translation_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import type { TargetLanguageCode } from 'deepl-node'
@@ -10,7 +10,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 		const translation_text = new TranslationText(params.text)
 		// TODO: Translate to selected language #77
 		const target_lang = (params.target_lang?.trim() ?? 'en') as TargetLanguageCode
-		const translated_text = await DeepL.translate(translation_text, target_lang)
+		const deepl_translator = new DeeplTranslator(translation_text)
+		const translated_text = await deepl_translator.translate(target_lang)
 
 		return json(translated_text.text)
 	} catch (error) {

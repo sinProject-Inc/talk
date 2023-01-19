@@ -6,7 +6,7 @@
 	import VoiceIcon from '$lib/icons/voice_icon.svelte'
 	import { TextId } from '$lib/number/valid_id/text_id'
 	import { Html } from '$lib/static/html'
-	import { WebSpeech } from '$lib/static/web-speech'
+	import { WebSpeech } from '$lib/web-speech'
 	import { AppLocaleCode } from '$lib/string/app_locale_code'
 	import { LocaleCode } from '$lib/string/locale_code'
 	import { SpeechLanguageCode } from '$lib/string/speech_language_code'
@@ -48,8 +48,9 @@
 		const selected_value = locale_select_element.selectedOptions[0].value
 		const locale_code = LocaleCode.create(selected_value)
 		const recognizing_message = new Message($_('recognizing'))
+		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
-		WebSpeech.recognition(locale_code, speech_text_element, recognizing_message)
+		web_speech.recognition(locale_code)
 	}
 
 	async function fetch_texts(): Promise<void> {
