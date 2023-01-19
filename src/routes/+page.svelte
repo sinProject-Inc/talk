@@ -12,11 +12,13 @@
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import AddIcon from '$lib/icons/add_icon.svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
-	import { Lang } from '$lib/lang'
+	import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
+	import { AppLocale } from '$lib/value/value_object/string_value_object/app_locale'
+	import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 
 	export let data: PageData
 
-	let from_language_select_element: HTMLSelectElement
+	let from_speech_language_select_element: HTMLSelectElement
 	let to_language_select_element: HTMLSelectElement
 	let locale_select_element: HTMLSelectElement
 	let new_text_element: HTMLInputElement
@@ -27,32 +29,35 @@
 	let texts: Text[] = []
 	let selected_text: Text | undefined
 	let translations: string[] = []
-	let language_from_code = ''
-	let locale_code = ''
-	let language_to_code = ''
+	let from_speech_language_code = SpeechLanguageCode.english
+	let locale_code = LocaleCode.english_united_states
+	let to_speech_language_code = SpeechLanguageCode.japanese
 	let add_translation_string = ''
 
 	function init_language_select(): void {
 		const languages = JSON.parse(data.languages) as Language[]
 
-		Html.append_language_select_options(from_language_select_element, languages)
+		Html.append_language_select_options(from_speech_language_select_element, languages)
 		Html.append_language_select_options(to_language_select_element, languages)
 	}
 
 	function speech_to_text(): void {
-		const locale_code = locale_select_element.selectedOptions[0].value ?? ''
+		const selected_value = locale_select_element.selectedOptions[0].value
+		const locale_code = LocaleCode.create(selected_value)
 
 		WebSpeech.recognition(locale_code, speech_text_element, $_('recognizing'))
 	}
 
 	async function fetch_texts(): Promise<void> {
-		texts = await new Api().texts(language_from_code)
+		texts = await new Api().texts(from_speech_language_code)
 	}
 
 	async function on_change_from_language_select(store_language = true): Promise<void> {
 		reset_background_color()
 
-		language_from_code = from_language_select_element.selectedOptions[0].value ?? ''
+		const selected_value = from_speech_language_select_element.selectedOptions[0].value
+
+		from_speech_language_code = SpeechLanguageCode.create(selected_value)
 
 		fetch_texts()
 
@@ -60,16 +65,18 @@
 
 		selected_text = undefined
 
-		Html.append_locale_select_options(locale_select_element, locales, language_from_code)
+		Html.append_locale_select_options(locale_select_element, locales, from_speech_language_code)
 		on_change_locale_select(store_language)
 
 		// console.log(language_code)
 
-		$locale = Lang.to_text_language_code(language_from_code)
+		const app_locale = AppLocale.fromSpeechLanguageCode(from_speech_language_code)
+
+		$locale = app_locale.toString()
 		await waitLocale($locale)
 
 		if (store_language) {
-			localStorage.setItem('language_from', language_from_code)
+			localStorage.setItem('language_from', from_speech_language_code.toString())
 		}
 
 		init()
@@ -77,7 +84,7 @@
 
 	async function select_default_language(): Promise<void> {
 		const language_from = localStorage.getItem('language_from')
-		if (language_from) from_language_select_element.value = language_from
+		if (language_from) from_speech_language_select_element.value = language_from
 
 		const language_to = localStorage.getItem('language_to')
 		if (language_to) to_language_select_element.value = language_to
@@ -94,10 +101,12 @@
 			if (locale) locale_select_element.value = locale
 		}
 
-		locale_code = locale_select_element.selectedOptions[0].value ?? ''
+		const selected_value = locale_select_element.selectedOptions[0].value
+
+		locale_code = LocaleCode.create(selected_value)
 
 		if (store_locale) {
-			localStorage.setItem('locale', locale_code)
+			localStorage.setItem('locale', locale_code.toString())
 		}
 	}
 
@@ -141,14 +150,17 @@
 	async function find_translation(): Promise<string[]> {
 		if (!selected_text) return []
 
-		const translation_texts = await new Api().find_translation(selected_text.id, language_to_code)
+		const translation_texts = await new Api().find_translation(
+			selected_text.id,
+			to_speech_language_code
+		)
 		const translations = translation_texts.map((translation_text) => translation_text.text)
 
 		return translations
 	}
 
 	function validate_for_translation(): boolean {
-		if (language_from_code === language_to_code) {
+		if (from_speech_language_code.equals(to_speech_language_code)) {
 			translations = [`(${$_('select_different_language')})`]
 			return false
 		}
@@ -171,9 +183,13 @@
 			translations = find_translation_result
 			// console.info('translations found.', translations)
 		} else {
-			const translation = await new Api().translate_by_google_advanced(selected_text.text, language_to_code)
+			const app_locale = AppLocale.fromSpeechLanguageCode(to_speech_language_code)
+			const translation = await new Api().translate_by_google_advanced(
+				selected_text.text,
+				app_locale
+			)
 
-			await new Api().add_translation(selected_text.id, language_to_code, translation)
+			await new Api().add_translation(selected_text.id, to_speech_language_code, translation)
 
 			translations = await find_translation()
 			// console.info('translated', translation)
@@ -188,7 +204,11 @@
 		// console.log('add_translation', selected_text)
 		// console.log('language_to_code', language_to_code)
 
-		await new Api().add_translation(selected_text.id, language_to_code, add_translation_string)
+		await new Api().add_translation(
+			selected_text.id,
+			to_speech_language_code,
+			add_translation_string
+		)
 
 		add_translation_string = ''
 
@@ -204,10 +224,12 @@
 	}
 
 	function on_change_translation_language_select(store_language = true): void {
-		language_to_code = to_language_select_element.selectedOptions[0].value ?? ''
+		const selected_value = to_language_select_element.selectedOptions[0].value
+
+		to_speech_language_code = SpeechLanguageCode.create(selected_value)
 
 		if (store_language) {
-			localStorage.setItem('language_to', language_to_code)
+			localStorage.setItem('language_to', to_speech_language_code.toString())
 		}
 	}
 
@@ -216,7 +238,7 @@
 
 		if (!new_text_element.value) return
 
-		const added_text = await new Api().add_text(language_from_code, new_text_element.value)
+		const added_text = await new Api().add_text(from_speech_language_code, new_text_element.value)
 
 		// console.info('add_text', text)
 
@@ -260,7 +282,7 @@
 		<div class="scroll_area flex_column gap_8px">
 			<div>
 				<select
-					bind:this={from_language_select_element}
+					bind:this={from_speech_language_select_element}
 					on:change={() => on_change_from_language_select()}
 				/>
 				<select bind:this={locale_select_element} on:change={() => on_change_locale_select()} />
@@ -325,7 +347,7 @@
 						<div class="flex_row justify_content_center height_24px"><TranslateIcon /></div>
 					</button>
 					<div
-						lang={Lang.to_text_language_code(language_to_code)}
+						lang={AppLocale.fromSpeechLanguageCode(to_speech_language_code).toString()}
 						class="flex_1 overflow_wrap_anywhere"
 					>
 						{@html translations.join('<br />')}

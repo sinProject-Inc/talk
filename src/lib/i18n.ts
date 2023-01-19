@@ -1,27 +1,25 @@
 import { browser } from '$app/environment'
 import { register, init } from 'svelte-i18n'
-import { Lang } from './lang'
+import { AppLocale } from './value/value_object/string_value_object/app_locale'
 
 const defaultLocale = 'en'
 
 register('en', () => import('../locales/en.json'))
 register('ja', () => import('../locales/ja.json'))
-register('ko', () => import('../locales/ko.json'))
 register('zh-TW', () => import('../locales/zh-TW.json'))
+register('ko', () => import('../locales/ko.json'))
 register('km', () => import('../locales/km.json'))
 
-function get_initial_locale(): string {
-	if (!browser) return defaultLocale
+function get_initial_locale(): AppLocale {
+	if (!browser) return AppLocale.default
 
 	const current_locale = localStorage.getItem('language_from') || window.navigator.language
-	const text_language_code = Lang.to_text_language_code(current_locale)
+	const app_locale = AppLocale.create(current_locale)
 
-	// console.log('get_initial_locale', current_locale, text_language_code)
-
-	return text_language_code
+	return app_locale
 }
 
 init({
 	fallbackLocale: defaultLocale,
-	initialLocale: get_initial_locale(),
+	initialLocale: get_initial_locale().toString(),
 })

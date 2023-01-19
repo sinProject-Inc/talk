@@ -1,4 +1,7 @@
 import type { Language, Locale, Text } from '@prisma/client'
+import type { AppLocale } from './value/value_object/string_value_object/app_locale'
+import type { LocaleCode } from './value/value_object/string_value_object/locale_code'
+import type { SpeechLanguageCode } from './value/value_object/string_value_object/speech_language_code'
 
 export class Api {
 	public constructor(private readonly _origin = '') {}
@@ -10,8 +13,8 @@ export class Api {
 		return result
 	}
 
-	public async texts(language_code: string): Promise<Text[]> {
-		return await this._fetch<Text[]>(`/api/text/${language_code}`)
+	public async texts(speech_language_code: SpeechLanguageCode): Promise<Text[]> {
+		return await this._fetch<Text[]>(`/api/text/${speech_language_code}`)
 	}
 
 	public async languages(): Promise<Language[]> {
@@ -22,8 +25,8 @@ export class Api {
 		return await this._fetch<Locale[]>('/api/locales')
 	}
 
-	public get_speech_to_text_url(selected_text: string, locale_code: string): string {
-		if (selected_text === '' || locale_code === '') return ''
+	public get_speech_to_text_url(selected_text: string, locale_code: LocaleCode): string {
+		if (selected_text === '') return ''
 
 		const encoded_text = encodeURIComponent(selected_text)
 		const url = `/api/text-to-speech/${encoded_text}/${locale_code}`
@@ -41,17 +44,17 @@ export class Api {
 		return result
 	}
 
-	public async translate_by_google_advanced(text: string, target_language_code: string): Promise<string> {
-		if (text === '' || target_language_code === '') return ''
+	public async translate_by_google_advanced(text: string, app_locale: AppLocale): Promise<string> {
+		if (text === '') return ''
 
 		const encoded_text = encodeURIComponent(text)
-		const url = `/api/translate-by-google-advanced/${encoded_text}/${target_language_code}`
+		const url = `/api/translate-by-google-advanced/${encoded_text}/${app_locale}`
 		const result = await this._fetch<string>(url)
 
 		return result
 	}
 
-	public async add_text(language_code: string, text: string): Promise<Text> {
+	public async add_text(language_code: SpeechLanguageCode, text: string): Promise<Text> {
 		const encoded_text = encodeURIComponent(text)
 		const result = await this._fetch<Text>(`/api/add-text/${language_code}/${encoded_text}`)
 
@@ -60,19 +63,19 @@ export class Api {
 
 	public async add_translation(
 		text_id: number,
-		language_to_code: string,
+		to_speech_language_code: SpeechLanguageCode,
 		translation: string
 	): Promise<Text> {
 		const encoded_translation = translation
 		const result = await this._fetch<Text>(
-			`/api/add-translation/${text_id}/${language_to_code}/${encoded_translation}`
+			`/api/add-translation/${text_id}/${to_speech_language_code}/${encoded_translation}`
 		)
 
 		return result
 	}
 
-	public async find_translation(text_id: number, language_to_code: string): Promise<Text[]> {
-		return await this._fetch<Text[]>(`/api/find-translation/${text_id}/${language_to_code}`)
+	public async find_translation(text_id: number, to_speech_language_code: SpeechLanguageCode): Promise<Text[]> {
+		return await this._fetch<Text[]>(`/api/find-translation/${text_id}/${to_speech_language_code}`)
 	}
 
 	// HACK: 結合方法不明のため保留

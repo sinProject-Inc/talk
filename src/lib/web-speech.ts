@@ -1,5 +1,7 @@
+import type { LocaleCode } from "./value/value_object/string_value_object/locale_code"
+
 export class WebSpeech {
-	public static recognition(lang: string, speech_text_element: HTMLElement, recognizing_text: string): void {
+	public static recognition(locale_code: LocaleCode, speech_text_element: HTMLElement, recognizing_text: string): void {
 		if (!('webkitSpeechRecognition' in window)) {
 			speech_text_element.textContent = 'Speech Recognition Not Available'
 			return
@@ -11,7 +13,7 @@ export class WebSpeech {
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
 		const recognition = new speech_recognition()
 
-		recognition.lang = lang
+		recognition.lang = locale_code.toString()
 		recognition.interimResults = true
 		// recognition.continuous = true;
 

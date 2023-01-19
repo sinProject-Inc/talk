@@ -2,17 +2,18 @@ import { Database } from '$lib/database'
 import { File } from '$lib/file'
 import { SpeechByGoogle } from '$lib/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
+import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
 import type { RequestHandler } from '@sveltejs/kit'
 
-async function speak_text(text: string, locale_code: string): Promise<Uint8Array> {
-	if (locale_code === 'km-KH') {
+async function speak_text(text: string, locale_code: LocaleCode): Promise<Uint8Array> {
+	if (locale_code.useMicrosoftSpeech()) {
 		return await SpeechByMicrosoft.speak_text(text, locale_code)
 	} else {
 		return await SpeechByGoogle.synthesize_speech(text, locale_code)
 	}
 }
 
-async function get_uint8arrays(sentences: string[], locale_code: string): Promise<Uint8Array[]> {
+async function get_uint8arrays(sentences: string[], locale_code: LocaleCode): Promise<Uint8Array[]> {
 	const uint8Arrays: Uint8Array[] = []
 
 	for (const sentence of sentences) {
@@ -46,7 +47,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	console.info(url.href)
 
 	const text = params.text ?? ''
-	const locale_code = params.locale_code ?? ''
+	const locale_code_string = params.locale_code ?? ''
+	const locale_code = LocaleCode.create(locale_code_string)
 	// console.info('text-to-speech: ', text)
 
 	// const sentences = await split_sentences(text, url)

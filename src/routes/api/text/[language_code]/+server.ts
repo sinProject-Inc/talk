@@ -1,15 +1,19 @@
 import { Database } from '$lib/database'
+import { SpeechLanguageCode } from '$lib/value/value_object/string_value_object/speech_language_code'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ params }): Promise<Response> => {
-	const language_code = params.language_code ?? ''
+export const GET: RequestHandler = async ({ url, params }): Promise<Response> => {
+	console.info(url.href)
 
-	if (language_code === '') {
-		return json({ error: 'language_code is empty' })
+	try {
+		const speech_language_code = SpeechLanguageCode.create(params.language_code)
+
+		const texts = await Database.get_texts(speech_language_code)
+		const response = json(texts)
+
+		return response
+	} catch (error) {
+		console.error(error)
+		return json({ error: (error as Error).message })
 	}
-
-	const texts = await Database.get_texts(language_code)
-	const response = json(texts)
-
-	return response
 }
