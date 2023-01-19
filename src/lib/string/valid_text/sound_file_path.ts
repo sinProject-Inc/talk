@@ -1,10 +1,12 @@
-import { ValidText } from "../valid_text"
+import { SOUND_DIR } from '$env/static/private'
+import type { SoundId } from '$lib/number/valid_id/sound_id'
+import { ValidText } from '../valid_text'
 
 export class SoundFilePath {
 	private readonly _sound_file_path: undefined
 	private readonly _path: string
 
-	public constructor(path: string) {
+	private constructor(path: string) {
 		const valid_text = new ValidText(path)
 
 		this._path = valid_text.text
@@ -12,5 +14,11 @@ export class SoundFilePath {
 
 	public get path(): string {
 		return this._path
+	}
+
+	public static from_id(sound_id: SoundId): SoundFilePath {
+		const sound_file_path = new SoundFilePath(`${SOUND_DIR}${sound_id.id}.mp3`)
+
+		return sound_file_path
 	}
 }

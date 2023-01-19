@@ -3,9 +3,8 @@ import { SoundId } from '$lib/number/valid_id/sound_id'
 import { SpeechByGoogle } from '$lib/speech/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
 import { Database } from '$lib/static/database'
-import { File } from '$lib/static/file'
 import { LocaleCode } from '$lib/string/locale_code'
-import type { SpeechSound } from '$lib/string/speech_sound'
+import { SpeechSound } from '$lib/string/speech_sound'
 import { SpeechText } from '$lib/string/valid_text/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
@@ -27,7 +26,7 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 		if (sound) {
 			try {
 				const sound_id = new SoundId(sound.id)
-				const speech_sound = File.read_sound(sound_id)
+				const speech_sound = SpeechSound.read(sound_id)
 
 				console.info(`Found #${sound.id} sound for "${speech_text.text}"`)
 				speech_sounds.push(speech_sound)
@@ -38,13 +37,13 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 		}
 
 		const speech = create_speech(speech_text, locale_code)
-		const audio_content = await speech.speak()
+		const speech_sound = await speech.speak()
 		const { id } = await Database.sound_upsert(locale_code, speech_text)
 		const sound_id = new SoundId(id)
 
-		File.write_sound(sound_id, audio_content)
+		speech_sound.write(sound_id)
 		console.info(`Created #${sound_id.id} sound for "${speech_text.text}"`)
-		speech_sounds.push(audio_content)
+		speech_sounds.push(speech_sound)
 	}
 
 	return speech_sounds
