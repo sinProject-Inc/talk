@@ -266,12 +266,12 @@
 		{#if $page.data.user}
 		<div class="header_right flex_row align_items_center">
 			<div>{$page.data.user.email}</div>
-			<form action="/sign_out" method="POST">
+			<form action="/sign-out" method="POST">
 				<button type="submit">{$_('logout')}</button>
 			</form>
 		</div>
 		{:else}
-		<a class="header_right flex_row align_items_center" href="/sign_in">{$_('sign_in')} / {$_('sign_up')}</a>
+		<a class="header_right flex_row align_items_center" href="/sign-in">{$_('sign_in')} / {$_('sign_up')}</a>
 		{/if}
 	</div>
 </div>
