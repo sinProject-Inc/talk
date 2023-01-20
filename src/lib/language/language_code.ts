@@ -1,8 +1,5 @@
-import type { PreferNominal } from '$lib/value/value_object'
-import { StringValueObject } from '../string_value_object'
-
-export class LanguageCode extends StringValueObject {
-	public language_code!: PreferNominal
+export class LanguageCode {
+	private readonly _language_code: undefined
 
 	public static readonly english_united_states = new LanguageCode('en-US')
 	public static readonly english_great_britain = new LanguageCode('en-GB')
@@ -20,17 +17,16 @@ export class LanguageCode extends StringValueObject {
 		LanguageCode.khmer,
 	]
 
-	private constructor(value: string) {
-		super(value)
-	}
+	private constructor(private readonly _code: string) {}
 
 	public static create(language_code: string | undefined): LanguageCode {
-		if (!language_code) {
+		const lower_case_language_code = language_code?.trim().toLowerCase() ?? ''
+
+		if (!lower_case_language_code) {
 			throw new Error('language_code is empty')
 		}
 
-		const lc = language_code.trim().toLowerCase()
-		const found = LanguageCode.values.find((v) => v.toString() === lc)
+		const found = LanguageCode.values.find((v) => v._code === lower_case_language_code)
 
 		if (!found) {
 			throw new Error(`invalid language_code: ${language_code}`)
@@ -39,7 +35,7 @@ export class LanguageCode extends StringValueObject {
 		return found
 	}
 
-	public for_text(): string {
-		return this._value === 'yue' ? 'zh-TW' : this._value
+	public get code(): string {
+		return this._code
 	}
 }

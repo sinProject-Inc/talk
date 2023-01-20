@@ -1,5 +1,5 @@
 import { Auth } from '$lib/auth'
-import { Database, db } from '$lib/database'
+import { Database, db } from '$lib/general/database'
 import { NodemailerManager as NodeMailerManager } from '$lib/nodemailer_manager'
 import type { PageServerLoad } from '.svelte-kit/types/src/routes/$types'
 import type { User } from '@prisma/client'

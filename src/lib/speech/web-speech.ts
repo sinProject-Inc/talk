@@ -1,19 +1,22 @@
-import type { LocaleCode } from "./value/value_object/string_value_object/locale_code"
+import type { LocaleCode } from "../language/locale_code"
+import type { Message } from "../view/message"
 
 export class WebSpeech {
-	public static recognition(locale_code: LocaleCode, speech_text_element: HTMLElement, recognizing_text: string): void {
+	public constructor(private readonly _speech_text_element: HTMLElement, private readonly _recognizing_message: Message) {}
+
+	public recognition(locale_code: LocaleCode,): void {
 		if (!('webkitSpeechRecognition' in window)) {
-			speech_text_element.textContent = 'Speech Recognition Not Available'
+			this._speech_text_element.textContent = 'Speech Recognition Not Available'
 			return
 		}
 
-		console.log('element', speech_text_element)
-		speech_text_element.textContent = `${recognizing_text}...`
+		console.log('element', this._speech_text_element)
+		this._speech_text_element.textContent = `${this._recognizing_message.text}...`
 
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
 		const recognition = new speech_recognition()
 
-		recognition.lang = locale_code.toString()
+		recognition.lang = locale_code.code
 		recognition.interimResults = true
 		// recognition.continuous = true;
 
@@ -25,6 +28,7 @@ export class WebSpeech {
 
 		let finalTranscript = ''
 
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		recognition.onresult = (event: any): void => {
 			let interimTranscript = ''
 
@@ -38,7 +42,7 @@ export class WebSpeech {
 				}
 			}
 
-			speech_text_element.textContent = finalTranscript + interimTranscript
+			this._speech_text_element.textContent = finalTranscript + interimTranscript
 		}
 
 		recognition.start()

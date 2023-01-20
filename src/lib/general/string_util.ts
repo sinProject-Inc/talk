@@ -1,4 +1,4 @@
-export class Util {
+export class StringUtil {
 	public static split_sentences(text: string): string[] {
 		const trimmed_text = text.trim()
 		const replaced_text = trimmed_text.replace(/([.!?。！？])(\s+|([^.!?。！？]))/g, '$1\n$3')

@@ -1,7 +1,7 @@
 import type { AuthPin, AuthToken, Role, User } from '@prisma/client'
 import type { Cookies } from '@sveltejs/kit'
 import { CookiesManager } from './cookies_manager'
-import { Database, db } from './database'
+import { Database, db } from '$lib/general/database'
 
 export class Auth {
 	public static async get_session_lifetime_sec(): Promise<number> {

@@ -1,46 +1,52 @@
-import { Database } from '$lib/database'
-import { File } from '$lib/file'
-import { SpeechByGoogle } from '$lib/speech_by_google'
-import { SpeechByMicrosoft } from '$lib/speech_by_microsoft'
-import { LocaleCode } from '$lib/value/value_object/string_value_object/locale_code'
+import type { Speech } from '$lib/speech/speech'
+import { SoundId } from '$lib/speech/sound/sound_id'
+import { SpeechByGoogle } from '$lib/speech/speech_by_google'
+import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
+import { Database } from '$lib/general/database'
+import { LocaleCode } from '$lib/language/locale_code'
+import { SpeechSound } from '$lib/speech/sound/speech_sound'
+import { SpeechText } from '$lib/speech/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
-async function speak_text(text: string, locale_code: LocaleCode): Promise<Uint8Array> {
+function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
 	if (locale_code.useMicrosoftSpeech()) {
-		return await SpeechByMicrosoft.speak_text(text, locale_code)
+		return new SpeechByMicrosoft(speech_text, locale_code)
 	} else {
-		return await SpeechByGoogle.synthesize_speech(text, locale_code)
+		return new SpeechByGoogle(speech_text, locale_code)
 	}
 }
 
-async function get_uint8arrays(sentences: string[], locale_code: LocaleCode): Promise<Uint8Array[]> {
-	const uint8Arrays: Uint8Array[] = []
+async function get_speech_sounds(speech_texts: SpeechText[], locale_code: LocaleCode): Promise<SpeechSound[]> {
+	const speech_sounds: SpeechSound[] = []
 
-	for (const sentence of sentences) {
+	for (const speech_text of speech_texts) {
 		// console.log('sentence', sentence)
-		const sound = await Database.sound_find_by_text(sentence, locale_code)
+		const sound = await Database.sound_find_by_text(speech_text, locale_code)
 
 		if (sound) {
 			try {
-				const buffer = File.read_sound(sound.id)
+				const sound_id = new SoundId(sound.id)
+				const speech_sound = SpeechSound.read(sound_id)
 
-				console.info(`Found #${sound.id} sound for "${sentence}"`)
-				uint8Arrays.push(buffer)
+				console.info(`Found #${sound.id} sound for "${speech_text.text}"`)
+				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
 				// DO NOTHING
 			}
 		}
 
-		const audio_content = await speak_text(sentence, locale_code)
-		const { id: sound_id } = await Database.sound_upsert(locale_code, sentence)
+		const speech = create_speech(speech_text, locale_code)
+		const speech_sound = await speech.speak()
+		const { id } = await Database.sound_upsert(locale_code, speech_text)
+		const sound_id = new SoundId(id)
 
-		File.write_sound(sound_id, audio_content)
-		console.info(`Created #${sound_id} sound for "${sentence}"`)
-		uint8Arrays.push(audio_content)
+		speech_sound.write(sound_id)
+		console.info(`Created #${sound_id.id} sound for "${speech_text.text}"`)
+		speech_sounds.push(speech_sound)
 	}
 
-	return uint8Arrays
+	return speech_sounds
 }
 
 export const GET: RequestHandler = async ({ url, params }) => {
@@ -53,16 +59,17 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
-	const uint8arrays = await get_uint8arrays([text], locale_code)
+	const speech_text = new SpeechText(text)
+	const speech_sounds = await get_speech_sounds([speech_text], locale_code)
 
 	// // return new Response('success')
 
-	return new Response(uint8arrays[0], {
+	return new Response(speech_sounds[0].data, {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'audio/mp3',
 			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'Content-Length': uint8arrays[0].length.toString(),
+			'Content-Length': speech_sounds[0].length_string,
 		},
 	})
 }

@@ -1,8 +1,6 @@
-import type { PreferNominal } from '$lib/value/value_object'
-import { StringValueObject } from '../string_value_object'
 
-export class SpeechLanguageCode extends StringValueObject {
-	public speech_language_code!: PreferNominal
+export class SpeechLanguageCode {
+	private readonly _speech_language_code: undefined
 
 	public static readonly english = new SpeechLanguageCode('en')
 	public static readonly japanese = new SpeechLanguageCode('ja')
@@ -18,22 +16,29 @@ export class SpeechLanguageCode extends StringValueObject {
 		SpeechLanguageCode.khmer,
 	]
 
-	private constructor(value: string) {
-		super(value)
-	}
+	private constructor(private readonly _code: string) {}
 
 	public static create(language_code: string | undefined): SpeechLanguageCode {
-		if (!language_code) {
+		const lower_case_language_code = language_code?.trim().toLowerCase() ?? ''
+
+		if (!lower_case_language_code) {
 			throw new Error('language_code is empty')
 		}
 
-		const lc = language_code.trim().toLowerCase()
-		const found = SpeechLanguageCode.values.find((v) => v.toString() === lc)
+		const found = SpeechLanguageCode.values.find((v) => v._code === lower_case_language_code)
 
 		if (!found) {
 			throw new Error(`invalid language_code: ${language_code}`)
 		}
 
 		return found
+	}
+
+	public get code(): string {
+		return this._code
+	}
+
+	public equals(other: SpeechLanguageCode): boolean {
+		return this._code === other._code
 	}
 }

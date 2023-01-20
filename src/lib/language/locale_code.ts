@@ -1,8 +1,6 @@
-import type { PreferNominal } from '$lib/value/value_object'
-import { StringValueObject } from '../string_value_object'
 
-export class LocaleCode extends StringValueObject {
-	public locale_code!: PreferNominal
+export class LocaleCode {
+	private readonly _locale_code: undefined
 
 	public static readonly english_united_states = new LocaleCode('en-US')
 	public static readonly english_great_britain = new LocaleCode('en-GB')
@@ -24,16 +22,14 @@ export class LocaleCode extends StringValueObject {
 		return LocaleCode.english_united_states
 	}
 
-	private constructor(value: string) {
-		super(value)
-	}
+	private constructor(private readonly _code: string) {}
 
 	public static create(locale_code: string | undefined): LocaleCode {
 		if (!locale_code) {
 			throw new Error('locale_code is empty')
 		}
 
-		const found = LocaleCode.values.find((v) => v.toString() === locale_code)
+		const found = LocaleCode.values.find((v) => v._code === locale_code)
 
 		if (!found) {
 			throw new Error(`invalid locale_code: ${locale_code}`)
@@ -42,7 +38,23 @@ export class LocaleCode extends StringValueObject {
 		return found
 	}
 
+	public get code(): string {
+		return this._code
+	}
+
+	private _equals(other: LocaleCode): boolean {
+		return this._code === other._code
+	}
+
+	public is_cantonese(): boolean {
+		return this._equals(LocaleCode.cantonese_hongkong)
+	}
+
+	private _is_khmer(): boolean {
+		return this._equals(LocaleCode.khmer_cambodia)
+	}
+
 	public useMicrosoftSpeech(): boolean {
-		return this.equals(LocaleCode.khmer_cambodia)
+		return this._is_khmer()
 	}
 }
