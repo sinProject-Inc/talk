@@ -26,7 +26,6 @@ We’ve sent a 6-character code to {form?.email}. The code expires shortly, so p
 
 <form method="POST" action="?/submit" use:enhance>
 	<input type="hidden" name="email" value={form?.email} />
-	<input type="hidden" name="translated_pin_code" value={form?.translated_pin_code} />
 	<input type="text" name="pin_code" placeholder={$_('pin_code')} required bind:this={pin_input_element} />
 
 	{#if form?.missing}<p class="error">{$_('pin_code_is_required')}</p>{/if}
