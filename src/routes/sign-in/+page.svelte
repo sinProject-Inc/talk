@@ -22,7 +22,7 @@
 
 <div class="flex_column">
 	<form method="POST" action="/pin_code?/sign_in&redirect_url={encoded_redirect_url}">
-		<input type="email" name="email" placeholder="Email" required bind:this={pin_input_element} />
+		<input type="email" name="email" placeholder="$_('email')" required bind:this={pin_input_element} />
 
 		<button type="submit">{$_('sign_in')} / {$_('sign_up')}</button>
 	</form>
