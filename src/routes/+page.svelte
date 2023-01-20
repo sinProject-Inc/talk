@@ -13,6 +13,10 @@
 	import { Message } from '$lib/view/message'
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { TranslationText } from '$lib/translation/translation_text'
+	import { page } from '$app/stores'
+	// import { Api } from '$lib/api'
+	// import { Html } from '$lib/html'
+	// import { WebSpeech } from '$lib/web-speech'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
@@ -264,9 +268,20 @@
 	})
 </script>
 
-<div class="flex_row root_container header header_background_color">
-	<div class="center_container">
-		<div class="header flex_row align_items_center">{$_('talk_title')}</div>
+<div class="flex_row root_container header_left header_background_color">
+	<div class="center_container flex_row">
+		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
+
+		{#if $page.data.user}
+		<div class="header_right flex_row align_items_center">
+			<div>{$page.data.user.email}</div>
+			<form action="/sign-out" method="POST">
+				<button type="submit">{$_('logout')}</button>
+			</form>
+		</div>
+		{:else}
+		<a class="header_right flex_row align_items_center" href="/sign-in">{$_('sign_in')} / {$_('sign_up')}</a>
+		{/if}
 	</div>
 </div>
 

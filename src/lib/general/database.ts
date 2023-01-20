@@ -1,8 +1,13 @@
-import { PrismaClient, type Language, type Locale, type Sound, type Text } from '@prisma/client'
+import { PrismaClient, type Language, type Locale, type Sound, type Text, type User } from '@prisma/client'
 import type { TextId } from './text_id'
 import type { LocaleCode } from '../language/locale_code'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import type { SpeechText } from '../speech/speech_text'
+
+enum Roles {
+	admin = 'admin',
+	user = 'user',
+}
 
 export const db = new PrismaClient()
 export class Database {
@@ -168,5 +173,32 @@ export class Database {
 		})
 
 		return translation_text
+	}
+
+	public static async find_user(email: string, can_register = true): Promise<User | undefined> {
+		const user = await db.user.findUnique({ where: { email } })
+
+		if (user) return user
+		if (!can_register) return undefined
+
+		try {
+			return await db.user.create({
+				data: {
+					role: { connect: { name: Roles.user } },
+					email,
+				},
+			})
+		} catch (error) {
+			console.error(error)
+			return undefined
+		}
+	}
+
+	public static async get_app_setting_int(key: string): Promise<number> {
+		const appSetting = await db.appSetting.findUnique({ where: { key } })
+		const number_value = Number(appSetting?.value)
+		const number_value_not_nan = Number.isNaN(number_value) ? 0 : number_value
+
+		return number_value_not_nan
 	}
 }

@@ -7,5 +7,14 @@
 	"recognizing": "ការទទួលស្គាល់",
 	"select_different_language": "ជ្រើសរើសភាសាផ្សេង",
 	"enter_new_text": "វាយអត្ថបទថ្មី។",
-	"enter_new_translation": "វាយការបកប្រែថ្មី។"
+	"enter_new_translation": "វាយការបកប្រែថ្មី។",
+	"sign_in": "ចូល",
+	"sign_up": "ចុះ​ឈ្មោះ",
+	"enter_pin_code": "បញ្ចូលលេខកូដសម្ងាត់",
+	"pin_code_is_required": "តម្រូវ​ឱ្យ​មាន​កូដ PIN ។",
+	"wrong_credentials": "អ្នក​បាន​បញ្ចូល​ព័ត៌មាន​សម្ងាត់​ខុស។",
+	"submit": "ដាក់ស្នើ",
+	"pin_code": "លេខសម្ងាត់",
+	"logout": "ចាកចេញ",
+	"email": "អ៊ីមែល"
 }
