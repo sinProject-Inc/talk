@@ -14,7 +14,7 @@
   "pin_code_is_required": "Pin code is required.",
   "wrong_credentials": "You have entered the wrong credentials.",
   "submit": "Submit",
-  "pin_code": "Pin code",
+  "pin_code": "PIN code",
   "logout": "Logout",
   "email": "Email"
 }
