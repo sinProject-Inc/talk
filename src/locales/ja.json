@@ -15,5 +15,6 @@
 	"wrong_credentials": "PINコードが間違っています。",
 	"submit": "送信",
 	"pin_code": "PINコード",
-	"logout": "ログアウト"
+	"logout": "ログアウト",
+	"email": "Eメール"
 }
