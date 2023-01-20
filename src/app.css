@@ -60,7 +60,7 @@ textarea {
 	background-color: var(--header-background-color);
 }
 
-.header {
+.header_left, .header_right {
 	-webkit-position: sticky;
 	position: sticky;
 	z-index: 3;
@@ -71,6 +71,10 @@ textarea {
 	padding-right: 16px;
 	font-size: 22px;
 	font-weight: 700;
+}
+
+.header_right {
+	margin: 0 0 0 auto;
 }
 
 .scroll_area {

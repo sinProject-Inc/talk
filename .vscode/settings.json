@@ -62,5 +62,6 @@
 		"src/locales",
 		"src/routes/api/languages",
 		"src/routes/api/locales"
-	]
+	],
+	"i18n-ally.keystyle": "nested"
 }

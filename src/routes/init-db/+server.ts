@@ -3,6 +3,12 @@ import type { RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async () => {
 	try {
+		await db.role.create({ data: { name: 'admin' } })
+		await db.role.create({ data: { name: 'user' } })
+
+		await db.appSetting.create({ data: { key: 'session_lifetime_sec', value: '600' } })
+		await db.appSetting.create({ data: { key: 'pin_code_lifetime_sec', value: '300' } })
+
 		await db.language.create({ data: { code: 'en', name: 'English' } })
 		await db.language.create({ data: { code: 'ja', name: '日本語' } })
 		await db.language.create({ data: { code: 'yue', name: '廣東話' } })
