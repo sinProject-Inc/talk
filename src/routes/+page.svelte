@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import { Api } from '$lib/api/api'
 	import AddIcon from '$lib/icons/add_icon.svelte'
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/icons/voice_icon.svelte'
@@ -14,14 +13,17 @@
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { page } from '$app/stores'
-	// import { Api } from '$lib/api'
-	// import { Html } from '$lib/html'
-	// import { WebSpeech } from '$lib/web-speech'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import '../app.css'
+	import { TextsApi } from '$lib/text/texts_api'
+	import { TranslateByGoogleAdvancedApi } from '$lib/translation/translate_by_google_advanced_api'
+	import { AddTranslationApi } from '$lib/translation/add_translation_api'
+	import { AddTextApi } from '$lib/text/add_text_api'
+	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
+	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 
 	export let data: PageData
 
@@ -58,7 +60,7 @@
 	}
 
 	async function fetch_texts(): Promise<void> {
-		texts = await new Api().texts(from_speech_language_code)
+		texts = await new TextsApi(from_speech_language_code).fetch()
 	}
 
 	async function on_change_from_language_select(store_language = true): Promise<void> {
@@ -160,7 +162,7 @@
 		if (!selected_text) return []
 
 		const text_id = new TextId(selected_text.id)
-		const translation_texts = await new Api().find_translation(text_id, to_speech_language_code)
+		const translation_texts = await new FindTranslationsApi(text_id, to_speech_language_code).fetch()
 		const translations = translation_texts.map((translation_text) => translation_text.text)
 
 		return translations
@@ -191,14 +193,14 @@
 		} else {
 			const source_translation_text = new TranslationText(selected_text.text)
 			const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code)
-			const output_translation_text = await new Api().translate_by_google_advanced(
+			const output_translation_text = await new TranslateByGoogleAdvancedApi(
 				source_translation_text,
 				app_locale_code
-			)
+			).fetch()
 
 			const text_id = new TextId(selected_text.id)
 
-			await new Api().add_translation(text_id, to_speech_language_code, output_translation_text)
+			await new AddTranslationApi(text_id, to_speech_language_code, output_translation_text).fetch()
 
 			translations = await find_translation()
 			// console.info('translated', translation)
@@ -216,7 +218,7 @@
 		const text_id = new TextId(selected_text.id)
 		const translation_text = new TranslationText(add_translation_string)
 
-		await new Api().add_translation(text_id, to_speech_language_code, translation_text)
+		await new AddTranslationApi(text_id, to_speech_language_code, translation_text).fetch()
 
 		add_translation_string = ''
 
@@ -247,7 +249,7 @@
 		if (!new_text_element.value) return
 
 		const speech_text = new SpeechText(new_text_element.value)
-		const added_text = await new Api().add_text(from_speech_language_code, speech_text)
+		const added_text = await new AddTextApi(from_speech_language_code, speech_text).fetch()
 
 		// console.info('add_text', text)
 
@@ -327,7 +329,7 @@
 			<div>
 				{#if selected_text}
 					<audio
-						src={new Api().get_text_to_speech_url(selected_text?.text ?? '', locale_code)}
+						src={new TextToSpeechUrl(selected_text, locale_code).url}
 						controls
 						autoplay
 						bind:this={audio_element}
