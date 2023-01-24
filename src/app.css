@@ -84,7 +84,6 @@ textarea {
 }
 
 .header_right {
-	font-size: 22px;
 	margin: 0 0 0 auto;
 	padding-left: 16px;
 	padding-right: 16px;
@@ -213,6 +212,5 @@ textarea {
 .signin_button > div {
 	background-color: white;
 	color: black;
-	font-size: medium;
 	text-decoration: none;
 }

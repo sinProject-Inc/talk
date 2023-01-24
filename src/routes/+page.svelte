@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment'
 	import { Api } from '$lib/api/api'
 	import AddIcon from '$lib/icons/add_icon.svelte'
+	import SigninIcon from '$lib/icons/signin_icon.svelte'
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/icons/voice_icon.svelte'
 	import { TextId } from '$lib/general/text_id'
@@ -280,7 +281,12 @@
 			</form>
 		</div>
 		{:else}
-		<a class="header_right flex_row align_items_center signin_button" href="/sign-in"><div>{$_('sign_in')}</div></a>
+		<a class="header_right flex_row align_items_center signin_button" href="/sign-in"><div class="flex_row gap-1 items-center">
+			<div class="flex_row justify_content_center h-5">
+				<SigninIcon />
+			</div>
+			<div>{$_('sign_in')}</div>
+		</div></a>
 		{/if}
 	</div>
 </div>
