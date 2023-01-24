@@ -46,17 +46,9 @@
 	max-width: calc(500px + 2rem);
 }
 
-form > input, form > button {
+form > input {
 	width: 100%;
 	box-sizing: border-box;
 	height: 32px;
 }
-
-.submit_button {
-	background-color: var(--blue-color);
-	color: white;
-	font-weight: 600;
-	border-color: var(--blue-color);
-}
-
 </style>

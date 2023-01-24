@@ -11,6 +11,7 @@
   "sign_in": "Sign in",
   "sign_up": "Sign up",
   "continue": "Continue",
+  "please_sign_in": "Signing up is not required. Please sign in.",
   "enter_pin_code": "Enter pin code",
   "pin_code_is_required": "Pin code is required.",
   "wrong_credentials": "You have entered the wrong credentials.",
