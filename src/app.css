@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
 	--background-color: #fff;
 	--border-color: rgb(239, 243, 244);
@@ -6,6 +10,7 @@
 	--text-color: rgb(15, 20, 25);
 	--link-color: rgb(29, 155, 240);
 	--link-hover-color: rgb(26, 140, 216);
+	--blue-color: rgb(29, 155, 240);
 	--header-background-color: rgba(239, 243, 244, 0.85);
 }
 
@@ -18,6 +23,7 @@ input,
 button,
 select,
 textarea,
+.signin_button > div,
 .border_radius,
 .glass {
 	border-radius: 6px;
@@ -42,7 +48,8 @@ button {
 	/* min-width: 80px; */
 }
 
-select {
+select,
+.signin_button > div {
 	padding: 6px 12px;
 }
 
@@ -60,22 +67,27 @@ textarea {
 	background-color: var(--header-background-color);
 }
 
-.header_left,
-.header_right {
+.header {
 	-webkit-position: sticky;
 	position: sticky;
 	z-index: 3;
 	top: 0;
 	height: 53px;
 	backdrop-filter: blur(12px);
-	padding-left: 16px;
-	padding-right: 16px;
+}
+
+.header_left {
 	font-size: 22px;
 	font-weight: 700;
+	padding-left: 16px;
+	padding-right: 16px;
 }
 
 .header_right {
+	font-size: 22px;
 	margin: 0 0 0 auto;
+	padding-left: 16px;
+	padding-right: 16px;
 }
 
 .scroll_area {
@@ -192,13 +204,15 @@ textarea {
 .card {
 	box-shadow: 0 0.1px 0.5px #0000000e, 0 0.4px 1.6px #00000014, 0 2px 7px #00000021;
 	border-radius: 0.5rem;
-	margin: 0px 10px;
 }
 
-.width_full {
-	width: 100%;
+.signin_button {
+	text-decoration: none;
 }
 
-.height_page {
-	height: 100vh;
+.signin_button > div {
+	background-color: white;
+	color: black;
+	font-size: medium;
+	text-decoration: none;
 }
