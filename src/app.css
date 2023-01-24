@@ -209,12 +209,6 @@ textarea {
 	text-decoration: none;
 }
 
-.signin_button > div {
-	background-color: white;
-	color: black;
-	text-decoration: none;
-}
-
 .submit_button {
 	background-color: var(--blue-color);
 	color: white;

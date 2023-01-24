@@ -274,19 +274,31 @@
 		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
 
 		{#if $page.data.user}
-		<div class="header_right flex_row align_items_center">
-			<div>{$page.data.user.email}</div>
-			<form action="/sign-out" method="POST">
-				<button type="submit">{$_('logout')}</button>
-			</form>
-		</div>
-		{:else}
-		<a class="header_right flex_row align_items_center signin_button" href="/sign-in"><div class="flex_row gap-1 items-center">
-			<div class="flex_row justify_content_center h-5">
-				<SigninIcon />
+			<div class="header_right flex_row align_items_center">
+				<div>{$page.data.user.email}</div>
+				<form action="/sign-out" method="POST">
+					<button type="submit">{$_('logout')}</button>
+				</form>
 			</div>
-			<div>{$_('sign_in')}</div>
-		</div></a>
+		{:else}
+			<div class="header_right flex gap-2">
+				<a class="flex_row align_items_center signin_button" href="/sign-in"
+					><div class="flex_row gap-1 items-center bg-white">
+						<div class="flex_row justify_content_center h-5">
+							<SigninIcon />
+						</div>
+						<div>{$_('sign_in')}</div>
+					</div></a
+				>
+				<a class="flex_row align_items_center signin_button" href="/sign-up">
+					<div class="bg-[#1d9bf0] flex_row gap-1 items-center text-white">
+						<div class="flex_row justify_content_center h-5 fill-white">
+							<SigninIcon />
+						</div>
+						<div>{$_('sign_up')}</div>
+					</div>
+				</a>
+			</div>
 		{/if}
 	</div>
 </div>
