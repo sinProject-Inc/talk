@@ -60,7 +60,8 @@ textarea {
 	background-color: var(--header-background-color);
 }
 
-.header_left, .header_right {
+.header_left,
+.header_right {
 	-webkit-position: sticky;
 	position: sticky;
 	z-index: 3;
@@ -101,7 +102,7 @@ textarea {
 	flex-direction: column;
 }
 
-.flex_column>* {
+.flex_column > * {
 	width: auto;
 }
 
@@ -126,7 +127,7 @@ textarea {
 	background-color: var(--border-color);
 }
 
-.gap_border>* {
+.gap_border > * {
 	background-color: var(--background-color);
 }
 
@@ -134,7 +135,7 @@ textarea {
 	min-height: 100vh;
 } */
 
-.root_container>* {
+.root_container > * {
 	flex: auto;
 }
 
@@ -186,4 +187,17 @@ textarea {
 .height_24px {
 	height: 24px !important;
 	min-height: 24px !important;
+}
+
+.card {
+	box-shadow: 0 0.1px 0.5px #0000000e, 0 0.4px 1.6px #00000014, 0 2px 7px #00000021;
+	border-radius: 0.5rem;
+}
+
+.width_full {
+	width: 100%;
+}
+
+.height_page {
+	height: 100vh;
 }
