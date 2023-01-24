@@ -268,7 +268,7 @@
 	})
 </script>
 
-<div class="flex_row root_container header_left header_background_color">
+<div class="flex_row root_container header header_background_color">
 	<div class="center_container flex_row">
 		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
 
@@ -280,7 +280,7 @@
 			</form>
 		</div>
 		{:else}
-		<a class="header_right flex_row align_items_center" href="/sign-in">{$_('sign_in')} / {$_('sign_up')}</a>
+		<a class="header_right flex_row align_items_center signin_button" href="/sign-in"><div>{$_('sign_in')}</div></a>
 		{/if}
 	</div>
 </div>

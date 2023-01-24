@@ -18,20 +18,22 @@
 	})
 </script>
 
-<div class="root_container flex_row align_items_center justify_content_center height_page">
-	<div class="center_container width_limit margin_bottom_128px">
-			<form class="flex_column card padding_16px gap_8px align_items_center" method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
-				<h1 class="title">{$_('sign_in')}</h1>
-				<input
-					class=""
-					type="email"
-					name="email"
-					placeholder={$_('email')}
-					required
-					bind:this={pin_input_element}
-				/>
-				<button class="submit_button" type="submit">{$_('sign_in')}</button>
-				<input type="hidden" name="translated_pin_code" value={$_('pin_code')} />
+<div class="root_container flex items-center justify-center h-screen">
+	<div class="center_container width_limit">
+			<form class="md:mb-40 mb-0 pb-4 py-2 card p-4 mx-3" method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
+				<h1 class="title w-full">{$_('sign_in')}</h1>
+				<div class="flex-col flex gap-2 mt-4">
+					<input
+						class="focus:outline-[#1d9bf0]"
+						type="email"
+						name="email"
+						placeholder={$_('email')}
+						required
+						bind:this={pin_input_element}
+					/>
+					<button class="submit_button" type="submit">{$_('continue')}</button>
+					<input type="hidden" name="translated_pin_code" value={$_('pin_code')} />
+				</div>
 			</form>
 	</div>
 </div>
@@ -44,19 +46,17 @@
 	max-width: calc(500px + 2rem);
 }
 
-form > * {
+form > input, form > button {
 	width: 100%;
 	box-sizing: border-box;
+	height: 32px;
 }
 
 .submit_button {
-	background-color: rgb(29, 155, 240);
+	background-color: var(--blue-color);
 	color: white;
 	font-weight: 600;
-}
-
-.margin_bottom_128px {
-	margin-bottom: 128px;
+	border-color: var(--blue-color);
 }
 
 </style>

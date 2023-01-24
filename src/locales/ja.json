@@ -10,6 +10,7 @@
 	"enter_new_translation": "新しい翻訳を入力する",
 	"sign_in": "サインイン",
 	"sign_up": "サインアップ",
+	"continue": "次へ進む",
 	"enter_pin_code": "PINコードを入力してください",
 	"pin_code_is_required": "PINコードは必須です",
 	"wrong_credentials": "PINコードが間違っています。",
