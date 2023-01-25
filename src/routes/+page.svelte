@@ -290,14 +290,6 @@
 						<div>{$_('sign_in')}</div>
 					</div></a
 				>
-				<a class="flex_row align_items_center signin_button" href="/sign-up">
-					<div class="bg-[#1d9bf0] flex_row gap-1 items-center text-white">
-						<div class="flex_row justify_content_center h-5 fill-white">
-							<SigninIcon />
-						</div>
-						<div>{$_('sign_up')}</div>
-					</div>
-				</a>
 			</div>
 		{/if}
 	</div>
