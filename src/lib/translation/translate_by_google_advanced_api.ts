@@ -1,5 +1,5 @@
 import type { AppLocaleCode } from "$lib/language/app_locale_code";
-import type { TranslationText } from "$lib/translation/translation_text";
+import { TranslationText } from "$lib/translation/translation_text";
 import { Api } from "../api/api";
 import { ApiPath } from "../api/api_path";
 
@@ -15,6 +15,9 @@ export class TranslateByGoogleAdvancedApi {
 
 	public async fetch(): Promise<TranslationText> {
 		const api = new Api(this._api_path, this._origin)
-		return await api.fetch<TranslationText>()
+		const result = await api.fetch<string>()
+		const translation_text = new TranslationText(result)
+		
+		return translation_text
 	}
 }
