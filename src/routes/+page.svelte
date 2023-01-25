@@ -274,7 +274,7 @@
 		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
 
 		{#if $page.data.user}
-			<div class="header_right flex_row align_items_center">
+			<div class="header_right flex gap-2 items-center">
 				<div>{$page.data.user.email}</div>
 				<form action="/sign-out" method="POST">
 					<button type="submit">{$_('logout')}</button>
