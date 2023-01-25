@@ -27,7 +27,7 @@
 				</div>
 				<div class="flex-col flex gap-3 mt-4">
 					<input
-						class="focus:outline-[#1d9bf0]"
+						class="focus:outline-[color:var(--blue-color)]"
 						type="email"
 						name="email"
 						placeholder={$_('email')}
@@ -40,18 +40,3 @@
 			</form>
 	</div>
 </div>
-
-<style>
-	.width_limit {
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-	max-width: calc(500px + 2rem);
-}
-
-form > input {
-	width: 100%;
-	box-sizing: border-box;
-	height: 32px;
-}
-</style>

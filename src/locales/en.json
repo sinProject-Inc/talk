@@ -14,6 +14,7 @@
   "continue": "Continue",
   "please_sign_in": "Signing up is not required. Please sign in.",
   "enter_pin_code": "Enter pin code",
+  "sent_pin_code": "We’ve sent a verification code to {email}.",
   "pin_code_is_required": "Pin code is required.",
   "wrong_credentials": "You have entered the wrong credentials.",
   "submit": "Submit",

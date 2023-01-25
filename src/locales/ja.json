@@ -14,6 +14,7 @@
 	"please_sign_in": "サインアップせずにサインインが可能です。",
 	"continue": "次へ進む",
 	"enter_pin_code": "PINコードを入力してください",
+	"sent_pin_code": "{email}宛にPINコードを送信しました。",
 	"pin_code_is_required": "PINコードは必須です",
 	"wrong_credentials": "PINコードが間違っています。",
 	"submit": "送信",

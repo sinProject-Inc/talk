@@ -14,6 +14,7 @@
 	"please_sign_in": "您無需註冊即可登錄。",
 	"continue": "繼續",
 	"enter_pin_code": "輸入密碼",
+	"sent_pin_code": "我們已將驗證碼發送至 {email}。",
 	"pin_code_is_required": "密碼是必需的。",
 	"wrong_credentials": "您輸入了錯誤的憑據。",
 	"submit": "提交",
