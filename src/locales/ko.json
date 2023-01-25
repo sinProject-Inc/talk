@@ -18,6 +18,6 @@
 	"wrong_credentials": "잘못된 자격 증명을 입력했습니다.",
 	"submit": "제출하다",
 	"pin_code": "핀 코드",
-	"logout": "로그 아웃",
+	"sign_out": "로그 아웃",
 	"email": "이메일"
 }

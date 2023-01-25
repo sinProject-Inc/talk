@@ -277,7 +277,7 @@
 			<div class="header_right flex gap-2 items-center">
 				<div>{$page.data.user.email}</div>
 				<form action="/sign-out" method="POST">
-					<button type="submit">{$_('logout')}</button>
+					<button type="submit">{$_('sign_out')}</button>
 				</form>
 			</div>
 		{:else}

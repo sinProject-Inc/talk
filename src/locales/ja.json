@@ -18,6 +18,6 @@
 	"wrong_credentials": "PINコードが間違っています。",
 	"submit": "送信",
 	"pin_code": "PINコード",
-	"logout": "ログアウト",
+	"sign_out": "サインアウト",
 	"email": "Eメール"
 }
