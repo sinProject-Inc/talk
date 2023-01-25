@@ -1,6 +1,6 @@
-import type { TextId } from "$lib/general/text_id";
-import type { SpeechLanguageCode } from "$lib/speech/speech_language_code";
-import type { TranslationText } from "$lib/translation/translation_text";
+import type { TextId } from "../general/text_id";
+import type { SpeechLanguageCode } from "../speech/speech_language_code";
+import type { TranslationText } from "../translation/translation_text";
 import { Api } from "../api/api";
 import { ApiPath } from "../api/api_path";
 

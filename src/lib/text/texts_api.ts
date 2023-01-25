@@ -1,4 +1,4 @@
-import type { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import type { Text } from '@prisma/client'
 import { Api } from '../api/api'
 import { ApiPath } from '../api/api_path'

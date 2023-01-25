@@ -19,7 +19,7 @@
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import '../app.css'
 	import { TextsApi } from '$lib/text/texts_api'
-	import { TranslateByGoogleAdvancedApi } from '$lib/translation/translate_by_google_advanced_api'
+	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
@@ -193,7 +193,7 @@
 		} else {
 			const source_translation_text = new TranslationText(selected_text.text)
 			const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code)
-			const output_translation_text = await new TranslateByGoogleAdvancedApi(
+			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 				source_translation_text,
 				app_locale_code
 			).fetch()
