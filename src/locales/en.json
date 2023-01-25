@@ -12,7 +12,7 @@
   "sign_up": "Sign up",
   "or_create_account": "Or create a new account if you don't have one.",
   "continue": "Continue",
-  "please_sign_in": "Signing up is not required. Please sign in.",
+  "please_sign_in": "SignIng up is not required. Please sign in.",
   "enter_pin_code": "Enter pin code",
   "sent_pin_code": "We’ve sent a verification code to {email}.",
   "pin_code_is_required": "Pin code is required.",
