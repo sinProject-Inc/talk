@@ -10,11 +10,15 @@
 	"enter_new_translation": "새 번역 입력",
 	"sign_in": "로그인",
 	"sign_up": "가입하기",
+	"or_create_account": "계정이 없다면 새 계정을 만드세요.",
+	"please_sign_in": "가입하지 않고 로그인할 수 있습니다.",
+	"continue": "계속하다",
 	"enter_pin_code": "핀 코드 입력",
+	"sent_pin_code": "{email} 로 확인 코드를 보냈습니다.",
 	"pin_code_is_required": "핀 코드가 필요합니다.",
 	"wrong_credentials": "잘못된 자격 증명을 입력했습니다.",
 	"submit": "제출하다",
 	"pin_code": "핀 코드",
-	"logout": "로그 아웃",
+	"sign_out": "로그 아웃",
 	"email": "이메일"
 }

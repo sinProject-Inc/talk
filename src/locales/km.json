@@ -10,11 +10,15 @@
 	"enter_new_translation": "វាយការបកប្រែថ្មី។",
 	"sign_in": "ចូល",
 	"sign_up": "ចុះ​ឈ្មោះ",
+	"please_sign_in": "អ្នកអាចចូលដោយមិនចាំបាច់ចុះឈ្មោះ។",
+	"or_create_account": "ឬបង្កើតគណនីថ្មី ប្រសិនបើអ្នកមិនទាន់មាន។",
+	"continue": "បន្ត",
 	"enter_pin_code": "បញ្ចូលលេខកូដសម្ងាត់",
+	"sent_pin_code": "យើងបានផ្ញើលេខកូដផ្ទៀងផ្ទាត់ទៅ {email}",
 	"pin_code_is_required": "តម្រូវ​ឱ្យ​មាន​កូដ PIN ។",
 	"wrong_credentials": "អ្នក​បាន​បញ្ចូល​ព័ត៌មាន​សម្ងាត់​ខុស។",
 	"submit": "ដាក់ស្នើ",
 	"pin_code": "លេខសម្ងាត់",
-	"logout": "ចាកចេញ",
+	"sign_out": "ចាកចេញ",
 	"email": "អ៊ីមែល"
 }

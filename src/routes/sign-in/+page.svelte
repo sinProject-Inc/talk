@@ -18,12 +18,25 @@
 	})
 </script>
 
-<h1>{$_('sign_in')} / {$_('sign_up')}</h1>
-
-<div class="flex_column">
-	<form method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
-		<input type="email" name="email" placeholder={$_('email')} required bind:this={pin_input_element} />
-		<button type="submit">{$_('sign_in')} / {$_('sign_up')}</button>
-		<input type="hidden" name="translated_pin_code" value="{$_('pin_code')}" />
-	</form>
+<div class="root_container flex items-center justify-center h-screen">
+	<div class="center_container width_limit">
+			<form class="md:mb-40 mb-0 pb-4 py-2 card p-4 mx-3" method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
+				<div class="title w-full">
+					<h1 class="mb-2">{$_('sign_in')}</h1>
+					<h2 class="font-light text-sm text-black/60">{$_('or_create_account')}</h2>
+				</div>
+				<div class="flex-col flex gap-3 mt-4">
+					<input
+						class="focus:outline-[color:var(--blue-color)]"
+						type="email"
+						name="email"
+						placeholder={$_('email')}
+						required
+						bind:this={pin_input_element}
+					/>
+					<button class="submit_button" type="submit">{$_('continue')}</button>
+					<input type="hidden" name="translated_pin_code" value={$_('pin_code')} />
+				</div>
+			</form>
+	</div>
 </div>

@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment'
 	import { Api } from '$lib/api/api'
 	import AddIcon from '$lib/icons/add_icon.svelte'
+	import SignInIcon from '$lib/icons/sign_in_icon.svelte'
 	import TranslateIcon from '$lib/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/icons/voice_icon.svelte'
 	import { TextId } from '$lib/general/text_id'
@@ -268,19 +269,28 @@
 	})
 </script>
 
-<div class="flex_row root_container header_left header_background_color">
+<div class="flex_row root_container header header_background_color">
 	<div class="center_container flex_row">
 		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
 
 		{#if $page.data.user}
-		<div class="header_right flex_row align_items_center">
-			<div>{$page.data.user.email}</div>
-			<form action="/sign-out" method="POST">
-				<button type="submit">{$_('logout')}</button>
-			</form>
-		</div>
+			<div class="header_right flex gap-2 items-center">
+				<div>{$page.data.user.email}</div>
+				<form action="/sign-out" method="POST">
+					<button type="submit">{$_('sign_out')}</button>
+				</form>
+			</div>
 		{:else}
-		<a class="header_right flex_row align_items_center" href="/sign-in">{$_('sign_in')} / {$_('sign_up')}</a>
+			<div class="header_right flex gap-2">
+				<a class="flex_row align_items_center sign_in_button" href="/sign-in"
+					><div class="flex_row gap-1 items-center bg-white">
+						<div class="flex_row justify_content_center h-5">
+							<SignInIcon />
+						</div>
+						<div>{$_('sign_in')}</div>
+					</div></a
+				>
+			</div>
 		{/if}
 	</div>
 </div>
