@@ -10,8 +10,10 @@ import type { RequestHandler } from '@sveltejs/kit'
 
 function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
 	if (locale_code.useMicrosoftSpeech()) {
+		console.info('use Microsoft Speech')
 		return new SpeechByMicrosoft(speech_text, locale_code)
 	} else {
+		console.info('use Google Speech')
 		return new SpeechByGoogle(speech_text, locale_code)
 	}
 }

@@ -16,6 +16,10 @@ export const GET: RequestHandler = async ({ url, params }) => {
 			target_app_locale_code.code
 		)
 
+		if(!translations) {
+			return json('')
+		}
+
 		return json(translations)
 	} catch (error) {
 		console.error(error)

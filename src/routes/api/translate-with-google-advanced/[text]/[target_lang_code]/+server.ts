@@ -22,13 +22,17 @@ export const GET: RequestHandler = async ({url, params }) => {
 		}
 
 		const [response] = await translationClient.translateText(request)
-
-		if (response.translations) {
-			return json(response.translations[0].translatedText)
-		}
-		else {
+		if (!response.translations) {
 			return json('')
 		}
+
+		const translated_text_string = response.translations[0].translatedText
+		
+		if(!translated_text_string) {
+			return json('')
+		}
+		
+		return json(translated_text_string)
 	}
 	catch (error) {
 		console.error(error)
