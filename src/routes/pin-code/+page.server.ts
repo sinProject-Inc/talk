@@ -1,6 +1,6 @@
 import { Auth } from '$lib/auth'
 import { Database, db } from '$lib/general/database'
-import { NodemailerManager as NodeMailerManager } from '$lib/nodemailer_manager'
+import { NodemailerManager as NodeMailerManager } from '$lib/mailer/nodemailer_manager'
 import type { PageServerLoad } from '.svelte-kit/types/src/routes/$types'
 import type { User } from '@prisma/client'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
@@ -26,13 +26,13 @@ function create_pin_code(length = 6): string {
 	return pin_code
 }
 
-async function send_mail(user: User, pin_code: string, translated_pin_code: string): Promise<void> {
+async function send_mail(user: User, pin_code: string): Promise<void> {
 	const nodeMailerManager = new NodeMailerManager()
 	try {
 		await nodeMailerManager.send_mail(
 			user.email,
 			'sinProject Talk\n',
-			`${translated_pin_code}: ${pin_code}`
+			pin_code
 		)
 	} catch (error) {
 		console.error(error)
@@ -43,7 +43,6 @@ export const actions: Actions = {
 	sign_in: async ({ request }) => {
 		const data = await request.formData()
 		const email = data.get('email')?.toString() ?? ''
-		const translated_pin_code = data.get('translated_pin_code')?.toString() ?? ''
 
 		if (!email) throw redirect(302, '/')
 
@@ -52,7 +51,7 @@ export const actions: Actions = {
 		if (!user) return { credentials: true, email, missing: false, success: false }
 
 		const pin_code = create_pin_code()
-		send_mail(user, pin_code, translated_pin_code)
+		send_mail(user, pin_code)
 
 		const user_id = user.id
 
