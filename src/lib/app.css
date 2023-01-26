@@ -14,220 +14,62 @@
 	--header-background-color: rgba(239, 243, 244, 0.85);
 }
 
-body {
-	font-family: 'Segoe UI', Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+@layer components {
+	input,
+	button,
+	select,
+	textarea,
+	.input-element {
+		@apply border rounded-md overflow-hidden border-media-border bg-border;
+	}
+
+	button,
+	select {
+		@apply cursor-pointer;
+	}
+
+	button {
+		@apply py-[6px] px-2;
+	}
+
+	select {
+		@apply py-[6px] px-3;
+	}
+
+	input {
+		@apply py-[7px] px-4;
+	}
+
+	textarea {
+		@apply py-[10px] px-4;
+	}
+
+	.center-container {
+		@apply mx-auto max-w-[calc(768px+2rem)] w-full min-w-0;
+	}
+
+	.title {
+		@apply py-2 border-b border-border font-bold text-[20px];
+	}
+
+	.card {
+		box-shadow: 0 0.1px 0.5px #0000000e, 0 0.4px 1.6px #00000014, 0 2px 7px #00000021;
+		border-radius: 0.5rem;
+	}
+
+	.submit_button {
+		@apply bg-link text-white font-semibold border-link w-full box-border;
+	}
+
+	.card-parent {
+		margin: 0 auto;
+		width: 100%;
+		max-width: calc(500px + 2rem);
+	}
 }
 
-input,
-button,
-select,
-textarea,
-.sign_in_button > div,
-.border_radius,
-.glass {
-	border-radius: 6px;
-	border: 1px solid var(--media-border-color);
-	overflow: hidden;
-}
-
-input,
-button,
-select,
-textarea {
-	background: var(--border-color);
-}
-
-button,
-select {
-	cursor: pointer;
-}
-
-button {
-	padding: 6px 8px;
-	/* min-width: 80px; */
-}
-
-select,
-.sign_in_button > div {
-	padding: 6px 12px;
-}
-
-input {
-	padding: 7px 16px;
-}
-
-textarea {
-	font-family: inherit;
-	font-size: 100%;
-	padding: 10px 16px;
-}
-
-.header_background_color {
-	background-color: var(--header-background-color);
-}
-
-.header {
-	-webkit-position: sticky;
-	position: sticky;
-	z-index: 3;
-	top: 0;
-	height: 53px;
-	backdrop-filter: blur(12px);
-}
-
-.header_left {
-	font-size: 22px;
-	font-weight: 700;
-	padding-left: 16px;
-	padding-right: 16px;
-}
-
-.header_right {
-	margin: 0 0 0 auto;
-	padding-left: 16px;
-	padding-right: 16px;
-}
-
-.scroll_area {
-	padding: 16px 16px 0 16px;
-}
-
-.footer {
-	-webkit-position: sticky;
-	position: sticky;
-	z-index: 3;
-	bottom: 0;
-	backdrop-filter: blur(12px);
-	background-color: rgba(255, 255, 255, 0.85);
-	padding: 8px 16px 16px 16px;
-}
-
-.flex_row {
-	display: flex;
-	flex-direction: row;
-}
-
-.flex_column {
-	display: flex;
-	flex-direction: column;
-}
-
-.flex_column > * {
-	width: auto;
-}
-
-.flex_1 {
-	flex: 1;
-}
-
-.overflow_wrap_anywhere {
-	overflow-wrap: anywhere;
-}
-
-.align_items_center {
-	align-items: center;
-}
-
-.justify_content_center {
-	justify-content: center;
-}
-
-.gap_border {
-	gap: 1px;
-	background-color: var(--border-color);
-}
-
-.gap_border > * {
-	background-color: var(--background-color);
-}
-
-/* .min-height_100vh {
-	min-height: 100vh;
-} */
-
-.root_container > * {
-	flex: auto;
-}
-
-.center_container {
-	margin: 0 auto;
-	max-width: 800px;
-	width: 800px;
-	min-width: 0;
-	/* border: 1px solid red; */
-}
-
-.w-limit {
-	/* Similar to center_container*/
-	@apply mx-auto w-full max-w-[800px];
-}
-
-.padding_16px {
-	padding: 16px;
-}
-
-.padding_10px_16px {
-	padding: 10px 16px;
-}
-
-.gap_8px {
-	gap: 8px;
-}
-
-.gap_16px {
-	gap: 16px;
-}
-
-.cursor_pointer {
-	cursor: pointer;
-}
-
-.hover {
-	background-color: var(--background-color);
-}
-
-.hover:hover {
-	background-color: var(--border-color);
-	transition: 0.2s;
-}
-
-.title {
-	padding: 8px 0;
-	margin: 0;
-	border-bottom: 1px solid var(--border-color);
-	font-weight: bold;
-	font-size: 20px;
-}
-
-.height_24px {
-	height: 24px !important;
-	min-height: 24px !important;
-}
-
-.card {
-	box-shadow: 0 0.1px 0.5px #0000000e, 0 0.4px 1.6px #00000014, 0 2px 7px #00000021;
-	border-radius: 0.5rem;
-}
-
-.sign_in_button {
-	text-decoration: none;
-}
-
-.submit_button {
-	background-color: var(--blue-color);
-	color: white;
-	font-weight: 600;
-	border-color: var(--blue-color);
-	width: 100%;
-	box-sizing: border-box;
-}
-
-.width_limit {
-	margin: 0 auto;
-	width: 100%;
-	max-width: calc(500px + 2rem);
-}
-
-.w-limit {
-	@apply mx-auto w-full max-w-[calc(1100px+2rem)];
+@layer utilities {
+	.overflow-wrap-anywhere {
+		overflow-wrap: anywhere;
+	}
 }
