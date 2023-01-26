@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import AddIcon from '$lib/icons/add_icon.svelte'
-	import SignInIcon from '$lib/icons/sign_in_icon.svelte'
-	import TranslateIcon from '$lib/icons/translate_icon.svelte'
-	import VoiceIcon from '$lib/icons/voice_icon.svelte'
+	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
+	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
+	import Header from '$lib/components/Header.svelte'
 	import { TextId } from '$lib/general/text_id'
 	import { Html } from '$lib/view/html'
 	import { WebSpeech } from '$lib/speech/web-speech'
@@ -13,7 +13,6 @@
 	import { Message } from '$lib/view/message'
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { TranslationText } from '$lib/translation/translation_text'
-	import { page } from '$app/stores'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
@@ -270,32 +269,7 @@
 	})
 </script>
 
-<div class="flex_row root_container header header_background_color">
-	<div class="center_container flex_row">
-		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
-
-		{#if $page.data.user}
-			<div class="header_right flex gap-2 items-center">
-				<div>{$page.data.user.email}</div>
-				<form action="/sign-out" method="POST">
-					<button type="submit">{$_('sign_out')}</button>
-				</form>
-			</div>
-		{:else}
-			<div class="header_right flex gap-2">
-				<a class="flex_row align_items_center sign_in_button" href="/sign-in"
-					><div class="flex_row gap-1 items-center bg-white">
-						<div class="flex_row justify_content_center h-5">
-							<SignInIcon />
-						</div>
-						<div>{$_('sign_in')}</div>
-					</div></a
-				>
-			</div>
-		{/if}
-	</div>
-</div>
-
+<Header />
 <div class="flex_row root_container">
 	<div />
 	<div class="center_container">
