@@ -18,7 +18,6 @@
 	import type { Language, Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
-	import '../app.css'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'

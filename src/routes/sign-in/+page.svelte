@@ -2,7 +2,6 @@
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
-	import '../../app.css'
 
 	let pin_input_element: HTMLInputElement
 
