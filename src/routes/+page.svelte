@@ -3,7 +3,8 @@
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import Header from '$lib/components/Header.svelte'
+	import Header from '$lib/components/header.svelte'
+	import IconButton from '$lib/components/icon_button.svelte'
 	import { TextId } from '$lib/general/text_id'
 	import { Html } from '$lib/view/html'
 	import { WebSpeech } from '$lib/speech/web-speech'
@@ -161,7 +162,10 @@
 		if (!selected_text) return []
 
 		const text_id = new TextId(selected_text.id)
-		const translation_texts = await new FindTranslationsApi(text_id, to_speech_language_code).fetch()
+		const translation_texts = await new FindTranslationsApi(
+			text_id,
+			to_speech_language_code
+		).fetch()
 		const translations = translation_texts.map((translation_text) => translation_text.text)
 
 		return translations
@@ -288,12 +292,13 @@
 					placeholder={$_('enter_new_text')}
 					bind:this={new_text_element}
 				/>
-				<button on:click={add_text}>
-					<div class="flex flex-row justify-center h-6"><AddIcon /></div>
-				</button>
+					<IconButton onClickHandler={add_text}><AddIcon /></IconButton>
 			</div>
 
-			<div class="input-element flex flex-col gap-[1px] bg-border bg-inherit" bind:this={text_list_element}>
+			<div
+				class="input-element flex flex-col gap-[1px] bg-border bg-inherit"
+				bind:this={text_list_element}
+			>
 				{#each texts as text}
 					<div
 						class="py-[10px] px-4 cursor-pointer bg-white hover:bg-border transition"
@@ -307,7 +312,9 @@
 			</div>
 		</div>
 
-		<div class="bg-white/[85] sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4">
+		<div
+			class="bg-white/[85] sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4"
+		>
 			<div>
 				{#if selected_text}
 					<audio
@@ -322,9 +329,7 @@
 			<div class="flex flex-col gap-2">
 				<div class="title flex flex-row gap-4 items-center">
 					{$_('speech')}
-					<button on:click={speech_to_text}
-						><div class="flex flex-row justify-center h-6 w-6"><VoiceIcon /></div></button
-					>
+					<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
 				</div>
 				<div bind:this={speech_text_element} />
 			</div>
@@ -338,9 +343,9 @@
 					/>
 				</div>
 				<div class="flex flex-row gap-2 items-center">
-					<button on:click={show_translation}>
-						<div class="flex flex-row justify-center h-6 w-6"><TranslateIcon /></div>
-					</button>
+					<IconButton onClickHandler={show_translation}>
+						<TranslateIcon />
+					</IconButton>
 					<div
 						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
 						class="flex_1 overflow-wrap-anywhere"
@@ -355,9 +360,9 @@
 						placeholder={$_('enter_new_translation')}
 						bind:value={add_translation_string}
 					/>
-					<button on:click={add_translation}>
-						<div class="flex flex-row justify-center h-6 w-6"><AddIcon /></div>
-					</button>
+					<IconButton onClickHandler={add_translation}>
+						<AddIcon />
+					</IconButton>
 				</div>
 			</div>
 		</div>

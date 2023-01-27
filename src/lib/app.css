@@ -41,11 +41,12 @@
 	}
 
 	textarea {
+		
 		@apply py-[10px] px-4;
 	}
 
 	.center-container {
-		@apply mx-auto max-w-[calc(768px+2rem)] w-full min-w-0;
+		@apply mx-auto max-w-[calc(768px+2rem)] w-full;
 	}
 
 	.title {
