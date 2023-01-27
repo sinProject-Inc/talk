@@ -56,7 +56,7 @@
 		const recognizing_message = new Message($_('recognizing'))
 		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
-		web_speech.recognition(locale_code)
+		web_speech.recognition(locale_code, ()=>{return})
 	}
 
 	async function fetch_texts(): Promise<void> {
@@ -274,25 +274,29 @@
 </script>
 
 <Header />
-<div class="flex flex-row">
-	<div class="center-container">
+<div class="">
+	<div class="center-container flex-auto">
 		<div class="flex flex-col gap-2 pt-4 px-4">
 			<div>
 				<select
+					class="rounded-r-none outline-0 bg-transparent rounded-l-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
 					bind:this={from_speech_language_select_element}
 					on:change={() => on_change_from_language_select()}
 				/>
-				<select bind:this={locale_select_element} on:change={() => on_change_locale_select()} />
+				<select 
+								class="rounded-l-none outline-0 bg-transparent rounded-r-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
+
+				bind:this={locale_select_element} on:change={() => on_change_locale_select()} />
 			</div>
 
-			<div class="flex flex-row gap-2 items-center">
+			<div class="flex gap-2 items-center">
 				<input
 					type="text"
 					class="flex-1"
 					placeholder={$_('enter_new_text')}
 					bind:this={new_text_element}
 				/>
-					<IconButton onClickHandler={add_text}><AddIcon /></IconButton>
+				<IconButton onClickHandler={add_text}><AddIcon /></IconButton>
 			</div>
 
 			<div
@@ -313,7 +317,7 @@
 		</div>
 
 		<div
-			class="bg-white/[85] sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4"
+			class="bg-white/85 mx-4 sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4"
 		>
 			<div>
 				{#if selected_text}
@@ -348,7 +352,7 @@
 					</IconButton>
 					<div
 						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
-						class="flex_1 overflow-wrap-anywhere"
+						class="flex-1"
 					>
 						{@html translations.join('<br />')}
 					</div>

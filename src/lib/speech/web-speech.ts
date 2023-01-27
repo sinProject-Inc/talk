@@ -4,7 +4,7 @@ import type { Message } from "../view/message"
 export class WebSpeech {
 	public constructor(private readonly _speech_text_element: HTMLElement, private readonly _recognizing_message: Message) {}
 
-	public recognition(locale_code: LocaleCode,): void {
+	public recognition(locale_code: LocaleCode, callback: () => void): void {
 		if (!('webkitSpeechRecognition' in window)) {
 			this._speech_text_element.textContent = 'Speech Recognition Not Available'
 			return
@@ -42,8 +42,14 @@ export class WebSpeech {
 				}
 			}
 
+			if(this._speech_text_element instanceof HTMLTextAreaElement) {
+				this._speech_text_element.value = finalTranscript + interimTranscript
+			}
+
 			this._speech_text_element.textContent = finalTranscript + interimTranscript
 		}
+
+		recognition.onend = callback
 
 		recognition.start()
 	}

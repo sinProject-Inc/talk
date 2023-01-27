@@ -4,9 +4,9 @@
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 </script>
 
-<div class="flex flex-row bg-header-background sticky z-10 h-[53px] top-0 backdrop-blur-md">
+<div class="flex flex-row bg-black/30 sticky z-10 h-[53px] top-0 backdrop-blur-md">
 	<div class="center-container flex flex-row">
-		<div class="text-[22px] font-bold px-4 flex flex-row items-center">{$_('talk_title')}</div>
+		<div class="text-[22px] text-white/90 font-bold px-4 flex flex-row items-center">{$_('talk_title')}</div>
 
 		{#if $page.data.user}
 			<div class="px-4 ml-auto flex gap-2 items-center">
@@ -18,7 +18,7 @@
 		{:else}
 			<div class="px-4 ml-auto flex gap-2">
 				<a class="flex flex-row items-center" href="/sign-in"
-					><button class="flex flex-row gap-1 items-center bg-white pr-3 rounded-lg">
+					><button class="flex flex-row gap-1 items-center bg-black/20 text-white/90 fill-white/80 pr-3 rounded-lg">
 						<div class="flex flex-row justify-center h-5">
 							<SignInIcon />
 						</div>
