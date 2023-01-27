@@ -2,7 +2,7 @@
 	export let onClickHandler: () => void = () => { return } 
 </script>
 
-<button on:click={onClickHandler}>
+<button on:click={onClickHandler} class="">
 	<div class="flex flex-row justify-center h-6 w-6">
 		<slot />
 	</div>

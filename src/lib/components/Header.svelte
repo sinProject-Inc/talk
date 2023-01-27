@@ -18,7 +18,7 @@
 		{:else}
 			<div class="px-4 ml-auto flex gap-2">
 				<a class="flex flex-row items-center" href="/sign-in"
-					><button class="flex flex-row gap-1 items-center bg-white pr-3">
+					><button class="flex flex-row gap-1 items-center bg-white pr-3 rounded-lg">
 						<div class="flex flex-row justify-center h-5">
 							<SignInIcon />
 						</div>

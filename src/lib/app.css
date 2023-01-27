@@ -16,9 +16,6 @@
 
 @layer components {
 	input,
-	button,
-	select,
-	textarea,
 	.input-element {
 		@apply border rounded-md overflow-hidden border-media-border bg-border;
 	}
@@ -41,7 +38,6 @@
 	}
 
 	textarea {
-		
 		@apply py-[10px] px-4;
 	}
 
@@ -67,10 +63,24 @@
 		width: 100%;
 		max-width: calc(500px + 2rem);
 	}
+
+	.gradient-background {
+		background: rgb(2, 0, 36);
+		background: linear-gradient(
+			229deg,
+			rgba(2, 0, 36, 1) 0%,
+			rgba(9, 9, 121, 1) 23%,
+			rgba(0, 212, 255, 1) 100%
+		);
+	}
 }
 
 @layer utilities {
 	.overflow-wrap-anywhere {
 		overflow-wrap: anywhere;
+	}
+
+	.glass {
+		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60;
 	}
 }
