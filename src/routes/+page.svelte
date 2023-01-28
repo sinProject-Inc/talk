@@ -258,7 +258,7 @@
 
 <Header />
 <div class="center-container flex-auto">
-	<div class="pt-4 glass-panel mt-8 mb-16 flex flex-col gap-2">
+	<div class="pt-2 glass-panel mt-4 mb-8 flex flex-col gap-2">
 		<div class="px-5">
 			<select
 				class="glass-button rounded-r-none h-full grow"
@@ -300,7 +300,7 @@
 		</div>
 	</div>
 
-	<div class="glass-panel sticky z-10 bottom-8 pb-4 flex flex-col gap-4 px-5">
+	<div class="glass-panel sticky z-10 bottom-4 pb-4 flex flex-col gap-4 px-5">
 		<div>
 			{#if selected_text}
 				<audio
