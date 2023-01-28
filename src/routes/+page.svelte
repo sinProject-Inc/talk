@@ -307,7 +307,7 @@
 		<div>
 			{#if selected_text}
 				<audio
-					class="invisible"
+					class="hidden"
 					src={new TextToSpeechUrl(selected_text, locale_code).url}
 					controls
 					autoplay
