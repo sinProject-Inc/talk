@@ -3,8 +3,8 @@
 	import background from '$lib/assets/gradient_geometric_shapes.png'
 </script>
 
-<div class="h-screen bg-no-repeat bg-cover" style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{background}')">
-	<div class="shadow-in fixed flex min-h-screen w-full flex-col backdrop-blur-md backdrop-filter">
+<div class="bg-fixed min-h-screen bg-no-repeat bg-cover" style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('{background}')">
+	<div class="shadow-in flex min-h-screen w-full flex-col backdrop-blur-md backdrop-filter">
 		<slot />
 	</div>
 </div>
