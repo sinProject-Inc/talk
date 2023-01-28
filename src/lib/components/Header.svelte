@@ -6,7 +6,7 @@
 
 <div class="flex flex-row sticky z-10 h-[53px] top-0 glass-panel rounded-none">
 	<div class="center-container flex flex-row">
-		<div class="text-[22px] font-bold flex flex-row items-center">{$_('talk_title')}</div>
+		<a href="/" class="text-[22px] font-bold flex flex-row items-center">{$_('talk_title')}</a>
 
 		{#if $page.data.user}
 			<div class="ml-auto flex gap-4 items-center">
