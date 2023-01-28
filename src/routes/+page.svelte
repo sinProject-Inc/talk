@@ -123,9 +123,6 @@
 	}
 
 	function on_click_text(text: Text): void {
-		const child_array = Array.from(text_list_element.children) as HTMLElement[]
-		const select_element = child_array.find((child) => child.id === text.id.toString())
-
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
