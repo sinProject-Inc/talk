@@ -24,6 +24,7 @@
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import Divider from '$lib/components/divider.svelte'
 
 	export let data: PageData
 
@@ -56,7 +57,9 @@
 		const recognizing_message = new Message($_('recognizing'))
 		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
-		web_speech.recognition(locale_code, ()=>{return})
+		web_speech.recognition(locale_code, () => {
+			return
+		})
 	}
 
 	async function fetch_texts(): Promise<void> {
@@ -64,8 +67,6 @@
 	}
 
 	async function on_change_from_language_select(store_language = true): Promise<void> {
-		reset_background_color()
-
 		const selected_value = from_speech_language_select_element.selectedOptions[0].value
 
 		from_speech_language_code = SpeechLanguageCode.create(selected_value)
@@ -121,24 +122,9 @@
 		}
 	}
 
-	function reset_background_color(): void {
-		console.log('reset_color')
-		const child_array = Array.from(text_list_element.children) as HTMLElement[]
-
-		child_array.forEach((child) => {
-			child.style.backgroundColor = 'var(--background-color)'
-		})
-	}
-
 	function on_click_text(text: Text): void {
-		reset_background_color()
-
 		const child_array = Array.from(text_list_element.children) as HTMLElement[]
 		const select_element = child_array.find((child) => child.id === text.id.toString())
-
-		if (select_element) {
-			select_element.style.backgroundColor = 'var(--border-color)'
-		}
 
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
@@ -274,104 +260,103 @@
 </script>
 
 <Header />
-<div class="">
-	<div class="center-container flex-auto">
-		<div class="flex flex-col gap-2 pt-4 px-4">
-			<div>
-				<select
-					class="rounded-r-none outline-0 bg-transparent rounded-l-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
-					bind:this={from_speech_language_select_element}
-					on:change={() => on_change_from_language_select()}
+<div class="center-container flex-auto">
+	<div class="pt-4 glass-panel mt-8 mb-16 flex flex-col gap-2">
+		<div class="px-5">
+			<select
+				class="glass-button rounded-r-none h-full grow"
+				bind:this={from_speech_language_select_element}
+				on:change={() => on_change_from_language_select()}
+			/>
+			<select
+				class="glass-button -ml-1 rounded-l-none h-full grow"
+				bind:this={locale_select_element}
+				on:change={() => on_change_locale_select()}
+			/>
+		</div>
+
+		<div class="flex gap-2 items-center px-5">
+			<input
+				type="text"
+				class="flex-1"
+				placeholder={$_('enter_new_text')}
+				bind:this={new_text_element}
+			/>
+			<IconButton onClickHandler={add_text}><AddIcon /></IconButton>
+		</div>
+		<div class="px-5">
+			<Divider />
+		</div>
+		<div bind:this={text_list_element}>
+			{#each texts as text, i}
+				<div
+					class="py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text == text
+						? 'bg-white/10'
+						: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
+					id={text.id.toString()}
+					on:click={() => on_click_text(text)}
+					on:keydown
+				>
+					{text.text}
+				</div>
+			{/each}
+		</div>
+	</div>
+
+	<div class="glass-panel sticky z-10 bottom-8 pb-4 flex flex-col gap-4 px-5">
+		<div>
+			{#if selected_text}
+				<audio
+					class="invisible"
+					src={new TextToSpeechUrl(selected_text, locale_code).url}
+					controls
+					autoplay
+					bind:this={audio_element}
 				/>
-				<select 
-								class="rounded-l-none outline-0 bg-transparent rounded-r-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
+			{/if}
+		</div>
 
-				bind:this={locale_select_element} on:change={() => on_change_locale_select()} />
+		<div class="flex flex-col gap-2">
+			<div class="title flex flex-row gap-4 items-center">
+				{$_('speech')}
+				<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
 			</div>
-
-			<div class="flex gap-2 items-center">
+			<div bind:this={speech_text_element} />
+		</div>
+		<Divider />
+		<div class="flex flex-col gap-2">
+			<div class="flex flex-row gap-4 items-center">
+				<div class="title">{$_('translation')}</div>
+				<select class="glass-button"
+					bind:this={to_language_select_element}
+					on:change={() => on_change_translation_language_select()}
+				/>
+			</div>
+			<div class="flex flex-row gap-2 items-center">
+				<IconButton onClickHandler={show_translation}>
+					<TranslateIcon />
+				</IconButton>
+				<div
+					lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
+					class="flex-1"
+				>
+					{@html translations.join('<br />')}
+				</div>
+			</div>
+			<div class="flex flex-row gap-2 items-center">
 				<input
 					type="text"
 					class="flex-1"
-					placeholder={$_('enter_new_text')}
-					bind:this={new_text_element}
+					placeholder={$_('enter_new_translation')}
+					bind:value={add_translation_string}
 				/>
-				<IconButton onClickHandler={add_text}><AddIcon /></IconButton>
-			</div>
-
-			<div
-				class="input-element flex flex-col gap-[1px] bg-border bg-inherit"
-				bind:this={text_list_element}
-			>
-				{#each texts as text}
-					<div
-						class="py-[10px] px-4 cursor-pointer bg-white hover:bg-border transition"
-						id={text.id.toString()}
-						on:click={() => on_click_text(text)}
-						on:keydown
-					>
-						{text.text}
-					</div>
-				{/each}
-			</div>
-		</div>
-
-		<div
-			class="bg-white/85 mx-4 sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4"
-		>
-			<div>
-				{#if selected_text}
-					<audio
-						src={new TextToSpeechUrl(selected_text, locale_code).url}
-						controls
-						autoplay
-						bind:this={audio_element}
-					/>
-				{/if}
-			</div>
-
-			<div class="flex flex-col gap-2">
-				<div class="title flex flex-row gap-4 items-center">
-					{$_('speech')}
-					<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
-				</div>
-				<div bind:this={speech_text_element} />
-			</div>
-
-			<div class="flex flex-col gap-2">
-				<div class="title flex flex-row gap-4 items-center">
-					{$_('translation')}
-					<select
-						bind:this={to_language_select_element}
-						on:change={() => on_change_translation_language_select()}
-					/>
-				</div>
-				<div class="flex flex-row gap-2 items-center">
-					<IconButton onClickHandler={show_translation}>
-						<TranslateIcon />
-					</IconButton>
-					<div
-						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
-						class="flex-1"
-					>
-						{@html translations.join('<br />')}
-					</div>
-				</div>
-				<div class="flex flex-row gap-2 items-center">
-					<input
-						type="text"
-						class="flex-1"
-						placeholder={$_('enter_new_translation')}
-						bind:value={add_translation_string}
-					/>
-					<IconButton onClickHandler={add_translation}>
-						<AddIcon />
-					</IconButton>
-				</div>
+				<IconButton onClickHandler={add_translation}>
+					<AddIcon />
+				</IconButton>
 			</div>
 		</div>
 	</div>
-	<div />
 </div>
+<div />
 
 <!-- <input type="text" bind:this={search_text} /> -->

@@ -75,7 +75,7 @@
 	}
 </script>
 
-<div class="glass rounded-md shadow-lg text-white/90">
+<div class="glass-panel">
 	<div class="grid">
 		<div class="z-10 flex justify-end h-10 pr-[14px] pt-2" style="grid-area: 1/8/1/9">
 			<div class="w-5 fill-white/90">
@@ -86,12 +86,12 @@
 			bind:this={speech_text_element}
 			bind:value={text}
 			on:input={onTextChange}
-			class="pr-8 resize-none bg-black/30 glass rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/2/9"
 			rows="7"
 		/>
 	</div>
-	<div class="flex fill-white/90 bg-black/30 rounded-b-md p-1">
+	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
 			<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
 			<IconButton onClickHandler={show_translation}><SpeakerIcon /></IconButton>

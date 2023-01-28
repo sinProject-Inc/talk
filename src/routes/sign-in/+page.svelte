@@ -19,21 +19,21 @@
 
 <div class="flex items-center justify-center h-screen">
 	<div class="center-container card-parent">
-			<form class="md:mb-40 mb-0 pb-4 py-2 card p-4 mx-3" method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
+			<form class="md:mb-40 mb-0 card p-4 mx-3 glass-panel" method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
 				<div class="title w-full">
 					<h1 class="mb-2">{$_('sign_in')}</h1>
-					<h2 class="font-light text-sm text-black/60">{$_('or_create_account')}</h2>
+					<h2 class="font-light text-sm text-white/70">{$_('or_create_account')}</h2>
 				</div>
 				<div class="flex-col flex gap-3 mt-4">
 					<input
-						class="focus:outline-link"
+						class=""
 						type="email"
 						name="email"
 						placeholder={$_('email')}
 						required
 						bind:this={pin_input_element}
 					/>
-					<button class="submit_button" type="submit">{$_('continue')}</button>
+					<button class="glass-button" type="submit">{$_('continue')}</button>
 					<input type="hidden" name="translated_pin_code" value={$_('pin_code')} />
 				</div>
 			</form>

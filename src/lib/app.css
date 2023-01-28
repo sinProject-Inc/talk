@@ -15,7 +15,6 @@
 }
 
 @layer components {
-	input,
 	.input-element {
 		@apply border rounded-md overflow-hidden border-media-border bg-border;
 	}
@@ -30,23 +29,23 @@
 	}
 
 	select {
-		@apply py-[6px] px-3;
+		@apply py-[6px] px-3 bg-inherit appearance-none outline-0;
 	}
 
 	input {
-		@apply py-[7px] px-4;
+		@apply py-[7px] bg-inherit px-0 border-0 outline-none outline-0 focus:outline-none;
 	}
 
 	textarea {
-		@apply py-[10px] px-4;
+		@apply py-[10px] px-4 bg-inherit;
 	}
 
 	.center-container {
-		@apply mx-auto max-w-[calc(768px+2rem)] w-full;
+		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-4;
 	}
 
 	.title {
-		@apply py-2 border-b border-border font-bold text-[20px];
+		@apply font-bold text-lg;
 	}
 
 	.card {
@@ -62,6 +61,7 @@
 		margin: 0 auto;
 		width: 100%;
 		max-width: calc(500px + 2rem);
+		@apply z-10;
 	}
 
 	.gradient-background {
@@ -73,6 +73,14 @@
 			rgba(0, 212, 255, 1) 100%
 		);
 	}
+
+	.glass-panel {
+		@apply glass rounded-md shadow-lg;
+	}
+
+	.glass-button {
+		@apply bg-black/20 text-white/80 fill-white/80 py-2 px-4 hover:bg-black/10 transition-all duration-300 rounded-lg hover:shadow-sm;
+	}
 }
 
 @layer utilities {
@@ -81,6 +89,6 @@
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60;
+		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-black/30 text-white/90 fill-white/90;
 	}
 }

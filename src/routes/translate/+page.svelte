@@ -68,46 +68,42 @@
 </script>
 
 <Header />
-<div class="center-container">
-	<div class="px-4">
-		<div
-			class="flex justify-evenly my-4 mb-2 items-center glass rounded-md bg-black/30 text-white/80 gap-4 shadow-lg"
-		>
-			<select
-				bind:this={from_language_select_element}
-				class="rounded-r-none outline-0 bg-transparent rounded-l-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
-				name="language_1"
-				id="language_1"
-			/>
-			<IconButton>⇆</IconButton>
-			<select
-				bind:this={to_language_select_element}
-				class="rounded-l-none outline-0 bg-transparent rounded-r-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
-				name="language_2"
-				id="language_2"
-			/>
-		</div>
-		<div class="flex flex-col gap-10">
-			<TranslateBox
-				on:message={handleMessage}
-				bind:this={from}
-				text={from_language_text}
-				{onTextChange}
-				locale_select_element={from_language_select_element}
-				partner_text={to_language_text}
-				partner={to_language_text_element}
-				speech_text_element={from_language_text_element}
-			/>
-			<TranslateBox
-				bind:this={to}
-				text={to_language_text}
-				{onTextChange}
-				locale_select_element={to_language_select_element}
-				partner_text={from_language_text}
-				partner={from_language_text_element}
-				speech_text_element={to_language_text_element}
-				play
-			/>
-		</div>
+<div class="center-container my-8">
+	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
+		<select
+			bind:this={from_language_select_element}
+			class="rounded-r-none outline-0 bg-transparent rounded-l-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
+			name="language_1"
+			id="language_1"
+		/>
+		<IconButton>⇆</IconButton>
+		<select
+			bind:this={to_language_select_element}
+			class="rounded-l-none outline-0 bg-transparent rounded-r-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
+			name="language_2"
+			id="language_2"
+		/>
+	</div>
+	<div class="flex flex-col gap-10">
+		<TranslateBox
+			on:message={handleMessage}
+			bind:this={from}
+			text={from_language_text}
+			{onTextChange}
+			locale_select_element={from_language_select_element}
+			partner_text={to_language_text}
+			partner={to_language_text_element}
+			speech_text_element={from_language_text_element}
+		/>
+		<TranslateBox
+			bind:this={to}
+			text={to_language_text}
+			{onTextChange}
+			locale_select_element={to_language_select_element}
+			partner_text={from_language_text}
+			partner={from_language_text_element}
+			speech_text_element={to_language_text_element}
+			play
+		/>
 	</div>
 </div>
