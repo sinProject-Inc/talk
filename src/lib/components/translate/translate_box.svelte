@@ -10,13 +10,20 @@
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import TranslateIcon from '../icons/translate_icon.svelte'
-	import { createEventDispatcher } from 'svelte'
+	import { createEventDispatcher, onMount } from 'svelte'
+	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
+	import { browser } from '$app/environment'
 
-	export let text = ''
+	export let body = ''
+
+	export let data: PageData
+
+
 	export let onTextChange: () => void = () => {
 		return
 	}
+	export let language_select_element: HTMLSelectElement
 	export let locale_select_element: HTMLSelectElement
 
 	export let partner_text = ''
@@ -27,6 +34,9 @@
 
 	export let play = false
 
+	let locale_code = LocaleCode.english_united_states
+
+
 	export let hate_this_function: (value: string) => void = () => {
 		return
 	}
@@ -35,7 +45,6 @@
 
 	function speech_to_text(): void {
 		let selected_value = locale_select_element.selectedOptions[0].value
-		selected_value = 'en-US'
 		const locale_code = LocaleCode.create(selected_value)
 		const recognizing_message = new Message('Recognizing')
 		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
@@ -44,35 +53,64 @@
 	}
 
 	function on_end() {
-		text = locale_select_element.value
+		body = locale_select_element.value
 		console.log('hello')
-		show_translation()
+		translate()
 	}
 
 	const dispatch = createEventDispatcher()
 
-	async function show_translation(): Promise<void> {
-		text = speech_text_element.value
+	async function translate(): Promise<void> {
+		body = speech_text_element.value
 
-		if (!text) return
+		if (!body) return
 
-		const source_translation_text = new TranslationText(text)
+		const source_translation_text = new TranslationText(body)
 		const app_locale_code = AppLocaleCode.japanese
 		const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 			source_translation_text,
 			app_locale_code
 		).fetch()
-		console.log(output_translation_text.text)
+		
+		dispatch_translated_body(output_translation_text.text)
+	}
 
+	function dispatch_translated_body(body: string): void {
 		dispatch('message', {
-			text: output_translation_text.text,
+			translated_body: body
 		})
 	}
 
+	
+
+	function on_change_locale_select(store_locale = true): void {
+		// console.log('on_change_locale_select')
+
+		if (!store_locale) {
+			const locale = localStorage.getItem('locale')
+			if (locale) locale_select_element.value = locale
+		}
+
+		const selected_value = locale_select_element.selectedOptions[0].value
+
+		locale_code = LocaleCode.create(selected_value)
+
+		if (store_locale) {
+			localStorage.setItem('locale', locale_code.code)
+		}
+	}
+
+
 	export const set_text = (value: string) => {
 		console.log(value)
-		text = value
+		body = value
 	}
+
+	onMount(async () => {
+		if (!browser) return
+		console.log("data", data)
+	})
+	
 </script>
 
 <div class="glass-panel">
@@ -84,7 +122,7 @@
 		</div>
 		<textarea
 			bind:this={speech_text_element}
-			bind:value={text}
+			bind:value={body}
 			on:input={onTextChange}
 			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/2/9"
@@ -94,10 +132,10 @@
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
 			<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
-			<IconButton onClickHandler={show_translation}><SpeakerIcon /></IconButton>
+			<IconButton><SpeakerIcon /></IconButton>
 		</div>
 		<div>
-			<IconButton onClickHandler={show_translation}><TranslateIcon /></IconButton>
+			<IconButton onClickHandler={translate}><TranslateIcon /></IconButton>
 		</div>
 	</div>
 </div>
@@ -105,7 +143,6 @@
 {#if play}
 	<audio
 		class="invisible fixed"
-		src={new TextToSpeechUrl(text, LocaleCode.japanese_japan).url}
 		controls
 		autoplay
 		bind:this={audio_element}
