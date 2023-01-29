@@ -1,4 +1,4 @@
-import type { TextId } from "$lib/general/text_id";
+import type { TextId } from "$lib/text/text_id";
 import type { SpeechLanguageCode } from "$lib/speech/speech_language_code";
 import type { Text } from "@prisma/client";
 import { Api } from "../api/api";

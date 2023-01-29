@@ -1,15 +1,15 @@
-import type { Speech } from '$lib/speech/speech'
+import { SoundDb } from '$lib/speech/sound/sound_db'
+import { LocaleCode } from '$lib/language/locale_code'
 import { SoundId } from '$lib/speech/sound/sound_id'
+import { SpeechSound } from '$lib/speech/sound/speech_sound'
+import type { Speech } from '$lib/speech/speech'
 import { SpeechByGoogle } from '$lib/speech/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
-import { Database } from '$lib/general/database'
-import { LocaleCode } from '$lib/language/locale_code'
-import { SpeechSound } from '$lib/speech/sound/speech_sound'
 import { SpeechText } from '$lib/speech/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
 function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
-	if (locale_code.useMicrosoftSpeech()) {
+	if (locale_code.use_microsoft_speech()) {
 		console.info('use Microsoft Speech')
 		return new SpeechByMicrosoft(speech_text, locale_code)
 	} else {
@@ -22,8 +22,8 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 	const speech_sounds: SpeechSound[] = []
 
 	for (const speech_text of speech_texts) {
-		// console.log('sentence', sentence)
-		const sound = await Database.sound_find_by_text(speech_text, locale_code)
+		const sound_db = new SoundDb(locale_code, speech_text)
+		const sound = await sound_db.find_first()
 
 		if (sound) {
 			try {
@@ -40,7 +40,7 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 
 		const speech = create_speech(speech_text, locale_code)
 		const speech_sound = await speech.speak()
-		const { id } = await Database.sound_upsert(locale_code, speech_text)
+		const { id } = await sound_db.upsert()
 		const sound_id = new SoundId(id)
 
 		speech_sound.write(sound_id)

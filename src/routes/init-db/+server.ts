@@ -1,7 +1,9 @@
-import { db } from '$lib/general/database'
+import { App } from '$lib/app/app'
 import type { RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async () => {
+	const db = App.db
+	
 	try {
 		await db.role.create({ data: { name: 'admin' } })
 		await db.role.create({ data: { name: 'user' } })
