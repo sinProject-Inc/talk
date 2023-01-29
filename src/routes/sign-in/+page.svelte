@@ -2,7 +2,6 @@
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
-	import '../../app.css'
 
 	let pin_input_element: HTMLInputElement
 
@@ -18,8 +17,8 @@
 	})
 </script>
 
-<div class="root_container flex items-center justify-center h-screen">
-	<div class="center_container width_limit">
+<div class="flex items-center justify-center h-screen">
+	<div class="center-container card-parent">
 			<form class="md:mb-40 mb-0 pb-4 py-2 card p-4 mx-3" method="POST" action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}">
 				<div class="title w-full">
 					<h1 class="mb-2">{$_('sign_in')}</h1>
@@ -27,7 +26,7 @@
 				</div>
 				<div class="flex-col flex gap-3 mt-4">
 					<input
-						class="focus:outline-[color:var(--blue-color)]"
+						class="focus:outline-link"
 						type="email"
 						name="email"
 						placeholder={$_('email')}
