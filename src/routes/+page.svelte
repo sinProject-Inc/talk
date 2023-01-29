@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import AddIcon from '$lib/icons/add_icon.svelte'
-	import SignInIcon from '$lib/icons/sign_in_icon.svelte'
-	import TranslateIcon from '$lib/icons/translate_icon.svelte'
-	import VoiceIcon from '$lib/icons/voice_icon.svelte'
+	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
+	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
+	import Header from '$lib/components/Header.svelte'
 	import { TextId } from '$lib/general/text_id'
 	import { Html } from '$lib/view/html'
 	import { WebSpeech } from '$lib/speech/web-speech'
@@ -13,12 +13,10 @@
 	import { Message } from '$lib/view/message'
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { TranslationText } from '$lib/translation/translation_text'
-	import { page } from '$app/stores'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Language, Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
-	import '../app.css'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
@@ -271,36 +269,10 @@
 	})
 </script>
 
-<div class="flex_row root_container header header_background_color">
-	<div class="center_container flex_row">
-		<div class="header_left flex_row align_items_center">{$_('talk_title')}</div>
-
-		{#if $page.data.user}
-			<div class="header_right flex gap-2 items-center">
-				<div>{$page.data.user.email}</div>
-				<form action="/sign-out" method="POST">
-					<button type="submit">{$_('sign_out')}</button>
-				</form>
-			</div>
-		{:else}
-			<div class="header_right flex gap-2">
-				<a class="flex_row align_items_center sign_in_button" href="/sign-in"
-					><div class="flex_row gap-1 items-center bg-white">
-						<div class="flex_row justify_content_center h-5">
-							<SignInIcon />
-						</div>
-						<div>{$_('sign_in')}</div>
-					</div></a
-				>
-			</div>
-		{/if}
-	</div>
-</div>
-
-<div class="flex_row root_container">
-	<div />
-	<div class="center_container">
-		<div class="scroll_area flex_column gap_8px">
+<Header />
+<div class="flex flex-row">
+	<div class="center-container">
+		<div class="flex flex-col gap-2 pt-4 px-4">
 			<div>
 				<select
 					bind:this={from_speech_language_select_element}
@@ -309,22 +281,22 @@
 				<select bind:this={locale_select_element} on:change={() => on_change_locale_select()} />
 			</div>
 
-			<div class="flex_row gap_8px align_items_center">
+			<div class="flex flex-row gap-2 items-center">
 				<input
 					type="text"
-					class="flex_1"
+					class="flex-1"
 					placeholder={$_('enter_new_text')}
 					bind:this={new_text_element}
 				/>
 				<button on:click={add_text}>
-					<div class="flex_row justify_content_center height_24px"><AddIcon /></div>
+					<div class="flex flex-row justify-center h-6"><AddIcon /></div>
 				</button>
 			</div>
 
-			<div class="border_radius flex_column gap_border" bind:this={text_list_element}>
+			<div class="input-element flex flex-col gap-[1px] bg-border bg-inherit" bind:this={text_list_element}>
 				{#each texts as text}
 					<div
-						class="padding_10px_16px cursor_pointer hover"
+						class="py-[10px] px-4 cursor-pointer bg-white hover:bg-border transition"
 						id={text.id.toString()}
 						on:click={() => on_click_text(text)}
 						on:keydown
@@ -335,7 +307,7 @@
 			</div>
 		</div>
 
-		<div class="footer flex_column gap_16px">
+		<div class="bg-white/[85] sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4">
 			<div>
 				{#if selected_text}
 					<audio
@@ -347,44 +319,44 @@
 				{/if}
 			</div>
 
-			<div class="flex_column gap_8px">
-				<div class="title flex_row gap_16px align_items_center">
+			<div class="flex flex-col gap-2">
+				<div class="title flex flex-row gap-4 items-center">
 					{$_('speech')}
 					<button on:click={speech_to_text}
-						><div class="flex_row justify_content_center height_24px"><VoiceIcon /></div></button
+						><div class="flex flex-row justify-center h-6 w-6"><VoiceIcon /></div></button
 					>
 				</div>
 				<div bind:this={speech_text_element} />
 			</div>
 
-			<div class="flex_column gap_8px">
-				<div class="title flex_row gap_16px align_items_center">
+			<div class="flex flex-col gap-2">
+				<div class="title flex flex-row gap-4 items-center">
 					{$_('translation')}
 					<select
 						bind:this={to_language_select_element}
 						on:change={() => on_change_translation_language_select()}
 					/>
 				</div>
-				<div class="flex_row gap_8px align_items_center">
+				<div class="flex flex-row gap-2 items-center">
 					<button on:click={show_translation}>
-						<div class="flex_row justify_content_center height_24px"><TranslateIcon /></div>
+						<div class="flex flex-row justify-center h-6 w-6"><TranslateIcon /></div>
 					</button>
 					<div
 						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
-						class="flex_1 overflow_wrap_anywhere"
+						class="flex_1 overflow-wrap-anywhere"
 					>
 						{@html translations.join('<br />')}
 					</div>
 				</div>
-				<div class="flex_row gap_8px align_items_center">
+				<div class="flex flex-row gap-2 items-center">
 					<input
 						type="text"
-						class="flex_1"
+						class="flex-1"
 						placeholder={$_('enter_new_translation')}
 						bind:value={add_translation_string}
 					/>
 					<button on:click={add_translation}>
-						<div class="flex_row justify_content_center height_24px"><AddIcon /></div>
+						<div class="flex flex-row justify-center h-6 w-6"><AddIcon /></div>
 					</button>
 				</div>
 			</div>

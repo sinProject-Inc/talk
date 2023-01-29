@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--background-color: #fff;
+	--border-color: rgb(239, 243, 244);
+	--media-border-color: rgb(207, 217, 222);
+	--gray-color: rgb(83, 100, 113);
+	--text-color: rgb(15, 20, 25);
+	--link-color: rgb(29, 155, 240);
+	--link-hover-color: rgb(26, 140, 216);
+	--blue-color: rgb(29, 155, 240);
+	--header-background-color: rgba(239, 243, 244, 0.85);
+}
+
+@layer components {
+	input,
+	button,
+	select,
+	textarea,
+	.input-element {
+		@apply border rounded-md overflow-hidden border-media-border bg-border;
+	}
+
+	button,
+	select {
+		@apply cursor-pointer;
+	}
+
+	button {
+		@apply py-[6px] px-2;
+	}
+
+	select {
+		@apply py-[6px] px-3;
+	}
+
+	input {
+		@apply py-[7px] px-4;
+	}
+
+	textarea {
+		@apply py-[10px] px-4;
+	}
+
+	.center-container {
+		@apply mx-auto max-w-[calc(768px+2rem)] w-full min-w-0;
+	}
+
+	.title {
+		@apply py-2 border-b border-border font-bold text-[20px];
+	}
+
+	.card {
+		box-shadow: 0 0.1px 0.5px #0000000e, 0 0.4px 1.6px #00000014, 0 2px 7px #00000021;
+		border-radius: 0.5rem;
+	}
+
+	.submit_button {
+		@apply bg-link text-white font-semibold border-link w-full box-border;
+	}
+
+	.card-parent {
+		margin: 0 auto;
+		width: 100%;
+		max-width: calc(500px + 2rem);
+	}
+}
+
+@layer utilities {
+	.overflow-wrap-anywhere {
+		overflow-wrap: anywhere;
+	}
+}
