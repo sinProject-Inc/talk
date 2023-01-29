@@ -1,6 +1,6 @@
 import { SOUND_DIR } from '$env/static/private'
 import type { SoundId } from '$lib/speech/sound/sound_id'
-import { ValidText } from '../../general/valid_text'
+import { ValidText } from '../../text/valid_text'
 
 export class SoundFilePath {
 	private readonly _sound_file_path: undefined

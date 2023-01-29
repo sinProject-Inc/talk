@@ -1,4 +1,4 @@
-import { ValidText } from "../general/valid_text"
+import { ValidText } from "../text/valid_text"
 
 export class TranslationText {
 	private readonly _translation_text: undefined

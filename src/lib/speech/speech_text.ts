@@ -1,4 +1,4 @@
-import { ValidText } from "../general/valid_text"
+import { ValidText } from "../text/valid_text"
 
 export class SpeechText {
 	private readonly _speech_text: undefined

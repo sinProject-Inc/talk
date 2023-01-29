@@ -1,5 +1,5 @@
 import * as nodemailer from 'nodemailer';
-import type { PinCode } from './pin_code';
+import type { PinCode } from './auth/pin_code';
 
 export class NodemailerManager {
 	private readonly _transporter: nodemailer.Transporter
