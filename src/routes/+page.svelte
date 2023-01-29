@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import AddIcon from '$lib/icons/add_icon.svelte'
-	import SignInIcon from '$lib/icons/sign_in_icon.svelte'
-	import TranslateIcon from '$lib/icons/translate_icon.svelte'
-	import VoiceIcon from '$lib/icons/voice_icon.svelte'
+	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
+	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
+	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import { Html } from '$lib/view/html'
 	import { WebSpeech } from '$lib/speech/web-speech'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
@@ -23,6 +23,7 @@
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 	import { TextId } from '$lib/text/text_id'
+	import Header from '$lib/components/Header.svelte'
 
 	export let data: PageData
 
