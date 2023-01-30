@@ -1,7 +1,7 @@
-import { TextId } from '../../../../../../lib/text/text_id'
-import { TranslationDb } from '../../../../../../lib/translation/translation_db'
-import { SpeechLanguageCode } from '../../../../../../lib/speech/speech_language_code'
-import { SpeechText } from '../../../../../../lib/speech/speech_text'
+import { TextId } from '$lib/text/text_id'
+import { TranslationDb } from '$lib/translation/translation_db'
+import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+import { SpeechText } from '$lib/speech/speech_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
