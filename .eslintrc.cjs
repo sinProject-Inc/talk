@@ -44,7 +44,8 @@ module.exports = {
 			},
 			{
 				selector: ['method', 'function'],
-				format: ['snake_case', 'camelCase'],
+				format: ['snake_case'],
+				// format: ['snake_case', 'camelCase'],
 			},
 			{
 				selector: [
@@ -77,8 +78,12 @@ module.exports = {
 				format: ['snake_case'],
 			},
 			{
-				selector: ['property', 'variable'],
-				format: ['snake_case', 'UPPER_CASE', 'camelCase'],
+				selector: ['property'],
+				format: ['snake_case', 'camelCase'],
+			},
+			{
+				selector: ['variable'],
+				format: ['snake_case', 'UPPER_CASE'],
 			},
 			// TODO: 引数、関数、クラス、インターフェイス、enumのメンバー名のルール
 		],

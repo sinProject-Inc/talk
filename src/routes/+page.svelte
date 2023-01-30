@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
-	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import { Html } from '$lib/view/html'
@@ -81,7 +80,7 @@
 
 		// console.log(language_code)
 
-		const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(from_speech_language_code)
+		const app_locale_code = AppLocaleCode.from_speech_language_code(from_speech_language_code)
 
 		$locale = app_locale_code.code
 		await waitLocale($locale)
@@ -192,7 +191,7 @@
 			translations = find_translation_result
 		} else {
 			const source_translation_text = new TranslationText(selected_text.text)
-			const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code)
+			const app_locale_code = AppLocaleCode.from_speech_language_code(to_speech_language_code)
 			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 				source_translation_text,
 				app_locale_code
@@ -343,7 +342,7 @@
 						<div class="flex flex-row justify-center h-6 w-6"><TranslateIcon /></div>
 					</button>
 					<div
-						lang={AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code).code}
+						lang={AppLocaleCode.from_speech_language_code(to_speech_language_code).code}
 						class="flex_1 overflow-wrap-anywhere"
 					>
 						{@html translations.join('<br />')}
