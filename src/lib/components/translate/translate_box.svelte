@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IconButton from '$lib/components/icon_button.svelte'
-	import CloseIcon from '../icons/close_icon.svelte'
-	import SpeakerIcon from '../icons/speaker_icon.svelte'
+	import CloseIcon from '$lib/components/icons/close_icon.svelte'
+	import SpeakerIcon from '$lib/components/icons/speaker_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { Message } from '$lib/view/message'
@@ -9,34 +9,23 @@
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
-	import TranslateIcon from '../icons/translate_icon.svelte'
 	import { createEventDispatcher, onMount } from 'svelte'
-	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { browser } from '$app/environment'
+	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import CopyIcon from '../icons/copy_icon.svelte'
 
-	export let body = ''
-
-	export let data: PageData
-
-
-	export let onTextChange: () => void = () => {
-		return
-	}
-	export let language_select_element: HTMLSelectElement
 	export let locale_select_element: HTMLSelectElement
-
-	export let partner_text = ''
-
-	export let partner: HTMLTextAreaElement
-
 	export let speech_text_element: HTMLTextAreaElement
 
-	export let play = false
+	export let locale_code = LocaleCode.english_united_states
 
-	let locale_code = LocaleCode.english_united_states
+	let body = ''
 
 	let audio_element: HTMLAudioElement
+	let audio_url: string
+
+	let dispatch_timeout_id: ReturnType<typeof setTimeout>;
 
 	function speech_to_text(): void {
 		let selected_value = locale_select_element.selectedOptions[0].value
@@ -47,65 +36,61 @@
 		web_speech.recognition(locale_code, on_end)
 	}
 
-	function on_end() {
-		body = locale_select_element.value
-		console.log('hello')
-		translate()
+	function on_end(): void {
+		body = speech_text_element.value
+
+		dispatch_body()
 	}
 
 	const dispatch = createEventDispatcher()
 
-	async function translate(): Promise<void> {
-		body = speech_text_element.value
+	export async function show_translation(text: string, play_audio = false): Promise<void> {
+		const source_translation_text = new TranslationText(text)
+		const language_code = SpeechLanguageCode.create(locale_code.code.split('-')[0])
+		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
 
-		if (!body) return
-
-		const source_translation_text = new TranslationText(body)
-		const app_locale_code = AppLocaleCode.japanese
 		const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 			source_translation_text,
 			app_locale_code
 		).fetch()
-		
-		dispatch_translated_body(output_translation_text.text)
+
+		body = output_translation_text.text
+
+		if (play_audio) {
+			await text_to_speech()
+		}
 	}
 
-	function dispatch_translated_body(body: string): void {
+	function dispatch_body(): void {
 		dispatch('message', {
-			translated_body: body
+			text: body,
 		})
 	}
 
-	
+	async function text_to_speech(): Promise<void> {
+		audio_url = new TextToSpeechUrl(body, locale_code).url
 
-	function on_change_locale_select(store_locale = true): void {
-		// console.log('on_change_locale_select')
-
-		if (!store_locale) {
-			const locale = localStorage.getItem('locale')
-			if (locale) locale_select_element.value = locale
-		}
-
-		const selected_value = locale_select_element.selectedOptions[0].value
-
-		locale_code = LocaleCode.create(selected_value)
-
-		if (store_locale) {
-			localStorage.setItem('locale', locale_code.code)
-		}
+		await audio_element.pause()
+		await audio_element.play()
 	}
 
+	function on_text_area_change(): void {
+		const throttle = 1000
+		
+		clearTimeout(dispatch_timeout_id)
 
-	export const set_text = (value: string) => {
-		console.log(value)
-		body = value
+		dispatch_timeout_id = setTimeout(() => {
+			dispatch_body()
+		}, throttle)
+	}
+
+	function copy(): void {
+		navigator.clipboard.writeText(body)
 	}
 
 	onMount(async () => {
 		if (!browser) return
-		console.log("data", data)
 	})
-	
 </script>
 
 <div class="glass-panel">
@@ -116,30 +101,23 @@
 			</div>
 		</div>
 		<textarea
-			bind:this={speech_text_element}
-			bind:value={body}
-			on:input={onTextChange}
 			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/2/9"
 			rows="7"
+			bind:this={speech_text_element}
+			bind:value={body}
+			on:input={on_text_area_change}
 		/>
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
 			<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
-			<IconButton><SpeakerIcon /></IconButton>
+			<IconButton onClickHandler={text_to_speech}><SpeakerIcon /></IconButton>
 		</div>
 		<div>
-			<IconButton onClickHandler={translate}><TranslateIcon /></IconButton>
+			<IconButton onClickHandler={copy}><CopyIcon /></IconButton>
 		</div>
 	</div>
 </div>
 
-{#if play}
-	<audio
-		class="invisible fixed"
-		controls
-		autoplay
-		bind:this={audio_element}
-	/>
-{/if}
+<audio class="hidden" src={audio_url} controls bind:this={audio_element} />

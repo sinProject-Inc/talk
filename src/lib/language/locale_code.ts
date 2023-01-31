@@ -57,4 +57,5 @@ export class LocaleCode {
 	public use_microsoft_speech(): boolean {
 		return this._is_khmer()
 	}
+
 }
