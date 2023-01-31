@@ -24,7 +24,7 @@
 			<form class="md:mb-40 mb-0 card glass-panel p-4 mx-3" method="POST" action="?/submit" use:enhance>
 				<div class="title w-full">
 					<h1 class="mb-2">{$_('enter_pin_code')}</h1>
-					<p class="font-light text-sm text-black/60 break-words">
+					<p class="font-light text-sm text-white/70 break-words">
 						{$_('sent_pin_code', { values: { email: form?.email_address }})}
 				</div>
 				<div class="flex-col flex gap-3 mt-4">
