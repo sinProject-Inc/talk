@@ -24,11 +24,11 @@
 			<form class="md:mb-40 mb-0 card glass-panel p-4 mx-3" method="POST" action="?/submit" use:enhance>
 				<div class="title w-full">
 					<h1 class="mb-2">{$_('enter_pin_code')}</h1>
-					<p class="font-light text-sm text-black/60 break-words">
-						{$_('sent_pin_code', { values: { email: form?.email_address }})}
+					<p class="font-light text-sm text-white/70 break-words">
+						{$_('sent_pin_code', { values: { email: form?.email }})}
 				</div>
 				<div class="flex-col flex gap-3 mt-4">
-					<input type="hidden" name="email" value={form?.email_address} />
+					<input type="hidden" name="email" value={form?.email} />
 					<input class="focus:outline-link]" type="text" name="pin_code" placeholder={$_('pin_code')} required bind:this={pin_input_element} />
 				
 					{#if form?.missing}<p class="error">{$_('pin_code_is_required')}</p>{/if}

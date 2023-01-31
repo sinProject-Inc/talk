@@ -34,7 +34,7 @@ export class AppLocaleCode {
 		}
 	}
 
-	public static from_speech_language_code(speech_language_code: SpeechLanguageCode): AppLocaleCode {
+	public static fromSpeechLanguageCode(speech_language_code: SpeechLanguageCode): AppLocaleCode {
 		const speech_language_code_string = speech_language_code.code
 		const language_code =
 			speech_language_code_string === 'yue' ? 'zh-TW' : speech_language_code_string

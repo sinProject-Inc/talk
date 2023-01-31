@@ -24,7 +24,7 @@ export class MicrosoftVoice {
 
 	private constructor(private readonly _name: string) {}
 
-	public static from_locale_code(locale_code: LocaleCode): MicrosoftVoice {
+	public static fromLocaleCode(locale_code: LocaleCode): MicrosoftVoice {
 		if (locale_code.is_cantonese()) {
 			return MicrosoftVoice.cantonese_hongkong
 		}

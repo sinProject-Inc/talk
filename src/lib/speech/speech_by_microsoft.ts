@@ -13,7 +13,7 @@ export class SpeechByMicrosoft implements Speech {
 	) {}
 
 	public async speak(): Promise<SpeechSound> {
-		const microsoft_voice = MicrosoftVoice.from_locale_code(this._locale_code)
+		const microsoft_voice = MicrosoftVoice.fromLocaleCode(this._locale_code)
 		const speech_config = microsoft_speech_sdk.SpeechConfig.fromSubscription(
 			MICROSOFT_SPEECH_KEY,
 			'japanwest'

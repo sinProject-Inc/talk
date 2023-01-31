@@ -1,4 +1,4 @@
-import { Signing } from '$lib/auth/signing'
+import { Signing } from '../../lib/auth/signing'
 import { redirect, type Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 

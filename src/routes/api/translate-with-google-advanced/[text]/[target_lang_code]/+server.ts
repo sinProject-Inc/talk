@@ -11,7 +11,7 @@ export const GET: RequestHandler = async ({url, params }) => {
 		const translation_text = new TranslationText(params.text)
 		const target_app_locale_code = new AppLocaleCode(params.target_lang_code)
 
-		const translation_client = new TranslationServiceClient()
+		const translationClient = new TranslationServiceClient()
 
 		const request = {
 			parent: `projects/${GOOGLE_PROJECT_ID}/locations/global`,
@@ -21,7 +21,7 @@ export const GET: RequestHandler = async ({url, params }) => {
 			targetLanguageCode: target_app_locale_code.code,
 		}
 
-		const [response] = await translation_client.translateText(request)
+		const [response] = await translationClient.translateText(request)
 		if (!response.translations) {
 			return json('')
 		}

@@ -1,4 +1,3 @@
-import type { Api } from "./api"
 
 export class ApiPath {
 	private readonly _api_path: undefined
@@ -20,9 +19,7 @@ export class ApiPath {
 		return api_path
 	}
 
-	public get_url(api?: Api): string {
-		const origin = api?.origin ?? ''
-
+	public get_url(origin = ''): string {
 		return `${origin}${this._path}`
 	}
 }

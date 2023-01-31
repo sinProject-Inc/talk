@@ -1,4 +1,4 @@
-import { LanguageDb } from '$lib/language/language_db'
+import { LanguageDb } from '../../../lib/language/language_db'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async () => {

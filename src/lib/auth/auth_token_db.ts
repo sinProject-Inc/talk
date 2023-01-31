@@ -1,6 +1,5 @@
 import { App } from '$lib/app/app'
-import type { Session } from '$lib/auth/session'
-import type { AuthPin, AuthToken, Role, User } from '@prisma/client'
+import type { AuthToken, Role, User } from '@prisma/client'
 import { LifeTime } from './life_time'
 
 export class AuthTokenDb {
@@ -17,7 +16,7 @@ export class AuthTokenDb {
 		return limit_date
 	}
 
-	public async find(session: Session): Promise<
+	public async find(session_id: string): Promise<
 		| (AuthToken & {
 				user: User & {
 					role: Role
@@ -29,7 +28,7 @@ export class AuthTokenDb {
 		const auth_token = await App.db.authToken.findFirst({
 			where: {
 				updated_at: { gte: session_limit_date },
-				token: session.id,
+				token: session_id,
 			},
 			include: {
 				user: {
@@ -43,13 +42,13 @@ export class AuthTokenDb {
 		return auth_token
 	}
 
-	public async create(auth_pin: AuthPin): Promise<[AuthToken, LifeTime]> {
+	public async create(user_id: number): Promise<[AuthToken, LifeTime]> {
 		const session_life_time = await this._get_life_time()
 		const session_limit_date = session_life_time.limit_date
 
 		const [auth_token] = await App.db.$transaction([
 			App.db.authToken.create({
-				data: { user_id: auth_pin.user_id, token: crypto.randomUUID() },
+				data: { user_id, token: crypto.randomUUID() },
 			}),
 			App.db.authToken.deleteMany({
 				where: { updated_at: { lt: session_limit_date } },
@@ -59,18 +58,18 @@ export class AuthTokenDb {
 		return [auth_token, session_life_time]
 	}
 
-	public async update(auth_token: AuthToken): Promise<[AuthToken, LifeTime]> {
+	public async update(auth_token_id: number): Promise<[AuthToken, LifeTime]> {
 		const session_life_time = await this._get_life_time()
 
-		const updated_auth_token = await App.db.authToken.update({
-			where: { id: auth_token.id },
+		const auth_token = await App.db.authToken.update({
+			where: { id: auth_token_id },
 			data: { updated_at: new Date() },
 		})
 
-		return [updated_auth_token, session_life_time]
+		return [auth_token, session_life_time]
 	}
 
-	public async delete(session: Session): Promise<void> {
-		await App.db.authToken.delete({ where: { token: session.id } })
+	public async delete(token: string): Promise<void> {
+		await App.db.authToken.delete({ where: { token } })
 	}
 }

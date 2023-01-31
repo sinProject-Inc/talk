@@ -2,9 +2,8 @@ export class PinCode {
 	private readonly _pin_code: undefined
 	private readonly _code: string
 
-	public constructor(code: string | undefined) {
-		if (!code) throw new Error('Code is required')
-		if (code.length < 6) throw new Error('Code is too short')
+	private constructor(code: string) {
+    if(code.length < 6) throw new Error('Code is too short')
 
 		this._code = code
 	}
@@ -13,21 +12,21 @@ export class PinCode {
 		return this._code
 	}
 
-	public static generate(length = 6): PinCode {
-		const pin_code_chars = '0123456789'
+  public static generate(length = 6): PinCode {
+    const pin_code_chars = '0123456789'
+  
+    let code = ''
+  
+    while (code.length < length) {
+      code += pin_code_chars[Math.floor(Math.random() * pin_code_chars.length)]
+    }
 
-		let code = ''
+    const pin_code = new PinCode(code)
+  
+    return pin_code
+  }
 
-		while (code.length < length) {
-			code += pin_code_chars[Math.floor(Math.random() * pin_code_chars.length)]
-		}
-
-		const pin_code = new PinCode(code)
-
-		return pin_code
-	}
-
-	public get_html(): string {
+  public get_html(): string {
 		const html = `
 		<html>
 			<body>
@@ -43,7 +42,7 @@ export class PinCode {
 				</div>
 			</body>
 		</html>`
-
+	
 		return html
 	}
 }

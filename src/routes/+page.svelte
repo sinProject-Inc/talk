@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import { Html } from '$lib/view/html'
@@ -80,7 +81,7 @@
 
 		// console.log(language_code)
 
-		const app_locale_code = AppLocaleCode.from_speech_language_code(from_speech_language_code)
+		const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(from_speech_language_code)
 
 		$locale = app_locale_code.code
 		await waitLocale($locale)
@@ -176,7 +177,7 @@
 			translations = find_translation_result
 		} else {
 			const source_translation_text = new TranslationText(selected_text.text)
-			const app_locale_code = AppLocaleCode.from_speech_language_code(to_speech_language_code)
+			const app_locale_code = AppLocaleCode.fromSpeechLanguageCode(to_speech_language_code)
 			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 				source_translation_text,
 				app_locale_code
@@ -253,10 +254,6 @@
 		await select_default_language()
 	})
 </script>
-
-<svelte:head>
-	<title>Talk</title>
-</svelte:head>
 
 <Header />
 <div class="center-container flex-auto">
@@ -349,83 +346,9 @@
 					placeholder={$_('enter_new_translation')}
 					bind:value={add_translation_string}
 				/>
-<<<<<<< HEAD
 				<IconButton onClickHandler={add_translation}>
 					<AddIcon />
 				</IconButton>
-=======
-				<button on:click={add_text}>
-					<div class="flex flex-row justify-center h-6"><AddIcon /></div>
-				</button>
-			</div>
-
-			<div class="input-element flex flex-col gap-[1px] bg-border bg-inherit" bind:this={text_list_element}>
-				{#each texts as text}
-					<div
-						class="py-[10px] px-4 cursor-pointer bg-white hover:bg-border transition"
-						id={text.id.toString()}
-						on:click={() => on_click_text(text)}
-						on:keydown
-					>
-						{text.text}
-					</div>
-				{/each}
-			</div>
-		</div>
-
-		<div class="bg-white/[85] sticky z-10 bottom-0 backdrop-blur-md px-4 pt-2 pb-4 flex flex-col gap-4">
-			<div>
-				{#if selected_text}
-					<audio
-						src={new TextToSpeechUrl(selected_text, locale_code).url}
-						controls
-						autoplay
-						bind:this={audio_element}
-					/>
-				{/if}
-			</div>
-
-			<div class="flex flex-col gap-2">
-				<div class="title flex flex-row gap-4 items-center">
-					{$_('speech')}
-					<button on:click={speech_to_text}
-						><div class="flex flex-row justify-center h-6 w-6"><VoiceIcon /></div></button
-					>
-				</div>
-				<div bind:this={speech_text_element} />
-			</div>
-
-			<div class="flex flex-col gap-2">
-				<div class="title flex flex-row gap-4 items-center">
-					{$_('translation')}
-					<select
-						bind:this={to_language_select_element}
-						on:change={() => on_change_translation_language_select()}
-					/>
-				</div>
-				<div class="flex flex-row gap-2 items-center">
-					<button on:click={show_translation}>
-						<div class="flex flex-row justify-center h-6 w-6"><TranslateIcon /></div>
-					</button>
-					<div
-						lang={AppLocaleCode.from_speech_language_code(to_speech_language_code).code}
-						class="flex_1 overflow-wrap-anywhere"
-					>
-						{@html translations.join('<br />')}
-					</div>
-				</div>
-				<div class="flex flex-row gap-2 items-center">
-					<input
-						type="text"
-						class="flex-1"
-						placeholder={$_('enter_new_translation')}
-						bind:value={add_translation_string}
-					/>
-					<button on:click={add_translation}>
-						<div class="flex flex-row justify-center h-6 w-6"><AddIcon /></div>
-					</button>
-				</div>
->>>>>>> main
 			</div>
 		</div>
 	</div>
