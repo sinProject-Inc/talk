@@ -12,7 +12,7 @@ export const GET: RequestHandler = async ({ url }) => {
 	// const glossary_id = params.glossary_id?.trim() ?? ''
 	// if (glossary_id === '') return json('')
 
-	const translationClient = new TranslationServiceClient()
+	const translation_client = new TranslationServiceClient()
 
 	const glossary = {
 		languageCodesSet: {
@@ -33,7 +33,7 @@ export const GET: RequestHandler = async ({ url }) => {
 
 	console.log('start')
 
-	const [operation] = await translationClient.createGlossary(request)
+	const [operation] = await translation_client.createGlossary(request)
 	console.log('start 2')
 
 	await operation.promise()
