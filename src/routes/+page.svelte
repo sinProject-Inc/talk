@@ -270,6 +270,10 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Talk</title>
+</svelte:head>
+
 <Header />
 <div class="flex flex-row">
 	<div class="center-container">
