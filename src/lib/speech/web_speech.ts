@@ -35,9 +35,9 @@ export class WebSpeech {
 				recognition.stop()
 				this._cancelling = false
 			}
-			
-			let interim_transcript = ''
 
+			let interim_transcript = ''
+			console.log(event)
 			for (let i = event.resultIndex; i < event.results.length; i++) {
 				const transcript = event.results[i][0].transcript
 
@@ -55,7 +55,7 @@ export class WebSpeech {
 			}
 		}
 
-		recognition.onend = callback
+		if (callback) recognition.onend = callback
 
 		recognition.start()
 	}
