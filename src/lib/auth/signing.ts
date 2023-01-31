@@ -1,36 +1,34 @@
+import type { AuthPin, AuthToken } from '@prisma/client'
 import type { Cookies } from '@sveltejs/kit'
-import { CookiesManager } from '../cookies_manager'
+import { Session } from './session'
 import { AuthPinDb } from './auth_pin_db'
 import { AuthTokenDb } from './auth_token_db'
 
 export class Signing {
 	public static async sign_in(
-		user_id: number,
+		auth_pin: AuthPin,
 		cookies: Cookies,
-		pin_code_id?: number
 	): Promise<void> {
 		const auth_token_db = new AuthTokenDb()
-		const [auth_token, life_time] = await auth_token_db.create(user_id)
+		const [auth_token, life_time] = await auth_token_db.create(auth_pin)
 
-		new CookiesManager(cookies).set_session_id(auth_token.token, life_time.second)
+		new Session(cookies).set(auth_token, life_time)
 
-		if (pin_code_id) {
-			await new AuthPinDb().delete(pin_code_id)
-		}
+		await new AuthPinDb().delete(auth_pin)
 	}
 
 	public static async sign_out(cookies: Cookies): Promise<void> {
-		const cookies_manager = new CookiesManager(cookies)
+		const session = new Session(cookies)
 		const auth_token_db = new AuthTokenDb()
 
-		await auth_token_db.delete(cookies_manager.session_id)
-		cookies_manager.delete_session_id()
+		await auth_token_db.delete(session)
+		session.delete()
 	}
 
-	public static async access_valid(auth_token_id: number, cookies: Cookies): Promise<void> {
+	public static async access_valid(auth_token: AuthToken, cookies: Cookies): Promise<void> {
 		const auth_token_db = new AuthTokenDb()
-		const [auth_token, life_time] = await auth_token_db.update(auth_token_id)
+		const [updated_auth_token, life_time] = await auth_token_db.update(auth_token)
 
-		new CookiesManager(cookies).set_session_id(auth_token.token, life_time.second)
+		new Session(cookies).set(updated_auth_token, life_time)
 	}
 }
