@@ -26,27 +26,27 @@ export class WebSpeech {
 		// 	textarea.value = result
 		// }
 
-		let finalTranscript = ''
+		let final_transcript = ''
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		recognition.onresult = (event: any): void => {
-			let interimTranscript = ''
+			let interim_transcript = ''
 
 			for (let i = event.resultIndex; i < event.results.length; i++) {
 				const transcript = event.results[i][0].transcript
 
 				if (event.results[i].isFinal) {
-					finalTranscript += transcript
+					final_transcript += transcript
 				} else {
-					interimTranscript = transcript
+					interim_transcript = transcript
 				}
 			}
 
-			if(this._speech_text_element instanceof HTMLTextAreaElement) {
-				this._speech_text_element.value = finalTranscript + interimTranscript
+			if (this._speech_text_element instanceof HTMLTextAreaElement) {
+				this._speech_text_element.value = final_transcript + interim_transcript
+			} else {
+				this._speech_text_element.textContent = final_transcript + interim_transcript
 			}
-
-			this._speech_text_element.textContent = finalTranscript + interimTranscript
 		}
 
 		recognition.onend = callback

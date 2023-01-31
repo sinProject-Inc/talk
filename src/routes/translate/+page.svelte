@@ -43,17 +43,17 @@
 	onMount(async () => {
 		if (!browser) return
 
-		init_language_select()
+		init_locale_select()
 		// from_language_select.onchange = on_change_language_select_for_texts
 		// on_change_from_language_select()
 		await select_default_language()
 	})
 
-	function init_language_select(): void {
-		const languages = JSON.parse(data.languages) as Language[]
+	function init_locale_select(): void {
+		const locales = JSON.parse(data.locales) as Locale[]
 
-		Html.append_language_select_options(top_language_select_element, languages)
-		Html.append_language_select_options(bottom_language_select_element, languages)
+		Html.append_language_select_options(top_language_select_element, locales)
+		Html.append_language_select_options(bottom_language_select_element, locales)
 	}
 
 	async function select_default_language(): Promise<void> {
@@ -74,12 +74,6 @@
 			name="language_1"
 			id="language_1"
 		/>
-		<select
-			class="outline-0 bg-transparent p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
-			bind:this={top_locale_select_element}
-		>
-			<option value="volvo">(Volvo)</option></select
-		>
 		<IconButton>⇆</IconButton>
 		<select
 			bind:this={bottom_language_select_element}
@@ -87,12 +81,6 @@
 			name="language_2"
 			id="language_2"
 		/>
-		<select
-			class="rounded-r-none outline-0 bg-transparent rounded-l-md p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
-			bind:this={bottom_locale_select_element}
-		>
-			<option value="volvo">(Volvo)</option></select
-		>
 	</div>
 	<div class="flex flex-col gap-4">
 		<TranslateBox

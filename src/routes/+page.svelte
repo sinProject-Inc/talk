@@ -4,7 +4,7 @@
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import { Html } from '$lib/view/html'
-	import { WebSpeech } from '$lib/speech/web-speech'
+	import { WebSpeech } from '$lib/speech/web_speech'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'

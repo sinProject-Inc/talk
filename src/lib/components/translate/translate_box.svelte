@@ -5,7 +5,7 @@
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { Message } from '$lib/view/message'
-	import { WebSpeech } from '$lib/speech/web-speech'
+	import { WebSpeech } from '$lib/speech/web_speech'
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
@@ -35,11 +35,6 @@
 	export let play = false
 
 	let locale_code = LocaleCode.english_united_states
-
-
-	export let hate_this_function: (value: string) => void = () => {
-		return
-	}
 
 	let audio_element: HTMLAudioElement
 
