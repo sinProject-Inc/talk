@@ -1,5 +1,5 @@
 import { ValidText } from "./valid_text"
-import { ValidId } from "./valid_id"
+import { ValidId } from "../general/valid_id"
 
 export class TextId {
 	private readonly _text_id: undefined

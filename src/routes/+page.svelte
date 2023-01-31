@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import Header from '$lib/components/header.svelte'
-	import IconButton from '$lib/components/icon_button.svelte'
-	import { TextId } from '$lib/general/text_id'
 	import { Html } from '$lib/view/html'
 	import { WebSpeech } from '$lib/speech/web-speech'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
@@ -24,6 +22,9 @@
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import IconButton from '$lib/components/icon_button.svelte'
+	import { TextId } from '$lib/text/text_id'
+	import Header from '$lib/components/header.svelte'
 	import Divider from '$lib/components/divider.svelte'
 
 	export let data: PageData
@@ -57,9 +58,7 @@
 		const recognizing_message = new Message($_('recognizing'))
 		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
-		web_speech.recognition(locale_code, () => {
-			return
-		})
+		web_speech.recognition(locale_code)
 	}
 
 	async function fetch_texts(): Promise<void> {

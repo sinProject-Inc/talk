@@ -54,7 +54,7 @@ export class LocaleCode {
 		return this._equals(LocaleCode.khmer_cambodia)
 	}
 
-	public useMicrosoftSpeech(): boolean {
+	public use_microsoft_speech(): boolean {
 		return this._is_khmer()
 	}
 }

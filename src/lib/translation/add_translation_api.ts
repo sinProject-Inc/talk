@@ -1,4 +1,4 @@
-import type { TextId } from "../general/text_id";
+import type { TextId } from "../text/text_id";
 import type { SpeechLanguageCode } from "../speech/speech_language_code";
 import type { TranslationText } from "../translation/translation_text";
 import { Api } from "../api/api";

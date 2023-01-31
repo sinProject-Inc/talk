@@ -1,7 +1,8 @@
-import { Auth } from '$lib/auth'
-import { Database, db } from '$lib/general/database'
+import { AuthPinDb } from '$lib/auth/auth_pin_db'
+import { UserDb } from '$lib/auth/user_db'
 import { NodemailerManager as NodeMailerManager } from '$lib/nodemailer_manager'
-import { PinCode } from '$lib/pin_code'
+import { PinCode } from '$lib/auth/pin_code'
+import { Signing } from '$lib/auth/signing'
 import type { PageServerLoad } from '.svelte-kit/types/src/routes/$types'
 import type { User } from '@prisma/client'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
@@ -35,20 +36,17 @@ export const actions: Actions = {
 
 		if (!email) throw redirect(302, '/')
 
-		const user = await Database.find_user(email, true)
+		const user_db = new UserDb(email)
+		const user = await user_db.find_unique()
 
 		if (!user) return { credentials: true, email, missing: false, success: false }
 
 		const pin_code = PinCode.generate()
 		send_mail(user, pin_code)
 
-		const user_id = user.id
+		const auth_pin_db = new AuthPinDb()
 
-		await db.authPin.upsert({
-			where: { user_id },
-			update: { pin_code: pin_code.code },
-			create: { user_id, pin_code: pin_code.code },
-		})
+		await auth_pin_db.upsert(user, pin_code)
 
 		return { success: true, email, missing: false, credentials: false }
 	},
@@ -60,11 +58,12 @@ export const actions: Actions = {
 
 		if (!email || !pin_code) return fail(400, { missing: true, email })
 
-		const auth_pin = await Auth.find_auth_pin(email, pin_code)
+		const auth_pin_db = new AuthPinDb()
+		const auth_pin = await auth_pin_db.find(email, pin_code)
 
 		if (!auth_pin) return fail(400, { credentials: true, email })
 
-		await Auth.sign_in(auth_pin.user_id, cookies, auth_pin.id)
+		await Signing.sign_in(auth_pin.user_id, cookies, auth_pin.id)
 
 		return { success: true, email }
 	},
