@@ -23,6 +23,9 @@
 	let top_translate_box: SvelteComponent
 	let bottom_translate_box: SvelteComponent
 
+	let audio_element: HTMLAudioElement
+	let audio_url: string
+
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
@@ -52,8 +55,12 @@
 	}
 
 	function on_message(event: any, sender: SvelteComponent, recipient?: SvelteComponent): void {
-		if (event.detail.text && recipient) {
+		if (!recipient) return
+
+		if (event.detail.text) {
 			recipient.show_translation(event.detail.text, true)
+		} else if (event.detail.clear) {
+			recipient.clear()
 		}
 	}
 
@@ -64,7 +71,16 @@
 		top_locale_select_element.value = bottom_locale
 		bottom_locale_select_element.value = top_locale
 
+		const top_text = top_translate_box.get_body()
+		const bottom_text = bottom_translate_box.get_body()
+
+		top_translate_box.set_body(bottom_text)
+		bottom_translate_box.set_body(top_text)
+
 		on_change_locale_select()
+
+		setTimeout(() => { bottom_translate_box.text_to_speech() }, 1);
+
 	}
 
 	onMount(async () => {
@@ -74,7 +90,6 @@
 
 		on_change_locale_select(false)
 	})
-
 </script>
 
 <svelte:head>
@@ -104,16 +119,26 @@
 		<TranslateBox
 			locale_select_element={top_locale_select_element}
 			speech_text_element={from_language_text_element}
+			bind:audio_element
+			bind:audio_url
 			bind:this={top_translate_box}
 			bind:locale_code={top_locale_code}
-			on:message={(event) => { on_message(event, top_translate_box, bottom_translate_box) }}
+			on:message={(event) => {
+				on_message(event, top_translate_box, bottom_translate_box)
+			}}
 		/>
 		<TranslateBox
 			locale_select_element={bottom_locale_select_element}
 			speech_text_element={to_language_text_element}
+			bind:audio_element
+			bind:audio_url
 			bind:this={bottom_translate_box}
 			bind:locale_code={bottom_locale_code}
-			on:message={(event) => { on_message(event, bottom_translate_box, top_translate_box) }}
+			on:message={(event) => {
+				on_message(event, bottom_translate_box, top_translate_box)
+			}}
 		/>
 	</div>
 </div>
+
+<audio class="hidden" src={audio_url} controls bind:this={audio_element} />

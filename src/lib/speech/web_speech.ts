@@ -2,6 +2,8 @@ import type { LocaleCode } from "../language/locale_code"
 import type { Message } from "../view/message"
 
 export class WebSpeech {
+	private _cancelling = false
+
 	public constructor(private readonly _speech_text_element: HTMLElement, private readonly _recognizing_message: Message) {}
 
 	public recognition(locale_code: LocaleCode, callback?: () => void): void {
@@ -29,6 +31,11 @@ export class WebSpeech {
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		recognition.onresult = (event: any): void => {
+			if(this._cancelling) { 
+				recognition.stop()
+				this._cancelling = false
+			}
+			
 			let interim_transcript = ''
 
 			for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -51,5 +58,9 @@ export class WebSpeech {
 		recognition.onend = callback
 
 		recognition.start()
+	}
+
+	public stop_recognition(): void {
+		this._cancelling = true
 	}
 }
