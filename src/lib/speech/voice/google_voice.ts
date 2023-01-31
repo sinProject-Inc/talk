@@ -19,7 +19,7 @@ export class GoogleVoice {
 
 	private constructor(private readonly _name: string) {}
 
-	public static fromLocaleCode(locale_code: LocaleCode): GoogleVoice {
+	public static from_locale_code(locale_code: LocaleCode): GoogleVoice {
 		if (locale_code.is_cantonese()) {
 			return GoogleVoice.cantonese_hongkong
 		}
