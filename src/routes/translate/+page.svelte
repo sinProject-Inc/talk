@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import Header from '$lib/components/header.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
 	import SwapIcon from '$lib/components/icons/swap_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
@@ -101,7 +101,7 @@
 	<title>Talk - Translate</title>
 </svelte:head>
 
-<Header />
+<Navbar />
 <div class="center-container my-4">
 	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
 		<select
