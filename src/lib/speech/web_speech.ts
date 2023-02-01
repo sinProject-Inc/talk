@@ -2,11 +2,11 @@ import type { LocaleCode } from "../language/locale_code"
 import type { Message } from "../view/message"
 
 export class WebSpeech {
-	private _cancelling = false
+	private _recognition: SpeechRecognition | undefined = undefined
 
 	public constructor(private readonly _speech_text_element: HTMLElement, private readonly _recognizing_message: Message) {}
 
-	public recognition(locale_code: LocaleCode, callback?: () => void): void {
+	public recognition(locale_code: LocaleCode, callback?: () => void, continuous = false): void {
 		if (!('webkitSpeechRecognition' in window)) {
 			this._speech_text_element.textContent = 'Speech Recognition Not Available'
 			return
@@ -15,11 +15,11 @@ export class WebSpeech {
 		this._speech_text_element.textContent = `${this._recognizing_message.text}...`
 
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
-		const recognition = new speech_recognition()
-
-		recognition.lang = locale_code.code
-		recognition.interimResults = true
-		// recognition.continuous = true;
+		this._recognition = new speech_recognition()
+		
+		this._recognition.lang = locale_code.code
+		this._recognition.interimResults = true
+		this._recognition.continuous = continuous
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		// recognition.onresult = (event: any): void => {
@@ -30,15 +30,11 @@ export class WebSpeech {
 		let final_transcript = ''
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		recognition.onresult = (event: any): void => {
-			if(this._cancelling) { 
-				recognition.stop()
-				this._cancelling = false
-			}
+		this._recognition.onresult = (event: any): void => {
 
 			let interim_transcript = ''
-			console.log(event)
-			for (let i = event.resultIndex; i < event.results.length; i++) {
+
+			for (let i = event.resultIndex; i < event.results.length; i++) {				
 				const transcript = event.results[i][0].transcript
 
 				if (event.results[i].isFinal) {
@@ -55,12 +51,12 @@ export class WebSpeech {
 			}
 		}
 
-		if (callback) recognition.onend = callback
+		if (callback) this._recognition.onend = callback
 
-		recognition.start()
+		this._recognition.start()
 	}
 
 	public stop_recognition(): void {
-		this._cancelling = true
+		this._recognition?.stop()
 	}
 }

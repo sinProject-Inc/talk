@@ -7,7 +7,9 @@
 	import { Html } from '$lib/view/html'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale } from '@prisma/client'
-	import { onMount, SvelteComponent } from 'svelte'
+	import { ListeningStartedEvent } from 'microsoft-cognitiveservices-speech-sdk/distrib/lib/src/common.speech/RecognitionEvents'
+	import { onMount } from 'svelte'
+	import { listen } from 'svelte/internal'
 
 	export let data: PageData
 
@@ -20,11 +22,16 @@
 	let top_locale_code = LocaleCode.english_united_states
 	let bottom_locale_code = LocaleCode.japanese_japan
 
-	let top_translate_box: SvelteComponent
-	let bottom_translate_box: SvelteComponent
+	let top_translate_box: TranslateBox
+	let bottom_translate_box: TranslateBox
 
 	let audio_element: HTMLAudioElement
 	let audio_url: string
+
+	let top_listening = false
+	let bottom_listening = false
+
+	$: listening = top_listening || bottom_listening
 
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
@@ -54,12 +61,15 @@
 		}
 	}
 
-	function on_message(event: any, sender: SvelteComponent, recipient?: SvelteComponent): void {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	function on_message(event: any, sender: TranslateBox, recipient?: TranslateBox): void {
 		if (!recipient) return
 
 		if (event.detail.text) {
 			recipient.show_translation(event.detail.text, true)
-		} else if (event.detail.clear) {
+		} 
+		
+		if (event.detail.clear) {
 			recipient.clear()
 		}
 	}
@@ -78,9 +88,6 @@
 		bottom_translate_box.set_body(top_text)
 
 		on_change_locale_select()
-
-		setTimeout(() => { bottom_translate_box.text_to_speech() }, 1);
-
 	}
 
 	onMount(async () => {
@@ -97,6 +104,9 @@
 </svelte:head>
 
 <Header />
+{#if listening}
+LISTENING
+{/if}
 <div class="center-container my-4">
 	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
 		<select
@@ -123,6 +133,8 @@
 			bind:audio_url
 			bind:this={top_translate_box}
 			bind:locale_code={top_locale_code}
+			bind:listening={top_listening}
+			bind:either_listening={listening}
 			on:message={(event) => {
 				on_message(event, top_translate_box, bottom_translate_box)
 			}}
@@ -134,6 +146,8 @@
 			bind:audio_url
 			bind:this={bottom_translate_box}
 			bind:locale_code={bottom_locale_code}
+			bind:listening={bottom_listening}
+			bind:either_listening={listening}
 			on:message={(event) => {
 				on_message(event, bottom_translate_box, top_translate_box)
 			}}

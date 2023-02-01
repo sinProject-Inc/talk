@@ -25,13 +25,17 @@
 
 	export let audio_element: HTMLAudioElement
 	export let audio_url: string
-	let listening = false
+
+	export let listening = false
+	export let either_listening = false
 
 	let dispatch_timeout_id: ReturnType<typeof setTimeout>
 
 	let web_speech: WebSpeech | undefined
 
 	function speech_to_text(): void {
+		if (audio_element.paused == false) audio_element.pause()
+
 		listening = true
 
 		let selected_value = locale_select_element.selectedOptions[0].value
@@ -39,13 +43,14 @@
 		const recognizing_message = new Message('Recognizing')
 		web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
-		web_speech.recognition(locale_code, on_end)
+		web_speech.recognition(locale_code, on_end, true)
 	}
 
 	async function stop_listening(): Promise<void> {
-		if(!web_speech) return
-		
+		if (!web_speech) return
+
 		web_speech.stop_recognition()
+		web_speech = undefined
 	}
 
 	function on_end(): void {
@@ -98,7 +103,7 @@
 	}
 
 	export async function text_to_speech(): Promise<void> {
-		if (body == '') return
+		if (body == '' || either_listening) return
 
 		audio_url = new TextToSpeechUrl(body, locale_code).url
 
@@ -160,10 +165,14 @@
 			{:else}
 				<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
 			{/if}
-			<IconButton onClickHandler={text_to_speech}><SpeakerIcon /></IconButton>
+			<div class="{either_listening ? 'fill-white/20' : ''}">
+				<IconButton onClickHandler={text_to_speech}><SpeakerIcon /></IconButton>
+			</div>
 		</div>
 		<div>
 			<IconButton onClickHandler={copy}><CopyIcon /></IconButton>
 		</div>
 	</div>
 </div>
+
+<audio class="hidden" src={audio_url} controls bind:this={audio_element} />
