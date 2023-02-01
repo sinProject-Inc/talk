@@ -17,10 +17,9 @@
 	import StopIcon from '../icons/stop_icon.svelte'
 
 	export let locale_select_element: HTMLSelectElement
-	export let speech_text_element: HTMLTextAreaElement
-
 	export let locale_code = LocaleCode.english_united_states
 
+	export let speech_text_element: HTMLTextAreaElement
 	export let body = ''
 
 	export let audio_element: HTMLAudioElement
@@ -34,7 +33,7 @@
 	let web_speech: WebSpeech | undefined
 
 	function speech_to_text(): void {
-		if (audio_element.paused == false) audio_element.pause()
+		if (!audio_element.paused) audio_element.pause()
 
 		listening = true
 
@@ -132,7 +131,10 @@
 	}
 
 	export function clear(): void {
+		if (body == '') return
+		
 		body = ''
+		dispatch_clear_command()
 	}
 
 	onMount(async () => {

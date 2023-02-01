@@ -7,9 +7,7 @@
 	import { Html } from '$lib/view/html'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale } from '@prisma/client'
-	import { ListeningStartedEvent } from 'microsoft-cognitiveservices-speech-sdk/distrib/lib/src/common.speech/RecognitionEvents'
 	import { onMount } from 'svelte'
-	import { listen } from 'svelte/internal'
 
 	export let data: PageData
 
@@ -104,9 +102,6 @@
 </svelte:head>
 
 <Header />
-{#if listening}
-LISTENING
-{/if}
 <div class="center-container my-4">
 	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
 		<select
