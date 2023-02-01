@@ -23,7 +23,7 @@
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import { TextId } from '$lib/text/text_id'
-	import Header from '$lib/components/header.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
 	import Divider from '$lib/components/divider.svelte'
 
 	export let data: PageData
@@ -258,7 +258,7 @@
 	<title>Talk</title>
 </svelte:head>
 
-<Header />
+<Navbar />
 <div class="center-container flex-auto">
 	<div class="pt-2 glass-panel mt-4 mb-8 flex flex-col gap-2">
 		<div class="px-5">
