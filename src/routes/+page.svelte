@@ -281,7 +281,7 @@
 				placeholder={$_('enter_new_text')}
 				bind:this={new_text_element}
 			/>
-			<IconButton onClickHandler={add_text}><AddIcon /></IconButton>
+			<IconButton on_click_handler={add_text}><AddIcon /></IconButton>
 		</div>
 		<div class="px-5">
 			<Divider />
@@ -318,7 +318,7 @@
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">
 				{$_('speech')}
-				<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
+				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
 			</div>
 			<div bind:this={speech_text_element} />
 		</div>
@@ -332,7 +332,7 @@
 				/>
 			</div>
 			<div class="flex flex-row gap-2 items-center">
-				<IconButton onClickHandler={show_translation}>
+				<IconButton on_click_handler={show_translation}>
 					<TranslateIcon />
 				</IconButton>
 				<div
@@ -349,7 +349,7 @@
 					placeholder={$_('enter_new_translation')}
 					bind:value={add_translation_string}
 				/>
-				<IconButton onClickHandler={add_translation}>
+				<IconButton on_click_handler={add_translation}>
 					<AddIcon />
 				</IconButton>
 			</div>

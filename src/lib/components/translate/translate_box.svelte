@@ -16,6 +16,9 @@
 	import CopyIcon from '../icons/copy_icon.svelte'
 	import StopIcon from '../icons/stop_icon.svelte'
 	import Snackbar from '../snackbar.svelte'
+	import { TextId } from '$lib/text/text_id'
+	import { SpeechText } from '$lib/speech/speech_text'
+	import { AddTextApi } from '$lib/text/add_text_api'
 
 	export let locale_select_element: HTMLSelectElement
 	export let locale_code = LocaleCode.english_united_states
@@ -78,6 +81,8 @@
 
 		body = output_translation_text.text
 
+		add_text()
+
 		if (play_audio) {
 			await text_to_speech()
 		}
@@ -91,8 +96,21 @@
 		return body
 	}
 
+	async function add_text(): Promise<void> {
+		if (!body) return
+
+		const speech_text = new SpeechText(body)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+		
+		await new AddTextApi(speech_language_code, speech_text).fetch()
+
+		return
+	}
+
 	function dispatch_body(): void {
 		if (!body) return
+
+		add_text()
 
 		dispatch('message', {
 			text: body,
