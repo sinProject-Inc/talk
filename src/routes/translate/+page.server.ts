@@ -7,7 +7,6 @@ export const load: PageServerLoad = async ({ url }) => {
 	const locales = await new LocalesApi(url.origin).fetch()
 
 	return { 
-		languages: JSON.stringify(languages),
 		locales: JSON.stringify(locales)
 	}
 }

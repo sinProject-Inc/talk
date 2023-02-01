@@ -1,8 +1,8 @@
 <script lang="ts">
-	export let onClickHandler: () => void = () => { return } 
+	export let on_click_handler: () => void = () => { return } 
 </script>
 
-<button on:click={onClickHandler} class="">
+<button on:click={on_click_handler} class="">
 	<div class="flex flex-row justify-center h-6 w-6">
 		<slot />
 	</div>

@@ -5,6 +5,7 @@ import { ApiPath } from '../api/api_path'
 
 export class TextToSpeechUrl {
 	public constructor(
+		// TODO: Fix this
 		private readonly _selected_text: Text | string,
 		private readonly _locale_code: LocaleCode
 	) {}

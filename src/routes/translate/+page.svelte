@@ -92,7 +92,6 @@
 		if (!browser) return
 
 		init_locale_select()
-
 		on_change_locale_select(false)
 	})
 </script>
@@ -111,7 +110,7 @@
 			bind:this={top_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
-		<IconButton onClickHandler={switch_locales}>⇆</IconButton>
+		<IconButton on_click_handler={switch_locales}>⇆</IconButton>
 		<select
 			class="outline-0 bg-transparent p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
 			name="language_2"

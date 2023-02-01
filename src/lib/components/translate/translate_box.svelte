@@ -29,6 +29,8 @@
 	export let listening = false
 	export let either_listening = false
 
+	const dispatch = createEventDispatcher()
+
 	let dispatch_timeout_id: ReturnType<typeof setTimeout>
 
 	let web_speech: WebSpeech | undefined
@@ -60,9 +62,7 @@
 
 		dispatch_body()
 	}
-
-	const dispatch = createEventDispatcher()
-
+	
 	export async function show_translation(text: string, play_audio = false): Promise<void> {
 		const source_translation_text = new TranslationText(text)
 		const language_code = SpeechLanguageCode.create(locale_code.code.split('-')[0])
@@ -89,7 +89,7 @@
 	}
 
 	function dispatch_body(): void {
-		if (body == '') return
+		if (!body) return
 
 		dispatch('message', {
 			text: body,
@@ -103,10 +103,11 @@
 	}
 
 	export async function text_to_speech(): Promise<void> {
-		if (body == '' || either_listening) return
+		if (!body || either_listening) return
 
 		audio_url = new TextToSpeechUrl(body, locale_code).url
-
+		
+		// Doesn't work without await
 		await audio_element.pause()
 		await audio_element.play()
 	}
@@ -114,7 +115,7 @@
 	function on_text_area_change(): void {
 		const throttle = 1000
 
-		if (body == '') {
+		if (!body) {
 			dispatch_clear_command()
 
 			return
@@ -132,7 +133,7 @@
 	}
 
 	export function clear(): void {
-		if (body == '') return
+		if (!body) return
 
 		body = ''
 		dispatch_clear_command()
@@ -164,16 +165,16 @@
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
 			{#if listening}
-				<IconButton onClickHandler={stop_listening}><StopIcon /></IconButton>
+				<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
 			{:else}
-				<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
+				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
 			{/if}
 			<div class={either_listening ? 'fill-white/20' : ''}>
-				<IconButton onClickHandler={text_to_speech}><SpeakerIcon /></IconButton>
+				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
 			</div>
 		</div>
 		<div>
-			<IconButton onClickHandler={copy}><CopyIcon /></IconButton>
+			<IconButton on_click_handler={copy}><CopyIcon /></IconButton>
 		</div>
 	</div>
 </div>
