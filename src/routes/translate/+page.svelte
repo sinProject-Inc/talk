@@ -24,9 +24,6 @@
 	let top_translate_box: TranslateBox
 	let bottom_translate_box: TranslateBox
 
-	let audio_element: HTMLAudioElement
-	let audio_url: string
-
 	let top_listening = false
 	let bottom_listening = false
 
@@ -124,8 +121,6 @@
 		<TranslateBox
 			locale_select_element={top_locale_select_element}
 			speech_text_element={from_language_text_element}
-			bind:audio_element
-			bind:audio_url
 			bind:this={top_translate_box}
 			bind:locale_code={top_locale_code}
 			bind:listening={top_listening}
@@ -137,8 +132,6 @@
 		<TranslateBox
 			locale_select_element={bottom_locale_select_element}
 			speech_text_element={to_language_text_element}
-			bind:audio_element
-			bind:audio_url
 			bind:this={bottom_translate_box}
 			bind:locale_code={bottom_locale_code}
 			bind:listening={bottom_listening}
@@ -149,5 +142,3 @@
 		/>
 	</div>
 </div>
-
-<audio class="hidden" src={audio_url} controls bind:this={audio_element} />

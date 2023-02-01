@@ -24,7 +24,6 @@ export class TextToSpeechUrl {
 				.connect('text-to-speech')
 				.connect_with_encoding(speech_text)
 				.connect(this._locale_code.code)
-
 			return api_path.get_url()
 		} catch (error) {
 			console.error(error)

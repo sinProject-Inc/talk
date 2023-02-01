@@ -23,6 +23,8 @@
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
 	import type { Text } from '@prisma/client'
 	import { text } from 'svelte/internal'
+	import { _ } from 'svelte-i18n'
+
 
 	export let locale_select_element: HTMLSelectElement
 	export let locale_code = LocaleCode.english_united_states
@@ -31,8 +33,7 @@
 
 	let body = ''
 
-	export let audio_element: HTMLAudioElement
-	export let audio_url: string
+	let audio_element: HTMLAudioElement
 
 	export let listening = false
 	export let either_listening = false
@@ -49,6 +50,11 @@
 
 	function speech_to_text(): void {
 		if (!audio_element.paused) audio_element.pause()
+		
+		body = ''
+		dispatch_clear_command()
+
+		speech_text_element.placeholder = $_('recognizing')
 
 		listening = true
 
@@ -70,9 +76,10 @@
 	async function on_end(): Promise<void> {
 		listening = false
 
-		add_text(speech_text_element.value).then(() => {
-			dispatch_body_text()
-		})
+		speech_text_element.placeholder = ''
+
+		await add_text(speech_text_element.value)
+		await dispatch_body_text()		
 	}
 
 	async function find_translation(text_id: TextId): Promise<string[]> {
@@ -111,9 +118,9 @@
 			await new AddTranslationApi(id, speech_language_code, output_translation_text).fetch()
 
 			body = output_translation_text.text
-			
-			await add_text(body)
 		}
+
+		await add_text(body)
 
 		if (play_audio) {
 			await text_to_speech()
@@ -142,9 +149,6 @@
 
 	async function dispatch_body_text(): Promise<void> {
 		if (!body) return
-
-		await add_text(body)
-
 		if (!body_text) return
 
 		dispatch('message', {
@@ -159,14 +163,13 @@
 		})
 	}
 
-	export async function text_to_speech(): Promise<void> {
+	async function text_to_speech(): Promise<void> {
 		if (!body_text || either_listening) return
-
-		audio_url = new TextToSpeechUrl(body_text, locale_code).url
 
 		// Doesn't work without await
 		await audio_element.pause()
 		audio_element.currentTime = 0
+		audio_element.src = new TextToSpeechUrl(body_text, locale_code).url
 		await audio_element.play()
 	}
 
@@ -181,7 +184,8 @@
 
 		clearTimeout(dispatch_timeout_id)
 
-		dispatch_timeout_id = setTimeout(() => {
+		dispatch_timeout_id = setTimeout(async () => {
+			await add_text(body)
 			dispatch_body_text()
 		}, throttle)
 	}
@@ -242,4 +246,4 @@
 </div>
 <Snackbar text="Copied" visible={snackbar_visible} />
 
-<audio class="hidden" src={audio_url} controls bind:this={audio_element} />
+<audio class="hidden" controls bind:this={audio_element} />
