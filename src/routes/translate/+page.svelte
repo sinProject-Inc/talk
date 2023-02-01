@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import Header from '$lib/components/header.svelte'
+	import SwapIcon from '$lib/components/icons/swap_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
 	import { LocaleCode } from '$lib/language/locale_code'
@@ -110,7 +111,7 @@
 			bind:this={top_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
-		<IconButton on_click_handler={switch_locales}>⇆</IconButton>
+		<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
 		<select
 			class="outline-0 bg-transparent p-2 h-full text-center hover:scale-110 transition-all duration-300 grow appearance-none"
 			name="language_2"

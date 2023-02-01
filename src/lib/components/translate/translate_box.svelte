@@ -15,6 +15,7 @@
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import CopyIcon from '../icons/copy_icon.svelte'
 	import StopIcon from '../icons/stop_icon.svelte'
+	import Snackbar from '../snackbar.svelte'
 
 	export let locale_select_element: HTMLSelectElement
 	export let locale_code = LocaleCode.english_united_states
@@ -28,6 +29,8 @@
 
 	export let listening = false
 	export let either_listening = false
+
+	let snackbar_visible = false
 
 	const dispatch = createEventDispatcher()
 
@@ -62,7 +65,7 @@
 
 		dispatch_body()
 	}
-	
+
 	export async function show_translation(text: string, play_audio = false): Promise<void> {
 		const source_translation_text = new TranslationText(text)
 		const language_code = SpeechLanguageCode.create(locale_code.code.split('-')[0])
@@ -106,9 +109,10 @@
 		if (!body || either_listening) return
 
 		audio_url = new TextToSpeechUrl(body, locale_code).url
-		
+
 		// Doesn't work without await
 		await audio_element.pause()
+		audio_element.currentTime = 0
 		await audio_element.play()
 	}
 
@@ -130,6 +134,12 @@
 
 	function copy(): void {
 		navigator.clipboard.writeText(body)
+
+		snackbar_visible = true
+
+		setTimeout(() => {
+			snackbar_visible = false
+		}, 2000)
 	}
 
 	export function clear(): void {
@@ -146,12 +156,10 @@
 
 <div class="glass-panel">
 	<div class="grid">
-		<div class="z-10 flex justify-end h-9 pr-[14px] pt-2" style="grid-area: 1/8/1/9">
-			<button class="p-0" on:click={clear}>
-				<div class="w-5 fill-white/90">
-					<CloseIcon />
-				</div>
-			</button>
+		<div class="z-10 flex justify-end h-9 pr-[24px] pt-1" style="grid-area: 1/8/1/9">
+			<div class="w-5">
+				<IconButton on_click_handler={clear}><CloseIcon /></IconButton>
+			</div>
 		</div>
 		<textarea
 			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
@@ -178,5 +186,6 @@
 		</div>
 	</div>
 </div>
+<Snackbar text="Copied" visible={snackbar_visible} />
 
 <audio class="hidden" src={audio_url} controls bind:this={audio_element} />
