@@ -20,6 +20,7 @@
 	export let locale_code = LocaleCode.english_united_states
 
 	export let speech_text_element: HTMLTextAreaElement
+
 	export let body = ''
 
 	export let audio_element: HTMLAudioElement
@@ -132,7 +133,7 @@
 
 	export function clear(): void {
 		if (body == '') return
-		
+
 		body = ''
 		dispatch_clear_command()
 	}
@@ -167,7 +168,7 @@
 			{:else}
 				<IconButton onClickHandler={speech_to_text}><VoiceIcon /></IconButton>
 			{/if}
-			<div class="{either_listening ? 'fill-white/20' : ''}">
+			<div class={either_listening ? 'fill-white/20' : ''}>
 				<IconButton onClickHandler={text_to_speech}><SpeakerIcon /></IconButton>
 			</div>
 		</div>
