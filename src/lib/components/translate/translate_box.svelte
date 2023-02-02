@@ -33,7 +33,7 @@
 
 	let body = ''
 
-	let audio_element: HTMLAudioElement
+	export let audio_element: HTMLAudioElement
 
 	export let listening = false
 	export let either_listening = false
@@ -245,5 +245,3 @@
 	</div>
 </div>
 <Snackbar text="Copied" visible={snackbar_visible} />
-
-<audio class="hidden" controls bind:this={audio_element} />
