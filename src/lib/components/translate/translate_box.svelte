@@ -16,19 +16,29 @@
 	import CopyIcon from '../icons/copy_icon.svelte'
 	import StopIcon from '../icons/stop_icon.svelte'
 	import Snackbar from '../snackbar.svelte'
+	import { TextId } from '$lib/text/text_id'
+	import { SpeechText } from '$lib/speech/speech_text'
+	import { AddTextApi } from '$lib/text/add_text_api'
+	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import { AddTranslationApi } from '$lib/translation/add_translation_api'
+	import type { Text } from '@prisma/client'
+	import { text } from 'svelte/internal'
+	import { _ } from 'svelte-i18n'
+
 
 	export let locale_select_element: HTMLSelectElement
 	export let locale_code = LocaleCode.english_united_states
 
 	export let speech_text_element: HTMLTextAreaElement
 
-	export let body = ''
+	let body = ''
 
 	export let audio_element: HTMLAudioElement
-	export let audio_url: string
 
 	export let listening = false
 	export let either_listening = false
+
+	let body_text: Text | undefined
 
 	let snackbar_visible = false
 
@@ -40,6 +50,11 @@
 
 	function speech_to_text(): void {
 		if (!audio_element.paused) audio_element.pause()
+		
+		body = ''
+		dispatch_clear_command()
+
+		speech_text_element.placeholder = $_('recognizing')
 
 		listening = true
 
@@ -58,44 +73,87 @@
 		web_speech = undefined
 	}
 
-	function on_end(): void {
+	async function on_end(): Promise<void> {
 		listening = false
 
-		body = speech_text_element.value
+		speech_text_element.placeholder = ''
 
-		dispatch_body()
+		await add_text(speech_text_element.value)
+		await dispatch_body_text()		
 	}
 
-	export async function show_translation(text: string, play_audio = false): Promise<void> {
-		const source_translation_text = new TranslationText(text)
-		const language_code = SpeechLanguageCode.create(locale_code.code.split('-')[0])
-		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
+	async function find_translation(text_id: TextId): Promise<string[]> {
+		if (!text) return []
 
-		const output_translation_text = await new TranslateWithGoogleAdvancedApi(
-			source_translation_text,
-			app_locale_code
-		).fetch()
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
-		body = output_translation_text.text
+		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
+		const translations = translation_texts.map((translation_text) => translation_text.text)
+
+		return translations
+	}
+
+	export async function show_translation(
+		partner_body: string,
+		text_id: number,
+		play_audio = false
+	): Promise<void> {
+		const id = new TextId(text_id)
+
+		const find_translation_result = await find_translation(id)
+
+		if (find_translation_result.length > 0) {
+			body = find_translation_result[0]
+		} else {
+			const source_translation_text = new TranslationText(partner_body)
+			const language_code = SpeechLanguageCode.create(locale_code.code.split('-')[0])
+			const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
+			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
+				source_translation_text,
+				app_locale_code
+			).fetch()
+
+			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+			await new AddTranslationApi(id, speech_language_code, output_translation_text).fetch()
+
+			body = output_translation_text.text
+		}
+
+		await add_text(body)
 
 		if (play_audio) {
 			await text_to_speech()
 		}
 	}
 
-	export function set_body(text: string): void {
-		body = text
+	export function set_body_text(text: Text | undefined): void {
+		body_text = text
+		body = text ? text.text : ''
 	}
 
-	export function get_body(): string {
-		return body
+	export function get_body_text(): Text | undefined {
+		return body_text
 	}
 
-	function dispatch_body(): void {
+	async function add_text(body_to_add: string): Promise<void> {		
+		const speech_text = new SpeechText(body_to_add)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+		body_text = await new AddTextApi(speech_language_code, speech_text).fetch()
+		
+		body = body_text.text
+
+		return
+	}
+
+	async function dispatch_body_text(): Promise<void> {
 		if (!body) return
+		if (!body_text) return
 
 		dispatch('message', {
-			text: body,
+			body: body_text.text,
+			text_id: body_text.id,
 		})
 	}
 
@@ -105,14 +163,13 @@
 		})
 	}
 
-	export async function text_to_speech(): Promise<void> {
-		if (!body || either_listening) return
-
-		audio_url = new TextToSpeechUrl(body, locale_code).url
+	async function text_to_speech(): Promise<void> {
+		if (!body_text || either_listening) return
 
 		// Doesn't work without await
 		await audio_element.pause()
 		audio_element.currentTime = 0
+		audio_element.src = new TextToSpeechUrl(body_text, locale_code).url
 		await audio_element.play()
 	}
 
@@ -127,8 +184,9 @@
 
 		clearTimeout(dispatch_timeout_id)
 
-		dispatch_timeout_id = setTimeout(() => {
-			dispatch_body()
+		dispatch_timeout_id = setTimeout(async () => {
+			await add_text(body)
+			dispatch_body_text()
 		}, throttle)
 	}
 
@@ -187,5 +245,3 @@
 	</div>
 </div>
 <Snackbar text="Copied" visible={snackbar_visible} />
-
-<audio class="hidden" src={audio_url} controls bind:this={audio_element} />

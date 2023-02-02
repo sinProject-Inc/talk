@@ -25,7 +25,6 @@
 	let bottom_translate_box: TranslateBox
 
 	let audio_element: HTMLAudioElement
-	let audio_url: string
 
 	let top_listening = false
 	let bottom_listening = false
@@ -64,8 +63,8 @@
 	function on_message(event: any, sender: TranslateBox, recipient?: TranslateBox): void {
 		if (!recipient) return
 
-		if (event.detail.text) {
-			recipient.show_translation(event.detail.text, true)
+		if (event.detail.body) {
+			recipient.show_translation(event.detail.body, event.detail.text_id, true)
 		} 
 		
 		if (event.detail.clear) {
@@ -80,11 +79,11 @@
 		top_locale_select_element.value = bottom_locale
 		bottom_locale_select_element.value = top_locale
 
-		const top_text = top_translate_box.get_body()
-		const bottom_text = bottom_translate_box.get_body()
+		const top_text = top_translate_box.get_body_text()
+		const bottom_text = bottom_translate_box.get_body_text()
 
-		top_translate_box.set_body(bottom_text)
-		bottom_translate_box.set_body(top_text)
+		top_translate_box.set_body_text(bottom_text)
+		bottom_translate_box.set_body_text(top_text)
 
 		on_change_locale_select()
 	}
@@ -124,9 +123,8 @@
 		<TranslateBox
 			locale_select_element={top_locale_select_element}
 			speech_text_element={from_language_text_element}
-			bind:audio_element
-			bind:audio_url
 			bind:this={top_translate_box}
+			bind:audio_element={audio_element}
 			bind:locale_code={top_locale_code}
 			bind:listening={top_listening}
 			bind:either_listening={listening}
@@ -137,9 +135,9 @@
 		<TranslateBox
 			locale_select_element={bottom_locale_select_element}
 			speech_text_element={to_language_text_element}
-			bind:audio_element
-			bind:audio_url
+			
 			bind:this={bottom_translate_box}
+			bind:audio_element={audio_element}
 			bind:locale_code={bottom_locale_code}
 			bind:listening={bottom_listening}
 			bind:either_listening={listening}
@@ -150,4 +148,4 @@
 	</div>
 </div>
 
-<audio class="hidden" src={audio_url} controls bind:this={audio_element} />
+<audio class="hidden" controls bind:this={audio_element} />

@@ -1,3 +1,4 @@
+import type { LocaleCode } from "$lib/language/locale_code"
 
 export class SpeechLanguageCode {
 	private readonly _speech_language_code: undefined
@@ -32,6 +33,13 @@ export class SpeechLanguageCode {
 		}
 
 		return found
+	}
+
+	public static create_from_locale_code(locale_code: LocaleCode): SpeechLanguageCode {
+		const language_code = locale_code.code.split('-')[0]
+		const speech_language_code = SpeechLanguageCode.create(language_code)
+
+		return speech_language_code
 	}
 
 	public get code(): string {
