@@ -63,8 +63,8 @@
 	function on_message(event: any, sender: TranslateBox, recipient?: TranslateBox): void {
 		if (!recipient) return
 
-		if (event.detail.body) {
-			recipient.show_translation(event.detail.body, event.detail.text_id, true)
+		if (event.detail.text) {
+			recipient.show_translation(event.detail.text, true)
 		} 
 		
 		if (event.detail.clear) {
@@ -79,11 +79,11 @@
 		top_locale_select_element.value = bottom_locale
 		bottom_locale_select_element.value = top_locale
 
-		const top_text = top_translate_box.get_body_text()
-		const bottom_text = bottom_translate_box.get_body_text()
+		const top_text = top_translate_box.get_text()
+		const bottom_text = bottom_translate_box.get_text()
 
-		top_translate_box.set_body_text(bottom_text)
-		bottom_translate_box.set_body_text(top_text)
+		top_translate_box.set_text(bottom_text)
+		bottom_translate_box.set_text(top_text)
 
 		on_change_locale_select()
 	}

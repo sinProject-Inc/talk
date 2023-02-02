@@ -22,7 +22,6 @@
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
 	import type { Text } from '@prisma/client'
-	import { text } from 'svelte/internal'
 	import { _ } from 'svelte-i18n'
 
 
@@ -31,14 +30,14 @@
 
 	export let speech_text_element: HTMLTextAreaElement
 
-	let body = ''
-
 	export let audio_element: HTMLAudioElement
 
 	export let listening = false
 	export let either_listening = false
 
-	let body_text: Text | undefined
+	let textarea_body = ''
+
+	let text: Text | undefined
 
 	let snackbar_visible = false
 
@@ -51,7 +50,7 @@
 	function speech_to_text(): void {
 		if (!audio_element.paused) audio_element.pause()
 		
-		body = ''
+		textarea_body = ''
 		dispatch_clear_command()
 
 		speech_text_element.placeholder = $_('recognizing')
@@ -63,7 +62,7 @@
 		const recognizing_message = new Message('Recognizing')
 		web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
-		web_speech.recognition(locale_code, on_end, true)
+		web_speech.recognition(locale_code, on_finish_listening, true)
 	}
 
 	async function stop_listening(): Promise<void> {
@@ -73,39 +72,37 @@
 		web_speech = undefined
 	}
 
-	async function on_end(): Promise<void> {
+	async function on_finish_listening(): Promise<void> {
 		listening = false
 
 		speech_text_element.placeholder = ''
 
 		await add_text(speech_text_element.value)
-		await dispatch_body_text()		
+		await dispatch_text()		
 	}
 
-	async function find_translation(text_id: TextId): Promise<string[]> {
+	async function find_translation(text_id: TextId): Promise<Text[]> {
 		if (!text) return []
 
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
 		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
-		const translations = translation_texts.map((translation_text) => translation_text.text)
 
-		return translations
+		return translation_texts
 	}
 
 	export async function show_translation(
-		partner_body: string,
-		text_id: number,
+		text: Text,
 		play_audio = false
 	): Promise<void> {
-		const id = new TextId(text_id)
+		const id = new TextId(text.id)
 
 		const find_translation_result = await find_translation(id)
 
 		if (find_translation_result.length > 0) {
-			body = find_translation_result[0]
+			textarea_body = find_translation_result[0].text
 		} else {
-			const source_translation_text = new TranslationText(partner_body)
+			const source_translation_text = new TranslationText(text.text)
 			const language_code = SpeechLanguageCode.create(locale_code.code.split('-')[0])
 			const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
 			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
@@ -117,43 +114,42 @@
 
 			await new AddTranslationApi(id, speech_language_code, output_translation_text).fetch()
 
-			body = output_translation_text.text
+			textarea_body = output_translation_text.text
 		}
 
-		await add_text(body)
+		await add_text(textarea_body)
 
 		if (play_audio) {
 			await text_to_speech()
 		}
 	}
 
-	export function set_body_text(text: Text | undefined): void {
-		body_text = text
-		body = text ? text.text : ''
+	export function set_text(new_text: Text | undefined): void {
+		text = new_text
+		textarea_body = text ? text.text : ''
 	}
 
-	export function get_body_text(): Text | undefined {
-		return body_text
+	export function get_text(): Text | undefined {
+		return text
 	}
 
-	async function add_text(body_to_add: string): Promise<void> {		
-		const speech_text = new SpeechText(body_to_add)
+	async function add_text(textarea_body_to_add: string): Promise<void> {		
+		const speech_text = new SpeechText(textarea_body_to_add)
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
-		body_text = await new AddTextApi(speech_language_code, speech_text).fetch()
+		text = await new AddTextApi(speech_language_code, speech_text).fetch()
 		
-		body = body_text.text
+		textarea_body = text.text
 
 		return
 	}
 
-	async function dispatch_body_text(): Promise<void> {
-		if (!body) return
-		if (!body_text) return
+	async function dispatch_text(): Promise<void> {
+		if (!textarea_body) return
+		if (!text) return
 
 		dispatch('message', {
-			body: body_text.text,
-			text_id: body_text.id,
+			text: text,
 		})
 	}
 
@@ -164,19 +160,21 @@
 	}
 
 	async function text_to_speech(): Promise<void> {
-		if (!body_text || either_listening) return
+		if (!text) return
+
+		if(either_listening) return
 
 		// Doesn't work without await
 		await audio_element.pause()
 		audio_element.currentTime = 0
-		audio_element.src = new TextToSpeechUrl(body_text, locale_code).url
+		audio_element.src = new TextToSpeechUrl(text, locale_code).url
 		await audio_element.play()
 	}
 
 	function on_text_area_change(): void {
 		const throttle = 1000
 
-		if (!body) {
+		if (!textarea_body) {
 			dispatch_clear_command()
 
 			return
@@ -185,13 +183,13 @@
 		clearTimeout(dispatch_timeout_id)
 
 		dispatch_timeout_id = setTimeout(async () => {
-			await add_text(body)
-			dispatch_body_text()
+			await add_text(textarea_body)
+			dispatch_text()
 		}, throttle)
 	}
 
 	function copy(): void {
-		navigator.clipboard.writeText(body)
+		navigator.clipboard.writeText(textarea_body)
 
 		snackbar_visible = true
 
@@ -201,9 +199,9 @@
 	}
 
 	export function clear(): void {
-		if (!body) return
+		if (!textarea_body) return
 
-		body = ''
+		textarea_body = ''
 		dispatch_clear_command()
 	}
 
@@ -224,7 +222,7 @@
 			style="grid-area: 1/1/2/9"
 			rows="7"
 			bind:this={speech_text_element}
-			bind:value={body}
+			bind:value={textarea_body}
 			on:input={on_text_area_change}
 		/>
 	</div>
