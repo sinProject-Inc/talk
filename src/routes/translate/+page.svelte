@@ -11,6 +11,8 @@
 	import { onMount } from 'svelte'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import CloseIcon from '$lib/components/icons/close_icon.svelte'
+	import { DeleteTextApi } from '$lib/text/delete_text_api'
 
 	export let data: PageData
 
@@ -106,7 +108,7 @@
 
 	async function fetch_history(): Promise<void> {
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(top_locale_code)
-		
+
 		text_history = await new TextsApi(speech_language_code, 10).fetch()
 	}
 
@@ -120,6 +122,12 @@
 	async function on_click_text(text: Text): Promise<void> {
 		await top_translate_box.add_text(text.text)
 		await bottom_translate_box.show_translation(text)
+	}
+
+	async function delete_text(text: Text): Promise<void> {
+		await new DeleteTextApi(text).fetch()
+
+		await fetch_history()
 	}
 </script>
 
@@ -171,20 +179,26 @@
 				on_message(event, bottom_translate_box, top_translate_box)
 			}}
 		/>
-		<div class="main-box history-box glass-panel h-[calc((100vh-190px)/3)] flex flex-col {text_history.length > 0 ? 'visible' : 'invisible' }">
+		<div
+			class="main-box history-box glass-panel h-[calc((100vh-190px)/3)] flex flex-col {text_history.length >
+			0
+				? 'visible'
+				: 'invisible'}"
+		>
 			<h2 class="title px-5 py-2">History</h2>
 			<div class="overflow-auto">
 				{#each text_history as text, i}
 					<div
-						class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text ==
+						class="group text cursor-pointer transition pl-5 hover:bg-white/10 flex justify-between ´{selected_text ==
 						text
 							? 'bg-white/10'
 							: 'bg-inherit'} {i == text_history.length - 1 ? 'rounded-b-md' : ''}"
 						id={text.id.toString()}
-						on:click={() => on_click_text(text)}
-						on:keydown
 					>
-						{text.text}
+						<div class="py-[10px] w-full" on:click={() => on_click_text(text)}>{text.text}</div>
+						<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible">
+							<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
+						</div>
 					</div>
 				{/each}
 			</div>

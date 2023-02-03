@@ -52,4 +52,15 @@ export class TextDb {
 
 		return result
 	}
+
+	public async delete(text_id: TextId): Promise<Text> {
+		await App.db.textToText.deleteMany({ where: { text_id_1: text_id.id } })
+
+		await App.db.textToText.deleteMany({ where: { text_id_2: text_id.id } })
+
+		const result = await App.db.text.delete({ where: { id: text_id.id } })
+
+		return result
+	}
+
 }
