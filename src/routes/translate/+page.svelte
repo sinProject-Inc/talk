@@ -13,6 +13,7 @@
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
+	import TextListText from '$lib/components/text_list_text.svelte'
 
 	export let data: PageData
 
@@ -188,18 +189,14 @@
 			<h2 class="title px-5 py-2">History</h2>
 			<div class="overflow-auto">
 				{#each text_history as text, i}
-					<div
-						class="group text cursor-pointer transition pl-5 hover:bg-white/10 flex justify-between ´{selected_text ==
-						text
-							? 'bg-white/10'
-							: 'bg-inherit'} {i == text_history.length - 1 ? 'rounded-b-md' : ''}"
-						id={text.id.toString()}
-					>
-						<div class="py-[10px] w-full" on:click={() => on_click_text(text)}>{text.text}</div>
-						<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible">
-							<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
-						</div>
-					</div>
+					<TextListText
+						texts={text_history}
+						{text}
+						{i}
+						{selected_text}
+						on_click_text={() => on_click_text(text)}
+						delete_text={() => delete_text(text)}
+					/>
 				{/each}
 			</div>
 		</div>
