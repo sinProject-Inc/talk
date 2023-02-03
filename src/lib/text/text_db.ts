@@ -12,10 +12,11 @@ export class TextDb {
 		return text
 	}
 
-	public async find_many(speech_language_code: SpeechLanguageCode): Promise<Text[]> {
+	public async find_many(speech_language_code: SpeechLanguageCode, limit?: number): Promise<Text[]> {
 		const texts = await App.db.text.findMany({
 			where: { language: { code: speech_language_code.code } },
 			orderBy: { updated_at: 'desc' },
+			...(limit && { take: limit }),
 		})
 
 		return texts

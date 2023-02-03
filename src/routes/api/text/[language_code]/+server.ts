@@ -9,7 +9,12 @@ export const GET: RequestHandler = async ({ url, params }): Promise<Response> =>
 		const speech_language_code = SpeechLanguageCode.create(params.language_code)
 
 		const text_db = new TextDb()
-		const texts = await text_db.find_many(speech_language_code)
+
+		const limit = url.searchParams.get('limit')
+		const limit_number = limit ? Number(limit) : undefined
+
+		const texts = await text_db.find_many(speech_language_code, limit_number)
+
 		const response = json(texts)
 
 		return response

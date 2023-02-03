@@ -24,7 +24,6 @@
 	import type { Text } from '@prisma/client'
 	import { _ } from 'svelte-i18n'
 
-
 	export let locale_select_element: HTMLSelectElement
 	export let locale_code = LocaleCode.english_united_states
 
@@ -49,7 +48,7 @@
 
 	function speech_to_text(): void {
 		if (!audio_element.paused) audio_element.pause()
-		
+
 		textarea_body = ''
 		dispatch_clear_command()
 
@@ -78,7 +77,7 @@
 		speech_text_element.placeholder = ''
 
 		await add_text(speech_text_element.value)
-		await dispatch_text()		
+		await dispatch_text()
 	}
 
 	async function find_translation(text_id: TextId): Promise<Text[]> {
@@ -91,10 +90,7 @@
 		return translation_texts
 	}
 
-	export async function show_translation(
-		text: Text,
-		play_audio = false
-	): Promise<void> {
+	export async function show_translation(text: Text, play_audio = false): Promise<void> {
 		const id = new TextId(text.id)
 
 		const find_translation_result = await find_translation(id)
@@ -133,13 +129,15 @@
 		return text
 	}
 
-	async function add_text(textarea_body_to_add: string): Promise<void> {		
+	export async function add_text(textarea_body_to_add: string): Promise<void> {
 		const speech_text = new SpeechText(textarea_body_to_add)
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
 		text = await new AddTextApi(speech_language_code, speech_text).fetch()
-		
+
 		textarea_body = text.text
+
+		dispatch_fetch_history_command()
 
 		return
 	}
@@ -159,16 +157,28 @@
 		})
 	}
 
-	async function text_to_speech(): Promise<void> {
+	function dispatch_fetch_history_command(): void {
+		dispatch('message', {
+			fetch_history: true,
+		})
+	}
+
+	export async function text_to_speech(): Promise<void> {
 		if (!text) return
 
-		if(either_listening) return
+		if (either_listening) return
 
 		// Doesn't work without await
-		await audio_element.pause()
+		if (!audio_element.paused) audio_element.pause()
 		audio_element.currentTime = 0
 		audio_element.src = new TextToSpeechUrl(text, locale_code).url
-		await audio_element.play()
+
+		try {
+			await audio_element.play()
+		} catch (error: any) {
+			if (error.code == 20) return
+			console.error(error)
+		}
 	}
 
 	function on_text_area_change(): void {
@@ -210,17 +220,16 @@
 	})
 </script>
 
-<div class="glass-panel">
-	<div class="grid">
-		<div class="z-10 flex justify-end h-9 pr-[24px] pt-1" style="grid-area: 1/8/1/9">
+<div class="main-box glass-panel h-[calc((100vh-190px)/3)]">
+	<div class="grid h-full -mb-11 pb-11">
+		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
 				<IconButton on_click_handler={clear}><CloseIcon /></IconButton>
 			</div>
 		</div>
 		<textarea
 			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
-			style="grid-area: 1/1/2/9"
-			rows="7"
+			style="grid-area: 1/1/10/9"
 			bind:this={speech_text_element}
 			bind:value={textarea_body}
 			on:input={on_text_area_change}
