@@ -66,9 +66,8 @@
 		}
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	async function on_message(
-		event: any,
+		event: CustomEvent,
 		sender: TranslateBox,
 		recipient?: TranslateBox
 	): Promise<void> {
@@ -120,6 +119,12 @@
 	async function on_click_text(text: Text): Promise<void> {
 		await top_translate_box.add_text(text.text)
 		await bottom_translate_box.show_translation(text)
+	}
+
+	function is_element_last<T>(array: Array<T>, element: T): boolean {
+		const is_last = array[array.length - 1] === element
+
+		return is_last
 	}
 </script>
 
@@ -179,7 +184,7 @@
 						class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text ==
 						text
 							? 'bg-white/10'
-							: 'bg-inherit'} {i == text_history.length - 1 ? 'rounded-b-md' : ''}"
+							: 'bg-inherit'} {is_element_last(text_history, text) ? 'rounded-b-md' : ''}"
 						id={text.id.toString()}
 						on:click={() => on_click_text(text)}
 						on:keydown

@@ -1,6 +1,7 @@
 import { TextDb } from '$lib/text/text_db'
 import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 import { json, type RequestHandler } from '@sveltejs/kit'
+import { TextLimit } from '$lib/text/text_limit'
 
 export const GET: RequestHandler = async ({ url, params }): Promise<Response> => {
 	console.info(url.href)
@@ -10,10 +11,10 @@ export const GET: RequestHandler = async ({ url, params }): Promise<Response> =>
 
 		const text_db = new TextDb()
 
-		const limit = url.searchParams.get('limit')
-		const limit_number = limit ? Number(limit) : undefined
+		const limit_string = url.searchParams.get('limit')
+		const limit = TextLimit.from_string(limit_string)
 
-		const texts = await text_db.find_many(speech_language_code, limit_number)
+		const texts = await text_db.find_many(speech_language_code, limit)
 
 		const response = json(texts)
 
