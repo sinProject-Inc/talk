@@ -228,7 +228,7 @@
 			</div>
 		</div>
 		<textarea
-			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+			class="text-area pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
 			bind:this={speech_text_element}
 			bind:value={textarea_body}
