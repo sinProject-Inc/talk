@@ -27,6 +27,6 @@ init({
 
 if (import.meta.vitest) {
 	test('get_initial_app_locale_code', () => {
-		expect(get_initial_app_locale_code().code).toBe('en1')
+		expect(get_initial_app_locale_code().code).toBe('en')
 	})
 }
