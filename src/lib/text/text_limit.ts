@@ -11,7 +11,7 @@ export class TextLimit {
 		this._limit = valid_limit.id
 	}
 
-	public static from_string(limit_string: string | undefined | null): TextLimit {
+	public static from_string(limit_string: string | undefined): TextLimit {
 		const valid_limit = new ValidText(limit_string)
 		const id_number = Number(valid_limit.text)
 		const text_limit = new TextLimit(id_number)
