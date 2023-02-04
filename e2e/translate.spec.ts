@@ -128,6 +128,24 @@ test('switching locale switches displayed history language', async ({ page }) =>
 	await expect(first_history_text).toHaveText("こんにちは")
 })
 
+test('clearing text and then switching languages should keep boxes cleared', async ({ page }) => {
+	await page.locator('.text-area').first().fill('Hello');
+	
+	const top_textarea = page.getByRole('textbox').nth(0)
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveValue("こんにちは")
+
+	await page.locator('.text-area').first().fill('');
+
+	await expect(bottom_textarea).toHaveValue('')
+
+	await page.locator('.language-switcher').first().click()
+
+	await expect(top_textarea).toHaveValue('')
+	await expect(bottom_textarea).toHaveValue('')
+})
+
 async function clear_text(page: Page): Promise<void> {
 	await page.reload()
 

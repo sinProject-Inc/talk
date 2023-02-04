@@ -150,7 +150,9 @@
 			bind:this={from_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
-		<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+		<div class="language-switcher">
+			<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+		</div>
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"

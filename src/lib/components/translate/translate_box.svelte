@@ -202,6 +202,8 @@
 	}
 
 	export function clear(): void {
+		text = undefined
+		
 		if (!textarea_body) return
 
 		textarea_body = ''
