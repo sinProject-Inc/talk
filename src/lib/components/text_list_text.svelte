@@ -18,10 +18,10 @@
 		: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
-	<div class="py-[10px] w-full" on:click={() => on_click_text(text)} on:keydown>
+	<div class="text-body py-[10px] w-full" on:click={() => on_click_text(text)} on:keydown>
 		{text.text}
 	</div>
-	<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible">
+	<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible delete-button">
 		<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
 	</div>
 </div>

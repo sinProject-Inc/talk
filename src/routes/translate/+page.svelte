@@ -11,9 +11,9 @@
 	import { onMount } from 'svelte'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
-	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
 	import TextListText from '$lib/components/text_list_text.svelte'
+	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
 
 	export let data: PageData
 
@@ -36,6 +36,8 @@
 
 	let text_history: Text[] = []
 	let selected_text: Text | undefined
+
+	let confirming_delete_text: Text | undefined
 
 	$: listening = top_listening || bottom_listening
 
@@ -125,7 +127,9 @@
 		await bottom_translate_box.show_translation(text)
 	}
 
-	async function delete_text(text: Text): Promise<void> {
+	async function delete_text(text?: Text): Promise<void> {
+		if (!text) return
+
 		await new DeleteTextApi(text).fetch()
 
 		await fetch_history()
@@ -195,7 +199,7 @@
 						{i}
 						{selected_text}
 						on_click_text={() => on_click_text(text)}
-						delete_text={() => delete_text(text)}
+						delete_text={() => confirming_delete_text = text}
 					/>
 				{/each}
 			</div>
@@ -204,3 +208,9 @@
 </div>
 
 <audio class="hidden" controls bind:this={audio_element} />
+{#if confirming_delete_text}
+	<ConfirmDeleteModal
+		on:close={() => { confirming_delete_text = undefined }}
+		on:confirm_delete={() => { delete_text(confirming_delete_text) }}
+	/>
+{/if}

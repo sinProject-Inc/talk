@@ -94,6 +94,38 @@ test('check if having 10 texts in history shows box', async ({ page }) => {
 	await expect(history_box).toBeVisible()
 })
 
+test('deletion of text in history', async ({ page }) => {
+	const history_text = page.locator('.text').first()
+
+	await history_text.evaluate((element) => {
+		element.classList.add('delete-test')
+	})
+		
+	await history_text.hover()
+
+	const delete_button = history_text.locator('.delete-button').locator('button')
+	await delete_button.click()
+
+	await page.locator('.delete-confirm').click()
+
+	await expect(page.locator('.delete-test')).not.toBeVisible()
+})
+
+test('deletion and cancellation of text in history', async ({ page }) => {
+	await clear_text(page)
+	await fulfill_mock_text(page, 10)
+
+	const history_text = page.locator('.text').first()
+	await history_text.hover()
+
+	const delete_button = history_text.locator('.delete-button').locator('button')
+	await delete_button.click()
+
+	await page.locator('.delete-cancel').click()
+
+	await expect(history_text).toBeVisible()
+})
+
 async function init_db(page: Page): Promise<void> {
 	await page.goto(host + '/init-db')
 }
