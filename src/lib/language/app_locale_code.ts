@@ -6,6 +6,7 @@ export class AppLocaleCode {
 
 	public static readonly english = new AppLocaleCode('en')
 	public static readonly japanese = new AppLocaleCode('ja')
+	// TODO: html lang の確認
 	public static readonly chinese_taiwan = new AppLocaleCode('zh-TW')
 	public static readonly korean = new AppLocaleCode('ko')
 	public static readonly khmer = new AppLocaleCode('km')
@@ -27,6 +28,8 @@ export class AppLocaleCode {
 
 		if (!trimmed_locale_code) {
 			this._code = AppLocaleCode.default.code
+		} else if (trimmed_locale_code.startsWith('zh')) {
+			this._code = trimmed_locale_code
 		} else {
 			const language_code = trimmed_locale_code.toLowerCase().split('-')[0]
 
