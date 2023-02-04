@@ -125,7 +125,7 @@
 	})
 
 	async function on_click_text(text: Text): Promise<void> {
-		await from_translate_box.add_text(text.text)
+		await from_translate_box.set_text(text)
 		await to_translate_box.show_translation(text, true)
 	}
 
