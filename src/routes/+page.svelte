@@ -254,7 +254,7 @@
 		<div bind:this={text_list_element}>
 			{#each texts as text, i}
 				<div
-					class="py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text == text
+					class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text == text
 						? 'bg-white/10'
 						: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
 					id={text.id.toString()}
