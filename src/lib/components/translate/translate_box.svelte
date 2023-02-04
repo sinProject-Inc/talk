@@ -170,9 +170,10 @@
 
 		if (either_listening) return
 
+		// Doesn't work without await
+		audio_element.pause()
 		audio_element.currentTime = 0
 		audio_element.src = new TextToSpeechUrl(text, locale_code).url
-		
 		audio_element.play()
 	}
 
