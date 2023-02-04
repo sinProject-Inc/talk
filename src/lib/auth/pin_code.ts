@@ -3,9 +3,8 @@ export class PinCode {
 	private readonly _code: string
 
 	public constructor(code: string | undefined) {
-		if (!code) throw new Error('PIN code is required')
-		if (code.length < 6) throw new Error('PIN code is too short')
-		if (code.length > 50) throw new Error('PIN code is too long')
+		if (!code) throw new Error('Code is required')
+		if (code.length < 6) throw new Error('Code is too short')
 
 		this._code = code
 	}

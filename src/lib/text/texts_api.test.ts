@@ -4,7 +4,7 @@ import { TextsApi } from './texts_api'
 
 const origin = 'http://localhost:5173'
 
-test('Fetch 5 texts', async () => {
+test('Fetch 5', async () => {
   const speech_language_code = SpeechLanguageCode.create('en')
   const texts = await new TextsApi(speech_language_code, 5, origin).fetch()
 

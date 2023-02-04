@@ -40,9 +40,7 @@
 
 	let snackbar_visible = false
 
-	const dispatch = createEventDispatcher<{
-		message: { text?: Text; clear?: boolean; fetch_history?: boolean }
-	}>()
+	const dispatch = createEventDispatcher()
 
 	let dispatch_timeout_id: ReturnType<typeof setTimeout>
 
@@ -170,8 +168,17 @@
 
 		if (either_listening) return
 
+		// Doesn't work without await
+		if (!audio_element.paused) audio_element.pause()
+		audio_element.currentTime = 0
 		audio_element.src = new TextToSpeechUrl(text, locale_code).url
-		audio_element.load()
+
+		try {
+			await audio_element.play()
+		} catch (error: any) {
+			if (error.code == 20) return
+			console.error(error)
+		}
 	}
 
 	function on_text_area_change(): void {
@@ -202,8 +209,6 @@
 	}
 
 	export function clear(): void {
-		text = undefined
-		
 		if (!textarea_body) return
 
 		textarea_body = ''
@@ -215,7 +220,7 @@
 	})
 </script>
 
-<div class="main-box glass-panel row-span-1">
+<div class="main-box glass-panel h-[calc((100vh-190px)/3)]">
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
@@ -223,7 +228,7 @@
 			</div>
 		</div>
 		<textarea
-			class="text-area pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
 			bind:this={speech_text_element}
 			bind:value={textarea_body}

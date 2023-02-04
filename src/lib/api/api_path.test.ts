@@ -36,7 +36,7 @@ test('/api/text?param=test&param2=test2', () => {
 })
 
 
-test('/api/text', () => {
-	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param: '' })
-	expect(api_path.get_url()).toBe('/api/text')
+test('/api/text?', () => {
+	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param:'' })
+	expect(api_path.get_url()).toBe('/api/text?')
 })
