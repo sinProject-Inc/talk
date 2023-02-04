@@ -211,4 +211,4 @@
 	</div>
 </div>
 
-<audio class="hidden" controls bind:this={audio_element} />
+<audio class="hidden" autoplay controls bind:this={audio_element} />
