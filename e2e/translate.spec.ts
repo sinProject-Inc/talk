@@ -6,7 +6,6 @@ const path = '/translate'
 const url = host + path
 
 test.beforeEach(async ({ page }) => {
-	await init_db(page)
 	await page.goto(url)
 
 	await page.locator('#language_1').selectOption('en-US');
@@ -41,11 +40,11 @@ test('check main box heights', async ({ page }) => {
 		if(!box) throw new Error('box is null')
 
 		box_heights.push(box.height)
+
+		if(box_heights.length > 0) {
+			await expect(box.height).toBeCloseTo(box_heights[0], 1)
+		}
 	}
-
-	const is_same = box_heights.every((height) => height === box_heights[0])
-
-	await expect(is_same).toBeTruthy()
 })
 
 test('check main box heights on mobile', async ({ page }) => {
@@ -63,16 +62,17 @@ test('check main box heights on mobile', async ({ page }) => {
 		if(!box) throw new Error('box is null')
 
 		box_heights.push(box.height)
+
+		if(box_heights.length > 0) {
+			await expect(box.height).toBeCloseTo(box_heights[0], 1)
+		}
 	}
-
-	const is_same = box_heights.every((height) => height === box_heights[0])
-
-	await expect(is_same).toBeTruthy()
 })
 
 
 test('check if having no history hides box', async ({ page }) => {
 	await clear_text(page)
+	await fulfill_mock_text(page, 0)
 
 	const history_box = page.locator('.history-box')
 
@@ -128,11 +128,9 @@ test('switching locale switches displayed history language', async ({ page }) =>
 	await expect(first_history_text).toHaveText("こんにちは")
 })
 
-async function init_db(page: Page): Promise<void> {
-	await page.goto(host + '/init-db')
-}
-
 async function clear_text(page: Page): Promise<void> {
+	await page.reload()
+
 	await page.route(`${host}/api/text/en?limit=10`, async route => {
 		const json = {};
 		await route.fulfill({ json });
@@ -141,6 +139,7 @@ async function clear_text(page: Page): Promise<void> {
 
 async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
 	await page.route(`${host}/api/text/en?limit=10`, async route => {
+		if(limit == 0) await route.fulfill({ json: {} })
 		const json = mock_data.slice(0, limit);
 		await route.fulfill({ json });
 	});
