@@ -114,42 +114,6 @@ test('adding text should add it to the history', async ({ page }) => {
 	await expect(first_history_text).toHaveText("hello")
 })
 
-test('adding text should display the translation', async ({ page }) => {
-	await page.locator('.text-area').first().fill('hello');
-	
-	const bottom_textarea = page.getByRole('textbox').nth(1)
-
-	await expect(bottom_textarea).toHaveValue("こんにちは")
-})
-
-
-test('adding text should add it to the history', async ({ page }) => {
-	await page.locator('.text-area').first().fill('hello');
-
-	const first_history_text = page.locator('.text').first()
-
-	await expect(first_history_text).toHaveText("hello")
-})
-
-test('adding text should display the translation', async ({ page }) => {
-	await page.waitForSelector('.text-area')
-	await page.locator('.text-area').first().fill('Hello');
-	
-	const bottom_textarea = page.getByRole('textbox').nth(1)
-
-	await expect(bottom_textarea).toHaveValue("こんにちは")
-})
-
-
-test('adding text should add it to the history', async ({ page }) => {
-	await page.waitForSelector('.text-area')
-	await page.locator('.text-area').first().fill('Hello');
-
-	const first_history_text = page.locator('.text').first()
-
-	await expect(first_history_text).toHaveText(/hello/i)
-})
-
 test('switching locale switches displayed history language', async ({ page }) => {
 	await page.waitForSelector('.text-area')
 	await page.locator('.text-area').first().fill('Hello');

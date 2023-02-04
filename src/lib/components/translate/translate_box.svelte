@@ -215,7 +215,7 @@
 	})
 </script>
 
-<div class="main-box glass-panel h-[calc((100vh-190px)/3)]">
+<div class="main-box glass-panel row-span-1">
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">

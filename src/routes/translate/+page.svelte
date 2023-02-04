@@ -150,6 +150,8 @@
 <Navbar />
 <div class="center-container w-screen h-[calc(100vh-69px)]">
 	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
+<div class="center-container w-screen h-[calc(100vh-69px)]">
+	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
@@ -168,6 +170,7 @@
 			on:change={() => on_change_locale_select()}
 		/>
 	</div>
+	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 		<TranslateBox
 			locale_select_element={from_locale_select_element}
@@ -194,6 +197,7 @@
 			}}
 		/>
 		<div
+			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
 			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
 				? 'visible'
 				: 'invisible'}"
