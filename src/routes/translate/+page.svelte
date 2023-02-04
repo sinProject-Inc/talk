@@ -141,8 +141,8 @@
 </svelte:head>
 
 <Navbar />
-<div class="center-container py-4 h-[calc(100vh-117px)] w-screen ">
-	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
+<div class="center-container w-screen h-[calc(100vh-69px)]">
+	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
@@ -159,7 +159,7 @@
 			on:change={() => on_change_locale_select()}
 		/>
 	</div>
-	<div class="flex flex-col gap-4 h-full">
+	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 		<TranslateBox
 			locale_select_element={from_locale_select_element}
 			speech_text_element={from_language_text_element}
@@ -185,8 +185,7 @@
 			}}
 		/>
 		<div
-			class="main-box history-box glass-panel h-[calc((100vh-190px)/3)] flex flex-col {text_history.length >
-			0
+			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
 				? 'visible'
 				: 'invisible'}"
 		>
