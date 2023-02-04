@@ -170,7 +170,6 @@
 
 		if (either_listening) return
 
-
 		audio_element.src = new TextToSpeechUrl(text, locale_code).url
 		audio_element.load()
 	}

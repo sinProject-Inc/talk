@@ -91,7 +91,6 @@
 
 		if (event.detail.fetch_history) {
 			await fetch_history()
-			await to_translate_box.text_to_speech()
 		}
 	}
 
@@ -127,7 +126,7 @@
 
 	async function on_click_text(text: Text): Promise<void> {
 		await from_translate_box.add_text(text.text)
-		await to_translate_box.show_translation(text)
+		await to_translate_box.show_translation(text, true)
 	}
 
 	function is_element_last<T>(array: Array<T>, element: T): boolean {
