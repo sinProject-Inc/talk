@@ -1,6 +1,5 @@
 import { browser } from '$app/environment'
 import { register, init } from 'svelte-i18n'
-import { expect, test } from 'vitest'
 import { AppLocaleCode } from './app_locale_code'
 
 const default_locale = 'en'
@@ -26,6 +25,8 @@ init({
 })
 
 if (import.meta.vitest) {
+	const { test, expect } = import.meta.vitest
+
 	test('get_initial_app_locale_code', () => {
 		expect(get_initial_app_locale_code().code).toBe('en')
 	})
