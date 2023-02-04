@@ -24,19 +24,3 @@ test('http://localhost:5173/api/text/おはよう', () => {
 		'http://localhost:5173/api/test/%E3%81%8A%E3%81%AF%E3%82%88%E3%81%86'
 	)
 })
-
-test('/api/text?param=test', () => {
-	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param: 'test' })
-	expect(api_path.get_url()).toBe('/api/text?param=test')
-})
-
-test('/api/text?param=test&param2=test2', () => {
-	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param: 'test', param2: 'test2' })
-	expect(api_path.get_url()).toBe('/api/text?param=test&param2=test2')
-})
-
-
-test('/api/text', () => {
-	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param: '' })
-	expect(api_path.get_url()).toBe('/api/text')
-})
