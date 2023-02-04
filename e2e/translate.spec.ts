@@ -94,6 +94,23 @@ test('check if having 10 texts in history shows box', async ({ page }) => {
 	await expect(history_box).toBeVisible()
 })
 
+test('adding text should display the translation', async ({ page }) => {
+	await page.locator('.text-area').first().fill('hello');
+	
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveValue("こんにちは")
+})
+
+
+test('adding text should add it to the history', async ({ page }) => {
+	await page.locator('.text-area').first().fill('hello');
+
+	const first_history_text = page.locator('.text').first()
+
+	await expect(first_history_text).toHaveText("hello")
+})
+
 async function init_db(page: Page): Promise<void> {
 	await page.goto(host + '/init-db')
 }

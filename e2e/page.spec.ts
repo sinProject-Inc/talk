@@ -18,10 +18,20 @@ test('sign in button', async ({ page }) => {
 	await expect(page).toHaveURL(/sign-in/)
 })
 
-test('language combo box', async ({ page }) => {
-	await expect(page.getByRole('combobox').first()).toHaveValue('en')
+test('from locale combo box', async ({ page }) => {
+	await expect(page.getByRole('combobox').nth(0)).toHaveValue('en-US')
 })
 
-test('locale combo box', async ({ page }) => {
-	await expect(page.getByRole('combobox').nth(1)).toHaveValue('en-US')
+test('to locale combo box', async ({ page }) => {
+	await expect(page.getByRole('combobox').nth(1)).toHaveValue('ja-JP')
+})
+
+test('changing locale, and then moving pages keeps saved locale', async ({ page }) => {
+	await page.getByRole('combobox').first().selectOption('yue-HK');
+	await page.getByRole('combobox').last().selectOption('km-KH');
+
+	await page.goto(`${host}/translate`)
+	
+	await expect(page.getByRole('combobox').first()).toHaveValue('yue-HK')
+	await expect(page.getByRole('combobox').last()).toHaveValue('km-KH')
 })
