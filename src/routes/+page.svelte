@@ -12,9 +12,9 @@
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { TranslationText } from '$lib/translation/translation_text'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
-	import type { Language, Locale, Text } from '@prisma/client'
+	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
-	import { locale, waitLocale, _ } from 'svelte-i18n'
+	import { _ } from 'svelte-i18n'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
@@ -31,31 +31,32 @@
 
 	export let data: PageData
 
-	let from_speech_language_select_element: HTMLSelectElement
-	let to_language_select_element: HTMLSelectElement
-	let locale_select_element: HTMLSelectElement
 	let new_text_element: HTMLInputElement
 	let text_list_element: HTMLDivElement
 	let speech_text_element: HTMLElement
 	let audio_element: HTMLAudioElement
+	let from_locale_select_element: HTMLSelectElement
+	let to_locale_select_element: HTMLSelectElement
 
 	let texts: Text[] = []
 	let selected_text: Text | undefined
 	let translations: string[] = []
-	let from_speech_language_code = SpeechLanguageCode.english
-	let locale_code = LocaleCode.english_united_states
-	let to_speech_language_code = SpeechLanguageCode.japanese
 	let add_translation_string = ''
+	let from_locale_code = LocaleCode.english_united_states
+	let to_locale_code = LocaleCode.japanese_japan
 
-	function init_language_select(): void {
-		const languages = JSON.parse(data.languages) as Language[]
+	$: from_speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
+	$: to_speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
 
-		Html.append_language_select_options(from_speech_language_select_element, languages)
-		Html.append_language_select_options(to_language_select_element, languages)
+	function init_locale_select(): void {
+		const locales = JSON.parse(data.locales) as Locale[]
+
+		Html.append_language_select_options(from_locale_select_element, locales)
+		Html.append_language_select_options(to_locale_select_element, locales)
 	}
 
 	function speech_to_text(): void {
-		const selected_value = locale_select_element.selectedOptions[0].value
+		const selected_value = from_locale_select_element.selectedOptions[0].value
 		const locale_code = LocaleCode.create(selected_value)
 		const recognizing_message = new Message($_('recognizing'))
 		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
@@ -64,63 +65,42 @@
 	}
 
 	async function fetch_texts(): Promise<void> {
-		texts = await new TextsApi(from_speech_language_code).fetch()
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
+
+		texts = await new TextsApi(speech_language_code).fetch()
 	}
 
-	async function on_change_from_language_select(store_language = true): Promise<void> {
-		const selected_value = from_speech_language_select_element.selectedOptions[0].value
+	async function select_default_locales(): Promise<void> {
+		const language_from = localStorage.getItem('from_locale')
+		from_locale_select_element.value = language_from ?? 'en-US'
 
-		from_speech_language_code = SpeechLanguageCode.create(selected_value)
+		const language_to = localStorage.getItem('to_locale')
+		to_locale_select_element.value = language_to ?? 'ja-JP'
 
-		fetch_texts()
-
-		const locales = JSON.parse(data.locales) as Locale[]
-
-		selected_text = undefined
-
-		Html.append_locale_select_options(locale_select_element, locales, from_speech_language_code)
-		on_change_locale_select(store_language)
-
-		// console.log(language_code)
-
-		const app_locale_code = AppLocaleCode.from_speech_language_code(from_speech_language_code)
-
-		$locale = app_locale_code.code
-		await waitLocale($locale)
-
-		if (store_language) {
-			localStorage.setItem('language_from', from_speech_language_code.code)
-		}
-
-		init()
-	}
-
-	async function select_default_language(): Promise<void> {
-		const language_from = localStorage.getItem('language_from')
-		if (language_from) from_speech_language_select_element.value = language_from
-
-		const language_to = localStorage.getItem('language_to')
-		if (language_to) to_language_select_element.value = language_to
-
-		await on_change_from_language_select(false)
-		on_change_translation_language_select(false)
+		on_change_locale_select(false)
 	}
 
 	function on_change_locale_select(store_locale = true): void {
-		// console.log('on_change_locale_select')
-
 		if (!store_locale) {
-			const locale = localStorage.getItem('locale')
-			if (locale) locale_select_element.value = locale
+			const from_locale = localStorage.getItem('from_locale')
+			const to_locale = localStorage.getItem('to_locale')
+
+			if (from_locale) from_locale_select_element.value = from_locale
+			if (to_locale) to_locale_select_element.value = to_locale
 		}
 
-		const selected_value = locale_select_element.selectedOptions[0].value
+		const from_selected_value = from_locale_select_element.selectedOptions[0].value
+		const to_selected_value = to_locale_select_element.selectedOptions[0].value
 
-		locale_code = LocaleCode.create(selected_value)
+		from_locale_code = LocaleCode.create(from_selected_value)
+		to_locale_code = LocaleCode.create(to_selected_value)
 
 		if (store_locale) {
-			localStorage.setItem('locale', locale_code.code)
+			localStorage.setItem('from_locale', from_locale_code.code)
+			localStorage.setItem('to_locale', to_locale_code.code)
 		}
+		
+		fetch_texts()
 	}
 
 	function on_click_text(text: Text): void {
@@ -145,11 +125,10 @@
 	async function find_translation(): Promise<string[]> {
 		if (!selected_text) return []
 
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
+
 		const text_id = new TextId(selected_text.id)
-		const translation_texts = await new FindTranslationsApi(
-			text_id,
-			to_speech_language_code
-		).fetch()
+		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
 		const translations = translation_texts.map((translation_text) => translation_text.text)
 
 		return translations
@@ -220,16 +199,6 @@
 		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
 
-	function on_change_translation_language_select(store_language = true): void {
-		const selected_value = to_language_select_element.selectedOptions[0].value
-
-		to_speech_language_code = SpeechLanguageCode.create(selected_value)
-
-		if (store_language) {
-			localStorage.setItem('language_to', to_speech_language_code.code)
-		}
-	}
-
 	async function add_text(): Promise<void> {
 		new_text_element.focus()
 
@@ -256,10 +225,11 @@
 	onMount(async () => {
 		if (!browser) return
 
-		init_language_select()
-		// from_language_select.onchange = on_change_language_select_for_texts
-		// on_change_from_language_select()
-		await select_default_language()
+		init()
+
+		init_locale_select()
+
+		await select_default_locales()
 	})
 </script>
 
@@ -272,13 +242,8 @@
 	<div class="pt-2 glass-panel mt-4 mb-8 flex flex-col gap-2">
 		<div class="px-5">
 			<select
-				class="glass-button rounded-r-none h-full grow"
-				bind:this={from_speech_language_select_element}
-				on:change={() => on_change_from_language_select()}
-			/>
-			<select
-				class="glass-button -ml-1 rounded-l-none h-full grow"
-				bind:this={locale_select_element}
+				class="glass-button h-full grow text-center"
+				bind:this={from_locale_select_element}
 				on:change={() => on_change_locale_select()}
 			/>
 		</div>
@@ -314,7 +279,7 @@
 			{#if selected_text}
 				<audio
 					class="hidden"
-					src={new TextToSpeechUrl(selected_text, locale_code).url}
+					src={new TextToSpeechUrl(selected_text, from_locale_code).url}
 					controls
 					autoplay
 					bind:this={audio_element}
@@ -334,9 +299,9 @@
 			<div class="flex flex-row gap-4 items-center">
 				<div class="title">{$_('translation')}</div>
 				<select
-					class="glass-button"
-					bind:this={to_language_select_element}
-					on:change={() => on_change_translation_language_select()}
+					class="glass-button text-center"
+					bind:this={to_locale_select_element}
+					on:change={() => on_change_locale_select()}
 				/>
 			</div>
 			<div class="flex flex-row gap-2 items-center">

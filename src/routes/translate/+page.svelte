@@ -17,63 +17,70 @@
 
 	export let data: PageData
 
-	let top_locale_select_element: HTMLSelectElement
-	let bottom_locale_select_element: HTMLSelectElement
-
+	let from_locale_select_element: HTMLSelectElement
+	let to_locale_select_element: HTMLSelectElement
 	let from_language_text_element: HTMLTextAreaElement
 	let to_language_text_element: HTMLTextAreaElement
-
-	let top_locale_code = LocaleCode.english_united_states
-	let bottom_locale_code = LocaleCode.japanese_japan
-
-	let top_translate_box: TranslateBox
-	let bottom_translate_box: TranslateBox
-
 	let audio_element: HTMLAudioElement
 
-	let top_listening = false
-	let bottom_listening = false
+	let from_locale_code = LocaleCode.english_united_states
+	let to_locale_code = LocaleCode.japanese_japan
+
+	let from_translate_box: TranslateBox
+	let to_translate_box: TranslateBox
+
+	let from_listening = false
+	let to_listening = false
 
 	let text_history: Text[] = []
 	let selected_text: Text | undefined
 
 	let confirming_delete_text: Text | undefined
 
-	$: listening = top_listening || bottom_listening
+	$: listening = from_listening || to_listening
 
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		Html.append_language_select_options(top_locale_select_element, locales)
-		Html.append_language_select_options(bottom_locale_select_element, locales)
+		Html.append_language_select_options(from_locale_select_element, locales)
+		Html.append_language_select_options(to_locale_select_element, locales)
+	}
 
-		fetch_history()
+	async function select_default_locales(): Promise<void> {
+		const language_from = localStorage.getItem('from_locale')
+		from_locale_select_element.value = language_from ?? 'en-US'
+
+		const language_to = localStorage.getItem('to_locale')
+		to_locale_select_element.value = language_to ?? 'ja-JP'
+
+		on_change_locale_select(false)
 	}
 
 	function on_change_locale_select(store_locale = true): void {
 		if (!store_locale) {
-			const top_locale = localStorage.getItem('translate_top_locale')
-			const bottom_locale = localStorage.getItem('translate_bottom_locale')
+			const from_locale = localStorage.getItem('from_locale')
+			const to_locale = localStorage.getItem('to_locale')
 
-			if (top_locale) top_locale_select_element.value = top_locale
-			if (bottom_locale) bottom_locale_select_element.value = bottom_locale
+			if (from_locale) from_locale_select_element.value = from_locale
+			if (to_locale) to_locale_select_element.value = to_locale
 		}
 
-		const top_selected_value = top_locale_select_element.selectedOptions[0].value
-		const bottom_selected_value = bottom_locale_select_element.selectedOptions[0].value
+		const from_selected_value = from_locale_select_element.selectedOptions[0].value
+		const to_selected_value = to_locale_select_element.selectedOptions[0].value
 
-		top_locale_code = LocaleCode.create(top_selected_value)
-		bottom_locale_code = LocaleCode.create(bottom_selected_value)
+		from_locale_code = LocaleCode.create(from_selected_value)
+		to_locale_code = LocaleCode.create(to_selected_value)
 
 		if (store_locale) {
-			localStorage.setItem('translate_top_locale', top_locale_code.code)
-			localStorage.setItem('translate_bottom_locale', bottom_locale_code.code)
+			localStorage.setItem('from_locale', from_locale_code.code)
+			localStorage.setItem('to_locale', to_locale_code.code)
 		}
+
+		fetch_history()
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	async function on_message(
-		event: any,
+		event: CustomEvent,
 		sender: TranslateBox,
 		recipient?: TranslateBox
 	): Promise<void> {
@@ -89,28 +96,27 @@
 
 		if (event.detail.fetch_history) {
 			await fetch_history()
-			await top_translate_box.text_to_speech()
 		}
 	}
 
 	function switch_locales(): void {
-		const top_locale = top_locale_select_element.value
-		const bottom_locale = bottom_locale_select_element.value
+		const from_locale = from_locale_select_element.value
+		const to_locale = to_locale_select_element.value
 
-		top_locale_select_element.value = bottom_locale
-		bottom_locale_select_element.value = top_locale
+		from_locale_select_element.value = to_locale
+		to_locale_select_element.value = from_locale
 
-		const top_text = top_translate_box.get_text()
-		const bottom_text = bottom_translate_box.get_text()
+		const from_text = from_translate_box.get_text()
+		const to_text = to_translate_box.get_text()
 
-		top_translate_box.set_text(bottom_text)
-		bottom_translate_box.set_text(top_text)
+		from_translate_box.set_text(to_text)
+		to_translate_box.set_text(from_text)
 
 		on_change_locale_select()
 	}
 
 	async function fetch_history(): Promise<void> {
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(top_locale_code)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
 
 		text_history = await new TextsApi(speech_language_code, 10).fetch()
 	}
@@ -119,12 +125,13 @@
 		if (!browser) return
 
 		init_locale_select()
-		on_change_locale_select(false)
+
+		await select_default_locales()
 	})
 
 	async function on_click_text(text: Text): Promise<void> {
-		await top_translate_box.add_text(text.text)
-		await bottom_translate_box.show_translation(text)
+		await from_translate_box.set_text(text)
+		await to_translate_box.show_translation(text, true)
 	}
 
 	async function delete_text(text?: Text): Promise<void> {
@@ -141,52 +148,53 @@
 </svelte:head>
 
 <Navbar />
-<div class="center-container py-4 h-[calc(100vh-117px)] w-screen ">
-	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
+<div class="center-container w-screen h-[calc(100vh-69px)]">
+	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
 			id="language_1"
-			bind:this={top_locale_select_element}
+			bind:this={from_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
-		<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+		<div class="language-switcher">
+			<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+		</div>
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"
 			id="language_2"
-			bind:this={bottom_locale_select_element}
+			bind:this={to_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
 	</div>
-	<div class="flex flex-col gap-4 h-full">
+	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 		<TranslateBox
-			locale_select_element={top_locale_select_element}
+			locale_select_element={from_locale_select_element}
 			speech_text_element={from_language_text_element}
-			bind:this={top_translate_box}
+			bind:this={from_translate_box}
 			bind:audio_element
-			bind:locale_code={top_locale_code}
-			bind:listening={top_listening}
+			bind:locale_code={from_locale_code}
+			bind:listening={from_listening}
 			bind:either_listening={listening}
 			on:message={(event) => {
-				on_message(event, top_translate_box, bottom_translate_box)
+				on_message(event, from_translate_box, to_translate_box)
 			}}
 		/>
 		<TranslateBox
-			locale_select_element={bottom_locale_select_element}
+			locale_select_element={to_locale_select_element}
 			speech_text_element={to_language_text_element}
-			bind:this={bottom_translate_box}
+			bind:this={to_translate_box}
 			bind:audio_element
-			bind:locale_code={bottom_locale_code}
-			bind:listening={bottom_listening}
+			bind:locale_code={to_locale_code}
+			bind:listening={to_listening}
 			bind:either_listening={listening}
 			on:message={(event) => {
-				on_message(event, bottom_translate_box, top_translate_box)
+				on_message(event, to_translate_box, from_translate_box)
 			}}
 		/>
 		<div
-			class="main-box history-box glass-panel h-[calc((100vh-190px)/3)] flex flex-col {text_history.length >
-			0
+			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
 				? 'visible'
 				: 'invisible'}"
 		>
