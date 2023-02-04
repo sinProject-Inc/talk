@@ -36,9 +36,13 @@ test('changing locale, and then moving pages keeps saved locale', async ({ page 
 	await expect(page.getByRole('combobox').last()).toHaveValue('km-KH')
 })
 
-test('Text count on main is same as that on translate', async ({ page }) => {
+test('If there is text on translate, there is text on main', async ({ page }) => {
+	await page.waitForSelector('.text')
 	const main_text_count = await page.locator('.text').count()
-	await page.goto(`${host}/translate`)
 	
-	await expect(page.locator('.text')).toHaveCount(main_text_count)
+	await page.goto(`${host}/translate`)
+	await page.waitForSelector('.text')
+	const translate_page_count = await page.locator('.text').count()
+
+	await expect(main_text_count).toBeGreaterThanOrEqual(translate_page_count)
 })

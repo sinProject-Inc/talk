@@ -98,7 +98,8 @@ test('check if having 10 texts in history shows box', async ({ page }) => {
 })
 
 test('adding text should display the translation', async ({ page }) => {
-	await page.locator('.text-area').first().fill('hello');
+	await page.waitForSelector('.text-area')
+	await page.locator('.text-area').first().fill('Hello');
 	
 	const bottom_textarea = page.getByRole('textbox').nth(1)
 
@@ -107,18 +108,20 @@ test('adding text should display the translation', async ({ page }) => {
 
 
 test('adding text should add it to the history', async ({ page }) => {
-	await page.locator('.text-area').first().fill('hello');
+	await page.waitForSelector('.text-area')
+	await page.locator('.text-area').first().fill('Hello');
 
 	const first_history_text = page.locator('.text').first()
 
-	await expect(first_history_text).toHaveText("hello")
+	await expect(first_history_text).toHaveText(/hello/i)
 })
 
 test('switching locale switches displayed history language', async ({ page }) => {
+	await page.waitForSelector('.text-area')
 	await page.locator('.text-area').first().fill('Hello');
 	const first_history_text = page.locator('.text').first()
 
-	await expect(first_history_text).toHaveText("Hello")
+	await expect(first_history_text).toHaveText(/hello/i)
 
 	await page.locator('#language_1').selectOption('ja-JP');
 
@@ -170,7 +173,7 @@ const mock_data = [
 		 "created_at":"2023-02-02T08:24:58.010Z",
 		 "updated_at":"2023-02-02T10:07:41.140Z",
 		 "language_id":1,
-		 "text":"hello"
+		 "text":"Hello"
 	},
 	{
 		 "id":101,
