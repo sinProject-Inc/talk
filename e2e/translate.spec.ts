@@ -8,6 +8,9 @@ const url = host + path
 test.beforeEach(async ({ page }) => {
 	await init_db(page)
 	await page.goto(url)
+
+	await page.locator('#language_1').selectOption('en-US');
+	await page.locator('#language_2').selectOption('ja-JP');
 })
 
 test('has title', async ({ page }) => {
@@ -109,6 +112,17 @@ test('adding text should add it to the history', async ({ page }) => {
 	const first_history_text = page.locator('.text').first()
 
 	await expect(first_history_text).toHaveText("hello")
+})
+
+test('switching locale switches displayed history language', async ({ page }) => {
+	await page.locator('.text-area').first().fill('Hello');
+	const first_history_text = page.locator('.text').first()
+
+	await expect(first_history_text).toHaveText("Hello")
+
+	await page.locator('#language_1').selectOption('ja-JP');
+
+	await expect(first_history_text).toHaveText("こんにちは")
 })
 
 async function init_db(page: Page): Promise<void> {
