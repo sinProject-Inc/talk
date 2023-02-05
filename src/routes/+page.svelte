@@ -78,6 +78,8 @@
 	}
 
 	function on_change_locale_select(store_locale = true): void {
+		selected_text = undefined
+
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
