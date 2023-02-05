@@ -100,7 +100,6 @@
 		}
 
 		set_app_locale()
-
 		fetch_texts()
 	}
 
