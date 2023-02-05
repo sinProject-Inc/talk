@@ -51,7 +51,7 @@
 		on_change_locale_select(false)
 	}
 
-	function on_change_locale_select(store_locale = true): void {
+	async function on_change_locale_select(store_locale = true): Promise<void> {
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
@@ -71,7 +71,12 @@
 			localStorage.setItem('to_locale', to_locale_code.code)
 		}
 
-		fetch_history()
+		await fetch_history()
+
+		const from_text = from_translate_box.get_text()
+		if (from_text) {
+			await to_translate_box.show_translation(from_text, true)
+		}
 	}
 
 	async function on_message(
@@ -86,11 +91,15 @@
 		}
 
 		if (event.detail.clear) {
-			recipient.clear()
+			recipient.clear_self()
 		}
 
 		if (event.detail.fetch_history) {
 			await fetch_history()
+		}
+
+		if (event.detail.text_to_speech) {
+			recipient.text_to_speech()
 		}
 	}
 

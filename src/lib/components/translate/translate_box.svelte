@@ -41,10 +41,8 @@
 	let snackbar_visible = false
 
 	const dispatch = createEventDispatcher<{
-		message: { text?: Text; clear?: boolean; fetch_history?: boolean }
+		message: { text?: Text; clear?: boolean; fetch_history?: boolean; text_to_speech?: boolean }
 	}>()
-
-	let dispatch_timeout_id: ReturnType<typeof setTimeout>
 
 	let web_speech: WebSpeech | undefined
 
@@ -52,7 +50,7 @@
 		if (!audio_element.paused) audio_element.pause()
 
 		textarea_body = ''
-		dispatch_clear_command()
+		dispatch_clear_partner_command()
 
 		speech_text_element.placeholder = $_('recognizing')
 
@@ -153,7 +151,7 @@
 		})
 	}
 
-	function dispatch_clear_command(): void {
+	function dispatch_clear_partner_command(): void {
 		dispatch('message', {
 			clear: true,
 		})
@@ -165,30 +163,50 @@
 		})
 	}
 
-	export async function text_to_speech(): Promise<void> {
-		if (!text) return
+	function dispatch_text_to_speech_command(): void {
+		dispatch('message', {
+			text_to_speech: true,
+		})
+	}
 
+	export async function text_to_speech(): Promise<void> {
 		if (either_listening) return
 
-		audio_element.src = new TextToSpeechUrl(text, locale_code).url
+		if (!textarea_body) return
+
+		const speech_text = new SpeechText(textarea_body)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+		const text_for_speech = await new AddTextApi(speech_language_code, speech_text).fetch()
+		
+		audio_element.src = new TextToSpeechUrl(text_for_speech, locale_code).url
 		audio_element.load()
 	}
 
-	function on_text_area_change(): void {
-		const throttle = 1000
+	async function on_text_area_keydown(event: KeyboardEvent): Promise<void> {
+		if (event.key === 'Enter') {
+			event.preventDefault()
 
-		if (!textarea_body) {
-			dispatch_clear_command()
+			if (event.isComposing) {
+				return
+			}
 
-			return
-		}
+			if (!textarea_body) {
+				dispatch_clear_partner_command()
+				clear_self()
 
-		clearTimeout(dispatch_timeout_id)
+				return
+			}
 
-		dispatch_timeout_id = setTimeout(async () => {
+			if (textarea_body === text?.text) {
+				dispatch_text_to_speech_command()
+
+				return
+			}
+
 			await add_text(textarea_body)
 			dispatch_text()
-		}, throttle)
+		}
 	}
 
 	function copy(): void {
@@ -201,13 +219,13 @@
 		}, 2000)
 	}
 
-	export function clear(): void {
+
+	export function clear_self(): void {
 		text = undefined
-		
+
 		if (!textarea_body) return
 
 		textarea_body = ''
-		dispatch_clear_command()
 	}
 
 	onMount(async () => {
@@ -219,7 +237,7 @@
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
-				<IconButton on_click_handler={clear}><CloseIcon /></IconButton>
+				<IconButton on_click_handler={clear_self}><CloseIcon /></IconButton>
 			</div>
 		</div>
 		<textarea
@@ -227,7 +245,7 @@
 			style="grid-area: 1/1/10/9"
 			bind:this={speech_text_element}
 			bind:value={textarea_body}
-			on:input={on_text_area_change}
+			on:keydown={on_text_area_keydown}
 		/>
 	</div>
 	<div class="flex rounded-b-md p-1">

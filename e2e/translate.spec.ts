@@ -99,8 +99,11 @@ test('check if having 10 texts in history shows box', async ({ page }) => {
 
 test('adding text should display the translation', async ({ page }) => {
 	await page.waitForSelector('.text-area')
-	await page.locator('.text-area').first().fill('Hello');
-	
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('Hello')
+	await from_text_area.press('Enter')
+		
 	const bottom_textarea = page.getByRole('textbox').nth(1)
 
 	await expect(bottom_textarea).toHaveValue("こんにちは")
@@ -109,8 +112,11 @@ test('adding text should display the translation', async ({ page }) => {
 
 test('adding text should add it to the history', async ({ page }) => {
 	await page.waitForSelector('.text-area')
-	await page.locator('.text-area').first().fill('Hello');
+	const from_text_area = page.locator('.text-area').first()
 
+	await from_text_area.fill('Hello')
+	await from_text_area.press('Enter')
+	
 	const first_history_text = page.locator('.text').first()
 
 	await expect(first_history_text).toHaveText(/hello/i)
@@ -129,21 +135,23 @@ test('switching locale switches displayed history language', async ({ page }) =>
 })
 
 test('clearing text and then switching languages should keep boxes cleared', async ({ page }) => {
-	await page.locator('.text-area').first().fill('Hello');
+	const from_textarea = page.getByRole('textbox').nth(0)
+	const to_textarea = page.getByRole('textbox').nth(1)
+
+	await from_textarea.fill('Hello')
+	await from_textarea.press('Enter')
 	
-	const top_textarea = page.getByRole('textbox').nth(0)
-	const bottom_textarea = page.getByRole('textbox').nth(1)
+	await expect(to_textarea).toHaveValue("こんにちは")
 
-	await expect(bottom_textarea).toHaveValue("こんにちは")
+	await from_textarea.fill('')
+	await from_textarea.press('Enter')
 
-	await page.locator('.text-area').first().fill('');
-
-	await expect(bottom_textarea).toHaveValue('')
+	await expect(to_textarea).toHaveValue('')
 
 	await page.locator('.language-switcher').first().click()
 
-	await expect(top_textarea).toHaveValue('')
-	await expect(bottom_textarea).toHaveValue('')
+	await expect(from_textarea).toHaveValue('')
+	await expect(to_textarea).toHaveValue('')
 })
 
 async function clear_text(page: Page): Promise<void> {
