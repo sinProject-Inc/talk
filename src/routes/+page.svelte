@@ -79,7 +79,7 @@
 		on_change_locale_select(false)
 	}
 
-	function on_change_locale_select(store_locale = true): void {
+function on_change_locale_select(store_locale = true): void {
 		selected_text = undefined
 
 		if (!store_locale) {
@@ -107,7 +107,9 @@
 	}
 
 	async function set_app_locale(): Promise<void> {
-		const app_locale_code = AppLocaleCode.from_speech_language_code(to_speech_language_code)
+		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
+		
+		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
 		$locale = app_locale_code.code
 
 		await waitLocale($locale)
