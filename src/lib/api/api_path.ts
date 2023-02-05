@@ -27,7 +27,13 @@ export class ApiPath {
 	}
 
 	public connect_with_params(params: Record<string, string>): ApiPath {
-		const filtered_params = Object.fromEntries(Object.entries(params).filter(([, value]) => value !== ''))
+		const filtered_params = Object.fromEntries(
+			Object.entries(params).filter(([, value]) => value !== '')
+		)
+		
+		if (Object.keys(filtered_params).length === 0) {
+			return this
+		}
 
 		const query = new URLSearchParams(filtered_params).toString()
 		const connected_path = `${this._path}?${query}`

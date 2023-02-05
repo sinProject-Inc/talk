@@ -2,7 +2,7 @@ import { browser } from '$app/environment'
 import { register, init } from 'svelte-i18n'
 import { AppLocaleCode } from './app_locale_code'
 
-const defaultLocale = 'en'
+const default_locale = 'en'
 
 register('en', () => import('../../locales/en.json'))
 register('ja', () => import('../../locales/ja.json'))
@@ -20,6 +20,14 @@ function get_initial_app_locale_code(): AppLocaleCode {
 }
 
 init({
-	fallbackLocale: defaultLocale,
+	fallbackLocale: default_locale,
 	initialLocale: get_initial_app_locale_code().code,
 })
+
+if (import.meta.vitest) {
+	const { test, expect } = import.meta.vitest
+
+	test('get_initial_app_locale_code', () => {
+		expect(get_initial_app_locale_code().code).toBe('en')
+	})
+}
