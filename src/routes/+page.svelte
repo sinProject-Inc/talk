@@ -124,6 +124,7 @@
 			console.log('selected')
 		}
 
+		text_to_speech()
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
 		// speech(selected_text, language_code, voice_name)

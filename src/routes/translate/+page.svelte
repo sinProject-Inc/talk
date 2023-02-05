@@ -150,8 +150,6 @@
 <Navbar />
 <div class="center-container w-screen h-[calc(100vh-69px)]">
 	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
-<div class="center-container w-screen h-[calc(100vh-69px)]">
-	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
@@ -171,58 +169,62 @@
 		/>
 	</div>
 	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
-	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
-		<TranslateBox
-			locale_select_element={from_locale_select_element}
-			speech_text_element={from_language_text_element}
-			bind:this={from_translate_box}
-			bind:audio_element
-			bind:locale_code={from_locale_code}
-			bind:listening={from_listening}
-			bind:either_listening={listening}
-			on:message={(event) => {
-				on_message(event, from_translate_box, to_translate_box)
-			}}
-		/>
-		<TranslateBox
-			locale_select_element={to_locale_select_element}
-			speech_text_element={to_language_text_element}
-			bind:this={to_translate_box}
-			bind:audio_element
-			bind:locale_code={to_locale_code}
-			bind:listening={to_listening}
-			bind:either_listening={listening}
-			on:message={(event) => {
-				on_message(event, to_translate_box, from_translate_box)
-			}}
-		/>
-		<div
-			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
-			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
-				? 'visible'
-				: 'invisible'}"
-		>
-			<h2 class="title px-5 py-2">History</h2>
-			<div class="overflow-auto">
-				{#each text_history as text, i}
-					<TextListText
-						texts={text_history}
-						{text}
-						{i}
-						{selected_text}
-						on_click_text={() => on_click_text(text)}
-						delete_text={() => confirming_delete_text = text}
-					/>
-				{/each}
+		<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
+			<TranslateBox
+				locale_select_element={from_locale_select_element}
+				speech_text_element={from_language_text_element}
+				bind:this={from_translate_box}
+				bind:audio_element
+				bind:locale_code={from_locale_code}
+				bind:listening={from_listening}
+				bind:either_listening={listening}
+				on:message={(event) => {
+					on_message(event, from_translate_box, to_translate_box)
+				}}
+			/>
+			<TranslateBox
+				locale_select_element={to_locale_select_element}
+				speech_text_element={to_language_text_element}
+				bind:this={to_translate_box}
+				bind:audio_element
+				bind:locale_code={to_locale_code}
+				bind:listening={to_listening}
+				bind:either_listening={listening}
+				on:message={(event) => {
+					on_message(event, to_translate_box, from_translate_box)
+				}}
+			/>
+			<div
+				class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
+					? 'visible'
+					: 'invisible'}"
+			>
+				<h2 class="title px-5 py-2">History</h2>
+				<div class="overflow-auto">
+					{#each text_history as text, i}
+						<TextListText
+							texts={text_history}
+							{text}
+							{i}
+							{selected_text}
+							on_click_text={() => on_click_text(text)}
+							delete_text={() => (confirming_delete_text = text)}
+						/>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<audio class="hidden" controls bind:this={audio_element} />
+<audio class="hidden" controls autoplay bind:this={audio_element} />
 {#if confirming_delete_text}
 	<ConfirmDeleteModal
-		on:close={() => { confirming_delete_text = undefined }}
-		on:confirm_delete={() => { delete_text(confirming_delete_text) }}
+		on:close={() => {
+			confirming_delete_text = undefined
+		}}
+		on:confirm_delete={() => {
+			delete_text(confirming_delete_text)
+		}}
 	/>
 {/if}
