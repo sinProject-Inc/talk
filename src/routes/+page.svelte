@@ -135,7 +135,6 @@
 		if (!selected_text) return []
 
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
-
 		const text_id = new TextId(selected_text.id)
 		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
 		const translations = translation_texts.map((translation_text) => translation_text.text)
