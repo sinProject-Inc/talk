@@ -22,6 +22,7 @@
 		"Segoe",
 		"sveltejs",
 		"tailwindcss",
+		"textbox",
 		"texttospeech",
 		"Wavenet",
 		"Xiao"
@@ -75,6 +76,6 @@
 	],
 	"i18n-ally.keystyle": "nested",
 	"vitest.include": [
-		"src/**/*.{test}.ts"
+		"**/*.test.ts"
 	],
 }

@@ -6,8 +6,10 @@ const path = '/translate'
 const url = host + path
 
 test.beforeEach(async ({ page }) => {
-	await init_db(page)
 	await page.goto(url)
+
+	await page.locator('#language_1').selectOption('en-US');
+	await page.locator('#language_2').selectOption('ja-JP');
 })
 
 test('has title', async ({ page }) => {
@@ -38,11 +40,11 @@ test('check main box heights', async ({ page }) => {
 		if(!box) throw new Error('box is null')
 
 		box_heights.push(box.height)
+
+		if(box_heights.length > 0) {
+			await expect(box.height).toBeCloseTo(box_heights[0], 1)
+		}
 	}
-
-	const is_same = box_heights.every((height) => height === box_heights[0])
-
-	await expect(is_same).toBeTruthy()
 })
 
 test('check main box heights on mobile', async ({ page }) => {
@@ -60,16 +62,17 @@ test('check main box heights on mobile', async ({ page }) => {
 		if(!box) throw new Error('box is null')
 
 		box_heights.push(box.height)
+
+		if(box_heights.length > 0) {
+			await expect(box.height).toBeCloseTo(box_heights[0], 1)
+		}
 	}
-
-	const is_same = box_heights.every((height) => height === box_heights[0])
-
-	await expect(is_same).toBeTruthy()
 })
 
 
 test('check if having no history hides box', async ({ page }) => {
 	await clear_text(page)
+	await fulfill_mock_text(page, 0)
 
 	const history_box = page.locator('.history-box')
 
@@ -111,11 +114,75 @@ test('adding text should add it to the history', async ({ page }) => {
 	await expect(first_history_text).toHaveText("hello")
 })
 
-async function init_db(page: Page): Promise<void> {
-	await page.goto(host + '/init-db')
-}
+test('adding text should display the translation', async ({ page }) => {
+	await page.locator('.text-area').first().fill('hello');
+	
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveValue("こんにちは")
+})
+
+
+test('adding text should add it to the history', async ({ page }) => {
+	await page.locator('.text-area').first().fill('hello');
+
+	const first_history_text = page.locator('.text').first()
+
+	await expect(first_history_text).toHaveText("hello")
+})
+
+test('adding text should display the translation', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	await page.locator('.text-area').first().fill('Hello');
+	
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveValue("こんにちは")
+})
+
+
+test('adding text should add it to the history', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	await page.locator('.text-area').first().fill('Hello');
+
+	const first_history_text = page.locator('.text').first()
+
+	await expect(first_history_text).toHaveText(/hello/i)
+})
+
+test('switching locale switches displayed history language', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	await page.locator('.text-area').first().fill('Hello');
+	const first_history_text = page.locator('.text').first()
+
+	await expect(first_history_text).toHaveText(/hello/i)
+
+	await page.locator('#language_1').selectOption('ja-JP');
+
+	await expect(first_history_text).toHaveText("こんにちは")
+})
+
+test('clearing text and then switching languages should keep boxes cleared', async ({ page }) => {
+	await page.locator('.text-area').first().fill('Hello');
+	
+	const top_textarea = page.getByRole('textbox').nth(0)
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveValue("こんにちは")
+
+	await page.locator('.text-area').first().fill('');
+
+	await expect(bottom_textarea).toHaveValue('')
+
+	await page.locator('.language-switcher').first().click()
+
+	await expect(top_textarea).toHaveValue('')
+	await expect(bottom_textarea).toHaveValue('')
+})
 
 async function clear_text(page: Page): Promise<void> {
+	await page.reload()
+
 	await page.route(`${host}/api/text/en?limit=10`, async route => {
 		const json = {};
 		await route.fulfill({ json });
@@ -124,6 +191,7 @@ async function clear_text(page: Page): Promise<void> {
 
 async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
 	await page.route(`${host}/api/text/en?limit=10`, async route => {
+		if(limit == 0) await route.fulfill({ json: {} })
 		const json = mock_data.slice(0, limit);
 		await route.fulfill({ json });
 	});
@@ -156,7 +224,7 @@ const mock_data = [
 		 "created_at":"2023-02-02T08:24:58.010Z",
 		 "updated_at":"2023-02-02T10:07:41.140Z",
 		 "language_id":1,
-		 "text":"hello"
+		 "text":"Hello"
 	},
 	{
 		 "id":101,

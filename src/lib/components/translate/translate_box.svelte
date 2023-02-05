@@ -40,7 +40,9 @@
 
 	let snackbar_visible = false
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher<{
+		message: { text?: Text; clear?: boolean; fetch_history?: boolean }
+	}>()
 
 	let dispatch_timeout_id: ReturnType<typeof setTimeout>
 
@@ -168,17 +170,8 @@
 
 		if (either_listening) return
 
-		// Doesn't work without await
-		if (!audio_element.paused) audio_element.pause()
-		audio_element.currentTime = 0
 		audio_element.src = new TextToSpeechUrl(text, locale_code).url
-
-		try {
-			await audio_element.play()
-		} catch (error: any) {
-			if (error.code == 20) return
-			console.error(error)
-		}
+		audio_element.load()
 	}
 
 	function on_text_area_change(): void {
@@ -209,6 +202,8 @@
 	}
 
 	export function clear(): void {
+		text = undefined
+		
 		if (!textarea_body) return
 
 		textarea_body = ''

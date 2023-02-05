@@ -74,9 +74,8 @@
 		fetch_history()
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	async function on_message(
-		event: any,
+		event: CustomEvent,
 		sender: TranslateBox,
 		recipient?: TranslateBox
 	): Promise<void> {
@@ -92,7 +91,6 @@
 
 		if (event.detail.fetch_history) {
 			await fetch_history()
-			await to_translate_box.text_to_speech()
 		}
 	}
 
@@ -127,8 +125,14 @@
 	})
 
 	async function on_click_text(text: Text): Promise<void> {
-		await from_translate_box.add_text(text.text)
-		await to_translate_box.show_translation(text)
+		await from_translate_box.set_text(text)
+		await to_translate_box.show_translation(text, true)
+	}
+
+	function is_element_last<T>(array: Array<T>, element: T): boolean {
+		const is_last = array[array.length - 1] === element
+
+		return is_last
 	}
 </script>
 
@@ -137,8 +141,8 @@
 </svelte:head>
 
 <Navbar />
-<div class="center-container py-4 h-[calc(100vh-117px)] w-screen ">
-	<div class="flex justify-evenly mb-4 items-center glass-panel gap-4">
+<div class="center-container w-screen h-[calc(100vh-69px)]">
+	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
@@ -146,7 +150,9 @@
 			bind:this={from_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
-		<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+		<div class="language-switcher">
+			<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+		</div>
 		<select
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"
@@ -155,7 +161,7 @@
 			on:change={() => on_change_locale_select()}
 		/>
 	</div>
-	<div class="flex flex-col gap-4 h-full">
+	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 		<TranslateBox
 			locale_select_element={from_locale_select_element}
 			speech_text_element={from_language_text_element}
@@ -181,8 +187,7 @@
 			}}
 		/>
 		<div
-			class="main-box history-box glass-panel h-[calc((100vh-190px)/3)] flex flex-col {text_history.length >
-			0
+			class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
 				? 'visible'
 				: 'invisible'}"
 		>
@@ -193,7 +198,7 @@
 						class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text ==
 						text
 							? 'bg-white/10'
-							: 'bg-inherit'} {i == text_history.length - 1 ? 'rounded-b-md' : ''}"
+							: 'bg-inherit'} {is_element_last(text_history, text) ? 'rounded-b-md' : ''}"
 						id={text.id.toString()}
 						on:click={() => on_click_text(text)}
 						on:keydown
@@ -206,4 +211,4 @@
 	</div>
 </div>
 
-<audio class="hidden" controls bind:this={audio_element} />
+<audio class="hidden" autoplay controls bind:this={audio_element} />
