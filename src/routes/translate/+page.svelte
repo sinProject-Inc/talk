@@ -122,6 +122,8 @@
 		init_locale_select()
 
 		await select_default_locales()
+
+		from_language_text_element.focus()
 	})
 
 	async function on_click_text(text: Text): Promise<void> {
@@ -164,7 +166,7 @@
 	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 		<TranslateBox
 			locale_select_element={from_locale_select_element}
-			speech_text_element={from_language_text_element}
+			bind:speech_text_element={from_language_text_element}
 			bind:this={from_translate_box}
 			bind:audio_element
 			bind:locale_code={from_locale_code}
@@ -176,7 +178,7 @@
 		/>
 		<TranslateBox
 			locale_select_element={to_locale_select_element}
-			speech_text_element={to_language_text_element}
+			bind:speech_text_element={to_language_text_element}
 			bind:this={to_translate_box}
 			bind:audio_element
 			bind:locale_code={to_locale_code}
