@@ -56,7 +56,7 @@
 		on_change_locale_select(false)
 	}
 
-	function on_change_locale_select(store_locale = true): void {
+	function on_change_locale_select(store_locale = true, keep_text = false): void {
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
@@ -74,6 +74,11 @@
 		if (store_locale) {
 			localStorage.setItem('from_locale', from_locale_code.code)
 			localStorage.setItem('to_locale', to_locale_code.code)
+		}
+
+		if (!keep_text) {
+			from_translate_box.clear()
+			to_translate_box.clear()
 		}
 
 		fetch_history()
@@ -112,7 +117,7 @@
 		from_translate_box.set_text(to_text)
 		to_translate_box.set_text(from_text)
 
-		on_change_locale_select()
+		on_change_locale_select(true, true)
 	}
 
 	async function fetch_history(): Promise<void> {
