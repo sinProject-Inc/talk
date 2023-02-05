@@ -52,7 +52,6 @@
 
 	function speech_to_text(): void {
 		if (partner_listening) return
-
 		if (audio_element && !audio_element.paused) audio_element.pause()
 
 		textarea_body = ''
