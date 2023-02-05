@@ -276,7 +276,6 @@
 					{i}
 					{selected_text}
 					on_click_text={() => on_click_text(text)}
-					delete_text={() => delete_text(text)}
 				/>
 			{/each}
 		</div>

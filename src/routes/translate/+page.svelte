@@ -212,6 +212,7 @@
 							{text}
 							{i}
 							{selected_text}
+							deletable
 							on_click_text={() => on_click_text(text)}
 							delete_text={() => (confirming_delete_text = text)}
 						/>

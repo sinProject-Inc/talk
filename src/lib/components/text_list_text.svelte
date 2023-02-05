@@ -8,7 +8,10 @@
 	export let i: number
 	export let selected_text: Text | undefined
 	export let on_click_text: (text: Text) => void
-	export let delete_text: (text: Text) => void
+	export let deletable = false
+	export let delete_text: (text: Text) => void = () => {
+		return
+	}
 </script>
 
 <div
@@ -21,7 +24,9 @@
 	<div class="text-body py-[10px] w-full" on:click={() => on_click_text(text)} on:keydown>
 		{text.text}
 	</div>
-	<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible delete-button">
-		<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
-	</div>
+	{#if deletable}
+		<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible delete-button">
+			<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
+		</div>
+	{/if}
 </div>
