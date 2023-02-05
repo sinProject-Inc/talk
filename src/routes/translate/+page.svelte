@@ -121,7 +121,7 @@
 	}
 
 	async function fetch_history(): Promise<void> {
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
 
 		text_history = await new TextsApi(speech_language_code, 10).fetch()
 	}
@@ -135,8 +135,8 @@
 	})
 
 	async function on_click_text(text: Text): Promise<void> {
-		await from_translate_box.set_text(text)
-		await to_translate_box.show_translation(text, true)
+		await to_translate_box.set_text(text)
+		await from_translate_box.show_translation(text, true)
 	}
 
 	async function delete_text(text?: Text): Promise<void> {
@@ -159,7 +159,7 @@
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
 			id="language_1"
-			bind:this={from_locale_select_element}
+			bind:this={to_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
 		<div class="language-switcher">
@@ -169,24 +169,12 @@
 			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"
 			id="language_2"
-			bind:this={to_locale_select_element}
+			bind:this={from_locale_select_element}
 			on:change={() => on_change_locale_select()}
 		/>
 	</div>
 	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
 		<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
-			<TranslateBox
-				locale_select_element={from_locale_select_element}
-				speech_text_element={from_language_text_element}
-				bind:this={from_translate_box}
-				bind:audio_element
-				bind:locale_code={from_locale_code}
-				bind:listening={from_listening}
-				bind:either_listening={listening}
-				on:message={(event) => {
-					on_message(event, from_translate_box, to_translate_box)
-				}}
-			/>
 			<TranslateBox
 				locale_select_element={to_locale_select_element}
 				speech_text_element={to_language_text_element}
@@ -197,6 +185,18 @@
 				bind:either_listening={listening}
 				on:message={(event) => {
 					on_message(event, to_translate_box, from_translate_box)
+				}}
+			/>
+			<TranslateBox
+				locale_select_element={from_locale_select_element}
+				speech_text_element={from_language_text_element}
+				bind:this={from_translate_box}
+				bind:audio_element
+				bind:locale_code={from_locale_code}
+				bind:listening={from_listening}
+				bind:either_listening={listening}
+				on:message={(event) => {
+					on_message(event, from_translate_box, to_translate_box)
 				}}
 			/>
 			<div
