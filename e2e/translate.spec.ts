@@ -124,7 +124,12 @@ test('adding text should add it to the history', async ({ page }) => {
 
 test('switching locale switches displayed history language', async ({ page }) => {
 	await page.waitForSelector('.text-area')
-	await page.locator('.text-area').first().fill('Hello');
+
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('Hello');
+	await from_text_area.press('Enter');
+
 	const first_history_text = page.locator('.text').first()
 
 	await expect(first_history_text).toHaveText(/hello/i)
