@@ -8,12 +8,14 @@
 	import { Html } from '$lib/view/html'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
+	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import { onMount } from 'svelte'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
+	import { AppLocaleCode } from '$lib/language/app_locale_code'
 
 	export let data: PageData
 
@@ -81,8 +83,20 @@
 			to_translate_box.clear()
 		}
 
+		set_app_locale()
+
 		fetch_history()
 	}
+
+	async function set_app_locale(): Promise<void> {
+		const language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
+
+		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
+		$locale = app_locale_code.code
+
+		await waitLocale($locale)
+	}
+
 
 	async function on_message(
 		event: CustomEvent,
@@ -204,7 +218,7 @@
 					? 'visible'
 					: 'invisible'}"
 			>
-				<h2 class="title px-5 py-2">History</h2>
+				<h2 class="title px-5 py-2">{$_('history')}</h2>
 				<div class="overflow-auto">
 					{#each text_history as text, i}
 						<TextListText

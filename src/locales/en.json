@@ -24,5 +24,6 @@
   "confirm_delete": "Confirm Delete",
   "are_you_sure": "Are you sure you want to delete this?",
   "delete": "Delete",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "history": "History"
 }

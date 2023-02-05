@@ -14,7 +14,7 @@
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
-	import { _ } from 'svelte-i18n'
+	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
@@ -26,7 +26,6 @@
 	import Navbar from '$lib/components/navbar.svelte'
 	import Divider from '$lib/components/divider.svelte'
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
-	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
 
 	export let data: PageData
@@ -102,7 +101,16 @@
 			localStorage.setItem('to_locale', to_locale_code.code)
 		}
 
+		set_app_locale()
+
 		fetch_texts()
+	}
+
+	async function set_app_locale(): Promise<void> {
+		const app_locale_code = AppLocaleCode.from_speech_language_code(to_speech_language_code)
+		$locale = app_locale_code.code
+
+		await waitLocale($locale)
 	}
 
 	export async function text_to_speech(): Promise<void> {
