@@ -20,5 +20,9 @@
 	"submit": "제출하다",
 	"pin_code": "핀 코드",
 	"sign_out": "로그 아웃",
-	"email": "이메일 입력"
+	"email": "이메일 입력",
+	"confirm_delete": "삭제 확인",
+	"are_you_sure": "정말 삭제하시겠습니까?",
+	"delete": "삭제",
+	"cancel": "취소"
 }

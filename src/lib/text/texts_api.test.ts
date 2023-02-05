@@ -8,6 +8,5 @@ test('Fetch 5 texts', async () => {
   const speech_language_code = SpeechLanguageCode.create('en')
   const texts = await new TextsApi(speech_language_code, 5, origin).fetch()
 
-  console.log(texts)
   expect(texts).toHaveLength(5)
 })

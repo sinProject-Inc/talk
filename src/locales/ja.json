@@ -20,5 +20,9 @@
 	"submit": "送信",
 	"pin_code": "PINコード",
 	"sign_out": "サインアウト",
-	"email": "Eメールを入力する"
+	"email": "Eメールを入力する",
+	"confirm_delete": "削除",
+  "are_you_sure": "削除しますか？",
+  "delete": "削除",
+  "cancel": "キャンセル"
 }

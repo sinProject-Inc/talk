@@ -25,6 +25,9 @@
 	import { TextId } from '$lib/text/text_id'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Divider from '$lib/components/divider.svelte'
+	import { DeleteTextApi } from '$lib/text/delete_text_api'
+	import CloseIcon from '$lib/components/icons/close_icon.svelte'
+	import TextListText from '$lib/components/text_list_text.svelte'
 
 	export let data: PageData
 
@@ -220,11 +223,10 @@
 		return
 	}
 
-	export async function text_to_speech(): Promise<void> {
-		if (!selected_text) return
+	async function delete_text(text: Text): Promise<void> {
+		await new DeleteTextApi(text).fetch()
 
-		audio_element.src = new TextToSpeechUrl(selected_text, from_locale_code).url
-		audio_element.load()
+		await fetch_texts()
 	}
 
 	onMount(async () => {
@@ -267,17 +269,14 @@
 		</div>
 		<div bind:this={text_list_element}>
 			{#each texts as text, i}
-				<div
-					class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text ==
-					text
-						? 'bg-white/10'
-						: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
-					id={text.id.toString()}
-					on:click={() => on_click_text(text)}
-					on:keydown
-				>
-					{text.text}
-				</div>
+				<TextListText
+					{texts}
+					{text}
+					{i}
+					{selected_text}
+					on_click_text={() => on_click_text(text)}
+					delete_text={() => delete_text(text)}
+				/>
 			{/each}
 		</div>
 	</div>

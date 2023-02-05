@@ -11,6 +11,9 @@
 	import { onMount } from 'svelte'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { DeleteTextApi } from '$lib/text/delete_text_api'
+	import TextListText from '$lib/components/text_list_text.svelte'
+	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
 
 	export let data: PageData
 
@@ -31,6 +34,8 @@
 
 	let text_history: Text[] = []
 	let selected_text: Text | undefined
+
+	let confirming_delete_text: Text | undefined
 
 	$: listening = from_listening || to_listening
 
@@ -129,10 +134,12 @@
 		await to_translate_box.show_translation(text, true)
 	}
 
-	function is_element_last<T>(array: Array<T>, element: T): boolean {
-		const is_last = array[array.length - 1] === element
+	async function delete_text(text?: Text): Promise<void> {
+		if (!text) return
 
-		return is_last
+		await new DeleteTextApi(text).fetch()
+
+		await fetch_history()
 	}
 </script>
 
@@ -194,21 +201,24 @@
 			<h2 class="title px-5 py-2">History</h2>
 			<div class="overflow-auto">
 				{#each text_history as text, i}
-					<div
-						class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text ==
-						text
-							? 'bg-white/10'
-							: 'bg-inherit'} {is_element_last(text_history, text) ? 'rounded-b-md' : ''}"
-						id={text.id.toString()}
-						on:click={() => on_click_text(text)}
-						on:keydown
-					>
-						{text.text}
-					</div>
+					<TextListText
+						texts={text_history}
+						{text}
+						{i}
+						{selected_text}
+						on_click_text={() => on_click_text(text)}
+						delete_text={() => confirming_delete_text = text}
+					/>
 				{/each}
 			</div>
 		</div>
 	</div>
 </div>
 
-<audio class="hidden" autoplay controls bind:this={audio_element} />
+<audio class="hidden" controls bind:this={audio_element} />
+{#if confirming_delete_text}
+	<ConfirmDeleteModal
+		on:close={() => { confirming_delete_text = undefined }}
+		on:confirm_delete={() => { delete_text(confirming_delete_text) }}
+	/>
+{/if}

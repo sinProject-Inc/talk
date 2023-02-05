@@ -20,5 +20,9 @@
 	"submit": "提交",
 	"pin_code": "PIN碼",
 	"sign_out": "登出",
-	"email": "輸入電子郵件"
+	"email": "輸入電子郵件",
+	"confirm_delete": "確認刪除",
+	"are_you_sure": "你確定要刪除這個嗎？",
+	"delete": "刪除",
+	"cancel": "取消"
 }
