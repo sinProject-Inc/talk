@@ -100,26 +100,19 @@
 		fetch_texts()
 	}
 
-	export async function text_to_speech(): Promise<void> {
-		if (!selected_text) return
-
-		audio_element.src = new TextToSpeechUrl(selected_text, from_locale_code).url
-		audio_element.load()
-	}
-
 	function on_click_text(text: Text): void {
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
 		if (text.text === selected_text?.text) {
 			console.log('same text')
+			audio_element.currentTime = 0
+			audio_element.play()
 		} else {
 			selected_text = text
 			translations = []
 			console.log('selected')
 		}
-		
-		text_to_speech()
 
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
@@ -276,7 +269,15 @@
 
 	<div class="glass-panel sticky z-10 bottom-4 pb-4 flex flex-col gap-4 px-5">
 		<div>
-			<audio class="{selected_text ? '' : 'hidden'} hidden" autoplay controls bind:this={audio_element} />
+			{#if selected_text}
+				<audio
+					class="hidden"
+					src={new TextToSpeechUrl(selected_text, from_locale_code).url}
+					controls
+					autoplay
+					bind:this={audio_element}
+				/>
+			{/if}
 		</div>
 
 		<div class="flex flex-col gap-2">
