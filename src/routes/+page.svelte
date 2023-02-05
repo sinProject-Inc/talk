@@ -25,7 +25,6 @@
 	import { TextId } from '$lib/text/text_id'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Divider from '$lib/components/divider.svelte'
-	import { DeleteTextApi } from '$lib/text/delete_text_api'
 	import TextListText from '$lib/components/text_list_text.svelte'
 
 	export let data: PageData
@@ -232,12 +231,6 @@ function on_change_locale_select(store_locale = true): void {
 		on_click_text(added_text)
 
 		return
-	}
-
-	async function delete_text(text: Text): Promise<void> {
-		await new DeleteTextApi(text).fetch()
-
-		await fetch_texts()
 	}
 
 	onMount(async () => {
