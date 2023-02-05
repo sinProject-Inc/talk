@@ -78,6 +78,8 @@
 	}
 
 	function on_change_locale_select(store_locale = true): void {
+		selected_text = undefined
+
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
@@ -96,7 +98,7 @@
 			localStorage.setItem('from_locale', from_locale_code.code)
 			localStorage.setItem('to_locale', to_locale_code.code)
 		}
-		
+
 		fetch_texts()
 	}
 
@@ -118,8 +120,6 @@
 			translations = []
 			console.log('selected')
 		}
-		
-		text_to_speech()
 
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
@@ -220,6 +220,13 @@
 		return
 	}
 
+	export async function text_to_speech(): Promise<void> {
+		if (!selected_text) return
+
+		audio_element.src = new TextToSpeechUrl(selected_text, from_locale_code).url
+		audio_element.load()
+	}
+
 	onMount(async () => {
 		if (!browser) return
 
@@ -261,7 +268,8 @@
 		<div bind:this={text_list_element}>
 			{#each texts as text, i}
 				<div
-					class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text == text
+					class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text ==
+					text
 						? 'bg-white/10'
 						: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
 					id={text.id.toString()}
@@ -274,10 +282,8 @@
 		</div>
 	</div>
 
-	<div class="glass-panel sticky z-10 bottom-4 pb-4 flex flex-col gap-4 px-5">
-		<div>
-			<audio class="{selected_text ? '' : 'hidden'} hidden" autoplay controls bind:this={audio_element} />
-		</div>
+	<div class="glass-panel sticky z-10 bottom-4 pb-4 pt-1 flex flex-col gap-4 px-5">
+		<audio class="{selected_text ? '' : 'hidden'} mt-2" autoplay controls bind:this={audio_element} />
 
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">
