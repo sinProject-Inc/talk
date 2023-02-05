@@ -198,7 +198,7 @@
 				bind:audio_element
 				bind:locale_code={to_locale_code}
 				bind:listening={to_listening}
-				bind:either_listening={listening}
+				bind:partner_listening={from_listening}
 				bind:playing_text
 				bind:playing_text_locale
 				on:message={(event) => {
@@ -212,7 +212,7 @@
 				bind:audio_element
 				bind:locale_code={from_locale_code}
 				bind:listening={from_listening}
-				bind:either_listening={listening}
+				bind:partner_listening={to_listening}
 				bind:playing_text
 				bind:playing_text_locale
 				on:message={(event) => {

@@ -31,7 +31,7 @@
 	export let audio_element: HTMLAudioElement
 
 	export let listening = false
-	export let either_listening = false
+	export let partner_listening = false
 
 	export let playing_text: Text | undefined
 	export let playing_text_locale: LocaleCode | undefined
@@ -51,6 +51,8 @@
 	let web_speech: WebSpeech | undefined
 
 	function speech_to_text(): void {
+		if (partner_listening) return
+
 		if (audio_element && !audio_element.paused) audio_element.pause()
 
 		textarea_body = ''
@@ -237,12 +239,14 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			{#if listening}
-				<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
-			{:else}
-				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
-			{/if}
-			<div class={either_listening ? 'fill-white/20' : ''}>
+			<div class={partner_listening ? 'fill-white/20' : ''}>
+				{#if listening}
+					<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
+				{:else}
+					<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
+				{/if}
+			</div>
+			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
 				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
 			</div>
 		</div>
