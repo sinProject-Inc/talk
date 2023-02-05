@@ -51,7 +51,7 @@
 	let web_speech: WebSpeech | undefined
 
 	function speech_to_text(): void {
-		if (!audio_element.paused) audio_element.pause()
+		if (audio_element && !audio_element.paused) audio_element.pause()
 
 		textarea_body = ''
 		dispatch_clear_command()
