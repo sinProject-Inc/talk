@@ -71,6 +71,14 @@
 		web_speech = undefined
 	}
 
+	async function speech_button_handler(): Promise<void> {
+		if (listening) {
+			await stop_listening()
+		} else {
+			speech_to_text()
+		}
+	}
+
 	async function on_finish_listening(): Promise<void> {
 		listening = false
 
@@ -250,11 +258,13 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			{#if listening}
-				<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
-			{:else}
-				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
-			{/if}
+			<IconButton on_click_handler={speech_button_handler}>
+				{#if listening}
+					<StopIcon />
+				{:else}
+					<VoiceIcon />
+				{/if}
+			</IconButton>
 			<div class={either_listening ? 'fill-white/20' : ''}>
 				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
 			</div>
