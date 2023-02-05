@@ -22,9 +22,9 @@ test('clicking a text in the history moves it into the box', async ({ page }) =>
 
 	await history_text.click()
 
-	const top_textarea = page.getByRole('textbox').first()
+	const bottom_textarea = page.getByRole('textbox').first()
 	
-	await expect(top_textarea).toHaveValue(text)
+	await expect(bottom_textarea).toHaveValue(text)
 })
 
 test('check main box heights', async ({ page }) => {

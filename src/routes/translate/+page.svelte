@@ -88,7 +88,6 @@
 		}
 
 		set_app_locale()
-
 		fetch_history()
 	}
 
@@ -200,8 +199,8 @@
 				bind:locale_code={to_locale_code}
 				bind:listening={to_listening}
 				bind:either_listening={listening}
-				bind:playing_text={playing_text}
-				bind:playing_text_locale={playing_text_locale}
+				bind:playing_text
+				bind:playing_text_locale
 				on:message={(event) => {
 					on_message(event, to_translate_box, from_translate_box)
 				}}
@@ -214,8 +213,8 @@
 				bind:locale_code={from_locale_code}
 				bind:listening={from_listening}
 				bind:either_listening={listening}
-				bind:playing_text={playing_text}
-				bind:playing_text_locale={playing_text_locale}
+				bind:playing_text
+				bind:playing_text_locale
 				on:message={(event) => {
 					on_message(event, from_translate_box, to_translate_box)
 				}}

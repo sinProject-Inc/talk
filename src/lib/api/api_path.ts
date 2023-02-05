@@ -21,6 +21,9 @@ export class ApiPath {
 	}
 
 	public connect_with_params(params: Record<string, string>): ApiPath {
+		// TODO: Do not use Record
+		if (!params) return new ApiPath(this._path)
+
 		const filtered_params = Object.fromEntries(
 			Object.entries(params).filter(([, value]) => value !== '')
 		)

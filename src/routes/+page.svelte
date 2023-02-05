@@ -64,7 +64,6 @@
 
 	async function fetch_texts(): Promise<void> {
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-
 		texts = await new TextsApi(speech_language_code).fetch()
 	}
 
@@ -209,7 +208,7 @@
 		translations = []
 		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
-
+	
 	async function add_text(): Promise<void> {
 		new_text_element.focus()
 
@@ -231,7 +230,6 @@
 		if (!browser) return
 
 		init()
-
 		init_locale_select()
 
 		await select_default_locales()
