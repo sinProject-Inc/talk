@@ -20,7 +20,6 @@
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
-	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import type { Text } from '@prisma/client'
 	import { _ } from 'svelte-i18n'
 
