@@ -10,7 +10,6 @@
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { createEventDispatcher, onMount } from 'svelte'
-	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { browser } from '$app/environment'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import CopyIcon from '../icons/copy_icon.svelte'
@@ -21,6 +20,7 @@
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
+	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import type { Text } from '@prisma/client'
 	import { _ } from 'svelte-i18n'
 
@@ -33,6 +33,9 @@
 
 	export let listening = false
 	export let either_listening = false
+
+	export let playing_text: Text | undefined
+	export let playing_text_locale: LocaleCode | undefined
 
 	let textarea_body = ''
 
@@ -165,13 +168,16 @@
 		})
 	}
 
-	export async function text_to_speech(): Promise<void> {
+	export function text_to_speech(): void {
 		if (!text) return
 
-		if (either_listening) return
-
-		audio_element.src = new TextToSpeechUrl(text, locale_code).url
-		audio_element.load()
+		if (text.text === playing_text?.text) {			
+			audio_element.currentTime = 0
+			audio_element.play()
+		} else {
+			playing_text = text
+			playing_text_locale = locale_code
+		}
 	}
 
 	function on_text_area_change(): void {
@@ -203,7 +209,7 @@
 
 	export function clear(): void {
 		text = undefined
-		
+
 		if (!textarea_body) return
 
 		textarea_body = ''

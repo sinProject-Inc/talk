@@ -78,7 +78,7 @@
 		on_change_locale_select(false)
 	}
 
-function on_change_locale_select(store_locale = true): void {
+	function on_change_locale_select(store_locale = true): void {
 		selected_text = undefined
 
 		if (!store_locale) {
@@ -107,18 +107,11 @@ function on_change_locale_select(store_locale = true): void {
 
 	async function set_app_locale(): Promise<void> {
 		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-		
+
 		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
 		$locale = app_locale_code.code
 
 		await waitLocale($locale)
-	}
-
-	export async function text_to_speech(): Promise<void> {
-		if (!selected_text) return
-
-		audio_element.src = new TextToSpeechUrl(selected_text, from_locale_code).url
-		audio_element.load()
 	}
 
 	function on_click_text(text: Text): void {
@@ -127,13 +120,14 @@ function on_change_locale_select(store_locale = true): void {
 
 		if (text.text === selected_text?.text) {
 			console.log('same text')
+			audio_element.currentTime = 0
+			audio_element.play()
 		} else {
 			selected_text = text
 			translations = []
 			console.log('selected')
 		}
 
-		text_to_speech()
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
 
 		// speech(selected_text, language_code, voice_name)
@@ -285,7 +279,15 @@ function on_change_locale_select(store_locale = true): void {
 	</div>
 
 	<div class="glass-panel sticky z-10 bottom-4 pb-4 pt-1 flex flex-col gap-4 px-5">
-		<audio class="{selected_text ? '' : 'hidden'} mt-2" autoplay controls bind:this={audio_element} />
+		{#if selected_text}
+		<audio
+			class="mt-2"
+			controls
+			bind:this={audio_element}
+			src={new TextToSpeechUrl(selected_text, from_locale_code).url}
+			autoplay
+		/>
+		{/if}
 
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">

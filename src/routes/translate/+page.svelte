@@ -16,6 +16,7 @@
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
+	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 
 	export let data: PageData
 
@@ -38,6 +39,9 @@
 	let selected_text: Text | undefined
 
 	let confirming_delete_text: Text | undefined
+
+	let playing_text: Text | undefined
+	let playing_text_locale: LocaleCode | undefined
 
 	$: listening = from_listening || to_listening
 
@@ -96,7 +100,6 @@
 
 		await waitLocale($locale)
 	}
-
 
 	async function on_message(
 		event: CustomEvent,
@@ -197,6 +200,8 @@
 				bind:locale_code={to_locale_code}
 				bind:listening={to_listening}
 				bind:either_listening={listening}
+				bind:playing_text={playing_text}
+				bind:playing_text_locale={playing_text_locale}
 				on:message={(event) => {
 					on_message(event, to_translate_box, from_translate_box)
 				}}
@@ -209,6 +214,8 @@
 				bind:locale_code={from_locale_code}
 				bind:listening={from_listening}
 				bind:either_listening={listening}
+				bind:playing_text={playing_text}
+				bind:playing_text_locale={playing_text_locale}
 				on:message={(event) => {
 					on_message(event, from_translate_box, to_translate_box)
 				}}
@@ -237,7 +244,15 @@
 	</div>
 </div>
 
-<audio class="hidden" controls autoplay bind:this={audio_element} />
+{#if playing_text && playing_text_locale}
+	<audio
+		class="mt-2 hidden"
+		controls
+		bind:this={audio_element}
+		src={new TextToSpeechUrl(playing_text, playing_text_locale).url}
+		autoplay
+	/>
+{/if}
 {#if confirming_delete_text}
 	<ConfirmDeleteModal
 		on:close={() => {
