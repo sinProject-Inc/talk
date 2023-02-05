@@ -146,6 +146,14 @@ test('clearing text and then switching languages should keep boxes cleared', asy
 	await expect(bottom_textarea).toHaveValue('')
 })
 
+test('first textbox is focused', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+
+	const top_textarea = page.getByRole('textbox').first()
+
+	await expect(top_textarea).toBeFocused()
+})
+
 async function clear_text(page: Page): Promise<void> {
 	await page.reload()
 
