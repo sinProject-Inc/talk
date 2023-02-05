@@ -4,6 +4,7 @@ import type { SpeechText } from '$lib/speech/speech_text'
 import type { Text } from '@prisma/client'
 import { LanguageDb } from '../language/language_db'
 import type { TextId } from './text_id'
+import type { TextLimit } from './text_limit'
 
 export class TextDb {
 	public async find(text_id: TextId): Promise<Text | null> {
@@ -12,10 +13,15 @@ export class TextDb {
 		return text
 	}
 
-	public async find_many(speech_language_code: SpeechLanguageCode): Promise<Text[]> {
+	public async find_many(
+		speech_language_code: SpeechLanguageCode,
+		limit?: TextLimit
+	): Promise<Text[]> {
 		const texts = await App.db.text.findMany({
 			where: { language: { code: speech_language_code.code } },
 			orderBy: { updated_at: 'desc' },
+			// TODO: Make this more readable
+			...(limit && { take: limit.limit }),
 		})
 
 		return texts
@@ -48,6 +54,15 @@ export class TextDb {
 			update: { updated_at: new Date() },
 			create: { language_id, text: speech_text.text },
 		})
+
+		return result
+	}
+
+	public async delete(text_id: TextId): Promise<Text> {
+		await App.db.textToText.deleteMany({ where: { text_id_1: text_id.id } })
+		await App.db.textToText.deleteMany({ where: { text_id_2: text_id.id } })
+
+		const result = await App.db.text.delete({ where: { id: text_id.id } })
 
 		return result
 	}

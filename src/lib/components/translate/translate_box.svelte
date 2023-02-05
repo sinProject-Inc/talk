@@ -10,7 +10,6 @@
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { createEventDispatcher, onMount } from 'svelte'
-	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { browser } from '$app/environment'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import CopyIcon from '../icons/copy_icon.svelte'
@@ -24,7 +23,6 @@
 	import type { Text } from '@prisma/client'
 	import { _ } from 'svelte-i18n'
 
-
 	export let locale_select_element: HTMLSelectElement
 	export let locale_code = LocaleCode.english_united_states
 
@@ -33,7 +31,10 @@
 	export let audio_element: HTMLAudioElement
 
 	export let listening = false
-	export let either_listening = false
+	export let partner_listening = false
+
+	export let playing_text: Text | undefined
+	export let playing_text_locale: LocaleCode | undefined
 
 	let textarea_body = ''
 
@@ -41,15 +42,18 @@
 
 	let snackbar_visible = false
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher<{
+		message: { text?: Text; clear?: boolean; fetch_history?: boolean }
+	}>()
 
 	let dispatch_timeout_id: ReturnType<typeof setTimeout>
 
 	let web_speech: WebSpeech | undefined
 
 	function speech_to_text(): void {
-		if (!audio_element.paused) audio_element.pause()
-		
+		if (partner_listening) return
+		if (audio_element && !audio_element.paused) audio_element.pause()
+
 		textarea_body = ''
 		dispatch_clear_command()
 
@@ -78,7 +82,7 @@
 		speech_text_element.placeholder = ''
 
 		await add_text(speech_text_element.value)
-		await dispatch_text()		
+		await dispatch_text()
 	}
 
 	async function find_translation(text_id: TextId): Promise<Text[]> {
@@ -91,10 +95,7 @@
 		return translation_texts
 	}
 
-	export async function show_translation(
-		text: Text,
-		play_audio = false
-	): Promise<void> {
+	export async function show_translation(text: Text, play_audio = false): Promise<void> {
 		const id = new TextId(text.id)
 
 		const find_translation_result = await find_translation(id)
@@ -133,13 +134,15 @@
 		return text
 	}
 
-	async function add_text(textarea_body_to_add: string): Promise<void> {		
+	export async function add_text(textarea_body_to_add: string): Promise<void> {
 		const speech_text = new SpeechText(textarea_body_to_add)
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
 		text = await new AddTextApi(speech_language_code, speech_text).fetch()
-		
+
 		textarea_body = text.text
+
+		dispatch_fetch_history_command()
 
 		return
 	}
@@ -159,16 +162,22 @@
 		})
 	}
 
-	async function text_to_speech(): Promise<void> {
+	function dispatch_fetch_history_command(): void {
+		dispatch('message', {
+			fetch_history: true,
+		})
+	}
+
+	export function text_to_speech(): void {
 		if (!text) return
 
-		if(either_listening) return
-
-		// Doesn't work without await
-		await audio_element.pause()
-		audio_element.currentTime = 0
-		audio_element.src = new TextToSpeechUrl(text, locale_code).url
-		await audio_element.play()
+		if (text.text === playing_text?.text) {			
+			audio_element.currentTime = 0
+			audio_element.play()
+		} else {
+			playing_text = text
+			playing_text_locale = locale_code
+		}
 	}
 
 	function on_text_area_change(): void {
@@ -199,6 +208,8 @@
 	}
 
 	export function clear(): void {
+		text = undefined
+
 		if (!textarea_body) return
 
 		textarea_body = ''
@@ -210,17 +221,16 @@
 	})
 </script>
 
-<div class="glass-panel">
-	<div class="grid">
-		<div class="z-10 flex justify-end h-9 pr-[24px] pt-1" style="grid-area: 1/8/1/9">
+<div class="main-box glass-panel row-span-1">
+	<div class="grid h-full -mb-11 pb-11">
+		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
 				<IconButton on_click_handler={clear}><CloseIcon /></IconButton>
 			</div>
 		</div>
 		<textarea
-			class="pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
-			style="grid-area: 1/1/2/9"
-			rows="7"
+			class="text-area pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+			style="grid-area: 1/1/10/9"
 			bind:this={speech_text_element}
 			bind:value={textarea_body}
 			on:input={on_text_area_change}
@@ -228,12 +238,14 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			{#if listening}
-				<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
-			{:else}
-				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
-			{/if}
-			<div class={either_listening ? 'fill-white/20' : ''}>
+			<div class={partner_listening ? 'fill-white/20' : ''}>
+				{#if listening}
+					<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
+				{:else}
+					<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
+				{/if}
+			</div>
+			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
 				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
 			</div>
 		</div>
