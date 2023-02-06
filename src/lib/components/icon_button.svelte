@@ -18,7 +18,6 @@
 </script>
 
 <button
-	class={enabled ? '' : 'cursor-default'}
 	on:click={on_click_handler}
 	on:click={animate}
 	disabled={!enabled}

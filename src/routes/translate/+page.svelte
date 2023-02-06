@@ -194,7 +194,7 @@
 <div class="center-container w-screen h-[calc(100vh-69px)]">
 	<div class="top-bar flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
-			class="outline-0 bg-transparent p-2 text-center {listening ? 'cursor-default' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
+			class="outline-0 bg-transparent p-2 text-center {listening ? '' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
 			disabled={listening}
 			id="language_1"
@@ -205,7 +205,7 @@
 			<IconButton enabled={!listening} on_click_handler={ () => { if(!listening) switch_locales() }}><SwapIcon /></IconButton>
 		</div>
 		<select
-			class="outline-0 bg-transparent p-2 text-center {listening ? 'cursor-default' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
+			class="outline-0 bg-transparent p-2 text-center {listening ? '' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"
 			disabled={listening}
 			id="language_2"
