@@ -17,12 +17,12 @@ export const GET: RequestHandler = async () => {
 		await db.language.create({ data: { code: 'ko', name: '한국어' } })
 		await db.language.create({ data: { code: 'km', name: 'ខ្មែរ' } })
 
-		await db.locale.create({ data: { code: 'en-US', name: 'English (United States)' } })
-		await db.locale.create({ data: { code: 'en-GB', name: 'English (Great Britain)' } })
-		await db.locale.create({ data: { code: 'ja-JP', name: '日本語 (日本)' } })
-		await db.locale.create({ data: { code: 'yue-HK', name: '廣東話 (香港)' } })
-		await db.locale.create({ data: { code: 'ko-KR', name: '한국어 (대한민국)' } })
-		await db.locale.create({ data: { code: 'km-KH', name: 'ខ្មែរ (កម្ពុជា។)' } })
+		await db.locale.create({ data: { code: 'en-US', name: 'English (US)' } })
+		await db.locale.create({ data: { code: 'en-GB', name: 'English (GB)' } })
+		await db.locale.create({ data: { code: 'ja-JP', name: '日本語 (JP)' } })
+		await db.locale.create({ data: { code: 'yue-HK', name: '廣東話 (HK)' } })
+		await db.locale.create({ data: { code: 'ko-KR', name: '한국어 (KR)' } })
+		await db.locale.create({ data: { code: 'km-KH', name: 'ខ្មែរ (KH)' } })
 
 		await db.text.create({ data: { language_id: 4, text: '사랑 해요.' } })
 		await db.text.create({ data: { language_id: 4, text: '내 가치를 네가 정하지 마' } })
