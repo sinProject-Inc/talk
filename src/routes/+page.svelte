@@ -262,7 +262,7 @@
 
 <Navbar />
 <div class="center-container w-screen h-[calc(100vh-69px)] flex flex-col">
-	<div class="pt-2 glass-panel my-4 flex flex-col gap-2 flex-1 overflow-y-scroll">
+	<div class="pt-3 glass-panel my-4 flex flex-col gap-2 flex-1 overflow-y-scroll">
 		<div class="px-5">
 			<select
 				class="glass-button h-full grow text-center"
@@ -293,7 +293,7 @@
 		</div>
 	</div>
 
-	<div class="glass-panel pb-4 flex flex-col gap-4 px-5">
+	<div class="glass-panel pb-4 flex flex-col gap-4 px-5 pt-2">
 		{#if selected_text}
 			<audio
 				class="mt-2"
