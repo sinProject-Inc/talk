@@ -25,24 +25,20 @@
 	let from_language_text_element: HTMLTextAreaElement
 	let to_language_text_element: HTMLTextAreaElement
 	let audio_element: HTMLAudioElement
-
 	let from_locale_code = LocaleCode.english_united_states
 	let to_locale_code = LocaleCode.japanese_japan
-
 	let from_translate_box: TranslateBox
 	let to_translate_box: TranslateBox
-
 	let from_listening = false
 	let to_listening = false
-
 	let text_history: Text[] = []
 	let selected_text: Text | undefined
-
 	let confirming_delete_text: Text | undefined
-
 	let playing_text: Text | undefined
 	let playing_text_locale: LocaleCode | undefined
 
+	$: from_locale_selected_value = from_locale_code.code
+	$: to_locale_selected_value = to_locale_code.code
 	$: listening = from_listening || to_listening
 
 	function init_locale_select(): void {
@@ -59,10 +55,30 @@
 		const language_to = localStorage.getItem('to_locale')
 		to_locale_select_element.value = language_to ?? 'ja-JP'
 
-		on_change_locale_select(false)
+		set_locale(false)
 	}
 
-	function on_change_locale_select(store_locale = true, keep_text = false): void {
+	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
+		let partner_select_element: HTMLSelectElement
+		let original_selected_value: string
+
+		if (target_select_element === from_locale_select_element) {
+			original_selected_value = from_locale_selected_value
+			partner_select_element = to_locale_select_element
+		} else {
+			original_selected_value = to_locale_selected_value
+			partner_select_element = from_locale_select_element
+		}
+
+		if (target_select_element.value === partner_select_element.value) {
+			target_select_element.value = partner_select_element.value
+			partner_select_element.value = original_selected_value
+		}
+
+		set_locale()
+	}
+
+	function set_locale(store_locale = true, keep_text = false): void {
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
@@ -137,7 +153,7 @@
 		from_translate_box.set_text(to_text)
 		to_translate_box.set_text(from_text)
 
-		on_change_locale_select(true, true)
+		set_locale(true, true)
 	}
 
 	async function fetch_history(): Promise<void> {
@@ -182,7 +198,7 @@
 			name="language_1"
 			id="language_1"
 			bind:this={to_locale_select_element}
-			on:change={() => on_change_locale_select()}
+			on:change={() => on_change_locale_select(to_locale_select_element)}
 		/>
 		<div class="language-switcher">
 			<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
@@ -192,7 +208,7 @@
 			name="language_2"
 			id="language_2"
 			bind:this={from_locale_select_element}
-			on:change={() => on_change_locale_select()}
+			on:change={() => on_change_locale_select(from_locale_select_element)}
 		/>
 	</div>
 	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
