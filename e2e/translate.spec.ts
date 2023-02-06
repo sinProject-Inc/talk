@@ -119,7 +119,7 @@ test('adding text should add it to the history', async ({ page }) => {
 	
 	const first_history_text = page.locator('.text').first()
 
-	await expect(first_history_text).toHaveText("hello")
+	await expect(first_history_text).toHaveText('Hello') 
 })
 
 test('switching locale switches displayed history language', async ({ page }) => {
