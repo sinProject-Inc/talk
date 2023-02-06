@@ -260,7 +260,7 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			<div class={partner_listening ? 'fill-white/20' : ''}>
+			<div class="{partner_listening ? 'fill-white/20' : ''} listen-button">
 				<IconButton on_click_handler={handle_listen_button}>
 					{#if listening}
 						<StopIcon />
