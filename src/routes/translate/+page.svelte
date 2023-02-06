@@ -202,7 +202,7 @@
 			on:change={() => on_change_locale_select(to_locale_select_element)}
 		/>
 		<div class="language-switcher">
-			<IconButton disabled={listening} on_click_handler={ () => { if(!listening) switch_locales() }}><SwapIcon /></IconButton>
+			<IconButton enabled={!listening} on_click_handler={ () => { if(!listening) switch_locales() }}><SwapIcon /></IconButton>
 		</div>
 		<select
 			class="outline-0 bg-transparent p-2 text-center {listening ? 'cursor-default' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
