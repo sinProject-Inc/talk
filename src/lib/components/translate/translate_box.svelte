@@ -218,7 +218,6 @@
 		}, 2000)
 	}
 
-
 	export function clear_self(): void {
 		text = undefined
 
