@@ -261,8 +261,8 @@
 </svelte:head>
 
 <Navbar />
-<div class="center-container flex-auto">
-	<div class="pt-2 glass-panel mt-4 mb-8 flex flex-col gap-2">
+<div class="center-container w-screen h-[calc(100vh-69px)] flex flex-col">
+	<div class="pt-2 glass-panel my-4 flex flex-col gap-2 flex-1 overflow-y-scroll">
 		<div class="px-5">
 			<select
 				class="glass-button h-full grow text-center"
@@ -280,7 +280,7 @@
 			/>
 			<IconButton on_click_handler={add_text}><AddIcon /></IconButton>
 		</div>
-		<div bind:this={text_list_element}>
+		<div bind:this={text_list_element} class="overflow-y-scroll">
 			{#each texts as text, i}
 				<TextListText
 					{texts}
@@ -293,7 +293,7 @@
 		</div>
 	</div>
 
-	<div class="glass-panel sticky z-10 bottom-4 pb-4 pt-1 flex flex-col gap-4 px-5">
+	<div class="glass-panel pb-4 flex flex-col gap-4 px-5">
 		{#if selected_text}
 			<audio
 				class="mt-2"
