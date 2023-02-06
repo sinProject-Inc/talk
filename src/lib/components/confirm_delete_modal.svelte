@@ -40,11 +40,11 @@
 
 <div class="fixed top-0 left-0 w-full bg-black/30 h-full" on:click={close} on:keydown />
 
-<div class="fixed top-0 left-0 w-full h-full justify-center items-center flex pointer-events-none px-1">
+<div class="fixed top-0 left-0 w-full h-full justify-center items-center flex pointer-events-none px-4">
 	<div
-		class="md:pt-9 md:pb-10 pt-6 pb-8 glass-panel pointer-events-auto text-center mx-auto max-w-[calc(370px+2rem)] w-full"
+		class=" pt-6 pb-8 glass-panel pointer-events-auto text-center mx-auto max-w-[calc(370px+2rem)] w-full"
 	>
-      <div class="px-8">
+      <div class="px-4 sm:px-8">
         <div class="font-bold text-lg mb-5">{$_('confirm_delete')}</div>
         <div class="mb-8">{$_('are_you_sure')}</div>
         <div class="flex justify-center gap-4">
