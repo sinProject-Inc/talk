@@ -76,6 +76,14 @@
 		web_speech = undefined
 	}
 
+	async function handle_listen_button(): Promise<void> {
+		if (listening) {
+			await stop_listening()
+		} else {
+			speech_to_text()
+		}
+	}
+
 	async function on_finish_listening(): Promise<void> {
 		listening = false
 
@@ -171,7 +179,7 @@
 	export function text_to_speech(): void {
 		if (!text) return
 
-		if (text.text === playing_text?.text) {			
+		if (text.text === playing_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
 		} else {
@@ -239,11 +247,13 @@
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
 			<div class={partner_listening ? 'fill-white/20' : ''}>
-				{#if listening}
-					<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
-				{:else}
-					<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
-				{/if}
+				<IconButton on_click_handler={handle_listen_button}>
+					{#if listening}
+						<StopIcon />
+					{:else}
+						<VoiceIcon />
+					{/if}
+				</IconButton>
 			</div>
 			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
 				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
