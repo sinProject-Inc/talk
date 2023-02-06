@@ -10,7 +10,6 @@
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { createEventDispatcher, onMount } from 'svelte'
-	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { browser } from '$app/environment'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import CopyIcon from '../icons/copy_icon.svelte'
@@ -32,7 +31,10 @@
 	export let audio_element: HTMLAudioElement
 
 	export let listening = false
-	export let either_listening = false
+	export let partner_listening = false
+
+	export let playing_text: Text | undefined
+	export let playing_text_locale: LocaleCode | undefined
 
 	let textarea_body = ''
 
@@ -47,7 +49,8 @@
 	let web_speech: WebSpeech | undefined
 
 	function speech_to_text(): void {
-		if (!audio_element.paused) audio_element.pause()
+		if (partner_listening) return
+		if (audio_element && !audio_element.paused) audio_element.pause()
 
 		textarea_body = ''
 		dispatch_clear_partner_command()
@@ -169,18 +172,16 @@
 		})
 	}
 
-	export async function text_to_speech(): Promise<void> {
-		if (either_listening) return
+	export function text_to_speech(): void {
+		if (!text) return
 
-		if (!textarea_body) return
-
-		const speech_text = new SpeechText(textarea_body)
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
-
-		const text_for_speech = await new AddTextApi(speech_language_code, speech_text).fetch()
-		
-		audio_element.src = new TextToSpeechUrl(text_for_speech, locale_code).url
-		audio_element.load()
+		if (text.text === playing_text?.text) {			
+			audio_element.currentTime = 0
+			audio_element.play()
+		} else {
+			playing_text = text
+			playing_text_locale = locale_code
+		}
 	}
 
 	async function on_text_area_keydown(event: KeyboardEvent): Promise<void> {
@@ -250,12 +251,14 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			{#if listening}
-				<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
-			{:else}
-				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
-			{/if}
-			<div class={either_listening ? 'fill-white/20' : ''}>
+			<div class={partner_listening ? 'fill-white/20' : ''}>
+				{#if listening}
+					<IconButton on_click_handler={stop_listening}><StopIcon /></IconButton>
+				{:else}
+					<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
+				{/if}
+			</div>
+			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
 				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
 			</div>
 		</div>

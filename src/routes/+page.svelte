@@ -14,7 +14,7 @@
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
-	import { _ } from 'svelte-i18n'
+	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
@@ -25,6 +25,7 @@
 	import { TextId } from '$lib/text/text_id'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Divider from '$lib/components/divider.svelte'
+	import TextListText from '$lib/components/text_list_text.svelte'
 
 	export let data: PageData
 
@@ -63,7 +64,6 @@
 
 	async function fetch_texts(): Promise<void> {
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-
 		texts = await new TextsApi(speech_language_code).fetch()
 	}
 
@@ -78,6 +78,8 @@
 	}
 
 	function on_change_locale_select(store_locale = true): void {
+		selected_text = undefined
+
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
@@ -96,8 +98,18 @@
 			localStorage.setItem('from_locale', from_locale_code.code)
 			localStorage.setItem('to_locale', to_locale_code.code)
 		}
-		
+
+		set_app_locale()
 		fetch_texts()
+	}
+
+	async function set_app_locale(): Promise<void> {
+		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
+
+		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
+		$locale = app_locale_code.code
+
+		await waitLocale($locale)
 	}
 
 	function on_click_text(text: Text): void {
@@ -123,7 +135,6 @@
 		if (!selected_text) return []
 
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
-
 		const text_id = new TextId(selected_text.id)
 		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
 		const translations = translation_texts.map((translation_text) => translation_text.text)
@@ -195,7 +206,7 @@
 		translations = []
 		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
-
+	
 	async function add_text(): Promise<void> {
 		new_text_element.focus()
 
@@ -217,7 +228,6 @@
 		if (!browser) return
 
 		init()
-
 		init_locale_select()
 
 		await select_default_locales()
@@ -253,32 +263,27 @@
 		</div>
 		<div bind:this={text_list_element}>
 			{#each texts as text, i}
-				<div
-					class="text py-[10px] cursor-pointer transition px-5 hover:bg-white/10 {selected_text == text
-						? 'bg-white/10'
-						: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
-					id={text.id.toString()}
-					on:click={() => on_click_text(text)}
-					on:keydown
-				>
-					{text.text}
-				</div>
+				<TextListText
+					{texts}
+					{text}
+					{i}
+					{selected_text}
+					on_click_text={() => on_click_text(text)}
+				/>
 			{/each}
 		</div>
 	</div>
 
-	<div class="glass-panel sticky z-10 bottom-4 pb-4 flex flex-col gap-4 px-5">
-		<div>
-			{#if selected_text}
-				<audio
-					class="hidden"
-					src={new TextToSpeechUrl(selected_text, from_locale_code).url}
-					controls
-					autoplay
-					bind:this={audio_element}
-				/>
-			{/if}
-		</div>
+	<div class="glass-panel sticky z-10 bottom-4 pb-4 pt-1 flex flex-col gap-4 px-5">
+		{#if selected_text}
+		<audio
+			class="mt-2"
+			controls
+			bind:this={audio_element}
+			src={new TextToSpeechUrl(selected_text, from_locale_code).url}
+			autoplay
+		/>
+		{/if}
 
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">
