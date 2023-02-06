@@ -148,6 +148,8 @@
 		init_locale_select()
 
 		await select_default_locales()
+
+		to_translate_box.focus()
 	})
 
 	async function on_click_text(text: Text): Promise<void> {
