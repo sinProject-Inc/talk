@@ -1,4 +1,4 @@
-import type { Api } from "./api"
+import type { Api } from './api'
 
 export class ApiPath {
 	private readonly _api_path: undefined
@@ -20,17 +20,14 @@ export class ApiPath {
 		return api_path
 	}
 
-	public get_url(api?: Api): string {
-		const origin = api?.origin ?? ''
-
-		return `${origin}${this._path}`
-	}
-
 	public connect_with_params(params: Record<string, string>): ApiPath {
+		// TODO: Do not use Record
+		if (!params) return new ApiPath(this._path)
+
 		const filtered_params = Object.fromEntries(
 			Object.entries(params).filter(([, value]) => value !== '')
 		)
-		
+
 		if (Object.keys(filtered_params).length === 0) {
 			return this
 		}
@@ -39,5 +36,11 @@ export class ApiPath {
 		const connected_path = `${this._path}?${query}`
 
 		return new ApiPath(connected_path)
+	}
+
+	public get_url(api?: Api): string {
+		const origin = api?.origin ?? ''
+
+		return `${origin}${this._path}`
 	}
 }

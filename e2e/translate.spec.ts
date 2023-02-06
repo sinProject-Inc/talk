@@ -22,9 +22,9 @@ test('clicking a text in the history moves it into the box', async ({ page }) =>
 
 	await history_text.click()
 
-	const top_textarea = page.getByRole('textbox').first()
+	const bottom_textarea = page.getByRole('textbox').first()
 	
-	await expect(top_textarea).toHaveValue(text)
+	await expect(bottom_textarea).toHaveValue(text)
 })
 
 test('check main box heights', async ({ page }) => {
@@ -119,7 +119,7 @@ test('adding text should add it to the history', async ({ page }) => {
 	
 	const first_history_text = page.locator('.text').first()
 
-	await expect(first_history_text).toHaveText(/hello/i)
+	await expect(first_history_text).toHaveText("hello")
 })
 
 test('switching locale switches displayed history language', async ({ page }) => {

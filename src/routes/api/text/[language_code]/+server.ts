@@ -2,7 +2,6 @@ import { TextDb } from '$lib/text/text_db'
 import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import { TextLimit } from '$lib/text/text_limit'
-import type { Text } from '@prisma/client'
 
 export const GET: RequestHandler = async ({ url, params }): Promise<Response> => {
 	console.info(url.href)

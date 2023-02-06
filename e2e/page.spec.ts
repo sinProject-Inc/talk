@@ -32,8 +32,8 @@ test('changing locale, and then moving pages keeps saved locale', async ({ page 
 
 	await page.goto(`${host}/translate`)
 	
-	await expect(page.getByRole('combobox').first()).toHaveValue('yue-HK')
-	await expect(page.getByRole('combobox').last()).toHaveValue('km-KH')
+	await expect(page.getByRole('combobox').first()).toHaveValue('km-KH')
+	await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
 })
 
 test('If there is text on translate, there is text on main', async ({ page }) => {
