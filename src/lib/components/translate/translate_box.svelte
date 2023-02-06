@@ -216,7 +216,7 @@
 		dispatch_clear_command()
 	}
 
-	export function focus_text_area(): void {
+	export function focus(): void {
 		speech_text_element.focus()
 	}
 
