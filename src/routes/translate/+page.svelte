@@ -83,8 +83,8 @@
 		}
 
 		if (!keep_text) {
-			from_translate_box.clear()
-			to_translate_box.clear()
+			from_translate_box.clear_self()
+			to_translate_box.clear_self()
 		}
 
 		set_app_locale()
@@ -112,11 +112,15 @@
 		}
 
 		if (event.detail.clear) {
-			recipient.clear()
+			recipient.clear_self()
 		}
 
 		if (event.detail.fetch_history) {
 			await fetch_history()
+		}
+
+		if (event.detail.text_to_speech) {
+			recipient.text_to_speech()
 		}
 	}
 
