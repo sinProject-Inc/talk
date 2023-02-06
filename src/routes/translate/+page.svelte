@@ -139,7 +139,7 @@
 	async function fetch_history(): Promise<void> {
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
 
-		text_history = await new TextsApi(speech_language_code, 10).fetch()
+		text_history = await new TextsApi(speech_language_code, 100).fetch()
 	}
 
 	onMount(async () => {
