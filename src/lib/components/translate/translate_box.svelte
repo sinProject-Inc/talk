@@ -216,6 +216,10 @@
 		dispatch_clear_command()
 	}
 
+	export function focus_text_area(): void {
+		speech_text_element.focus()
+	}
+
 	onMount(async () => {
 		if (!browser) return
 	})
