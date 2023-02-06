@@ -293,10 +293,10 @@
 		</div>
 	</div>
 
-	<div class="glass-panel pb-4 flex flex-col gap-4 px-5">
+	<div class="glass-panel pb-4 flex flex-col gap-4 px-5 pt-1">
 		{#if selected_text}
 			<audio
-				class="mt-2"
+				class="mt-[5px]"
 				controls
 				bind:this={audio_element}
 				src={new TextToSpeechUrl(selected_text, from_locale_code).url}
