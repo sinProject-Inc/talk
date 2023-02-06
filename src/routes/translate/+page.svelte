@@ -62,7 +62,7 @@
 		on_change_locale_select(false)
 	}
 
-	function on_change_locale_select(store_locale = true, keep_text = false): void {
+	async function on_change_locale_select(store_locale = true, keep_text = false): void {
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')
@@ -83,8 +83,8 @@
 		}
 
 		if (!keep_text) {
-			from_translate_box.clear()
-			to_translate_box.clear()
+			from_translate_box.clear_self()
+			to_translate_box.clear_self()
 		}
 
 		set_app_locale()
