@@ -283,9 +283,6 @@
 			/>
 			<IconButton on_click_handler={add_text}><AddIcon /></IconButton>
 		</div>
-		<div class="px-5">
-			<Divider />
-		</div>
 		<div bind:this={text_list_element}>
 			{#each texts as text, i}
 				<div
