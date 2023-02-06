@@ -43,6 +43,8 @@
 	let from_locale_code = LocaleCode.english_united_states
 	let to_locale_code = LocaleCode.japanese_japan
 
+	$: from_locale_selected_value = from_locale_code.code
+	$: to_locale_selected_value = to_locale_code.code
 	$: from_speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
 	$: to_speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
 
@@ -74,10 +76,30 @@
 		const language_to = localStorage.getItem('to_locale')
 		to_locale_select_element.value = language_to ?? 'ja-JP'
 
-		on_change_locale_select(false)
+		set_locale(false)
 	}
 
-	function on_change_locale_select(store_locale = true): void {
+	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
+		let partner_select_element: HTMLSelectElement
+		let original_selected_value: string
+
+		if (target_select_element === from_locale_select_element) {
+			original_selected_value = from_locale_selected_value
+			partner_select_element = to_locale_select_element
+		} else {
+			original_selected_value = to_locale_selected_value
+			partner_select_element = from_locale_select_element
+		}
+
+		if (target_select_element.value === partner_select_element.value) {
+			target_select_element.value = partner_select_element.value
+			partner_select_element.value = original_selected_value
+		}
+
+		set_locale()
+	}
+
+	function set_locale(store_locale = true): void {
 		selected_text = undefined
 
 		if (!store_locale) {
@@ -88,11 +110,11 @@
 			if (to_locale) to_locale_select_element.value = to_locale
 		}
 
-		const from_selected_value = from_locale_select_element.selectedOptions[0].value
-		const to_selected_value = to_locale_select_element.selectedOptions[0].value
+		from_locale_selected_value = from_locale_select_element.selectedOptions[0].value
+		to_locale_selected_value = to_locale_select_element.selectedOptions[0].value
 
-		from_locale_code = LocaleCode.create(from_selected_value)
-		to_locale_code = LocaleCode.create(to_selected_value)
+		from_locale_code = LocaleCode.create(from_locale_selected_value)
+		to_locale_code = LocaleCode.create(to_locale_selected_value)
 
 		if (store_locale) {
 			localStorage.setItem('from_locale', from_locale_code.code)
@@ -206,7 +228,7 @@
 		translations = []
 		speech_text_element.textContent = `(${$_('lets_talk')})`
 	}
-	
+
 	async function add_text(): Promise<void> {
 		new_text_element.focus()
 
@@ -245,7 +267,7 @@
 			<select
 				class="glass-button h-full grow text-center"
 				bind:this={from_locale_select_element}
-				on:change={() => on_change_locale_select()}
+				on:change={() => on_change_locale_select(from_locale_select_element)}
 			/>
 		</div>
 
@@ -276,13 +298,13 @@
 
 	<div class="glass-panel sticky z-10 bottom-4 pb-4 pt-1 flex flex-col gap-4 px-5">
 		{#if selected_text}
-		<audio
-			class="mt-2"
-			controls
-			bind:this={audio_element}
-			src={new TextToSpeechUrl(selected_text, from_locale_code).url}
-			autoplay
-		/>
+			<audio
+				class="mt-2"
+				controls
+				bind:this={audio_element}
+				src={new TextToSpeechUrl(selected_text, from_locale_code).url}
+				autoplay
+			/>
 		{/if}
 
 		<div class="flex flex-col gap-2">
@@ -299,7 +321,7 @@
 				<select
 					class="glass-button text-center"
 					bind:this={to_locale_select_element}
-					on:change={() => on_change_locale_select()}
+					on:change={() => on_change_locale_select(to_locale_select_element)}
 				/>
 			</div>
 			<div class="flex flex-row gap-2 items-center">
