@@ -159,6 +159,13 @@ test('clearing text and then switching languages should keep boxes cleared', asy
 	await expect(to_textarea).toHaveValue('')
 })
 
+// Cannot use microphone
+// test('listening disables the top bar', async ({page}) => {
+// 	await page.locator('.listen-button').first().click()
+
+// 	await expect(page.locator('#language-1')).toBeDisabled()
+// })
+
 async function clear_text(page: Page): Promise<void> {
 	await page.reload()
 

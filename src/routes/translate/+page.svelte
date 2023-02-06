@@ -192,20 +192,22 @@
 
 <Navbar />
 <div class="center-container w-screen h-[calc(100vh-69px)]">
-	<div class="flex justify-evenly items-center glass-panel h-10 my-4">
+	<div class="top-bar flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
-			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
+			class="outline-0 bg-transparent p-2 text-center {listening ? '' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
+			disabled={listening}
 			id="language_1"
 			bind:this={to_locale_select_element}
 			on:change={() => on_change_locale_select(to_locale_select_element)}
 		/>
 		<div class="language-switcher">
-			<IconButton on_click_handler={switch_locales}><SwapIcon /></IconButton>
+			<IconButton enabled={!listening} on_click_handler={ () => { if(!listening) switch_locales() }}><SwapIcon /></IconButton>
 		</div>
 		<select
-			class="outline-0 bg-transparent p-2 text-center hover:scale-110 transition-all duration-300 appearance-none text-ellipsis"
+			class="outline-0 bg-transparent p-2 text-center {listening ? '' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"
+			disabled={listening}
 			id="language_2"
 			bind:this={from_locale_select_element}
 			on:change={() => on_change_locale_select(from_locale_select_element)}
