@@ -33,7 +33,7 @@
 	}
 
 	input {
-		@apply py-[7px] bg-inherit px-0 border-0 outline-none outline-0 focus:outline-none;
+		@apply py-[7px] border-0 outline-none outline-0 focus:outline-none bg-black/10 rounded-md px-4;
 	}
 
 	textarea {
