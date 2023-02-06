@@ -40,27 +40,29 @@
 
 <div class="fixed top-0 left-0 w-full bg-black/30 h-full" on:click={close} on:keydown />
 
-<div class="fixed top-0 left-0 w-full h-full justify-center items-center flex pointer-events-none ">
+<div class="fixed top-0 left-0 w-full h-full justify-center items-center flex pointer-events-none px-1">
 	<div
-		class="pt-9 pb-10 glass-panel pointer-events-auto px-10 text-center mx-auto max-w-[calc(370px+2rem)] w-full"
+		class="md:pt-9 md:pb-10 pt-6 pb-8 glass-panel pointer-events-auto text-center mx-auto max-w-[calc(370px+2rem)] w-full"
 	>
-		<div class="font-bold text-lg mb-5">{$_('confirm_delete')}</div>
-		<div class="mb-8">{$_('are_you_sure')}</div>
-		<div class="flex justify-center gap-4">
-			<button
-				class="glass-button bg-white/5 hover:bg-white/10 delete-cancel w-full flex justify-center gap-2"
-				on:click={close}
-			>
-				<div class="w-6"><CloseIcon /></div>
-				{$_('cancel')}
-			</button>
-			<button
-				class="glass-button text-red-400 delete-confirm w-full flex justify-center gap-2"
-				on:click={confirm_delete}
-			>
-				<div class="w-6"><CheckIcon /></div>
-				{$_('delete')}
-			</button>
-		</div>
+      <div class="px-8">
+        <div class="font-bold text-lg mb-5">{$_('confirm_delete')}</div>
+        <div class="mb-8">{$_('are_you_sure')}</div>
+        <div class="flex justify-center gap-4">
+          <button
+            class="glass-button bg-white/5 hover:bg-white/10 delete-cancel w-full flex justify-center gap-2"
+            on:click={close}
+          >
+            <div class="w-6"><CloseIcon /></div>
+            {$_('cancel')}
+          </button>
+          <button
+            class="glass-button text-red-400 delete-confirm w-full flex justify-center gap-2"
+            on:click={confirm_delete}
+          >
+            <div class="w-6"><CheckIcon /></div>
+            {$_('delete')}
+          </button>
+        </div>
+      </div>
 	</div>
 </div>
