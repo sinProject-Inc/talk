@@ -62,7 +62,7 @@
 		on_change_locale_select(false)
 	}
 
-	async function on_change_locale_select(store_locale = true, keep_text = false): void {
+	function on_change_locale_select(store_locale = true, keep_text = false): void {
 		if (!store_locale) {
 			const from_locale = localStorage.getItem('from_locale')
 			const to_locale = localStorage.getItem('to_locale')

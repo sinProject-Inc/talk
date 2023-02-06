@@ -188,9 +188,7 @@
 		if (event.key === 'Enter') {
 			event.preventDefault()
 
-			if (event.isComposing) {
-				return
-			}
+			if (event.isComposing) return
 
 			if (!textarea_body) {
 				dispatch_clear_partner_command()
