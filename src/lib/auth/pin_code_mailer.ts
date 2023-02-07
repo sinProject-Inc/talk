@@ -1,3 +1,5 @@
+import { GMAIL_USER } from '$env/static/private';
+import { GMAIL_PASS } from '$env/static/private';
 import * as nodemailer from 'nodemailer';
 import { Email } from './email';
 import type { MailSubject } from './mail_subject';
@@ -9,11 +11,11 @@ export class PinCodeMailer {
 		port: 465,
 		secure: true,
 		auth: {
-			user: process.env.GMAIL_USER,
-			pass: process.env.GMAIL_PASS,
+			user: GMAIL_USER,
+			pass: GMAIL_PASS,
 		},
 	})
-	private readonly _from_email = new Email(process.env.GMAIL_USER)
+	private readonly _from_email = new Email(GMAIL_USER)
 
 	public constructor(private readonly _to_email: Email, private readonly _mail_subject: MailSubject, private readonly _pin_code: PinCode) {}
 
