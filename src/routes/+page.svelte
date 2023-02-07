@@ -1,31 +1,32 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
+	import Divider from '$lib/components/divider.svelte'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import { WebSpeech } from '$lib/speech/web_speech'
+	import IconButton from '$lib/components/icon_button.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
+	import TextListText from '$lib/components/text_list_text.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
+	import { DefaultLocales } from '$lib/language/default_locales'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
-	import { Message } from '$lib/view/message'
 	import { SpeechText } from '$lib/speech/speech_text'
+	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
+	import { WebSpeech } from '$lib/speech/web_speech'
+	import { AddTextApi } from '$lib/text/add_text_api'
+	import { TextsApi } from '$lib/text/texts_api'
+	import { TextId } from '$lib/text/text_id'
+	import { AddTranslationApi } from '$lib/translation/add_translation_api'
+	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { TranslationText } from '$lib/translation/translation_text'
+	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { Message } from '$lib/view/message'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
-	import { TextsApi } from '$lib/text/texts_api'
-	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
-	import { AddTranslationApi } from '$lib/translation/add_translation_api'
-	import { AddTextApi } from '$lib/text/add_text_api'
-	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
-	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
-	import IconButton from '$lib/components/icon_button.svelte'
-	import { TextId } from '$lib/text/text_id'
-	import Navbar from '$lib/components/navbar.svelte'
-	import Divider from '$lib/components/divider.svelte'
-	import TextListText from '$lib/components/text_list_text.svelte'
-	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 
 	export let data: PageData
 
@@ -69,12 +70,9 @@
 	}
 
 	async function select_default_locales(): Promise<void> {
-		const language_from = localStorage.getItem('from_locale')
-		from_locale_select_element.value = language_from ?? 'en-US'
+		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
 
-		const language_to = localStorage.getItem('to_locale')
-		to_locale_select_element.value = language_to ?? 'ja-JP'
-
+		default_locales.load_storage()
 		set_locale(false)
 	}
 
