@@ -10,6 +10,7 @@ export class AppLocaleCode {
 	public static readonly chinese_taiwan = new AppLocaleCode('zh-TW')
 	public static readonly korean = new AppLocaleCode('ko')
 	public static readonly khmer = new AppLocaleCode('km')
+	public static readonly spanish = new AppLocaleCode('es')
 
 	public static readonly values = [
 		AppLocaleCode.english,
@@ -17,6 +18,7 @@ export class AppLocaleCode {
 		AppLocaleCode.chinese_taiwan,
 		AppLocaleCode.korean,
 		AppLocaleCode.khmer,
+		AppLocaleCode.spanish,
 	]
 
 	public static get default(): AppLocaleCode {

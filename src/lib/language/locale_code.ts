@@ -8,6 +8,7 @@ export class LocaleCode {
 	public static readonly cantonese_hongkong = new LocaleCode('yue-HK')
 	public static readonly korean_korea = new LocaleCode('ko-KR')
 	public static readonly khmer_cambodia = new LocaleCode('km-KH')
+	public static readonly spanish_spain = new LocaleCode('es-ES')
 
 	public static readonly values = [
 		LocaleCode.english_united_states,
@@ -16,6 +17,7 @@ export class LocaleCode {
 		LocaleCode.cantonese_hongkong,
 		LocaleCode.korean_korea,
 		LocaleCode.khmer_cambodia,
+		LocaleCode.spanish_spain,
 	]
 
 	public static get default(): LocaleCode {

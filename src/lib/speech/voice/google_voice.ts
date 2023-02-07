@@ -8,6 +8,7 @@ export class GoogleVoice {
 	public static readonly japanese_japan = new GoogleVoice('ja-JP-Wavenet-D')
 	public static readonly cantonese_hongkong = new GoogleVoice('yue-HK-Standard-B')
 	public static readonly korean_korea = new GoogleVoice('ko-KR-Wavenet-C')
+	public static readonly spanish_spain = new GoogleVoice('es-ES-Neural2-F')
 
 	public static readonly values = [
 		GoogleVoice.english_united_states,
@@ -15,6 +16,7 @@ export class GoogleVoice {
 		GoogleVoice.japanese_japan,
 		GoogleVoice.cantonese_hongkong,
 		GoogleVoice.korean_korea,
+		GoogleVoice.spanish_spain,
 	]
 
 	private constructor(private readonly _name: string) {}

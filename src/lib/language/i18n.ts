@@ -9,6 +9,7 @@ register('ja', () => import('../../locales/ja.json'))
 register('zh-TW', () => import('../../locales/zh-TW.json'))
 register('ko', () => import('../../locales/ko.json'))
 register('km', () => import('../../locales/km.json'))
+register('es', () => import('../../locales/es.json'))
 
 function get_initial_app_locale_code(): AppLocaleCode {
 	if (!browser) return AppLocaleCode.default
