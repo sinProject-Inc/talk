@@ -59,8 +59,7 @@
 
 		listening = true
 
-		let selected_value = locale_select_element.selectedOptions[0].value
-		const locale_code = LocaleCode.create(selected_value)
+		const locale_code = LocaleCode.create(locale_select_element.value)
 		const recognizing_message = new Message('Recognizing')
 		web_speech = new WebSpeech(speech_text_element, recognizing_message)
 

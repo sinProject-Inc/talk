@@ -56,8 +56,7 @@
 	}
 
 	function speech_to_text(): void {
-		const selected_value = from_locale_select_element.selectedOptions[0].value
-		const locale_code = LocaleCode.create(selected_value)
+		const locale_code = LocaleCode.create(from_locale_select_element.value)
 		const recognizing_message = new Message($_('recognizing'))
 		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
 
@@ -110,11 +109,8 @@
 			if (to_locale) to_locale_select_element.value = to_locale
 		}
 
-		from_locale_selected_value = from_locale_select_element.selectedOptions[0].value
-		to_locale_selected_value = to_locale_select_element.selectedOptions[0].value
-
-		from_locale_code = LocaleCode.create(from_locale_selected_value)
-		to_locale_code = LocaleCode.create(to_locale_selected_value)
+		from_locale_code = LocaleCode.create(from_locale_select_element.value)
+		to_locale_code = LocaleCode.create(to_locale_select_element.value)
 
 		if (store_locale) {
 			localStorage.setItem('from_locale', from_locale_code.code)

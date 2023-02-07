@@ -87,11 +87,8 @@
 			if (to_locale) to_locale_select_element.value = to_locale
 		}
 
-		const from_selected_value = from_locale_select_element.selectedOptions[0].value
-		const to_selected_value = to_locale_select_element.selectedOptions[0].value
-
-		from_locale_code = LocaleCode.create(from_selected_value)
-		to_locale_code = LocaleCode.create(to_selected_value)
+		from_locale_code = LocaleCode.create(from_locale_select_element.value)
+		to_locale_code = LocaleCode.create(to_locale_select_element.value)
 
 		if (store_locale) {
 			localStorage.setItem('from_locale', from_locale_code.code)
