@@ -1,22 +1,23 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import Navbar from '$lib/components/navbar.svelte'
+	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
 	import SwapIcon from '$lib/components/icons/swap_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
+	import TextListText from '$lib/components/text_list_text.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
+	import { AppLocaleCode } from '$lib/language/app_locale_code'
+	import { DefaultLocales } from '$lib/language/default_locales'
 	import { LocaleCode } from '$lib/language/locale_code'
+	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
+	import { DeleteTextApi } from '$lib/text/delete_text_api'
+	import { TextsApi } from '$lib/text/texts_api'
+	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
-	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import { onMount } from 'svelte'
-	import { TextsApi } from '$lib/text/texts_api'
-	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
-	import { DeleteTextApi } from '$lib/text/delete_text_api'
-	import TextListText from '$lib/components/text_list_text.svelte'
-	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
-	import { AppLocaleCode } from '$lib/language/app_locale_code'
-	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
-	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { locale, waitLocale, _ } from 'svelte-i18n'
 
 	export let data: PageData
 
@@ -49,12 +50,9 @@
 	}
 
 	async function select_default_locales(): Promise<void> {
-		const language_from = localStorage.getItem('from_locale')
-		from_locale_select_element.value = language_from ?? 'en-US'
+		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
 
-		const language_to = localStorage.getItem('to_locale')
-		to_locale_select_element.value = language_to ?? 'ja-JP'
-
+		default_locales.load_storage()
 		set_locale(false)
 	}
 
