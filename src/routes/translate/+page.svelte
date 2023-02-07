@@ -231,6 +231,7 @@
 				on:message={(event) => {
 					on_message(event, to_translate_box, from_translate_box)
 				}}
+				on:textarea_body_too_long={() => from_translate_box.set_speech_element_placeholder($_('text_limit'))}
 			/>
 			<TranslateBox
 				locale_select_element={from_locale_select_element}

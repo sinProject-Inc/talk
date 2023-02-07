@@ -43,6 +43,7 @@
 	let snackbar_visible = false
 
 	const dispatch = createEventDispatcher<{
+		textarea_body_too_long: boolean,
 		message: { text?: Text; clear?: boolean; fetch_history?: boolean; text_to_speech?: boolean }
 	}>()
 
@@ -61,8 +62,12 @@
 		const hint_message = new Message($_('recognizing'))
 
 		const speech_text_area_element = new SpeechTextAreaElement(speech_text_element, hint_message)
-		
-		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, on_finish_listening)
+
+		web_speech_recognition = new WebSpeechRecognition(
+			locale_code,
+			speech_text_area_element,
+			on_finish_listening
+		)
 		web_speech_recognition.start_continuous()
 	}
 
@@ -204,6 +209,13 @@
 				return
 			}
 
+			if (textarea_body.length > 250) {
+				dispatch_clear_partner_command()
+				dispatch('textarea_body_too_long')
+
+				return
+			}
+
 			if (textarea_body === text?.text) {
 				dispatch_text_to_speech_command()
 
@@ -213,6 +225,12 @@
 			await add_text(textarea_body)
 			dispatch_text()
 		}
+	}
+
+	export function set_speech_element_placeholder(hint: string): void {
+		const hint_message = new Message(hint)
+
+		speech_text_element.placeholder = hint_message.text
 	}
 
 	function copy(): void {
