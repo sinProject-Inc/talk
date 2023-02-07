@@ -1,27 +1,28 @@
 <script lang="ts">
-	import IconButton from '$lib/components/icon_button.svelte'
+	import { browser } from '$app/environment'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 	import SpeakerIcon from '$lib/components/icons/speaker_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import { LocaleCode } from '$lib/language/locale_code'
-	import { Message } from '$lib/view/message'
-	import { WebSpeech } from '$lib/speech/web_speech'
-	import { TranslationText } from '$lib/translation/translation_text'
+	import IconButton from '$lib/components/icon_button.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
-	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
-	import { createEventDispatcher, onMount } from 'svelte'
-	import { browser } from '$app/environment'
+	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { SpeechText } from '$lib/speech/speech_text'
+	import { SpeechTextAreaElement } from '$lib/speech/speech_text_area_element'
+	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
+	import { AddTextApi } from '$lib/text/add_text_api'
+	import { TextId } from '$lib/text/text_id'
+	import { AddTranslationApi } from '$lib/translation/add_translation_api'
+	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
+	import { TranslationText } from '$lib/translation/translation_text'
+	import { Message } from '$lib/view/message'
+	import type { Text } from '@prisma/client'
+	import { createEventDispatcher, onMount } from 'svelte'
+	import { _ } from 'svelte-i18n'
 	import CopyIcon from '../icons/copy_icon.svelte'
 	import StopIcon from '../icons/stop_icon.svelte'
 	import Snackbar from '../snackbar.svelte'
-	import { TextId } from '$lib/text/text_id'
-	import { SpeechText } from '$lib/speech/speech_text'
-	import { AddTextApi } from '$lib/text/add_text_api'
-	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
-	import { AddTranslationApi } from '$lib/translation/add_translation_api'
-	import type { Text } from '@prisma/client'
-	import { _ } from 'svelte-i18n'
 
 	export let locale_select_element: HTMLSelectElement
 	export let speech_text_element: HTMLTextAreaElement
@@ -45,7 +46,7 @@
 		message: { text?: Text; clear?: boolean; fetch_history?: boolean; text_to_speech?: boolean }
 	}>()
 
-	let web_speech: WebSpeech | undefined
+	let web_speech_recognition: WebSpeechRecognition | undefined
 
 	function speech_to_text(): void {
 		if (partner_listening) return
@@ -54,22 +55,22 @@
 		textarea_body = ''
 		dispatch_clear_partner_command()
 
-		speech_text_element.placeholder = $_('recognizing')
-
 		listening = true
 
 		const locale_code = LocaleCode.create(locale_select_element.value)
-		const recognizing_message = new Message('Recognizing')
-		web_speech = new WebSpeech(speech_text_element, recognizing_message)
+		const hint_message = new Message($_('recognizing'))
 
-		web_speech.recognition(locale_code, on_finish_listening, true)
+		const speech_text_area_element = new SpeechTextAreaElement(speech_text_element, hint_message)
+		
+		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, on_finish_listening)
+		web_speech_recognition.start_continuous()
 	}
 
 	async function stop_listening(): Promise<void> {
-		if (!web_speech) return
+		if (!web_speech_recognition) return
 
-		web_speech.stop_recognition()
-		web_speech = undefined
+		web_speech_recognition.stop()
+		web_speech_recognition = undefined
 	}
 
 	async function handle_listen_button(): Promise<void> {

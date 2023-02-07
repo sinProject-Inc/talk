@@ -3,7 +3,6 @@
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import { WebSpeech } from '$lib/speech/web_speech'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
@@ -26,12 +25,14 @@
 	import Divider from '$lib/components/divider.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { SpeechTextElement } from '$lib/speech/speech_text_element'
+	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 
 	export let data: PageData
 
 	let new_text_element: HTMLInputElement
 	let text_list_element: HTMLDivElement
-	let speech_text_element: HTMLElement
+	let speech_element: HTMLElement
 	let audio_element: HTMLAudioElement
 	let from_locale_select_element: HTMLSelectElement
 	let to_locale_select_element: HTMLSelectElement
@@ -57,10 +58,12 @@
 
 	function speech_to_text(): void {
 		const locale_code = LocaleCode.create(from_locale_select_element.value)
-		const recognizing_message = new Message($_('recognizing'))
-		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
+		const hint_message = new Message($_('recognizing'))
 
-		web_speech.recognition(locale_code)
+		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
+		const web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element)
+
+		web_speech_recognition.start_not_continuous()
 	}
 
 	async function fetch_texts(): Promise<void> {
@@ -222,7 +225,7 @@
 
 	function init(): void {
 		translations = []
-		speech_text_element.textContent = `(${$_('lets_talk')})`
+		speech_element.textContent = `(${$_('lets_talk')})`
 	}
 
 	async function add_text(): Promise<void> {
@@ -305,7 +308,7 @@
 				{$_('speech')}
 				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
 			</div>
-			<div bind:this={speech_text_element} />
+			<div bind:this={speech_element} />
 		</div>
 		<Divider />
 		<div class="flex flex-col gap-2">
