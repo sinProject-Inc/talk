@@ -104,10 +104,9 @@
 
 	async function set_app_locale(): Promise<void> {
 		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-
 		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
-		$locale = app_locale_code.code
 
+		$locale = app_locale_code.code
 		await waitLocale($locale)
 	}
 

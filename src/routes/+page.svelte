@@ -12,8 +12,9 @@
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import { SpeechText } from '$lib/speech/speech_text'
+	import { SpeechTextElement } from '$lib/speech/speech_text_element'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
-	import { WebSpeech } from '$lib/speech/web_speech'
+	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TextId } from '$lib/text/text_id'
@@ -32,7 +33,7 @@
 
 	let new_text_element: HTMLInputElement
 	let text_list_element: HTMLDivElement
-	let speech_text_element: HTMLElement
+	let speech_element: HTMLElement
 	let audio_element: HTMLAudioElement
 	let from_locale_select_element: HTMLSelectElement
 	let to_locale_select_element: HTMLSelectElement
@@ -58,10 +59,12 @@
 
 	function speech_to_text(): void {
 		const locale_code = LocaleCode.create(from_locale_select_element.value)
-		const recognizing_message = new Message($_('recognizing'))
-		const web_speech = new WebSpeech(speech_text_element, recognizing_message)
+		const hint_message = new Message($_('recognizing'))
 
-		web_speech.recognition(locale_code)
+		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
+		const web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element)
+
+		web_speech_recognition.start_not_continuous()
 	}
 
 	async function fetch_texts(): Promise<void> {
@@ -121,10 +124,9 @@
 
 	async function set_app_locale(): Promise<void> {
 		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-
 		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
-		$locale = app_locale_code.code
 
+		$locale = app_locale_code.code
 		await waitLocale($locale)
 	}
 
@@ -139,7 +141,6 @@
 		} else {
 			selected_text = text
 			translations = []
-			console.log('selected')
 		}
 
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
@@ -220,7 +221,7 @@
 
 	function init(): void {
 		translations = []
-		speech_text_element.textContent = `(${$_('lets_talk')})`
+		speech_element.textContent = `(${$_('lets_talk')})`
 	}
 
 	async function add_text(): Promise<void> {
@@ -303,7 +304,7 @@
 				{$_('speech')}
 				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
 			</div>
-			<div bind:this={speech_text_element} />
+			<div bind:this={speech_element} />
 		</div>
 		<Divider />
 		<div class="flex flex-col gap-2">
