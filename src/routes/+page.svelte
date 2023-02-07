@@ -141,7 +141,6 @@
 		} else {
 			selected_text = text
 			translations = []
-			console.log('selected')
 		}
 
 		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
