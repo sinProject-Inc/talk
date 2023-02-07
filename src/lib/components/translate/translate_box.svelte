@@ -4,6 +4,9 @@
 	import SpeakerIcon from '$lib/components/icons/speaker_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
+	import CopyIcon from '$lib/components/icons/copy_icon.svelte'
+	import StopIcon from '$lib/components/icons/stop_icon.svelte'
+	import Snackbar from '$lib/components/snackbar.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
@@ -20,9 +23,6 @@
 	import type { Text } from '@prisma/client'
 	import { createEventDispatcher, onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
-	import CopyIcon from '../icons/copy_icon.svelte'
-	import StopIcon from '../icons/stop_icon.svelte'
-	import Snackbar from '../snackbar.svelte'
 
 	export let locale_select_element: HTMLSelectElement
 	export let speech_text_element: HTMLTextAreaElement
