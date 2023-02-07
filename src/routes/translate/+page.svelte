@@ -5,7 +5,6 @@
 	import IconButton from '$lib/components/icon_button.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
 	import { LocaleCode } from '$lib/language/locale_code'
-	import { Html } from '$lib/view/html'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
 	import { locale, waitLocale, _ } from 'svelte-i18n'

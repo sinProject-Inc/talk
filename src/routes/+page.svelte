@@ -3,7 +3,6 @@
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import { Html } from '$lib/view/html'
 	import { WebSpeech } from '$lib/speech/web_speech'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { LocaleCode } from '$lib/language/locale_code'
