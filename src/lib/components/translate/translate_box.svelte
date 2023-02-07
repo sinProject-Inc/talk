@@ -24,11 +24,10 @@
 	import { _ } from 'svelte-i18n'
 
 	export let locale_select_element: HTMLSelectElement
-	export let locale_code = LocaleCode.english_united_states
-
 	export let speech_text_element: HTMLTextAreaElement
-
 	export let audio_element: HTMLAudioElement
+
+	export let locale_code = LocaleCode.english_united_states
 
 	export let listening = false
 	export let partner_listening = false
