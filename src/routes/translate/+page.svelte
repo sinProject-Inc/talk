@@ -5,7 +5,6 @@
 	import IconButton from '$lib/components/icon_button.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
 	import { LocaleCode } from '$lib/language/locale_code'
-	import { Html } from '$lib/view/html'
 	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
@@ -17,6 +16,7 @@
 	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
+	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 
 	export let data: PageData
 
@@ -44,8 +44,8 @@
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		Html.append_language_select_options(from_locale_select_element, locales)
-		Html.append_language_select_options(to_locale_select_element, locales)
+		new LocaleSelectElement(from_locale_select_element, locales).append_options()
+		new LocaleSelectElement(to_locale_select_element, locales).append_options()
 	}
 
 	async function select_default_locales(): Promise<void> {
@@ -191,7 +191,9 @@
 <div class="center-container w-screen h-[calc(100vh-69px)]">
 	<div class="top-bar flex justify-evenly items-center glass-panel h-10 my-4">
 		<select
-			class="outline-0 bg-transparent p-2 text-center {listening ? '' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
+			class="outline-0 bg-transparent p-2 text-center {listening
+				? ''
+				: 'hover:scale-110'} transition-all duration-300 appearance-none text-ellipsis"
 			name="language_1"
 			disabled={listening}
 			id="language_1"
@@ -199,10 +201,17 @@
 			on:change={() => on_change_locale_select(to_locale_select_element)}
 		/>
 		<div class="language-switcher">
-			<IconButton enabled={!listening} on_click_handler={ () => { if(!listening) switch_locales() }}><SwapIcon /></IconButton>
+			<IconButton
+				enabled={!listening}
+				on_click_handler={() => {
+					if (!listening) switch_locales()
+				}}><SwapIcon /></IconButton
+			>
 		</div>
 		<select
-			class="outline-0 bg-transparent p-2 text-center {listening ? '' : 'hover:scale-110' } transition-all duration-300 appearance-none text-ellipsis"
+			class="outline-0 bg-transparent p-2 text-center {listening
+				? ''
+				: 'hover:scale-110'} transition-all duration-300 appearance-none text-ellipsis"
 			name="language_2"
 			disabled={listening}
 			id="language_2"
