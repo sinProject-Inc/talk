@@ -26,6 +26,7 @@
 	import Navbar from '$lib/components/navbar.svelte'
 	import Divider from '$lib/components/divider.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
+	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 
 	export let data: PageData
 
@@ -51,8 +52,8 @@
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		Html.append_language_select_options(from_locale_select_element, locales)
-		Html.append_language_select_options(to_locale_select_element, locales)
+		new LocaleSelectElement(from_locale_select_element, locales).append_options()
+		new LocaleSelectElement(to_locale_select_element, locales).append_options()	
 	}
 
 	function speech_to_text(): void {
