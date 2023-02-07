@@ -12,6 +12,7 @@ export class MicrosoftVoice {
 	public static readonly cantonese_hongkong = new MicrosoftVoice('yue-CN-XiaoMinNeural')
 	public static readonly korean_korea = new MicrosoftVoice('ko-KR-BongJinNeural')
 	public static readonly khmer_cambodia = new MicrosoftVoice('km-KH-PisethNeural')
+	public static readonly spanish_spain = new MicrosoftVoice('es-ES-AlvaroNeural')
 
 	public static readonly values = [
 		MicrosoftVoice.english_united_states,
@@ -20,6 +21,7 @@ export class MicrosoftVoice {
 		MicrosoftVoice.cantonese_hongkong,
 		MicrosoftVoice.korean_korea,
 		MicrosoftVoice.khmer_cambodia,
+		MicrosoftVoice.spanish_spain,
 	]
 
 	private constructor(private readonly _name: string) {}

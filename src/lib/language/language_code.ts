@@ -7,6 +7,7 @@ export class LanguageCode {
 	public static readonly chinese_taiwan = new LanguageCode('zh-TW')
 	public static readonly korean = new LanguageCode('ko-KR')
 	public static readonly khmer = new LanguageCode('km-KH')
+	public static readonly spanish = new LanguageCode('es-ES')
 
 	public static readonly values = [
 		LanguageCode.english_united_states,
@@ -15,6 +16,7 @@ export class LanguageCode {
 		LanguageCode.chinese_taiwan,
 		LanguageCode.korean,
 		LanguageCode.khmer,
+		LanguageCode.spanish,
 	]
 
 	private constructor(private readonly _code: string) {}
