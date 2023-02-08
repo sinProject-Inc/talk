@@ -223,13 +223,6 @@
 				return
 			}
 
-			// if (textarea_body.length > 250) {
-			// 	dispatch_clear_partner_command()
-			// 	dispatch('textarea_body_too_long')
-
-			// 	return
-			// }
-
 			if (textarea_body === text?.text) {
 				dispatch_text_to_speech_command()
 
