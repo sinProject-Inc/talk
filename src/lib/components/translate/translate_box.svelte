@@ -43,7 +43,7 @@
 	let snackbar_visible = false
 
 	const dispatch = createEventDispatcher<{
-		textarea_body_too_long: boolean,
+		textarea_body_too_long: boolean
 		message: { text?: Text; clear?: boolean; fetch_history?: boolean; text_to_speech?: boolean }
 	}>()
 
@@ -277,18 +277,16 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			<div class="{partner_listening ? 'fill-white/20' : ''} listen-button">
-				<IconButton on_click_handler={handle_listen_button}>
-					{#if listening}
-						<StopIcon />
-					{:else}
-						<VoiceIcon />
-					{/if}
-				</IconButton>
-			</div>
-			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
-				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
-			</div>
+			<IconButton on_click_handler={handle_listen_button} enabled={!partner_listening}>
+				{#if listening}
+					<StopIcon />
+				{:else}
+					<VoiceIcon />
+				{/if}
+			</IconButton>
+			<IconButton on_click_handler={text_to_speech} enabled={!listening && !partner_listening}>
+				<SpeakerIcon />
+			</IconButton>
 		</div>
 		<div>
 			<IconButton on_click_handler={copy}><CopyIcon /></IconButton>
