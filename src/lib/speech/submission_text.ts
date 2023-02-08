@@ -1,7 +1,8 @@
-import { TextError } from '$lib/general/text_error'
+import { TextError } from '../general/text_error'
+import type { BaseText } from "../text/base_text"
 import { ValidText } from '../text/valid_text'
 
-export class SubmissionText {
+export class SubmissionText implements BaseText {
 	private readonly _submission_text: undefined
 	private readonly _text: string
 
