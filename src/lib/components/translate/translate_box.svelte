@@ -259,8 +259,8 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			<div class="{partner_listening ? 'fill-white/20' : ''} listen-button">
-				<IconButton on_click_handler={handle_listen_button}>
+			<div class="listen-button">
+				<IconButton on_click_handler={handle_listen_button} enabled={!partner_listening}>
 					{#if listening}
 						<StopIcon />
 					{:else}
@@ -268,8 +268,10 @@
 					{/if}
 				</IconButton>
 			</div>
-			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
-				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
+			<div>
+				<IconButton on_click_handler={text_to_speech} enabled={!listening && !partner_listening}>
+					<SpeakerIcon />
+				</IconButton>
 			</div>
 		</div>
 		<div>
