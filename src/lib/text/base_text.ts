@@ -1,3 +1,3 @@
 export interface BaseText {
-  text: string
+  get text(): string
 }

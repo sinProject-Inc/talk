@@ -148,7 +148,6 @@
 	export async function add_text(textarea_body_to_add: string): Promise<void> {
 		try {
 			const submission_text = new SubmissionText(textarea_body_to_add)
-
 			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
 			text = await new AddTextApi(speech_language_code, submission_text).fetch()
@@ -158,6 +157,8 @@
 			dispatch_fetch_history_command()
 		} catch (error) {
 			if (error instanceof TextError) {
+				text = undefined
+
 				dispatch_error(error.message_id)
 				dispatch_clear_partner_command()
 
