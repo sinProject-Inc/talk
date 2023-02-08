@@ -145,7 +145,7 @@
 		return text
 	}
 
-	export async function add_text(textarea_body_to_add: string): Promise<void> {
+	export async function add_text(textarea_body_to_add: string): Promise<boolean> {
 		try {
 			const submission_text = new SubmissionText(textarea_body_to_add)
 
@@ -156,6 +156,8 @@
 			textarea_body = text.text
 
 			dispatch_fetch_history_command()
+
+			return true
 		} catch (error) {
 			if (error instanceof TextError) {
 				dispatch_error(error.message_id)
@@ -163,6 +165,7 @@
 			} else {
 				throw error
 			}
+			return false
 		}
 	}
 
@@ -197,18 +200,14 @@
 		})
 	}
 
-	export async function text_to_speech(): Promise<void> {
-		if (!textarea_body) return
+	export function text_to_speech(): void {
+		if (!text) return
 
-		const submission_text = new SubmissionText(textarea_body)
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
-		const text_to_speech_text = await new AddTextApi(speech_language_code, submission_text).fetch()
-
-		if (text_to_speech_text.text === playing_text?.text) {
+		if (text.text === playing_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
 		} else {
-			playing_text = text_to_speech_text
+			playing_text = text
 			playing_text_locale = locale_code
 		}
 	}
@@ -232,8 +231,10 @@
 				return
 			}
 
-			await add_text(textarea_body)
-			dispatch_text()
+			const text_added = await add_text(textarea_body)
+			if (text_added) {
+				dispatch_text()
+			}
 		}
 	}
 
