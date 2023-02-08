@@ -83,8 +83,9 @@
 
 	async function on_finish_listening(): Promise<void> {
 		listening = false
-
 		speech_text_element.placeholder = ''
+
+		if (!speech_text_element.value) return
 
 		await add_text(speech_text_element.value)
 		await dispatch_text()
