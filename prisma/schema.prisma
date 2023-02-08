@@ -80,7 +80,7 @@ model Text {
   created_at  DateTime     @default(now())
   updated_at  DateTime     @updatedAt
   language_id Int          
-  text        String       @db.VarChar(1000)
+  text        String       @db.VarChar(700)
   language    Language     @relation(fields: [language_id], references: [id])
   TextToText1 TextToText[] @relation("TextToText1")
   TextToText2 TextToText[] @relation("TextToText2")
@@ -94,7 +94,7 @@ model Sound {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   locale_id  Int
-  sound_text String   @db.VarChar(1000)
+  sound_text String   @db.VarChar(700)
   locale     Locale   @relation(fields: [locale_id], references: [id])
 
   @@unique([locale_id, sound_text])
