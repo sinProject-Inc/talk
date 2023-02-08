@@ -143,9 +143,20 @@
 
 		const from_text = from_translate_box.get_text()
 		const to_text = to_translate_box.get_text()
+		const from_textarea_body = from_translate_box.get_textarea_body()
+		const to_textarea_body = to_translate_box.get_textarea_body()
 
-		from_translate_box.set_text(to_text)
-		to_translate_box.set_text(from_text)
+		if (from_text && from_text.text === from_textarea_body) {
+			to_translate_box.set_text(from_text)
+		} else {
+			to_translate_box.add_text(from_textarea_body)
+		}
+
+		if (to_text && to_text.text === to_textarea_body) {
+			from_translate_box.set_text(to_text)
+		} else {
+			from_translate_box.add_text(to_textarea_body)
+		}
 
 		set_locale(true, true)
 	}

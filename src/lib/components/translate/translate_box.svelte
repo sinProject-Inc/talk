@@ -140,7 +140,17 @@
 		return text
 	}
 
+	export function get_textarea_body(): string {
+		return textarea_body
+	}
+
 	export async function add_text(textarea_body_to_add: string): Promise<void> {
+		if (!textarea_body_to_add) {
+			text = undefined
+
+			return
+		}
+
 		const speech_text = new SpeechText(textarea_body_to_add)
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
