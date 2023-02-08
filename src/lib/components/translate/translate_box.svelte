@@ -61,8 +61,12 @@
 		const hint_message = new Message($_('recognizing'))
 
 		const speech_text_area_element = new SpeechTextAreaElement(speech_text_element, hint_message)
-		
-		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, on_finish_listening)
+
+		web_speech_recognition = new WebSpeechRecognition(
+			locale_code,
+			speech_text_area_element,
+			on_finish_listening
+		)
 		web_speech_recognition.start_continuous()
 	}
 
@@ -180,14 +184,27 @@
 		})
 	}
 
-	export function text_to_speech(): void {
-		if (!text) return
+	export async function text_to_speech(): Promise<void> {
+		if (!textarea_body) return
 
-		if (text.text === playing_text?.text) {
+		let text_to_speech_text: Text
+
+		if (text && text.text == textarea_body) {
+			text_to_speech_text = text
+		} else {
+			const speech_text = new SpeechText(textarea_body)
+			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+			text_to_speech_text = await new AddTextApi(speech_language_code, speech_text).fetch()
+			
+			dispatch_fetch_history_command()
+		}
+
+		if (text_to_speech_text.text === playing_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
 		} else {
-			playing_text = text
+			playing_text = text_to_speech_text
 			playing_text_locale = locale_code
 		}
 	}
