@@ -145,7 +145,7 @@
 		return text
 	}
 
-	export async function add_text(textarea_body_to_add: string): Promise<boolean> {
+	export async function add_text(textarea_body_to_add: string): Promise<void> {
 		try {
 			const submission_text = new SubmissionText(textarea_body_to_add)
 
@@ -156,16 +156,16 @@
 			textarea_body = text.text
 
 			dispatch_fetch_history_command()
-
-			return true
 		} catch (error) {
 			if (error instanceof TextError) {
 				dispatch_error(error.message_id)
 				dispatch_clear_partner_command()
-			} else {
-				throw error
+
+				return
 			}
-			return false
+
+			console.error(error)
+			throw error
 		}
 	}
 
@@ -231,10 +231,8 @@
 				return
 			}
 
-			const text_added = await add_text(textarea_body)
-			if (text_added) {
-				dispatch_text()
-			}
+			await add_text(textarea_body)
+			dispatch_text()
 		}
 	}
 
