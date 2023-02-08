@@ -8,7 +8,7 @@ export class TranslationText {
 		const valid_text = new ValidText(text)
 		const length = valid_text.text.length
 
-		if (length > 699) throw new Error(`translation_text is too long: ${text} (${length})}`)
+		if (length > 700) throw new Error(`translation_text is too long: ${text} (${length})}`)
 
 		this._text = valid_text.text
 	}
