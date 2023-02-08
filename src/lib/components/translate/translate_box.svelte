@@ -246,7 +246,9 @@
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
-				<IconButton on_click_handler={clear_self}><CloseIcon /></IconButton>
+				<IconButton on_click_handler={clear_self} enabled={!listening && !partner_listening}>
+					<CloseIcon />
+				</IconButton>
 			</div>
 		</div>
 		<textarea
@@ -273,7 +275,9 @@
 			</div>
 		</div>
 		<div>
-			<IconButton on_click_handler={copy}><CopyIcon /></IconButton>
+			<IconButton on_click_handler={copy} enabled={!listening && !partner_listening}>
+				<CopyIcon />
+			</IconButton>
 		</div>
 	</div>
 </div>
