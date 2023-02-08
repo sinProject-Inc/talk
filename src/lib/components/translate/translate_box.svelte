@@ -147,11 +147,11 @@
 
 		textarea_body = text.text
 
-		if (refresh_history) {
-			dispatch_fetch_history_command()
+		if (!refresh_history) {
+			return
 		}
 
-		return
+		dispatch_fetch_history_command()
 	}
 
 	async function dispatch_text(): Promise<void> {
