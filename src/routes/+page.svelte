@@ -11,8 +11,8 @@
 	import { DefaultLocales } from '$lib/language/default_locales'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { SpeechText } from '$lib/speech/speech_text'
 	import { SpeechTextElement } from '$lib/speech/speech_text_element'
-	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { AddTextApi } from '$lib/text/add_text_api'
@@ -229,8 +229,8 @@
 
 		if (!new_text_element.value) return
 
-		const submission_text = new SubmissionText(new_text_element.value)
-		const added_text = await new AddTextApi(from_speech_language_code, submission_text).fetch()
+		const speech_text = new SpeechText(new_text_element.value)
+		const added_text = await new AddTextApi(from_speech_language_code, speech_text).fetch()
 
 		// console.info('add_text', text)
 

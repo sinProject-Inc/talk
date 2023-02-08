@@ -10,6 +10,7 @@
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { SpeechText } from '$lib/speech/speech_text'
 	import { SpeechTextAreaElement } from '$lib/speech/speech_text_area_element'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { AddTextApi } from '$lib/text/add_text_api'
@@ -22,8 +23,6 @@
 	import type { Text } from '@prisma/client'
 	import { createEventDispatcher, onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
-	import { SubmissionText } from '$lib/speech/submission_text'
-	import { TextError } from '$lib/general/text_error'
 
 	export let locale_select_element: HTMLSelectElement
 	export let speech_text_element: HTMLTextAreaElement
@@ -44,7 +43,7 @@
 	let snackbar_visible = false
 
 	const dispatch = createEventDispatcher<{
-		error: { message_id: string }
+		textarea_body_too_long: boolean,
 		message: { text?: Text; clear?: boolean; fetch_history?: boolean; text_to_speech?: boolean }
 	}>()
 
@@ -146,29 +145,16 @@
 	}
 
 	export async function add_text(textarea_body_to_add: string): Promise<void> {
-		try {
-			const submission_text = new SubmissionText(textarea_body_to_add)
+		const speech_text = new SpeechText(textarea_body_to_add)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 
-			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+		text = await new AddTextApi(speech_language_code, speech_text).fetch()
 
-			text = await new AddTextApi(speech_language_code, submission_text).fetch()
+		textarea_body = text.text
 
-			textarea_body = text.text
+		dispatch_fetch_history_command()
 
-			dispatch_fetch_history_command()
-
-			return
-		} catch (error) {
-			if (error instanceof TextError) {
-				dispatch_error(error.message_id)
-			} else {
-				throw error
-			}
-		}
-	}
-
-	async function dispatch_error(message_id: string): Promise<void> {
-		dispatch('error', { message_id })
+		return
 	}
 
 	async function dispatch_text(): Promise<void> {
@@ -223,12 +209,12 @@
 				return
 			}
 
-			// if (textarea_body.length > 250) {
-			// 	dispatch_clear_partner_command()
-			// 	dispatch('textarea_body_too_long')
+			if (textarea_body.length > 250) {
+				dispatch_clear_partner_command()
+				dispatch('textarea_body_too_long')
 
-			// 	return
-			// }
+				return
+			}
 
 			if (textarea_body === text?.text) {
 				dispatch_text_to_speech_command()

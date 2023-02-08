@@ -1,4 +1,3 @@
-import { TextError } from '$lib/general/text_error'
 import { ValidText } from '../text/valid_text'
 
 export class SubmissionText {
@@ -8,7 +7,7 @@ export class SubmissionText {
 	public constructor(text: string | undefined) {
 		const valid_text = new ValidText(text)
 
-    if (valid_text.text.length > 250) throw new TextError('text_limit')
+    if (valid_text.text.length > 250) throw new Error('text is too long', { cause: { code: 'TextTooLong' } })
 
 		this._text = valid_text.text
 	}
