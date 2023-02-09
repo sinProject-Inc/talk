@@ -24,6 +24,7 @@
 	import { _ } from 'svelte-i18n'
 	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextError } from '$lib/general/text_error'
+	import { SpeechText } from '$lib/speech/speech_text'
 
 	export let locale_select_element: HTMLSelectElement
 	export let speech_text_element: HTMLTextAreaElement
@@ -204,14 +205,27 @@
 		})
 	}
 
-	export function text_to_speech(): void {
-		if (!text) return
+	export async function text_to_speech(): Promise<void> {
+		if (!textarea_body) return
 
-		if (text.text === playing_text?.text) {
+		let text_to_speech_text: Text
+
+		if (text && text.text == textarea_body) {
+			text_to_speech_text = text
+		} else {
+			const speech_text = new SpeechText(textarea_body)
+			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+			text_to_speech_text = await new AddTextApi(speech_language_code, speech_text).fetch()
+			
+			dispatch_fetch_history_command()
+		}
+
+		if (text_to_speech_text.text === playing_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
 		} else {
-			playing_text = text
+			playing_text = text_to_speech_text
 			playing_text_locale = locale_code
 		}
 	}
