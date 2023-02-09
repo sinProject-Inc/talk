@@ -25,5 +25,6 @@
   "are_you_sure": "¿Estás seguro de que quieres borrar esto?",
   "delete": "Eliminar",
   "cancel": "Cancelar",
-  "history": "Historia"
+  "history": "Historia",
+  "text_limit": "Sólo puede traducir hasta 250 caracteres."
 }

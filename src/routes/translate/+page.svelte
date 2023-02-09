@@ -231,6 +231,9 @@
 				on:message={(event) => {
 					on_message(event, to_translate_box, from_translate_box)
 				}}
+				on:error={(event) => {
+					from_translate_box.set_speech_element_placeholder($_(event.detail.message_id))
+				}}
 			/>
 			<TranslateBox
 				locale_select_element={from_locale_select_element}
@@ -245,6 +248,9 @@
 				on:message={(event) => {
 					on_message(event, from_translate_box, to_translate_box)
 				}}
+				on:error={(event) => {
+					to_translate_box.set_speech_element_placeholder($_(event.detail.message_id))
+				}}
 			/>
 			<div
 				class="main-box history-box glass-panel grow flex flex-col {text_history.length > 0
@@ -252,7 +258,7 @@
 					: 'invisible'}"
 			>
 				<h2 class="title px-5 py-2">{$_('history')}</h2>
-				<div class="overflow-auto">
+				<div class="overflow-auto" lang={to_locale_code.code}>
 					{#each text_history as text, i}
 						<TextListText
 							texts={text_history}

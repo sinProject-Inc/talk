@@ -25,5 +25,6 @@
   "are_you_sure": "你確定要刪除這個嗎？",
   "delete": "刪除",
   "cancel": "取消",
-  "history": "歷史"
+  "history": "歷史",
+  "text_limit": "您最多只能翻譯 250 個字符。"
 }

@@ -1,6 +1,7 @@
+import type { BaseText } from "../text/base_text"
 import { ValidText } from "../text/valid_text"
 
-export class SpeechText {
+export class SpeechText implements BaseText {
 	private readonly _speech_text: undefined
 	private readonly _text: string
 
