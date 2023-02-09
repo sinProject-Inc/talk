@@ -89,8 +89,9 @@
 
 	async function on_finish_listening(): Promise<void> {
 		listening = false
-
 		speech_text_element.placeholder = ''
+
+		if (!speech_text_element.value) return
 
 		await add_text(speech_text_element.value)
 		await dispatch_text()
@@ -274,7 +275,9 @@
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
-				<IconButton on_click_handler={clear_self}><CloseIcon /></IconButton>
+				<IconButton on_click_handler={clear_self} enabled={!listening && !partner_listening}>
+					<CloseIcon />
+				</IconButton>
 			</div>
 		</div>
 		<textarea
@@ -287,8 +290,8 @@
 	</div>
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
-			<div class="{partner_listening ? 'fill-white/20' : ''} listen-button">
-				<IconButton on_click_handler={handle_listen_button}>
+			<div class="listen-button">
+				<IconButton on_click_handler={handle_listen_button} enabled={!partner_listening}>
 					{#if listening}
 						<StopIcon />
 					{:else}
@@ -296,12 +299,16 @@
 					{/if}
 				</IconButton>
 			</div>
-			<div class={listening || partner_listening ? 'fill-white/20' : ''}>
-				<IconButton on_click_handler={text_to_speech}><SpeakerIcon /></IconButton>
+			<div>
+				<IconButton on_click_handler={text_to_speech} enabled={!listening && !partner_listening}>
+					<SpeakerIcon />
+				</IconButton>
 			</div>
 		</div>
 		<div>
-			<IconButton on_click_handler={copy}><CopyIcon /></IconButton>
+			<IconButton on_click_handler={copy} enabled={!listening && !partner_listening}>
+				<CopyIcon />
+			</IconButton>
 		</div>
 	</div>
 </div>
