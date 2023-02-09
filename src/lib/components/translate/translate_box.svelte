@@ -130,7 +130,7 @@
 			textarea_body = output_translation_text.text
 		}
 
-		await add_text(textarea_body)
+		await add_text(textarea_body, false)
 
 		if (play_audio) {
 			await text_to_speech()
@@ -153,7 +153,11 @@
 
 			text = await new AddTextApi(speech_language_code, submission_text).fetch()
 
-			textarea_body = text.text
+		textarea_body = text.text
+
+		if (!refresh_history) {
+			return
+		}
 
 			dispatch_fetch_history_command()
 		} catch (error) {
@@ -283,6 +287,7 @@
 		<textarea
 			class="text-area pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
+			lang={locale_code.code}
 			bind:this={speech_text_element}
 			bind:value={textarea_body}
 			on:keydown={on_text_area_keydown}
