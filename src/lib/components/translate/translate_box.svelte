@@ -130,8 +130,6 @@
 			textarea_body = output_translation_text.text
 		}
 
-		await add_text(textarea_body, false)
-
 		if (play_audio) {
 			await text_to_speech()
 		}
@@ -146,7 +144,7 @@
 		return text
 	}
 
-	export async function add_text(textarea_body_to_add: string): Promise<void> {
+	export async function add_text(textarea_body_to_add: string, refresh_history = true): Promise<void> {
 		try {
 			const submission_text = new SubmissionText(textarea_body_to_add)
 			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
