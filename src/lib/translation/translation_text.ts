@@ -1,6 +1,7 @@
+import type { BaseText } from "../text/base_text"
 import { ValidText } from "../text/valid_text"
 
-export class TranslationText {
+export class TranslationText implements BaseText {
 	private readonly _translation_text: undefined
 	private readonly _text: string
 
@@ -8,7 +9,7 @@ export class TranslationText {
 		const valid_text = new ValidText(text)
 		const length = valid_text.text.length
 
-		if (length > 200) throw new Error(`translation_text is too long: ${text} (${length})}`)
+		if (length > 700) throw new Error(`translation_text is too long: ${text} (${length})}`)
 
 		this._text = valid_text.text
 	}

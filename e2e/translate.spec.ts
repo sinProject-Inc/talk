@@ -175,6 +175,34 @@ async function clear_text(page: Page): Promise<void> {
 	});
 }
 
+test('translate 250 characters', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	const dummy_text = 'a'.repeat(250)
+
+	await from_text_area.fill(dummy_text)
+	await from_text_area.press('Enter')
+		
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveValue(/あ/)
+})
+
+test('translate 251 characters', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	const dummy_text = 'a'.repeat(251)
+
+	await from_text_area.fill(dummy_text)
+	await from_text_area.press('Enter')
+		
+	const bottom_textarea = page.getByRole('textbox').nth(1)
+
+	await expect(bottom_textarea).toHaveAttribute('placeholder', '翻訳できるのは 250文字までです。')
+})
+
 async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
 	await page.route(`${host}/api/text/en?limit=10`, async route => {
 		if(limit == 0) await route.fulfill({ json: {} })
