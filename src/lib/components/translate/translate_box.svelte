@@ -138,14 +138,28 @@
 
 	export function set_text(new_text: Text | undefined): void {
 		text = new_text
-		textarea_body = text ? text.text : ''
+		textarea_body = new_text?.text ?? ''
 	}
-
+	
 	export function get_text(): Text | undefined {
 		return text
 	}
 
+	export function get_textarea_body(): string {
+		return textarea_body
+	}
+
+	export function set_textarea_body(new_textarea_body: string): void {
+		textarea_body = new_textarea_body
+	}
+
 	export async function add_text(textarea_body_to_add: string, refresh_history = true): Promise<void> {
+		if (!textarea_body_to_add) {
+			text = undefined
+
+			return
+		}
+
 		try {
 			const submission_text = new SubmissionText(textarea_body_to_add)
 			const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
