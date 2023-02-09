@@ -252,7 +252,7 @@
 					: 'invisible'}"
 			>
 				<h2 class="title px-5 py-2">{$_('history')}</h2>
-				<div class="overflow-auto">
+				<div class="overflow-auto" lang={to_locale_code.code}>
 					{#each text_history as text, i}
 						<TextListText
 							texts={text_history}
@@ -260,7 +260,6 @@
 							{i}
 							{selected_text}
 							deletable
-							language_code={to_locale_code.code}
 							on_click_text={() => on_click_text(text)}
 							delete_text={() => (confirming_delete_text = text)}
 						/>

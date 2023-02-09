@@ -6,7 +6,6 @@
 	export let texts: Text[]
 	export let text: Text
 	export let i: number
-	export let language_code = "en"
 	export let selected_text: Text | undefined
 	export let on_click_text: (text: Text) => void
 	export let deletable = false
@@ -22,7 +21,7 @@
 		: 'bg-inherit'} {i == texts.length - 1 ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
-	<div class="text-body py-[10px] w-full" lang={language_code}  on:click={() => on_click_text(text)} on:keydown>
+	<div class="text-body py-[10px] w-full" on:click={() => on_click_text(text)} on:keydown>
 		{text.text}
 	</div>
 	{#if deletable}
