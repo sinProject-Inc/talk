@@ -133,15 +133,19 @@
 
 	export function set_text(new_text: Text | undefined): void {
 		text = new_text
-		textarea_body = text ? text.text : ''
+		textarea_body = new_text ? new_text.text : ''
 	}
-
+	
 	export function get_text(): Text | undefined {
 		return text
 	}
 
 	export function get_textarea_body(): string {
 		return textarea_body
+	}
+
+	export function set_textarea_body(new_textarea_body: string): void {
+		textarea_body = new_textarea_body
 	}
 
 	export async function add_text(textarea_body_to_add: string): Promise<void> {
