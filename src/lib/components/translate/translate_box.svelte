@@ -133,7 +133,7 @@
 
 	export function set_text(new_text: Text | undefined): void {
 		text = new_text
-		textarea_body = new_text ? new_text.text : ''
+		textarea_body = new_text?.text ?? ''
 	}
 	
 	export function get_text(): Text | undefined {
