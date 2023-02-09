@@ -282,6 +282,7 @@
 					{text}
 					{i}
 					{selected_text}
+					language_code={from_locale_code.code}
 					on_click_text={() => on_click_text(text)}
 				/>
 			{/each}

@@ -260,6 +260,7 @@
 							{i}
 							{selected_text}
 							deletable
+							language_code={to_locale_code.code}
 							on_click_text={() => on_click_text(text)}
 							delete_text={() => (confirming_delete_text = text)}
 						/>
