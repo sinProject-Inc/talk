@@ -257,6 +257,7 @@
 		<textarea
 			class="text-area pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
+			lang={locale_code.code}
 			bind:this={speech_text_element}
 			bind:value={textarea_body}
 			on:keydown={on_text_area_keydown}
