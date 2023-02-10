@@ -52,54 +52,35 @@
 	async function select_default_locales(): Promise<void> {
 		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
 
-		default_locales.load_storage()
-		set_locale(false)
-	}
-
-	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
-		let partner_select_element: HTMLSelectElement
-		let original_selected_value: string
-
-		if (target_select_element === from_locale_select_element) {
-			original_selected_value = from_locale_selected_value
-			partner_select_element = to_locale_select_element
-		} else {
-			original_selected_value = to_locale_selected_value
-			partner_select_element = from_locale_select_element
-		}
-
-		if (target_select_element.value === partner_select_element.value) {
-			target_select_element.value = partner_select_element.value
-			partner_select_element.value = original_selected_value
-		}
-
+		default_locales.load_from_storage()
 		set_locale()
 	}
 
-	function set_locale(store_locale = true, keep_text = false): void {
-		if (!store_locale) {
-			const from_locale = localStorage.getItem('from_locale')
-			const to_locale = localStorage.getItem('to_locale')
-
-			if (from_locale) from_locale_select_element.value = from_locale
-			if (to_locale) to_locale_select_element.value = to_locale
+	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
+		if (from_locale_select_element.value === to_locale_select_element.value) {
+			switch_locales()
+			return
 		}
 
+		target_select_element === from_locale_select_element
+			? from_translate_box.clear_self()
+			: to_translate_box.clear_self()
+
+		set_locale()
+		store_locale()
+	}
+
+	function set_locale(): void {
 		from_locale_code = LocaleCode.create(from_locale_select_element.value)
 		to_locale_code = LocaleCode.create(to_locale_select_element.value)
 
-		if (store_locale) {
-			localStorage.setItem('from_locale', from_locale_code.code)
-			localStorage.setItem('to_locale', to_locale_code.code)
-		}
-
-		if (!keep_text) {
-			from_translate_box.clear_self()
-			to_translate_box.clear_self()
-		}
-
 		set_app_locale()
 		fetch_history()
+	}
+
+	function store_locale(): void {
+		localStorage.setItem('from_locale', from_locale_code.code)
+		localStorage.setItem('to_locale', to_locale_code.code)
 	}
 
 	async function set_app_locale(): Promise<void> {
@@ -134,20 +115,21 @@
 		}
 	}
 
-	function switch_locales(): void {
-		const from_locale = from_locale_select_element.value
-		const to_locale = to_locale_select_element.value
-
-		from_locale_select_element.value = to_locale
-		to_locale_select_element.value = from_locale
-
+	function switch_textarea_body(): void {
 		const from_textarea_body = from_translate_box.get_textarea_body()
 		const to_textarea_body = to_translate_box.get_textarea_body()
 
 		to_translate_box.set_textarea_body(from_textarea_body)
 		from_translate_box.set_textarea_body(to_textarea_body)
+	}
 
-		set_locale(true, true)
+	function switch_locales(): void {
+		from_locale_select_element.value = to_locale_code.code
+		to_locale_select_element.value = from_locale_code.code
+
+		switch_textarea_body()
+		set_locale()
+		store_locale()
 	}
 
 	async function fetch_history(): Promise<void> {
@@ -155,16 +137,6 @@
 
 		text_history = await new TextsApi(speech_language_code, 100).fetch()
 	}
-
-	onMount(async () => {
-		if (!browser) return
-
-		init_locale_select()
-
-		await select_default_locales()
-
-		to_translate_box.focus()
-	})
 
 	async function on_click_text(text: Text): Promise<void> {
 		await to_translate_box.set_text(text)
@@ -178,6 +150,14 @@
 
 		await fetch_history()
 	}
+
+	onMount(async () => {
+		if (!browser) return
+
+		init_locale_select()
+		await select_default_locales()
+		to_translate_box.focus()
+	})
 </script>
 
 <svelte:head>

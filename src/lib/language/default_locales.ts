@@ -7,7 +7,7 @@ export class DefaultLocales {
 		private readonly _to_locale_select_element: HTMLSelectElement
 	) {}
 
-	public load_storage(): void {
+	public load_from_storage(): void {
 		this._from_locale_select_element.value = this._from_locale
 		this._to_locale_select_element.value = this._to_locale
 	}
