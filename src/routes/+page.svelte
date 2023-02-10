@@ -75,7 +75,7 @@
 	async function select_default_locales(): Promise<void> {
 		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
 
-		default_locales.load_storage()
+		default_locales.load_from_storage()
 		set_locale(false)
 	}
 
