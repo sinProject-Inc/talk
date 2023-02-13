@@ -18,7 +18,10 @@ function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech
 	}
 }
 
-async function get_speech_sounds(speech_texts: SpeechText[], locale_code: LocaleCode): Promise<SpeechSound[]> {
+async function get_speech_sounds(
+	speech_texts: SpeechText[],
+	locale_code: LocaleCode
+): Promise<SpeechSound[]> {
 	const speech_sounds: SpeechSound[] = []
 
 	for (const speech_text of speech_texts) {
@@ -28,9 +31,9 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 		if (sound) {
 			try {
 				const sound_id = new SoundId(sound.id)
-				const speech_sound = SpeechSound.read(sound_id)
+				const speech_sound = await SpeechSound.read(sound_id)
 
-				console.info(`Found #${sound.id} sound for "${speech_text.text}"`)
+				console.info(`Found #${sound.id} sound for ${speech_text.text}`)
 				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
@@ -43,8 +46,8 @@ async function get_speech_sounds(speech_texts: SpeechText[], locale_code: Locale
 		const { id } = await sound_db.upsert()
 		const sound_id = new SoundId(id)
 
-		speech_sound.write(sound_id)
-		console.info(`Created #${sound_id.id} sound for "${speech_text.text}"`)
+		await speech_sound.write(sound_id)
+		console.info(`Created #${sound_id.id} sound for ${speech_text.text}`)
 		speech_sounds.push(speech_sound)
 	}
 

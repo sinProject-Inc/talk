@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
-import { Api } from "./api";
-import { ApiPath } from "./api_path";
+import { expect, test } from 'vitest'
+import { Api } from './api'
+import { ApiPath } from './api_path'
 
 test('[EMPTY]', () => {
 	const api_path = ApiPath.api_directory

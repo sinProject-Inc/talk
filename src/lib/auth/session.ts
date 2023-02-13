@@ -1,6 +1,6 @@
-import type { AuthToken } from "@prisma/client";
-import type { Cookies } from "@sveltejs/kit";
-import type { LifeTime } from "./life_time";
+import type { AuthToken } from '@prisma/client'
+import type { Cookies } from '@sveltejs/kit'
+import type { LifeTime } from './life_time'
 
 export class Session {
 	private static readonly _session_id_key = 'session_id'

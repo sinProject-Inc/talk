@@ -1,4 +1,4 @@
-import type { LocaleCode } from "../../language/locale_code"
+import type { LocaleCode } from '../../language/locale_code'
 
 export class MicrosoftVoice {
 	private readonly _microsoft_voice: undefined

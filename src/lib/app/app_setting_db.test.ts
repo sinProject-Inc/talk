@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
-import { AppSettingDb } from "./app_setting_db";
+import { expect, test } from 'vitest'
+import { AppSettingDb } from './app_setting_db'
 
 test('session_lifetime_sec', async () => {
 	const app_setting_db = new AppSettingDb('session_lifetime_sec')

@@ -6,5 +6,4 @@ export class StringUtil {
 
 		return sentences
 	}
-
 }

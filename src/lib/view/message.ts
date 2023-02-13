@@ -1,4 +1,4 @@
-import { ValidText } from "../text/valid_text"
+import { ValidText } from '../text/valid_text'
 
 export class Message {
 	private readonly _message: undefined

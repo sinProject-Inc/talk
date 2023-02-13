@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
-import { PinCode } from "./pin_code";
+import { expect, test } from 'vitest'
+import { PinCode } from './pin_code'
 
 test('undefined', () => {
 	expect(() => {

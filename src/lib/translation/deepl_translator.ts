@@ -1,6 +1,6 @@
-import * as deepl from 'deepl-node'
 import { DEEPL_AUTH_KEY } from '$env/static/private'
 import type { SourceLanguageCode, TargetLanguageCode } from 'deepl-node'
+import * as deepl from 'deepl-node'
 import { TranslationText } from './translation_text'
 
 export class DeeplTranslator {

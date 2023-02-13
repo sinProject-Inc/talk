@@ -1,5 +1,4 @@
 export class Email {
-	private readonly _email: undefined
 	private readonly _address: string
 
 	public constructor(address: string | undefined) {

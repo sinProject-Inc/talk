@@ -1,4 +1,5 @@
 import { App } from '$lib/app/app'
+import { v4 as uuidv4 } from 'uuid'
 import type { Session } from '$lib/auth/session'
 import type { AuthPin, AuthToken, Role, User } from '@prisma/client'
 import { LifeTime } from './life_time'
@@ -45,11 +46,12 @@ export class AuthTokenDb {
 
 	public async create(auth_pin: AuthPin): Promise<[AuthToken, LifeTime]> {
 		const session_life_time = await this._get_life_time()
+		const token = uuidv4()
 		const session_limit_date = session_life_time.limit_date
 
 		const [auth_token] = await App.db.$transaction([
 			App.db.authToken.create({
-				data: { user_id: auth_pin.user_id, token: crypto.randomUUID() },
+				data: { user_id: auth_pin.user_id, token },
 			}),
 			App.db.authToken.deleteMany({
 				where: { updated_at: { lt: session_limit_date } },

@@ -1,6 +1,5 @@
 
 export class ValidText {
-	private readonly _valid_text: undefined
 	private readonly _text: string
 
 	public constructor(text: string | undefined) {

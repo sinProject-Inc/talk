@@ -2,14 +2,12 @@ import { browser } from '$app/environment'
 import { register, init } from 'svelte-i18n'
 import { AppLocaleCode } from './app_locale_code'
 
+const locales = ['en', 'ja', 'zh-TW', 'ko', 'km', 'es']
 const default_locale = 'en'
 
-register('en', () => import('../../locales/en.json'))
-register('ja', () => import('../../locales/ja.json'))
-register('zh-TW', () => import('../../locales/zh-TW.json'))
-register('ko', () => import('../../locales/ko.json'))
-register('km', () => import('../../locales/km.json'))
-register('es', () => import('../../locales/es.json'))
+locales.forEach((locale) => {
+	register(locale, () => import(`../../locales/${locale}.json`))
+})
 
 function get_initial_app_locale_code(): AppLocaleCode {
 	if (!browser) return AppLocaleCode.default

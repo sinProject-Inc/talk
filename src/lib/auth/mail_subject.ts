@@ -1,5 +1,4 @@
 export class MailSubject {
-	private readonly _mail_subject: undefined
 	private readonly _subject: string
 
 	public constructor(subject: string) {

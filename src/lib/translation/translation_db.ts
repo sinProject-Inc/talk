@@ -1,8 +1,8 @@
+import type { Text } from '@prisma/client'
 import { App } from '../app/app'
+import { LanguageDb } from '../language/language_db'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import type { SpeechText } from '../speech/speech_text'
-import type { Text } from '@prisma/client'
-import { LanguageDb } from '../language/language_db'
 import { TextDb } from '../text/text_db'
 import type { TextId } from '../text/text_id'
 

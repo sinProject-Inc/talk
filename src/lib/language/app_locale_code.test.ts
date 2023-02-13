@@ -1,6 +1,6 @@
-import { SpeechLanguageCode } from "$lib/speech/speech_language_code";
-import { expect, test } from "vitest";
-import { AppLocaleCode } from "./app_locale_code";
+import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+import { expect, test } from 'vitest'
+import { AppLocaleCode } from './app_locale_code'
 
 test('default', () => {
 	expect(AppLocaleCode.default.code).toBe('en')
