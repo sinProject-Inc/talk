@@ -2,7 +2,6 @@ import type { BaseText } from '../text/base_text'
 import { ValidText } from '../text/valid_text'
 
 export class TranslationText implements BaseText {
-	private readonly _translation_text: undefined
 	private readonly _text: string
 
 	public constructor(text: string | undefined) {
