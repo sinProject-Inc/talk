@@ -1,7 +1,4 @@
-
 export class LocaleCode {
-	private readonly _locale_code: undefined
-
 	public static readonly english_united_states = new LocaleCode('en-US')
 	public static readonly english_great_britain = new LocaleCode('en-GB')
 	public static readonly japanese_japan = new LocaleCode('ja-JP')
@@ -59,5 +56,4 @@ export class LocaleCode {
 	public use_microsoft_speech(): boolean {
 		return this._is_khmer()
 	}
-
 }

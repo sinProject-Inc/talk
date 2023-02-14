@@ -8,23 +8,20 @@ import type { SpeechText } from './speech_text'
 
 export class SpeechByGoogle implements Speech {
 	public constructor(
-		protected readonly _speech_text: SpeechText,
-		protected readonly _locale_code: LocaleCode
+		private readonly _speech_text: SpeechText,
+		private readonly _locale_code: LocaleCode
 	) {}
 
 	public async speak(): Promise<SpeechSound> {
-		const microsoft_voice = GoogleVoice.from_locale_code(this._locale_code)
+		const google_voice = GoogleVoice.from_locale_code(this._locale_code)
 
 		const text = this._speech_text.text
-		const languageCode = this._locale_code.code
-		const name = microsoft_voice.name
-
-		// console.log('languageCode', languageCode)
-		// console.log('name', name)
+		const language_code = this._locale_code.code
+		const name = google_voice.name
 
 		const request = {
 			input: { text },
-			voice: { languageCode, name },
+			voice: { languageCode: language_code, name },
 			audioConfig: { audioEncoding: google.cloud.texttospeech.v1.AudioEncoding.MP3 },
 		}
 

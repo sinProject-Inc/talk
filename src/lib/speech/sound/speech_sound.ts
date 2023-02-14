@@ -3,8 +3,6 @@ import type { SoundId } from '$lib/speech/sound/sound_id'
 import { SoundFilePath } from './sound_file_path'
 
 export class SpeechSound {
-	private readonly _speech_sound: undefined
-
 	public constructor(private readonly _data: Uint8Array) {}
 
 	public get data(): Uint8Array {
@@ -19,17 +17,17 @@ export class SpeechSound {
 		return this.length.toString()
 	}
 
-	public static read(sound_id: SoundId): SpeechSound {
+	public static async read(sound_id: SoundId): Promise<SpeechSound> {
 		const sound_file_path = SoundFilePath.from_id(sound_id)
-		const sound_file_buffer = fs.readFileSync(sound_file_path.path)
+		const sound_file_buffer = await fs.promises.readFile(sound_file_path.path)
 		const sound_file_unit8_array = new Uint8Array(sound_file_buffer)
 		const speech_sound = new SpeechSound(sound_file_unit8_array)
 
 		return speech_sound
 	}
 
-	public write(sound_id: SoundId): void {
+	public async write(sound_id: SoundId): Promise<void> {
 		const sound_file_path = SoundFilePath.from_id(sound_id)
-		fs.writeFileSync(sound_file_path.path, this._data, 'binary')
+		await fs.promises.writeFile(sound_file_path.path, this._data, 'binary')
 	}
 }

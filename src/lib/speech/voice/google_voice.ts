@@ -1,4 +1,4 @@
-import type { LocaleCode } from "../../language/locale_code"
+import type { LocaleCode } from '../../language/locale_code'
 
 export class GoogleVoice {
 	private readonly _google_voice: undefined

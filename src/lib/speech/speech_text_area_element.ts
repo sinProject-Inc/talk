@@ -1,5 +1,5 @@
-import type { Message } from "$lib/view/message"
-import type { SpeechElement } from "./speech_element"
+import type { Message } from '$lib/view/message'
+import type { SpeechElement } from './speech_element'
 
 export class SpeechTextAreaElement implements SpeechElement {
 	public constructor(

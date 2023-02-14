@@ -1,6 +1,6 @@
-import { App } from "$lib/app/app";
-import type { User } from "@prisma/client";
-import type { Email } from "./email";
+import { App } from '$lib/app/app'
+import type { User } from '@prisma/client'
+import type { Email } from './email'
 
 enum Roles {
 	admin = 'admin',

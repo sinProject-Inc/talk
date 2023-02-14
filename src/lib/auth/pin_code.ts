@@ -1,5 +1,4 @@
 export class PinCode {
-	private readonly _pin_code: undefined
 	private readonly _code: string
 
 	public constructor(code: string | undefined) {

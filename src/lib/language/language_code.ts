@@ -1,6 +1,4 @@
 export class LanguageCode {
-	private readonly _language_code: undefined
-
 	public static readonly english_united_states = new LanguageCode('en-US')
 	public static readonly english_great_britain = new LanguageCode('en-GB')
 	public static readonly japanese = new LanguageCode('ja-JP')

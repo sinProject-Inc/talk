@@ -1,6 +1,5 @@
 
 export class ValidId {
-	private readonly _valid_id: undefined
 	private readonly _id: number
 
 	public constructor(id: number) {

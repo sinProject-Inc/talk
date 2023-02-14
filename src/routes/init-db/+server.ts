@@ -3,7 +3,7 @@ import type { RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async () => {
 	const db = App.db
-	
+
 	try {
 		await db.role.create({ data: { name: 'admin' } })
 		await db.role.create({ data: { name: 'user' } })
@@ -26,10 +26,10 @@ export const GET: RequestHandler = async () => {
 		await db.locale.create({ data: { code: 'km-KH', name: 'ខ្មែរ (KH)' } })
 		await db.locale.create({ data: { code: 'es-ES', name: 'Español (ES)' } })
 
-		await db.text.create({ data: { language_id: 6,text: 'Hola' } })
-		await db.text.create({ data: { language_id: 6,text: '¿Qué tal?' } })
-		await db.text.create({ data: { language_id: 6,text: 'Nos vemos' } })
-		await db.text.create({ data: { language_id: 6,text: '¿Dónde está el baño?' } })
+		await db.text.create({ data: { language_id: 6, text: 'Hola' } })
+		await db.text.create({ data: { language_id: 6, text: '¿Qué tal?' } })
+		await db.text.create({ data: { language_id: 6, text: 'Nos vemos' } })
+		await db.text.create({ data: { language_id: 6, text: '¿Dónde está el baño?' } })
 
 		await db.text.create({ data: { language_id: 4, text: '사랑 해요.' } })
 		await db.text.create({ data: { language_id: 4, text: '내 가치를 네가 정하지 마' } })

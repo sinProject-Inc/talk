@@ -1,7 +1,6 @@
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 
 export class AppLocaleCode {
-	private readonly _app_locale_code: undefined
 	private readonly _code: string
 
 	public static readonly english = new AppLocaleCode('en')

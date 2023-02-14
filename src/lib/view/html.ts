@@ -1,4 +1,4 @@
-import type { Language, Locale } from '@prisma/client'
+import type { Locale } from '@prisma/client'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 
 export class Html {

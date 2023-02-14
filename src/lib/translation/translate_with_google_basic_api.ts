@@ -1,12 +1,16 @@
-import type { AppLocaleCode } from "$lib/language/app_locale_code";
-import { TranslationText } from "$lib/translation/translation_text";
-import { Api } from "../api/api";
-import { ApiPath } from "../api/api_path";
+import type { AppLocaleCode } from '$lib/language/app_locale_code'
+import { TranslationText } from '$lib/translation/translation_text'
+import { Api } from '../api/api'
+import { ApiPath } from '../api/api_path'
 
 export class TranslateWithGoogleBasicApi {
 	private readonly _api_path: ApiPath
 
-	public constructor(translation_text: TranslationText, target_app_locale_code: AppLocaleCode, private readonly _origin = '') {
+	public constructor(
+		translation_text: TranslationText,
+		target_app_locale_code: AppLocaleCode,
+		private readonly _origin = ''
+	) {
 		this._api_path = ApiPath.api_directory
 			.connect('translate-with-google-basic')
 			.connect_with_encoding(translation_text.text)
