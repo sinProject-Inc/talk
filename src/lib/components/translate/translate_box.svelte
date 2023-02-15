@@ -343,4 +343,4 @@
 		</div>
 	</div>
 </div>
-<Snackbar text="Copied" visible={snackbar_visible} />
+<Snackbar text="{$_('copied')}" visible={snackbar_visible} />
