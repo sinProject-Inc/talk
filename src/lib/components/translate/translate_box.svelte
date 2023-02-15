@@ -333,7 +333,7 @@
 <div class="main-box glass-panel row-span-1">
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
-			<div class="w-5">
+			<div class="w-5" data-testid="delete_button">
 				<IconButton on_click_handler={clear_self} enabled={delete_button_enabled()}>
 					<CloseIcon />
 				</IconButton>
@@ -359,13 +359,13 @@
 					{/if}
 				</IconButton>
 			</div>
-			<div>
+			<div data-testid="tts_button">
 				<IconButton on_click_handler={text_to_speech} enabled={text_to_speech_button_enabled()}>
 					<SpeakerIcon />
 				</IconButton>
 			</div>
 		</div>
-		<div>
+		<div data-testid="copy_button">
 			<IconButton on_click_handler={copy} enabled={copy_button_enabled()}>
 				<CopyIcon />
 			</IconButton>

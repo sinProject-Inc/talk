@@ -164,15 +164,6 @@ test('clearing text and then switching languages should keep boxes cleared', asy
 // 	await expect(page.locator('#language-1')).toBeDisabled()
 // })
 
-async function clear_text(page: Page): Promise<void> {
-	await page.reload()
-
-	await page.route(`${host}/api/text/en?limit=10`, async (route) => {
-		const json = {}
-		await route.fulfill({ json })
-	})
-}
-
 test('translate 250 characters', async ({ page }) => {
 	await page.waitForSelector('.text-area')
 	const from_text_area = page.locator('.text-area').first()
@@ -200,6 +191,88 @@ test('translate 251 characters', async ({ page }) => {
 
 	await expect(bottom_textarea).toHaveAttribute('placeholder', '翻訳できるのは 250文字までです。')
 })
+
+test('having no text disables delete button', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('')
+	await from_text_area.press('Enter')
+
+	const button = page.getByTestId('delete_button').first().getByRole('button')
+
+	await expect(button).toBeDisabled()
+})
+
+test('having text enables delete button', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('Hello')
+	await from_text_area.press('Enter')
+
+	const button = page.getByTestId('delete_button').first().getByRole('button')
+
+	await expect(button).toBeEnabled()
+})
+
+test('having no text disables tts button', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('')
+	await from_text_area.press('Enter')
+
+	const button = page.getByTestId('tts_button').first().getByRole('button')
+
+	await expect(button).toBeDisabled()
+})
+
+test('having text enables tts button', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('Hello')
+	await from_text_area.press('Enter')
+
+	const button = page.getByTestId('tts_button').first().getByRole('button')
+
+	await expect(button).toBeEnabled()
+})
+
+test('having no text disables copy button', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('')
+	await from_text_area.press('Enter')
+
+	const button = page.getByTestId('copy_button').first().getByRole('button')
+
+	await expect(button).toBeDisabled()
+})
+
+test('having text enables copy button', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
+
+	await from_text_area.fill('Hello')
+	await from_text_area.press('Enter')
+
+	const button = page.getByTestId('copy_button').first().getByRole('button')
+
+	await expect(button).toBeEnabled()
+})
+
+
+async function clear_text(page: Page): Promise<void> {
+	await page.reload()
+
+	await page.route(`${host}/api/text/en?limit=10`, async (route) => {
+		const json = {}
+		await route.fulfill({ json })
+	})
+}
 
 async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
 	await page.route(`${host}/api/text/en?limit=10`, async (route) => {
