@@ -6,7 +6,7 @@
 </script>
 
 {#if visible}
-	<div class="flex bottom-5 fixed center-container justify-center">
+	<div class="flex bottom-5 fixed center-container justify-center z-50">
 		<div
 			class="w-56 px-5 py-3 glass-panel text-xs"
 			in:fly="{{ y: 200  }}"
