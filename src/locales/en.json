@@ -26,5 +26,6 @@
   "delete": "Delete",
   "cancel": "Cancel",
   "history": "History",
-  "text_limit": "You can only translate up to 250 characters."
+  "text_limit": "You can only translate up to 250 characters.",
+  "copied": "Copied"
 }
