@@ -296,6 +296,35 @@
 		speech_text_element.focus()
 	}
 
+	$: delete_button_enabled = (): boolean => {
+		if (!textarea_body) return false
+		if (listening) return false
+		if (partner_listening) return false
+
+		return true
+	}
+
+	$: listening_button_enabled = (): boolean => {
+		if (partner_listening) return false
+
+		return true
+	}
+
+	$: text_to_speech_button_enabled = (): boolean => {
+		if (!textarea_body) return false
+		if (listening) return false
+		if (partner_listening) return false
+
+		return true
+	}
+
+	$: copy_button_enabled = (): boolean => {
+		if (!textarea_body) return false
+		if (listening) return false
+
+		return true
+	}
+
 	onMount(async () => {
 		if (!browser) return
 	})
@@ -305,7 +334,7 @@
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5">
-				<IconButton on_click_handler={clear_self} enabled={!listening && !partner_listening}>
+				<IconButton on_click_handler={clear_self} enabled={delete_button_enabled()}>
 					<CloseIcon />
 				</IconButton>
 			</div>
@@ -322,7 +351,7 @@
 	<div class="flex rounded-b-md p-1">
 		<div class="mr-auto flex gap-1">
 			<div class="listen-button">
-				<IconButton on_click_handler={handle_listen_button} enabled={!partner_listening}>
+				<IconButton on_click_handler={handle_listen_button} enabled={listening_button_enabled()}>
 					{#if listening}
 						<StopIcon />
 					{:else}
@@ -331,13 +360,13 @@
 				</IconButton>
 			</div>
 			<div>
-				<IconButton on_click_handler={text_to_speech} enabled={!listening && !partner_listening}>
+				<IconButton on_click_handler={text_to_speech} enabled={text_to_speech_button_enabled()}>
 					<SpeakerIcon />
 				</IconButton>
 			</div>
 		</div>
 		<div>
-			<IconButton on_click_handler={copy} enabled={!listening && !partner_listening}>
+			<IconButton on_click_handler={copy} enabled={copy_button_enabled()}>
 				<CopyIcon />
 			</IconButton>
 		</div>
