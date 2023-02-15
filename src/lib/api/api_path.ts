@@ -1,8 +1,6 @@
 import type { Api } from './api'
 
 export class ApiPath {
-	private readonly _api_path: undefined
-
 	public static readonly api_directory = new ApiPath().connect('api')
 
 	private constructor(private readonly _path = '') {}

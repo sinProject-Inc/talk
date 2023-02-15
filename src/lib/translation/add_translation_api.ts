@@ -1,8 +1,8 @@
-import type { TextId } from "../text/text_id";
-import type { SpeechLanguageCode } from "../speech/speech_language_code";
-import type { TranslationText } from "../translation/translation_text";
-import { Api } from "../api/api";
-import { ApiPath } from "../api/api_path";
+import { Api } from '../api/api'
+import { ApiPath } from '../api/api_path'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
+import type { TextId } from '../text/text_id'
+import type { TranslationText } from '../translation/translation_text'
 
 export class AddTranslationApi {
 	private readonly _api_path: ApiPath

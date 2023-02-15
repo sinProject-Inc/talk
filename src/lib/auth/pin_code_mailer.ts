@@ -1,9 +1,10 @@
-import { GMAIL_USER } from '$env/static/private';
-import { GMAIL_PASS } from '$env/static/private';
-import * as nodemailer from 'nodemailer';
-import { Email } from './email';
-import type { MailSubject } from './mail_subject';
-import type { PinCode } from './pin_code';
+import { GMAIL_USER } from '$env/static/private'
+import { GMAIL_PASS } from '$env/static/private'
+import * as nodemailer from 'nodemailer'
+import type SMTPTransport from 'nodemailer/lib/smtp-transport'
+import { Email } from './email'
+import type { MailSubject } from './mail_subject'
+import type { PinCode } from './pin_code'
 
 export class PinCodeMailer {
 	private readonly _transporter = nodemailer.createTransport({
@@ -17,9 +18,13 @@ export class PinCodeMailer {
 	})
 	private readonly _from_email = new Email(GMAIL_USER)
 
-	public constructor(private readonly _to_email: Email, private readonly _mail_subject: MailSubject, private readonly _pin_code: PinCode) {}
+	public constructor(
+		private readonly _to_email: Email,
+		private readonly _mail_subject: MailSubject,
+		private readonly _pin_code: PinCode
+	) {}
 
-	public async send(): Promise<unknown> {
+	public async send(): Promise<SMTPTransport.SentMessageInfo> {
 		const html = this._pin_code.get_html()
 
 		return await this._transporter.sendMail({

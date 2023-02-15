@@ -1,5 +1,5 @@
-import { ValidId } from "../general/valid_id"
-import { ValidText } from "./valid_text"
+import { ValidId } from '../general/valid_id'
+import { ValidText } from './valid_text'
 
 export class TextLimit {
 	private readonly _text_limit: undefined

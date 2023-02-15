@@ -1,11 +1,9 @@
-import type { LocaleCode } from '../language/locale_code'
-import { SpeechText } from '../speech/speech_text'
 import type { Text } from '@prisma/client'
 import { ApiPath } from '../api/api_path'
+import type { LocaleCode } from '../language/locale_code'
 
 export class TextToSpeechUrl {
 	public constructor(
-		// TODO: Fix this
 		private readonly _selected_text: Text | string,
 		private readonly _locale_code: LocaleCode
 	) {}
@@ -19,7 +17,7 @@ export class TextToSpeechUrl {
 			} else {
 				speech_text = this._selected_text.text
 			}
-			
+
 			const api_path = ApiPath.api_directory
 				.connect('text-to-speech')
 				.connect_with_encoding(speech_text)

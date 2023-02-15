@@ -18,6 +18,7 @@
     "@sveltejs/kit": "^1.0.1",
     "@types/dom-speech-recognition": "^0.0.1",
     "@types/nodemailer": "^6.4.7",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "autoprefixer": "^10.4.13",
@@ -45,6 +46,7 @@
     "deepl-node": "^1.7.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.24.1",
     "nodemailer": "^6.8.0",
-    "svelte-i18n": "^3.6.0"
+    "svelte-i18n": "^3.6.0",
+    "uuid": "^9.0.0"
   }
 }

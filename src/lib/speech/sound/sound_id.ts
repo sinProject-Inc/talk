@@ -1,7 +1,6 @@
-import { ValidId } from "../../general/valid_id"
+import { ValidId } from '../../general/valid_id'
 
 export class SoundId {
-	private readonly _sound_id: undefined
 	private readonly _id: number
 
 	public constructor(id: number) {

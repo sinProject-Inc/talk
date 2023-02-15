@@ -1,8 +1,6 @@
-import type { LocaleCode } from "$lib/language/locale_code"
+import type { LocaleCode } from '$lib/language/locale_code'
 
 export class SpeechLanguageCode {
-	private readonly _speech_language_code: undefined
-
 	public static readonly english = new SpeechLanguageCode('en')
 	public static readonly japanese = new SpeechLanguageCode('ja')
 	public static readonly yue_chinese = new SpeechLanguageCode('yue')

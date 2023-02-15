@@ -1,7 +1,7 @@
-import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import type { Text } from '@prisma/client'
 import { Api } from '../api/api'
 import { ApiPath } from '../api/api_path'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
 
 export class TextsApi {
 	private readonly _api_path: ApiPath

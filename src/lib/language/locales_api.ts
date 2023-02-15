@@ -1,6 +1,6 @@
-import type { Locale } from "@prisma/client"
-import { Api } from "../api/api"
-import { ApiPath } from "../api/api_path"
+import type { Locale } from '@prisma/client'
+import { Api } from '../api/api'
+import { ApiPath } from '../api/api_path'
 
 export class LocalesApi {
 	private readonly _api_path: ApiPath

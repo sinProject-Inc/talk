@@ -1,4 +1,4 @@
-import type { ApiPath } from "./api_path"
+import type { ApiPath } from './api_path'
 
 export class Api {
 	public constructor(private readonly _api_path: ApiPath, private readonly _origin = '') {}

@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
-import { ValidId } from "./valid_id";
+import { expect, test } from 'vitest'
+import { ValidId } from './valid_id'
 
 test('NaN', () => {
 	expect(() => {
