@@ -2,8 +2,9 @@ import { App } from '$lib/app/app'
 import type { LocaleCode } from '$lib/language/locale_code'
 import type { SpeechText } from '$lib/speech/speech_text'
 import type { Sound } from '@prisma/client'
+import type { SoundRepository } from './sound_repository'
 
-export class SoundDb {
+export class SoundRepositoryPrisma implements SoundRepository {
 	public constructor(
 		private readonly _locale_code: LocaleCode,
 		private readonly _speech_text: SpeechText

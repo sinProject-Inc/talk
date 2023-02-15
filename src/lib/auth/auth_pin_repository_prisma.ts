@@ -1,10 +1,11 @@
 import { App } from '$lib/app/app'
 import type { PinCode } from '$lib/auth/pin_code'
 import type { AuthPin, User } from '@prisma/client'
+import type { AuthPinRepository } from './auth_pin_repository'
 import type { Email } from './email'
 import { LifeTime } from './life_time'
 
-export class AuthPinDb {
+export class AuthPinRepositoryPrisma implements AuthPinRepository {
 	private async _get_limit_date(): Promise<Date> {
 		const life_time = await LifeTime.generate_pin_code()
 		const limit_date = life_time.limit_date

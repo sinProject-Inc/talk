@@ -1,7 +1,8 @@
-import { TextDb } from '$lib/text/text_db'
+import { TextRepositoryPrisma } from '$lib/text/text_repository_prisma'
 import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 import { SpeechText } from '$lib/speech/speech_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
+import type { TextRepository } from '$lib/text/text_repository'
 
 export const GET: RequestHandler = async ({ url, params }) => {
 	console.info(url.href)
@@ -9,8 +10,8 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	try {
 		const speech_text = new SpeechText(params.text)
 		const speech_language_code = SpeechLanguageCode.create(params.language_code)
-		const text_db = new TextDb()
-		const result = await text_db.upsert(speech_language_code, speech_text)
+		const text_repository: TextRepository = new TextRepositoryPrisma()
+		const result = await text_repository.upsert(speech_language_code, speech_text)
 
 		return json(result)
 	} catch (error) {

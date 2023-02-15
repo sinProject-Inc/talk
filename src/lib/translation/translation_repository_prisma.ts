@@ -1,22 +1,25 @@
+import type { LanguageRepository } from '$lib/language/language_repository'
 import type { Text } from '@prisma/client'
 import { App } from '../app/app'
-import { LanguageDb } from '../language/language_db'
+import { LanguageRepositoryPrisma } from '../language/language_repository_prisma'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import type { SpeechText } from '../speech/speech_text'
-import { TextDb } from '../text/text_db'
+import { TextRepositoryPrisma } from '../text/text_repository_prisma'
 import type { TextId } from '../text/text_id'
+import type { TranslationRepository } from './translation_repository'
+import type { TextRepository } from '$lib/text/text_repository'
 
-export class TranslationDb {
+export class TranslationRepositoryPrisma implements TranslationRepository {
 	public constructor(
 		private readonly _text_id: TextId,
 		private readonly _speech_language_code: SpeechLanguageCode
 	) {}
 
 	public async find(): Promise<Text[]> {
-		const text_db = new TextDb()
-		const text = await text_db.find(this._text_id)
-		const language_db = new LanguageDb()
-		const language = await language_db.find_unique(this._speech_language_code)
+		const text_repository: TextRepository = new TextRepositoryPrisma()
+		const text = await text_repository.find(this._text_id)
+		const language_repository: LanguageRepository = new LanguageRepositoryPrisma()
+		const language = await language_repository.find_unique(this._speech_language_code)
 
 		if (!text) throw new Error('text not found')
 		if (!language) throw new Error('language not found')
@@ -56,15 +59,15 @@ export class TranslationDb {
 	public async add(
 		translation_speech_text: SpeechText
 	): Promise<Text> {
-		const text_db = new TextDb()
-		const text = await text_db.find(this._text_id)
-		const language_db = new LanguageDb()
-		const language = await language_db.find_unique(this._speech_language_code)
+		const text_repository: TextRepository = new TextRepositoryPrisma()
+		const text = await text_repository.find(this._text_id)
+		const language_repository: LanguageRepository = new LanguageRepositoryPrisma()
+		const language = await language_repository.find_unique(this._speech_language_code)
 
 		if (!text) throw new Error('text not found')
 		if (!language) throw new Error('language not found')
 
-		const translation_text = await text_db.upsert(
+		const translation_text = await text_repository.upsert(
 			this._speech_language_code,
 			translation_speech_text
 		)

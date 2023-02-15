@@ -1,13 +1,14 @@
 import { App } from '$lib/app/app'
 import type { User } from '@prisma/client'
 import type { Email } from './email'
+import type { UserRepository } from './user_repository'
 
 enum Roles {
 	admin = 'admin',
 	user = 'user',
 }
 
-export class UserDb {
+export class UserRepositoryPrisma implements UserRepository {
 	public constructor(private readonly _email: Email) {}
 
 	public async find_unique(can_register = true): Promise<User | undefined> {

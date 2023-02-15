@@ -1,6 +1,6 @@
 import { App } from './app'
 
-export class AppSettingDb {
+export class AppSettingRepositoryPrisma {
 	public constructor(private readonly _key: string) {}
 
 	public async get_number(): Promise<number> {

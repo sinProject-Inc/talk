@@ -1,8 +1,9 @@
 import { App } from '$lib/app/app'
 import type { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 import type { Language } from '@prisma/client'
+import type { LanguageRepository } from './language_repository'
 
-export class LanguageDb {
+export class LanguageRepositoryPrisma implements LanguageRepository {
 	public async find_many(): Promise<Language[]> {
 		const languages = await App.db.language.findMany()
 
