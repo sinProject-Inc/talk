@@ -1,4 +1,4 @@
-import type { AuthPinRepository } from '$lib/auth/auth_pin_repository'
+import { App } from '$lib/app/app'
 import { AuthPinRepositoryPrisma } from '$lib/auth/auth_pin_repository_prisma'
 import { Email } from '$lib/auth/email'
 import { MailSubject } from '$lib/auth/mail_subject'
@@ -40,15 +40,15 @@ export const actions: Actions = {
 		try {
 			const email = new Email(email_address)
 
-			const user_repository: UserRepository = new UserRepositoryPrisma(email)
-			const user = await user_repository.find_unique()
+			const user_repository: UserRepository = new UserRepositoryPrisma(App.prisma_client)
+			const user = await user_repository.find_unique(email)
 
 			if (!user) return { credentials: true, email_address, missing: false, success: false }
 
 			const pin_code = PinCode.generate()
 			send_mail(user, pin_code)
 
-			const auth_pin_repository: AuthPinRepository = new AuthPinRepositoryPrisma()
+			const auth_pin_repository = new AuthPinRepositoryPrisma(App.prisma_client)
 
 			await auth_pin_repository.save(user, pin_code)
 
@@ -70,7 +70,7 @@ export const actions: Actions = {
 			const email = new Email(email_address)
 			const pin_code = new PinCode(data.get('pin_code')?.toString())
 
-			const auth_pin_repository: AuthPinRepository = new AuthPinRepositoryPrisma()
+			const auth_pin_repository = new AuthPinRepositoryPrisma(App.prisma_client)
 			const auth_pin = await auth_pin_repository.find(email, pin_code)
 
 			if (!auth_pin) return fail(400, { credentials: true, email_address })

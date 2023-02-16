@@ -1,20 +1,18 @@
-import { TextRepositoryPrisma } from '$lib/text/text_repository_prisma'
+import { App } from '$lib/app/app'
 import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
-import { json, type RequestHandler } from '@sveltejs/kit'
 import { TextLimit } from '$lib/text/text_limit'
-import type { TextRepository } from '$lib/text/text_repository'
+import { TextRepositoryPrisma } from '$lib/text/text_repository_prisma'
+import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }): Promise<Response> => {
 	console.info(url.href)
 
 	try {
 		const speech_language_code = SpeechLanguageCode.create(params.language_code)
-
-		const text_repository: TextRepository = new TextRepositoryPrisma()
-
 		const limit_string = url.searchParams.get('limit')
 		const limit = limit_string ? TextLimit.from_string(limit_string) : undefined
 
+		const text_repository = new TextRepositoryPrisma(App.prisma_client)
 		const texts = await text_repository.find_many(speech_language_code, limit)
 		const response = json(texts)
 

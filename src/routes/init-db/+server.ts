@@ -1,7 +1,7 @@
 import { App } from '$lib/app/app'
 import type { RequestHandler } from '@sveltejs/kit'
 
-const db = App.db
+const db = App.prisma_client
 
 async function add_roles(): Promise<void> {
 	await db.role.create({ data: { name: 'admin' } })
