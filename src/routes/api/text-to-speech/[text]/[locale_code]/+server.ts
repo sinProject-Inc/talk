@@ -1,4 +1,4 @@
-import { SoundDb } from '$lib/speech/sound/sound_db'
+import { SoundRepositoryPrisma } from '$lib/speech/sound/sound_repository_prisma'
 import { LocaleCode } from '$lib/language/locale_code'
 import { SoundId } from '$lib/speech/sound/sound_id'
 import { SpeechSound } from '$lib/speech/sound/speech_sound'
@@ -7,6 +7,7 @@ import { SpeechByGoogle } from '$lib/speech/speech_by_google'
 import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
 import { SpeechText } from '$lib/speech/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
+import type { SoundRepository } from '$lib/speech/sound/sound_repository'
 
 function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
 	if (locale_code.use_microsoft_speech()) {
@@ -25,8 +26,8 @@ async function get_speech_sounds(
 	const speech_sounds: SpeechSound[] = []
 
 	for (const speech_text of speech_texts) {
-		const sound_db = new SoundDb(locale_code, speech_text)
-		const sound = await sound_db.find_first()
+		const sound_repository: SoundRepository = new SoundRepositoryPrisma(locale_code, speech_text)
+		const sound = await sound_repository.find_first()
 
 		if (sound) {
 			try {
@@ -43,7 +44,7 @@ async function get_speech_sounds(
 
 		const speech = create_speech(speech_text, locale_code)
 		const speech_sound = await speech.speak()
-		const { id } = await sound_db.upsert()
+		const { id } = await sound_repository.save()
 		const sound_id = new SoundId(id)
 
 		await speech_sound.write(sound_id)

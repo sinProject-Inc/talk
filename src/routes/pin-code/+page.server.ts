@@ -1,13 +1,15 @@
-import { AuthPinDb } from '$lib/auth/auth_pin_db'
-import { UserDb } from '$lib/auth/user_db'
-import { PinCodeMailer } from '$lib/auth/pin_code_mailer'
-import { PinCode } from '$lib/auth/pin_code'
-import { Signing } from '$lib/auth/signing'
-import type { PageServerLoad } from '.svelte-kit/types/src/routes/$types'
-import type { User } from '@prisma/client'
-import { fail, redirect, type Actions } from '@sveltejs/kit'
+import type { AuthPinRepository } from '$lib/auth/auth_pin_repository'
+import { AuthPinRepositoryPrisma } from '$lib/auth/auth_pin_repository_prisma'
 import { Email } from '$lib/auth/email'
 import { MailSubject } from '$lib/auth/mail_subject'
+import { PinCode } from '$lib/auth/pin_code'
+import { PinCodeMailer } from '$lib/auth/pin_code_mailer'
+import { Signing } from '$lib/auth/signing'
+import type { UserRepository } from '$lib/auth/user_repository'
+import { UserRepositoryPrisma } from '$lib/auth/user_repository_prisma'
+import type { User } from '@prisma/client'
+import { fail, redirect, type Actions } from '@sveltejs/kit'
+import type { PageServerLoad } from '../$types'
 
 export const load: PageServerLoad = async ({ locals, url, request }) => {
 	if (locals.user) {
@@ -38,17 +40,17 @@ export const actions: Actions = {
 		try {
 			const email = new Email(email_address)
 
-			const user_db = new UserDb(email)
-			const user = await user_db.find_unique()
+			const user_repository: UserRepository = new UserRepositoryPrisma(email)
+			const user = await user_repository.find_unique()
 
 			if (!user) return { credentials: true, email_address, missing: false, success: false }
 
 			const pin_code = PinCode.generate()
 			send_mail(user, pin_code)
 
-			const auth_pin_db = new AuthPinDb()
+			const auth_pin_repository: AuthPinRepository = new AuthPinRepositoryPrisma()
 
-			await auth_pin_db.upsert(user, pin_code)
+			await auth_pin_repository.save(user, pin_code)
 
 			return { success: true, email_address, missing: false, credentials: false }
 		} catch (e) {
@@ -68,8 +70,8 @@ export const actions: Actions = {
 			const email = new Email(email_address)
 			const pin_code = new PinCode(data.get('pin_code')?.toString())
 
-			const auth_pin_db = new AuthPinDb()
-			const auth_pin = await auth_pin_db.find(email, pin_code)
+			const auth_pin_repository: AuthPinRepository = new AuthPinRepositoryPrisma()
+			const auth_pin = await auth_pin_repository.find(email, pin_code)
 
 			if (!auth_pin) return fail(400, { credentials: true, email_address })
 

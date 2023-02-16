@@ -3,8 +3,9 @@ import { v4 as uuidv4 } from 'uuid'
 import type { Session } from '$lib/auth/session'
 import type { AuthPin, AuthToken, Role, User } from '@prisma/client'
 import { LifeTime } from './life_time'
+import type { AuthTokenRepository } from './auth_token_repository'
 
-export class AuthTokenDb {
+export class AuthTokenRepositoryPrisma implements AuthTokenRepository {
 	private async _get_life_time(): Promise<LifeTime> {
 		const life_time = await LifeTime.generate_session()
 

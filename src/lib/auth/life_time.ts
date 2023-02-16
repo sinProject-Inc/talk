@@ -1,4 +1,5 @@
-import { AppSettingDb } from '../app/app_setting_db'
+import type { AppSettingRepository } from '$lib/app/app_setting_repository'
+import { AppSettingRepositoryPrisma } from '../app/app_setting_repository_prisma'
 
 export class LifeTime {
 	private readonly _millisecond: number
@@ -12,8 +13,8 @@ export class LifeTime {
 	}
 
 	private static async _from_setting(key: string): Promise<LifeTime> {
-		const app_setting_db = new AppSettingDb(key)
-		const life_time_seconds = await app_setting_db.get_number()
+		const app_setting_repository: AppSettingRepository = new AppSettingRepositoryPrisma(key)
+		const life_time_seconds = await app_setting_repository.get_number()
 		const life_time_millisecond = life_time_seconds * 1000
 
 		return new LifeTime(life_time_millisecond)
