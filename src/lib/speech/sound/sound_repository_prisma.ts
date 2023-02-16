@@ -10,7 +10,7 @@ export class SoundRepositoryPrisma implements SoundRepository {
 		private readonly _speech_text: SpeechText
 	) {}
 
-	public async upsert(): Promise<Sound> {
+	public async save(): Promise<Sound> {
 		const locale = await App.db.locale.findUnique({
 			where: { code: this._locale_code.code },
 		})

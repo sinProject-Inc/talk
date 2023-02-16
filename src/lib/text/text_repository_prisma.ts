@@ -35,7 +35,7 @@ export class TextRepositoryPrisma implements TextRepository {
 		return text
 	}
 
-	public async upsert(
+	public async save(
 		speech_language_code: SpeechLanguageCode,
 		speech_text: SpeechText
 	): Promise<Text> {

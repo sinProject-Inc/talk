@@ -67,7 +67,7 @@ export class TranslationRepositoryPrisma implements TranslationRepository {
 		if (!text) throw new Error('text not found')
 		if (!language) throw new Error('language not found')
 
-		const translation_text = await text_repository.upsert(
+		const translation_text = await text_repository.save(
 			this._speech_language_code,
 			translation_speech_text
 		)

@@ -11,7 +11,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 		const speech_text = new SpeechText(params.text)
 		const speech_language_code = SpeechLanguageCode.create(params.language_code)
 		const text_repository: TextRepository = new TextRepositoryPrisma()
-		const result = await text_repository.upsert(speech_language_code, speech_text)
+		const result = await text_repository.save(speech_language_code, speech_text)
 
 		return json(result)
 	} catch (error) {

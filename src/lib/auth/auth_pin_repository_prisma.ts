@@ -33,7 +33,7 @@ export class AuthPinRepositoryPrisma implements AuthPinRepository {
 		await App.db.authPin.delete({ where: { id: auth_pin.id } })
 	}
 
-	public async upsert(user: User, pin_code: PinCode): Promise<AuthPin> {
+	public async save(user: User, pin_code: PinCode): Promise<AuthPin> {
 		const user_id = user.id
 
 		return await App.db.authPin.upsert({

@@ -50,7 +50,7 @@ export const actions: Actions = {
 
 			const auth_pin_repository: AuthPinRepository = new AuthPinRepositoryPrisma()
 
-			await auth_pin_repository.upsert(user, pin_code)
+			await auth_pin_repository.save(user, pin_code)
 
 			return { success: true, email_address, missing: false, credentials: false }
 		} catch (e) {

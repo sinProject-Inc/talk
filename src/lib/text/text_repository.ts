@@ -8,6 +8,6 @@ export interface TextRepository {
 	find(text_id: TextId): Promise<Text | null>
 	find_many(speech_language_code: SpeechLanguageCode, limit?: TextLimit): Promise<Text[]>
 	find_unique(text_id: TextId): Promise<Text | null>
-	upsert(speech_language_code: SpeechLanguageCode, speech_text: SpeechText): Promise<Text>
+	save(speech_language_code: SpeechLanguageCode, speech_text: SpeechText): Promise<Text>
 	delete(text_id: TextId): Promise<Text>
 }

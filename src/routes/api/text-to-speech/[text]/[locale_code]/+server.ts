@@ -44,7 +44,7 @@ async function get_speech_sounds(
 
 		const speech = create_speech(speech_text, locale_code)
 		const speech_sound = await speech.speak()
-		const { id } = await sound_repository.upsert()
+		const { id } = await sound_repository.save()
 		const sound_id = new SoundId(id)
 
 		await speech_sound.write(sound_id)
