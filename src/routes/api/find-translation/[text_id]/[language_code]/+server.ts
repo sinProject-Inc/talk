@@ -1,7 +1,6 @@
-import { App } from '$lib/app/app'
+import { Repository } from '$lib/app/repository'
 import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 import { TextId } from '$lib/text/text_id'
-import { TranslationRepositoryPrisma } from '$lib/translation/translation_repository_prisma'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
@@ -10,8 +9,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	try {
 		const text_id = TextId.from_string(params.text_id)
 		const speech_language_code = SpeechLanguageCode.create(params.language_code)
-		const translation_repository = new TranslationRepositoryPrisma(App.prisma_client)
-		const result = await translation_repository.find(text_id, speech_language_code)
+		const result = await Repository.translation.find(text_id, speech_language_code)
 
 		return json(result)
 	} catch (e) {

@@ -1,7 +1,6 @@
-import { App } from '$lib/app/app'
+import { Repository } from '$lib/app/repository'
 import { LocaleCode } from '$lib/language/locale_code'
 import { SoundId } from '$lib/speech/sound/sound_id'
-import { SoundRepositoryPrisma } from '$lib/speech/sound/sound_repository_prisma'
 import { SpeechSound } from '$lib/speech/sound/speech_sound'
 import type { Speech } from '$lib/speech/speech'
 import { SpeechByGoogle } from '$lib/speech/speech_by_google'
@@ -26,8 +25,7 @@ async function get_speech_sounds(
 	const speech_sounds: SpeechSound[] = []
 
 	for (const speech_text of speech_texts) {
-		const sound_repository = new SoundRepositoryPrisma(App.prisma_client)
-		const sound = await sound_repository.find_first(locale_code, speech_text)
+		const sound = await Repository.sound.find_first(locale_code, speech_text)
 
 		if (sound) {
 			try {
@@ -44,7 +42,7 @@ async function get_speech_sounds(
 
 		const speech = create_speech(speech_text, locale_code)
 		const speech_sound = await speech.speak()
-		const { id } = await sound_repository.save(locale_code, speech_text)
+		const { id } = await Repository.sound.save(locale_code, speech_text)
 		const sound_id = new SoundId(id)
 
 		await speech_sound.write(sound_id)
