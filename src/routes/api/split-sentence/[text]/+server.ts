@@ -1,5 +1,5 @@
 
-import { StringUtil } from '$lib/general/string_util'
+import { SentenceService } from '$lib/general/sentence_service'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ params }) => {
@@ -7,7 +7,8 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	console.info('\nsource text:', text)
 
-	const sentences = StringUtil.split_sentences(text)
+	const sentence_service = new SentenceService(text)
+	const sentences = sentence_service.split()
 
 	return json(sentences)
 }

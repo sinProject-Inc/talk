@@ -1,3 +1,5 @@
+import type { SettingKey } from "./setting_key";
+
 export interface AppSettingRepository {
-	get_number(key: string): Promise<number>
+	get_number(setting_key: SettingKey): Promise<number>
 }

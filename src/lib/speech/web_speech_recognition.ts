@@ -1,5 +1,6 @@
 import type { LocaleCode } from '../language/locale_code'
 import type { SpeechElement } from './speech_element'
+import { TextContent } from './text_content'
 
 export class WebSpeechRecognition {
 	private readonly _recognition: SpeechRecognition
@@ -11,7 +12,7 @@ export class WebSpeechRecognition {
 		private readonly _on_end_callback?: () => void
 	) {
 		if (!('webkitSpeechRecognition' in window)) {
-			this._speech_element.text = 'Speech Recognition Not Available'
+			this._speech_element.text_content = new TextContent('Speech Recognition Not Available')
 			throw new Error('Speech Recognition Not Available')
 		}
 
@@ -39,7 +40,7 @@ export class WebSpeechRecognition {
 					interim_transcript = transcript
 				}
 
-				this._speech_element.text = this._final_transcript + interim_transcript
+				this._speech_element.text_content = new TextContent(this._final_transcript + interim_transcript)
 			}
 		}
 	}

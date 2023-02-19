@@ -1,4 +1,5 @@
 import { Repository } from '$lib/app/repository'
+import { SettingKey } from '$lib/app/setting_key'
 
 export class LifeTime {
 	private readonly _millisecond: number
@@ -11,19 +12,19 @@ export class LifeTime {
 		this._millisecond = life_time_millisecond
 	}
 
-	private static async _from_setting(key: string): Promise<LifeTime> {
-		const life_time_seconds = await Repository.app_setting.get_number(key)
+	private static async _from_setting(setting_key: SettingKey): Promise<LifeTime> {
+		const life_time_seconds = await Repository.app_setting.get_number(setting_key)
 		const life_time_millisecond = life_time_seconds * 1000
 
 		return new LifeTime(life_time_millisecond)
 	}
 
 	public static async generate_session(): Promise<LifeTime> {
-		return await LifeTime._from_setting('session_lifetime_sec')
+		return await LifeTime._from_setting(SettingKey.session_lifetime_sec)
 	}
 
 	public static async generate_pin_code(): Promise<LifeTime> {
-		return await LifeTime._from_setting('pin_code_lifetime_sec')
+		return await LifeTime._from_setting(SettingKey.pin_code_lifetime_sec)
 	}
 
 	public get millisecond(): number {

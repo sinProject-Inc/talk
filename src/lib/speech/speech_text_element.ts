@@ -1,5 +1,6 @@
 import type { Message } from '$lib/view/message'
 import type { SpeechElement } from './speech_element'
+import type { TextContent } from './text_content'
 
 export class SpeechTextElement implements SpeechElement {
 	public constructor(
@@ -11,8 +12,7 @@ export class SpeechTextElement implements SpeechElement {
 		this._element.textContent = `${this._hint_message.text}`
 	}
 
-	public set text(text: string) {
-		console.log('text', text)
-		this._element.textContent = text
+	public set text_content(text_content: TextContent) {
+		this._element.textContent = text_content.text
 	}
 }
