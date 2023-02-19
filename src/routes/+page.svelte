@@ -67,6 +67,14 @@
 		web_speech_recognition.start_not_continuous()
 	}
 
+	function switch_locales(): void {
+		from_locale_select_element.value = to_locale_code.code
+		to_locale_select_element.value = from_locale_code.code
+
+		set_locale()
+		store_locale()
+	}
+
 	async function fetch_texts(): Promise<void> {
 		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
 		texts = await new TextsApi(speech_language_code).fetch()
@@ -76,50 +84,32 @@
 		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
 
 		default_locales.load_from_storage()
-		set_locale(false)
-	}
-
-	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
-		let partner_select_element: HTMLSelectElement
-		let original_selected_value: string
-
-		if (target_select_element === from_locale_select_element) {
-			original_selected_value = from_locale_selected_value
-			partner_select_element = to_locale_select_element
-		} else {
-			original_selected_value = to_locale_selected_value
-			partner_select_element = from_locale_select_element
-		}
-
-		if (target_select_element.value === partner_select_element.value) {
-			target_select_element.value = partner_select_element.value
-			partner_select_element.value = original_selected_value
-		}
-
 		set_locale()
 	}
 
-	function set_locale(store_locale = true): void {
-		selected_text = undefined
-
-		if (!store_locale) {
-			const from_locale = localStorage.getItem('from_locale')
-			const to_locale = localStorage.getItem('to_locale')
-
-			if (from_locale) from_locale_select_element.value = from_locale
-			if (to_locale) to_locale_select_element.value = to_locale
+	function on_change_locale_select(): void {
+		if (from_locale_select_element.value === to_locale_select_element.value) {
+			switch_locales()
+			return
 		}
+
+		set_locale()
+		store_locale()
+	}
+
+	function set_locale(): void {
+		selected_text = undefined
 
 		from_locale_code = LocaleCode.create(from_locale_select_element.value)
 		to_locale_code = LocaleCode.create(to_locale_select_element.value)
 
-		if (store_locale) {
-			localStorage.setItem('from_locale', from_locale_code.code)
-			localStorage.setItem('to_locale', to_locale_code.code)
-		}
-
 		set_app_locale()
 		fetch_texts()
+	}
+
+	function store_locale(): void {
+		localStorage.setItem('from_locale', from_locale_code.code)
+		localStorage.setItem('to_locale', to_locale_code.code)
 	}
 
 	async function set_app_locale(): Promise<void> {
@@ -246,7 +236,6 @@
 
 		init()
 		init_locale_select()
-
 		await select_default_locales()
 	})
 </script>
@@ -262,7 +251,7 @@
 			<select
 				class="glass-button h-full grow text-center"
 				bind:this={from_locale_select_element}
-				on:change={() => on_change_locale_select(from_locale_select_element)}
+				on:change={() => on_change_locale_select()}
 			/>
 		</div>
 
@@ -313,7 +302,7 @@
 				<select
 					class="glass-button text-center"
 					bind:this={to_locale_select_element}
-					on:change={() => on_change_locale_select(to_locale_select_element)}
+					on:change={() => on_change_locale_select()}
 				/>
 			</div>
 			<div class="flex flex-row gap-2 items-center">
