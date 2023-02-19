@@ -24,10 +24,10 @@
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
-	import type { PageData } from '.svelte-kit/types/src/routes/$types'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
+	import type { PageData } from './$types'
 
 	export let data: PageData
 
