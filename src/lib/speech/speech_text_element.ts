@@ -11,8 +11,7 @@ export class SpeechTextElement implements SpeechElement {
 		this._element.textContent = `${this._hint_message.text}`
 	}
 
-	public set text(text: string) {
-		console.log('text', text)
+	public set text_content(text: string) {
 		this._element.textContent = text
 	}
 }

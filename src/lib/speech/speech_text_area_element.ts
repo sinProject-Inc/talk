@@ -11,8 +11,7 @@ export class SpeechTextAreaElement implements SpeechElement {
 		this._element.placeholder = `${this._hint_message.text}`
 	}
 
-	public set text(text: string) {
-		console.log('text', text)
+	public set text_content(text: string) {
 		this._element.value = text
 	}
 }
