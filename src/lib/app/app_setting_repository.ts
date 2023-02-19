@@ -1,3 +1,3 @@
 export interface AppSettingRepository {
-	get_number(): Promise<number>
+	get_number(key: string): Promise<number>
 }

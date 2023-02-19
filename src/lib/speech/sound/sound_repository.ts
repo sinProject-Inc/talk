@@ -1,6 +1,8 @@
+import type { LocaleCode } from "$lib/language/locale_code"
 import type { Sound } from "@prisma/client"
+import type { SpeechText } from "../speech_text"
 
 export interface SoundRepository {
-	save(): Promise<Sound>
-	find_first(): Promise<Sound | null>
+	save(locale_code: LocaleCode, speech_text: SpeechText): Promise<Sound>
+	find_first(locale_code: LocaleCode, speech_text: SpeechText): Promise<Sound | null>
 }

@@ -1,11 +1,12 @@
-import { App } from '$lib/app/app'
-import { v4 as uuidv4 } from 'uuid'
 import type { Session } from '$lib/auth/session'
-import type { AuthPin, AuthToken, Role, User } from '@prisma/client'
-import { LifeTime } from './life_time'
+import type { AuthPin, AuthToken, PrismaClient, Role, User } from '@prisma/client'
+import { v4 as uuidv4 } from 'uuid'
 import type { AuthTokenRepository } from './auth_token_repository'
+import { LifeTime } from './life_time'
 
 export class AuthTokenRepositoryPrisma implements AuthTokenRepository {
+	public constructor(private readonly _prisma_client: PrismaClient) {}
+
 	private async _get_life_time(): Promise<LifeTime> {
 		const life_time = await LifeTime.generate_session()
 
@@ -28,7 +29,7 @@ export class AuthTokenRepositoryPrisma implements AuthTokenRepository {
 		| null
 	> {
 		const session_limit_date = await this._get_limit_date()
-		const auth_token = await App.db.authToken.findFirst({
+		const auth_token = await this._prisma_client.authToken.findFirst({
 			where: {
 				updated_at: { gte: session_limit_date },
 				token: session.id,
@@ -50,11 +51,11 @@ export class AuthTokenRepositoryPrisma implements AuthTokenRepository {
 		const token = uuidv4()
 		const session_limit_date = session_life_time.limit_date
 
-		const [auth_token] = await App.db.$transaction([
-			App.db.authToken.create({
+		const [auth_token] = await this._prisma_client.$transaction([
+			this._prisma_client.authToken.create({
 				data: { user_id: auth_pin.user_id, token },
 			}),
-			App.db.authToken.deleteMany({
+			this._prisma_client.authToken.deleteMany({
 				where: { updated_at: { lt: session_limit_date } },
 			}),
 		])
@@ -65,7 +66,7 @@ export class AuthTokenRepositoryPrisma implements AuthTokenRepository {
 	public async update(auth_token: AuthToken): Promise<[AuthToken, LifeTime]> {
 		const session_life_time = await this._get_life_time()
 
-		const updated_auth_token = await App.db.authToken.update({
+		const updated_auth_token = await this._prisma_client.authToken.update({
 			where: { id: auth_token.id },
 			data: { updated_at: new Date() },
 		})
@@ -74,6 +75,6 @@ export class AuthTokenRepositoryPrisma implements AuthTokenRepository {
 	}
 
 	public async delete(session: Session): Promise<void> {
-		await App.db.authToken.delete({ where: { token: session.id } })
+		await this._prisma_client.authToken.delete({ where: { token: session.id } })
 	}
 }

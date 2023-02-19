@@ -1,5 +1,6 @@
 import type { User } from "@prisma/client"
+import type { Email } from "./email"
 
 export interface UserRepository {
-	find_unique(can_register?: boolean): Promise<User | undefined>
+	find_unique(email: Email, can_register?: boolean): Promise<User | undefined>
 }
