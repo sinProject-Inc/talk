@@ -78,7 +78,6 @@
 
 		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
 		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element, on_end_listening)
-
 		listening = true
 		
 		web_speech_recognition.start_not_continuous()
