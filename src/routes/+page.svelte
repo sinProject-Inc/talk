@@ -33,15 +33,12 @@
 	export let data: PageData
 
 	let new_text_element: HTMLInputElement
-	// TODO: 利用していない変数
-	let text_list_element: HTMLDivElement
 	let speech_element: HTMLElement
 	let audio_element: HTMLAudioElement
 	let from_locale_select_element: HTMLSelectElement
 	let to_locale_select_element: HTMLSelectElement
 
 	let texts: Text[] = []
-	// TODO: これは不要になるかもしれません。
 	let selected_text: Text | undefined
 	let translations: string[] = []
 	let add_translation_string = ''
@@ -50,9 +47,6 @@
 	let web_speech_recognition: WebSpeechRecognition | undefined
 	let listening = false
 
-	// TODO: 利用していない変数
-	$: from_locale_selected_value = from_locale_code.code
-	$: to_locale_selected_value = to_locale_code.code
 	$: from_speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
 	$: to_speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
 
@@ -63,41 +57,40 @@
 		new LocaleSelectElement(to_locale_select_element, locales).append_options()
 	}
 
-	function handle_listen_button(): void {
-		if (listening) {
-			stop_listening()
-		} else {
-			start_listening()
-		}
+	async function set_app_locale(): Promise<void> {
+		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
+		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
+
+		$locale = app_locale_code.code
+		await waitLocale($locale)
 	}
 
-	function start_listening(): void {
-		const locale_code = LocaleCode.create(from_locale_select_element.value)
-		const hint_message = new Message($_('recognizing'))
-		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
+	async function fetch_history(): Promise<void> {
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
 
-		web_speech_recognition = new WebSpeechRecognition(
-			locale_code,
-			speech_text_element,
-			on_end_listening
-		)
-		listening = true
-
-		web_speech_recognition.start_not_continuous()
+		texts = await new TextsApi(speech_language_code, 500).fetch()
 	}
 
-	function stop_listening(): void {
-		if (!web_speech_recognition) return
+	function set_locale(): void {
+		selected_text = undefined
 
-		web_speech_recognition.stop()
+		from_locale_code = LocaleCode.create(from_locale_select_element.value)
+		to_locale_code = LocaleCode.create(to_locale_select_element.value)
 
-		on_end_listening()
-
-		if (speech_element.textContent === $_('recognizing')) init_speech_element()
+		set_app_locale()
+		fetch_history()
 	}
 
-	function on_end_listening(): void {
-		listening = false
+	async function select_default_locales(): Promise<void> {
+		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
+
+		default_locales.load_from_storage()
+		set_locale()
+	}
+
+	function store_locale(): void {
+		localStorage.setItem('from_locale', from_locale_code.code)
+		localStorage.setItem('to_locale', to_locale_code.code)
 	}
 
 	function switch_locales(): void {
@@ -106,18 +99,6 @@
 
 		set_locale()
 		store_locale()
-	}
-
-	async function fetch_texts(): Promise<void> {
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-		texts = await new TextsApi(speech_language_code).fetch()
-	}
-
-	async function select_default_locales(): Promise<void> {
-		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
-
-		default_locales.load_from_storage()
-		set_locale()
 	}
 
 	function on_change_locale_select(): void {
@@ -130,30 +111,7 @@
 		store_locale()
 	}
 
-	function set_locale(): void {
-		selected_text = undefined
-
-		from_locale_code = LocaleCode.create(from_locale_select_element.value)
-		to_locale_code = LocaleCode.create(to_locale_select_element.value)
-
-		set_app_locale()
-		fetch_texts()
-	}
-
-	function store_locale(): void {
-		localStorage.setItem('from_locale', from_locale_code.code)
-		localStorage.setItem('to_locale', to_locale_code.code)
-	}
-
-	async function set_app_locale(): Promise<void> {
-		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
-
-		$locale = app_locale_code.code
-		await waitLocale($locale)
-	}
-
-	function on_click_text(text: Text): void {
+	function on_click_history_text(text: Text): void {
 		// const language_code =
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
@@ -242,15 +200,6 @@
 		// TODO: 選択されているテキストと翻訳を関連付ける
 	}
 
-	function init_speech_element(): void {
-		speech_element.textContent = `(${$_('lets_talk')})`
-	}
-
-	function init(): void {
-		translations = []
-		init_speech_element()
-	}
-
 	async function add_text(): Promise<void> {
 		new_text_element.focus()
 
@@ -262,10 +211,56 @@
 		// console.info('add_text', text)
 
 		new_text_element.value = ''
-		await fetch_texts()
-		on_click_text(added_text)
+		await fetch_history()
+		on_click_history_text(added_text)
 
 		return
+	}
+
+	function start_listening(): void {
+		const locale_code = LocaleCode.create(from_locale_select_element.value)
+		const hint_message = new Message($_('recognizing'))
+		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
+
+		web_speech_recognition = new WebSpeechRecognition(
+			locale_code,
+			speech_text_element,
+			on_end_listening
+		)
+		listening = true
+
+		web_speech_recognition.start_not_continuous()
+	}
+
+	function on_end_listening(): void {
+		listening = false
+	}
+
+	function stop_listening(): void {
+		if (!web_speech_recognition) return
+
+		web_speech_recognition.stop()
+
+		on_end_listening()
+
+		if (speech_element.textContent === $_('recognizing')) init_speech_element()
+	}
+
+	function handle_listen_button(): void {
+		if (listening) {
+			stop_listening()
+		} else {
+			start_listening()
+		}
+	}
+
+	function init_speech_element(): void {
+		speech_element.textContent = `(${$_('lets_talk')})`
+	}
+
+	function init(): void {
+		translations = []
+		init_speech_element()
 	}
 
 	onMount(async () => {
@@ -301,14 +296,14 @@
 			/>
 			<IconButton on_click_handler={add_text}><AddIcon /></IconButton>
 		</div>
-		<div bind:this={text_list_element} class="overflow-y-scroll">
+		<div class="overflow-y-scroll">
 			{#each texts as text, i}
 				<TextListText
 					{texts}
 					{text}
 					{i}
 					{selected_text}
-					on_click_text={() => on_click_text(text)}
+					on_click_text={() => on_click_history_text(text)}
 				/>
 			{/each}
 		</div>

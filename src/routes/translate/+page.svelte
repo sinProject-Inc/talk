@@ -61,28 +61,18 @@
 		new LocaleSelectElement(source_locale_select_element, locales).append_options()
 	}
 
-	async function select_default_locales(): Promise<void> {
-		const default_locales = new DefaultLocales(
-			destination_locale_select_element,
-			source_locale_select_element
-		)
+	async function set_app_locale(): Promise<void> {
+		const language_code = SpeechLanguageCode.create_from_locale_code(destination_locale_code)
+		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
 
-		default_locales.load_from_storage()
-		set_locale()
+		$locale = app_locale_code.code
+		await waitLocale($locale)
 	}
 
-	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
-		if (destination_locale_select_element.value === source_locale_select_element.value) {
-			switch_locales()
-			return
-		}
+	async function fetch_history(): Promise<void> {
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(source_locale_code)
 
-		target_select_element === destination_locale_select_element
-			? destination_translate_box.clear()
-			: source_translate_box.clear()
-
-		set_locale()
-		store_locale()
+		history_texts = await new TextsApi(speech_language_code, 100).fetch()
 	}
 
 	function set_locale(): void {
@@ -93,17 +83,19 @@
 		fetch_history()
 	}
 
+	async function select_default_locales(): Promise<void> {
+		const default_locales = new DefaultLocales(
+			destination_locale_select_element,
+			source_locale_select_element
+		)
+
+		default_locales.load_from_storage()
+		set_locale()
+	}
+
 	function store_locale(): void {
 		localStorage.setItem('from_locale', destination_locale_code.code)
 		localStorage.setItem('to_locale', source_locale_code.code)
-	}
-
-	async function set_app_locale(): Promise<void> {
-		const language_code = SpeechLanguageCode.create_from_locale_code(destination_locale_code)
-		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
-
-		$locale = app_locale_code.code
-		await waitLocale($locale)
 	}
 
 	function switch_textarea_body(): void {
@@ -123,10 +115,18 @@
 		store_locale()
 	}
 
-	async function fetch_history(): Promise<void> {
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(source_locale_code)
+	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
+		if (destination_locale_select_element.value === source_locale_select_element.value) {
+			switch_locales()
+			return
+		}
 
-		history_texts = await new TextsApi(speech_language_code, 100).fetch()
+		target_select_element === destination_locale_select_element
+			? destination_translate_box.clear()
+			: source_translate_box.clear()
+
+		set_locale()
+		store_locale()
 	}
 
 	async function on_click_history_text(text: Text): Promise<void> {
