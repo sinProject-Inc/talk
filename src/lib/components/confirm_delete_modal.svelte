@@ -12,6 +12,7 @@
 	}
 
 	function confirm_delete(): void {
+		release_scroll()
 		dispatch('confirm_delete')
 		dispatch('close')
 	}
