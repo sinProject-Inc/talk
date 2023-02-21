@@ -60,26 +60,29 @@
 		const locales = JSON.parse(data.locales) as Locale[]
 
 		new LocaleSelectElement(from_locale_select_element, locales).append_options()
-		new LocaleSelectElement(to_locale_select_element, locales).append_options()	
+		new LocaleSelectElement(to_locale_select_element, locales).append_options()
 	}
 
 	function handle_listen_button(): void {
 		if (listening) {
 			stop_listening()
-			return
+		} else {
+			start_listening()
 		}
-
-		speech_to_text()
 	}
 
-	function speech_to_text(): void {
+	function start_listening(): void {
 		const locale_code = LocaleCode.create(from_locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))
-
 		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
-		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element, on_end_listening)
+
+		web_speech_recognition = new WebSpeechRecognition(
+			locale_code,
+			speech_text_element,
+			on_end_listening
+		)
 		listening = true
-		
+
 		web_speech_recognition.start_not_continuous()
 	}
 
@@ -89,6 +92,8 @@
 		web_speech_recognition.stop()
 
 		on_end_listening()
+
+		if (speech_element.textContent === $_('recognizing')) init_speech_element()
 	}
 
 	function on_end_listening(): void {
@@ -237,9 +242,13 @@
 		// TODO: 選択されているテキストと翻訳を関連付ける
 	}
 
+	function init_speech_element(): void {
+		speech_element.textContent = `(${$_('lets_talk')})`
+	}
+
 	function init(): void {
 		translations = []
-		speech_element.textContent = `(${$_('lets_talk')})`
+		init_speech_element()
 	}
 
 	async function add_text(): Promise<void> {
