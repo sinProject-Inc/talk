@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment'
 	import Divider from '$lib/components/divider.svelte'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
@@ -46,6 +47,8 @@
 	let add_translation_string = ''
 	let from_locale_code = LocaleCode.english_united_states
 	let to_locale_code = LocaleCode.japanese_japan
+	let web_speech_recognition: WebSpeechRecognition | undefined
+	let listening = false
 
 	// TODO: 利用していない変数
 	$: from_locale_selected_value = from_locale_code.code
@@ -57,17 +60,44 @@
 		const locales = JSON.parse(data.locales) as Locale[]
 
 		new LocaleSelectElement(from_locale_select_element, locales).append_options()
-		new LocaleSelectElement(to_locale_select_element, locales).append_options()	
+		new LocaleSelectElement(to_locale_select_element, locales).append_options()
 	}
 
-	function speech_to_text(): void {
+	function handle_listen_button(): void {
+		if (listening) {
+			stop_listening()
+		} else {
+			start_listening()
+		}
+	}
+
+	function start_listening(): void {
 		const locale_code = LocaleCode.create(from_locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))
-
 		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
-		const web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element)
+
+		web_speech_recognition = new WebSpeechRecognition(
+			locale_code,
+			speech_text_element,
+			on_end_listening
+		)
+		listening = true
 
 		web_speech_recognition.start_not_continuous()
+	}
+
+	function stop_listening(): void {
+		if (!web_speech_recognition) return
+
+		web_speech_recognition.stop()
+
+		on_end_listening()
+
+		if (speech_element.textContent === $_('recognizing')) init_speech_element()
+	}
+
+	function on_end_listening(): void {
+		listening = false
 	}
 
 	function switch_locales(): void {
@@ -212,9 +242,13 @@
 		// TODO: 選択されているテキストと翻訳を関連付ける
 	}
 
+	function init_speech_element(): void {
+		speech_element.textContent = `(${$_('lets_talk')})`
+	}
+
 	function init(): void {
 		translations = []
-		speech_element.textContent = `(${$_('lets_talk')})`
+		init_speech_element()
 	}
 
 	async function add_text(): Promise<void> {
@@ -294,7 +328,13 @@
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">
 				{$_('speech')}
-				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
+				<IconButton on_click_handler={handle_listen_button}>
+					{#if listening}
+						<StopIcon />
+					{:else}
+						<VoiceIcon />
+					{/if}
+				</IconButton>
 			</div>
 			<div bind:this={speech_element} />
 		</div>
