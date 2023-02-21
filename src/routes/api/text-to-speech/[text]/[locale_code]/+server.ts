@@ -64,16 +64,27 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	// const sentences = await split_sentences(text, url)
 	// const buffers = await get_buffers(sentences)
 	const speech_text = new SpeechText(text)
-	const speech_sounds = await get_speech_sounds([speech_text], locale_code)
 
-	// // return new Response('success')
+	try {
+		const speech_sounds = await get_speech_sounds([speech_text], locale_code)
 
-	return new Response(speech_sounds[0].data, {
-		headers: {
-			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'Content-Type': 'audio/mp3',
-			// eslint-disable-next-line @typescript-eslint/naming-convention
-			'Content-Length': speech_sounds[0].length_string,
-		},
-	})
+		// // return new Response('success')
+
+		return new Response(speech_sounds[0].data, {
+			headers: {
+				// eslint-disable-next-line @typescript-eslint/naming-convention
+				'Content-Type': 'audio/mp3',
+				// eslint-disable-next-line @typescript-eslint/naming-convention
+				'Content-Length': speech_sounds[0].length_string,
+			},
+		})
+	} catch (err) {
+		console.error(err)
+
+		if (err instanceof Error) {
+			return new Response(err.message, { status: 500 })
+		}
+
+		return new Response('undefined', { status: 500 })
+	}
 }
