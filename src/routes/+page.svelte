@@ -315,7 +315,7 @@
 				class="mt-2"
 				controls
 				bind:this={audio_element}
-				src={new TextToSpeechUrl(selected_text, from_locale_code).url}
+				src={new TextToSpeechUrl(selected_text.text, from_locale_code).url}
 				autoplay
 			/>
 		{/if}

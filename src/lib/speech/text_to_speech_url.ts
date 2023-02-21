@@ -4,24 +4,16 @@ import type { LocaleCode } from '../language/locale_code'
 
 export class TextToSpeechUrl {
 	public constructor(
-		private readonly _selected_text: Text | string,
+		// TODO: Value Object
+		private readonly _value: string,
 		private readonly _locale_code: LocaleCode
 	) {}
 
 	public get url(): string {
 		try {
-			let speech_text: string
-
-			// TODO: Refactor this
-			if (typeof this._selected_text === 'string') {
-				speech_text = this._selected_text
-			} else {
-				speech_text = this._selected_text.text
-			}
-
 			const api_path = ApiPath.api_directory
 				.connect('text-to-speech')
-				.connect_with_encoding(speech_text)
+				.connect_with_encoding(this._value)
 				.connect(this._locale_code.code)
 			return api_path.get_url()
 		} catch (error) {
