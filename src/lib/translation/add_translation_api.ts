@@ -1,3 +1,4 @@
+import type { Text } from '@prisma/client'
 import { Api } from '../api/api'
 import { ApiPath } from '../api/api_path'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
@@ -20,8 +21,8 @@ export class AddTranslationApi {
 			.connect_with_encoding(translation_text.text)
 	}
 
-	public async fetch(): Promise<TranslationText> {
+	public async fetch(): Promise<Text> {
 		const api = new Api(this._api_path, this._origin)
-		return await api.fetch<TranslationText>()
+		return await api.fetch<Text>()
 	}
 }

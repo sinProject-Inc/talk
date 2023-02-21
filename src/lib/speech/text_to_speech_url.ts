@@ -12,6 +12,7 @@ export class TextToSpeechUrl {
 		try {
 			let speech_text: string
 
+			// TODO: Refactor this
 			if (typeof this._selected_text === 'string') {
 				speech_text = this._selected_text
 			} else {
