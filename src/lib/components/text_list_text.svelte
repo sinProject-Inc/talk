@@ -6,7 +6,7 @@
 	export let texts: Text[]
 	export let text: Text
 	export let i: number
-	export let selected_text: Text | undefined
+	export let selected_text: Text | undefined = undefined
 	export let on_click_text: (text: Text) => void
 	export let deletable = false
 	export let delete_text: (text: Text) => void = () => {

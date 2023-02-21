@@ -32,6 +32,7 @@
 	export let data: PageData
 
 	let new_text_element: HTMLInputElement
+	// TODO: 利用していない変数
 	let text_list_element: HTMLDivElement
 	let speech_element: HTMLElement
 	let audio_element: HTMLAudioElement
@@ -39,12 +40,14 @@
 	let to_locale_select_element: HTMLSelectElement
 
 	let texts: Text[] = []
+	// TODO: これは不要になるかもしれません。
 	let selected_text: Text | undefined
 	let translations: string[] = []
 	let add_translation_string = ''
 	let from_locale_code = LocaleCode.english_united_states
 	let to_locale_code = LocaleCode.japanese_japan
 
+	// TODO: 利用していない変数
 	$: from_locale_selected_value = from_locale_code.code
 	$: to_locale_selected_value = to_locale_code.code
 	$: from_speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)

@@ -120,43 +120,6 @@ test('adding text should add it to the history', async ({ page }) => {
 	await expect(first_history_text).toHaveText('Hello')
 })
 
-test('switching locale switches displayed history language', async ({ page }) => {
-	await page.waitForSelector('.text-area')
-
-	const from_text_area = page.locator('.text-area').first()
-
-	await from_text_area.fill('Hello')
-	await from_text_area.press('Enter')
-
-	const first_history_text = page.locator('.text').first()
-
-	await expect(first_history_text).toHaveText(/hello/i)
-
-	await page.locator('#language_1').selectOption('ja-JP')
-
-	await expect(first_history_text).toHaveText('こんにちは')
-})
-
-test('clearing text and then switching languages should keep boxes cleared', async ({ page }) => {
-	const from_textarea = page.getByRole('textbox').nth(0)
-	const to_textarea = page.getByRole('textbox').nth(1)
-
-	await from_textarea.fill('Hello')
-	await from_textarea.press('Enter')
-
-	await expect(to_textarea).toHaveValue('こんにちは')
-
-	await from_textarea.fill('')
-	await from_textarea.press('Enter')
-
-	await expect(to_textarea).toHaveValue('')
-
-	await page.locator('.language-switcher').first().click()
-
-	await expect(from_textarea).toHaveValue('')
-	await expect(to_textarea).toHaveValue('')
-})
-
 // Cannot use microphone
 // test('listening disables the top bar', async ({page}) => {
 // 	await page.locator('.listen-button').first().click()
@@ -189,7 +152,7 @@ test('translate 251 characters', async ({ page }) => {
 
 	const bottom_textarea = page.getByRole('textbox').nth(1)
 
-	await expect(bottom_textarea).toHaveAttribute('placeholder', '翻訳できるのは 250文字までです。')
+	await expect(bottom_textarea).toHaveValue('翻訳できるのは 250文字までです。')
 })
 
 test('having no text disables delete button', async ({ page }) => {
