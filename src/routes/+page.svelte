@@ -46,6 +46,7 @@
 	let add_translation_string = ''
 	let from_locale_code = LocaleCode.english_united_states
 	let to_locale_code = LocaleCode.japanese_japan
+	let listening = false
 
 	// TODO: 利用していない変数
 	$: from_locale_selected_value = from_locale_code.code
@@ -65,9 +66,15 @@
 		const hint_message = new Message($_('recognizing'))
 
 		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
-		const web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element)
+		const web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_element, on_end_listening)
 
+		listening = true
+		
 		web_speech_recognition.start_not_continuous()
+	}
+
+	function on_end_listening(): void {
+		listening = false
 	}
 
 	function switch_locales(): void {
@@ -294,7 +301,7 @@
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">
 				{$_('speech')}
-				<IconButton on_click_handler={speech_to_text}><VoiceIcon /></IconButton>
+				<IconButton on_click_handler={speech_to_text} background_shown={listening}><VoiceIcon /></IconButton>
 			</div>
 			<div bind:this={speech_element} />
 		</div>

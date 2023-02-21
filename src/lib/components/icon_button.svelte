@@ -3,6 +3,7 @@
 		return
 	}
 	export let enabled = true
+	export let background_shown = false
 
 	let grow = false
 
@@ -25,7 +26,7 @@
 	<div
 		class="flex flex-row justify-center h-9 w-9 -m-[6.5px] transition-colors p-[6.5px] rounded-full {enabled
 			? 'hover:bg-white/5'
-			: 'fill-white/50'} {grow ? 'scale-110 hover:bg-white/30 duration-75' : 'duration-300'}"
+			: 'fill-white/50'} {grow ? 'scale-110 hover:bg-white/30 duration-75' : 'duration-300'} {background_shown ? 'bg-white/5' : ''}"
 	>
 		<slot />
 	</div>
