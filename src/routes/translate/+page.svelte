@@ -226,7 +226,7 @@
 
 	let text_to_speech_url = ''
 
-	function speak(value: string, locale_code: LocaleCode): void {
+	async function speak(value: string, locale_code: LocaleCode): Promise<void> {
 		if (!value) return
 
 		const new_text_to_speech_url = new TextToSpeechUrl(value, locale_code).url
@@ -235,7 +235,11 @@
 
 		if (text_to_speech_url === new_text_to_speech_url) {
 			audio_element.currentTime = 0
-			audio_element.play()
+			try {
+				await audio_element.play()
+			} catch (error) {
+				console.warn(error)
+			}
 		} else {
 			text_to_speech_url = new_text_to_speech_url
 		}
