@@ -11,7 +11,22 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		// "noImplicitAny": true,
+		// "strictNullChecks": true,
+		// "strictFunctionTypes": true,
+		// "strictBindCallApply": true,
+		// "strictPropertyInitialization": true,
+		// "noImplicitThis": true,
+		// "useUnknownInCatchVariables": true,
+		// "alwaysStrict": true,
+
+		"allowUnreachableCode": false,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		// "noUncheckedIndexedAccess": true,
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
