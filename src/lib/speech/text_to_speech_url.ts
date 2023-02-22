@@ -1,4 +1,3 @@
-import type { Text } from '@prisma/client'
 import { ApiPath } from '../api/api_path'
 import type { LocaleCode } from '../language/locale_code'
 
