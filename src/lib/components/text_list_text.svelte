@@ -14,7 +14,7 @@
 	}
 
 	const is_last_text = (): boolean => {
-		if (i == texts.length - 1) {
+		if (i === texts.length - 1) {
 			return true
 		}
 		
