@@ -224,7 +224,7 @@
 
 		let text_to_speech_text: Text
 
-		if (text && text.text == textarea_body) {
+		if (text && text.text === textarea_body) {
 			text_to_speech_text = text
 		} else {
 			const speech_text = new SpeechText(textarea_body)
