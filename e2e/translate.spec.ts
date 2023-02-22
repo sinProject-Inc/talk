@@ -239,7 +239,7 @@ async function clear_text(page: Page): Promise<void> {
 
 async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
 	await page.route(`${host}/api/text/en?limit=10`, async (route) => {
-		if (limit == 0) await route.fulfill({ json: {} })
+		if (limit === 0) await route.fulfill({ json: {} })
 		const json = mock_data.slice(0, limit)
 		await route.fulfill({ json })
 	})

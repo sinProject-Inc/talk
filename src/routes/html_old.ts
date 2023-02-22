@@ -25,7 +25,7 @@
 // 		const b_name = b.lang + b.name
 
 // 		if (a_name < b_name) return -1
-// 		if (a_name == b_name) return 0
+// 		if (a_name === b_name) return 0
 // 		return +1
 // 	})
 

@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ locals, url, request }) => {
 		throw redirect(302, redirect_url)
 	}
 
-	if (request.method != 'POST') redirect(302, '/')
+	if (request.method !== 'POST') redirect(302, '/')
 }
 
 async function send_mail(user: User, pin_code: PinCode): Promise<void> {
