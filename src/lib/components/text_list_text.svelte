@@ -17,14 +17,15 @@
 		if (i === texts.length - 1) {
 			return true
 		}
-		
+
 		return false
 	}
 </script>
 
 <div
-	class="group text cursor-pointer transition  { deletable ? 'pl-5' : 'px-5' } hover:bg-white/10 break-all flex justify-between {selected_text ==
-	text
+	class="group text cursor-pointer transition  {deletable
+		? 'pl-5'
+		: 'px-5'} hover:bg-white/10 break-all flex justify-between {selected_text == text
 		? 'bg-white/10'
 		: 'bg-inherit'} {is_last_text() ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
