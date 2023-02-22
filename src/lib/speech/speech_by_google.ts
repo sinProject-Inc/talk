@@ -1,10 +1,12 @@
 import type { Speech } from '$lib/speech/speech'
 import text_to_speech from '@google-cloud/text-to-speech'
-import { google } from '@google-cloud/text-to-speech/build/protos/protos'
+import protos from '@google-cloud/text-to-speech/build/protos/protos'
 import { GoogleVoice } from './voice/google_voice'
 import type { LocaleCode } from '../language/locale_code'
 import { SpeechSound } from './sound/speech_sound'
 import type { SpeechText } from './speech_text'
+
+const { google } = protos
 
 export class SpeechByGoogle implements Speech {
 	public constructor(
