@@ -13,21 +13,16 @@
 		return
 	}
 
-	const is_last_text = (): boolean => {
-		if (i === texts.length - 1) {
-			return true
-		}
-
-		return false
-	}
+	$: selected = selected_text === text
+	$: is_last_text = i === texts.length - 1
 </script>
 
 <div
-	class="group text cursor-pointer transition  {deletable
-		? 'pl-5'
-		: 'px-5'} hover:bg-white/10 break-all flex justify-between {selected_text == text
-		? 'bg-white/10'
-		: 'bg-inherit'} {is_last_text() ? 'rounded-b-md' : ''}"
+	class="group text cursor-pointer transition 
+		{deletable ? 'pl-5' : 'px-5'}
+		hover:bg-white/10 break-all flex justify-between
+		{selected ? 'bg-white/10' : 'bg-inherit'}
+		{is_last_text ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
 	<div class="text-body py-[10px] w-full" on:click={() => on_click_text(text)} on:keydown>
