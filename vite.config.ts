@@ -8,7 +8,7 @@ const config: UserConfig = {
 		'import.meta.vitest': 'undefined',
 	},
 	test: {
-		include: ['src/**/*.ts'],
+		include: ['src/**/*.test.ts'],
 	},
 }
 

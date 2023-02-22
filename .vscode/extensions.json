@@ -14,6 +14,7 @@
 		"fivethree.vscode-svelte-snippets",
 		"svelte.svelte-vscode",
 		"gruntfuggly.todo-tree",
-		"csstools.postcss"
+		"csstools.postcss",
+		"zixuanchen.vitest-explorer"
 	]
 }
