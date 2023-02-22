@@ -24,10 +24,10 @@ export class WebSpeechRecognition {
 		this._recognition.onend = this._on_end_callback
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private _set_on_result(): void {
 		this._final_transcript = ''
 
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		this._recognition.onresult = (event: any): void => {
 			let interim_transcript = ''
 

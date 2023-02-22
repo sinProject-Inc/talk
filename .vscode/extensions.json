@@ -13,6 +13,7 @@
 		"prisma.prisma",
 		"fivethree.vscode-svelte-snippets",
 		"svelte.svelte-vscode",
-		"gruntfuggly.todo-tree"
+		"gruntfuggly.todo-tree",
+		"csstools.postcss"
 	]
 }
