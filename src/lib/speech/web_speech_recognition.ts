@@ -4,6 +4,7 @@ import { TextContent } from './text_content'
 
 export class WebSpeechRecognition {
 	private readonly _recognition: SpeechRecognition
+	private readonly _is_android: boolean
 	private _final_transcript = ''
 
 	public constructor(
@@ -20,8 +21,10 @@ export class WebSpeechRecognition {
 		this._recognition = new speech_recognition()
 
 		this._recognition.lang = this._locale_code.code
-		this._recognition.interimResults = true
 		this._recognition.onend = this._on_end_callback
+
+		this._is_android = window.navigator.userAgent.toLowerCase().includes('android')
+		this._recognition.interimResults = !this._is_android
 	}
 
 	private _set_on_result(): void {

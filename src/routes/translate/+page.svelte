@@ -307,6 +307,17 @@
 		translate(translate_box)
 	}
 
+	function on_end_listening(translate_box: TranslateBox): void {
+		if (translate_box === source_translate_box) {
+			source_listening = false
+		}
+		else {
+			destination_listening = false
+		}
+
+		finish_listening(translate_box)
+	}
+
 	function start_listening(translate_box: TranslateBox): void {
 		if (audio_element.played) audio_element.pause()
 
@@ -318,7 +329,7 @@
 		const textarea_element = translate_box.get_textarea_element()
 		const speech_text_area_element = new SpeechTextAreaElement(textarea_element, hint_message)
 
-		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element)
+		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, () => on_end_listening(translate_box))
 
 		web_speech_recognition.start_continuous()
 	}
