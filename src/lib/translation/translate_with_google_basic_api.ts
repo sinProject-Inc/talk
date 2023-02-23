@@ -9,7 +9,6 @@ export class TranslateWithGoogleBasicApi {
 	public constructor(
 		translation_text: TranslationText,
 		target_app_locale_code: AppLocaleCode,
-		private readonly _origin = ''
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('translate-with-google-basic')
@@ -18,7 +17,7 @@ export class TranslateWithGoogleBasicApi {
 	}
 
 	public async fetch(): Promise<TranslationText> {
-		const api = new Api(this._api_path, this._origin)
+		const api = new Api(this._api_path)
 		const result = await api.fetch<string>()
 		const translation_text = new TranslationText(result)
 
