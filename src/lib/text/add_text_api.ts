@@ -10,7 +10,6 @@ export class AddTextApi {
 	public constructor(
 		private readonly _language_code: SpeechLanguageCode,
 		private readonly _text: BaseText,
-		private readonly _origin = ''
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('add-text')
@@ -19,7 +18,7 @@ export class AddTextApi {
 	}
 
 	public async fetch(): Promise<Text> {
-		const api = new Api(this._api_path, this._origin)
+		const api = new Api(this._api_path)
 		return await api.fetch<Text>()
 	}
 }
