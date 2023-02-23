@@ -220,6 +220,10 @@
 		return
 	}
 
+	function on_end_listening(): void {
+		listening = false
+	}
+
 	function start_listening(): void {
 		const locale_code = LocaleCode.create(from_locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))
@@ -233,10 +237,6 @@
 		listening = true
 
 		web_speech_recognition.start_not_continuous()
-	}
-
-	function on_end_listening(): void {
-		listening = false
 	}
 
 	function stop_listening(): void {
