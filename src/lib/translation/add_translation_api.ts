@@ -12,7 +12,6 @@ export class AddTranslationApi {
 		text_id: TextId,
 		to_speech_language_code: SpeechLanguageCode,
 		translation_text: TranslationText,
-		private readonly _origin = ''
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('add-translation')
@@ -22,7 +21,7 @@ export class AddTranslationApi {
 	}
 
 	public async fetch(): Promise<Text> {
-		const api = new Api(this._api_path, this._origin)
+		const api = new Api(this._api_path)
 		return await api.fetch<Text>()
 	}
 }

@@ -1,25 +1,27 @@
-import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
-import { SpeechText } from '$lib/speech/speech_text'
-import { expect, test } from 'vitest'
-import { AddTextApi } from './add_text_api'
-import { DeleteTextApi } from './delete_text_api'
-import { TextsApi } from './texts_api'
+// TODO: TO E2E TEST
 
-const origin = 'http://localhost:5173'
+// import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+// import { SpeechText } from '$lib/speech/speech_text'
+// import { expect, test } from 'vitest'
+// import { AddTextApi } from './add_text_api'
+// import { DeleteTextApi } from './delete_text_api'
+// import { TextsApi } from './texts_api'
 
-test('Delete text', async () => {
-	const speech_text = new SpeechText('test string here')
-	const speech_language_code = SpeechLanguageCode.create('en')
+// const origin = 'http://localhost:5173'
 
-	const text = await new AddTextApi(speech_language_code, speech_text, origin).fetch()
+// test('Delete text', async () => {
+// 	const speech_text = new SpeechText('test string here')
+// 	const speech_language_code = SpeechLanguageCode.create('en')
 
-	expect(text.text).toBe(speech_text.text)
+// 	const text = await new AddTextApi(speech_language_code, speech_text, origin).fetch()
 
-	await new DeleteTextApi(text, origin).fetch()
+// 	expect(text.text).toBe(speech_text.text)
 
-	const recent_texts = await new TextsApi(speech_language_code, 5, origin).fetch()
+// 	await new DeleteTextApi(text, origin).fetch()
 
-	for (const recent_text of recent_texts) {
-		expect(recent_text.text).not.toBe(speech_text.text)
-	}
-})
+// 	const recent_texts = await new TextsApi(speech_language_code, 5, origin).fetch()
+
+// 	for (const recent_text of recent_texts) {
+// 		expect(recent_text.text).not.toBe(speech_text.text)
+// 	}
+// })

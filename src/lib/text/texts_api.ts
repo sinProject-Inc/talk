@@ -9,7 +9,6 @@ export class TextsApi {
 	public constructor(
 		speech_language_code: SpeechLanguageCode,
 		limit?: number,
-		private readonly _origin = ''
 	) {
 		const limit_string = limit?.toString() ?? ''
 
@@ -20,7 +19,7 @@ export class TextsApi {
 	}
 
 	public async fetch(): Promise<Text[]> {
-		const api = new Api(this._api_path, this._origin)
+		const api = new Api(this._api_path)
 		return await api.fetch<Text[]>()
 	}
 }
