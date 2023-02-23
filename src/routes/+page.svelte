@@ -29,6 +29,9 @@
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	// import { version } from '$app/environment'
+
+	// console.log('version', version)
 
 	export let data: PageData
 
