@@ -36,9 +36,7 @@ export class ApiPath {
 		return new ApiPath(connected_path)
 	}
 
-	public get_url(api?: Api): string {
-		const origin = api?.origin ?? ''
-
-		return `${origin}${this._path}`
+	public path(): string {
+		return this._path
 	}
 }
