@@ -2,7 +2,6 @@ import { ValidId } from '../general/valid_id'
 import { ValidText } from './valid_text'
 
 export class TextLimit {
-	private readonly _text_limit: undefined
 	private readonly _limit: number
 
 	public constructor(limit: number) {

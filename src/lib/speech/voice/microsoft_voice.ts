@@ -1,8 +1,6 @@
 import type { LocaleCode } from '../../language/locale_code'
 
 export class MicrosoftVoice {
-	private readonly _microsoft_voice: undefined
-
 	// Language and voice support for the Speech service
 	// https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt-tts
 
