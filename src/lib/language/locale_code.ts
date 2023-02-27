@@ -6,6 +6,7 @@ export class LocaleCode {
 	public static readonly korean_korea = new LocaleCode('ko-KR')
 	public static readonly khmer_cambodia = new LocaleCode('km-KH')
 	public static readonly spanish_spain = new LocaleCode('es-ES')
+	public static readonly vietnamese_vietnam = new LocaleCode('vi-VN')
 
 	public static readonly values = [
 		LocaleCode.english_united_states,
@@ -15,6 +16,7 @@ export class LocaleCode {
 		LocaleCode.korean_korea,
 		LocaleCode.khmer_cambodia,
 		LocaleCode.spanish_spain,
+		LocaleCode.vietnamese_vietnam,
 	]
 
 	public static get default(): LocaleCode {

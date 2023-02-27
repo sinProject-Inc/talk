@@ -13,17 +13,9 @@ async function add_app_settings(): Promise<void> {
 	await db.appSetting.create({ data: { key: 'pin_code_lifetime_sec', value: '300' } })
 }
 
-async function add_locales(): Promise<void> {
+async function add_language_english(): Promise<void> {
 	await db.locale.create({ data: { code: 'en-US', name: 'English (US)' } })
 	await db.locale.create({ data: { code: 'en-GB', name: 'English (GB)' } })
-	await db.locale.create({ data: { code: 'ja-JP', name: '日本語 (JP)' } })
-	await db.locale.create({ data: { code: 'yue-HK', name: '廣東話 (HK)' } })
-	await db.locale.create({ data: { code: 'ko-KR', name: '한국어 (KR)' } })
-	await db.locale.create({ data: { code: 'km-KH', name: 'ខ្មែរ (KH)' } })
-	await db.locale.create({ data: { code: 'es-ES', name: 'Español (ES)' } })
-}
-
-async function add_language_english(): Promise<void> {
 	await db.language.create({ data: { code: 'en', name: 'English' } })
 
 	await db.text.create({ data: { language_id: 1, text: 'This is heavy!' } }) // ヘビーだ！
@@ -46,11 +38,13 @@ async function add_language_english(): Promise<void> {
 }
 
 async function add_language_japanese(): Promise<void> {
+	await db.locale.create({ data: { code: 'ja-JP', name: '日本語 (JP)' } })
 	await db.language.create({ data: { code: 'ja', name: '日本語' } })
 	await db.text.create({ data: { language_id: 2, text: 'こんにちは、世界！' } })
 }
 
 async function add_language_cantonese(): Promise<void> {
+	await db.locale.create({ data: { code: 'yue-HK', name: '廣東話 (HK)' } })
 	await db.language.create({ data: { code: 'yue', name: '廣東話' } })
 
 	await db.text.create({ data: { language_id: 3, text: '早上好。' } })
@@ -79,6 +73,7 @@ async function add_language_cantonese(): Promise<void> {
 }
 
 async function add_language_korean(): Promise<void> {
+	await db.locale.create({ data: { code: 'ko-KR', name: '한국어 (KR)' } })
 	await db.language.create({ data: { code: 'ko', name: '한국어' } })
 
 	await db.text.create({ data: { language_id: 4, text: '사랑 해요.' } })
@@ -96,6 +91,7 @@ async function add_language_korean(): Promise<void> {
 }
 
 async function add_language_khmer(): Promise<void> {
+	await db.locale.create({ data: { code: 'km-KH', name: 'ខ្មែរ (KH)' } })
 	await db.language.create({ data: { code: 'km', name: 'ខ្មែរ' } })
 
 	await db.text.create({ data: { language_id: 5, text: 'អរុណ​សួស្តី' } })
@@ -104,12 +100,21 @@ async function add_language_khmer(): Promise<void> {
 }
 
 async function add_language_spanish(): Promise<void> {
+	await db.locale.create({ data: { code: 'es-ES', name: 'Español (ES)' } })
 	await db.language.create({ data: { code: 'es', name: 'Español' } })
 
 	await db.text.create({ data: { language_id: 6, text: 'Hola' } })
 	await db.text.create({ data: { language_id: 6, text: '¿Qué tal?' } })
 	await db.text.create({ data: { language_id: 6, text: 'Nos vemos' } })
 	await db.text.create({ data: { language_id: 6, text: '¿Dónde está el baño?' } })
+}
+
+async function add_language_vietnamese(): Promise<void> {
+	await db.locale.create({ data: { code: 'vi-VN', name: 'Tiếng Việt (VN)' } })
+	await db.language.create({ data: { code: 'vi', name: 'Tiếng Việt' } })
+
+	await db.text.create({ data: { language_id: 7, text: 'Chào buổi sáng' } })
+	await db.text.create({ data: { language_id: 7, text: 'Rất vui được gặp bạn' } })
 }
 
 async function add_languages(): Promise<void> {
@@ -119,13 +124,13 @@ async function add_languages(): Promise<void> {
 	await add_language_korean()
 	await add_language_khmer()
 	await add_language_spanish()
+	await add_language_vietnamese()
 }
 
 export const GET: RequestHandler = async () => {
 	try {
 		await add_roles()
 		await add_app_settings()
-		await add_locales()
 		await add_languages()
 
 		return new Response('Success')

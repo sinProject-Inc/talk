@@ -1,5 +1,3 @@
-import type { Api } from './api'
-
 export class ApiPath {
 	public static readonly api_directory = new ApiPath().connect('api')
 

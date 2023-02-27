@@ -10,6 +10,7 @@ export class AppLocaleCode {
 	public static readonly korean = new AppLocaleCode('ko')
 	public static readonly khmer = new AppLocaleCode('km')
 	public static readonly spanish = new AppLocaleCode('es')
+	public static readonly vietnamese = new AppLocaleCode('vi')
 
 	public static readonly values = [
 		AppLocaleCode.english,
@@ -18,6 +19,7 @@ export class AppLocaleCode {
 		AppLocaleCode.korean,
 		AppLocaleCode.khmer,
 		AppLocaleCode.spanish,
+		AppLocaleCode.vietnamese,
 	]
 
 	public static get default(): AppLocaleCode {
