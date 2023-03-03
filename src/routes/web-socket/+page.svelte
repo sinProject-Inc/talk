@@ -42,6 +42,16 @@
 	})
 
 	async function send(): Promise<void> {
+		if (!name) {
+			name_element.focus()
+			return
+		}
+
+		if (!message) {
+			message_element.focus()
+			return
+		}
+
 		console.info(`socket.io send: ${message}`)
 		socket.emit('message', { name, message })
 	}
