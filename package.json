@@ -6,6 +6,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
+    "start": "node ./server.js",
     "test": "playwright test",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -47,8 +48,11 @@
     "@google-cloud/translate": "^7.2.0",
     "@prisma/client": "^4.10.1",
     "deepl-node": "^1.8.0",
+    "express": "^4.18.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.25.1",
     "nodemailer": "^6.9.1",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
     "svelte-i18n": "^3.6.0",
     "uuid": "^9.0.0"
   }
