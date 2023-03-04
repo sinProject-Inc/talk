@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { version } from '$app/environment'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
@@ -134,42 +135,54 @@
 	<title>Talk - Chat</title>
 </svelte:head>
 
-<Navbar />
+<div class="flex flex-col h-screen min-h-screen">
+	<Navbar />
 
-<div class="center-container w-screen h-[calc(100vh-69px)]">
-	<div class="p-4 glass-panel my-4 flex flex-col gap-4 flex-1 overflow-y-scroll">
-		<div class="flex gap-4 items-center">
-			<input
-				type="text"
-				bind:this={name_element}
-				bind:value={name}
-				placeholder={$_('name')}
-				class="w-60"
-				on:keydown={on_keydown_name}
-				on:change={on_change_name}
-			/>
-			<select
-				class="glass-button h-full grow text-center"
-				bind:this={locale_select_element}
-				on:change={on_change_locale_select}
-			/>
-		</div>
+	<div class="flex-1 flex flex-col gap-3 p-3 center-container w-screen overflow-y-scroll">
+		<div class="p-3 glass-panel flex flex-col gap-3">
+			<div class="flex gap-3 items-center flex-wrap">
+				<select
+					class="glass-button text-center"
+					bind:this={locale_select_element}
+					on:change={on_change_locale_select}
+				/>
 
-		<div class="flex relative">
-			<input
-				type="text"
-				class="flex-1 pr-11"
-				placeholder={$_('enter_new_text')}
-				bind:this={message_element}
-				bind:value={message}
-				on:keydown={on_keydown_message}
-			/>
-			<div class="absolute right-0 top-0 bottom-0 flex items-center">
-				<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+				<input
+					class="grow"
+					type="text"
+					bind:this={name_element}
+					bind:value={name}
+					placeholder={$_('name')}
+					on:keydown={on_keydown_name}
+					on:change={on_change_name}
+				/>
+			</div>
+
+			<div class="flex relative">
+				<input
+					type="text"
+					class="flex-1 pr-11"
+					placeholder={$_('enter_new_text')}
+					bind:this={message_element}
+					bind:value={message}
+					on:keydown={on_keydown_message}
+				/>
+				<div class="absolute right-0 top-0 bottom-0 flex items-center">
+					<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+				</div>
 			</div>
 		</div>
-		{#each message_data as message_set}
-			<p>{message_set.name}: {message_set.message}</p>
-		{/each}
+
+		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3">
+			{#each message_data as message_set}
+				<p>{message_set.name}: {message_set.message}</p>
+			{/each}
+		</div>
+
+		<div class="flex justify-center text-white/75 text-sm">
+			<a target="_blank" rel="noreferrer" href="https://github.com/sinProject-Inc/talk/"
+				>sinProject Talk {version}</a
+			>
+		</div>
 	</div>
 </div>
