@@ -27,5 +27,6 @@
   "cancel": "取消",
   "history": "歷史",
   "text_limit": "您最多只能翻譯 250 個字符。",
-  "copied": "已復制"
+  "copied": "已復制",
+  "name": "姓名"
 }

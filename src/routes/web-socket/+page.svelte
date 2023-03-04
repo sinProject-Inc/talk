@@ -2,15 +2,24 @@
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
+	import { AppLocaleCode } from '$lib/language/app_locale_code'
+	import { AppLocalStorage } from '$lib/language/app_local_storage'
 	import { EventKey } from '$lib/view/event_key'
+	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import type { Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
-	import { _ } from 'svelte-i18n'
+	import { locale, waitLocale, _ } from 'svelte-i18n'
+	import type { PageData } from './$types'
 
 	type MessageSet = {
 		name: string
 		message: string
 	}
+
+	export let data: PageData
+
+	let locale_select_element: HTMLSelectElement
 
 	let name_element: HTMLInputElement
 	let message_element: HTMLInputElement
@@ -18,6 +27,8 @@
 	let name = ''
 	let message = ''
 	let message_data: MessageSet[] = []
+
+	$: can_send = !!name && !!message
 
 	const socket = io()
 
@@ -30,7 +41,7 @@
 	})
 
 	socket.on('message', (received_data: MessageSet) => {
-		console.info(`socket.io message: ${received_data}`)
+		// console.info(`socket.io message: ${received_data.name}: ${received_data.message}`)
 
 		message_data = [received_data, ...message_data]
 
@@ -75,8 +86,47 @@
 		send()
 	}
 
-	onMount(() => {
-		name_element.focus()
+	async function set_app_locale(): Promise<void> {
+		const app_locale_code = new AppLocaleCode(locale_select_element.value)
+
+		console.log(app_locale_code.code)
+
+		$locale = app_locale_code.code
+		await waitLocale($locale)
+	}
+
+	function init_name(): void {
+		name = AppLocalStorage.instance.name
+	}
+
+	async function init_locale(): Promise<void> {
+		const locales = JSON.parse(data.locales) as Locale[]
+
+		new LocaleSelectElement(locale_select_element, locales).append_options()
+
+		locale_select_element.value = AppLocalStorage.instance.to_locale
+		await set_app_locale()
+	}
+
+	function init_focus(): void {
+		name ? message_element.focus() : name_element.focus()
+	}
+
+	async function on_change_locale_select(): Promise<void> {
+		AppLocalStorage.instance.to_locale = locale_select_element.value
+		await set_app_locale()
+	}
+
+	function on_change_name(): void {
+		if (!name) return
+
+		AppLocalStorage.instance.name = name
+	}
+
+	onMount(async () => {
+		init_name()
+		await init_locale()
+		init_focus()
 	})
 </script>
 
@@ -88,24 +138,35 @@
 
 <div class="center-container w-screen h-[calc(100vh-69px)]">
 	<div class="p-4 glass-panel my-4 flex flex-col gap-4 flex-1 overflow-y-scroll">
-		<input
-			type="text"
-			bind:this={name_element}
-			bind:value={name}
-			placeholder="Name"
-			class="w-60"
-			on:keydown={on_keydown_name}
-		/>
-		<div class="flex gap-2 items-center">
+		<div class="flex gap-4 items-center">
 			<input
 				type="text"
-				class="flex-1"
+				bind:this={name_element}
+				bind:value={name}
+				placeholder={$_('name')}
+				class="w-60"
+				on:keydown={on_keydown_name}
+				on:change={on_change_name}
+			/>
+			<select
+				class="glass-button h-full grow text-center"
+				bind:this={locale_select_element}
+				on:change={on_change_locale_select}
+			/>
+		</div>
+
+		<div class="flex relative">
+			<input
+				type="text"
+				class="flex-1 pr-11"
 				placeholder={$_('enter_new_text')}
 				bind:this={message_element}
 				bind:value={message}
 				on:keydown={on_keydown_message}
 			/>
-			<IconButton on_click_handler={send}><FillIcon /></IconButton>
+			<div class="absolute right-0 top-0 bottom-0 flex items-center">
+				<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+			</div>
 		</div>
 		{#each message_data as message_set}
 			<p>{message_set.name}: {message_set.message}</p>

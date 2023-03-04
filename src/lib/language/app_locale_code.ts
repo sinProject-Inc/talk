@@ -31,6 +31,8 @@ export class AppLocaleCode {
 
 		if (!trimmed_locale_code) {
 			this._code = AppLocaleCode.default.code
+		} else if (trimmed_locale_code.startsWith('yue')) {
+			this._code = 'zh-TW'
 		} else if (trimmed_locale_code.startsWith('zh')) {
 			this._code = trimmed_locale_code
 		} else {
@@ -41,11 +43,7 @@ export class AppLocaleCode {
 	}
 
 	public static from_speech_language_code(speech_language_code: SpeechLanguageCode): AppLocaleCode {
-		const speech_language_code_string = speech_language_code.code
-		const language_code =
-			speech_language_code_string === 'yue' ? 'zh-TW' : speech_language_code_string
-
-		return new AppLocaleCode(language_code)
+		return new AppLocaleCode(speech_language_code.code)
 	}
 
 	public get code(): string {

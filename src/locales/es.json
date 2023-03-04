@@ -27,5 +27,6 @@
   "cancel": "Cancelar",
   "history": "Historia",
   "text_limit": "Sólo puede traducir hasta 250 caracteres.",
-  "copied": "Copiado"
+  "copied": "Copiado",
+  "name": "Nombre"
 }
