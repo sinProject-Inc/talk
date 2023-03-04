@@ -1,5 +1,5 @@
 import { browser } from '$app/environment'
-import { register, init } from 'svelte-i18n'
+import { init, register } from 'svelte-i18n'
 import { AppLocaleCode } from './app_locale_code'
 
 const locales = ['en', 'ja', 'zh-TW', 'ko', 'km', 'es', 'vi']
