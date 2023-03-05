@@ -4,6 +4,8 @@ import type { AuthTokenRepository } from '$lib/auth/auth_token_repository'
 import { AuthTokenRepositoryPrisma } from '$lib/auth/auth_token_repository_prisma'
 import type { UserRepository } from '$lib/auth/user_repository'
 import { UserRepositoryPrisma } from '$lib/auth/user_repository_prisma'
+import type { ChatLogRepository } from '$lib/chat/chat_log_repository'
+import { ChatLogRepositoryPrisma } from '$lib/chat/chat_log_repository_prisma'
 import type { LanguageRepository } from '$lib/language/language_repository'
 import { LanguageRepositoryPrisma } from '$lib/language/language_repository_prisma'
 import type { LocaleRepository } from '$lib/language/locale_repository'
@@ -33,4 +35,5 @@ export class Repository {
 	public static translation: TranslationRepository = new TranslationRepositoryPrisma(this._context)
 	public static sound: SoundRepository = new SoundRepositoryPrisma(this._context)
 	public static user: UserRepository = new UserRepositoryPrisma(this._context)
+	public static chat_log: ChatLogRepository = new ChatLogRepositoryPrisma(this._context)
 }

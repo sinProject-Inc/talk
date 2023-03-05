@@ -7,7 +7,7 @@
 	import { AppLocalStorage } from '$lib/language/app_local_storage'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
-	import type { Locale } from '@prisma/client'
+	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
@@ -27,7 +27,7 @@
 
 	let name = ''
 	let message = ''
-	let message_data: MessageSet[] = []
+	let chat_logs: ChatLog[] = []
 
 	$: can_send = !!name && !!message
 
@@ -41,13 +41,15 @@
 		console.info('socket.io disconnected')
 	})
 
-	socket.on('message', (received_data: MessageSet) => {
-		// console.info(`socket.io message: ${received_data.name}: ${received_data.message}`)
+	socket.on('logs', (received_chat_logs: ChatLog[]) => {
+		chat_logs = received_chat_logs
+	})
 
-		message_data = [received_data, ...message_data]
+	socket.on('message', (received_chat_log: ChatLog) => {
+		chat_logs = [received_chat_log, ...chat_logs]
 
-		if (received_data.name !== name) return
-		if (received_data.message !== message) return
+		if (received_chat_log.name !== name) return
+		if (received_chat_log.message !== message) return
 
 		// TODO: 厳密同一人物チェックが必要
 		message = ''
@@ -124,6 +126,14 @@
 		AppLocalStorage.instance.name = name
 	}
 
+	function to_local_time(created_at?: Date): string {
+		if (!created_at) return ''
+
+		const date = new Date(created_at)
+
+		return date.toLocaleString([], { hour12: false, hour: '2-digit', minute: '2-digit' })
+	}
+
 	onMount(async () => {
 		init_name()
 		await init_locale()
@@ -174,8 +184,14 @@
 		</div>
 
 		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3">
-			{#each message_data as message_set}
-				<p>{message_set.name}: {message_set.message}</p>
+			{#each chat_logs as chat_log}
+				<div>
+					<p>
+						<span class="font-bold">{chat_log.name}</span>
+						<span class="text-white/50">{to_local_time(chat_log.created_at)}</span>
+					</p>
+					<p>{chat_log.message}</p>
+				</div>
 			{/each}
 		</div>
 

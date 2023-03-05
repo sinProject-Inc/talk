@@ -17,9 +17,16 @@ module.exports = {
 		es2017: true,
 		node: true,
 	},
+	overrides: [
+		{
+			files: ['**/*.svelte', '**/*.ts'],
+			rules: {
+				'@typescript-eslint/explicit-member-accessibility': ['error'],
+				'@typescript-eslint/explicit-function-return-type': ['warn'],
+			},
+		},
+	],
 	rules: {
-		'@typescript-eslint/explicit-member-accessibility': ['error'],
-		'@typescript-eslint/explicit-function-return-type': ['warn'],
 		'@typescript-eslint/naming-convention': [
 			'error',
 			{

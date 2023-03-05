@@ -12,7 +12,7 @@ import inject_socket_io from './socket-handler'
 
 const web_socket = {
 	name: 'sveltekit-socket-io',
-	// eslint-disable-next-line @typescript-eslint/naming-convention
+	// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-explicit-any
 	configureServer(server: any): void {
 		inject_socket_io(server.httpServer)
 	}
