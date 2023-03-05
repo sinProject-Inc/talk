@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-member-accessibility */
+
 import { ChatMessage } from './chat_message'
 import { ChatName } from './chat_name'
 

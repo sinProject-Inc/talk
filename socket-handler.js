@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-member-accessibility */
+
 // import { Repository } from './src/lib/app/repository'
 import { ChatEntity } from './src/lib/chat/chat_entity'
 import { Server } from 'socket.io'
@@ -20,7 +23,7 @@ async function save(chat_entity) {
 }
 
 /**
- * 
+ *
  * @returns {Promise<import('@prisma/client').ChatLog[]>}
  */
 async function find_many() {
