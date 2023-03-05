@@ -66,7 +66,7 @@
 			return
 		}
 
-		console.info(`socket.io send: ${message}`)
+		// console.info(`socket.io send: ${message}`)
 		socket.emit('message', { name, message })
 	}
 
@@ -91,8 +91,6 @@
 
 	async function set_app_locale(): Promise<void> {
 		const app_locale_code = new AppLocaleCode(locale_select_element.value)
-
-		console.log(app_locale_code.code)
 
 		$locale = app_locale_code.code
 		await waitLocale($locale)
