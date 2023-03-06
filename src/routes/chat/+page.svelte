@@ -185,10 +185,10 @@
 			{#each chat_logs as chat_log}
 				<div>
 					<p>
-						<span class="font-bold">{chat_log.name}</span>
+						<span class="font-bold" data-testid="chat_name">{chat_log.name}</span>
 						<span class="text-white/50">{to_local_time(chat_log.created_at)}</span>
 					</p>
-					<p>{chat_log.message}</p>
+					<p data-testid="chat_message">{chat_log.message}</p>
 				</div>
 			{/each}
 		</div>
