@@ -5,17 +5,32 @@
 	import Navbar from '$lib/components/navbar.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { AppLocalStorage } from '$lib/language/app_local_storage'
+	import { LocaleCode } from '$lib/language/locale_code'
+	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { SubmissionText } from '$lib/speech/submission_text'
+	import { AddTextApi } from '$lib/text/add_text_api'
+	import { TextId } from '$lib/text/text_id'
+	import { AddTranslationApi } from '$lib/translation/add_translation_api'
+	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
+	import { TranslationText } from '$lib/translation/translation_text'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
-	import type { ChatLog, Locale } from '@prisma/client'
+	import type { ChatLog, Locale, Text } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
 
 	type MessageSet = {
+		locale_code: string
 		name: string
 		message: string
+	}
+
+	type ChatLogItem = {
+		data: ChatLog
+		translated: string
 	}
 
 	export let data: PageData
@@ -25,13 +40,93 @@
 	let name_element: HTMLInputElement
 	let message_element: HTMLInputElement
 
+	let locales: Locale[] = []
 	let name = ''
 	let message = ''
-	let chat_logs: ChatLog[] = []
+	let chat_log_items: ChatLogItem[] = []
 
 	$: can_send = !!name && !!message
 
 	const socket = io()
+
+	async function add_text(chat_log_item: ChatLogItem): Promise<Text> {
+		const locale_code = LocaleCode.create(chat_log_item.data.locale_code)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+		const submission_text = new SubmissionText(chat_log_item.data.message)
+		const text = await new AddTextApi(speech_language_code, submission_text).fetch()
+
+		return text
+	}
+
+	async function find_translation(text: Text, locale_code: LocaleCode): Promise<Text[]> {
+		const text_id = new TextId(text.id)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+
+		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
+
+		return translation_texts
+	}
+
+	async function add_translation(text: Text, locale_code: LocaleCode): Promise<Text> {
+		const translation_text = new TranslationText(text.text)
+		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
+		const app_local_code = AppLocaleCode.from_speech_language_code(speech_language_code)
+
+		const translated_text = await new TranslateWithGoogleAdvancedApi(
+			translation_text,
+			app_local_code
+		).fetch()
+
+		const text_id = new TextId(text.id)
+		const added_text = await new AddTranslationApi(
+			text_id,
+			speech_language_code,
+			translated_text
+		).fetch()
+
+		return added_text
+	}
+
+	async function show_log_translation(chat_log_item: ChatLogItem): Promise<void> {
+		// TODO: English-US から GB への翻訳を考慮する
+
+		const text = await add_text(chat_log_item)
+
+		if (!text) return
+
+		const target_locale_code = LocaleCode.create(locale_select_element.value)
+		const translation_texts = await find_translation(text, target_locale_code)
+
+		if (translation_texts.length > 0) {
+			chat_log_item.translated = translation_texts[0].text
+			return
+		}
+
+		const translation_text = await add_translation(text, target_locale_code)
+
+		chat_log_item.translated = translation_text.text
+	}
+
+	async function show_translation(): Promise<void> {
+		const locale_code = locale_select_element.value
+		const items_for_translating = chat_log_items.filter((chat_log_item) => {
+			if (chat_log_item.translated) return false
+			if (chat_log_item.data.locale_code === locale_code) return false
+
+			return true
+		})
+
+		const promises: Promise<void>[] = []
+
+		items_for_translating.forEach((chat_log_item) => {
+			promises.push(show_log_translation(chat_log_item))
+		})
+
+		await Promise.all(promises)
+
+		chat_log_items = chat_log_items
+	}
 
 	socket.on('connect', () => {
 		console.info('socket.io connected')
@@ -41,12 +136,26 @@
 		console.info('socket.io disconnected')
 	})
 
-	socket.on('logs', (received_chat_logs: ChatLog[]) => {
-		chat_logs = received_chat_logs
+	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
+		chat_log_items = received_chat_logs.map((chat_log) => {
+			return {
+				data: chat_log,
+				translated: '',
+			}
+		})
+
+		await show_translation()
 	})
 
-	socket.on('message', (received_chat_log: ChatLog) => {
-		chat_logs = [received_chat_log, ...chat_logs]
+	socket.on('message', async (received_chat_log: ChatLog) => {
+		const translated_chat_log = {
+			data: received_chat_log,
+			translated: '',
+		}
+
+		chat_log_items = [translated_chat_log, ...chat_log_items]
+
+		await show_translation()
 
 		if (received_chat_log.name !== name) return
 		if (received_chat_log.message !== message) return
@@ -66,8 +175,14 @@
 			return
 		}
 
+		const message_set: MessageSet = {
+			locale_code: locale_select_element.value,
+			name,
+			message,
+		}
+
 		// console.info(`socket.io send: ${message}`)
-		socket.emit('message', { name, message })
+		socket.emit('message', message_set)
 	}
 
 	function on_keydown_name(event: KeyboardEvent): void {
@@ -101,7 +216,7 @@
 	}
 
 	async function init_locale(): Promise<void> {
-		const locales = JSON.parse(data.locales) as Locale[]
+		locales = JSON.parse(data.locales) as Locale[]
 
 		new LocaleSelectElement(locale_select_element, locales).append_options()
 
@@ -116,6 +231,10 @@
 	async function on_change_locale_select(): Promise<void> {
 		AppLocalStorage.instance.to_locale = locale_select_element.value
 		await set_app_locale()
+
+		chat_log_items.forEach(chat_log_item => chat_log_item.translated = '')
+
+		await show_translation()
 	}
 
 	function on_change_name(): void {
@@ -182,13 +301,25 @@
 		</div>
 
 		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3">
-			{#each chat_logs as chat_log}
+			{#each chat_log_items as chat_log_item}
 				<div>
 					<p>
-						<span class="font-bold" data-testid="chat_name">{chat_log.name}</span>
-						<span class="text-white/50">{to_local_time(chat_log.created_at)}</span>
+						<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
+						<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
 					</p>
-					<p data-testid="chat_message">{chat_log.message}</p>
+					{#if chat_log_item.translated}
+						<p>
+							<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
+						</p>
+						<p class="text-white/50">
+							<span>{chat_log_item.data.locale_code}:</span>
+							<span data-testid="chat_message">{chat_log_item.data.message}</span>
+						</p>
+					{:else}
+						<p>
+							<span data-testid="chat_message">{chat_log_item.data.message}</span>
+						</p>
+					{/if}
 				</div>
 			{/each}
 		</div>
