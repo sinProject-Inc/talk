@@ -1,13 +1,17 @@
 <script lang="ts">
 	import { version } from '$app/environment'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
+	import StopIcon from '$lib/components/icons/stop_icon.svelte'
+	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
 	import { AppLocaleCode } from '$lib/language/app_locale_code'
 	import { AppLocalStorage } from '$lib/language/app_local_storage'
 	import { LocaleCode } from '$lib/language/locale_code'
+	import { SpeechDivElement } from '$lib/speech/speech_div_element'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import { SubmissionText } from '$lib/speech/submission_text'
+	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { TextId } from '$lib/text/text_id'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
@@ -16,6 +20,7 @@
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { Message } from '$lib/view/message'
 	import type { ChatLog, Locale, Text } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
@@ -38,12 +43,15 @@
 	let locale_select_element: HTMLSelectElement
 
 	let name_element: HTMLInputElement
-	let message_element: HTMLInputElement
+	let message_div_element: HTMLDivElement
 
 	let locales: Locale[] = []
 	let name = ''
 	let message = ''
 	let chat_log_items: ChatLogItem[] = []
+
+	let web_speech_recognition: WebSpeechRecognition | undefined
+	let listening = false
 
 	$: can_send = !!name && !!message
 
@@ -165,13 +173,16 @@
 	})
 
 	async function send(): Promise<void> {
+		name = name.trim()
+		message = message.trim()
+
 		if (!name) {
 			name_element.focus()
 			return
 		}
 
 		if (!message) {
-			message_element.focus()
+			message_div_element.focus()
 			return
 		}
 
@@ -192,7 +203,7 @@
 		if (!name) return
 
 		event.preventDefault()
-		message_element.focus()
+		message_div_element.focus()
 	}
 
 	function on_keydown_message(event: KeyboardEvent): void {
@@ -225,14 +236,14 @@
 	}
 
 	function init_focus(): void {
-		name ? message_element.focus() : name_element.focus()
+		name ? message_div_element.focus() : name_element.focus()
 	}
 
 	async function on_change_locale_select(): Promise<void> {
 		AppLocalStorage.instance.to_locale = locale_select_element.value
 		await set_app_locale()
 
-		chat_log_items.forEach(chat_log_item => chat_log_item.translated = '')
+		chat_log_items.forEach((chat_log_item) => (chat_log_item.translated = ''))
 
 		await show_translation()
 	}
@@ -249,6 +260,56 @@
 		const date = new Date(created_at)
 
 		return date.toLocaleString([], { hour12: false, hour: '2-digit', minute: '2-digit' })
+	}
+
+	function move_caret_to_end(): void {
+		const range = document.createRange()
+		const selection = window.getSelection()
+
+		range.selectNodeContents(message_div_element)
+		range.collapse(false)
+
+		selection?.removeAllRanges()
+		selection?.addRange(range)
+	}
+
+	function on_end_listening(): void {
+		listening = false
+		message = message_div_element.textContent || ''
+		
+		move_caret_to_end()
+	}
+
+	function start_listening(): void {
+		const locale_code = LocaleCode.create(locale_select_element.value)
+		const hint_message = new Message($_('recognizing'))
+		const speech_text_element = new SpeechDivElement(message_div_element, hint_message)
+
+		web_speech_recognition = new WebSpeechRecognition(
+			locale_code,
+			speech_text_element,
+			on_end_listening
+		)
+
+		listening = true
+
+		web_speech_recognition.start_continuous()
+	}
+
+	function stop_listening(): void {
+		if (!web_speech_recognition) return
+
+		web_speech_recognition.stop()
+
+		on_end_listening()
+	}
+
+	function handle_listen_button(): void {
+		if (listening) {
+			stop_listening()
+		} else {
+			start_listening()
+		}
 	}
 
 	onMount(async () => {
@@ -285,7 +346,32 @@
 				/>
 			</div>
 
-			<div class="flex relative">
+			<div class="input flex flex-col gap-1 p-1">
+				<div
+					contenteditable="true"
+					class="outline-none px-3 py-1"
+					placeholder={$_('enter_new_text')}
+					bind:this={message_div_element}
+					bind:textContent={message}
+					on:keydown={on_keydown_message}
+				/>
+				<div class="flex flex-row">
+					<div class="flex-1">
+						<IconButton on_click_handler={handle_listen_button}>
+							{#if listening}
+								<StopIcon />
+							{:else}
+								<VoiceIcon />
+							{/if}
+						</IconButton>
+					</div>
+					<div>
+						<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="flex relative">
 				<input
 					type="text"
 					class="flex-1 pr-11"
@@ -297,7 +383,7 @@
 				<div class="absolute right-0 top-0 bottom-0 flex items-center">
 					<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3">

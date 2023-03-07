@@ -36,6 +36,10 @@
 		@apply py-[7px] border-0 outline-none outline-0 focus:outline-none bg-black/10 rounded-md px-4;
 	}
 
+	.input {
+		@apply border-0 outline-none outline-0 focus:outline-none bg-black/10 rounded-md;
+	}
+
 	textarea {
 		@apply py-[10px] px-4 bg-inherit;
 	}
@@ -90,5 +94,10 @@
 
 	.glass {
 		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-black/30 text-white/90 fill-white/90;
+	}
+
+	[contenteditable=true]:empty:before {
+		content: attr(placeholder);
+		color: #ffffff70;
 	}
 }

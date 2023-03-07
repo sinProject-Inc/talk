@@ -234,6 +234,7 @@
 			speech_text_element,
 			on_end_listening
 		)
+		
 		listening = true
 
 		web_speech_recognition.start_not_continuous()
