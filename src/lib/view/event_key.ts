@@ -8,6 +8,9 @@ export class EventKey {
 
 	public get is_enter(): boolean {
 		if (this._is_composing) return false
+		if (this._event.shiftKey) return false
+		if (this._event.ctrlKey) return false
+		
 		return this._event.key === 'Enter'
 	}
 }
