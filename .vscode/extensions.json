@@ -15,6 +15,7 @@
 		"svelte.svelte-vscode",
 		"gruntfuggly.todo-tree",
 		"csstools.postcss",
-		"zixuanchen.vitest-explorer"
+		"zixuanchen.vitest-explorer",
+		"bradlc.vscode-tailwindcss"
 	]
 }
