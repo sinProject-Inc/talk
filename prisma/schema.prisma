@@ -67,12 +67,13 @@ model Language {
 }
 
 model Locale {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  code       String   @unique
-  name       String   @unique
+  id         Int       @id @default(autoincrement())
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  code       String    @unique
+  name       String    @unique
   sounds     Sound[]
+  ChatLog    ChatLog[]
 }
 
 model Text {
@@ -115,9 +116,12 @@ model TextToText {
 }
 
 model ChatLog {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  name       String
-  message    String  @db.VarChar(700)
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  locale_code String
+  name        String
+  message     String   @db.VarChar(700)
+
+  locale      Locale   @relation(fields: [locale_code], references: [code])
 }

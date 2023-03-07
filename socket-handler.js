@@ -6,6 +6,13 @@ import { ChatEntity } from './src/lib/chat/chat_entity'
 import { Server } from 'socket.io'
 import { PrismaClient } from '@prisma/client'
 
+/**
+ * @typedef {Object} MessageSet
+ * @property {string} locale_code
+ * @property {string} name
+ * @property {string} message
+ */
+
 const prisma_client = new PrismaClient()
 
 /**
@@ -16,6 +23,7 @@ const prisma_client = new PrismaClient()
 async function save(chat_entity) {
 	return await prisma_client.chatLog.create({
 		data: {
+			locale_code: chat_entity.locale_code,
 			name: chat_entity.name.value,
 			message: chat_entity.message.value,
 		},
@@ -38,10 +46,10 @@ async function find_many() {
 /**
  *
  * @param {*} io
- * @param {*} received_data
+ * @param {MessageSet} received_data
  */
 async function on_message(io, received_data) {
-	const chat_entity = new ChatEntity(received_data.name, received_data.message)
+	const chat_entity = new ChatEntity(received_data.locale_code, received_data.name, received_data.message)
 	const chat_log = await save(chat_entity)
 
 	io.emit('message', chat_log)
@@ -54,14 +62,6 @@ async function on_message(io, received_data) {
  * @param {*} socket
  */
 async function on_connection(io, socket) {
-	// const chat_log = {
-	// 	name: 'SERVER',
-	// 	created_at: new Date(),
-	// 	message: 'Hello from the server',
-	// }
-
-	// socket.emit('message', chat_log)
-
 	const chat_logs = await find_many()
 
 	socket.emit('logs', chat_logs)
