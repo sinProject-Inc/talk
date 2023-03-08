@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { version } from '$app/environment'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
+	import NotificationIcon from '$lib/components/icons/notification_icon.svelte'
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
@@ -276,7 +277,7 @@
 	function on_end_listening(): void {
 		listening = false
 		message = message_div_element.textContent || ''
-		
+
 		move_caret_to_end()
 	}
 
@@ -312,6 +313,44 @@
 		}
 	}
 
+	function send_notification(): void {
+		const title = 'Talk - Chat'
+		const body = '通知テストです'
+		const icon = '/icon-144.png'
+		const options = { body, icon }
+		const notification = new Notification(title, options)
+
+		console.log('send_notification')
+
+		setTimeout(send_notification, 30 * 1000)
+
+	// 	notification.onclick = () => {
+	// 		console.log('notification.onclick')
+	// 	}
+
+	// 	notification.onclose = () => {
+	// 		console.log('notification.onclose')
+	// 	}
+
+	// 	notification.onerror = () => {
+	// 		console.log('notification.onerror')
+	// 	}
+
+	// 	notification.onshow = () => {
+	// 		console.log('notification.onshow')
+	// 	}
+	}
+
+	async function on_click_notification(): Promise<void> {
+		const notification_permission = await Notification.requestPermission()
+
+		console.log(notification_permission)
+
+		if (notification_permission !== 'granted') return
+
+		send_notification()
+	}
+
 	onMount(async () => {
 		init_name()
 		await init_locale()
@@ -334,6 +373,14 @@
 					bind:this={locale_select_element}
 					on:change={on_change_locale_select}
 				/>
+				<button class="glass-button" on:click={on_click_notification}>
+					<div class="flex flex-row items-center gap-1.5">
+						<div class="w-5 h-5">
+							<NotificationIcon />
+						</div>
+						通知
+					</div>
+				</button>
 
 				<input
 					class="grow"
