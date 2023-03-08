@@ -44,6 +44,10 @@
 		@apply py-[10px] px-4 bg-inherit;
 	}
 
+	svg {
+		@apply fill-current w-full h-full;
+	}
+
 	.center-container {
 		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-4;
 	}

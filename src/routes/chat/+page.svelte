@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { version } from '$app/environment'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
+	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
+	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
@@ -52,6 +54,9 @@
 
 	let web_speech_recognition: WebSpeechRecognition | undefined
 	let listening = false
+
+	let is_visible = true
+	let is_notification_enabled = false
 
 	$: can_send = !!name && !!message
 
@@ -155,6 +160,23 @@
 		await show_translation()
 	})
 
+	function show_message_notification(translated_chat_log: {
+		data: ChatLog
+		translated: string
+	}): void {
+		if (!is_notification_enabled) return
+		if (is_visible) return
+
+		const message = translated_chat_log.translated || translated_chat_log.data.message
+
+		new Notification('sinProject Talk - Chat', {
+			body: `${translated_chat_log.data.name}\n${message}`,
+			icon: '/icon-192.png',
+		})
+
+		console.log('Notification', translated_chat_log.data.name, message)
+	}
+
 	socket.on('message', async (received_chat_log: ChatLog) => {
 		const translated_chat_log = {
 			data: received_chat_log,
@@ -163,7 +185,7 @@
 
 		chat_log_items = [translated_chat_log, ...chat_log_items]
 
-		await show_translation()
+		show_message_notification(translated_chat_log)
 
 		if (received_chat_log.name !== name) return
 		if (received_chat_log.message !== message) return
@@ -276,7 +298,7 @@
 	function on_end_listening(): void {
 		listening = false
 		message = message_div_element.textContent || ''
-		
+
 		move_caret_to_end()
 	}
 
@@ -304,15 +326,70 @@
 		on_end_listening()
 	}
 
-	function handle_listen_button(): void {
-		if (listening) {
-			stop_listening()
-		} else {
-			start_listening()
+	// function send_test_notification(): void {
+	// 	const title = 'Talk - Chat'
+	// 	const body = '通知テストです'
+	// 	const icon = '/icon-144.png'
+	// 	const options = { body, icon }
+	// 	const notification = new Notification(title, options)
+
+	// 	console.log('send_notification')
+
+	// 	setTimeout(send_test_notification, 30 * 1000)
+
+	// 	// 	notification.onclick = () => {
+	// 	// 		console.log('notification.onclick')
+	// 	// 	}
+
+	// 	// 	notification.onclose = () => {
+	// 	// 		console.log('notification.onclose')
+	// 	// 	}
+
+	// 	// 	notification.onerror = () => {
+	// 	// 		console.log('notification.onerror')
+	// 	// 	}
+
+	// 	// 	notification.onshow = () => {
+	// 	// 		console.log('notification.onshow')
+	// 	// 	}
+	// }
+
+	async function enable_notification(): Promise<void> {
+		const notification_permission = await Notification.requestPermission()
+
+		console.log(notification_permission)
+
+		if (notification_permission !== 'granted') {
+			alert($_('please_allow_notification'))
+			return
 		}
+
+		is_notification_enabled = true
+	}
+
+	async function disable_notification(): Promise<void> {
+		is_notification_enabled = false
+	}
+
+	function add_checking_background_events(): void {
+		document.addEventListener('visibilitychange', () => {
+			is_visible = document.visibilityState === 'visible'
+			console.log('visibilitychange', is_visible)
+		})
+
+		window.addEventListener('focus', () => {
+			is_visible = true
+			console.log('focus', is_visible)
+		})
+
+		window.addEventListener('blur', () => {
+			is_visible = false
+			console.log('blur', is_visible)
+		})
 	}
 
 	onMount(async () => {
+		add_checking_background_events()
 		init_name()
 		await init_locale()
 		init_focus()
@@ -334,6 +411,23 @@
 					bind:this={locale_select_element}
 					on:change={on_change_locale_select}
 				/>
+				{#if is_notification_enabled}
+					<button class="glass-button" on:click={disable_notification}>
+						<div class="flex flex-row items-center gap-1.5">
+							<div class="w-[24px] h-[24px]">
+								<NotificationsActiveIcon />
+							</div>
+						</div>
+					</button>
+				{:else}
+					<button class="glass-button" on:click={enable_notification}>
+						<div class="flex flex-row items-center gap-1.5">
+							<div class="w-[24px] h-[24px]">
+								<NotificationsIcon />
+							</div>
+						</div>
+					</button>
+				{/if}
 
 				<input
 					class="grow"
@@ -357,13 +451,15 @@
 				/>
 				<div class="flex flex-row">
 					<div class="flex-1">
-						<IconButton on_click_handler={handle_listen_button}>
-							{#if listening}
+						{#if listening}
+							<IconButton on_click_handler={stop_listening}>
 								<StopIcon />
-							{:else}
+							</IconButton>
+						{:else}
+							<IconButton on_click_handler={start_listening}>
 								<VoiceIcon />
-							{/if}
-						</IconButton>
+							</IconButton>
+						{/if}
 					</div>
 					<div>
 						<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>

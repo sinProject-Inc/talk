@@ -28,5 +28,6 @@
   "history": "History",
   "text_limit": "You can only translate up to 250 characters.",
   "copied": "Copied",
-  "name": "Name"
+  "name": "Name",
+  "please_allow_notification": "To receive unread notifications, please allow notifications in your browser."
 }
