@@ -28,5 +28,6 @@
   "history": "히스토리",
   "text_limit": "최대 250자까지만 번역할 수 있습니다.",
   "copied": "복사했습니다",
-  "name": "이름"
+  "name": "이름",
+    "please_allow_notification": "읽지 않은 알림을 받으려면 브라우저에서 알림을 허용하세요."
 }

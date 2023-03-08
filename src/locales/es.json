@@ -28,5 +28,6 @@
   "history": "Historia",
   "text_limit": "Sólo puede traducir hasta 250 caracteres.",
   "copied": "Copiado",
-  "name": "Nombre"
+  "name": "Nombre",
+  "please_allow_notification": "Para recibir notificaciones no leídas, permita las notificaciones en su navegador."
 }

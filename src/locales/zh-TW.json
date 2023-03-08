@@ -28,5 +28,6 @@
   "history": "歷史",
   "text_limit": "您最多只能翻譯 250 個字符。",
   "copied": "已復制",
-  "name": "姓名"
+  "name": "姓名",
+  "please_allow_notification": "要接收未讀通知，請在您的瀏覽器中允許通知。"
 }

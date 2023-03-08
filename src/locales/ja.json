@@ -28,5 +28,6 @@
   "history": "履歴",
   "text_limit": "翻訳できるのは 250文字までです。",
   "copied": "コピーしました",
-  "name": "名前"
+  "name": "名前",
+  "please_allow_notification": "未読通知を行う場合は、ブラウザで通知を許可してください。"
 }
