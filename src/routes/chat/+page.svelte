@@ -185,6 +185,7 @@
 
 		chat_log_items = [translated_chat_log, ...chat_log_items]
 
+		await show_translation()
 		show_message_notification(translated_chat_log)
 
 		if (received_chat_log.name !== name) return
