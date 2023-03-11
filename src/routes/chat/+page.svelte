@@ -12,12 +12,14 @@
 	import { LocaleCode } from '$lib/language/locale_code'
 	import { SpeechDivElement } from '$lib/speech/speech_div_element'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { SpeechText } from '$lib/speech/speech_text'
 	import { SubmissionText } from '$lib/speech/submission_text'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { AddTextApi } from '$lib/text/add_text_api'
 	import { TextId } from '$lib/text/text_id'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
 	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
+	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { EventKey } from '$lib/view/event_key'
@@ -104,21 +106,23 @@
 	async function show_log_translation(chat_log_item: ChatLogItem): Promise<void> {
 		// TODO: English-US から GB への翻訳を考慮する
 
-		const text = await add_text(chat_log_item)
+		const speech_text = new SpeechText(chat_log_item.data.message)
+		const source_speech_language_code = SpeechLanguageCode.create_from_locale_code(
+			LocaleCode.create(chat_log_item.data.locale_code)
+		)
+		const target_speech_language_code = SpeechLanguageCode.create_from_locale_code(
+			LocaleCode.create(locale_select_element.value)
+		)
 
-		if (!text) return
+		const translated_texts = await new GetTranslationApi(
+			speech_text,
+			source_speech_language_code,
+			target_speech_language_code
+		).fetch()
 
-		const target_locale_code = LocaleCode.create(locale_select_element.value)
-		const translation_texts = await find_translation(text, target_locale_code)
+		console.log(translated_texts)
 
-		if (translation_texts.length > 0) {
-			chat_log_item.translated = translation_texts[0].text
-			return
-		}
-
-		const translation_text = await add_translation(text, target_locale_code)
-
-		chat_log_item.translated = translation_text.text
+		chat_log_item.translated = translated_texts[0]?.text ?? ''
 	}
 
 	async function show_translation(): Promise<void> {
@@ -305,8 +309,7 @@
 
 	function start_listening(): void {
 		const locale_code = LocaleCode.create(locale_select_element.value)
-		const hint_message = new Message($_('recognizing'))
-		const speech_text_element = new SpeechDivElement(message_div_element, hint_message)
+		const speech_text_element = new SpeechDivElement(message_div_element)
 
 		web_speech_recognition = new WebSpeechRecognition(
 			locale_code,

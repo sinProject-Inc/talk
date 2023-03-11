@@ -1,6 +1,7 @@
 import type { LanguageRepository } from '$lib/language/language_repository'
 import type { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 import type { SpeechText } from '$lib/speech/speech_text'
+import type { TranslationText } from '$lib/translation/translation_text'
 import type { PrismaClient, Text } from '@prisma/client'
 import { LanguageRepositoryPrisma } from '../language/language_repository_prisma'
 import type { TextId } from './text_id'
@@ -10,8 +11,32 @@ import type { TextRepository } from './text_repository'
 export class TextRepositoryPrisma implements TextRepository {
 	public constructor(private readonly _prisma_client: PrismaClient) {}
 
-	public async find(text_id: TextId): Promise<Text | null> {
+	public async find_by_id(text_id: TextId): Promise<Text | null> {
 		const text = await this._prisma_client.text.findUnique({ where: { id: text_id.id } })
+
+		return text
+	}
+
+	public async find(
+		speech_language_code: SpeechLanguageCode,
+		speech_text: SpeechText
+	): Promise<Text | null> {
+		const language = await this._prisma_client.language.findUnique({
+			where: {
+				code: speech_language_code.code,
+			},
+		})
+
+		if (!language) throw new Error('Language not found')
+
+		const text = await this._prisma_client.text.findUnique({
+			where: {
+				language_id_text: {
+					language_id: language.id,
+					text: speech_text.text,
+				},
+			},
+		})
 
 		return text
 	}
@@ -40,7 +65,9 @@ export class TextRepositoryPrisma implements TextRepository {
 		speech_language_code: SpeechLanguageCode,
 		speech_text: SpeechText
 	): Promise<Text> {
-		const language_repository: LanguageRepository = new LanguageRepositoryPrisma(this._prisma_client)
+		const language_repository: LanguageRepository = new LanguageRepositoryPrisma(
+			this._prisma_client
+		)
 		const language = await language_repository.find_unique(speech_language_code)
 
 		if (!language) throw new Error('language not found')
