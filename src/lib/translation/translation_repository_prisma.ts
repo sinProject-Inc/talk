@@ -11,9 +11,9 @@ import type { TranslationRepository } from './translation_repository'
 export class TranslationRepositoryPrisma implements TranslationRepository {
 	public constructor(private readonly _prisma_client: PrismaClient) {}
 
-	public async find(text_id: TextId, speech_language_code: SpeechLanguageCode): Promise<Text[]> {
+	public async find_many(text_id: TextId, speech_language_code: SpeechLanguageCode): Promise<Text[]> {
 		const text_repository: TextRepository = new TextRepositoryPrisma(this._prisma_client)
-		const text = await text_repository.find(text_id)
+		const text = await text_repository.find_by_id(text_id)
 		const language_repository: LanguageRepository = new LanguageRepositoryPrisma(
 			this._prisma_client
 		)
@@ -54,13 +54,13 @@ export class TranslationRepositoryPrisma implements TranslationRepository {
 		return texts
 	}
 
-	public async add(
+	public async save(
 		text_id: TextId,
 		speech_language_code: SpeechLanguageCode,
 		translation_speech_text: SpeechText
 	): Promise<Text> {
 		const text_repository: TextRepository = new TextRepositoryPrisma(this._prisma_client)
-		const text = await text_repository.find(text_id)
+		const text = await text_repository.find_by_id(text_id)
 		const language_repository: LanguageRepository = new LanguageRepositoryPrisma(
 			this._prisma_client
 		)

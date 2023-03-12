@@ -9,6 +9,15 @@ export class ApiPath {
 		return new ApiPath(connected_path)
 	}
 
+	public add_base_path(base_path: string): ApiPath {
+		if (!base_path) return this
+
+		const connected_path = `${base_path}${this._path}`
+		const api_path = new ApiPath(connected_path)
+
+		return api_path
+	}
+
 	public connect_with_encoding(value: string): ApiPath {
 		const encoded_path = encodeURIComponent(value.toString())
 		const api_path = this.connect(encoded_path)

@@ -9,7 +9,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 	try {
 		const text_id = TextId.from_string(params.text_id)
 		const speech_language_code = SpeechLanguageCode.create(params.language_code)
-		const result = await Repository.translation.find(text_id, speech_language_code)
+		const result = await Repository.translation.find_many(text_id, speech_language_code)
 
 		return json(result)
 	} catch (e) {

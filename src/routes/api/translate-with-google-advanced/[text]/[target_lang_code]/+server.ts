@@ -4,7 +4,7 @@ import { TranslationText } from '$lib/translation/translation_text'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({url, params }) => {
+export const GET: RequestHandler = async ({ url, params }) => {
 	console.info(url.href)
 
 	try {
@@ -27,16 +27,14 @@ export const GET: RequestHandler = async ({url, params }) => {
 		}
 
 		const translated_text_string = response.translations[0].translatedText
-		
-		if(!translated_text_string) {
+
+		if (!translated_text_string) {
 			return json('')
 		}
-		
+
 		return json(translated_text_string)
-	}
-	catch (error) {
+	} catch (error) {
 		console.error(error)
 		return json('')
 	}
-
 }

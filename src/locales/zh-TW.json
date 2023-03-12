@@ -29,5 +29,7 @@
   "text_limit": "您最多只能翻譯 250 個字符。",
   "copied": "已復制",
   "name": "姓名",
-  "please_allow_notification": "要接收未讀通知，請在您的瀏覽器中允許通知。"
+  "please_allow_notification": "要接收未讀通知，請在您的瀏覽器中允許通知。",
+  "join": "加入",
+  "leave": "離開"
 }
