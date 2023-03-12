@@ -162,7 +162,8 @@
 			translated: '',
 		}
 
-		const is_at_bottom = chat_log_element.scrollHeight - chat_log_element.scrollTop === chat_log_element.clientHeight
+		const is_at_bottom =
+			chat_log_element.scrollHeight - chat_log_element.scrollTop === chat_log_element.clientHeight
 
 		chat_log_items = [...chat_log_items, translated_chat_log]
 
@@ -426,29 +427,34 @@
 	<Navbar />
 
 	<div class="flex-1 flex flex-col gap-3 p-3 center-container w-screen overflow-y-scroll">
-		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3" bind:this={chat_log_element}>
-			{#each chat_log_items as chat_log_item}
-				<div>
-					<p>
-						<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
-						<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
-					</p>
-					{#if chat_log_item.translated}
+		{#if joined}
+			<div
+				class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3"
+				bind:this={chat_log_element}
+			>
+				{#each chat_log_items as chat_log_item}
+					<div>
 						<p>
-							<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
+							<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
+							<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
 						</p>
-						<p class="text-white/50">
-							<span>{chat_log_item.data.locale_code}:</span>
-							<span data-testid="chat_message">{chat_log_item.data.message}</span>
-						</p>
-					{:else}
-						<p>
-							<span data-testid="chat_message">{chat_log_item.data.message}</span>
-						</p>
-					{/if}
-				</div>
-			{/each}
-		</div>
+						{#if chat_log_item.translated}
+							<p>
+								<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
+							</p>
+							<p class="text-white/50">
+								<span>{chat_log_item.data.locale_code}:</span>
+								<span data-testid="chat_message">{chat_log_item.data.message}</span>
+							</p>
+						{:else}
+							<p>
+								<span data-testid="chat_message">{chat_log_item.data.message}</span>
+							</p>
+						{/if}
+					</div>
+				{/each}
+			</div>
+		{/if}
 
 		<div class="p-3 glass-panel flex flex-col gap-3">
 			{#if joined}
