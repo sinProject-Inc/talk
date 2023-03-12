@@ -1,12 +1,12 @@
 export class LocaleCode {
-	public static readonly english_united_states = new LocaleCode('en-US')
-	public static readonly english_great_britain = new LocaleCode('en-GB')
-	public static readonly japanese_japan = new LocaleCode('ja-JP')
-	public static readonly cantonese_hongkong = new LocaleCode('yue-HK')
-	public static readonly korean_korea = new LocaleCode('ko-KR')
-	public static readonly khmer_cambodia = new LocaleCode('km-KH')
-	public static readonly spanish_spain = new LocaleCode('es-ES')
-	public static readonly vietnamese_vietnam = new LocaleCode('vi-VN')
+	public static readonly english_united_states = new LocaleCode('en-US', '&#x1f1fa;&#x1f1f8;')
+	public static readonly english_great_britain = new LocaleCode('en-GB', '&#x1f1ec;&#x1f1e7;')
+	public static readonly japanese_japan = new LocaleCode('ja-JP', '&#x1f1ef;&#x1f1f5;')
+	public static readonly cantonese_hongkong = new LocaleCode('yue-HK', '&#x1f1ed;&#x1f1f0;')
+	public static readonly korean_korea = new LocaleCode('ko-KR', '&#x1f1f0;&#x1f1f7;')
+	public static readonly khmer_cambodia = new LocaleCode('km-KH', '&#x1f1f0;&#x1f1ed;')
+	public static readonly spanish_spain = new LocaleCode('es-ES', '&#x1f1ea;&#x1f1f8;')
+	public static readonly vietnamese_vietnam = new LocaleCode('vi-VN', '&#x1f1fb;&#x1f1f3;')
 
 	public static readonly values = [
 		LocaleCode.english_united_states,
@@ -23,7 +23,7 @@ export class LocaleCode {
 		return LocaleCode.english_united_states
 	}
 
-	private constructor(private readonly _code: string) {}
+	private constructor(private readonly _code: string, private readonly _html_code: string) {}
 
 	public static create(locale_code: string | undefined): LocaleCode {
 		if (!locale_code) {
@@ -41,6 +41,10 @@ export class LocaleCode {
 
 	public get code(): string {
 		return this._code
+	}
+
+	public get html_code(): string {
+		return this._html_code
 	}
 
 	private _equals(other: LocaleCode): boolean {

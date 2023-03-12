@@ -18,8 +18,6 @@ export const GET: RequestHandler = async ({ url, params }) => {
 			glossary: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}/glossaries/glossary`,
 		}
 
-		console.log('target_language_code', target_app_locale_code.toString)
-
 		const request = {
 			parent: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
 			contents: [translation_text.text],

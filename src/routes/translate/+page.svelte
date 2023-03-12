@@ -156,9 +156,6 @@
 		if (!value) return undefined
 
 		const language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
-
-		console.log(value.length)
-
 		const submission_text = new SubmissionText(value)
 		const text = await new AddTextApi(language_code, submission_text).fetch()
 
@@ -231,8 +228,6 @@
 
 		const new_text_to_speech_url = new TextToSpeechUrl(value, locale_code).url
 
-		console.log(new_text_to_speech_url)
-
 		if (text_to_speech_url === new_text_to_speech_url) {
 			audio_element.currentTime = 0
 			try {
@@ -260,8 +255,6 @@
 	}
 
 	async function translate(translate_box: TranslateBox): Promise<void> {
-		console.log('translate')
-
 		const partner_translate_box =
 			translate_box === destination_translate_box ? source_translate_box : destination_translate_box
 		const partner_locale_code =

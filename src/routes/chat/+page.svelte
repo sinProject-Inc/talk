@@ -3,6 +3,9 @@
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
 	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
+	import PersonIcon from '$lib/components/icons/person_icon.svelte'
+	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
+	import SignOutIcon from '$lib/components/icons/sign_out_icon.svelte'
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
@@ -24,7 +27,6 @@
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
-	import { Message } from '$lib/view/message'
 	import type { ChatLog, Locale, Text } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
@@ -40,6 +42,12 @@
 	type ChatLogItem = {
 		data: ChatLog
 		translated: string
+	}
+
+	type ChatMember = {
+		room_id: string
+		name: string
+		locale_code: string
 	}
 
 	export let data: PageData
@@ -60,48 +68,12 @@
 	let is_visible = true
 	let is_notification_enabled = false
 
+	let joined = false
+	let chat_members: ChatMember[] = []
+
 	$: can_send = !!name && !!message
 
 	const socket = io()
-
-	async function add_text(chat_log_item: ChatLogItem): Promise<Text> {
-		const locale_code = LocaleCode.create(chat_log_item.data.locale_code)
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
-
-		const submission_text = new SubmissionText(chat_log_item.data.message)
-		const text = await new AddTextApi(speech_language_code, submission_text).fetch()
-
-		return text
-	}
-
-	async function find_translation(text: Text, locale_code: LocaleCode): Promise<Text[]> {
-		const text_id = new TextId(text.id)
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
-
-		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
-
-		return translation_texts
-	}
-
-	async function add_translation(text: Text, locale_code: LocaleCode): Promise<Text> {
-		const translation_text = new TranslationText(text.text)
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
-		const app_local_code = AppLocaleCode.from_speech_language_code(speech_language_code)
-
-		const translated_text = await new TranslateWithGoogleAdvancedApi(
-			translation_text,
-			app_local_code
-		).fetch()
-
-		const text_id = new TextId(text.id)
-		const added_text = await new AddTranslationApi(
-			text_id,
-			speech_language_code,
-			translated_text
-		).fetch()
-
-		return added_text
-	}
 
 	async function show_log_translation(chat_log_item: ChatLogItem): Promise<void> {
 		// TODO: English-US から GB への翻訳を考慮する
@@ -119,8 +91,6 @@
 			source_speech_language_code,
 			target_speech_language_code
 		).fetch()
-
-		console.log(translated_texts)
 
 		chat_log_item.translated = translated_texts[0]?.text ?? ''
 	}
@@ -164,6 +134,10 @@
 		await show_translation()
 	})
 
+	socket.on('members', (members: ChatMember[]) => {
+		chat_members = members
+	})
+
 	function show_message_notification(translated_chat_log: {
 		data: ChatLog
 		translated: string
@@ -177,8 +151,6 @@
 			body: `${translated_chat_log.data.name}\n${message}`,
 			icon: '/icon-192.png',
 		})
-
-		console.log('Notification', translated_chat_log.data.name, message)
 	}
 
 	socket.on('message', async (received_chat_log: ChatLog) => {
@@ -230,7 +202,7 @@
 		if (!name) return
 
 		event.preventDefault()
-		message_div_element.focus()
+		join()
 	}
 
 	function on_keydown_message(event: KeyboardEvent): void {
@@ -263,7 +235,7 @@
 	}
 
 	function init_focus(): void {
-		name ? message_div_element.focus() : name_element.focus()
+		name_element.focus()
 	}
 
 	async function on_change_locale_select(): Promise<void> {
@@ -361,8 +333,6 @@
 	async function enable_notification(): Promise<void> {
 		const notification_permission = await Notification.requestPermission()
 
-		console.log(notification_permission)
-
 		if (notification_permission !== 'granted') {
 			alert($_('please_allow_notification'))
 			return
@@ -378,18 +348,55 @@
 	function add_checking_background_events(): void {
 		document.addEventListener('visibilitychange', () => {
 			is_visible = document.visibilityState === 'visible'
-			console.log('visibilitychange', is_visible)
 		})
 
 		window.addEventListener('focus', () => {
 			is_visible = true
-			console.log('focus', is_visible)
 		})
 
 		window.addEventListener('blur', () => {
 			is_visible = false
-			console.log('blur', is_visible)
 		})
+	}
+
+	type JoinData = {
+		room_id: string
+		name: string
+		locale_code: string
+	}
+
+	function join(): void {
+		if (!name) {
+			name_element.focus()
+			return
+		}
+
+		// TODO: RoomId を指定する
+		const join_data: JoinData = {
+			room_id: 'room01',
+			name: name,
+			locale_code: locale_select_element.value,
+		}
+
+		socket.emit('join', join_data)
+
+		joined = true
+
+		setTimeout(() => {
+			message_div_element.focus()
+		}, 50)
+	}
+
+	function leave(): void {
+		// TODO: leave
+		socket.emit('leave')
+
+		chat_log_items = []
+		joined = false
+
+		setTimeout(() => {
+			name_element.focus()
+		}, 50)
 	}
 
 	onMount(async () => {
@@ -414,24 +421,8 @@
 					class="glass-button text-center"
 					bind:this={locale_select_element}
 					on:change={on_change_locale_select}
+					disabled={joined}
 				/>
-				{#if is_notification_enabled}
-					<button class="glass-button" on:click={disable_notification}>
-						<div class="flex flex-row items-center gap-1.5">
-							<div class="w-[24px] h-[24px]">
-								<NotificationsActiveIcon />
-							</div>
-						</div>
-					</button>
-				{:else}
-					<button class="glass-button" on:click={enable_notification}>
-						<div class="flex flex-row items-center gap-1.5">
-							<div class="w-[24px] h-[24px]">
-								<NotificationsIcon />
-							</div>
-						</div>
-					</button>
-				{/if}
 
 				<input
 					class="grow"
@@ -441,35 +432,90 @@
 					placeholder={$_('name')}
 					on:keydown={on_keydown_name}
 					on:change={on_change_name}
+					disabled={joined}
 				/>
+
+				{#if joined}
+					<button class="glass-button" on:click={leave}>
+						<div class="flex flex-row items-center gap-1.5">
+							<div class="w-[24px] h-[24px]">
+								<SignOutIcon />
+							</div>
+						</div>
+					</button>
+
+					{#if is_notification_enabled}
+						<button class="glass-button" on:click={disable_notification}>
+							<div class="flex flex-row items-center gap-1.5">
+								<div class="w-[24px] h-[24px]">
+									<NotificationsActiveIcon />
+								</div>
+							</div>
+						</button>
+					{:else}
+						<button class="glass-button" on:click={enable_notification}>
+							<div class="flex flex-row items-center gap-1.5">
+								<div class="w-[24px] h-[24px]">
+									<NotificationsIcon />
+								</div>
+							</div>
+						</button>
+					{/if}
+				{:else}
+					<button class="glass-button" on:click={join}>
+						<div class="flex flex-row items-center gap-1.5">
+							<div class="w-[24px] h-[24px]">
+								<SignInIcon />
+							</div>
+						</div>
+					</button>
+				{/if}
 			</div>
 
-			<div class="input flex flex-col gap-1 p-1">
-				<div
-					contenteditable="true"
-					class="outline-none px-3 py-1"
-					placeholder={$_('enter_new_text')}
-					bind:this={message_div_element}
-					bind:textContent={message}
-					on:keydown={on_keydown_message}
-				/>
-				<div class="flex flex-row">
-					<div class="flex-1">
-						{#if listening}
-							<IconButton on_click_handler={stop_listening}>
-								<StopIcon />
-							</IconButton>
-						{:else}
-							<IconButton on_click_handler={start_listening}>
-								<VoiceIcon />
-							</IconButton>
-						{/if}
-					</div>
-					<div>
-						<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+			{#if joined}
+				<div class="input flex flex-col gap-1 p-1">
+					<div
+						contenteditable="true"
+						class="outline-none px-3 py-1"
+						placeholder={$_('enter_new_text')}
+						bind:this={message_div_element}
+						bind:textContent={message}
+						on:keydown={on_keydown_message}
+					/>
+					<div class="flex flex-row">
+						<div class="flex-1">
+							{#if listening}
+								<IconButton on_click_handler={stop_listening}>
+									<StopIcon />
+								</IconButton>
+							{:else}
+								<IconButton on_click_handler={start_listening}>
+									<VoiceIcon />
+								</IconButton>
+							{/if}
+						</div>
+						<div>
+							<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+						</div>
 					</div>
 				</div>
-			</div>
+
+				<div class="flex flex-row flex-wrap gap-3">
+					<div class="flex flex-row flex-wrap gap-0.5">
+						<span class="w-[24px] h-[24px]">
+							<PersonIcon />
+						</span>
+						{chat_members.length}
+					</div>
+					{#each chat_members as chat_member}
+						{@const locale_code = LocaleCode.create(chat_member.locale_code)}
+						<div class="flex flex-row flex-wrap gap-1">
+							<span>{@html locale_code.html_code}</span>
+							<span>{chat_member.name}</span>
+						</div>
+					{/each}
+				</div>
+			{/if}
 
 			<!-- <div class="flex relative">
 				<input

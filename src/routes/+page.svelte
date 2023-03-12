@@ -119,7 +119,6 @@
 		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
 
 		if (text.text === selected_text?.text) {
-			console.log('same text')
 			audio_element.currentTime = 0
 			audio_element.play()
 		} else {

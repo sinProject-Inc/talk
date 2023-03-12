@@ -1,5 +1,5 @@
-import type { SpeechLanguageCode } from '$lib/speech/speech_language_code'
-import type { SpeechText } from '$lib/speech/speech_text'
+import type { SpeechLanguageCode } from '../speech/speech_language_code'
+import type { SpeechText } from '../speech/speech_text'
 import type { Text } from '@prisma/client'
 import type { TextId } from './text_id'
 import type { TextLimit } from './text_limit'

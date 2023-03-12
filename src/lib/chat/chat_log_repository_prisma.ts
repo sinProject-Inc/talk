@@ -12,6 +12,8 @@ export class ChatLogRepositoryPrisma implements ChatLogRepository {
 	public async save(chat_entity: ChatEntity): Promise<ChatLog> {
 		return await this._prisma_client.chatLog.create({
 			data: {
+				room_id: chat_entity.room_id.value,
+				locale_code: chat_entity.locale_code.code,
 				name: chat_entity.name.value,
 				message: chat_entity.message.value,
 			},

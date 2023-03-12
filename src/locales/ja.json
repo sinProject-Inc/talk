@@ -29,5 +29,7 @@
   "text_limit": "翻訳できるのは 250文字までです。",
   "copied": "コピーしました",
   "name": "名前",
-  "please_allow_notification": "未読通知を行う場合は、ブラウザで通知を許可してください。"
+  "please_allow_notification": "未読通知を行う場合は、ブラウザで通知を許可してください。",
+  "join": "参加",
+  "leave": "退出"
 }

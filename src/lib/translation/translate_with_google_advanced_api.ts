@@ -10,11 +10,13 @@ export class TranslateWithGoogleAdvancedApi {
 		translation_text: TranslationText,
 		target_app_locale_code: AppLocaleCode,
 		private readonly _fetch: Fetch = fetch,
+		private readonly _base_url: string = ''
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('translate-with-google-advanced')
 			.connect_with_encoding(translation_text.text)
 			.connect(target_app_locale_code.code)
+			.add_base_path(this._base_url)
 	}
 
 	public async fetch(): Promise<TranslationText> {

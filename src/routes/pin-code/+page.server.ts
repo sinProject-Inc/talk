@@ -55,7 +55,6 @@ export const actions: Actions = {
 		}
 	},
 	submit: async ({ cookies, request }) => {
-		// console.log('submit')
 		const data = await request.formData()
 		const email_address = data.get('email')?.toString() ?? ''
 
