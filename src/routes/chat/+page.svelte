@@ -16,18 +16,11 @@
 	import { SpeechDivElement } from '$lib/speech/speech_div_element'
 	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import { SpeechText } from '$lib/speech/speech_text'
-	import { SubmissionText } from '$lib/speech/submission_text'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
-	import { AddTextApi } from '$lib/text/add_text_api'
-	import { TextId } from '$lib/text/text_id'
-	import { AddTranslationApi } from '$lib/translation/add_translation_api'
-	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
-	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
-	import { TranslationText } from '$lib/translation/translation_text'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
-	import type { ChatLog, Locale, Text } from '@prisma/client'
+	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
@@ -53,6 +46,7 @@
 	export let data: PageData
 
 	let locale_select_element: HTMLSelectElement
+	let chat_log_element: HTMLDivElement
 
 	let name_element: HTMLInputElement
 	let message_div_element: HTMLDivElement
@@ -124,14 +118,17 @@
 	})
 
 	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
-		chat_log_items = received_chat_logs.map((chat_log) => {
+		const received_chat_log_items = received_chat_logs.map((chat_log) => {
 			return {
 				data: chat_log,
 				translated: '',
 			}
 		})
 
+		chat_log_items = received_chat_log_items.slice().reverse()
+
 		await show_translation()
+		scroll_to_bottom()
 	})
 
 	socket.on('members', (members: ChatMember[]) => {
@@ -153,21 +150,35 @@
 		})
 	}
 
+	function scroll_to_bottom(): void {
+		setTimeout(() => {
+			chat_log_element.scrollTop = chat_log_element.scrollHeight
+		}, 0)
+	}
+
 	socket.on('message', async (received_chat_log: ChatLog) => {
 		const translated_chat_log = {
 			data: received_chat_log,
 			translated: '',
 		}
 
-		chat_log_items = [translated_chat_log, ...chat_log_items]
+		const is_at_bottom = chat_log_element.scrollHeight - chat_log_element.scrollTop === chat_log_element.clientHeight
+
+		chat_log_items = [...chat_log_items, translated_chat_log]
+
+		console.log(is_at_bottom)
+
+		if (is_at_bottom) {
+			scroll_to_bottom()
+		}
 
 		await show_translation()
 		show_message_notification(translated_chat_log)
 
+		// TODO: 厳密同一人物チェックが必要
 		if (received_chat_log.name !== name) return
 		if (received_chat_log.message !== message) return
 
-		// TODO: 厳密同一人物チェックが必要
 		message = ''
 	})
 
@@ -415,64 +426,48 @@
 	<Navbar />
 
 	<div class="flex-1 flex flex-col gap-3 p-3 center-container w-screen overflow-y-scroll">
-		<div class="p-3 glass-panel flex flex-col gap-3">
-			<div class="flex gap-3 items-center flex-wrap">
-				<select
-					class="glass-button text-center"
-					bind:this={locale_select_element}
-					on:change={on_change_locale_select}
-					disabled={joined}
-				/>
-
-				<input
-					class="grow"
-					type="text"
-					bind:this={name_element}
-					bind:value={name}
-					placeholder={$_('name')}
-					on:keydown={on_keydown_name}
-					on:change={on_change_name}
-					disabled={joined}
-				/>
-
-				{#if joined}
-					<button class="glass-button" on:click={leave}>
-						<div class="flex flex-row items-center gap-1.5">
-							<div class="w-[24px] h-[24px]">
-								<SignOutIcon />
-							</div>
-						</div>
-					</button>
-
-					{#if is_notification_enabled}
-						<button class="glass-button" on:click={disable_notification}>
-							<div class="flex flex-row items-center gap-1.5">
-								<div class="w-[24px] h-[24px]">
-									<NotificationsActiveIcon />
-								</div>
-							</div>
-						</button>
+		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3" bind:this={chat_log_element}>
+			{#each chat_log_items as chat_log_item}
+				<div>
+					<p>
+						<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
+						<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
+					</p>
+					{#if chat_log_item.translated}
+						<p>
+							<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
+						</p>
+						<p class="text-white/50">
+							<span>{chat_log_item.data.locale_code}:</span>
+							<span data-testid="chat_message">{chat_log_item.data.message}</span>
+						</p>
 					{:else}
-						<button class="glass-button" on:click={enable_notification}>
-							<div class="flex flex-row items-center gap-1.5">
-								<div class="w-[24px] h-[24px]">
-									<NotificationsIcon />
-								</div>
-							</div>
-						</button>
+						<p>
+							<span data-testid="chat_message">{chat_log_item.data.message}</span>
+						</p>
 					{/if}
-				{:else}
-					<button class="glass-button" on:click={join}>
-						<div class="flex flex-row items-center gap-1.5">
-							<div class="w-[24px] h-[24px]">
-								<SignInIcon />
-							</div>
-						</div>
-					</button>
-				{/if}
-			</div>
+				</div>
+			{/each}
+		</div>
 
+		<div class="p-3 glass-panel flex flex-col gap-3">
 			{#if joined}
+				<div class="flex flex-row flex-wrap gap-3">
+					<div class="flex flex-row flex-wrap gap-0.5">
+						<span class="w-[24px] h-[24px]">
+							<PersonIcon />
+						</span>
+						{chat_members.length}
+					</div>
+					{#each chat_members as chat_member}
+						{@const locale_code = LocaleCode.create(chat_member.locale_code)}
+						<div class="flex flex-row flex-wrap gap-1">
+							<span>{@html locale_code.html_code}</span>
+							<span>{chat_member.name}</span>
+						</div>
+					{/each}
+				</div>
+
 				<div class="input flex flex-col gap-1 p-1">
 					<div
 						contenteditable="true"
@@ -499,61 +494,63 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="flex flex-row flex-wrap gap-3">
-					<div class="flex flex-row flex-wrap gap-0.5">
-						<span class="w-[24px] h-[24px]">
-							<PersonIcon />
-						</span>
-						{chat_members.length}
-					</div>
-					{#each chat_members as chat_member}
-						{@const locale_code = LocaleCode.create(chat_member.locale_code)}
-						<div class="flex flex-row flex-wrap gap-1">
-							<span>{@html locale_code.html_code}</span>
-							<span>{chat_member.name}</span>
-						</div>
-					{/each}
-				</div>
 			{/if}
 
-			<!-- <div class="flex relative">
-				<input
-					type="text"
-					class="flex-1 pr-11"
-					placeholder={$_('enter_new_text')}
-					bind:this={message_element}
-					bind:value={message}
-					on:keydown={on_keydown_message}
+			<div class="flex gap-3 items-center flex-wrap">
+				<select
+					class="glass-button text-center"
+					bind:this={locale_select_element}
+					on:change={on_change_locale_select}
+					disabled={joined}
 				/>
-				<div class="absolute right-0 top-0 bottom-0 flex items-center">
-					<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
-				</div>
-			</div> -->
-		</div>
 
-		<div class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3">
-			{#each chat_log_items as chat_log_item}
-				<div>
-					<p>
-						<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
-						<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
-					</p>
-					{#if chat_log_item.translated}
-						<p>
-							<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
-						</p>
-						<p class="text-white/50">
-							<span>{chat_log_item.data.locale_code}:</span>
-							<span data-testid="chat_message">{chat_log_item.data.message}</span>
-						</p>
+				<input
+					class="grow"
+					type="text"
+					bind:this={name_element}
+					bind:value={name}
+					placeholder={$_('name')}
+					on:keydown={on_keydown_name}
+					on:change={on_change_name}
+					disabled={joined}
+				/>
+
+				{#if joined}
+					{#if is_notification_enabled}
+						<button class="glass-button" on:click={disable_notification}>
+							<div class="flex flex-row items-center gap-1.5">
+								<div class="w-[24px] h-[24px]">
+									<NotificationsActiveIcon />
+								</div>
+							</div>
+						</button>
 					{:else}
-						<p>
-							<span data-testid="chat_message">{chat_log_item.data.message}</span>
-						</p>
+						<button class="glass-button" on:click={enable_notification}>
+							<div class="flex flex-row items-center gap-1.5">
+								<div class="w-[24px] h-[24px]">
+									<NotificationsIcon />
+								</div>
+							</div>
+						</button>
 					{/if}
-				</div>
-			{/each}
+
+					<button class="glass-button" on:click={leave}>
+						<div class="flex flex-row items-center gap-1.5">
+							<div class="w-[24px] h-[24px]">
+								<SignOutIcon />
+							</div>
+						</div>
+					</button>
+				{:else}
+					<button class="glass-button" on:click={join}>
+						<div class="flex flex-row items-center gap-1.5">
+							<div class="w-[24px] h-[24px]">
+								<SignInIcon />
+							</div>
+						</div>
+					</button>
+				{/if}
+			</div>
 		</div>
 
 		<div class="flex justify-center text-white/75 text-sm">
