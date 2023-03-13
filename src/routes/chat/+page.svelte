@@ -143,7 +143,7 @@
 		// console.log('show_message_notification')
 		if (!is_notification_enabled) return
 		// console.log('is notification enabled')
-		// if (is_visible) return
+		if (is_visible) return
 		// console.log('is not visible')
 
 		const message = translated_chat_log.translated || translated_chat_log.data.message
