@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { version } from '$app/environment'
+	import { browser, version } from '$app/environment'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
 	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
@@ -26,6 +26,7 @@
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	import { dev } from '$app/environment'
 
 	type MessageSet = {
 		locale_code: string
@@ -143,15 +144,24 @@
 		// console.log('show_message_notification')
 		if (!is_notification_enabled) return
 		// console.log('is notification enabled')
-		// if (is_visible) return
+		if (is_visible) return
 		// console.log('is not visible')
 
-		const message = translated_chat_log.translated || translated_chat_log.data.message
+		const notification_message = translated_chat_log.translated || translated_chat_log.data.message
 
-		new Notification('sinProject Talk - Chat', {
-			body: `${translated_chat_log.data.name}\n${message}`,
-			icon: '/icon-192.png',
+		navigator.serviceWorker.ready.then((registration: ServiceWorkerRegistration) => {
+			console.log('notification test 2')
+			registration.showNotification('sinProject Talk - Chat', {
+				body: `${translated_chat_log.data.name}\n${notification_message}`,
+				icon: '/icon-192.png',
+			})
 		})
+
+		// NOTE: Android では使えない
+		// new Notification('sinProject Talk - Chat', {
+		// 	body: `${translated_chat_log.data.name}\n${notification_message}`,
+		// 	icon: '/icon-192.png',
+		// })
 	}
 
 	function scroll_to_bottom(): void {
@@ -171,8 +181,6 @@
 			chat_log_div_element.clientHeight
 
 		chat_log_items = [...chat_log_items, translated_chat_log]
-
-		console.log(is_at_bottom)
 
 		await show_translation()
 		show_message_notification(translated_chat_log)
@@ -416,11 +424,20 @@
 		}, 50)
 	}
 
+	// function register_service_worker(): void {
+	// 	if (!browser) return
+		
+	// 	navigator.serviceWorker.register('/service-worker.js', {
+	// 		type: dev ? 'module' : 'classic',
+	// 	})
+	// }
+
 	onMount(async () => {
 		add_checking_background_events()
 		init_name()
 		await init_locale()
 		init_focus()
+		// register_service_worker()
 	})
 </script>
 
