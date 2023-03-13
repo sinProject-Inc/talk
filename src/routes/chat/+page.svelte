@@ -143,7 +143,7 @@
 		// console.log('show_message_notification')
 		if (!is_notification_enabled) return
 		// console.log('is notification enabled')
-		if (is_visible) return
+		// if (is_visible) return
 		// console.log('is not visible')
 
 		const message = translated_chat_log.translated || translated_chat_log.data.message
@@ -157,7 +157,7 @@
 	function scroll_to_bottom(): void {
 		setTimeout(() => {
 			chat_log_div_element.scrollTop = chat_log_div_element.scrollHeight
-		}, 0)
+		}, 10)
 	}
 
 	socket.on('message', async (received_chat_log: ChatLog) => {
@@ -167,7 +167,8 @@
 		}
 
 		const is_at_bottom =
-			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop === chat_log_div_element.clientHeight
+			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop ===
+			chat_log_div_element.clientHeight
 
 		chat_log_items = [...chat_log_items, translated_chat_log]
 
