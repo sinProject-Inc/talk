@@ -20,6 +20,7 @@
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { Web } from '$lib/view/web'
 	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
@@ -46,7 +47,7 @@
 	export let data: PageData
 
 	let locale_select_element: HTMLSelectElement
-	let chat_log_element: HTMLDivElement
+	let chat_log_div_element: HTMLDivElement
 
 	let name_element: HTMLInputElement
 	let message_div_element: HTMLDivElement
@@ -139,8 +140,11 @@
 		data: ChatLog
 		translated: string
 	}): void {
+		// console.log('show_message_notification')
 		if (!is_notification_enabled) return
+		// console.log('is notification enabled')
 		if (is_visible) return
+		// console.log('is not visible')
 
 		const message = translated_chat_log.translated || translated_chat_log.data.message
 
@@ -152,7 +156,7 @@
 
 	function scroll_to_bottom(): void {
 		setTimeout(() => {
-			chat_log_element.scrollTop = chat_log_element.scrollHeight
+			chat_log_div_element.scrollTop = chat_log_div_element.scrollHeight
 		}, 0)
 	}
 
@@ -163,18 +167,18 @@
 		}
 
 		const is_at_bottom =
-			chat_log_element.scrollHeight - chat_log_element.scrollTop === chat_log_element.clientHeight
+			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop === chat_log_div_element.clientHeight
 
 		chat_log_items = [...chat_log_items, translated_chat_log]
 
 		console.log(is_at_bottom)
 
-		if (is_at_bottom) {
-			scroll_to_bottom()
-		}
-
 		await show_translation()
 		show_message_notification(translated_chat_log)
+
+		if (is_at_bottom || Web.is_android()) {
+			scroll_to_bottom()
+		}
 
 		// TODO: 厳密同一人物チェックが必要
 		if (received_chat_log.name !== name) return
@@ -430,7 +434,7 @@
 		{#if joined}
 			<div
 				class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3"
-				bind:this={chat_log_element}
+				bind:this={chat_log_div_element}
 			>
 				{#each chat_log_items as chat_log_item}
 					<div>
