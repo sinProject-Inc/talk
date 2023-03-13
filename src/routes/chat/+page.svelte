@@ -449,7 +449,7 @@
 							</p>
 							<p class="text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<span data-testid="chat_message">{chat_log_item.data.message}</span>
+								<span data-testid="chat_message" lang={new AppLocaleCode(chat_log_item.data.locale_code).code}>{chat_log_item.data.message}</span>
 							</p>
 						{:else}
 							<p>
