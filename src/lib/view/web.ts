@@ -1,7 +1,7 @@
 import type { Locale } from '@prisma/client'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 
-export class Html {
+export class Web {
 	public static remove_children(html_element: HTMLElement): void {
 		while (html_element.firstChild) {
 			html_element.removeChild(html_element.firstChild)
@@ -29,5 +29,9 @@ export class Html {
 
 				html_select_element.appendChild(option)
 			})
+	}
+
+	public static is_android(): boolean {
+		return window.navigator.userAgent.toLowerCase().includes('android')
 	}
 }
