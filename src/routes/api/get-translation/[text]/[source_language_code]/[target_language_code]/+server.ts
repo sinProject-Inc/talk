@@ -5,7 +5,7 @@ import { GetTextService } from '$lib/text/get_text_service'
 import { GetTranslationService } from '$lib/translation/get_translation_service'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url, params, fetch }) => {
+export const GET: RequestHandler = async ({ url, params }) => {
 	console.info(url.href)
 
 	try {
@@ -23,8 +23,7 @@ export const GET: RequestHandler = async ({ url, params, fetch }) => {
 		const get_translation_service = new GetTranslationService(
 			Repository.translation,
 			text,
-			target_speech_language_code,
-			fetch
+			target_speech_language_code
 		)
 		const translations = await get_translation_service.execute()
 

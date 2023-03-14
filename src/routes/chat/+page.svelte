@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { browser, version } from '$app/environment'
+	import { version } from '$app/environment'
+	import type { ChatMember, MessageSet } from '$lib/chat/chat'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
 	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
@@ -26,23 +27,10 @@
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
-	import { dev } from '$app/environment'
-
-	type MessageSet = {
-		locale_code: string
-		name: string
-		message: string
-	}
 
 	type ChatLogItem = {
 		data: ChatLog
 		translated: string
-	}
-
-	type ChatMember = {
-		room_id: string
-		name: string
-		locale_code: string
 	}
 
 	export let data: PageData
