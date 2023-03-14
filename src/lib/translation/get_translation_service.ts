@@ -1,11 +1,8 @@
-import type { Fetch } from '../api/api'
-import { AppLocaleCode } from '../language/app_locale_code'
+import type { Text } from '@prisma/client'
 import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import { SpeechText } from '../speech/speech_text'
 import { TextId } from '../text/text_id'
-import type { Text } from '@prisma/client'
-import { TranslateWithGoogleAdvancedApi } from './translate_with_google_advanced_api'
-import { TranslationText } from './translation_text'
+import { TranslateWithGoogleAdvanced } from './translate_with_google_advanced'
 import type { TranslationRepository } from './translation_repository'
 
 export class GetTranslationService {
@@ -13,8 +10,6 @@ export class GetTranslationService {
 		private readonly _translation_repository: TranslationRepository,
 		private readonly _text: Text,
 		private readonly _target_speech_language_code: SpeechLanguageCode,
-		private readonly _fetch: Fetch = fetch,
-		private readonly _base_url: string = ''
 	) {}
 
 	public async execute(): Promise<Text[]> {
@@ -30,19 +25,12 @@ export class GetTranslationService {
 			return found_translations
 		}
 
-		const translation_text = new TranslationText(this._text.text)
-		const target_app_locale_code = AppLocaleCode.from_speech_language_code(
-			this._target_speech_language_code
+		const translate_with_google_advanced = new TranslateWithGoogleAdvanced(
+			this._text.text,
+			this._target_speech_language_code.code
 		)
-
-		const translated_text = await new TranslateWithGoogleAdvancedApi(
-			translation_text,
-			target_app_locale_code,
-			this._fetch,
-			this._base_url
-		).fetch()
-
-		const translated_speech_text = new SpeechText(translated_text.text)
+		const translated_text = await translate_with_google_advanced.execute()
+		const translated_speech_text = new SpeechText(translated_text)
 
 		try {
 			const saved_translation = await this._translation_repository.save(

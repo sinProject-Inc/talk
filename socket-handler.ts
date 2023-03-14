@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
-
-import { PrismaClient } from '@prisma/client'
-import { Server } from 'socket.io'
+import type { ChatMember, MessageSet } from '$lib/chat/chat'
+import { PrismaClient, type ChatLog, type Text } from '@prisma/client'
+import type http from 'http'
+import { Server, Socket } from 'socket.io'
 import { ChatEntity } from './src/lib/chat/chat_entity'
 import { ChatLogRepositoryPrisma } from './src/lib/chat/chat_log_repository_prisma'
 import { LocaleCode } from './src/lib/language/locale_code'
@@ -13,27 +12,16 @@ import { TextRepositoryPrisma } from './src/lib/text/text_repository_prisma'
 import { GetTranslationService } from './src/lib/translation/get_translation_service'
 import { TranslationRepositoryPrisma } from './src/lib/translation/translation_repository_prisma'
 
-const base_url = 'http://localhost:5173'
-
 const prisma_client = new PrismaClient()
 
-/**
- * @param {ChatEntity} chat_entity
- * @returns {Promise<import('@prisma/client').ChatLog>}
- */
-async function save_chat_log(chat_entity) {
+async function save_chat_log(chat_entity: ChatEntity): Promise<ChatLog> {
 	const chat_log_repository = new ChatLogRepositoryPrisma(prisma_client)
 	const chat_log = await chat_log_repository.save(chat_entity)
 
 	return chat_log
 }
 
-/**
- *
- * @param {import('@prisma/client').ChatLog} chat_log
- * @returns {Promise<import('@prisma/client').Text>}
- */
-async function get_text(chat_log) {
+async function get_text(chat_log: ChatLog): Promise<Text> {
 	const text_repository = new TextRepositoryPrisma(prisma_client)
 	const speech_language_code = SpeechLanguageCode.create_from_locale_code(
 		LocaleCode.create(chat_log.locale_code)
@@ -45,14 +33,7 @@ async function get_text(chat_log) {
 	return text
 }
 
-/**
- *
- * @param {*} io
- * @param {string} room_id
- * @param {string} locale_code
- * @returns {string[]}
- */
-function get_translation_locales(io, room_id, locale_code) {
+function get_translation_locales(io: Server, room_id: string, locale_code: string): string[] {
 	const room_members = get_room_members(io, room_id)
 	const room_local_codes = Array.from(new Set(room_members.map((member) => member.locale_code)))
 	const translation_locales = room_local_codes.filter(
@@ -62,13 +43,7 @@ function get_translation_locales(io, room_id, locale_code) {
 	return translation_locales
 }
 
-/**
- *
- * @param {import('@prisma/client').Text} text
- * @param {string} translation_locale
- * @returns {Promise<void>}
- */
-async function get_translation(text, translation_locale) {
+async function get_translation(text: Text, translation_locale: string): Promise<void> {
 	const translation_repository = new TranslationRepositoryPrisma(prisma_client)
 	const speech_language_code = SpeechLanguageCode.create_from_locale_code(
 		LocaleCode.create(translation_locale)
@@ -77,23 +52,14 @@ async function get_translation(text, translation_locale) {
 	const get_translation_service = new GetTranslationService(
 		translation_repository,
 		text,
-		speech_language_code,
-		fetch,
-		base_url
+		speech_language_code
 	)
 
 	await get_translation_service.execute()
 }
 
-/**
- *
- * @param {import('@prisma/client').Text} text
- * @param {string[]} translation_locales
- * @returns {Promise<void>}
- */
-async function get_translations(text, translation_locales) {
-	/** @type {Promise<void>[]} */
-	const promises = []
+async function get_translations(text: Text, translation_locales: string[]): Promise<void> {
+	const promises: Promise<void>[] = []
 
 	translation_locales.forEach(async (locale_code) => {
 		promises.push(get_translation(text, locale_code))
@@ -102,28 +68,17 @@ async function get_translations(text, translation_locales) {
 	await Promise.all(promises)
 }
 
-/**
- *
- * @param {ChatEntity} chat_entity
- * @param {*} io
- * @param {string} room_id
- * @returns {Promise<import('@prisma/client').ChatLog>}
- */
-async function save(chat_entity, io, room_id) {
+async function save(chat_entity: ChatEntity, io: Server, room_id: string): Promise<ChatLog> {
 	const chat_log = await save_chat_log(chat_entity)
 	const text = await get_text(chat_log)
 	const translation_locales = get_translation_locales(io, room_id, chat_log.locale_code)
-	const translations = await get_translations(text, translation_locales)
+	
+	await get_translations(text, translation_locales)
 
 	return chat_log
 }
 
-/**
- *
- * @param {string} room_id
- * @returns {Promise<import('@prisma/client').ChatLog[]>}
- */
-async function find_many(room_id) {
+async function find_many(room_id: string): Promise<ChatLog[]> {
 	return await prisma_client.chatLog.findMany({
 		where: {
 			room_id,
@@ -135,44 +90,26 @@ async function find_many(room_id) {
 	})
 }
 
-/**
- * @typedef {Object} MessageData
- * @property {string} locale_code
- * @property {string} name
- * @property {string} message
- */
+const chat_member_map = new Map<string, ChatMember>()
 
-/**
- * @type {Map<string, ChatMember>}
- */
-const chat_member_map = new Map()
-
-/**
- *
- * @param {*} socket
- * @returns {string}
- */
-function get_room_id(socket) {
+function get_room_id(socket: Socket): string {
 	return chat_member_map.get(socket.id)?.room_id ?? ''
 }
 
-/**
- *
- * @param {*} io
- * @param {*} socket
- * @param {MessageData} received_message_data
- * @returns {Promise<void>}
- */
-async function on_message(io, socket, received_message_data) {
-	console.log(received_message_data)
+async function on_message(
+	io: Server,
+	socket: Socket,
+	received_message_set: MessageSet
+): Promise<void> {
+	console.log(received_message_set)
 
 	try {
 		const room_id = get_room_id(socket)
 		const chat_entity = new ChatEntity(
 			room_id,
-			received_message_data.locale_code,
-			received_message_data.name,
-			received_message_data.message
+			received_message_set.locale_code,
+			received_message_set.name,
+			received_message_set.message
 		)
 
 		const chat_log = await save(chat_entity, io, room_id)
@@ -186,19 +123,7 @@ async function on_message(io, socket, received_message_data) {
 	}
 }
 
-/**
- * @typedef {Object} ChatMember
- * @property {string} room_id
- * @property {string} name
- * @property {string} locale_code
- */
-
-/**
- *
- * @param {*} socket
- * @returns {Promise<void>}
- */
-async function send_logs(socket) {
+async function send_logs(socket: Socket): Promise<void> {
 	const room_id = get_room_id(socket)
 
 	const chat_logs = await find_many(room_id)
@@ -206,13 +131,7 @@ async function send_logs(socket) {
 	socket.emit('logs', chat_logs)
 }
 
-/**
- *
- * @param {*} io
- * @param {string} room_id
- * @returns {ChatMember[]}
- */
-function get_room_members(io, room_id) {
+function get_room_members(io: Server, room_id: string): ChatMember[] {
 	const clients = io.sockets.adapter.rooms.get(room_id)
 
 	if (!clients) return []
@@ -224,8 +143,7 @@ function get_room_members(io, room_id) {
 		.filter((member) => member != undefined)
 
 	// room_members から undefined を取り除く
-	/** @type {ChatMember[]} */
-	const chat_members = []
+	const chat_members: ChatMember[] = []
 
 	room_members.forEach((member) => {
 		if (member) chat_members.push(member)
@@ -234,26 +152,13 @@ function get_room_members(io, room_id) {
 	return chat_members
 }
 
-/**
- *
- * @param {*} io
- * @param {string} room_id
- * @returns {void}
- */
-function send_members(io, room_id) {
+function send_members(io: Server, room_id: string): void {
 	const room_members = get_room_members(io, room_id)
 
 	io.to(room_id).emit('members', room_members)
 }
 
-/**
- *
- * @param {*} io
- * @param {*} socket
- * @param {ChatMember} member_data
- * @returns {Promise<void>}
- */
-async function join(io, socket, member_data) {
+async function join(io: Server, socket: Socket, member_data: ChatMember): Promise<void> {
 	const room_id = member_data.room_id
 
 	if (!room_id) throw new Error('Room id is required')
@@ -264,21 +169,9 @@ async function join(io, socket, member_data) {
 	send_members(io, room_id)
 	console.info('join:', member_data)
 	await send_logs(socket)
-
-	// // TODO: メッセージ変更
-	// const chat_entity = new ChatEntity(room_id, 'en-US', 'SERVER', `${member_data.name} joined`)
-	// const chat_log = await save(chat_entity)
-
-	// io.to(member_data.room_id).emit('message', chat_log)
 }
 
-/**
- *
- * @param {*} io
- * @param {*} socket
- * @returns {Promise<void>}
- */
-async function leave(io, socket) {
+async function leave(io: Server, socket: Socket): Promise<void> {
 	const room_id = get_room_id(socket)
 	const member_data = chat_member_map.get(socket.id)
 
@@ -289,33 +182,16 @@ async function leave(io, socket) {
 	chat_member_map.delete(socket.id)
 	socket.leave(room_id)
 	send_members(io, room_id)
-
-	// const chat_entity = new ChatEntity(room_id, 'en-US', 'SERVER', `${member_data.name} leaved`)
-	// const chat_log = await save(chat_entity)
-
-	// io.to(room_id).emit('message', chat_log)
 }
 
-/**
- *
- * @param {*} io
- * @param {*} socket
- * @returns {Promise<void>}
- */
-async function on_connection(io, socket) {
+async function on_connection(io: Server, socket: Socket): Promise<void> {
 	socket.on('join', (member_data) => join(io, socket, member_data))
 	socket.on('message', async (received_data) => on_message(io, socket, received_data))
 	socket.on('leave', () => leave(io, socket))
 	socket.on('disconnect', () => leave(io, socket))
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-/**
- *
- * @param {any} server
- * @returns {void}
- */
-export default function inject_socket_io(server) {
+export default function inject_socket_io(server: http.Server): void {
 	const io = new Server(server)
 
 	io.on('connection', (socket) => on_connection(io, socket))
