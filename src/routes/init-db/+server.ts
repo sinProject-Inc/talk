@@ -3,45 +3,6 @@ import type { RequestHandler } from '@sveltejs/kit'
 
 const db = Repository.context
 
-async function add_roles(): Promise<void> {
-	await db.role.create({ data: { name: 'admin' } })
-	await db.role.create({ data: { name: 'user' } })
-}
-
-async function add_app_settings(): Promise<void> {
-	await db.appSetting.create({ data: { key: 'session_lifetime_sec', value: '600' } })
-	await db.appSetting.create({ data: { key: 'pin_code_lifetime_sec', value: '300' } })
-}
-
-async function add_language_english(): Promise<void> {
-	await db.locale.create({ data: { code: 'en-US', name: 'English (US)' } })
-	await db.locale.create({ data: { code: 'en-GB', name: 'English (GB)' } })
-	await db.language.create({ data: { code: 'en', name: 'English' } })
-
-	await db.text.create({ data: { language_id: 1, text: 'This is heavy!' } }) // ヘビーだ！
-	await db.text.create({ data: { language_id: 1, text: 'Nobody calls me Chicken.' } }) // 誰にも僕を「チキン」だとは言わせない。
-	await db.text.create({ data: { language_id: 1, text: 'GREAT SCOTT!' } }) // なんてこった！
-	await db.text.create({ data: { language_id: 1, text: 'All the best stuff is made in Japan.' } }) // 日本製の物はどれも最高だよ
-	await db.text.create({
-		data: {
-			language_id: 1,
-			text: 'If you put your mind to it, you can accomplish anything.',
-		},
-	}) // 何ごとも為せば成る。
-	await db.text.create({
-		data: { language_id: 1, text: "Roads? Where we're going we don't need roads." },
-	}) // 道だって？我々がいくところに道なんていらない。
-
-	await db.text.create({ data: { language_id: 1, text: 'May the Force be with you.' } }) // フォースと共にあらん事を
-	await db.text.create({ data: { language_id: 1, text: "I'll be back." } }) // また戻ってくる
-	await db.text.create({ data: { language_id: 1, text: "Don't think, just do." } }) // 考えるな、動け
-}
-
-async function add_language_japanese(): Promise<void> {
-	await db.locale.create({ data: { code: 'ja-JP', name: '日本語 (JP)' } })
-	await db.language.create({ data: { code: 'ja', name: '日本語' } })
-	await db.text.create({ data: { language_id: 2, text: 'こんにちは、世界！' } })
-}
 
 async function add_language_cantonese(): Promise<void> {
 	await db.locale.create({ data: { code: 'yue-HK', name: '廣東話 (HK)' } })
@@ -118,8 +79,6 @@ async function add_language_vietnamese(): Promise<void> {
 }
 
 async function add_languages(): Promise<void> {
-	await add_language_english()
-	await add_language_japanese()
 	await add_language_cantonese()
 	await add_language_korean()
 	await add_language_khmer()
@@ -129,8 +88,6 @@ async function add_languages(): Promise<void> {
 
 export const GET: RequestHandler = async () => {
 	try {
-		await add_roles()
-		await add_app_settings()
 		await add_languages()
 
 		return new Response('Success')
