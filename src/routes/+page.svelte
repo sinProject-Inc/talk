@@ -340,6 +340,7 @@
 					type="text"
 					class="flex-1"
 					placeholder={$_('enter_new_translation')}
+					lang={to_locale_code.code}
 					bind:value={add_translation_string}
 				/>
 				<IconButton on_click_handler={add_translation}>
