@@ -1,5 +1,5 @@
 // TODO: node env に変更する
-import { LocaleCode } from '$lib/locale/locale_code'
+import { LocaleCode } from '../locale/locale_code'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import * as dotenv from 'dotenv'
 import { TranslationText } from './translation_text'
