@@ -17,6 +17,7 @@
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
+	import { Direction } from '$lib/view/direction'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Web } from '$lib/view/web'
@@ -94,11 +95,11 @@
 	}
 
 	socket.on('connect', () => {
-		console.info('socket.io connected')
+		console.debug('[socket.io] connected.')
 	})
 
 	socket.on('disconnect', () => {
-		console.info('socket.io disconnected')
+		console.debug('[socket.io] disconnected.')
 	})
 
 	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
@@ -225,6 +226,7 @@
 		const locale_code = new LocaleCode(locale_select_element.value)
 
 		$locale = locale_code.code
+
 		await waitLocale($locale)
 	}
 
@@ -408,7 +410,7 @@
 
 	// function register_service_worker(): void {
 	// 	if (!browser) return
-		
+
 	// 	navigator.serviceWorker.register('/service-worker.js', {
 	// 		type: dev ? 'module' : 'classic',
 	// 	})
@@ -446,18 +448,20 @@
 			>
 				{#each chat_log_items as chat_log_item}
 					<div>
-						<p>
+						<div class="flex flex-row gap-1">
 							<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
 							<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
-						</p>
+						</div>
 						{#if chat_log_item.translated}
 							<p>
 								<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
 							</p>
-							<p class="text-white/50">
+							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<span data-testid="chat_message" lang={chat_log_item.data.locale_code}>{chat_log_item.data.message}</span>
-							</p>
+								<span data-testid="chat_message" lang={chat_log_item.data.locale_code} dir={new Direction(chat_log_item.data.locale_code).value}
+									>{chat_log_item.data.message}</span
+								>
+							</div>
 						{:else}
 							<p>
 								<span data-testid="chat_message">{chat_log_item.data.message}</span>

@@ -49,7 +49,7 @@
 	}
 
 	.center-container {
-		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-4;
+		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-3;
 	}
 
 	.title {

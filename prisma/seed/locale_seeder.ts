@@ -21,7 +21,7 @@ export class LocaleSeeder {
 		{ code: 'es-ES', language: 'Español', country: 'España', emoji: '🇪🇸' },
 
 		// NOTE: アラブ連盟 https://emojipedia.org/flag-saudi-arabia/
-		{ code: 'ar-XA', language: 'العربية', country: 'multi-region', emoji: '🇸🇦' },
+		{ code: 'ar-XA', language: 'العربية', country: 'متعدد المناطق', emoji: '🇸🇦' },
 		{ code: 'it-IT', language: 'Italiano', country: 'Italia', emoji: '🇮🇹' },
 		{ code: 'de-DE', language: 'Deutsch', country: 'Deutschland', emoji: '🇩🇪' },
 		{ code: 'fil-PH', language: 'Filipino', country: 'Pilipinas', emoji: '🇵🇭' },
