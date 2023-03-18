@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 
+// NOTE: EMOJI: https://lets-emoji.com/national-flag-emoji/
+
 type LocaleSeed = {
 	code: string
 	language: string
