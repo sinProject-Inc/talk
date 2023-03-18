@@ -6,7 +6,9 @@ export class LocaleRepositoryPrisma implements LocaleRepository {
 	public constructor(private readonly _prisma_client: PrismaClient) {}
 
 	public async find_many(): Promise<Locale[]> {
-		const locales = await this._prisma_client.locale.findMany()
+		const locales = await this._prisma_client.locale.findMany({
+			orderBy: { language: 'asc' },
+		})
 
 		return locales
 	}
