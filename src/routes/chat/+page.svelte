@@ -478,7 +478,7 @@
 						{chat_members.length}
 					</div>
 					{#each chat_members as chat_member}
-						{@const locale_code = new LocaleCode(chat_member.locale_code)})}
+						{@const locale_code = new LocaleCode(chat_member.locale_code)}
 						<div class="flex flex-row flex-wrap gap-1">
 							<span>{get_country_emoji(locale_code)}</span>
 							<span>{chat_member.name}</span>
