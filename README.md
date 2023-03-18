@@ -41,10 +41,12 @@ npm install
 2. Create a database named talk
 3. Create a .env file by copying .env.example at the top level of the project
 4. rewrite the env file.
-5. Push the initial schema to the database:
+5. Push the initial schema and deta to the database:
 
 ```bash
 npx prisma db push
+npx prisma generate
+npx prisma db seed
 ```
 
 6. Run locally
@@ -53,9 +55,6 @@ npx prisma db push
 # Start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
-7. Insert initial data only for the first time
-- visit http://localhost:5173/init-db 
 
 ## Feedback
 
