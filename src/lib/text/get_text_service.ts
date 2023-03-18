@@ -1,5 +1,5 @@
-import type { LocaleCode } from '$lib/locale/locale_code'
-import type { SpeechText } from '$lib/speech/speech_text'
+import type { LocaleCode } from '../locale/locale_code'
+import type { SpeechText } from '../speech/speech_text'
 import type { Text } from '@prisma/client'
 import type { TextRepository } from './text_repository'
 

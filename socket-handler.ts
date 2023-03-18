@@ -1,4 +1,4 @@
-import type { ChatMember, MessageSet } from '$lib/chat/chat'
+import type { ChatMember, MessageSet } from './src/lib/chat/chat'
 import { PrismaClient, type ChatLog, type Text } from '@prisma/client'
 import type http from 'http'
 import { Server, Socket } from 'socket.io'
