@@ -11,11 +11,9 @@
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
-	import { AppLocaleCode } from '$lib/language/app_locale_code'
-	import { AppLocalStorage } from '$lib/language/app_local_storage'
-	import { LocaleCode } from '$lib/language/locale_code'
+	import { AppLocalStorage } from '$lib/locale/app_local_storage'
+	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechDivElement } from '$lib/speech/speech_div_element'
-	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
@@ -63,17 +61,13 @@
 		// TODO: English-US から GB への翻訳を考慮する
 
 		const speech_text = new SpeechText(chat_log_item.data.message)
-		const source_speech_language_code = SpeechLanguageCode.create_from_locale_code(
-			LocaleCode.create(chat_log_item.data.locale_code)
-		)
-		const target_speech_language_code = SpeechLanguageCode.create_from_locale_code(
-			LocaleCode.create(locale_select_element.value)
-		)
+		const source_locale_code = new LocaleCode(chat_log_item.data.locale_code)
+		const target_locale_code = new LocaleCode(locale_select_element.value)
 
 		const translated_texts = await new GetTranslationApi(
 			speech_text,
-			source_speech_language_code,
-			target_speech_language_code
+			source_locale_code,
+			target_locale_code
 		).fetch()
 
 		chat_log_item.translated = translated_texts[0]?.text ?? ''
@@ -228,9 +222,9 @@
 	}
 
 	async function set_app_locale(): Promise<void> {
-		const app_locale_code = new AppLocaleCode(locale_select_element.value)
+		const locale_code = new LocaleCode(locale_select_element.value)
 
-		$locale = app_locale_code.code
+		$locale = locale_code.code
 		await waitLocale($locale)
 	}
 
@@ -241,7 +235,7 @@
 	async function init_locale(): Promise<void> {
 		locales = JSON.parse(data.locales) as Locale[]
 
-		new LocaleSelectElement(locale_select_element, locales).append_options()
+		new LocaleSelectElement(locale_select_element, locales).append_options_long()
 
 		locale_select_element.value = AppLocalStorage.instance.to_locale
 		await set_app_locale()
@@ -293,7 +287,7 @@
 	}
 
 	function start_listening(): void {
-		const locale_code = LocaleCode.create(locale_select_element.value)
+		const locale_code = new LocaleCode(locale_select_element.value)
 		const speech_text_element = new SpeechDivElement(message_div_element)
 
 		web_speech_recognition = new WebSpeechRecognition(
@@ -420,6 +414,14 @@
 	// 	})
 	// }
 
+	function get_country_emoji(locale_code: LocaleCode): string {
+		const locale = locales.find((locale) => locale.code === locale_code.code)
+
+		if (!locale) return ''
+
+		return locale.emoji
+	}
+
 	onMount(async () => {
 		add_checking_background_events()
 		init_name()
@@ -454,7 +456,7 @@
 							</p>
 							<p class="text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<span data-testid="chat_message" lang={new AppLocaleCode(chat_log_item.data.locale_code).code}>{chat_log_item.data.message}</span>
+								<span data-testid="chat_message" lang={chat_log_item.data.locale_code}>{chat_log_item.data.message}</span>
 							</p>
 						{:else}
 							<p>
@@ -476,9 +478,9 @@
 						{chat_members.length}
 					</div>
 					{#each chat_members as chat_member}
-						{@const locale_code = LocaleCode.create(chat_member.locale_code)}
+						{@const locale_code = new LocaleCode(chat_member.locale_code)}
 						<div class="flex flex-row flex-wrap gap-1">
-							<span>{@html locale_code.html_code}</span>
+							<span>{get_country_emoji(locale_code)}</span>
 							<span>{chat_member.name}</span>
 						</div>
 					{/each}

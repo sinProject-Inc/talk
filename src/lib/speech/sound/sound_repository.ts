@@ -1,4 +1,4 @@
-import type { LocaleCode } from "$lib/language/locale_code"
+import type { LocaleCode } from "$lib/locale/locale_code"
 import type { Sound } from "@prisma/client"
 import type { SpeechText } from "../speech_text"
 

@@ -1,5 +1,5 @@
 import { Repository } from '$lib/app/repository'
-import { LocaleCode } from '$lib/language/locale_code'
+import { LocaleCode } from '$lib/locale/locale_code'
 import { SoundId } from '$lib/speech/sound/sound_id'
 import { SpeechSound } from '$lib/speech/sound/speech_sound'
 import type { Speech } from '$lib/speech/speech'
@@ -8,14 +8,15 @@ import { SpeechByMicrosoft } from '$lib/speech/speech_by_microsoft'
 import { SpeechText } from '$lib/speech/speech_text'
 import type { RequestHandler } from '@sveltejs/kit'
 
-function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Speech {
-	if (locale_code.use_microsoft_speech()) {
-		console.info('use Microsoft Speech')
-		return new SpeechByMicrosoft(speech_text, locale_code)
-	} else {
-		console.info('use Google Speech')
-		return new SpeechByGoogle(speech_text, locale_code)
-	}
+async function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Promise<Speech> {
+	const voice_locale = await Repository.voice.find_first_by_locale_code(locale_code)
+
+	if (!voice_locale) throw new Error(`voice not found: ${locale_code}}`)
+
+	if (voice_locale.target === 'microsoft') return new SpeechByMicrosoft(speech_text, voice_locale)
+	if (voice_locale.target === 'google') return new SpeechByGoogle(speech_text, voice_locale)
+
+	throw new Error(`voice target not found: ${voice_locale.target}`)
 }
 
 async function get_speech_sounds(
@@ -40,7 +41,7 @@ async function get_speech_sounds(
 			}
 		}
 
-		const speech = create_speech(speech_text, locale_code)
+		const speech = await create_speech(speech_text, locale_code)
 		const speech_sound = await speech.speak()
 		const { id } = await Repository.sound.save(locale_code, speech_text)
 		const sound_id = new SoundId(id)
@@ -56,14 +57,8 @@ async function get_speech_sounds(
 export const GET: RequestHandler = async ({ url, params }) => {
 	console.info(url.href)
 
-	const text = params.text ?? ''
-	const locale_code_string = params.locale_code ?? ''
-	const locale_code = LocaleCode.create(locale_code_string)
-	// console.info('text-to-speech: ', text)
-
-	// const sentences = await split_sentences(text, url)
-	// const buffers = await get_buffers(sentences)
-	const speech_text = new SpeechText(text)
+	const speech_text = new SpeechText(params.text)
+	const locale_code = new LocaleCode(params.locale_code)
 
 	try {
 		const speech_sounds = await get_speech_sounds([speech_text], locale_code)

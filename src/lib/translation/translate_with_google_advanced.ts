@@ -1,16 +1,19 @@
 // TODO: node env に変更する
+import { LocaleCode } from '../locale/locale_code'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import * as dotenv from 'dotenv'
-import { AppLocaleCode } from '../../../src/lib/language/app_locale_code'
 import { TranslationText } from './translation_text'
+import { TranslationLanguageCode } from './translation_language_code'
+
+// NOTE 言語サポート: https://cloud.google.com/translate/docs/languages?hl=ja
 
 export class TranslateWithGoogleAdvanced {
 	private readonly _translation_text: TranslationText
-	private readonly _target_app_locale_code: AppLocaleCode
+	private readonly _target_locale_code: LocaleCode
 
-	public constructor(text?: string, target_lang_code?: string) {
+	public constructor(text: string | undefined, target_locale_code: string | undefined) {
 		this._translation_text = new TranslationText(text)
-		this._target_app_locale_code = new AppLocaleCode(target_lang_code)
+		this._target_locale_code = new LocaleCode(target_locale_code)
 	}
 
 	public async execute(): Promise<string> {
@@ -25,12 +28,14 @@ export class TranslateWithGoogleAdvanced {
 				return ''
 			}
 
+			const translation_language_code = new TranslationLanguageCode(this._target_locale_code)
+
 			const request = {
 				parent: `projects/${google_product_id}/locations/global`,
 				contents: [this._translation_text.text],
 				mimeType: 'text/plain',
 				// sourceLanguageCode: 'XX',
-				targetLanguageCode: this._target_app_locale_code.code,
+				targetLanguageCode: translation_language_code.code,
 			}
 
 			const [response] = await translation_client.translateText(request)

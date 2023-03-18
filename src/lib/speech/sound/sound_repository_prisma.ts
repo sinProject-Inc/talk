@@ -1,4 +1,4 @@
-import type { LocaleCode } from '$lib/language/locale_code'
+import type { LocaleCode } from '$lib/locale/locale_code'
 import type { SpeechText } from '$lib/speech/speech_text'
 import type { PrismaClient, Sound } from '@prisma/client'
 import type { SoundRepository } from './sound_repository'
@@ -14,16 +14,17 @@ export class SoundRepositoryPrisma implements SoundRepository {
 		if (!locale) throw new Error('locale not found')
 
 		const locale_id = locale.id
+		const sound_text = speech_text.text
 
 		const sound = await this._prisma_client.sound.upsert({
 			where: {
 				locale_id_sound_text: {
 					locale_id,
-					sound_text: speech_text.text,
+					sound_text,
 				},
 			},
 			update: {},
-			create: { locale_id, sound_text: speech_text.text },
+			create: { locale_id, sound_text },
 		})
 
 		return sound

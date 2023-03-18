@@ -8,10 +8,8 @@
 	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
-	import { AppLocaleCode } from '$lib/language/app_locale_code'
-	import { DefaultLocales } from '$lib/language/default_locales'
-	import { LocaleCode } from '$lib/language/locale_code'
-	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { DefaultLocales } from '$lib/locale/default_locales'
+	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechTextElement } from '$lib/speech/speech_text_element'
 	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
@@ -50,35 +48,27 @@
 	let web_speech_recognition: WebSpeechRecognition | undefined
 	let listening = false
 
-	$: from_speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-	$: to_speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
-
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		new LocaleSelectElement(from_locale_select_element, locales).append_options()
-		new LocaleSelectElement(to_locale_select_element, locales).append_options()
+		new LocaleSelectElement(from_locale_select_element, locales).append_options_long()
+		new LocaleSelectElement(to_locale_select_element, locales).append_options_long()
 	}
 
 	async function set_app_locale(): Promise<void> {
-		const language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
-
-		$locale = app_locale_code.code
+		$locale = from_locale_code.code
 		await waitLocale($locale)
 	}
 
 	async function fetch_history(): Promise<void> {
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(from_locale_code)
-
-		texts = await new TextsApi(speech_language_code, 500).fetch()
+		texts = await new TextsApi(from_locale_code, 500).fetch()
 	}
 
 	function set_locale(): void {
 		selected_text = undefined
 
-		from_locale_code = LocaleCode.create(from_locale_select_element.value)
-		to_locale_code = LocaleCode.create(to_locale_select_element.value)
+		from_locale_code = new LocaleCode(from_locale_select_element.value)
+		to_locale_code = new LocaleCode(to_locale_select_element.value)
 
 		set_app_locale()
 		fetch_history()
@@ -115,9 +105,6 @@
 	}
 
 	function on_click_history_text(text: Text): void {
-		// const language_code =
-		// 	from_language_select.selectedOptions[0].getAttribute('language_code') ?? ''
-
 		if (text.text === selected_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
@@ -125,25 +112,20 @@
 			selected_text = text
 			translations = []
 		}
-
-		// const voice_name = language_code === 'ja-JP' ? 'Google 日本語' : 'Google US English'
-
-		// speech(selected_text, language_code, voice_name)
 	}
 
 	async function find_translation(): Promise<string[]> {
 		if (!selected_text) return []
 
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(to_locale_code)
 		const text_id = new TextId(selected_text.id)
-		const translation_texts = await new FindTranslationsApi(text_id, speech_language_code).fetch()
+		const translation_texts = await new FindTranslationsApi(text_id, to_locale_code).fetch()
 		const translations = translation_texts.map((translation_text) => translation_text.text)
 
 		return translations
 	}
 
 	function validate_for_translation(): boolean {
-		if (from_speech_language_code.equals(to_speech_language_code)) {
+		if (from_locale_code.code === to_locale_code.code) {
 			translations = [`(${$_('select_different_language')})`]
 			return false
 		}
@@ -166,15 +148,14 @@
 			translations = find_translation_result
 		} else {
 			const source_translation_text = new TranslationText(selected_text.text)
-			const app_locale_code = AppLocaleCode.from_speech_language_code(to_speech_language_code)
 			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 				source_translation_text,
-				app_locale_code
+				to_locale_code,
 			).fetch()
 
 			const text_id = new TextId(selected_text.id)
 
-			await new AddTranslationApi(text_id, to_speech_language_code, output_translation_text).fetch()
+			await new AddTranslationApi(text_id, to_locale_code, output_translation_text).fetch()
 
 			translations = await find_translation()
 			// console.info('translated', translation)
@@ -186,13 +167,10 @@
 		if (!selected_text) return
 		if (!add_translation_string) return
 
-		// console.log('add_translation', selected_text)
-		// console.log('language_to_code', language_to_code)
-
 		const text_id = new TextId(selected_text.id)
 		const translation_text = new TranslationText(add_translation_string)
 
-		await new AddTranslationApi(text_id, to_speech_language_code, translation_text).fetch()
+		await new AddTranslationApi(text_id, to_locale_code, translation_text).fetch()
 
 		add_translation_string = ''
 
@@ -208,7 +186,7 @@
 		if (!new_text_element.value) return
 
 		const submission_text = new SubmissionText(new_text_element.value)
-		const added_text = await new AddTextApi(from_speech_language_code, submission_text).fetch()
+		const added_text = await new AddTextApi(from_locale_code, submission_text).fetch()
 
 		// console.info('add_text', text)
 
@@ -224,7 +202,7 @@
 	}
 
 	function start_listening(): void {
-		const locale_code = LocaleCode.create(from_locale_select_element.value)
+		const locale_code = new LocaleCode(from_locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))
 		const speech_text_element = new SpeechTextElement(speech_element, hint_message)
 
@@ -351,7 +329,7 @@
 					<TranslateIcon />
 				</IconButton>
 				<div
-					lang={AppLocaleCode.from_speech_language_code(to_speech_language_code).code}
+					lang={to_locale_code.code}
 					class="flex-1"
 				>
 					{@html translations.join('<br />')}
@@ -362,6 +340,7 @@
 					type="text"
 					class="flex-1"
 					placeholder={$_('enter_new_translation')}
+					lang={to_locale_code.code}
 					bind:value={add_translation_string}
 				/>
 				<IconButton on_click_handler={add_translation}>

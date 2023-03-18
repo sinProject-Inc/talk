@@ -1,5 +1,5 @@
+import type { LocaleCode } from '$lib/locale/locale_code'
 import { ApiPath } from '../api/api_path'
-import type { LocaleCode } from '../language/locale_code'
 
 export class TextToSpeechUrl {
 	public constructor(

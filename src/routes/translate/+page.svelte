@@ -8,10 +8,8 @@
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
 	import { TextError } from '$lib/general/text_error'
-	import { AppLocaleCode } from '$lib/language/app_locale_code'
-	import { DefaultLocales } from '$lib/language/default_locales'
-	import { LocaleCode } from '$lib/language/locale_code'
-	import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
+	import { DefaultLocales } from '$lib/locale/default_locales'
+	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechTextAreaElement } from '$lib/speech/speech_text_area_element'
 	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
@@ -57,27 +55,22 @@
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		new LocaleSelectElement(destination_locale_select_element, locales).append_options()
-		new LocaleSelectElement(source_locale_select_element, locales).append_options()
+		new LocaleSelectElement(destination_locale_select_element, locales).append_options_short()
+		new LocaleSelectElement(source_locale_select_element, locales).append_options_short()
 	}
 
 	async function set_app_locale(): Promise<void> {
-		const language_code = SpeechLanguageCode.create_from_locale_code(destination_locale_code)
-		const app_locale_code = AppLocaleCode.from_speech_language_code(language_code)
-
-		$locale = app_locale_code.code
+		$locale = destination_locale_code.code
 		await waitLocale($locale)
 	}
 
 	async function fetch_history(): Promise<void> {
-		const speech_language_code = SpeechLanguageCode.create_from_locale_code(source_locale_code)
-
-		history_texts = await new TextsApi(speech_language_code, 100).fetch()
+		history_texts = await new TextsApi(source_locale_code, 100).fetch()
 	}
 
 	function set_locale(): void {
-		destination_locale_code = LocaleCode.create(destination_locale_select_element.value)
-		source_locale_code = LocaleCode.create(source_locale_select_element.value)
+		destination_locale_code = new LocaleCode(destination_locale_select_element.value)
+		source_locale_code = new LocaleCode(source_locale_select_element.value)
 
 		set_app_locale()
 		fetch_history()
@@ -155,20 +148,17 @@
 
 		if (!value) return undefined
 
-		const language_code = SpeechLanguageCode.create_from_locale_code(locale_code)
 		const submission_text = new SubmissionText(value)
-		const text = await new AddTextApi(language_code, submission_text).fetch()
+		const text = await new AddTextApi(locale_code, submission_text).fetch()
 
 		return text
 	}
 
 	async function find_translation(text: Text, target_locale_code: LocaleCode): Promise<Text[]> {
 		const text_id = new TextId(text.id)
-		const target_speech_language_code =
-			SpeechLanguageCode.create_from_locale_code(target_locale_code)
 		const translation_texts = await new FindTranslationsApi(
 			text_id,
-			target_speech_language_code
+			target_locale_code
 		).fetch()
 
 		return translation_texts
@@ -176,20 +166,15 @@
 
 	async function add_translation(text: Text, target_locale_code: LocaleCode): Promise<Text[]> {
 		const translation_text = new TranslationText(text.text)
-		const target_speech_language_code =
-			SpeechLanguageCode.create_from_locale_code(target_locale_code)
-		const target_app_locale_code = AppLocaleCode.from_speech_language_code(
-			target_speech_language_code
-		)
 		const output_translation_text = await new TranslateWithGoogleAdvancedApi(
 			translation_text,
-			target_app_locale_code
+			target_locale_code
 		).fetch()
 
 		const text_id = new TextId(text.id)
 		const translated_text = await new AddTranslationApi(
 			text_id,
-			target_speech_language_code,
+			target_locale_code,
 			output_translation_text
 		).fetch()
 
@@ -317,7 +302,7 @@
 		translate_box.clear()
 
 		const locale_select_element = get_locale_select_element(translate_box)
-		const locale_code = LocaleCode.create(locale_select_element.value)
+		const locale_code = new LocaleCode(locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))
 		const textarea_element = translate_box.get_textarea_element()
 		const speech_text_area_element = new SpeechTextAreaElement(textarea_element, hint_message)

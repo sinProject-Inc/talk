@@ -1,7 +1,7 @@
+import type { LocaleCode } from '$lib/locale/locale_code'
 import type { Text } from '@prisma/client'
 import { Api } from '../api/api'
 import { ApiPath } from '../api/api_path'
-import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import type { TextId } from '../text/text_id'
 
 export class FindTranslationsApi {
@@ -9,12 +9,12 @@ export class FindTranslationsApi {
 
 	public constructor(
 		text_id: TextId,
-		to_speech_language_code: SpeechLanguageCode,
+		to_locale_code: LocaleCode,
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('find-translation')
 			.connect(text_id.id.toString())
-			.connect(to_speech_language_code.code)
+			.connect(to_locale_code.code)
 	}
 
 	public async fetch(): Promise<Text[]> {

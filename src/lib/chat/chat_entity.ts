@@ -1,17 +1,17 @@
-import { LocaleCode } from '../language/locale_code'
+import { ChatLocaleCode } from './chat_locale_code'
 import { ChatMessage } from './chat_message'
 import { ChatName } from './chat_name'
 import { ChatRoomId } from './chat_room_id'
 
 export class ChatEntity {
 	private readonly _room_id: ChatRoomId
-	private readonly _locale_code: LocaleCode
+	private readonly _locale_code: ChatLocaleCode
 	private readonly _name: ChatName
 	private readonly _message: ChatMessage
 
 	public constructor(room_id: string, locale_code: string, name: string, message: string) {
 		this._room_id = new ChatRoomId(room_id)
-		this._locale_code = LocaleCode.create(locale_code)
+		this._locale_code = new ChatLocaleCode(locale_code)
 		this._name = new ChatName(name)
 		this._message = new ChatMessage(message)
 	}
@@ -20,7 +20,7 @@ export class ChatEntity {
 		return this._room_id
 	}
 
-	public get locale_code(): LocaleCode {
+	public get locale_code(): ChatLocaleCode {
 		return this._locale_code
 	}
 
