@@ -1,7 +1,7 @@
 import { browser } from '$app/environment'
 import { init, register } from 'svelte-i18n'
 
-const locales = ['en-US', 'es-ES', 'ja-JP', 'km-KH', 'ko-KR', 'vi-VN', 'yue-HK']
+const locales = ['en-US', 'es-ES', 'ja-JP', 'km-KH', 'ko-KR', 'vi-VN', 'yue-HK', 'ar-XA']
 const default_locale = 'en-US'
 
 locales.forEach((locale) => {
