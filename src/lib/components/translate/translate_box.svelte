@@ -5,7 +5,7 @@
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
-	import { LocaleCode } from '$lib/language/locale_code'
+	import { LocaleCode } from '$lib/locale/locale_code'
 	import { EventKey } from '$lib/view/event_key'
 	import type { Text } from '@prisma/client'
 	import { createEventDispatcher } from 'svelte'

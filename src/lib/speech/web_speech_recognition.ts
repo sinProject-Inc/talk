@@ -1,4 +1,4 @@
-import type { LocaleCode } from '../language/locale_code'
+import type { LocaleCode } from '$lib/locale/locale_code'
 import type { SpeechElement } from './speech_element'
 import { TextContent } from './text_content'
 

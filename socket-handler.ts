@@ -4,8 +4,7 @@ import type http from 'http'
 import { Server, Socket } from 'socket.io'
 import { ChatEntity } from './src/lib/chat/chat_entity'
 import { ChatLogRepositoryPrisma } from './src/lib/chat/chat_log_repository_prisma'
-import { LocaleCode } from './src/lib/language/locale_code'
-import { SpeechLanguageCode } from './src/lib/speech/speech_language_code'
+import { LocaleCode } from './src/lib/locale/locale_code'
 import { SpeechText } from './src/lib/speech/speech_text'
 import { GetTextService } from './src/lib/text/get_text_service'
 import { TextRepositoryPrisma } from './src/lib/text/text_repository_prisma'
@@ -23,11 +22,9 @@ async function save_chat_log(chat_entity: ChatEntity): Promise<ChatLog> {
 
 async function get_text(chat_log: ChatLog): Promise<Text> {
 	const text_repository = new TextRepositoryPrisma(prisma_client)
-	const speech_language_code = SpeechLanguageCode.create_from_locale_code(
-		LocaleCode.create(chat_log.locale_code)
-	)
 	const speech_text = new SpeechText(chat_log.message)
-	const get_text_service = new GetTextService(text_repository, speech_language_code, speech_text)
+	const locale_code = new LocaleCode(chat_log.locale_code)
+	const get_text_service = new GetTextService(text_repository, locale_code, speech_text)
 	const text = await get_text_service.execute()
 
 	return text
@@ -45,14 +42,11 @@ function get_translation_locales(io: Server, room_id: string, locale_code: strin
 
 async function get_translation(text: Text, translation_locale: string): Promise<void> {
 	const translation_repository = new TranslationRepositoryPrisma(prisma_client)
-	const speech_language_code = SpeechLanguageCode.create_from_locale_code(
-		LocaleCode.create(translation_locale)
-	)
-
+	const locale_code = new LocaleCode(translation_locale)
 	const get_translation_service = new GetTranslationService(
 		translation_repository,
 		text,
-		speech_language_code
+		locale_code
 	)
 
 	await get_translation_service.execute()

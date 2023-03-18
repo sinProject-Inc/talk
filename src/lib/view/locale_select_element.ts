@@ -1,4 +1,4 @@
-import type { Locale } from '@prisma/client'
+import type { Locale } from "@prisma/client"
 
 export class LocaleSelectElement {
 	public constructor(
@@ -11,7 +11,7 @@ export class LocaleSelectElement {
 			const option = document.createElement('option')
 
 			option.value = locale.code
-			option.textContent = locale.name
+			option.textContent = `${locale.language} (${locale.country})`
 
 			this._html_select_element.appendChild(option)
 		})

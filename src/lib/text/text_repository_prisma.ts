@@ -1,7 +1,7 @@
+import type { LocaleCode } from '../locale/locale_code'
 import type { PrismaClient, Text } from '@prisma/client'
-import type { LanguageRepository } from '../language/language_repository'
-import { LanguageRepositoryPrisma } from '../language/language_repository_prisma'
-import type { SpeechLanguageCode } from '../speech/speech_language_code'
+import type { LocaleRepository } from '../locale/locale_repository'
+import { LocaleRepositoryPrisma } from '../locale/locale_repository_prisma'
 import type { SpeechText } from '../speech/speech_text'
 import type { TextId } from './text_id'
 import type { TextLimit } from './text_limit'
@@ -17,21 +17,21 @@ export class TextRepositoryPrisma implements TextRepository {
 	}
 
 	public async find(
-		speech_language_code: SpeechLanguageCode,
+		locale_code: LocaleCode,
 		speech_text: SpeechText
 	): Promise<Text | null> {
-		const language = await this._prisma_client.language.findUnique({
+		const locale = await this._prisma_client.locale.findUnique({
 			where: {
-				code: speech_language_code.code,
+				code: locale_code.code,
 			},
 		})
 
-		if (!language) throw new Error('Language not found')
+		if (!locale) throw new Error('Locale not found')
 
 		const text = await this._prisma_client.text.findUnique({
 			where: {
-				language_id_text: {
-					language_id: language.id,
+				locale_id_text: {
+					locale_id: locale.id,
 					text: speech_text.text,
 				},
 			},
@@ -41,11 +41,11 @@ export class TextRepositoryPrisma implements TextRepository {
 	}
 
 	public async find_many(
-		speech_language_code: SpeechLanguageCode,
+		locale_code: LocaleCode,
 		limit?: TextLimit
 	): Promise<Text[]> {
 		const texts = await this._prisma_client.text.findMany({
-			where: { language: { code: speech_language_code.code } },
+			where: { locale: { code: locale_code.code } },
 			orderBy: { updated_at: 'desc' },
 			// TODO: Make this more readable
 			...(limit && { take: limit.limit }),
@@ -61,27 +61,27 @@ export class TextRepositoryPrisma implements TextRepository {
 	}
 
 	public async save(
-		speech_language_code: SpeechLanguageCode,
+		locale_code: LocaleCode,
 		speech_text: SpeechText
 	): Promise<Text> {
-		const language_repository: LanguageRepository = new LanguageRepositoryPrisma(
+		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(
 			this._prisma_client
 		)
-		const language = await language_repository.find_unique(speech_language_code)
+		const locale = await locale_repository.find_unique(locale_code)
 
-		if (!language) throw new Error('language not found')
+		if (!locale) throw new Error('Locale not found')
 
-		const language_id = language.id
+		const locale_id = locale.id
 
 		const result = await this._prisma_client.text.upsert({
 			where: {
-				language_id_text: {
-					language_id,
+				locale_id_text: {
+					locale_id: locale_id,
 					text: speech_text.text,
 				},
 			},
 			update: { updated_at: new Date() },
-			create: { language_id, text: speech_text.text },
+			create: { locale_id, text: speech_text.text },
 		})
 
 		return result

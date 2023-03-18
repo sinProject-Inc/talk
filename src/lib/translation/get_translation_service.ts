@@ -1,5 +1,5 @@
+import type { LocaleCode } from '$lib/locale/locale_code'
 import type { Text } from '@prisma/client'
-import type { SpeechLanguageCode } from '../speech/speech_language_code'
 import { SpeechText } from '../speech/speech_text'
 import { TextId } from '../text/text_id'
 import { TranslateWithGoogleAdvanced } from './translate_with_google_advanced'
@@ -9,7 +9,7 @@ export class GetTranslationService {
 	public constructor(
 		private readonly _translation_repository: TranslationRepository,
 		private readonly _text: Text,
-		private readonly _target_speech_language_code: SpeechLanguageCode,
+		private readonly _target_locale_code: LocaleCode,
 	) {}
 
 	public async execute(): Promise<Text[]> {
@@ -17,7 +17,7 @@ export class GetTranslationService {
 
 		const found_translations = await this._translation_repository.find_many(
 			text_id,
-			this._target_speech_language_code
+			this._target_locale_code
 		)
 
 		if (found_translations.length > 0) {
@@ -27,7 +27,7 @@ export class GetTranslationService {
 
 		const translate_with_google_advanced = new TranslateWithGoogleAdvanced(
 			this._text.text,
-			this._target_speech_language_code.code
+			this._target_locale_code.code
 		)
 		const translated_text = await translate_with_google_advanced.execute()
 		const translated_speech_text = new SpeechText(translated_text)
@@ -35,7 +35,7 @@ export class GetTranslationService {
 		try {
 			const saved_translation = await this._translation_repository.save(
 				text_id,
-				this._target_speech_language_code,
+				this._target_locale_code,
 				translated_speech_text
 			)
 
