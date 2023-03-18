@@ -235,7 +235,7 @@
 	async function init_locale(): Promise<void> {
 		locales = JSON.parse(data.locales) as Locale[]
 
-		new LocaleSelectElement(locale_select_element, locales).append_options()
+		new LocaleSelectElement(locale_select_element, locales).append_options_long()
 
 		locale_select_element.value = AppLocalStorage.instance.to_locale
 		await set_app_locale()

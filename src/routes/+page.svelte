@@ -51,8 +51,8 @@
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
 
-		new LocaleSelectElement(from_locale_select_element, locales).append_options()
-		new LocaleSelectElement(to_locale_select_element, locales).append_options()
+		new LocaleSelectElement(from_locale_select_element, locales).append_options_long()
+		new LocaleSelectElement(to_locale_select_element, locales).append_options_long()
 	}
 
 	async function set_app_locale(): Promise<void> {
