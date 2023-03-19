@@ -2,6 +2,7 @@
 	import { version } from '$app/environment'
 	import type { ChatMember, MessageSet } from '$lib/chat/chat'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
+	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
 	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
 	import PersonIcon from '$lib/components/icons/person_icon.svelte'
@@ -53,6 +54,8 @@
 
 	let joined = false
 	let chat_members: ChatMember[] = []
+
+	let sending = false
 
 	$: can_send = !!name && !!message
 
@@ -144,7 +147,15 @@
 		}
 
 		// console.info(`socket.io send: ${message}`)
-		socket.emit('message', message_set)
+
+		// socket.emitの後にsendingをtrueにすると、callbackが呼ばれる後にsendingがtrueになることもある
+		sending = true
+		socket.emit('message', message_set, on_server_message_received())
+	}
+
+	function on_server_message_received(): void {
+		sending = false
+		message = ''
 	}
 
 	function on_keydown_name(event: KeyboardEvent): void {
@@ -410,10 +421,6 @@
 		}
 
 		// TODO: 厳密同一人物チェックが必要
-		if (received_chat_log.name !== name) return
-		if (received_chat_log.message !== message) return
-
-		message = ''
 	})
 
 	socket.on('members', (members: ChatMember[]) => {
@@ -529,7 +536,13 @@
 							{/if}
 						</div>
 						<div>
-							<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+							{#if sending}
+								<div class="animate-spin">
+									<IconButton><LoadingIcon /></IconButton>
+								</div>
+							{:else}
+								<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+							{/if}
 						</div>
 					</div>
 				</div>
