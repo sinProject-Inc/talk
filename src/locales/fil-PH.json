@@ -31,5 +31,7 @@
   "name": "Pangalan",
   "please_allow_notification": "Upang makatanggap ng hindi pa nabasang mga abiso, pahintulutan ang mga abiso sa iyong browser.",
   "join": "Sumali",
-  "leave": "Umalis"
+  "leave": "Umalis",
+  "joined": "Sumali si {name} sa usapan.",
+  "leaved": "Umalis si {name} sa usapan."
 }
