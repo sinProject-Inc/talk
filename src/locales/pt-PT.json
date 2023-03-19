@@ -31,5 +31,7 @@
   "name": "Nome",
   "please_allow_notification": "Para receber notificações não lidas, permita notificações no seu navegador.",
   "join": "Juntar-se",
-  "leave": "Sair"
+  "leave": "Sair",
+  "joined": "{name} entrou na conversa.",
+  "leaved": "{name} saiu da conversa."
 }

@@ -31,5 +31,7 @@
   "name": "名前",
   "please_allow_notification": "未読通知を行う場合は、ブラウザで通知を許可してください。",
   "join": "参加",
-  "leave": "退出"
+  "leave": "退出",
+  "joined": "{name} さんが会話に参加しました。",
+  "leaved": "{name} さんが会話から退出しました。"
 }

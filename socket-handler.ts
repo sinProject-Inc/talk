@@ -152,6 +152,14 @@ function send_members(io: Server, room_id: string): void {
 	io.to(room_id).emit('members', room_members)
 }
 
+function send_joined_member(io: Server, room_id: string, member_data: ChatMember): void {
+	io.to(room_id).emit('join', member_data)
+}
+
+function send_leaved_member(io: Server, room_id: string, member_data: ChatMember): void {
+	io.to(room_id).emit('leave', member_data)
+}
+
 async function join(io: Server, socket: Socket, member_data: ChatMember): Promise<void> {
 	const room_id = member_data.room_id
 
@@ -161,8 +169,10 @@ async function join(io: Server, socket: Socket, member_data: ChatMember): Promis
 	socket.join(room_id)
 
 	send_members(io, room_id)
-	console.info('join:', member_data)
+	send_joined_member(io, room_id, member_data)
 	await send_logs(socket)
+
+	console.info('join:', member_data)
 }
 
 async function leave(io: Server, socket: Socket): Promise<void> {
@@ -171,11 +181,12 @@ async function leave(io: Server, socket: Socket): Promise<void> {
 
 	if (!member_data) return
 
-	console.log('leave', member_data.name)
-
 	chat_member_map.delete(socket.id)
 	socket.leave(room_id)
 	send_members(io, room_id)
+	send_leaved_member(io, room_id, member_data)
+
+	console.log('leave', member_data.name)
 }
 
 async function on_connection(io: Server, socket: Socket): Promise<void> {

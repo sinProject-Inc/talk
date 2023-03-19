@@ -31,5 +31,7 @@
   "name": "Name",
   "please_allow_notification": "To receive unread notifications, please allow notifications in your browser.",
   "join": "Join",
-  "leave": "Leave"
+  "leave": "Leave",
+  "joined": "{name} joined the conversation.",
+  "leaved": "{name} leaved the conversation."
 }

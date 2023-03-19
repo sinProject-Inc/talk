@@ -31,5 +31,7 @@
   "name": "名称",
   "please_allow_notification": "要接收未读通知，请在您的浏览器中允许通知。",
   "join": "加入",
-  "leave": "离开"
+  "leave": "离开",
+  "joined": "{name} 加入了对话。",
+  "leaved": "{name} 离开了对话。"
 }

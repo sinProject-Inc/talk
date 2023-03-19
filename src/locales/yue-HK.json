@@ -31,5 +31,7 @@
   "name": "姓名",
   "please_allow_notification": "要接收未讀通知，請在您的瀏覽器中允許通知。",
   "join": "加入",
-  "leave": "離開"
+  "leave": "離開",
+  "joined": "{name} 加入咗嗰個傾偈。",
+  "leaved": "{name} 離開咗嗰個傾偈。"
 }

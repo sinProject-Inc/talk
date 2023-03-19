@@ -31,5 +31,7 @@
   "name": "Nom",
   "please_allow_notification": "Pour recevoir les notifications non lues, veuillez autoriser les notifications dans votre navigateur.",
   "join": "Rejoindre",
-  "leave": "Quitter"
+  "leave": "Quitter",
+  "joined": "{name} a rejoint la conversation.",
+  "leaved": "{name} a quitté la conversation."
 }

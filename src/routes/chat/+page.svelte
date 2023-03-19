@@ -94,57 +94,27 @@
 		chat_log_items = chat_log_items
 	}
 
-	socket.on('connect', () => {
-		console.debug('[socket.io] connected.')
-	})
+	function show_notification(notification_message: string): void {
+		if (!is_notification_enabled) return
+		if (is_visible) return
 
-	socket.on('disconnect', () => {
-		console.debug('[socket.io] disconnected.')
-	})
+		navigator.serviceWorker.ready.then((registration: ServiceWorkerRegistration) => {
+			console.info('notification_message', notification_message)
 
-	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
-		const received_chat_log_items = received_chat_logs.map((chat_log) => {
-			return {
-				data: chat_log,
-				translated: '',
-			}
+			registration.showNotification('sinProject Talk - Chat', {
+				body: notification_message,
+				icon: '/icon-192.png',
+			})
 		})
-
-		chat_log_items = received_chat_log_items.slice().reverse()
-
-		await show_translation()
-		scroll_to_bottom()
-	})
-
-	socket.on('members', (members: ChatMember[]) => {
-		chat_members = members
-	})
+	}
 
 	function show_message_notification(translated_chat_log: {
 		data: ChatLog
 		translated: string
 	}): void {
-		// console.log('show_message_notification')
-		if (!is_notification_enabled) return
-		// console.log('is notification enabled')
-		if (is_visible) return
-		// console.log('is not visible')
-
 		const notification_message = translated_chat_log.translated || translated_chat_log.data.message
 
-		navigator.serviceWorker.ready.then((registration: ServiceWorkerRegistration) => {
-			console.log('notification test 2')
-			registration.showNotification('sinProject Talk - Chat', {
-				body: `${translated_chat_log.data.name}\n${notification_message}`,
-				icon: '/icon-192.png',
-			})
-		})
-
-		// NOTE: Android では使えない
-		// new Notification('sinProject Talk - Chat', {
-		// 	body: `${translated_chat_log.data.name}\n${notification_message}`,
-		// 	icon: '/icon-192.png',
-		// })
+		show_notification(notification_message)
 	}
 
 	function scroll_to_bottom(): void {
@@ -152,32 +122,6 @@
 			chat_log_div_element.scrollTop = chat_log_div_element.scrollHeight
 		}, 10)
 	}
-
-	socket.on('message', async (received_chat_log: ChatLog) => {
-		const translated_chat_log = {
-			data: received_chat_log,
-			translated: '',
-		}
-
-		const is_at_bottom =
-			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop ===
-			chat_log_div_element.clientHeight
-
-		chat_log_items = [...chat_log_items, translated_chat_log]
-
-		await show_translation()
-		show_message_notification(translated_chat_log)
-
-		if (is_at_bottom || Web.is_android()) {
-			scroll_to_bottom()
-		}
-
-		// TODO: 厳密同一人物チェックが必要
-		if (received_chat_log.name !== name) return
-		if (received_chat_log.message !== message) return
-
-		message = ''
-	})
 
 	async function send(): Promise<void> {
 		name = name.trim()
@@ -424,6 +368,76 @@
 		return locale.emoji
 	}
 
+	socket.on('connect', () => {
+		console.debug('[socket.io] connected.')
+	})
+
+	socket.on('disconnect', () => {
+		console.debug('[socket.io] disconnected.')
+	})
+
+	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
+		const received_chat_log_items = received_chat_logs.map((chat_log) => {
+			return {
+				data: chat_log,
+				translated: '',
+			}
+		})
+
+		chat_log_items = received_chat_log_items.slice().reverse()
+
+		await show_translation()
+		scroll_to_bottom()
+	})
+
+	socket.on('message', async (received_chat_log: ChatLog) => {
+		const translated_chat_log = {
+			data: received_chat_log,
+			translated: '',
+		}
+
+		const is_at_bottom =
+			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop ===
+			chat_log_div_element.clientHeight
+
+		chat_log_items = [...chat_log_items, translated_chat_log]
+
+		await show_translation()
+		show_message_notification(translated_chat_log)
+
+		if (is_at_bottom || Web.is_android()) {
+			scroll_to_bottom()
+		}
+
+		// TODO: 厳密同一人物チェックが必要
+		if (received_chat_log.name !== name) return
+		if (received_chat_log.message !== message) return
+
+		message = ''
+	})
+
+	socket.on('members', (members: ChatMember[]) => {
+		chat_members = members
+	})
+
+	socket.on('join', (member: ChatMember) => {
+		console.debug('join', member.name)
+		const notification_message = $_('joined', { values: { name: member.name } })
+
+		setTimeout(() => {
+			show_notification(notification_message)
+		}, 50)
+	})
+
+	socket.on('leave', (member: ChatMember) => {
+		console.debug('leave', member.name)
+		const notification_message = $_('leaved', { values: { name: member.name } })
+
+		setTimeout(() => {
+			show_notification(notification_message)
+		}, 50)
+	})
+
 	onMount(async () => {
 		add_checking_background_events()
 		init_name()
@@ -458,7 +472,10 @@
 							</p>
 							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<span data-testid="chat_message" lang={chat_log_item.data.locale_code} dir={new Direction(chat_log_item.data.locale_code).value}
+								<span
+									data-testid="chat_message"
+									lang={chat_log_item.data.locale_code}
+									dir={new Direction(chat_log_item.data.locale_code).value}
 									>{chat_log_item.data.message}</span
 								>
 							</div>

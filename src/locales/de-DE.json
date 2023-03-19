@@ -31,5 +31,7 @@
   "name": "Name",
   "please_allow_notification": "Um ungelesene Benachrichtigungen zu erhalten, erlauben Sie bitte Benachrichtigungen in Ihrem Browser.",
   "join": "Beitreten",
-  "leave": "Verlassen"
+  "leave": "Verlassen",
+  "joined": "{name} ist der Unterhaltung beigetreten.",
+  "leaved": "{name} hat die Unterhaltung verlassen."
 }
