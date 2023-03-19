@@ -17,6 +17,7 @@
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
+	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
@@ -199,7 +200,7 @@
 
 		if (!value) return
 
-		const this_locale_code = 
+		const this_locale_code =
 			translate_box === source_translate_box ? source_locale_code : destination_locale_code
 		const partner_locale_code =
 			translate_box === destination_translate_box ? source_locale_code : destination_locale_code
@@ -359,7 +360,11 @@
 			/>
 			<div class="main-box history-box glass-panel grow flex flex-col {history_visible}">
 				<h2 class="title px-5 py-2">{$_('history')}</h2>
-				<div class="overflow-auto" lang={source_locale_code.code}>
+				<div
+					class="overflow-auto"
+					lang={source_locale_code.code}
+					dir={new Direction(source_locale_code.code).value}
+				>
 					{#each history_texts as text, i}
 						<TextListText
 							texts={history_texts}
