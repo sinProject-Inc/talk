@@ -87,7 +87,7 @@
 
 <div class="main-box glass-panel row-span-1">
 	<div class="grid h-full -mb-11 pb-11">
-		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
+		<div class="z-10 flex justify-end px-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5" data-testid="delete_button">
 				<IconButton on_click_handler={() => {clear(); focus()}} enabled={button_enabled()}>
 					<CloseIcon />
@@ -104,7 +104,7 @@
 		/>
 	</div>
 	<div class="flex rounded-b-md p-1">
-		<div class="mr-auto flex gap-1">
+		<div class="ml-auto flex gap-1 flex-1">
 			<div class="listen-button">
 				<IconButton on_click_handler={handle_listen_button} enabled={listening_button_enabled()}>
 					{#if listening}
@@ -120,7 +120,7 @@
 				</IconButton>
 			</div>
 		</div>
-		<div data-testid="copy_button">
+		<div data-testid="copy_button" class="ml-auto">
 			<IconButton on_click_handler={copy} enabled={button_enabled()}>
 				<CopyIcon />
 			</IconButton>
