@@ -10,6 +10,7 @@
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import { DefaultLocales } from '$lib/locale/default_locales'
 	import { LocaleCode } from '$lib/locale/locale_code'
+	import { SpeechText } from '$lib/speech/speech_text'
 	import { SpeechTextElement } from '$lib/speech/speech_text_element'
 	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
@@ -18,8 +19,7 @@
 	import { TextsApi } from '$lib/text/texts_api'
 	import { TextId } from '$lib/text/text_id'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
-	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
-	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
+	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
@@ -114,16 +114,6 @@
 		}
 	}
 
-	async function find_translation(): Promise<string[]> {
-		if (!selected_text) return []
-
-		const text_id = new TextId(selected_text.id)
-		const translation_texts = await new FindTranslationsApi(text_id, to_locale_code).fetch()
-		const translations = translation_texts.map((translation_text) => translation_text.text)
-
-		return translations
-	}
-
 	function validate_for_translation(): boolean {
 		if (from_locale_code.code === to_locale_code.code) {
 			translations = [`(${$_('select_different_language')})`]
@@ -142,24 +132,14 @@
 		if (!validate_for_translation()) return
 		if (!selected_text) return
 
-		const find_translation_result = await find_translation()
+		const speech_text = new SpeechText(selected_text.text)
+		const translated_texts = await new GetTranslationApi(
+			speech_text,
+			from_locale_code,
+			to_locale_code
+		).fetch()
 
-		if (find_translation_result.length > 0) {
-			translations = find_translation_result
-		} else {
-			const source_translation_text = new TranslationText(selected_text.text)
-			const output_translation_text = await new TranslateWithGoogleAdvancedApi(
-				source_translation_text,
-				to_locale_code,
-			).fetch()
-
-			const text_id = new TextId(selected_text.id)
-
-			await new AddTranslationApi(text_id, to_locale_code, output_translation_text).fetch()
-
-			translations = await find_translation()
-			// console.info('translated', translation)
-		}
+		translations = translated_texts.map((translation_text) => translation_text.text)
 	}
 
 	async function add_translation(): Promise<void> {
@@ -211,7 +191,7 @@
 			speech_text_element,
 			on_end_listening
 		)
-		
+
 		listening = true
 
 		web_speech_recognition.start_not_continuous()
@@ -328,10 +308,7 @@
 				<IconButton on_click_handler={show_translation}>
 					<TranslateIcon />
 				</IconButton>
-				<div
-					lang={to_locale_code.code}
-					class="flex-1"
-				>
+				<div lang={to_locale_code.code} class="flex-1">
 					{@html translations.join('<br />')}
 				</div>
 			</div>
