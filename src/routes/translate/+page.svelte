@@ -10,18 +10,13 @@
 	import { TextError } from '$lib/general/text_error'
 	import { DefaultLocales } from '$lib/locale/default_locales'
 	import { LocaleCode } from '$lib/locale/locale_code'
+	import { SpeechText } from '$lib/speech/speech_text'
 	import { SpeechTextAreaElement } from '$lib/speech/speech_text_area_element'
-	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
-	import { AddTextApi } from '$lib/text/add_text_api'
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
 	import { TextsApi } from '$lib/text/texts_api'
-	import { TextId } from '$lib/text/text_id'
-	import { AddTranslationApi } from '$lib/translation/add_translation_api'
-	import { FindTranslationsApi } from '$lib/translation/find_translations_api'
-	import { TranslateWithGoogleAdvancedApi } from '$lib/translation/translate_with_google_advanced_api'
-	import { TranslationText } from '$lib/translation/translation_text'
+	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
@@ -126,7 +121,8 @@
 		source_translate_box.set_text(text)
 
 		const translation_texts = await show_translation(
-			text,
+			text.text,
+			source_locale_code,
 			destination_locale_code,
 			destination_translate_box
 		)
@@ -141,46 +137,6 @@
 		await fetch_history()
 	}
 
-	async function add_text(translate_box: TranslateBox): Promise<Text | undefined> {
-		const value = translate_box.get_value()
-		const locale_code =
-			translate_box === source_translate_box ? source_locale_code : destination_locale_code
-
-		if (!value) return undefined
-
-		const submission_text = new SubmissionText(value)
-		const text = await new AddTextApi(locale_code, submission_text).fetch()
-
-		return text
-	}
-
-	async function find_translation(text: Text, target_locale_code: LocaleCode): Promise<Text[]> {
-		const text_id = new TextId(text.id)
-		const translation_texts = await new FindTranslationsApi(
-			text_id,
-			target_locale_code
-		).fetch()
-
-		return translation_texts
-	}
-
-	async function add_translation(text: Text, target_locale_code: LocaleCode): Promise<Text[]> {
-		const translation_text = new TranslationText(text.text)
-		const output_translation_text = await new TranslateWithGoogleAdvancedApi(
-			translation_text,
-			target_locale_code
-		).fetch()
-
-		const text_id = new TextId(text.id)
-		const translated_text = await new AddTranslationApi(
-			text_id,
-			target_locale_code,
-			output_translation_text
-		).fetch()
-
-		return [translated_text]
-	}
-
 	function set_translate_box_value(translate_box: TranslateBox, texts: Text[]): void {
 		const translations = texts.map((translation_text) => translation_text.text)
 
@@ -188,22 +144,21 @@
 	}
 
 	async function show_translation(
-		text: Text,
+		value: string,
+		source_locale_code: LocaleCode,
 		target_locale_code: LocaleCode,
 		target_translate_box: TranslateBox
 	): Promise<Text[]> {
-		const find_translation_result = await find_translation(text, target_locale_code)
+		const speech_text = new SpeechText(value)
+		const translated_texts = await new GetTranslationApi(
+			speech_text,
+			source_locale_code,
+			target_locale_code
+		).fetch()
 
-		if (find_translation_result.length > 0) {
-			set_translate_box_value(target_translate_box, find_translation_result)
-			return find_translation_result
-		}
+		set_translate_box_value(target_translate_box, translated_texts)
 
-		const add_translation_result = await add_translation(text, target_locale_code)
-
-		set_translate_box_value(target_translate_box, add_translation_result)
-
-		return add_translation_result
+		return translated_texts
 	}
 
 	let text_to_speech_url = ''
@@ -240,24 +195,26 @@
 	}
 
 	async function translate(translate_box: TranslateBox): Promise<void> {
-		const partner_translate_box =
-			translate_box === destination_translate_box ? source_translate_box : destination_translate_box
+		const value = translate_box.get_value()
+
+		if (!value) return
+
+		const this_locale_code = 
+			translate_box === source_translate_box ? source_locale_code : destination_locale_code
 		const partner_locale_code =
 			translate_box === destination_translate_box ? source_locale_code : destination_locale_code
+		const partner_translate_box =
+			translate_box === destination_translate_box ? source_translate_box : destination_translate_box
 
 		try {
-			const text = await add_text(translate_box)
-
-			if (!text) return
-
-			await fetch_history()
-
 			const translation_texts = await show_translation(
-				text,
+				value,
+				this_locale_code,
 				partner_locale_code,
 				partner_translate_box
 			)
 
+			await fetch_history()
 			speak_by_text(translation_texts, partner_locale_code)
 		} catch (err) {
 			if (err instanceof TextError) {
@@ -288,8 +245,7 @@
 	function on_end_listening(translate_box: TranslateBox): void {
 		if (translate_box === source_translate_box) {
 			source_listening = false
-		}
-		else {
+		} else {
 			destination_listening = false
 		}
 
@@ -307,7 +263,9 @@
 		const textarea_element = translate_box.get_textarea_element()
 		const speech_text_area_element = new SpeechTextAreaElement(textarea_element, hint_message)
 
-		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, () => on_end_listening(translate_box))
+		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, () =>
+			on_end_listening(translate_box)
+		)
 
 		web_speech_recognition.start_continuous()
 	}
