@@ -31,5 +31,7 @@
   "name": "Nombre",
   "please_allow_notification": "Para recibir notificaciones no leídas, permita las notificaciones en su navegador.",
   "join": "Unirse",
-  "leave": "Dejar"
+  "leave": "Dejar",
+  "joined": "{name} se unió a la conversación.",
+  "leaved": "{name} abandonó la conversación."
 }

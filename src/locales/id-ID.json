@@ -31,5 +31,7 @@
   "name": "Nama",
   "please_allow_notification": "Untuk menerima notifikasi yang belum dibaca, izinkan notifikasi di peramban Anda.",
   "join": "Gabung",
-  "leave": "Keluar"
+  "leave": "Keluar",
+  "joined": "{name} bergabung dalam percakapan.",
+  "leaved": "{name} meninggalkan percakapan."
 }

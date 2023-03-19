@@ -31,5 +31,7 @@
   "name": "Tên",
   "please_allow_notification": "Để nhận thông báo chưa đọc, vui lòng cho phép thông báo trong trình duyệt của bạn.",
   "join": "Tham gia",
-  "leave": "Rời khỏi"
+  "leave": "Rời khỏi",
+  "joined": "{name} đã tham gia cuộc trò chuyện.",
+  "leaved": "{name} đã rời cuộc trò chuyện."
 }
