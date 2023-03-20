@@ -17,6 +17,8 @@
 		"csstools.postcss",
 		"zixuanchen.vitest-explorer",
 		"bradlc.vscode-tailwindcss",
-		"ms-vsliveshare.vsliveshare"
+		"ms-vsliveshare.vsliveshare",
+		"usernamehw.errorlens",
+		"igorsbitnev.error-gutters"
 	]
 }
