@@ -419,8 +419,6 @@
 		if (is_at_bottom || Web.is_android()) {
 			scroll_to_bottom()
 		}
-
-		// TODO: 厳密同一人物チェックが必要
 	})
 
 	socket.on('members', (members: ChatMember[]) => {
