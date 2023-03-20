@@ -95,7 +95,7 @@
 			</div>
 		</div>
 		<textarea
-			class="text-area pr-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+			class="text-area ltr:pr-8 rtl:pl-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
 			lang={locale_code.code}
 			bind:this={textarea_element}

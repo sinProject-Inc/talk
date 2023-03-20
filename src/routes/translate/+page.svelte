@@ -363,7 +363,6 @@
 				<div
 					class="overflow-auto"
 					lang={source_locale_code.code}
-					dir={new Direction(source_locale_code.code).value}
 				>
 					{#each history_texts as text, i}
 						<TextListText
@@ -373,6 +372,7 @@
 							deletable
 							on_click_text={() => on_click_history_text(text)}
 							delete_text={() => (confirming_delete_text = text)}
+							text_direction={new Direction(source_locale_code.code).value}
 						/>
 					{/each}
 				</div>
