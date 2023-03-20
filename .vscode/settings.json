@@ -1,4 +1,15 @@
 {
+	"eslint.probe": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"vue",
+		"markdown",
+		"svelte"
+	],
+	"eslint.validate": ["svelte"],
 	"cSpell.words": [
 		"Alfie",
 		"autoincrement",
@@ -70,15 +81,31 @@
 		"vue",
 		"yaml",
 		"yml",
+		"svelte",
 		"prisma"
 	],
-	"i18n-ally.localesPaths": [
-		"src/locales",
-		"src/routes/api/languages",
-		"src/routes/api/locales"
-	],
+	"i18n-ally.localesPaths": ["src/locales", "src/routes/api/languages", "src/routes/api/locales"],
 	"i18n-ally.keystyle": "nested",
-	"vitest.include": [
-		"src/**/*.{test}.ts"
-	],
+	"vitest.include": ["src/**/*.{test}.ts"],
+	"editor.guides.bracketPairs": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	}
 }
