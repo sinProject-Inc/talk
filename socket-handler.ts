@@ -1,7 +1,8 @@
-import type { ChatMember, MessageSet } from './src/lib/chat/chat'
 import { PrismaClient, type ChatLog, type Text } from '@prisma/client'
 import type http from 'http'
 import { Server, Socket } from 'socket.io'
+import { logger } from './src/lib/app/logger'
+import type { ChatMember, MessageSet } from './src/lib/chat/chat'
 import { ChatEntity } from './src/lib/chat/chat_entity'
 import { ChatLogRepositoryPrisma } from './src/lib/chat/chat_log_repository_prisma'
 import { LocaleCode } from './src/lib/locale/locale_code'
@@ -66,7 +67,7 @@ async function save(chat_entity: ChatEntity, io: Server, room_id: string): Promi
 	const chat_log = await save_chat_log(chat_entity)
 	const text = await get_text(chat_log)
 	const translation_locales = get_translation_locales(io, room_id, chat_log.locale_code)
-	
+
 	await get_translations(text, translation_locales)
 
 	return chat_log
@@ -95,10 +96,15 @@ async function on_message(
 	socket: Socket,
 	received_message_set: MessageSet
 ): Promise<void> {
-	console.log(received_message_set)
-
 	try {
 		const room_id = get_room_id(socket)
+
+		logger.info(`[socket] ${room_id} on message`, {
+			name: received_message_set.name,
+			chat_message: received_message_set.message,
+			locale_code: received_message_set.locale_code,
+		})
+
 		const chat_entity = new ChatEntity(
 			room_id,
 			received_message_set.locale_code,
@@ -109,9 +115,8 @@ async function on_message(
 		const chat_log = await save(chat_entity, io, room_id)
 
 		io.to(room_id).emit('message', chat_log)
-		console.info('message:', chat_log.name, chat_log.created_at, chat_log.message)
 	} catch (error) {
-		console.error(error)
+		logger.error(error)
 
 		// TODO: 再ログインを促す
 	}
@@ -172,7 +177,7 @@ async function join(io: Server, socket: Socket, member_data: ChatMember): Promis
 	send_joined_member(io, room_id, member_data)
 	await send_logs(socket)
 
-	console.info('join:', member_data)
+	logger.info(`[socket] ${room_id} on join`, member_data)
 }
 
 async function leave(io: Server, socket: Socket): Promise<void> {
@@ -186,7 +191,7 @@ async function leave(io: Server, socket: Socket): Promise<void> {
 	send_members(io, room_id)
 	send_leaved_member(io, room_id, member_data)
 
-	console.log('leave', member_data.name)
+	logger.info(`[socket] ${room_id} on leave`, member_data)
 }
 
 async function on_connection(io: Server, socket: Socket): Promise<void> {
