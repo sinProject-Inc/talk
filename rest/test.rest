@@ -1,0 +1,14 @@
+@protocol = http
+@hostname = localhost
+@port = 5173
+@host = {{protocol}}://{{hostname}}:{{port}}
+
+// MOTE: num run dev -- --host
+
+###
+GET {{host}}
+
+###
+GET {{host}}/api/get-translation/Hi/en-US/ja-JP
+
+

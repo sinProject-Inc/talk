@@ -107,5 +107,10 @@
 	},
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"i18n-ally.displayLanguage": "en-US",
+	"i18n-ally.sourceLanguage": "en-US",
+	"code-runner.executorMap": {
+		"typescript": "npx tsx"
 	}
 }
