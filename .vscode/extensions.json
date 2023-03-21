@@ -4,7 +4,6 @@
 		"streetsidesoftware.code-spell-checker",
 		"dbaeumer.vscode-eslint",
 		"mhutchie.git-graph",
-		"github.copilot",
 		"github.vscode-pull-request-github",
 		"lokalise.i18n-ally",
 		"pkief.material-icon-theme",
@@ -19,6 +18,18 @@
 		"bradlc.vscode-tailwindcss",
 		"ms-vsliveshare.vsliveshare",
 		"usernamehw.errorlens",
-		"igorsbitnev.error-gutters"
+		"igorsbitnev.error-gutters",
+		"formulahendry.auto-rename-tag",
+		"pranaygp.vscode-css-peek",
+		"tabnine.tabnine-vscode",
+		"genieai.chatgpt-vscode",
+		"humao.rest-client",
+		"vincaslt.highlight-matching-tag",
+		"shardulm94.trailing-spaces",
+		"stylelint.vscode-stylelint",
+		"ardenivanov.svelte-intellisense",
+		"wix.vscode-import-cost",
+		"christian-kohler.path-intellisense",
+		"chakrounanas.turbo-console-log"
 	]
 }
