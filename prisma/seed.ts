@@ -6,7 +6,7 @@ import { AppSettingSeeder } from './seed/app_setting_seeder'
 import { LocaleSeeder } from './seed/locale_seeder'
 import { RoleSeeder } from './seed/role_seeder'
 import { VoiceSeeder } from './seed/voice_seeder'
-
+import { logger } from '../src/lib/app/logger'
 const prisma = new PrismaClient()
 
 async function main(): Promise<void> {
@@ -18,11 +18,11 @@ async function main(): Promise<void> {
 
 main()
 	.then(async () => {
-		console.info('Done.')
+		logger.info('[database] Seeding finished')
 		await prisma.$disconnect()
 	})
 	.catch(async (e) => {
-		console.error(e)
+		logger.error('[database] Seeding failed', e)
 		await prisma.$disconnect()
 		process.exit(1)
 	})
