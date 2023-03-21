@@ -1,3 +1,4 @@
+import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { Email } from '$lib/auth/email'
 import { MailSubject } from '$lib/auth/mail_subject'
@@ -25,7 +26,7 @@ async function send_mail(user: User, pin_code: PinCode): Promise<void> {
 
 		await gmail_node_mailer.send()
 	} catch (error) {
-		console.error(error)
+		logger.error(`[mail] Failed to send mail to ${user.email}`, error)
 	}
 }
 
@@ -47,7 +48,7 @@ export const actions: Actions = {
 
 			return { success: true, email_address, missing: false, credentials: false }
 		} catch (e) {
-			console.error(e)
+			logger.error(`[pin-code] Failed to sign-in: ${email_address}]`, e)
 			return { credentials: true, missing: false, success: false }
 
 			// TODO: Show message on page
@@ -69,7 +70,7 @@ export const actions: Actions = {
 
 			return { success: true, email_address }
 		} catch (e) {
-			console.error(e)
+			logger.error(`[pin-code] Failed to submit: ${email_address}]`, e)
 
 			return fail(400, { missing: true, email_address })
 		}

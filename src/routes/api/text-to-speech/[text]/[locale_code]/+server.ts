@@ -1,3 +1,4 @@
+import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { LocaleCode } from '$lib/locale/locale_code'
 import { SoundId } from '$lib/speech/sound/sound_id'
@@ -33,7 +34,7 @@ async function get_speech_sounds(
 				const sound_id = new SoundId(sound.id)
 				const speech_sound = await SpeechSound.read(sound_id)
 
-				console.info(`Found #${sound.id} sound for ${speech_text.text}`)
+				logger.info(`Found #${sound.id} sound for ${speech_text.text}`)
 				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
@@ -47,7 +48,9 @@ async function get_speech_sounds(
 		const sound_id = new SoundId(id)
 
 		await speech_sound.write(sound_id)
-		console.info(`Created #${sound_id.id} sound for ${speech_text.text}`)
+
+		logger.info(`Created #${sound_id.id} sound for ${speech_text.text}`)
+
 		speech_sounds.push(speech_sound)
 	}
 
@@ -55,7 +58,7 @@ async function get_speech_sounds(
 }
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	console.info(url.href)
+	logger.info(`GET ${url}`)
 
 	const speech_text = new SpeechText(params.text)
 	const locale_code = new LocaleCode(params.locale_code)
@@ -74,7 +77,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 			},
 		})
 	} catch (err) {
-		console.error(err)
+		logger.error(`[speech] Failed to speech text: ${params.text}]`, err)
 
 		if (err instanceof Error) {
 			return new Response(err.message, { status: 500 })

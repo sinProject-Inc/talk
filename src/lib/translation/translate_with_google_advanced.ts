@@ -4,6 +4,7 @@ import { TranslationServiceClient } from '@google-cloud/translate'
 import * as dotenv from 'dotenv'
 import { TranslationText } from './translation_text'
 import { TranslationLanguageCode } from './translation_language_code'
+import { logger } from '../app/logger'
 
 // NOTE 言語サポート: https://cloud.google.com/translate/docs/languages?hl=ja
 
@@ -24,7 +25,7 @@ export class TranslateWithGoogleAdvanced {
 			const google_product_id = process.env.GOOGLE_PROJECT_ID
 
 			if (!google_product_id) {
-				console.error('GOOGLE_PRODUCT_ID is not set')
+				logger.error('[env] GOOGLE_PROJECT_ID is undefined')
 				return ''
 			}
 
@@ -47,7 +48,7 @@ export class TranslateWithGoogleAdvanced {
 
 			return translated_text_string
 		} catch (error) {
-			console.error(error)
+			logger.error('[Google Translate] Failed:', error)
 			return ''
 		}
 	}

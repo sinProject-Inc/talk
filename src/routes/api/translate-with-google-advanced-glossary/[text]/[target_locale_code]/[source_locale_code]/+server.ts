@@ -1,12 +1,13 @@
 import { GOOGLE_LOCATION, GOOGLE_PROJECT_ID } from '$env/static/private'
+import { logger } from '$lib/app/logger'
 import { LocaleCode } from '$lib/locale/locale_code'
 import { TranslationText } from '$lib/translation/translation_text'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	console.info(url.href)
-	
+	logger.info(`GET ${url}`)
+
 	try {
 		const translation_text = new TranslationText(params.text)
 		const source_locale_code = new LocaleCode(params.source_locale_code)
@@ -35,7 +36,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 			return json('')
 		}
 	} catch (error) {
-		console.error(error)
+		logger.error(`[Google] Failed to translate: ${params.text}]`, error)
 		return json('')
 	}
 }
