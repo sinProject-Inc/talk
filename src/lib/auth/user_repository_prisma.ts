@@ -1,3 +1,4 @@
+import { logger } from '../app/logger'
 import type { PrismaClient, User } from '@prisma/client'
 import type { Email } from './email'
 import type { UserRepository } from './user_repository'
@@ -17,14 +18,18 @@ export class UserRepositoryPrisma implements UserRepository {
 		if (!can_register) return undefined
 
 		try {
-			return await this._prisma_client.user.create({
+			const user = await this._prisma_client.user.create({
 				data: {
 					role: { connect: { name: Roles.user } },
 					email: email.address,
 				},
 			})
+
+			logger.info(`[database] Created new user: ${email.address}`)
+
+			return user
 		} catch (error) {
-			console.error(error)
+			logger.error(`[database] Failed to create user: ${email.address}`, error)
 			return undefined
 		}
 	}

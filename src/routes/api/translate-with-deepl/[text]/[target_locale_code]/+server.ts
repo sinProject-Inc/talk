@@ -1,3 +1,4 @@
+import { logger } from '$lib/app/logger'
 import { LocaleCode } from '$lib/locale/locale_code'
 import { DeeplTranslator } from '$lib/translation/deepl_translator'
 import { TranslationText } from '$lib/translation/translation_text'
@@ -5,7 +6,7 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 import type { TargetLanguageCode } from 'deepl-node'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	console.info(url.href)
+	logger.info(`GET ${url}`)
 
 	try {
 		const translation_text = new TranslationText(params.text)
@@ -18,7 +19,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 		return json(translated_text.text)
 	} catch (error) {
-		console.error(error)
+		logger.error(`[DeepL] Failed to translate: ${params.text}]`, error)
 		return json('')
 	}
 }

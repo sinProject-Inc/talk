@@ -1,4 +1,5 @@
 import { DEEPL_AUTH_KEY } from '$env/static/private'
+import { logger } from '$lib/app/logger'
 import type { SourceLanguageCode, TargetLanguageCode } from 'deepl-node'
 import * as deepl from 'deepl-node'
 import { TranslationText } from './translation_text'
@@ -16,7 +17,7 @@ export class DeeplTranslator {
 		)
 		const translated_text = new TranslationText(result.text)
 
-		console.info(`DeepL: ${this._translation_text.text} -> ${translated_text.text}`)
+		logger.info(`[DeepL] Translated from ${this._source_language_code} to ${target_language_code})
 
 		return translated_text
 	}

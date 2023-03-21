@@ -99,11 +99,9 @@ async function on_message(
 	try {
 		const room_id = get_room_id(socket)
 
-		logger.info(`[socket] ${room_id} on message`, {
-			name: received_message_set.name,
-			chat_message: received_message_set.message,
-			locale_code: received_message_set.locale_code,
-		})
+		logger.info(
+			`[socket][${room_id}] ${received_message_set.name}: ${received_message_set.message}`
+		)
 
 		const chat_entity = new ChatEntity(
 			room_id,
@@ -116,7 +114,7 @@ async function on_message(
 
 		io.to(room_id).emit('message', chat_log)
 	} catch (error) {
-		logger.error(error)
+		logger.error('[socket] on_message error', error)
 
 		// TODO: 再ログインを促す
 	}
@@ -177,7 +175,7 @@ async function join(io: Server, socket: Socket, member_data: ChatMember): Promis
 	send_joined_member(io, room_id, member_data)
 	await send_logs(socket)
 
-	logger.info(`[socket] ${room_id} on join`, member_data)
+	logger.info(`[socket][${room_id}] ${member_data.name} joined`)
 }
 
 async function leave(io: Server, socket: Socket): Promise<void> {
@@ -191,7 +189,7 @@ async function leave(io: Server, socket: Socket): Promise<void> {
 	send_members(io, room_id)
 	send_leaved_member(io, room_id, member_data)
 
-	logger.info(`[socket] ${room_id} on leave`, member_data)
+	logger.info(`[socket][${room_id}] ${member_data.name} reaved`)
 }
 
 async function on_connection(io: Server, socket: Socket): Promise<void> {

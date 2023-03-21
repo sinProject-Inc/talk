@@ -1,10 +1,11 @@
+import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { LocaleCode } from '$lib/locale/locale_code'
 import { TextLimit } from '$lib/text/text_limit'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }): Promise<Response> => {
-	console.info(url.href)
+	logger.info(`GET ${url}`)
 
 	try {
 		const locale_code = new LocaleCode(params.locale_code)
@@ -16,7 +17,7 @@ export const GET: RequestHandler = async ({ url, params }): Promise<Response> =>
 
 		return response
 	} catch (error) {
-		console.error(error)
+		logger.error(`[database] Failed to find texts: ${params.locale_code}]`, error)
 		return json({ error: (error as Error).message })
 	}
 }

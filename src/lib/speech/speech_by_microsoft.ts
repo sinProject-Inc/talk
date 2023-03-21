@@ -1,4 +1,5 @@
 import { MICROSOFT_SPEECH_KEY } from '$env/static/private'
+import { logger } from '$lib/app/logger'
 import { SpeechSound } from '$lib/speech/sound/speech_sound'
 import type { Speech } from '$lib/speech/speech'
 import type { SpeechText } from '$lib/speech/speech_text'
@@ -39,7 +40,7 @@ export class SpeechByMicrosoft implements Speech {
 					}
 				},
 				(error) => {
-					console.error(error)
+					logger.error('[Microsoft] Failed to speak', error)
 					reject(error)
 				}
 			)

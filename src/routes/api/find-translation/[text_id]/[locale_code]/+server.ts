@@ -1,10 +1,11 @@
+import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { LocaleCode } from '$lib/locale/locale_code'
 import { TextId } from '$lib/text/text_id'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	console.info(url.href)
+	logger.info(`GET ${url}`)
 
 	try {
 		const text_id = TextId.from_string(params.text_id)
@@ -13,7 +14,7 @@ export const GET: RequestHandler = async ({ url, params }) => {
 
 		return json(result)
 	} catch (e) {
-		console.error(e)
+		logger.error(`[database] Failed to find translation: ${params.text_id}]`, e)
 		return new Response((e as Error).message, { status: 400 })
 	}
 }
