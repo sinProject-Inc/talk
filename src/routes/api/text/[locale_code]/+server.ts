@@ -5,8 +5,6 @@ import { TextLimit } from '$lib/text/text_limit'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }): Promise<Response> => {
-	logger.info(`GET ${url}`)
-
 	try {
 		const locale_code = new LocaleCode(params.locale_code)
 		const limit_string = url.searchParams.get('limit')

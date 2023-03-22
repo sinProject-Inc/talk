@@ -1,7 +1,9 @@
 import { PrismaClient, type ChatLog, type Text } from '@prisma/client'
 // import { createAdapter } from '@socket.io/cluster-adapter'
 // import { setupWorker } from '@socket.io/sticky'
+import { createAdapter } from '@socket.io/redis-adapter'
 import type http from 'http'
+import { createClient } from 'redis'
 import { Server, Socket } from 'socket.io'
 import { logger } from '../src/lib/app/logger'
 import type { ChatMember, MessageSet } from '../src/lib/chat/chat'
@@ -201,8 +203,21 @@ async function on_connection(io: Server, socket: Socket): Promise<void> {
 	socket.on('disconnect', () => leave(io, socket))
 }
 
-export default function inject_socket_io(server: http.Server): void {
+async function adapt_redis(io: Server): Promise<void> {
+	const pub_client = createClient()
+	const sub_client = pub_client.duplicate()
+	const redis_adapter = createAdapter(pub_client, sub_client)
+
+	await pub_client.connect()
+	await sub_client.connect()
+
+	io.adapter(redis_adapter)
+}
+
+export default async function inject_socket_io(server: http.Server): Promise<void> {
 	const io = new Server(server)
+
+	adapt_redis(io)
 
 	// io.adapter(createAdapter())
 	// setupWorker(io)

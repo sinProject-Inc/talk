@@ -3,8 +3,6 @@ import { TranslateWithGoogleAdvanced } from '$lib/translation/translate_with_goo
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	logger.info(`GET ${url}`)
-
 	const translate_with_google_advanced = new TranslateWithGoogleAdvanced(
 		params.text,
 		params.target_locale_code

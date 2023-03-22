@@ -59,7 +59,9 @@
 
 	$: can_send = !!name && !!message
 
-	const socket = io()
+	const socket = io({
+		transports: ['websocket'],
+	})
 
 	async function show_log_translation(chat_log_item: ChatLogItem): Promise<void> {
 		// TODO: English-US から GB への翻訳を考慮する

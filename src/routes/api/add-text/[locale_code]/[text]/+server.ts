@@ -5,8 +5,6 @@ import { SpeechText } from '$lib/speech/speech_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	logger.info(`GET ${url}`)
-
 	try {
 		const speech_text = new SpeechText(params.text)
 		const locale_code = new LocaleCode(params.locale_code)

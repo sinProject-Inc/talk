@@ -4,7 +4,7 @@ import { handler } from '../build/handler.js' // <- Import SvelteKit handlers
 import inject_socket_io from './socket-handler' // The SocketIO stuff (see next step)
 import { logger } from '../src/lib/app/logger'
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason) => {
 	logger.error('[process] Unhandled Rejection:', reason)
 	console.log('Unhandled Rejection:', reason)
 	process.exit(1)
