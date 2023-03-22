@@ -6,6 +6,7 @@
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import { LocaleCode } from '$lib/locale/locale_code'
+	import { Direction } from '$lib/view/direction'
 	import { EventKey } from '$lib/view/event_key'
 	import type { Text } from '@prisma/client'
 	import { createEventDispatcher } from 'svelte'
@@ -85,7 +86,9 @@
 	}
 </script>
 
-<div class="main-box glass-panel row-span-1">
+<div class="main-box glass-panel row-span-1"
+	dir={new Direction(locale_code.code).value}
+>
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end px-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5" data-testid="delete_button">

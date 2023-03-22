@@ -21,6 +21,7 @@
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { TranslationText } from '$lib/translation/translation_text'
+	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
@@ -265,6 +266,7 @@
 					{i}
 					{selected_text}
 					on_click_text={() => on_click_history_text(text)}
+					text_direction={new Direction(from_locale_code.code).value}
 				/>
 			{/each}
 		</div>
