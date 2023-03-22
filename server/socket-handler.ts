@@ -1,4 +1,6 @@
 import { PrismaClient, type ChatLog, type Text } from '@prisma/client'
+// import { createAdapter } from '@socket.io/cluster-adapter'
+// import { setupWorker } from '@socket.io/sticky'
 import type http from 'http'
 import { Server, Socket } from 'socket.io'
 import { logger } from '../src/lib/app/logger'
@@ -201,6 +203,9 @@ async function on_connection(io: Server, socket: Socket): Promise<void> {
 
 export default function inject_socket_io(server: http.Server): void {
 	const io = new Server(server)
+
+	// io.adapter(createAdapter())
+	// setupWorker(io)
 
 	io.on('connection', (socket) => on_connection(io, socket))
 }
