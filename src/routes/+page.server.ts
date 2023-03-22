@@ -5,12 +5,6 @@ import type { PageServerLoad } from './$types'
 export const load: PageServerLoad = async ({ url, fetch }) => {
 	logger.info(`GET ${url}`)
 
-	logger.debug('[main] debug')
-	logger.verbose('[main] verbose')
-	logger.info('[main] Load')
-	logger.warn('[main] Warn test')
-	logger.error('[main] Error', new Error('エラーやでー'))
-
 	const locales = await new LocalesApi(fetch).fetch()
 
 	return {
