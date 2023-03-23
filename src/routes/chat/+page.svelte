@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { version } from '$app/environment'
-	import type { ChatMember, MessageSet } from '$lib/chat/chat'
+	import type { ChatMemberEntity, MessageSet } from '$lib/chat/chat'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
@@ -53,7 +53,7 @@
 	let is_notification_enabled = false
 
 	let joined = false
-	let chat_members: ChatMember[] = []
+	let chat_member_entities: ChatMemberEntity[] = []
 
 	let sending = false
 
@@ -423,11 +423,11 @@
 		}
 	})
 
-	socket.on('members', (members: ChatMember[]) => {
-		chat_members = members
+	socket.on('members', (members: ChatMemberEntity[]) => {
+		chat_member_entities = members
 	})
 
-	socket.on('join', (member: ChatMember) => {
+	socket.on('join', (member: ChatMemberEntity) => {
 		console.debug('join', member.name)
 		const notification_message = $_('joined', { values: { name: member.name } })
 
@@ -436,7 +436,7 @@
 		}, 50)
 	})
 
-	socket.on('leave', (member: ChatMember) => {
+	socket.on('leave', (member: ChatMemberEntity) => {
 		console.debug('leave', member.name)
 		const notification_message = $_('leaved', { values: { name: member.name } })
 
@@ -503,9 +503,9 @@
 						<span class="w-[24px] h-[24px]">
 							<PersonIcon />
 						</span>
-						{chat_members.length}
+						{chat_member_entities.length}
 					</div>
-					{#each chat_members as chat_member}
+					{#each chat_member_entities as chat_member}
 						{@const locale_code = new LocaleCode(chat_member.locale_code)}
 						<div class="flex flex-row flex-wrap gap-1">
 							<span>{get_country_emoji(locale_code)}</span>
