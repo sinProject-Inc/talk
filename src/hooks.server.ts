@@ -18,6 +18,8 @@ export const handleError: HandleServerError = ({ error, event }) => {
 }
 
 export const handle: Handle = async ({ event, resolve }) => {
+	logger.info(`[${event.request.method}] ${event.url}`)
+
 	const session = new Session(event.cookies)
 
 	if (!session.id) return await resolve(event)

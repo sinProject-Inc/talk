@@ -6,8 +6,6 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 import type { TargetLanguageCode } from 'deepl-node'
 
 export const GET: RequestHandler = async ({ url, params }) => {
-	logger.info(`GET ${url}`)
-
 	try {
 		const translation_text = new TranslationText(params.text)
 		// TODO: DeepLのAPIを使って翻訳する

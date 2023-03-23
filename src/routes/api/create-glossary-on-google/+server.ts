@@ -7,8 +7,6 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 export const GET: RequestHandler = async ({ url }) => {
 	if (!dev) return json('dev only')
 
-	logger.info(`GET ${url}`)
-
 	const glossary_id = 'glossary'
 	// const glossary_id = params.glossary_id?.trim() ?? ''
 	// if (glossary_id === '') return json('')

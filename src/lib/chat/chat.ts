@@ -1,4 +1,4 @@
-export type ChatMember = {
+export type ChatMemberEntity = {
 	room_id: string
 	name: string
 	locale_code: string
