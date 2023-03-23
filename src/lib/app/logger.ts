@@ -12,7 +12,7 @@ const daily_rotate_error_file_transport = new DailyRotateFile({
 })
 
 const daily_rotate_file_transport = new DailyRotateFile({
-	level: 'info',
+	level: 'http',
 	filename: 'logs/%DATE%.log',
 	datePattern: 'YYYY-MM-DD',
 	// zippedArchive: true,

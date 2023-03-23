@@ -27,6 +27,9 @@ const config: UserConfig = {
 	test: {
 		include: ['src/**/*.test.ts'],
 	},
+	server: {
+		host: true,
+	},
 }
 
 export default config
