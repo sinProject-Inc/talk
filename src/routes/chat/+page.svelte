@@ -353,16 +353,22 @@
 		}, 50)
 	}
 
-	function leave(): void {
-		// TODO: leave
-		socket.emit('leave')
-
+	function did_leave(): void {
 		chat_log_items = []
 		joined = false
 
 		setTimeout(() => {
 			name_element.focus()
 		}, 50)
+
+		console.debug('did_leave')
+	}
+
+	function leave(): void {
+		// TODO: leave
+		socket.emit('leave')
+
+		did_leave()
 	}
 
 	// function register_service_worker(): void {
@@ -387,6 +393,7 @@
 
 	socket.on('disconnect', () => {
 		console.debug('[socket.io] disconnected.')
+		did_leave()
 	})
 
 	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
