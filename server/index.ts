@@ -3,6 +3,7 @@ import http from 'http'
 import { handler } from '../build/handler.js' // <- Import SvelteKit handlers
 import inject_socket_io from './socket-handler' // The SocketIO stuff (see next step)
 import { logger } from '../src/lib/app/logger'
+import morgan from 'morgan'
 
 process.on('unhandledRejection', (reason) => {
 	logger.error('[process] Unhandled Rejection:', reason)
@@ -21,6 +22,12 @@ function shutdown_gracefully(): void {
 	process.exit(1)
 }
 
+const morgan_middleware = morgan('combined', {
+	stream: {
+		write: (message: string) => logger.http(message.trim()),
+	},
+})
+
 process.on('SIGINT', shutdown_gracefully)
 process.on('SIGTERM', shutdown_gracefully)
 
@@ -31,6 +38,7 @@ const server = http.createServer(app)
 inject_socket_io(server)
 
 // SvelteKit handlers
+app.use(morgan_middleware)
 app.use(handler)
 
 server.listen(3000, () => {
