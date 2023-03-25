@@ -86,24 +86,31 @@
 	}
 </script>
 
-<div class="main-box glass-panel row-span-1"
-	dir={new Direction(locale_code.code).value}
->
+<div class="main-box glass-panel row-span-1" dir={new Direction(locale_code.code).value}>
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end px-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5" data-testid="delete_button">
-				<IconButton on_click_handler={() => {clear(); focus()}} enabled={button_enabled()}>
+				<IconButton
+					on_click_handler={() => {
+						clear()
+						focus()
+					}}
+					enabled={button_enabled()}
+				>
 					<CloseIcon />
 				</IconButton>
 			</div>
 		</div>
+		<!-- Bug in tailwind-dir prevents from using rtl: and ltr: here -->
 		<textarea
-			class="text-area ltr:pr-8 rtl:pl-8 resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+			class="text-area {new Direction(locale_code.code).value === 'rtl'
+				? 'pl-8'
+				: 'pr-8'} resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
 			lang={locale_code.code}
 			bind:this={textarea_element}
 			on:keydown={on_textarea_keydown}
-			bind:value={value}
+			bind:value
 		/>
 	</div>
 	<div class="flex rounded-b-md p-1">
