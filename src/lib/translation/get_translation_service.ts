@@ -4,12 +4,13 @@ import { SpeechText } from '../speech/speech_text'
 import { TextId } from '../text/text_id'
 import { TranslateWithGoogleAdvanced } from './translate_with_google_advanced'
 import type { TranslationRepository } from './translation_repository'
+import { logger } from '../app/logger'
 
 export class GetTranslationService {
 	public constructor(
 		private readonly _translation_repository: TranslationRepository,
 		private readonly _text: Text,
-		private readonly _target_locale_code: LocaleCode,
+		private readonly _target_locale_code: LocaleCode
 	) {}
 
 	public async execute(): Promise<Text[]> {
@@ -20,10 +21,7 @@ export class GetTranslationService {
 			this._target_locale_code
 		)
 
-		if (found_translations.length > 0) {
-			// console.info('translations found:', found_translations[0].text)
-			return found_translations
-		}
+		if (found_translations.length > 0) return found_translations
 
 		const translate_with_google_advanced = new TranslateWithGoogleAdvanced(
 			this._text.text,
@@ -39,12 +37,13 @@ export class GetTranslationService {
 				translated_speech_text
 			)
 
-			console.info('translation saved:', saved_translation.text)
+			logger.info(`[database] translation saved: ${saved_translation.text}`)
+
 			return [saved_translation]
 		} catch (e) {
 			if (e instanceof Error) {
 				if (e.message.includes('Unique constraint failed')) {
-					console.warn('translation already saved:', translated_speech_text.text)
+					logger.warn(`[database] translation already saved: ${translated_speech_text.text}`)
 					return await this.execute()
 				}
 			}

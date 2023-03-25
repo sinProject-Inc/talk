@@ -110,6 +110,16 @@ model TextToText {
   @@index([text_id_2])
 }
 
+model Voice {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  name       String   @unique
+  locale_id  Int
+  target     String
+  locale     Locale   @relation(fields: [locale_id], references: [id])
+}
+
 model ChatLog {
   id          Int      @id @default(autoincrement())
   created_at  DateTime @default(now())
@@ -121,12 +131,12 @@ model ChatLog {
   locale      Locale   @relation(fields: [locale_code], references: [code])
 }
 
-model Voice {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  name       String   @unique
-  locale_id  Int
-  target     String
-  locale     Locale   @relation(fields: [locale_id], references: [id])
+model ChatMember {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  socket_id   String   @unique
+  room_id     String
+  name        String
+  locale_code String
 }

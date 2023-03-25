@@ -1,12 +1,11 @@
 import { dev } from '$app/environment'
 import { GOOGLE_PROJECT_ID, GOOGLE_LOCATION } from '$env/static/private'
+import { logger } from '$lib/app/logger'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ url }) => {
 	if (!dev) return json('dev only')
-
-	console.info(url.href)
 
 	const glossary_id = 'glossary'
 	// const glossary_id = params.glossary_id?.trim() ?? ''
@@ -31,15 +30,9 @@ export const GET: RequestHandler = async ({ url }) => {
 		glossary,
 	}
 
-	console.log('start')
-
 	const [operation] = await translation_client.createGlossary(request)
-	console.log('start 2')
 
 	await operation.promise()
-
-	console.log('Created glossary:')
-	console.log(`InputUri ${request.glossary.inputConfig.gcsSource.inputUri}`)
 
 	return json('Success')
 }

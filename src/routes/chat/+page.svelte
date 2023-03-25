@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { version } from '$app/environment'
-	import type { ChatMember, MessageSet } from '$lib/chat/chat'
+	import type { ChatMemberEntity, MessageSet } from '$lib/chat/chat'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
+	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
 	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
 	import PersonIcon from '$lib/components/icons/person_icon.svelte'
@@ -52,11 +53,15 @@
 	let is_notification_enabled = false
 
 	let joined = false
-	let chat_members: ChatMember[] = []
+	let chat_member_entities: ChatMemberEntity[] = []
+
+	let sending = false
 
 	$: can_send = !!name && !!message
 
-	const socket = io()
+	const socket = io({
+		transports: ['websocket'],
+	})
 
 	async function show_log_translation(chat_log_item: ChatLogItem): Promise<void> {
 		// TODO: English-US から GB への翻訳を考慮する
@@ -144,7 +149,15 @@
 		}
 
 		// console.info(`socket.io send: ${message}`)
-		socket.emit('message', message_set)
+
+		// socket.emitの後にsendingをtrueにすると、callbackが呼ばれる後にsendingがtrueになることもある
+		sending = true
+		socket.emit('message', message_set, on_server_message_received())
+	}
+
+	function on_server_message_received(): void {
+		sending = false
+		message = ''
 	}
 
 	function on_keydown_name(event: KeyboardEvent): void {
@@ -340,16 +353,22 @@
 		}, 50)
 	}
 
-	function leave(): void {
-		// TODO: leave
-		socket.emit('leave')
-
+	function did_leave(): void {
 		chat_log_items = []
 		joined = false
 
 		setTimeout(() => {
 			name_element.focus()
 		}, 50)
+
+		console.debug('did_leave')
+	}
+
+	function leave(): void {
+		// TODO: leave
+		socket.emit('leave')
+
+		did_leave()
 	}
 
 	// function register_service_worker(): void {
@@ -374,6 +393,7 @@
 
 	socket.on('disconnect', () => {
 		console.debug('[socket.io] disconnected.')
+		did_leave()
 	})
 
 	socket.on('logs', async (received_chat_logs: ChatLog[]) => {
@@ -408,19 +428,13 @@
 		if (is_at_bottom || Web.is_android()) {
 			scroll_to_bottom()
 		}
-
-		// TODO: 厳密同一人物チェックが必要
-		if (received_chat_log.name !== name) return
-		if (received_chat_log.message !== message) return
-
-		message = ''
 	})
 
-	socket.on('members', (members: ChatMember[]) => {
-		chat_members = members
+	socket.on('members', (members: ChatMemberEntity[]) => {
+		chat_member_entities = members
 	})
 
-	socket.on('join', (member: ChatMember) => {
+	socket.on('join', (member: ChatMemberEntity) => {
 		console.debug('join', member.name)
 		const notification_message = $_('joined', { values: { name: member.name } })
 
@@ -429,7 +443,7 @@
 		}, 50)
 	})
 
-	socket.on('leave', (member: ChatMember) => {
+	socket.on('leave', (member: ChatMemberEntity) => {
 		console.debug('leave', member.name)
 		const notification_message = $_('leaved', { values: { name: member.name } })
 
@@ -496,9 +510,9 @@
 						<span class="w-[24px] h-[24px]">
 							<PersonIcon />
 						</span>
-						{chat_members.length}
+						{chat_member_entities.length}
 					</div>
-					{#each chat_members as chat_member}
+					{#each chat_member_entities as chat_member}
 						{@const locale_code = new LocaleCode(chat_member.locale_code)}
 						<div class="flex flex-row flex-wrap gap-1">
 							<span>{get_country_emoji(locale_code)}</span>
@@ -529,7 +543,13 @@
 							{/if}
 						</div>
 						<div>
-							<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+							{#if sending}
+								<div class="animate-spin">
+									<IconButton><LoadingIcon /></IconButton>
+								</div>
+							{:else}
+								<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+							{/if}
 						</div>
 					</div>
 				</div>
