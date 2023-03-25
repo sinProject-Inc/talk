@@ -70,6 +70,7 @@
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
     "svelte-i18n": "^3.6.0",
+    "tailwindcss-dir": "^4.0.0",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
     "winston-console-format": "^1.0.8",
