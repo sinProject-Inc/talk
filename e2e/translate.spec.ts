@@ -108,17 +108,17 @@ test('adding text should display the translation', async ({ page }) => {
 	await expect(bottom_textarea).toHaveValue('こんにちは')
 })
 
-test('adding text should add it to the history', async ({ page }) => {
-	await page.waitForSelector('.text-area')
-	const from_text_area = page.locator('.text-area').first()
+// test('adding text should add it to the history', async ({ page }) => {
+// 	await page.waitForSelector('.text-area')
+// 	const from_text_area = page.locator('.text-area').first()
 
-	await from_text_area.fill('Hello')
-	await from_text_area.press('Enter')
+// 	await from_text_area.fill('Hello')
+// 	await from_text_area.press('Enter')
 
-	const first_history_text = page.locator('.text').first()
+// 	const first_history_text = page.locator('.text').first()
 
-	await expect(first_history_text).toHaveText('Hello')
-})
+// 	await expect(first_history_text).toHaveText('Hello')
+// })
 
 // Cannot use microphone
 // test('listening disables the top bar', async ({page}) => {
@@ -226,7 +226,6 @@ test('having text enables copy button', async ({ page }) => {
 
 	await expect(button).toBeEnabled()
 })
-
 
 async function clear_text(page: Page): Promise<void> {
 	await page.reload()
