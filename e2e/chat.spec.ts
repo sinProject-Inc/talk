@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 const host = 'http://localhost:5173'
 const path = '/chat'
@@ -40,32 +40,33 @@ test('on enter name', async ({ page }) => {
 test('on enter name after filling', async ({ page }) => {
 	const name = page.getByPlaceholder('Name')
 
-	await name.click()
+	await expect(name).toBeFocused()
+
 	await name.fill('aaaaa')
 	await name.press('Enter')
 
-	const text = page.getByPlaceholder('Enter new text')
+	const text = page.locator('.outline-none')
 
 	await expect(text).toBeFocused()
 })
 
 test('send message', async ({ page }) => {
 	const name = page.getByPlaceholder('Name')
-	const text = page.getByPlaceholder('Enter new text')
+	const text = page.locator('.outline-none')
 
 	await expect(name).toBeFocused()
 
-	await name.fill('aaaaa')
+	await name.fill('playwright test')
 	await name.press('Enter')
 
 	await expect(text).toBeFocused()
 
-	await text.fill('abcde')
+	await text.fill('Hello World!')
 	await text.press('Enter')
 
-	const chat_name = page.getByTestId('chat_name').first()
-	const chat_message = page.getByTestId('chat_message').first()
+	const chat_name = page.getByTestId('chat_name').last()
+	const chat_message = page.getByTestId('chat_message').last()
 
-	await expect(chat_name).toHaveText('aaaaa')
-	await expect(chat_message).toHaveText('abcde')
+	await expect(chat_name).toHaveText('playwright test')
+	await expect(chat_message).toHaveText('Hello World!')
 })

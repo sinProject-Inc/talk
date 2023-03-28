@@ -35,7 +35,7 @@ targetDir に *.spec.ts ファイルを作成する。
 # コード自動生成
 
 npx playwright codegen <url>
-npx playwright codegen http://localhost:8080/login
+npx playwright codegen http://localhost:5173/chat
 
 # 実行中に止める
 
