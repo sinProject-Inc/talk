@@ -3,7 +3,7 @@ export class PinCode {
 
 	public constructor(code: string | undefined) {
 		if (!code) throw new Error('PIN code is required')
-		if (code.length < 6) throw new Error('PIN code is too short')
+		// if (code.length < 6) throw new Error('PIN code is too short')
 		if (code.length > 50) throw new Error('PIN code is too long')
 
 		this._code = code
@@ -39,7 +39,6 @@ export class PinCode {
 						${this._code}
 					</p>
 					<p style="margin-bottom: 1.25rem;font-size: 1.05rem;line-height: 1.75rem;">If you didn’t request this email, you can safely ignore it.</p>
-		
 				</div>
 			</body>
 		</html>`
