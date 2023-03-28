@@ -17,11 +17,7 @@
 	}
 </script>
 
-<button
-	on:click={on_click_handler}
-	on:click={animate}
-	disabled={!enabled}
->
+<button on:click={on_click_handler} on:click={animate} disabled={!enabled}>
 	<div
 		class="flex flex-row justify-center h-9 w-9 -m-[6.5px] transition-colors p-[6.5px] rounded-full {enabled
 			? 'hover:bg-white/5'
