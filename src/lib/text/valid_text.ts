@@ -1,4 +1,3 @@
-
 export class ValidText {
 	private readonly _text: string
 

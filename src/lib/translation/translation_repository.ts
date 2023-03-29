@@ -5,9 +5,5 @@ import type { Text } from '@prisma/client'
 
 export interface TranslationRepository {
 	find_many(text_id: TextId, locale_code: LocaleCode): Promise<Text[]>
-	save(
-		text_id: TextId,
-		locale_code: LocaleCode,
-		translation_speech_text: SpeechText
-	): Promise<Text>
+	save(text_id: TextId, locale_code: LocaleCode, translation_speech_text: SpeechText): Promise<Text>
 }

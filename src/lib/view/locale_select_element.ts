@@ -14,7 +14,7 @@ export class LocaleSelectElement {
 		const country_code = locale.code.split('-')[1]
 
 		return `${locale.language} (${country_code})`
-  }
+	}
 
 	private _append_options(is_long_name: boolean): void {
 		this._locales.forEach((locale) => {

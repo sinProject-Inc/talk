@@ -8,7 +8,7 @@ test('/api', () => {
 
 test('/api/text', () => {
 	const api_path = ApiPath.api_directory.connect('text')
-	expect(api_path.path()).toBe('/api/text')	
+	expect(api_path.path()).toBe('/api/text')
 })
 
 test('/api/text/おはよう', () => {
@@ -22,10 +22,11 @@ test('/api/text?param=test', () => {
 })
 
 test('/api/text?param=test&param2=test2', () => {
-	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param: 'test', param2: 'test2' })
+	const api_path = ApiPath.api_directory
+		.connect('text')
+		.connect_with_params({ param: 'test', param2: 'test2' })
 	expect(api_path.path()).toBe('/api/text?param=test&param2=test2')
 })
-
 
 test('/api/text', () => {
 	const api_path = ApiPath.api_directory.connect('text').connect_with_params({ param: '' })

@@ -5,7 +5,7 @@
 	import { locale } from 'svelte-i18n'
 
 	function get_direction(locale_code: string): string {
-		return new Direction(locale_code).value;
+		return new Direction(locale_code).value
 	}
 </script>
 

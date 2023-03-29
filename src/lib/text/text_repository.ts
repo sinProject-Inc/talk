@@ -6,10 +6,7 @@ import type { TextLimit } from './text_limit'
 
 export interface TextRepository {
 	find_by_id(text_id: TextId): Promise<Text | null>
-	find(
-		locale_code: LocaleCode,
-		speech_text: SpeechText
-	): Promise<Text | null>
+	find(locale_code: LocaleCode, speech_text: SpeechText): Promise<Text | null>
 	find_many(locale_code: LocaleCode, limit?: TextLimit): Promise<Text[]>
 	find_unique(text_id: TextId): Promise<Text | null>
 	save(locale_code: LocaleCode, speech_text: SpeechText): Promise<Text>

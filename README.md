@@ -22,7 +22,6 @@ This is a listening and speaking language learning app.
 
 - Set up [DeepL API](https://www.deepl.com/pro-api?cta=header-pro-api/)
 
-
 ## Setting up the project
 
 Here are the steps:
@@ -73,5 +72,3 @@ npm run dev -- --open
 Copyright (c) sinProject Inc. All rights reserved.
 
 Licensed under the [MIT](https://github.com/sinProject-Inc/talk/blob/main/LICENSE) license.
-
-

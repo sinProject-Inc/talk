@@ -1,8 +1,7 @@
-import { logger } from '$lib/app/logger'
 import { TranslateWithGoogleAdvanced } from '$lib/translation/translate_with_google_advanced'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const translate_with_google_advanced = new TranslateWithGoogleAdvanced(
 		params.text,
 		params.target_locale_code

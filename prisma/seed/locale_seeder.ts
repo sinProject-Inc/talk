@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from '@prisma/client'
 
 // NOTE: EMOJI: https://lets-emoji.com/national-flag-emoji/
 

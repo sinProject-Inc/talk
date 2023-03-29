@@ -89,7 +89,13 @@
 	<div class="grid h-full -mb-11 pb-11">
 		<div class="z-10 flex justify-end pr-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5" data-testid="delete_button">
-				<IconButton on_click_handler={() => {clear(); focus()}} enabled={button_enabled()}>
+				<IconButton
+					on_click_handler={() => {
+						clear()
+						focus()
+					}}
+					enabled={button_enabled()}
+				>
 					<CloseIcon />
 				</IconButton>
 			</div>
@@ -100,7 +106,7 @@
 			lang={locale_code.code}
 			bind:this={textarea_element}
 			on:keydown={on_textarea_keydown}
-			bind:value={value}
+			bind:value
 		/>
 	</div>
 	<div class="flex rounded-b-md p-1">
