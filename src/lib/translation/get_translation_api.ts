@@ -10,7 +10,7 @@ export class GetTranslationApi {
 	public constructor(
 		speech_text: SpeechText,
 		source_locale_code: LocaleCode,
-		target_locale_code: LocaleCode,
+		target_locale_code: LocaleCode
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('get-translation')

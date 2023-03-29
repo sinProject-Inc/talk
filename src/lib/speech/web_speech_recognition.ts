@@ -43,7 +43,9 @@ export class WebSpeechRecognition {
 					interim_transcript = transcript
 				}
 
-				this._speech_element.text_content = new TextContent(this._final_transcript + interim_transcript)
+				this._speech_element.text_content = new TextContent(
+					this._final_transcript + interim_transcript
+				)
 			}
 		}
 	}

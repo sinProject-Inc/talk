@@ -27,11 +27,11 @@ test('to locale combo box', async ({ page }) => {
 })
 
 test('changing locale, and then moving pages keeps saved locale', async ({ page }) => {
-	await page.getByRole('combobox').first().selectOption('yue-HK');
-	await page.getByRole('combobox').last().selectOption('km-KH');
+	await page.getByRole('combobox').first().selectOption('yue-HK')
+	await page.getByRole('combobox').last().selectOption('km-KH')
 
 	await page.goto(`${host}/translate`)
-	
+
 	await expect(page.getByRole('combobox').first()).toHaveValue('km-KH')
 	await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
 })
@@ -39,7 +39,7 @@ test('changing locale, and then moving pages keeps saved locale', async ({ page 
 test('If there is text on translate, there is text on main', async ({ page }) => {
 	await page.waitForSelector('.text')
 	const main_text_count = await page.locator('.text').count()
-	
+
 	await page.goto(`${host}/translate`)
 	await page.waitForSelector('.text')
 	const translate_page_count = await page.locator('.text').count()

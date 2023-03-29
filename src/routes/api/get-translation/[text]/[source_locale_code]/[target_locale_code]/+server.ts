@@ -6,7 +6,7 @@ import { GetTextService } from '$lib/text/get_text_service'
 import { GetTranslationService } from '$lib/translation/get_translation_service'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const speech_text = new SpeechText(params.text)
 		const source_locale_code = new LocaleCode(params.source_locale_code)

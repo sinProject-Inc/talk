@@ -1,6 +1,6 @@
-import type { AuthPin, User } from "@prisma/client"
-import type { Email } from "./email"
-import type { PinCode } from "./pin_code"
+import type { AuthPin, User } from '@prisma/client'
+import type { Email } from './email'
+import type { PinCode } from './pin_code'
 
 export interface AuthPinRepository {
 	find(email: Email, pin_code: PinCode): Promise<AuthPin | null>

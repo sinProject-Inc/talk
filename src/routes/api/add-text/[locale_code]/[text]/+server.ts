@@ -4,7 +4,7 @@ import { LocaleCode } from '$lib/locale/locale_code'
 import { SpeechText } from '$lib/speech/speech_text'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const speech_text = new SpeechText(params.text)
 		const locale_code = new LocaleCode(params.locale_code)

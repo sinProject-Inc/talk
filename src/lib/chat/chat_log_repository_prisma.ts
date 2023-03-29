@@ -1,6 +1,6 @@
-import type { ChatLog, PrismaClient } from "@prisma/client"
-import type { ChatEntity } from "./chat_entity"
-import type { ChatLogRepository } from "./chat_log_repository"
+import type { ChatLog, PrismaClient } from '@prisma/client'
+import type { ChatEntity } from './chat_entity'
+import type { ChatLogRepository } from './chat_log_repository'
 
 export class ChatLogRepositoryPrisma implements ChatLogRepository {
 	public constructor(private readonly _prisma_client: PrismaClient) {}

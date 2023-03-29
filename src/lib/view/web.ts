@@ -1,4 +1,3 @@
-
 export class Web {
 	public static remove_children(html_element: HTMLElement): void {
 		while (html_element.firstChild) {

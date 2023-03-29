@@ -5,7 +5,7 @@ import { SpeechText } from '$lib/speech/speech_text'
 import { TextId } from '$lib/text/text_id'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const text_id = TextId.from_string(params.text_id)
 		const translation_speech_text = new SpeechText(params.translation)

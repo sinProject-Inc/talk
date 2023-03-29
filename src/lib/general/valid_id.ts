@@ -1,4 +1,3 @@
-
 export class ValidId {
 	private readonly _id: number
 

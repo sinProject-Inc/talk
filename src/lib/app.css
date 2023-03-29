@@ -100,7 +100,7 @@
 		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-black/30 text-white/90 fill-white/90;
 	}
 
-	[contenteditable=true]:empty:before {
+	[contenteditable='true']:empty:before {
 		content: attr(placeholder);
 		color: #ffffff70;
 	}

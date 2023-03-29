@@ -8,6 +8,7 @@ https://learn.microsoft.com/ja-jp/microsoft-edge/playwright/
 ```
 Playwright Test for VSCode
 ```
+
 VS Code 上でテスト対象を選択できるようになります。
 
 # インストール
@@ -30,7 +31,7 @@ npx playwright test <filename>
 
 # テストファイル
 
-targetDir に *.spec.ts ファイルを作成する。
+targetDir に \*.spec.ts ファイルを作成する。
 
 # コード自動生成
 
