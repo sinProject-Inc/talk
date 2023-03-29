@@ -88,7 +88,7 @@
 	"i18n-ally.keystyle": "nested",
 	"vitest.include": ["src/**/*.{test}.ts"],
 	"editor.guides.bracketPairs": true,
-	"editor.formatOnSave": false,
+	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
