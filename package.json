@@ -79,8 +79,8 @@
 		"winston-daily-rotate-file": "^4.7.1"
 	},
 	"lint-staged": {
-		"*.{js,ts}": "eslint --cache --fix",
+		"*.{js,ts,svelte}": "eslint --cache --fix",
 		"*.css": "stylelint --fix",
-		"*.{js,css,md,ts,json}": "prettier --write"
+		"*.{js,css,md,ts,svelte,css,scss,json}": "prettier --write"
 	}
 }
