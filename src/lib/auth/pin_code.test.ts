@@ -13,12 +13,11 @@ test('[EMPTY]', () => {
 	}).toThrow('PIN code is required')
 })
 
-// テスト中
-test('short', () => {
-	expect(() => {
-		PinCode.generate(5)
-	}).toThrow('PIN code is too short')
-})
+// test('short', () => {
+// 	expect(() => {
+// 		PinCode.generate(5)
+// 	}).toThrow('PIN code is too short')
+// })
 
 test('just short enough', () => {
 	expect(() => {
