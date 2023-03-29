@@ -26,6 +26,8 @@ const config: UserConfig = {
 	},
 	test: {
 		include: ['src/**/*.test.ts'],
+		hookTimeout: 3000,
+		teardownTimeout: 3000,
 	},
 	server: {
 		host: true,
