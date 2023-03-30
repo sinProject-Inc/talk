@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
 
   pull_request:
     branches:
@@ -37,6 +37,9 @@ jobs:
 
       - name: Typecheck
         run: npm run typecheck
+        env:
+          GMAIL_USER: test
+          GMAIL_PASS: test
 
   test:
     runs-on: ubuntu-latest
