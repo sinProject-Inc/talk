@@ -2,8 +2,7 @@ import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { Session } from '$lib/auth/session'
 import { Signing } from '$lib/auth/signing'
-import type { Handle } from '@sveltejs/kit'
-import type { HandleServerError } from '@sveltejs/kit'
+import type { Handle, HandleServerError } from '@sveltejs/kit'
 
 // NOTE: https://kit.svelte.jp/docs/errors
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -11,9 +10,11 @@ export const handleError: HandleServerError = ({ error, event }) => {
 	logger.error('[server] Unhandled Error:', error, { event })
 	console.error('[server] Unhandled Error:', error)
 
+	const { code } = error as { code?: string }
+
 	return {
 		message: 'Whoops!',
-		code: error?.code ?? 'UNKNOWN',
+		code: code ?? 'UNKNOWN',
 	}
 }
 
