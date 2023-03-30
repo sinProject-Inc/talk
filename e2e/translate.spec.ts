@@ -1,6 +1,6 @@
 import { test, expect, Page } from '@playwright/test'
 
-const host = 'http://localhost:5173'
+const host = 'http://localhost:5273'
 const path = '/translate'
 
 const url = host + path

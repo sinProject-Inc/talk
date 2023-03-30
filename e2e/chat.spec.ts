@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-const host = 'http://localhost:5173'
+const host = 'http://localhost:5273'
 const path = '/chat'
 const url = `${host}${path}`
 
