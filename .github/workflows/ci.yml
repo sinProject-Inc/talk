@@ -38,7 +38,7 @@ jobs:
       - name: Create .env
         run: |
           touch .env
-          echo GMAIL_USER =${{ secrets.GMAIL_USER }} >> .env
+          echo GMAIL_USER="test" >> .env
 
       - name: Typecheck
         run: npm run typecheck
