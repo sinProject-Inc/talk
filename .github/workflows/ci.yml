@@ -40,6 +40,9 @@ jobs:
           touch .env
           echo GMAIL_USER="test" >> .env
 
+      - name: Build
+        run: npm run build
+
       - name: Typecheck
         run: npm run typecheck
         env:
@@ -87,6 +90,9 @@ jobs:
 
       - name: Prisma migrate
         run: npx prisma migrate deploy
+
+      - name: Seeder generate
+        run: npx prisma db seed
 
       - name: Test
         run: npm run test:ci
