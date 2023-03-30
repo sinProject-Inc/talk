@@ -112,5 +112,6 @@
 	"i18n-ally.sourceLanguage": "en-US",
 	"code-runner.executorMap": {
 		"typescript": "npx tsx"
-	}
+	},
+	"workbench.iconTheme": "material-icon-theme"
 }
