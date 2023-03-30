@@ -113,5 +113,6 @@
 	"code-runner.executorMap": {
 		"typescript": "npx tsx"
 	},
-	"workbench.iconTheme": "material-icon-theme"
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.minimap.enabled": false
 }
