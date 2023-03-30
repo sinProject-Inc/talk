@@ -58,7 +58,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 1
+    timeout-minutes: 10
 
     env:
       DATABASE_URL: mysql://root:root@127.0.0.1:3306/test
@@ -107,7 +107,7 @@ jobs:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
 
-    timeout-minutes: 1
+    timeout-minutes: 10
 
     env:
       DATABASE_URL: mysql://root:root@127.0.0.1:3306/test
