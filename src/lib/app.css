@@ -4,14 +4,14 @@
 
 :root {
 	--background-color: #fff;
-	--border-color: rgb(239, 243, 244);
-	--media-border-color: rgb(207, 217, 222);
-	--gray-color: rgb(83, 100, 113);
-	--text-color: rgb(15, 20, 25);
-	--link-color: rgb(29, 155, 240);
-	--link-hover-color: rgb(26, 140, 216);
-	--blue-color: rgb(29, 155, 240);
-	--header-background-color: rgba(239, 243, 244, 0.85);
+	--border-color: rgb(239 243 244);
+	--media-border-color: rgb(207 217 222);
+	--gray-color: rgb(83 100 113);
+	--text-color: rgb(15 20 25);
+	--link-color: rgb(29 155 240);
+	--link-hover-color: rgb(26 140 216);
+	--blue-color: rgb(29 155 240);
+	--header-background-color: rgb(239 243 244 / 85%);
 }
 
 @layer components {
@@ -61,7 +61,7 @@
 		border-radius: 0.5rem;
 	}
 
-	.submit_button {
+	.submit-button {
 		@apply bg-link text-white font-semibold border-link w-full box-border;
 	}
 
@@ -69,16 +69,17 @@
 		margin: 0 auto;
 		width: 100%;
 		max-width: calc(500px + 2rem);
+
 		@apply z-10;
 	}
 
 	.gradient-background {
-		background: rgb(2, 0, 36);
+		background: rgb(2 0 36);
 		background: linear-gradient(
 			229deg,
-			rgba(2, 0, 36, 1) 0%,
-			rgba(9, 9, 121, 1) 23%,
-			rgba(0, 212, 255, 1) 100%
+			rgb(2 0 36 / 100%) 0%,
+			rgb(9 9 121 / 100%) 23%,
+			rgb(0 212 255 / 100%) 100%
 		);
 	}
 
@@ -100,7 +101,7 @@
 		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-black/30 text-white/90 fill-white/90;
 	}
 
-	[contenteditable='true']:empty:before {
+	[contenteditable='true']:empty::before {
 		content: attr(placeholder);
 		color: #ffffff70;
 	}
