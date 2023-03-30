@@ -35,6 +35,11 @@ jobs:
       - name: Install
         run: npm i
 
+      - name: Create .env
+        run: |
+          touch .env
+          echo GMAIL_USER =${{ secrets.GMAIL_USER }} >> .env
+
       - name: Typecheck
         run: npm run typecheck
         env:
