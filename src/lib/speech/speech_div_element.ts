@@ -4,8 +4,7 @@ import type { TextContent } from './text_content'
 
 export class SpeechDivElement implements SpeechElement {
 	public constructor(
-		private readonly _element: HTMLDivElement,
-		// private readonly _hint_message: Message
+		private readonly _element: HTMLDivElement // private readonly _hint_message: Message
 	) {}
 
 	public show_hint(): void {

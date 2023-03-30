@@ -1,4 +1,4 @@
-import type { TextContent } from "./text_content";
+import type { TextContent } from './text_content'
 
 export interface SpeechElement {
 	show_hint(): void

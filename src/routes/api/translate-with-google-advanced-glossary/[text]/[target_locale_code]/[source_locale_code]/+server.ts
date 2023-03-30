@@ -5,7 +5,7 @@ import { TranslationText } from '$lib/translation/translation_text'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const translation_text = new TranslationText(params.text)
 		const source_locale_code = new LocaleCode(params.source_locale_code)

@@ -106,7 +106,7 @@
 		"editor.defaultFormatter": "vscode.css-language-features"
 	},
 	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"i18n-ally.displayLanguage": "en-US",
 	"i18n-ally.sourceLanguage": "en-US",

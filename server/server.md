@@ -2,9 +2,9 @@
 
 ## シングル起動
 
-``npm start``
+`npm start`
 
-実際は ``npx tsx server.ts ``
+実際は `npx tsx server.ts `
 
 ## クラスター起動
 
@@ -33,7 +33,7 @@ ecosystem.config.ts
 
 ## start
 
-pm2 start ecosystem.config.cjs     
+pm2 start ecosystem.config.cjs
 
 ## monitoring
 

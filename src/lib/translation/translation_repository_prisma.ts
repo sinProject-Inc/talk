@@ -14,9 +14,7 @@ export class TranslationRepositoryPrisma implements TranslationRepository {
 	public async find_many(text_id: TextId, locale_code: LocaleCode): Promise<Text[]> {
 		const text_repository: TextRepository = new TextRepositoryPrisma(this._prisma_client)
 		const text = await text_repository.find_by_id(text_id)
-		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(
-			this._prisma_client
-		)
+		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(this._prisma_client)
 		const locale = await locale_repository.find_unique(locale_code)
 
 		if (!text) throw new Error('text not found')
@@ -61,18 +59,13 @@ export class TranslationRepositoryPrisma implements TranslationRepository {
 	): Promise<Text> {
 		const text_repository: TextRepository = new TextRepositoryPrisma(this._prisma_client)
 		const text = await text_repository.find_by_id(text_id)
-		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(
-			this._prisma_client
-		)
+		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(this._prisma_client)
 		const locale = await locale_repository.find_unique(locale_code)
 
 		if (!text) throw new Error('text not found')
 		if (!locale) throw new Error('Locale not found')
 
-		const translation_text = await text_repository.save(
-			locale_code,
-			translation_speech_text
-		)
+		const translation_text = await text_repository.save(locale_code, translation_speech_text)
 
 		await this._prisma_client.textToText.upsert({
 			where: {
