@@ -40,6 +40,7 @@ jobs:
       - name: Create .env
         run: |
           touch .env
+          echo DATABASE_URL={{ secrets.DATABASE_URL }} >> .env
           echo SOUND_DIR={{ secrets.SOUND_DIR }} >> .env
           echo GOOGLE_PROJECT_ID={{ secrets.GOOGLE_PROJECT_ID }} >> .env
           echo GOOGLE_LOCATION={{ secrets.GOOGLE_LOCATION }} >> .env
@@ -94,6 +95,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create .env
+        run: |
+          touch .env
+          echo DATABASE_URL={{ secrets.DATABASE_URL }} >> .env
+          echo SOUND_DIR={{ secrets.SOUND_DIR }} >> .env
+          echo GOOGLE_PROJECT_ID={{ secrets.GOOGLE_PROJECT_ID }} >> .env
+          echo GOOGLE_LOCATION={{ secrets.GOOGLE_LOCATION }} >> .env
+          echo MICROSOFT_SPEECH_KEY={{ secrets.MICROSOFT_SPEECH_KEY }} >> .env
+          echo DEEPL_AUTH_KEY={{ secrets.DEEPL_AUTH_KEY }} >> .env
+          echo GMAIL_USER={{ secrets.GMAIL_USER }} >> .env
+          echo GMAIL_PASS={{ secrets.GMAIL_PASS }} >> .env
+
       - name: Prisma generate
         run: npx prisma generate
 
@@ -102,6 +115,9 @@ jobs:
 
       - name: Seeder generate
         run: npx prisma db seed
+
+      - name: Build
+        run: npm run build
 
       - name: Test
         run: npm run test:ci
@@ -143,9 +159,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # https://playwright.dev/docs/ci-intro
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Create .env
+        run: |
+          touch .env
+          echo DATABASE_URL={{ secrets.DATABASE_URL }} >> .env
+          echo SOUND_DIR={{ secrets.SOUND_DIR }} >> .env
+          echo GOOGLE_PROJECT_ID={{ secrets.GOOGLE_PROJECT_ID }} >> .env
+          echo GOOGLE_LOCATION={{ secrets.GOOGLE_LOCATION }} >> .env
+          echo MICROSOFT_SPEECH_KEY={{ secrets.MICROSOFT_SPEECH_KEY }} >> .env
+          echo DEEPL_AUTH_KEY={{ secrets.DEEPL_AUTH_KEY }} >> .env
+          echo GMAIL_USER={{ secrets.GMAIL_USER }} >> .env
+          echo GMAIL_PASS={{ secrets.GMAIL_PASS }} >> .env
 
       - name: Prisma generate
         run: npx prisma generate
@@ -155,6 +179,13 @@ jobs:
 
       - name: Seeder generate
         run: npx prisma db seed
+
+      # https://playwright.dev/docs/ci-intro
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Build
+        run: npm run build
 
       - name: Test
         run: npm run test:e2e
