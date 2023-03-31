@@ -5,10 +5,13 @@ runs:
 
   steps:
     - name: Prisma generate
+      shell: bash
       run: npx prisma generate
 
     - name: Prisma migrate
+      shell: bash
       run: npx prisma migrate deploy
 
     - name: Seeder generate
+      shell: bash
       run: npx prisma db seed

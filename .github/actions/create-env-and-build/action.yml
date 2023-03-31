@@ -5,6 +5,7 @@ runs:
 
   steps:
     - name: Create .env
+      shell: bash
       run: |
         touch .env
         echo DATABASE_URL={{ secrets.DATABASE_URL }} >> .env
@@ -17,4 +18,5 @@ runs:
         echo GMAIL_PASS={{ secrets.GMAIL_PASS }} >> .env
 
     - name: Build
+      shell: bash
       run: npm run build
