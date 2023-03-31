@@ -18,7 +18,7 @@
 </script>
 
 <div
-	class="group text cursor-pointer transition 
+	class="group text cursor-pointer transition
 		{deletable ? 'pl-5' : 'px-5'}
 		hover:bg-white/10 break-all flex justify-between
 		{selected ? 'bg-white/10' : 'bg-inherit'}
