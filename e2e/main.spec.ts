@@ -36,7 +36,7 @@ test('changing locale, and then moving pages keeps saved locale', async ({ page 
 	await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
 })
 
-// MEMO: GitHub Actions で動作させるにはデータが必要
+// TODO: GitHub Actions で動作させるにはデータが必要
 // test('If there is text on translate, there is text on main', async ({ page }) => {
 // 	await page.waitForSelector('.text')
 // 	const main_text_count = await page.locator('.text').count()
