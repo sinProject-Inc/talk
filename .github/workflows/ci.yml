@@ -9,76 +9,28 @@ on:
     branches:
       - main
 
-# concurrency:
-#   group: ci-${{ github.event.pull_request.number || github.ref }}
-#   cancel-in-progress: true
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint Check
+  check:
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/create-env-and-build
 
-      - name: Lint
+      - name: Lint Check
         run: npm run lint
 
-  typecheck:
-    name: Type Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.github/actions/setup-and-cache
-      - uses: ./.github/actions/create-env-and-build
-
-      - name: Typecheck
+      - name: Type Check
         run: npm run typecheck
 
-  test:
-    name: Vitest Tests
-    runs-on: ubuntu-latest
-
-    timeout-minutes: 10
-
-    env:
-      DATABASE_URL: mysql://root:rootroot@127.0.0.1:3306/talk
-
-    services:
-      mysql:
-        image: mysql
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_DATABASE: talk
-          MYSQL_ROOT_USER: root
-          MYSQL_ROOT_PASSWORD: rootroot
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.github/actions/setup-and-cache
-      - uses: ./.github/actions/prisma
-      - uses: ./.github/actions/create-env-and-build
-
-      - name: Test
-        run: npm run test:ci
-
-  test_e2e:
-    name: Playwright Tests
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
 
     timeout-minutes: 10
@@ -118,13 +70,16 @@ jobs:
 
       - uses: ./.github/actions/setup-and-cache
       - uses: ./.github/actions/prisma
-
-      # https://playwright.dev/docs/ci-intro
-      - name: Install Playwright Browsers
-        run: npx playwright install chromium
         # run: npx playwright install --with-deps
 
       - uses: ./.github/actions/create-env-and-build
 
-      - name: Test
+      - name: Vitest Test
+        run: npm run test:ci
+
+      # https://playwright.dev/docs/ci-intro
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+
+      - name: Playwright Test
         run: npm run test:e2e
