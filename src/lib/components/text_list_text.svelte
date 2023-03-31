@@ -19,7 +19,7 @@
 </script>
 
 <div
-	class="group text cursor-pointer transition 
+	class="group text cursor-pointer transition
 		{deletable ? 'ltr:pl-5 rtl:pr-5' : 'px-5'}
 		hover:bg-white/10 break-all flex justify-between
 		{selected ? 'bg-white/10' : 'bg-inherit'}
@@ -35,7 +35,9 @@
 		{text.text}
 	</div>
 	{#if deletable}
-		<div class="w-6 fill-white/30 ltr:mr-7 rtl:ml-7 my-1 invisible group-hover:visible delete-button">
+		<div
+			class="w-6 fill-white/30 ltr:mr-7 rtl:ml-7 my-1 invisible group-hover:visible delete-button"
+		>
 			<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
 		</div>
 	{/if}
