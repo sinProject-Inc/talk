@@ -1,6 +1,8 @@
 import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
+import { SettingKey } from '$lib/app/setting_key'
 import { Email } from '$lib/auth/email'
+import { IPAddress } from '$lib/auth/ip_address'
 import { MailSubject } from '$lib/auth/mail_subject'
 import { PinCode } from '$lib/auth/pin_code'
 import { PinCodeMailer } from '$lib/auth/pin_code_mailer'
@@ -30,6 +32,10 @@ async function send_mail(user: User, pin_code: PinCode): Promise<void> {
 	}
 }
 
+async function wait(ms: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 export const actions: Actions = {
 	sign_in: async ({ request }) => {
 		const data = await request.formData()
@@ -55,16 +61,33 @@ export const actions: Actions = {
 			// throw redirect(302, '/sign-in')
 		}
 	},
-	submit: async ({ cookies, request }) => {
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	submit: async ({ cookies, request, getClientAddress }) => {
 		const data = await request.formData()
 		const email_address = data.get('email')?.toString() ?? ''
 
 		try {
+			const ip_address = new IPAddress(getClientAddress())
 			const email = new Email(email_address)
 			const pin_code = new PinCode(data.get('pin_code')?.toString())
 			const auth_pin = await Repository.auth_pin.find(email, pin_code)
+			const success = !!auth_pin
 
-			if (!auth_pin) return fail(400, { credentials: true, email_address })
+			await Repository.sign_in_log.save(ip_address, email, success)
+
+			if (!success) {
+				const consecutive_fail = await Repository.sign_in_log.consecutive_fail(ip_address, email)
+
+				if (consecutive_fail) {
+					const wait_sec = await Repository.app_setting.get_number(
+						SettingKey.consecutive_fail_wait_sec
+					)
+
+					await wait(1000 * wait_sec)
+				}
+
+				return fail(400, { credentials: true, email_address })
+			}
 
 			await Signing.sign_in(auth_pin, cookies)
 

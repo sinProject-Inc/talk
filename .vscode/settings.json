@@ -37,6 +37,7 @@
 		"testid",
 		"textbox",
 		"texttospeech",
+		"typecheck",
 		"uuidv",
 		"Wavenet",
 		"Xiao"
@@ -106,11 +107,13 @@
 		"editor.defaultFormatter": "vscode.css-language-features"
 	},
 	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"i18n-ally.displayLanguage": "en-US",
 	"i18n-ally.sourceLanguage": "en-US",
 	"code-runner.executorMap": {
 		"typescript": "npx tsx"
-	}
+	},
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.minimap.enabled": false
 }

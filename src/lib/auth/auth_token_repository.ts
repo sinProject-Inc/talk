@@ -1,6 +1,6 @@
-import type { AuthPin, AuthToken, Role, User } from "@prisma/client";
-import type { LifeTime } from "./life_time";
-import type { Session } from "./session";
+import type { AuthPin, AuthToken, Role, User } from '@prisma/client'
+import type { LifeTime } from './life_time'
+import type { Session } from './session'
 
 export interface AuthTokenRepository {
 	find(session: Session): Promise<

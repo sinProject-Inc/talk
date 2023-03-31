@@ -1,0 +1,22 @@
+name: Create env action
+
+runs:
+  using: composite
+
+  steps:
+    - name: Create .env
+      shell: bash
+      run: |
+        touch .env
+        echo DATABASE_URL={{ secrets.DATABASE_URL }} >> .env
+        echo SOUND_DIR={{ secrets.SOUND_DIR }} >> .env
+        echo GOOGLE_PROJECT_ID={{ secrets.GOOGLE_PROJECT_ID }} >> .env
+        echo GOOGLE_LOCATION={{ secrets.GOOGLE_LOCATION }} >> .env
+        echo MICROSOFT_SPEECH_KEY={{ secrets.MICROSOFT_SPEECH_KEY }} >> .env
+        echo DEEPL_AUTH_KEY={{ secrets.DEEPL_AUTH_KEY }} >> .env
+        echo GMAIL_USER={{ secrets.GMAIL_USER }} >> .env
+        echo GMAIL_PASS={{ secrets.GMAIL_PASS }} >> .env
+
+    - name: Build
+      shell: bash
+      run: npm run build

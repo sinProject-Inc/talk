@@ -7,10 +7,7 @@ import type { BaseText } from './base_text'
 export class AddTextApi {
 	private readonly _api_path: ApiPath
 
-	public constructor(
-		private readonly _locale_code: LocaleCode,
-		private readonly _text: BaseText,
-	) {
+	public constructor(private readonly _locale_code: LocaleCode, private readonly _text: BaseText) {
 		this._api_path = ApiPath.api_directory
 			.connect('add-text')
 			.connect(this._locale_code.code)

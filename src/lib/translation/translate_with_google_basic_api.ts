@@ -6,10 +6,7 @@ import { ApiPath } from '../api/api_path'
 export class TranslateWithGoogleBasicApi {
 	private readonly _api_path: ApiPath
 
-	public constructor(
-		translation_text: TranslationText,
-		target_locale_code: LocaleCode,
-	) {
+	public constructor(translation_text: TranslationText, target_locale_code: LocaleCode) {
 		this._api_path = ApiPath.api_directory
 			.connect('translate-with-google-basic')
 			.connect_with_encoding(translation_text.text)

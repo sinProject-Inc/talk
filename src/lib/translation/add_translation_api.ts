@@ -11,7 +11,7 @@ export class AddTranslationApi {
 	public constructor(
 		text_id: TextId,
 		to_locale_code: LocaleCode,
-		translation_text: TranslationText,
+		translation_text: TranslationText
 	) {
 		this._api_path = ApiPath.api_directory
 			.connect('add-translation')

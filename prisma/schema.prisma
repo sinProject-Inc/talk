@@ -140,3 +140,12 @@ model ChatMember {
   name        String
   locale_code String
 }
+
+model SignInLog {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  ip_address String
+  account    String
+  success    Boolean
+}

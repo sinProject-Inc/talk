@@ -2,8 +2,45 @@ import type { LocaleCode } from '$lib/locale/locale_code'
 import type { SpeechElement } from './speech_element'
 import { TextContent } from './text_content'
 
+// NOTE: TypeScriptでSpeechRecognitionの型をきちんと書く https://qiita.com/akkadaska/items/9c1781052038db444182
+
+interface ISpeechRecognitionEvent {
+	isTrusted?: boolean
+	results: {
+		isFinal: boolean
+		[key: number]:
+			| undefined
+			| {
+					transcript: string
+			  }
+	}[]
+}
+interface ISpeechRecognition extends EventTarget {
+	lang: string
+	continuous: boolean
+	onend: (() => void) | undefined
+	interimResults: boolean
+	onresult: (event: ISpeechRecognitionEvent) => void
+
+	abort(): void
+	start(): void
+	stop(): void
+}
+
+interface ISpeechRecognitionConstructor {
+	new (): ISpeechRecognition
+}
+
+interface IWindow extends Window {
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	SpeechRecognition: ISpeechRecognitionConstructor
+	webkitSpeechRecognition: ISpeechRecognitionConstructor
+}
+
+declare const window: IWindow
+
 export class WebSpeechRecognition {
-	private readonly _recognition: SpeechRecognition
+	private readonly _recognition: ISpeechRecognition
 	private readonly _is_android: boolean
 	private _final_transcript = ''
 
@@ -43,7 +80,9 @@ export class WebSpeechRecognition {
 					interim_transcript = transcript
 				}
 
-				this._speech_element.text_content = new TextContent(this._final_transcript + interim_transcript)
+				this._speech_element.text_content = new TextContent(
+					this._final_transcript + interim_transcript
+				)
 			}
 		}
 	}

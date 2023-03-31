@@ -2,6 +2,8 @@ import type { AuthPinRepository } from '$lib/auth/auth_pin_repository'
 import { AuthPinRepositoryPrisma } from '$lib/auth/auth_pin_repository_prisma'
 import type { AuthTokenRepository } from '$lib/auth/auth_token_repository'
 import { AuthTokenRepositoryPrisma } from '$lib/auth/auth_token_repository_prisma'
+import type { SignInLogRepository } from '$lib/auth/sign_in_log_repository'
+import { SignInLogRepositoryPrisma } from '$lib/auth/sign_in_log_repository_prisma'
 import type { UserRepository } from '$lib/auth/user_repository'
 import { UserRepositoryPrisma } from '$lib/auth/user_repository_prisma'
 import type { ChatLogRepository } from '$lib/chat/chat_log_repository'
@@ -37,4 +39,5 @@ export class Repository {
 	public static user: UserRepository = new UserRepositoryPrisma(this._context)
 	public static chat_log: ChatLogRepository = new ChatLogRepositoryPrisma(this._context)
 	public static voice: VoiceRepository = new VoiceRepositoryPrisma(this._context)
+	public static sign_in_log: SignInLogRepository = new SignInLogRepositoryPrisma(this._context)
 }

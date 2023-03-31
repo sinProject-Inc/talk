@@ -57,7 +57,7 @@ async function get_speech_sounds(
 	return speech_sounds
 }
 
-export const GET: RequestHandler = async ({ url, params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const speech_text = new SpeechText(params.text)
 	const locale_code = new LocaleCode(params.locale_code)
 

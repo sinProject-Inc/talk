@@ -6,10 +6,7 @@ import { ApiPath } from '../api/api_path'
 export class TextsApi {
 	private readonly _api_path: ApiPath
 
-	public constructor(
-		locale_code: LocaleCode,
-		limit?: number,
-	) {
+	public constructor(locale_code: LocaleCode, limit?: number) {
 		const limit_string = limit?.toString() ?? ''
 
 		this._api_path = ApiPath.api_directory

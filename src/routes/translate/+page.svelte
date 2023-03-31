@@ -12,6 +12,7 @@
 	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechText } from '$lib/speech/speech_text'
 	import { SpeechTextAreaElement } from '$lib/speech/speech_text_area_element'
+	import { SubmissionText } from '$lib/speech/submission_text'
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
@@ -121,8 +122,10 @@
 	async function on_click_history_text(text: Text): Promise<void> {
 		source_translate_box.set_text(text)
 
+		const submission_text = new SubmissionText(text.text)
+
 		const translation_texts = await show_translation(
-			text.text,
+			submission_text,
 			source_locale_code,
 			destination_locale_code,
 			destination_translate_box
@@ -145,12 +148,12 @@
 	}
 
 	async function show_translation(
-		value: string,
+		submission_text: SubmissionText,
 		source_locale_code: LocaleCode,
 		target_locale_code: LocaleCode,
 		target_translate_box: TranslateBox
 	): Promise<Text[]> {
-		const speech_text = new SpeechText(value)
+		const speech_text = new SpeechText(submission_text.text)
 		const translated_texts = await new GetTranslationApi(
 			speech_text,
 			source_locale_code,
@@ -208,8 +211,9 @@
 			translate_box === destination_translate_box ? source_translate_box : destination_translate_box
 
 		try {
+			const submission_text = new SubmissionText(value)
 			const translation_texts = await show_translation(
-				value,
+				submission_text,
 				this_locale_code,
 				partner_locale_code,
 				partner_translate_box

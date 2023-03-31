@@ -16,10 +16,7 @@ export class TextRepositoryPrisma implements TextRepository {
 		return text
 	}
 
-	public async find(
-		locale_code: LocaleCode,
-		speech_text: SpeechText
-	): Promise<Text | null> {
+	public async find(locale_code: LocaleCode, speech_text: SpeechText): Promise<Text | null> {
 		const locale = await this._prisma_client.locale.findUnique({
 			where: {
 				code: locale_code.code,
@@ -40,10 +37,7 @@ export class TextRepositoryPrisma implements TextRepository {
 		return text
 	}
 
-	public async find_many(
-		locale_code: LocaleCode,
-		limit?: TextLimit
-	): Promise<Text[]> {
+	public async find_many(locale_code: LocaleCode, limit?: TextLimit): Promise<Text[]> {
 		const texts = await this._prisma_client.text.findMany({
 			where: { locale: { code: locale_code.code } },
 			orderBy: { updated_at: 'desc' },
@@ -60,13 +54,8 @@ export class TextRepositoryPrisma implements TextRepository {
 		return text
 	}
 
-	public async save(
-		locale_code: LocaleCode,
-		speech_text: SpeechText
-	): Promise<Text> {
-		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(
-			this._prisma_client
-		)
+	public async save(locale_code: LocaleCode, speech_text: SpeechText): Promise<Text> {
+		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(this._prisma_client)
 		const locale = await locale_repository.find_unique(locale_code)
 
 		if (!locale) throw new Error('Locale not found')

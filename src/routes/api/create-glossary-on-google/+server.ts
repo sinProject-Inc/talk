@@ -1,10 +1,9 @@
 import { dev } from '$app/environment'
 import { GOOGLE_PROJECT_ID, GOOGLE_LOCATION } from '$env/static/private'
-import { logger } from '$lib/app/logger'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async () => {
 	if (!dev) return json('dev only')
 
 	const glossary_id = 'glossary'
