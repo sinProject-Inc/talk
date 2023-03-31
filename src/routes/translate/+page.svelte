@@ -18,6 +18,7 @@
 	import { DeleteTextApi } from '$lib/text/delete_text_api'
 	import { TextsApi } from '$lib/text/texts_api'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
+	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
@@ -372,6 +373,7 @@
 							deletable
 							on_click_text={() => on_click_history_text(text)}
 							delete_text={() => (confirming_delete_text = text)}
+							text_direction={new Direction(source_locale_code.code).value}
 						/>
 					{/each}
 				</div>

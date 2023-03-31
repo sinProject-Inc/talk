@@ -19,7 +19,12 @@ module.exports = {
 				xs: '410px',
 				'2xl': '1536px',
 			},
+			variants: {
+				float: ['responsive', 'direction'],
+				margin: ['responsive', 'direction'],
+				padding: ['responsive', 'direction'],
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwindcss-dir')()],
 }

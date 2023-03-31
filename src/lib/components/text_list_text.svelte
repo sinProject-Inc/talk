@@ -9,6 +9,7 @@
 	export let selected_text: Text | undefined = undefined
 	export let on_click_text: (text: Text) => void
 	export let deletable = false
+	export let text_direction = 'ltr'
 	export let delete_text: (text: Text) => void = () => {
 		return
 	}
@@ -19,17 +20,24 @@
 
 <div
 	class="group text cursor-pointer transition
-		{deletable ? 'pl-5' : 'px-5'}
+		{deletable ? 'ltr:pl-5 rtl:pr-5' : 'px-5'}
 		hover:bg-white/10 break-all flex justify-between
 		{selected ? 'bg-white/10' : 'bg-inherit'}
 		{is_last_text ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
-	<div class="text-body py-[10px] w-full" on:click={() => on_click_text(text)} on:keydown>
+	<div
+		class="text-body py-[10px] w-full"
+		on:click={() => on_click_text(text)}
+		on:keydown
+		dir={text_direction}
+	>
 		{text.text}
 	</div>
 	{#if deletable}
-		<div class="w-6 fill-white/30 mr-7 my-1 invisible group-hover:visible delete-button">
+		<div
+			class="w-6 fill-white/30 ltr:mr-7 rtl:ml-7 my-1 invisible group-hover:visible delete-button"
+		>
 			<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
 		</div>
 	{/if}
