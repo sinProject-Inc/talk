@@ -116,6 +116,7 @@ jobs:
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
+      - uses: ./.github/actions/setup-and-cache
       - uses: ./.github/actions/prisma
 
       # https://playwright.dev/docs/ci-intro
