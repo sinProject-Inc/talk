@@ -96,18 +96,17 @@ test('check if having 10 texts in history shows box', async ({ page }) => {
 	await expect(history_box).toBeVisible()
 })
 
-// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
-// test('adding text should display the translation', async ({ page }) => {
-// 	await page.waitForSelector('.text-area')
-// 	const from_text_area = page.locator('.text-area').first()
+test('adding text should display the translation', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
 
-// 	await from_text_area.fill('Hello')
-// 	await from_text_area.press('Enter')
+	await from_text_area.fill('Hello')
+	await from_text_area.press('Enter')
 
-// 	const bottom_textarea = page.getByRole('textbox').nth(1)
+	const bottom_textarea = page.getByRole('textbox').nth(1)
 
-// 	await expect(bottom_textarea).toHaveValue('こんにちは')
-// })
+	await expect(bottom_textarea).toHaveValue('こんにちは')
+})
 
 // test('adding text should add it to the history', async ({ page }) => {
 // 	await page.waitForSelector('.text-area')
@@ -128,20 +127,19 @@ test('check if having 10 texts in history shows box', async ({ page }) => {
 // 	await expect(page.locator('#language-1')).toBeDisabled()
 // })
 
-// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
-// test('translate 250 characters', async ({ page }) => {
-// 	await page.waitForSelector('.text-area')
-// 	const from_text_area = page.locator('.text-area').first()
+test('translate 250 characters', async ({ page }) => {
+	await page.waitForSelector('.text-area')
+	const from_text_area = page.locator('.text-area').first()
 
-// 	const dummy_text = 'a'.repeat(250)
+	const dummy_text = 'a'.repeat(250)
 
-// 	await from_text_area.fill(dummy_text)
-// 	await from_text_area.press('Enter')
+	await from_text_area.fill(dummy_text)
+	await from_text_area.press('Enter')
 
-// 	const bottom_textarea = page.getByRole('textbox').nth(1)
+	const bottom_textarea = page.getByRole('textbox').nth(1)
 
-// 	await expect(bottom_textarea).toHaveValue(/あ/)
-// })
+	await expect(bottom_textarea).toHaveValue(/あ/)
+})
 
 test('translate 251 characters', async ({ page }) => {
 	await page.waitForSelector('.text-area')
