@@ -40,7 +40,7 @@ npm install
 2. Create a database named talk
 3. Create a .env file by copying .env.example at the top level of the project
 4. rewrite the env file.
-5. Push the initial schema and deta to the database:
+5. Push the initial schema and data to the database:
 
 ```bash
 npx prisma db push

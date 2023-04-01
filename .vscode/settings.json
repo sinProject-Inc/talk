@@ -11,7 +11,6 @@
 	],
 	"eslint.validate": ["svelte"],
 	"cSpell.words": [
-		"Alfie",
 		"autoincrement",
 		"codegen",
 		"cognitiveservices",
@@ -19,29 +18,30 @@
 		"Consolas",
 		"datasource",
 		"deepl",
+		"iwasaki",
 		"japanwest",
-		"Keita",
-		"Laia",
 		"Meiryo",
 		"Menlo",
+		"msedge",
 		"Neue",
 		"Noto",
-		"onresult",
-		"onvoiceschanged",
 		"Piseth",
 		"protos",
 		"Roboto",
 		"Segoe",
-		"sveltejs",
+		"sinproject",
+		"stylelint",
 		"tailwindcss",
 		"testid",
 		"textbox",
 		"texttospeech",
-		"typecheck",
+		"Todos",
+		"Upvote",
 		"uuidv",
-		"Wavenet",
-		"Xiao"
+		"viewports",
+		"Wavenet"
 	],
+
 	"cSpell.enabledLanguageIds": [
 		"asciidoc",
 		"c",
@@ -115,5 +115,13 @@
 		"typescript": "npx tsx"
 	},
 	"workbench.iconTheme": "material-icon-theme",
-	"editor.minimap.enabled": false
+	"editor.minimap.enabled": false,
+	"cSpell.ignorePaths": [
+		"**/settings.json",
+		"**/extensions.json",
+		"**/package.json",
+		"**/package-lock.json",
+		"**/yarn.lock",
+		"**/locales/**.json"
+	]
 }
