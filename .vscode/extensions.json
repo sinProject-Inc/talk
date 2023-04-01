@@ -30,6 +30,7 @@
 		"wix.vscode-import-cost",
 		"christian-kohler.path-intellisense",
 		"chakrounanas.turbo-console-log",
-		"github.vscode-github-actions"
+		"github.vscode-github-actions",
+		"formulahendry.code-runner"
 	]
 }
