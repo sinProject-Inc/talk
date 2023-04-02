@@ -5,7 +5,11 @@ import { Email } from './email'
 test('find_unique: new', async () => {
 	const email = new Email('test@example.com')
 
-	await Repository.context.user.delete({ where: { email: email.address } })
+	try {
+		await Repository.context.user.delete({ where: { email: email.address } })
+	} catch (e) {
+		// DO NOTHING
+	}
 
 	const user = await Repository.user.find_unique(email)
 
