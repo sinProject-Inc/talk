@@ -3,7 +3,7 @@ export class ChatRoomId {
 
 	public constructor(value: string) {
 		if (value.length < 1) {
-			throw new Error('ChatName must be at least 1 character long.')
+			throw new Error('ChatRoomId must be at least 1 character long.')
 		}
 
 		this._value = value

@@ -3,7 +3,7 @@ export class ChatLocaleCode {
 
 	public constructor(value: string) {
 		if (value.length < 1) {
-			throw new Error('ChatMessage must be at least 1 character long.')
+			throw new Error('ChatLocaleCode must be at least 1 character long.')
 		}
 
 		this._value = value

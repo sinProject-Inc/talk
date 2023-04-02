@@ -16,3 +16,4 @@ yarn.lock
 /logs/
 /playwright-report/
 /tests-examples/
+/coverage/

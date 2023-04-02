@@ -27,6 +27,10 @@ export class LifeTime {
 		return await LifeTime._from_setting(SettingKey.pin_code_lifetime_sec)
 	}
 
+	public static generate_zero(): LifeTime {
+		return new LifeTime(0)
+	}
+
 	public get millisecond(): number {
 		return this._millisecond
 	}

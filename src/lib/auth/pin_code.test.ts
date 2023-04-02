@@ -44,3 +44,11 @@ test('generate', () => {
 test('generate 8', () => {
 	expect(PinCode.generate(8).code).toHaveLength(8)
 })
+
+test('get_html have PIN code', () => {
+	const pin_code = PinCode.generate()
+	const code = pin_code.code
+	const html = pin_code.get_html()
+
+	expect(html).toContain(code)
+})
