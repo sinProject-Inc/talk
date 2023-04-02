@@ -30,9 +30,23 @@ export class SoundRepositoryPrisma implements SoundRepository {
 		return sound
 	}
 
-	public async find_first(locale_code: LocaleCode, speech_text: SpeechText): Promise<Sound | null> {
-		const sound = await this._prisma_client.sound.findFirst({
-			where: { sound_text: speech_text.text, locale: { code: locale_code.code } },
+	public async find_unique(
+		locale_code: LocaleCode,
+		speech_text: SpeechText
+	): Promise<Sound | null> {
+		const locale = await this._prisma_client.locale.findUnique({
+			where: { code: locale_code.code },
+		})
+
+		if (!locale) throw new Error('locale not found')
+
+		const sound = await this._prisma_client.sound.findUnique({
+			where: {
+				locale_id_sound_text: {
+					locale_id: locale.id,
+					sound_text: speech_text.text,
+				},
+			},
 		})
 
 		return sound

@@ -27,7 +27,7 @@ async function get_speech_sounds(
 	const speech_sounds: SpeechSound[] = []
 
 	for (const speech_text of speech_texts) {
-		const sound = await Repository.sound.find_first(locale_code, speech_text)
+		const sound = await Repository.sound.find_unique(locale_code, speech_text)
 
 		if (sound) {
 			try {

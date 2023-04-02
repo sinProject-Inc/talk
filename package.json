@@ -8,6 +8,7 @@
 		"preview": "vite preview",
 		"start": "npx tsx ./server/index.ts",
 		"test": "vitest",
+		"coverage": "vitest run --coverage",
 		"test:run": "vitest run",
 		"test:e2e": "playwright test",
 		"test:ci": "CI=true npm run test",

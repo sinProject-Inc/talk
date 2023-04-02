@@ -31,6 +31,7 @@
 		"christian-kohler.path-intellisense",
 		"chakrounanas.turbo-console-log",
 		"github.vscode-github-actions",
-		"formulahendry.code-runner"
+		"formulahendry.code-runner",
+		"george-alisson.html-preview-vscode"
 	]
 }
