@@ -24,6 +24,7 @@
 	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { Message } from '$lib/view/message'
+	import { web_logger } from '$lib/view/web_logger'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
@@ -96,6 +97,8 @@
 	}
 
 	function on_change_locale_select(): void {
+		web_logger.debug('on_change_locale_select')
+
 		if (from_locale_select_element.value === to_locale_select_element.value) {
 			switch_locales()
 			return
