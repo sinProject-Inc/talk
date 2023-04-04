@@ -23,8 +23,8 @@
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { WebLogger } from '$lib/view/log/web_logger'
 	import { Message } from '$lib/view/message'
-	import { web_logger } from '$lib/view/log/web_logger'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
@@ -49,6 +49,8 @@
 	let to_locale_code = LocaleCode.japanese_japan
 	let web_speech_recognition: WebSpeechRecognition | undefined
 	let listening = false
+
+	let web_logger = new WebLogger('main')
 
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
@@ -111,6 +113,10 @@
 	}
 
 	function on_click_history_text(text: Text): void {
+		web_logger.info(
+			`on_click_history_text: ${text.text}, locale: ${from_locale_select_element.value}`
+		)
+
 		if (text.text === selected_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
@@ -198,7 +204,9 @@
 	}
 
 	function start_listening(): void {
-		web_logger.info(`start_listening`)
+		web_logger.info(
+			`start_listening text:${selected_text?.text}, locale:${from_locale_select_element.value}`
+		)
 
 		const locale_code = new LocaleCode(from_locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))

@@ -2,6 +2,8 @@ import { WebLog } from './web_log'
 import { WebLogLevel } from './web_log_level'
 
 export class WebLogger {
+	public constructor(private readonly _page_name: string) {}
+
 	private _send(web_log: WebLog): void {
 		fetch('/api/log', {
 			method: 'POST',
@@ -14,7 +16,7 @@ export class WebLogger {
 	}
 
 	private _send_message(web_log_level: WebLogLevel, message: string): void {
-		const web_log = new WebLog(web_log_level, message)
+		const web_log = new WebLog(web_log_level, `[${this._page_name}] ${message}`)
 
 		this._send(web_log)
 	}
@@ -31,8 +33,6 @@ export class WebLogger {
 		this._send_message(WebLogLevel.warn, message)
 	}
 }
-
-export const web_logger = new WebLogger()
 
 // window.addEventListener('error', (event) => {})
 //

@@ -20,6 +20,7 @@
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { WebLogger } from '$lib/view/log/web_logger'
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
@@ -45,6 +46,8 @@
 	let copied_snackbar_visible = false
 
 	let confirming_delete_text: Text | undefined
+
+	let web_logger = new WebLogger('translate')
 
 	$: listening = destination_listening || source_listening
 	$: history_visible = history_texts.length > 0 ? 'visible' : 'invisible'
@@ -100,12 +103,20 @@
 		destination_locale_select_element.value = source_locale_code.code
 		source_locale_select_element.value = destination_locale_code.code
 
+		web_logger.info(
+			`switch_locales: source: ${source_locale_select_element.value}, destination: ${destination_locale_select_element.value}`
+		)
+
 		switch_textarea_body()
 		set_locale()
 		store_locale()
 	}
 
 	function on_change_locale_select(target_select_element: HTMLSelectElement): void {
+		web_logger.info(
+			`on_change_locale_select: source: ${source_locale_select_element.value}, destination: ${destination_locale_select_element.value}`
+		)
+
 		if (destination_locale_select_element.value === source_locale_select_element.value) {
 			switch_locales()
 			return
@@ -120,6 +131,10 @@
 	}
 
 	async function on_click_history_text(text: Text): Promise<void> {
+		web_logger.info(
+			`on_click_history_text: ${text.text}, locale: ${source_locale_select_element.value}`
+		)
+
 		source_translate_box.set_text(text)
 
 		const submission_text = new SubmissionText(text.text)
@@ -189,6 +204,8 @@
 		const locale_code =
 			translate_box === destination_translate_box ? destination_locale_code : source_locale_code
 
+		web_logger.info(`speak: ${translate_box.get_value()}, locale: ${locale_code.code}`)
+
 		speak(value, locale_code)
 	}
 
@@ -209,6 +226,12 @@
 			translate_box === destination_translate_box ? source_locale_code : destination_locale_code
 		const partner_translate_box =
 			translate_box === destination_translate_box ? source_translate_box : destination_translate_box
+
+		web_logger.info(
+			`translate: ${translate_box.get_value()}, from: ${this_locale_code.code}, to: ${
+				partner_locale_code.code
+			}`
+		)
 
 		try {
 			const submission_text = new SubmissionText(value)
@@ -268,6 +291,8 @@
 		const textarea_element = translate_box.get_textarea_element()
 		const speech_text_area_element = new SpeechTextAreaElement(textarea_element, hint_message)
 
+		web_logger.info(`start_listening: locale: ${locale_code.code}`)
+
 		web_speech_recognition = new WebSpeechRecognition(locale_code, speech_text_area_element, () =>
 			on_end_listening(translate_box)
 		)
@@ -283,7 +308,10 @@
 		finish_listening(translate_box)
 	}
 
-	function show_copied_snackbar(): void {
+	async function on_copy(): Promise<void> {
+		const text = await navigator.clipboard.readText()
+		web_logger.info('on_copy: ' + text)
+
 		if (copied_snackbar_timeout) clearTimeout(copied_snackbar_timeout)
 
 		copied_snackbar_visible = true
@@ -346,7 +374,7 @@
 				on:start_listening={() => start_listening(source_translate_box)}
 				on:stop_listening={() => stop_listening(source_translate_box)}
 				on:speak={() => speak_by_translate_box(source_translate_box)}
-				on:copy={show_copied_snackbar}
+				on:copy={on_copy}
 				locale_code={source_locale_code}
 				partner_listening={destination_listening}
 				bind:listening={source_listening}
@@ -357,7 +385,7 @@
 				on:start_listening={() => start_listening(destination_translate_box)}
 				on:stop_listening={() => stop_listening(destination_translate_box)}
 				on:speak={() => speak_by_translate_box(destination_translate_box)}
-				on:copy={show_copied_snackbar}
+				on:copy={on_copy}
 				locale_code={destination_locale_code}
 				partner_listening={source_listening}
 				bind:listening={destination_listening}
