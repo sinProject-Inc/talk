@@ -1,10 +1,24 @@
+import { FormattedDate } from '$lib/general/formatted_date'
 import { WebLog } from './web_log'
 import { WebLogLevel } from './web_log_level'
 
 export class WebLogger {
 	public constructor(private readonly _page_name: string) {}
 
+	private _save_to_local_storage(web_log: WebLog): void {
+		const web_logs = JSON.parse(localStorage.getItem('web_logs') || '[]') as WebLog[]
+
+		web_logs.push(web_log)
+
+		localStorage.setItem('web_logs', JSON.stringify(web_logs))
+	}
+
 	private _send(web_log: WebLog): void {
+		if (!navigator.onLine) {
+			this._save_to_local_storage(web_log)
+			return
+		}
+
 		fetch('/api/log', {
 			method: 'POST',
 			headers: {
@@ -16,7 +30,10 @@ export class WebLogger {
 	}
 
 	private _send_message(web_log_level: WebLogLevel, message: string): void {
-		const web_log = new WebLog(web_log_level, `[${this._page_name}] ${message}`)
+		const web_log = new WebLog(
+			web_log_level,
+			`${FormattedDate.japan()} [${this._page_name}] ${message}`
+		)
 
 		this._send(web_log)
 	}
@@ -31,6 +48,29 @@ export class WebLogger {
 
 	public warn(message: string): void {
 		this._send_message(WebLogLevel.warn, message)
+	}
+
+	public static handle_network_change(web_logger: WebLogger): void {
+		const online_text = navigator.onLine ? 'online' : 'offline'
+
+		web_logger.warn(`Network changed: ${online_text}, user_agent: ${navigator.userAgent}`)
+	}
+
+	public static send_on_online(web_logger: WebLogger): void {
+		const web_logs = JSON.parse(localStorage.getItem('web_logs') || '[]') as WebLog[]
+
+		web_logs.forEach((web_log) => web_logger._send(web_log))
+
+		localStorage.removeItem('web_logs')
+
+		WebLogger.handle_network_change(web_logger)
+	}
+
+	public add_network_event_listeners(): void {
+		console.debug('[log] add_network_event_listeners')
+
+		window.addEventListener('offline', () => WebLogger.handle_network_change(this))
+		window.addEventListener('online', () => WebLogger.send_on_online(this))
 	}
 }
 
