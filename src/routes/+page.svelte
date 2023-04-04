@@ -97,7 +97,9 @@
 	}
 
 	function on_change_locale_select(): void {
-		web_logger.debug('on_change_locale_select')
+		web_logger.info(
+			`on_change_locale_select: from: ${from_locale_select_element.value}, to: ${to_locale_select_element.value}`
+		)
 
 		if (from_locale_select_element.value === to_locale_select_element.value) {
 			switch_locales()
