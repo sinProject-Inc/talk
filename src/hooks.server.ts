@@ -19,7 +19,9 @@ export const handleError: HandleServerError = ({ error, event }) => {
 }
 
 export const handle: Handle = async ({ event, resolve }) => {
-	logger.info(`${event.getClientAddress()} [${event.request.method}] ${event.url}`)
+	if (event.url.pathname !== '/api/log') {
+		logger.info(`${event.getClientAddress()} [${event.request.method}] ${event.url}`)
+	}
 
 	const session = new Session(event.cookies)
 
