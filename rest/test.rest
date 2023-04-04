@@ -11,4 +11,20 @@ GET {{host}}
 ###
 GET {{host}}/api/get-translation/Hi/en-US/ja-JP
 
+###
+POST {{host}}/api/log
+Content-Type: application/json
 
+{
+	"level": { "value": "info" },
+	"message": "Hello World"
+}
+
+###
+POST {{host}}/api/log
+Content-Type: application/json
+
+{
+	"level": { "value": "info2" },
+	"message": "Hello World"
+}
