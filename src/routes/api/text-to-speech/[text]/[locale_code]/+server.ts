@@ -34,7 +34,7 @@ async function get_speech_sounds(
 				const sound_id = new SoundId(sound.id)
 				const speech_sound = await SpeechSound.read(sound_id)
 
-				logger.info(`Found #${sound.id} sound for ${speech_text.text}`)
+				logger.info(`[DB] Found #${sound.id} sound for ${speech_text.text}`)
 				speech_sounds.push(speech_sound)
 				continue
 			} catch (e) {
@@ -49,7 +49,7 @@ async function get_speech_sounds(
 
 		await speech_sound.write(sound_id)
 
-		logger.info(`Created #${sound_id.id} sound for ${speech_text.text}`)
+		logger.info(`[DB] Created #${sound_id.id} sound for ${speech_text.text}`)
 
 		speech_sounds.push(speech_sound)
 	}

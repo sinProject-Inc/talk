@@ -25,11 +25,11 @@ export class UserRepositoryPrisma implements UserRepository {
 				},
 			})
 
-			logger.info(`[database] Created new user: ${email.address}`)
+			logger.info(`[DB] Created new user: ${email.address}`)
 
 			return user
 		} catch (error) {
-			logger.error(`[database] Failed to create user: ${email.address}`, error)
+			logger.error(`[DB] Failed to create user: ${email.address}`, error)
 			return undefined
 		}
 	}

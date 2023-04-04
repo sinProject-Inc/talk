@@ -37,13 +37,13 @@ export class GetTranslationService {
 				translated_speech_text
 			)
 
-			logger.info(`[database] translation saved: ${saved_translation.text}`)
+			logger.info(`[DB] translation saved: ${saved_translation.text}`)
 
 			return [saved_translation]
 		} catch (e) {
 			if (e instanceof Error) {
 				if (e.message.includes('Unique constraint failed')) {
-					logger.warn(`[database] translation already saved: ${translated_speech_text.text}`)
+					logger.warn(`[DB] translation already saved: ${translated_speech_text.text}`)
 					return await this.execute()
 				}
 			}

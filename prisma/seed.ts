@@ -18,11 +18,11 @@ async function main(): Promise<void> {
 
 main()
 	.then(async () => {
-		logger.info('[database] Seeding finished')
+		logger.info('[DB] Seeding finished')
 		await prisma.$disconnect()
 	})
 	.catch(async (e) => {
-		logger.error('[database] Seeding failed', e)
+		logger.error('[DB] Seeding failed', e)
 		await prisma.$disconnect()
 		process.exit(1)
 	})
