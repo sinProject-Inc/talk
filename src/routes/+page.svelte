@@ -23,6 +23,7 @@
 	import { TranslationText } from '$lib/translation/translation_text'
 	import { Direction } from '$lib/view/direction'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { WebLogger } from '$lib/view/log/web_logger'
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
@@ -48,6 +49,8 @@
 	let to_locale_code = LocaleCode.japanese_japan
 	let web_speech_recognition: WebSpeechRecognition | undefined
 	let listening = false
+
+	let web_logger = new WebLogger('main')
 
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
@@ -96,6 +99,10 @@
 	}
 
 	function on_change_locale_select(): void {
+		web_logger.info(
+			`on_change_locale_select: from: ${from_locale_select_element.value}, to: ${to_locale_select_element.value}`
+		)
+
 		if (from_locale_select_element.value === to_locale_select_element.value) {
 			switch_locales()
 			return
@@ -106,6 +113,10 @@
 	}
 
 	function on_click_history_text(text: Text): void {
+		web_logger.info(
+			`on_click_history_text: ${text.text}, locale: ${from_locale_select_element.value}`
+		)
+
 		if (text.text === selected_text?.text) {
 			audio_element.currentTime = 0
 			audio_element.play()
@@ -130,6 +141,10 @@
 	}
 
 	async function show_translation(): Promise<void> {
+		web_logger.info(
+			`show_translation: selected_text: ${selected_text?.text}, from: ${from_locale_code.code}, to: ${to_locale_code.code}`
+		)
+
 		if (!validate_for_translation()) return
 		if (!selected_text) return
 
@@ -144,6 +159,10 @@
 	}
 
 	async function add_translation(): Promise<void> {
+		web_logger.info(
+			`add_translation: ${add_translation_string}, selected_text: ${selected_text?.text}`
+		)
+
 		if (!validate_for_translation()) return
 		if (!selected_text) return
 		if (!add_translation_string) return
@@ -162,6 +181,8 @@
 	}
 
 	async function add_text(): Promise<void> {
+		web_logger.info(`add_text: ${new_text_element.value}`)
+
 		new_text_element.focus()
 
 		if (!new_text_element.value) return
@@ -183,6 +204,10 @@
 	}
 
 	function start_listening(): void {
+		web_logger.info(
+			`start_listening text:${selected_text?.text}, locale:${from_locale_select_element.value}`
+		)
+
 		const locale_code = new LocaleCode(from_locale_select_element.value)
 		const hint_message = new Message($_('recognizing'))
 		const speech_text_element = new SpeechTextElement(speech_element, hint_message)

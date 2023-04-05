@@ -21,6 +21,7 @@
 	import { Direction } from '$lib/view/direction'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
+	import { WebLogger } from '$lib/view/log/web_logger'
 	import { Web } from '$lib/view/web'
 	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
@@ -56,6 +57,8 @@
 	let chat_member_entities: ChatMemberEntity[] = []
 
 	let sending = false
+
+	let web_logger = new WebLogger('chat')
 
 	$: can_send = !!name && !!message
 
@@ -155,6 +158,11 @@
 		socket.emit('message', message_set, on_server_message_received())
 	}
 
+	async function on_click_send(): Promise<void> {
+		web_logger.info(`on_click_send: ${message}, name: ${name}`)
+		await send()
+	}
+
 	function on_server_message_received(): void {
 		sending = false
 		message = ''
@@ -164,19 +172,22 @@
 		const event_key = new EventKey(event)
 
 		if (!event_key.is_enter) return
-		if (!name) return
 
 		event.preventDefault()
+
+		web_logger.info(`on_enter_name: ${name}`)
 		join()
 	}
 
-	function on_keydown_message(event: KeyboardEvent): void {
+	async function on_keydown_message(event: KeyboardEvent): Promise<void> {
 		const event_key = new EventKey(event)
 
 		if (!event_key.is_enter) return
 
 		event.preventDefault()
-		send()
+
+		web_logger.info(`on_enter_message: ${message}, name: ${name}`)
+		await send()
 	}
 
 	async function set_app_locale(): Promise<void> {
@@ -205,6 +216,8 @@
 	}
 
 	async function on_change_locale_select(): Promise<void> {
+		web_logger.info(`on_change_locale_select: ${locale_select_element.value}, name: ${name}`)
+
 		AppLocalStorage.instance.to_locale = locale_select_element.value
 		await set_app_locale()
 
@@ -248,6 +261,8 @@
 	function start_listening(): void {
 		const locale_code = new LocaleCode(locale_select_element.value)
 		const speech_text_element = new SpeechDivElement(message_div_element)
+
+		web_logger.info(`start_listening: locale: ${locale_code.code}, name: ${name}`)
 
 		web_speech_recognition = new WebSpeechRecognition(
 			locale_code,
@@ -297,9 +312,12 @@
 	// }
 
 	async function enable_notification(): Promise<void> {
+		web_logger.info(`enable_notification: name: ${name}`)
+
 		const notification_permission = await Notification.requestPermission()
 
 		if (notification_permission !== 'granted') {
+			web_logger.info(`enable_notification: paermission denied. name: ${name}`)
 			alert($_('please_allow_notification'))
 			return
 		}
@@ -308,6 +326,7 @@
 	}
 
 	async function disable_notification(): Promise<void> {
+		web_logger.info(`disable_notification: name: ${name}`)
 		is_notification_enabled = false
 	}
 
@@ -353,6 +372,11 @@
 		}, 50)
 	}
 
+	function on_click_join(): void {
+		web_logger.info(`on_click_join: ${name}`)
+		join()
+	}
+
 	function did_leave(): void {
 		chat_log_items = []
 		joined = false
@@ -365,6 +389,8 @@
 	}
 
 	function leave(): void {
+		web_logger.info(`leave: ${name}`)
+
 		// TODO: leave
 		socket.emit('leave')
 
@@ -453,6 +479,7 @@
 	})
 
 	onMount(async () => {
+		web_logger.add_event_listeners()
 		add_checking_background_events()
 		init_name()
 		await init_locale()
@@ -548,7 +575,9 @@
 									<IconButton><LoadingIcon /></IconButton>
 								</div>
 							{:else}
-								<IconButton on_click_handler={send} enabled={can_send}><FillIcon /></IconButton>
+								<IconButton on_click_handler={on_click_send} enabled={can_send}
+									><FillIcon /></IconButton
+								>
 							{/if}
 						</div>
 					</div>
@@ -601,7 +630,7 @@
 						</div>
 					</button>
 				{:else}
-					<button class="glass-button" on:click={join}>
+					<button class="glass-button" on:click={on_click_join}>
 						<div class="flex flex-row items-center gap-1.5">
 							<div class="w-[24px] h-[24px]">
 								<SignInIcon />

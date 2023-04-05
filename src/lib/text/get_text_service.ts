@@ -19,13 +19,13 @@ export class GetTextService {
 		try {
 			const saved_text = await this._text_repository.save(this._locale_code, this._speech_text)
 
-			logger.info(`[database] text saved: ${saved_text.text}`)
+			logger.info(`[DB] text saved: ${saved_text.text}`)
 
 			return saved_text
 		} catch (e) {
 			if (e instanceof Error) {
 				if (e.message.includes('Unique constraint failed')) {
-					logger.warn(`[database] text already saved: ${this._speech_text.text}`)
+					logger.warn(`[DB] text already saved: ${this._speech_text.text}`)
 					return await this.execute()
 				}
 			}
