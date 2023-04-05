@@ -11,4 +11,3 @@ console.log('json_string', json_string)
 const json = JSON.parse(json_string)
 
 console.log('json', json)
-console.log('json', json)
