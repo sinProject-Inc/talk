@@ -47,7 +47,7 @@
 
 	let confirming_delete_text: Text | undefined
 
-	let web_logger = new WebLogger('translate')
+	const web_logger = new WebLogger('translate')
 
 	$: listening = destination_listening || source_listening
 	$: history_visible = history_texts.length > 0 ? 'visible' : 'invisible'
@@ -323,6 +323,7 @@
 	onMount(async () => {
 		if (!browser) return
 
+		web_logger.add_event_listeners()
 		init_locale_select()
 		await select_default_locales()
 		source_translate_box.focus()

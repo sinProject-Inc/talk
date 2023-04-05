@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
+	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
 	import type { ActionData } from './$types'
@@ -11,7 +12,11 @@
 
 	let sending = false
 
+	const web_logger = new WebLogger('pin-code')
+
 	onMount(() => {
+		web_logger.add_event_listeners()
+
 		if (!form) location.href = '/sign-in'
 
 		document.onfocus = (event): void => {
@@ -29,6 +34,9 @@
 			method="POST"
 			action="?/submit"
 			use:enhance={() => {
+				web_logger.info(
+					`on_submit: email: ${form?.email_address}, pin_code: ${pin_input_element.value}`
+				)
 				sending = true
 
 				return async ({ update }) => {
