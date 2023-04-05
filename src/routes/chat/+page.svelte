@@ -58,7 +58,7 @@
 
 	let sending = false
 
-	let web_logger = new WebLogger('chat')
+	const web_logger = new WebLogger('chat')
 
 	$: can_send = !!name && !!message
 

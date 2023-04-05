@@ -50,7 +50,7 @@
 	let web_speech_recognition: WebSpeechRecognition | undefined
 	let listening = false
 
-	let web_logger = new WebLogger('main')
+	const web_logger = new WebLogger('main')
 
 	function init_locale_select(): void {
 		const locales = JSON.parse(data.locales) as Locale[]
@@ -253,6 +253,7 @@
 	onMount(async () => {
 		if (!browser) return
 
+		web_logger.add_event_listeners()
 		init()
 		init_locale_select()
 		await select_default_locales()

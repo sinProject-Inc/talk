@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
+	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
 
@@ -11,11 +12,16 @@
 
 	let sending = false
 
+	const web_logger = new WebLogger('sign_in')
+
 	function on_submit(): void {
+		web_logger.info(`on_submit: email: ${email_input_element.value}`)
 		sending = true
 	}
 
 	onMount(() => {
+		web_logger.add_event_listeners()
+
 		document.onfocus = (event): void => {
 			if (event.target instanceof HTMLInputElement) event.target.select()
 		}
