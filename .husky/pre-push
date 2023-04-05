@@ -4,3 +4,6 @@
 npm run typecheck
 npm run test:run
 # npm run test:e2e
+
+git fetch origin
+git merge --no-commit --no-ff origin/main
