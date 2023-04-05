@@ -479,7 +479,7 @@
 	})
 
 	onMount(async () => {
-		web_logger.add_network_event_listeners()
+		web_logger.add_event_listeners()
 		add_checking_background_events()
 		init_name()
 		await init_locale()

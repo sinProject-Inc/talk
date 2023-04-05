@@ -50,6 +50,10 @@ export class WebLogger {
 		this._send_message(WebLogLevel.warn, message)
 	}
 
+	public error(message: string): void {
+		this._send_message(WebLogLevel.error, message)
+	}
+
 	public static handle_network_change(web_logger: WebLogger): void {
 		const online_text = navigator.onLine ? 'online' : 'offline'
 
@@ -66,11 +70,28 @@ export class WebLogger {
 		WebLogger.handle_network_change(web_logger)
 	}
 
-	public add_network_event_listeners(): void {
+	public static handle_error(web_logger: WebLogger, event: ErrorEvent): void {
+		const message = `Unhandled Error: ${event.error.message}, stack: ${event.error.stack}, user_agent: ${navigator.userAgent}`
+		web_logger.error(message)
+	}
+
+	public static handle_unhandled_rejection(
+		web_logger: WebLogger,
+		event: PromiseRejectionEvent
+	): void {
+		const message = `Unhanded Rejection: ${event.reason.message}, stack: ${event.reason.stack}, user_agent: ${navigator.userAgent}`
+		web_logger.error(message)
+	}
+
+	public add_event_listeners(): void {
 		console.debug('[log] add_network_event_listeners')
 
 		window.addEventListener('offline', () => WebLogger.handle_network_change(this))
 		window.addEventListener('online', () => WebLogger.send_on_online(this))
+		window.addEventListener('error', (event) => WebLogger.handle_error(this, event))
+		window.addEventListener('unhandledrejection', (event) =>
+			WebLogger.handle_unhandled_rejection(this, event)
+		)
 	}
 }
 
