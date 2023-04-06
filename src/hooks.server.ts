@@ -2,6 +2,7 @@ import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { Session } from '$lib/auth/session'
 import { Signing } from '$lib/auth/signing'
+import { ClientAddress } from '$lib/network/client_address'
 import type { Handle, HandleServerError } from '@sveltejs/kit'
 
 // NOTE: https://kit.svelte.jp/docs/errors
@@ -20,7 +21,8 @@ export const handleError: HandleServerError = ({ error, event }) => {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname !== '/api/log') {
-		logger.info(`${event.getClientAddress()} [${event.request.method}] ${event.url}`)
+		const client_address = new ClientAddress(event.request, event.getClientAddress).value
+		logger.info(`${client_address} [${event.request.method}] ${event.url}`)
 	}
 
 	const session = new Session(event.cookies)
