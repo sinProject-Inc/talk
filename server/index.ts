@@ -34,6 +34,8 @@ process.on('SIGTERM', shutdown_gracefully)
 const app = express()
 const server = http.createServer(app)
 
+app.set('trust proxy', true)
+
 // Inject SocketIO
 inject_socket_io(server)
 

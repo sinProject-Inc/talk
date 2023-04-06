@@ -16,6 +16,7 @@ import { GetTextService } from '../src/lib/text/get_text_service'
 import { TextRepositoryPrisma } from '../src/lib/text/text_repository_prisma'
 import { GetTranslationService } from '../src/lib/translation/get_translation_service'
 import { TranslationRepositoryPrisma } from '../src/lib/translation/translation_repository_prisma'
+import { SocketClientAddress } from '../src/lib/network/socket_client_address'
 
 const prisma_client = new PrismaClient()
 const chat_member_repository = new ChatMemberRepositoryPrisma(prisma_client)
@@ -111,13 +112,15 @@ async function on_message(
 	socket: Socket,
 	received_message_set: MessageSet
 ): Promise<void> {
+	const client_address = new SocketClientAddress(socket).value
+
 	try {
 		const room_id = get_room_id(socket)
 
 		if (!room_id) return
 
 		logger.info(
-			`[socket][${room_id}] ${received_message_set.name}: ${received_message_set.message}`
+			`${client_address} [SOCKET][${room_id}] ${received_message_set.name}: ${received_message_set.message}`
 		)
 
 		const chat_entity = new ChatEntity(
@@ -131,7 +134,7 @@ async function on_message(
 
 		io.to(room_id).emit('message', chat_log)
 	} catch (error) {
-		logger.error('[socket] on_message error', error)
+		logger.error(`${client_address} [SOCKET] on_message error`, error)
 
 		// TODO: 再ログインを促す
 	}
@@ -205,7 +208,9 @@ async function join(
 	await send_members(io, room_id)
 	await send_logs(socket)
 
-	logger.info(`[socket][${room_id}] ${chat_member_entity.name} joined`)
+	const client_address = new SocketClientAddress(socket).value
+
+	logger.info(`${client_address} [SOCKET][${room_id}] ${chat_member_entity.name} joined`)
 }
 
 async function leave(io: Server, socket: Socket): Promise<void> {
@@ -224,7 +229,9 @@ async function leave(io: Server, socket: Socket): Promise<void> {
 	send_leaved_member(io, room_id, chat_member)
 	await send_members(io, room_id)
 
-	logger.info(`[socket][${room_id}] ${chat_member.name} reaved`)
+	const client_address = new SocketClientAddress(socket).value
+
+	logger.info(`${client_address} [SOCKET][${room_id}] ${chat_member.name} reaved`)
 }
 
 async function on_connection(io: Server, socket: Socket): Promise<void> {
