@@ -7,13 +7,13 @@ export class LocaleSelectElement {
 	) {}
 
 	private _get_long_name(locale: Locale): string {
-		return `${locale.language} (${locale.country})`
+		return `${locale.language} ${locale.emoji}${locale.country}`
 	}
 
 	private _get_short_name(locale: Locale): string {
 		const country_code = locale.code.split('-')[1]
 
-		return `${locale.language} (${country_code})`
+		return `${locale.language} ${locale.emoji}${country_code}`
 	}
 
 	private _append_options(is_long_name: boolean): void {
