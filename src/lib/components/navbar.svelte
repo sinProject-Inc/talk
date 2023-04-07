@@ -6,7 +6,9 @@
 
 <div class="flex flex-row sticky z-10 h-[53px] top-0 glass-panel rounded-none">
 	<div class="center-container flex flex-row gap-4">
-		<a href="/" class="text-[22px] font-bold flex flex-row items-center flex-1"
+		<a
+			href="/"
+			class="text-[22px] font-bold flex flex-row items-center flex-1 no-underline header-text-color"
 			>{$_('talk_title')}</a
 		>
 
@@ -14,12 +16,12 @@
 			<div class="ml-auto flex gap-4 items-center">
 				<div>{$page.data.user.email}</div>
 				<form action="/sign-out" method="POST">
-					<button class="glass-button" type="submit">{$_('sign_out')}</button>
+					<button class="glass-button no-underline" type="submit">{$_('sign_out')}</button>
 				</form>
 			</div>
 		{:else}
 			<div class="ml-auto flex gap-2">
-				<a class="flex flex-row items-center" href="/sign-in"
+				<a class="flex flex-row items-center no-underline" href="/sign-in"
 					><button class="flex flex-row gap-1 items-center glass-button pr-5">
 						<div class="flex flex-row justify-center h-5">
 							<SignInIcon />

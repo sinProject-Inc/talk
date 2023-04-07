@@ -7,11 +7,35 @@
 	--border-color: rgb(239 243 244);
 	--media-border-color: rgb(207 217 222);
 	--gray-color: rgb(83 100 113);
-	--text-color: rgb(15 20 25);
-	--link-color: rgb(29 155 240);
+	--header-text-color: #ffffffe6;
+	--text-color: #ffffffbf;
+	--link-color: #2f81f7;
 	--link-hover-color: rgb(26 140 216);
 	--blue-color: rgb(29 155 240);
 	--header-background-color: rgb(239 243 244 / 85%);
+}
+
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+}
+
+.text-color {
+	color: var(--text-color);
+}
+
+.header-text-color {
+	color: var(--header-text-color);
+}
+
+.no-underline:hover,
+.no-underline:focus {
+	text-decoration: none;
 }
 
 @layer components {
@@ -98,7 +122,7 @@
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-black/30 text-white/90 fill-white/90;
+		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 bg-black text-white/90 fill-white/90;
 	}
 
 	[contenteditable='true']:empty::before {
