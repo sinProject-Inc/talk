@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"
+	><path
+		d="M398 931h164v-40H398v40Zm-138 85q-24 0-42-18t-18-42V196q0-24 18-42t42-18h440q24 0 42 18t18 42v760q0 24-18 42t-42 18H260Zm0-210h440V286H260v520Z"
+	/></svg
+>

@@ -132,13 +132,14 @@ model ChatLog {
 }
 
 model ChatMember {
-  id          Int      @id @default(autoincrement())
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  socket_id   String   @unique
-  room_id     String
-  name        String
-  locale_code String
+  id               Int      @id @default(autoincrement())
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  socket_id        String   @unique
+  room_id          String
+  name             String
+  locale_code      String
+  is_mobile_device Boolean
 }
 
 model SignInLog {
