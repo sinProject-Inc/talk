@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
+// NOTE: language: https://cloud.google.com/text-to-speech?hl=ja#section-2
 // NOTE: EMOJI: https://lets-emoji.com/national-flag-emoji/
 
 type LocaleSeed = {
@@ -11,6 +12,7 @@ type LocaleSeed = {
 
 export class LocaleSeeder {
 	private static readonly _seeds: LocaleSeed[] = [
+		{ code: 'bn-IN', language: 'বাংলা', country: 'ভারত', emoji: '🇮🇳' },
 		{ code: 'en-US', language: 'English', country: 'United States', emoji: '🇺🇸' },
 		{ code: 'en-GB', language: 'English', country: 'Great Britain', emoji: '🇬🇧' },
 		{ code: 'ja-JP', language: '日本語', country: '日本', emoji: '🇯🇵' },

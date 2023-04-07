@@ -33,6 +33,7 @@ export class VoiceSeeder {
 		{ locale_code: 'pt-PT', name: 'pt-PT-Wavenet-B', target: 'google' },
 		{ locale_code: 'en-AU', name: 'en-AU-Neural2-B', target: 'google' },
 		{ locale_code: 'en-IN', name: 'en-IN-Wavenet-B', target: 'google' },
+		{ locale_code: 'bn-IN', name: 'bn-IN-Wavenet-B', target: 'google' },
 	]
 
 	// eslint-disable-next-line @typescript-eslint/naming-convention
