@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { version } from '$app/environment'
 	import type { ChatMemberEntity, MessageSet } from '$lib/chat/chat'
+	import IconButton from '$lib/components/icon_button.svelte'
+	import DesktopWindowsIcon from '$lib/components/icons/desktop_windows_icon.svelte'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import NotificationsActiveIcon from '$lib/components/icons/notifications_active_icon.svelte'
 	import NotificationsIcon from '$lib/components/icons/notifications_icon.svelte'
 	import PersonIcon from '$lib/components/icons/person_icon.svelte'
+	import PhoneAndroidIcon from '$lib/components/icons/phone_android_icon.svelte'
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import SignOutIcon from '$lib/components/icons/sign_out_icon.svelte'
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
 	import { AppLocalStorage } from '$lib/locale/app_local_storage'
 	import { LocaleCode } from '$lib/locale/locale_code'
@@ -22,13 +24,13 @@
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
 	import { WebLogger } from '$lib/view/log/web_logger'
+	import { Urlify } from '$lib/view/urlify'
 	import { Web } from '$lib/view/web'
 	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onMount } from 'svelte'
-	import { locale, waitLocale, _ } from 'svelte-i18n'
+	import { _, locale, waitLocale } from 'svelte-i18n'
 	import type { PageData } from './$types'
-	import { Urlify } from '$lib/view/urlify'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -349,6 +351,7 @@
 		room_id: string
 		name: string
 		locale_code: string
+		is_mobile_device: boolean
 	}
 
 	function join(): void {
@@ -362,6 +365,7 @@
 			room_id: 'room01',
 			name: name,
 			locale_code: locale_select_element.value,
+			is_mobile_device: Web.is_mobile_device(),
 		}
 
 		socket.emit('join', join_data)
@@ -459,6 +463,8 @@
 
 	socket.on('members', (members: ChatMemberEntity[]) => {
 		chat_member_entities = members
+
+		console.log(members)
 	})
 
 	socket.on('join', (member: ChatMemberEntity) => {
@@ -546,8 +552,12 @@
 					</div>
 					{#each chat_member_entities as chat_member}
 						{@const locale_code = new LocaleCode(chat_member.locale_code)}
-						<div class="flex flex-row flex-wrap gap-1">
+						<div class="flex flex-row flex-wrap gap-1 items-center">
 							<span>{get_country_emoji(locale_code)}</span>
+							<span class="w-4 h-4"
+								>{#if chat_member.is_mobile_device}<PhoneAndroidIcon />{:else}<DesktopWindowsIcon
+									/>{/if}</span
+							>
 							<span>{chat_member.name}</span>
 						</div>
 					{/each}

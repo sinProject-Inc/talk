@@ -169,6 +169,7 @@ async function send_members(io: Server, room_id: string): Promise<void> {
 			room_id: room_member.room_id,
 			name: room_member.name,
 			locale_code: room_member.locale_code,
+			is_mobile_device: room_member.is_mobile_device,
 		} as ChatMemberEntity
 	})
 

@@ -51,6 +51,7 @@ export class ChatMemberRepositoryPrisma implements ChatMemberRepository {
 				room_id: chat_member_entity.room_id,
 				name: chat_member_entity.name,
 				locale_code: chat_member_entity.locale_code,
+				is_mobile_device: chat_member_entity.is_mobile_device,
 			},
 		})
 	}
