@@ -46,6 +46,7 @@ export class VoiceSeeder {
 		{ locale_code: 'kn-IN', name: 'kn-IN-Wavenet-B', target: 'google' },
 		{ locale_code: 'af-ZA', name: 'af-ZA-Standard-A', target: 'google' },
 		{ locale_code: 'ms-MY', name: 'ms-MY-Wavenet-B', target: 'google' },
+		{ locale_code: 'ca-ES', name: 'ca-ES-Standard-A', target: 'google' },
 	]
 
 	// eslint-disable-next-line @typescript-eslint/naming-convention

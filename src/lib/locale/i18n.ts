@@ -34,6 +34,7 @@ const locales = [
 	'kn-IN',
 	'af-ZA',
 	'ms-MY',
+	'ca-ES',
 ]
 const default_locale = 'en-US'
 
