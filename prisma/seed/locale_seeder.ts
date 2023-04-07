@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
+// NOTE: 世界の言語ランキング: https://japan.wipgroup.com/media/language-population
 // NOTE: language: https://cloud.google.com/text-to-speech?hl=ja#section-2
 // NOTE: EMOJI: https://lets-emoji.com/national-flag-emoji/
 
@@ -43,6 +44,7 @@ export class LocaleSeeder {
 		{ code: 'mr-IN', language: 'मराठी', country: 'भारत', emoji: '🇮🇳' },
 		{ code: 'tr-TR', language: 'Türkçe', country: 'Türkiye', emoji: '🇹🇷' },
 		{ code: 'pl-PL', language: 'Polski', country: 'Polska', emoji: '🇵🇱' },
+		{ code: 'gu-IN', language: 'ગુજરાતી', country: 'ભારત', emoji: '🇮🇳' },
 	]
 
 	public constructor(private readonly _prisma_client: PrismaClient) {}

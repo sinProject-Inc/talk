@@ -28,6 +28,7 @@ const locales = [
 	'mr-IN',
 	'tr-TR',
 	'pl-PL',
+	'gu-IN',
 ]
 const default_locale = 'en-US'
 
