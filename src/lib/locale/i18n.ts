@@ -19,7 +19,10 @@ const locales = [
 	'eu-ES',
 
 	'fil-PH',
+
+	'fr-CA',
 	'fr-FR',
+
 	'it-IT',
 	'pl-PL',
 	'pt-PT',

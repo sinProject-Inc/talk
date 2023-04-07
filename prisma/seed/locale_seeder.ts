@@ -31,7 +31,10 @@ export class LocaleSeeder {
 		{ code: 'eu-ES', language: 'Euskara', country: 'Espainia', emoji: '🇪🇸' },
 
 		{ code: 'fil-PH', language: 'Filipino', country: 'Pilipinas', emoji: '🇵🇭' },
+
+		{ code: 'fr-CA', language: 'Français', country: 'Canada', emoji: '🇨🇦' },
 		{ code: 'fr-FR', language: 'Français', country: 'France', emoji: '🇫🇷' },
+
 		{ code: 'it-IT', language: 'Italiano', country: 'Italia', emoji: '🇮🇹' },
 		{ code: 'pl-PL', language: 'Polski', country: 'Polska', emoji: '🇵🇱' },
 		{ code: 'pt-PT', language: 'Português', country: 'Portugal', emoji: '🇵🇹' },
