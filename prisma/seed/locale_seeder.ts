@@ -27,6 +27,8 @@ export class LocaleSeeder {
 		{ code: 'en-US', language: 'English', country: 'United States', emoji: '🇺🇸' },
 
 		{ code: 'es-ES', language: 'Español', country: 'España', emoji: '🇪🇸' },
+		{ code: 'es-US', language: 'Español', country: 'Estados Unidos', emoji: '🇺🇸' },
+
 		{ code: 'fil-PH', language: 'Filipino', country: 'Pilipinas', emoji: '🇵🇭' },
 		{ code: 'fr-FR', language: 'Français', country: 'France', emoji: '🇫🇷' },
 		{ code: 'it-IT', language: 'Italiano', country: 'Italia', emoji: '🇮🇹' },
