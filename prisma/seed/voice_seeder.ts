@@ -25,6 +25,7 @@ export class VoiceSeeder {
 
 		{ locale_code: 'es-ES', name: 'es-ES-Neural2-F', target: 'google' },
 		{ locale_code: 'es-US', name: 'es-US-Neural2-B', target: 'google' },
+		{ locale_code: 'eu-ES', name: 'eu-ES-Standard-A', target: 'google' },
 
 		{ locale_code: 'fil-PH', name: 'fil-PH-Wavenet-C', target: 'google' },
 		{ locale_code: 'fr-FR', name: 'fr-FR-Neural2-B', target: 'google' },
