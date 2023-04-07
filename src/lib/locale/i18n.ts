@@ -24,6 +24,7 @@ const locales = [
 	'bn-IN',
 	'pa-IN',
 	'ta-IN',
+	'te-IN',
 ]
 const default_locale = 'en-US'
 

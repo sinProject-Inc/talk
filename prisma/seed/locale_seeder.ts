@@ -39,6 +39,7 @@ export class LocaleSeeder {
 		{ code: 'bn-IN', language: 'বাংলা', country: 'ভারত', emoji: '🇮🇳' },
 		{ code: 'pa-IN', language: 'ਪੁਨਸ਼ਾਬੀ', country: 'ਭਾਰਤ', emoji: '🇮🇳' },
 		{ code: 'ta-IN', language: 'தமிழ்', country: 'இந்தியா', emoji: '🇮🇳' },
+		{ code: 'te-IN', language: 'తెలుగు', country: 'భారతదేశం', emoji: '🇮🇳' },
 	]
 
 	public constructor(private readonly _prisma_client: PrismaClient) {}
