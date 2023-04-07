@@ -38,6 +38,7 @@ export class VoiceSeeder {
 		{ locale_code: 'ta-IN', name: 'ta-IN-Wavenet-B', target: 'google' },
 		{ locale_code: 'te-IN', name: 'te-IN-Standard-B', target: 'google' },
 		{ locale_code: 'mr-IN', name: 'mr-IN-Wavenet-B', target: 'google' },
+		{ locale_code: 'tr-TR', name: 'tr-TR-Wavenet-B', target: 'google' },
 	]
 
 	// eslint-disable-next-line @typescript-eslint/naming-convention
