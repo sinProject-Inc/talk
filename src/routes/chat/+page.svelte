@@ -28,6 +28,7 @@
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	import { Urlify } from '$lib/view/urlify'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -509,7 +510,9 @@
 						</div>
 						{#if chat_log_item.translated}
 							<p>
-								<span data-testid="translated_chat_message">{chat_log_item.translated}</span>
+								<span data-testid="translated_chat_message"
+									>{@html new Urlify(chat_log_item.translated).replace()}</span
+								>
 							</p>
 							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
@@ -522,7 +525,9 @@
 							</div>
 						{:else}
 							<p>
-								<span data-testid="chat_message">{chat_log_item.data.message}</span>
+								<span data-testid="chat_message"
+									>{@html new Urlify(chat_log_item.data.message).replace()}</span
+								>
 							</p>
 						{/if}
 					</div>
@@ -642,8 +647,11 @@
 		</div>
 
 		<div class="flex justify-center text-white/75 text-sm">
-			<a target="_blank" rel="noreferrer" href="https://github.com/sinProject-Inc/talk/"
-				>sinProject Talk {version}</a
+			<a
+				target="_blank"
+				rel="noreferrer"
+				href="https://github.com/sinProject-Inc/talk/"
+				class="text-color">sinProject Talk {version}</a
 			>
 		</div>
 	</div>
