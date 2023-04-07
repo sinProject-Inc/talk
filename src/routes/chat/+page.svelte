@@ -463,8 +463,6 @@
 
 	socket.on('members', (members: ChatMemberEntity[]) => {
 		chat_member_entities = members
-
-		console.log(members)
 	})
 
 	socket.on('join', (member: ChatMemberEntity) => {
