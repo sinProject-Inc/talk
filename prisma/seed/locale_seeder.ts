@@ -12,7 +12,6 @@ type LocaleSeed = {
 
 export class LocaleSeeder {
 	private static readonly _seeds: LocaleSeed[] = [
-		{ code: 'bn-IN', language: 'বাংলা', country: 'ভারত', emoji: '🇮🇳' },
 		{ code: 'en-US', language: 'English', country: 'United States', emoji: '🇺🇸' },
 		{ code: 'en-GB', language: 'English', country: 'Great Britain', emoji: '🇬🇧' },
 		{ code: 'ja-JP', language: '日本語', country: '日本', emoji: '🇯🇵' },
@@ -37,6 +36,8 @@ export class LocaleSeeder {
 		{ code: 'pt-PT', language: 'Português', country: 'Portugal', emoji: '🇵🇹' },
 		{ code: 'en-AU', language: 'English', country: 'Australia', emoji: '🇦🇺' },
 		{ code: 'en-IN', language: 'English', country: 'India', emoji: '🇮🇳' },
+		{ code: 'bn-IN', language: 'বাংলা', country: 'ভারত', emoji: '🇮🇳' },
+		{ code: 'pa-IN', language: 'ਪੁਨਸ਼ਾਬੀ', country: 'ਭਾਰਤ', emoji: '🇮🇳' },
 	]
 
 	public constructor(private readonly _prisma_client: PrismaClient) {}
