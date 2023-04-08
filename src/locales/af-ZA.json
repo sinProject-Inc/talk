@@ -14,7 +14,7 @@
 	"continue": "Gaan voort",
 	"please_sign_in": "Aanmelding is nie nodig nie. Meld asseblief aan.",
 	"enter_pin_code": "Voer PIN-kode in",
-	"sent_pin_code": "Ons het 'n verifikasiekode na {e-pos} gestuur.",
+	"sent_pin_code": "Ons het 'n verifikasiekode na {email} gestuur.",
 	"pin_code_is_required": "PIN-kode word vereis.",
 	"wrong_credentials": "Jy het die verkeerde geloofsbriewe ingevoer.",
 	"submit": "Dien in",

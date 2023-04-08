@@ -41,9 +41,17 @@ const locales = [
 	'sv-SE',
 	'vi-VN',
 	'tr-TR',
+
 	'is-IS',
+	'cs-CZ',
+	'el-GR',
+	'bg-BG',
+
 	'ru-RU',
+	'sr-RS',
 	'uk-UA',
+
+	'he-IL',
 	'ar-XA',
 
 	'mr-IN',
