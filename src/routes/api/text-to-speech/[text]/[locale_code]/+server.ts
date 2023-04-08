@@ -12,7 +12,7 @@ import type { RequestHandler } from '@sveltejs/kit'
 async function create_speech(speech_text: SpeechText, locale_code: LocaleCode): Promise<Speech> {
 	const voice_locale = await Repository.voice.find_first_by_locale_code(locale_code)
 
-	if (!voice_locale) throw new Error(`voice not found: ${locale_code}}`)
+	if (!voice_locale) throw new Error(`voice not found: ${locale_code.code}}`)
 
 	if (voice_locale.target === 'microsoft') return new SpeechByMicrosoft(speech_text, voice_locale)
 	if (voice_locale.target === 'google') return new SpeechByGoogle(speech_text, voice_locale)
