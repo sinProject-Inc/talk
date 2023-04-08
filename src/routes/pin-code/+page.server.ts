@@ -41,8 +41,15 @@ export const actions: Actions = {
 		const data = await request.formData()
 		const email_address = data.get('email')?.toString() ?? ''
 
+		let email: Email
 		try {
-			const email = new Email(email_address)
+			email = new Email(email_address)
+		} catch (e) {
+			logger.warn(`[pin-code] Invalid email address: ${email_address}`)
+
+			return { credentials: false, email_address, missing: false, success: true }
+		}
+		try {
 			const user = await Repository.user.find_unique(email)
 
 			if (!user) return { credentials: true, email_address, missing: false, success: false }
