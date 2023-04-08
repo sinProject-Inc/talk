@@ -42,6 +42,7 @@ export const actions: Actions = {
 		const email_address = data.get('email')?.toString() ?? ''
 
 		let email: Email
+
 		try {
 			email = new Email(email_address)
 		} catch (e) {
@@ -49,6 +50,7 @@ export const actions: Actions = {
 
 			return { credentials: false, email_address, missing: false, success: true }
 		}
+
 		try {
 			const user = await Repository.user.find_unique(email)
 
