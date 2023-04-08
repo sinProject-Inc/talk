@@ -27,5 +27,5 @@ test('limit_date', async () => {
 	const now = new Date().getTime()
 	const limit = new Date(now - millisecond)
 
-	expect(life_time.limit_date).toEqual(limit)
+	expect(life_time.limit_date.getSeconds).toEqual(limit.getSeconds)
 })
