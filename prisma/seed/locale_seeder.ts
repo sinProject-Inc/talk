@@ -53,9 +53,17 @@ export class LocaleSeeder {
 		{ code: 'sv-SE', language: 'Svenska', country: 'Sverige', emoji: '🇸🇪' },
 		{ code: 'vi-VN', language: 'Tiếng Việt', country: 'Việt Nam', emoji: '🇻🇳' },
 		{ code: 'tr-TR', language: 'Türkçe', country: 'Türkiye', emoji: '🇹🇷' },
+
 		{ code: 'is-IS', language: 'Íslenska', country: 'Ísland', emoji: '🇮🇸' },
+		{ code: 'cs-CZ', language: 'Čeština', country: 'Česká republika', emoji: '🇨🇿' },
+		{ code: 'el-GR', language: 'Ελληνικά', country: 'Ελλάδα', emoji: '🇬🇷' },
+		{ code: 'bg-BG', language: 'Български', country: 'България', emoji: '🇧🇬' },
+
 		{ code: 'ru-RU', language: 'Русский', country: 'Россия', emoji: '🇷🇺' },
+		{ code: 'sr-RS', language: 'Српски', country: 'Србија', emoji: '🇷🇸' },
 		{ code: 'uk-UA', language: 'Українська', country: 'Україна', emoji: '🇺🇦' },
+
+		{ code: 'he-IL', language: 'עברית', country: 'ישראל', emoji: '🇮🇱' },
 		{ code: 'ar-XA', language: 'العربية', country: 'متعدد المناطق', emoji: '🇸🇦' },
 
 		{ code: 'mr-IN', language: 'मराठी', country: 'भारत', emoji: '🇮🇳' },

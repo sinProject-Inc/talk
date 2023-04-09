@@ -50,9 +50,17 @@ export class VoiceSeeder {
 		{ locale_code: 'sv-SE', name: 'sv-SE-Wavenet-C', target: 'google' },
 		{ locale_code: 'vi-VN', name: 'vi-VN-Wavenet-D', target: 'google' },
 		{ locale_code: 'tr-TR', name: 'tr-TR-Wavenet-B', target: 'google' },
+
 		{ locale_code: 'is-IS', name: 'is-IS-Standard-A', target: 'google' },
+		{ locale_code: 'cs-CZ', name: 'cs-CZ-Wavenet-A', target: 'google' },
+		{ locale_code: 'el-GR', name: 'el-GR-Wavenet-A', target: 'google' },
+		{ locale_code: 'bg-BG', name: 'bg-BG-Standard-A', target: 'google' },
+
 		{ locale_code: 'ru-RU', name: 'ru-RU-Standard-B', target: 'google' },
+		{ locale_code: 'sr-RS', name: 'sr-RS-Standard-A', target: 'google' },
 		{ locale_code: 'uk-UA', name: 'uk-UA-Wavenet-A', target: 'google' },
+
+		{ locale_code: 'he-IL', name: 'he-IL-Wavenet-B', target: 'google' },
 		{ locale_code: 'ar-XA', name: 'ar-XA-Wavenet-B', target: 'google' },
 
 		{ locale_code: 'mr-IN', name: 'mr-IN-Wavenet-B', target: 'google' },
