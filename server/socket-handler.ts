@@ -232,14 +232,14 @@ async function leave(io: Server, socket: Socket): Promise<void> {
 
 	const client_address = new SocketClientAddress(socket).value
 
-	logger.info(`${client_address} [SOCKET][${room_id}] ${chat_member.name} reaved`)
+	logger.info(`${client_address} [SOCKET][${room_id}] ${chat_member.name} leaved`)
 }
 
 async function on_connection(io: Server, socket: Socket): Promise<void> {
 	socket.on('join', (chat_member_entity) => join(io, socket, chat_member_entity))
 	socket.on('message', async (received_data) => on_message(io, socket, received_data))
 	socket.on('leave', () => leave(io, socket))
-	socket.on('disconnect', () => leave(io, socket))
+	socket.on('disconnecting', () => leave(io, socket))
 }
 
 async function adapt_redis(io: Server): Promise<void> {
