@@ -2,25 +2,68 @@ import { browser } from '$app/environment'
 import { init, register } from 'svelte-i18n'
 
 const locales = [
-	'en-US',
-	'es-ES',
-	'ja-JP',
-	'km-KH',
-	'ko-KR',
-	'vi-VN',
-	'yue-HK',
-	'ar-XA',
-	'cmn-CN',
-	'cmn-TW',
-	'it-IT',
-	'de-DE',
-	'fil-PH',
-	'fr-FR',
-	'ru-RU',
-	'th-TH',
-	'hi-IN',
+	'af-ZA',
 	'id-ID',
+	'ms-MY',
+	'ca-ES',
+	'da-DK',
+	'de-DE',
+
+	// 'en-AU',
+	// 'en-GB',
+	// 'en-IN',
+	'en-US',
+
+	'es-ES',
+	'es-US',
+	'eu-ES',
+
+	'fil-PH',
+
+	'fr-CA',
+	'fr-FR',
+
+	'gl-ES',
+	'it-IT',
+	'lv-LV',
+	'lt-LT',
+	'hu-HU',
+	'nl-NL',
+	'nb-NO',
+	'pl-PL',
+
+	'pt-BR',
 	'pt-PT',
+
+	'ro-RO',
+	'sk-SK',
+	'fi-FI',
+	'sv-SE',
+	'vi-VN',
+	'tr-TR',
+	'is-IS',
+	'ru-RU',
+	'uk-UA',
+	'ar-XA',
+
+	'mr-IN',
+	'hi-IN',
+	'bn-IN',
+	'pa-IN',
+	'gu-IN',
+	'ta-IN',
+	'te-IN',
+	'kn-IN',
+	'ml-IN',
+
+	'th-TH',
+	'km-KH',
+
+	'cmn-TW',
+	'yue-HK',
+	'ja-JP',
+	'cmn-CN',
+	'ko-KR',
 ]
 const default_locale = 'en-US'
 
