@@ -116,6 +116,8 @@
 				body: notification_message,
 				icon: '/icon-192.png',
 			})
+
+			new Audio('./sound/notification-140376.mp3').play()
 		})
 	}
 
