@@ -37,9 +37,6 @@ export class Urlify {
 				}
 			}
 
-			console.log('new_url', new_url)
-			console.log('url', url)
-
 			return `<a href="${new_url}" target="_blank" rel="noopener noreferrer">${url}</a>`
 		})
 	}
