@@ -28,7 +28,7 @@ export class PinCodeMailer {
 		const html = this._pin_code.get_html()
 
 		return await this._transporter.sendMail({
-			from: this._from_email.address,
+			from: this._from_email.address + 'test',
 			to: this._to_email.address,
 			subject: this._mail_subject.subject,
 			html,
