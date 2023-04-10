@@ -7,4 +7,4 @@ npm run test:run
 
 git fetch origin
 git merge --no-commit --no-ff origin/main
-git merge --abort
+git reset --hard HEAD
