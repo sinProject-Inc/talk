@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ locals, url, request }) => {
 async function send_mail(user: User, pin_code: PinCode): Promise<void> {
 	try {
 		const to_mail = new Email(user.email)
-		const mail_subject = new MailSubject('sinProject Talk - PIN Code')
+		const mail_subject = new MailSubject(`${pin_code.code} is your PIN code.`)
 		const gmail_node_mailer = new PinCodeMailer(to_mail, mail_subject, pin_code)
 
 		await gmail_node_mailer.send()

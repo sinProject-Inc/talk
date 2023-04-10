@@ -24,11 +24,15 @@ export class PinCodeMailer {
 		private readonly _pin_code: PinCode
 	) {}
 
+	private get _from(): string {
+		return `Talk <${this._from_email.address}>`
+	}
+
 	public async send(): Promise<SMTPTransport.SentMessageInfo> {
 		const html = this._pin_code.get_html()
 
 		return await this._transporter.sendMail({
-			from: this._from_email.address + 'test',
+			from: this._from,
 			to: this._to_email.address,
 			subject: this._mail_subject.subject,
 			html,
