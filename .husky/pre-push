@@ -6,4 +6,5 @@ npm run test:run
 # npm run test:e2e
 
 git fetch origin
-git merge --no-commit --no-ff --dry-run origin/main
+git merge --no-commit --no-ff origin/main
+git merge --abort
