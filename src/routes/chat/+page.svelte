@@ -31,6 +31,7 @@
 	import { onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	import { fly, slide } from 'svelte/transition'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -509,7 +510,7 @@
 				bind:this={chat_log_div_element}
 			>
 				{#each chat_log_items as chat_log_item}
-					<div>
+					<div in:fly={{ y: 20 }} out:slide>
 						<div class="flex flex-row gap-1">
 							<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
 							<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
@@ -552,7 +553,7 @@
 					</div>
 					{#each chat_member_entities as chat_member}
 						{@const locale_code = new LocaleCode(chat_member.locale_code)}
-						<div class="flex flex-row flex-wrap gap-1 items-center">
+						<div class="flex flex-row flex-wrap gap-1 items-center" in:fly={{ y: 20 }} out:slide>
 							<span>{get_country_emoji(locale_code)}</span>
 							<span class="w-4 h-4"
 								>{#if chat_member.is_mobile_device}<PhoneAndroidIcon />{:else}<DesktopWindowsIcon
