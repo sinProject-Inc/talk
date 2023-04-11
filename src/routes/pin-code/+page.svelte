@@ -40,8 +40,8 @@
 				sending = true
 
 				return async ({ update }) => {
+					await update()
 					sending = false
-					update()
 				}
 			}}
 		>
@@ -54,6 +54,7 @@
 			<div class="flex-col flex gap-3 mt-4">
 				<input type="hidden" name="email" value={form?.email_address} />
 				<input
+					disabled={sending}
 					class="focus:outline-link]"
 					type="text"
 					name="pin_code"
