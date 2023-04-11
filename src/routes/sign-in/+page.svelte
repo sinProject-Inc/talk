@@ -45,7 +45,7 @@
 
 			<div class="flex-col flex gap-3 mt-4">
 				<input
-					class=""
+					disabled={sending}
 					type="email"
 					name="email"
 					placeholder={$_('email')}
