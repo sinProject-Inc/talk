@@ -138,6 +138,8 @@
 	}
 
 	async function send(): Promise<void> {
+		if (sending) return
+
 		name = name.trim()
 		message = message.trim()
 
@@ -161,17 +163,12 @@
 
 		// socket.emitの後にsendingをtrueにすると、callbackが呼ばれる後にsendingがtrueになることもある
 		sending = true
-		socket.emit('message', message_set, on_server_message_received())
+		socket.emit('message', message_set)
 	}
 
 	async function on_click_send(): Promise<void> {
 		web_logger.info(`on_click_send: ${message}, name: ${name}`)
 		await send()
-	}
-
-	function on_server_message_received(): void {
-		sending = false
-		message = ''
 	}
 
 	function on_keydown_name(event: KeyboardEvent): void {
@@ -323,7 +320,7 @@
 		const notification_permission = await Notification.requestPermission()
 
 		if (notification_permission !== 'granted') {
-			web_logger.info(`enable_notification: paermission denied. name: ${name}`)
+			web_logger.info(`enable_notification: permission denied. name: ${name}`)
 			alert($_('please_allow_notification'))
 			return
 		}
@@ -484,6 +481,11 @@
 		setTimeout(() => {
 			show_notification(notification_message)
 		}, 50)
+	})
+
+	socket.on('message_acknowledged', () => {
+		sending = false
+		message = ''
 	})
 
 	onMount(async () => {
