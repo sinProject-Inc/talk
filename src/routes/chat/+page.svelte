@@ -32,6 +32,7 @@
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import type { PageData } from './$types'
 	import { fly, slide } from 'svelte/transition'
+	import { SubmissionText } from '$lib/speech/submission_text'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -153,10 +154,12 @@
 			return
 		}
 
+		const submission_text = new SubmissionText(message)
+
 		const message_set: MessageSet = {
 			locale_code: locale_select_element.value,
 			name,
-			message,
+			message: submission_text.text,
 		}
 
 		// console.info(`socket.io send: ${message}`)
