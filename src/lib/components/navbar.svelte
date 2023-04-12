@@ -4,8 +4,6 @@
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
-
-	console.log(encoded_redirect_url)
 </script>
 
 <div class="flex flex-row sticky z-10 h-[53px] top-0 glass-panel rounded-none">
