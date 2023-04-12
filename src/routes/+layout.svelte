@@ -1,11 +1,24 @@
 <script lang="ts">
+	import { navigating } from '$app/stores'
 	import '$lib/app.css'
 	import background from '$lib/assets/gradient_geometric_shapes.png'
 	import { Direction } from '$lib/view/direction'
+	import NProgress from 'nprogress'
+	import 'nprogress/nprogress.css'
 	import { locale } from 'svelte-i18n'
 
 	function get_direction(locale_code: string): string {
 		return new Direction(locale_code).value
+	}
+
+	NProgress.configure({ showSpinner: false })
+
+	$: {
+		if ($navigating) {
+			NProgress.start()
+		} else {
+			NProgress.done()
+		}
 	}
 </script>
 
