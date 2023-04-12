@@ -31,6 +31,7 @@
 	import { onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	import { fly, slide } from 'svelte/transition'
 	import { SubmissionText } from '$lib/speech/submission_text'
 
 	type ChatLogItem = {
@@ -138,6 +139,8 @@
 	}
 
 	async function send(): Promise<void> {
+		if (sending) return
+
 		name = name.trim()
 		message = message.trim()
 
@@ -163,17 +166,12 @@
 
 		// socket.emitの後にsendingをtrueにすると、callbackが呼ばれる後にsendingがtrueになることもある
 		sending = true
-		socket.emit('message', message_set, on_server_message_received())
+		socket.emit('message', message_set)
 	}
 
 	async function on_click_send(): Promise<void> {
 		web_logger.info(`on_click_send: ${message}, name: ${name}`)
 		await send()
-	}
-
-	function on_server_message_received(): void {
-		sending = false
-		message = ''
 	}
 
 	function on_keydown_name(event: KeyboardEvent): void {
@@ -325,7 +323,7 @@
 		const notification_permission = await Notification.requestPermission()
 
 		if (notification_permission !== 'granted') {
-			web_logger.info(`enable_notification: paermission denied. name: ${name}`)
+			web_logger.info(`enable_notification: permission denied. name: ${name}`)
 			alert($_('please_allow_notification'))
 			return
 		}
@@ -488,6 +486,11 @@
 		}, 50)
 	})
 
+	socket.on('message_acknowledged', () => {
+		sending = false
+		message = ''
+	})
+
 	onMount(async () => {
 		web_logger.add_event_listeners()
 		add_checking_background_events()
@@ -512,7 +515,7 @@
 				bind:this={chat_log_div_element}
 			>
 				{#each chat_log_items as chat_log_item}
-					<div>
+					<div in:fly={{ y: 20 }} out:slide>
 						<div class="flex flex-row gap-1">
 							<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
 							<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
@@ -555,7 +558,7 @@
 					</div>
 					{#each chat_member_entities as chat_member}
 						{@const locale_code = new LocaleCode(chat_member.locale_code)}
-						<div class="flex flex-row flex-wrap gap-1 items-center">
+						<div class="flex flex-row flex-wrap gap-1 items-center" in:fly={{ y: 20 }} out:slide>
 							<span>{get_country_emoji(locale_code)}</span>
 							<span class="w-4 h-4"
 								>{#if chat_member.is_mobile_device}<PhoneAndroidIcon />{:else}<DesktopWindowsIcon

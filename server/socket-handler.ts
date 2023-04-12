@@ -133,6 +133,7 @@ async function on_message(
 		const chat_log = await save(chat_entity, io, room_id)
 
 		io.to(room_id).emit('message', chat_log)
+		socket.emit('message_acknowledged')
 	} catch (error) {
 		logger.error(`${client_address} [SOCKET] on_message error`, error)
 
