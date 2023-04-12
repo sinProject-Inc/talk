@@ -93,7 +93,7 @@
 		<div class="z-10 flex justify-end px-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5" data-testid="delete_button">
 				<IconButton
-					on_click_handler={() => {
+					on:click={() => {
 						clear()
 						focus()
 					}}
@@ -118,7 +118,7 @@
 	<div class="flex rounded-b-md p-1">
 		<div class="ml-auto flex gap-1 flex-1">
 			<div class="listen-button">
-				<IconButton on_click_handler={handle_listen_button} enabled={listening_button_enabled()}>
+				<IconButton on:click={handle_listen_button} enabled={listening_button_enabled()}>
 					{#if listening}
 						<StopIcon />
 					{:else}
@@ -127,13 +127,13 @@
 				</IconButton>
 			</div>
 			<div data-testid="tts_button">
-				<IconButton on_click_handler={() => dispatch('speak')} enabled={button_enabled()}>
+				<IconButton on:click={() => dispatch('speak')} enabled={button_enabled()}>
 					<SpeakerIcon />
 				</IconButton>
 			</div>
 		</div>
 		<div data-testid="copy_button" class="ml-auto">
-			<IconButton on_click_handler={copy} enabled={button_enabled()}>
+			<IconButton on:click={copy} enabled={button_enabled()}>
 				<CopyIcon />
 			</IconButton>
 		</div>

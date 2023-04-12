@@ -355,7 +355,7 @@
 		<div class="language-switcher">
 			<IconButton
 				enabled={!listening}
-				on_click_handler={() => {
+				on:click={() => {
 					if (!listening) switch_locales()
 				}}><SwapIcon /></IconButton
 			>
@@ -404,7 +404,7 @@
 							{text}
 							{i}
 							deletable
-							on_click_text={() => on_click_history_text(text)}
+							on:click={() => on_click_history_text(text)}
 							delete_text={() => (confirming_delete_text = text)}
 							text_direction={new Direction(source_locale_code.code).value}
 						/>
