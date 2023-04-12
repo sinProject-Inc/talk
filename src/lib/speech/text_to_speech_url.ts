@@ -16,6 +16,7 @@ export class TextToSpeechUrl {
 				.connect(this._locale_code.code)
 			return api_path.path()
 		} catch (error) {
+			// eslint-disable-next-line no-console
 			console.error(error)
 			return ''
 		}

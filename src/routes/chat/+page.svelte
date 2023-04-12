@@ -112,7 +112,7 @@
 		if (is_visible) return
 
 		navigator.serviceWorker.ready.then((registration: ServiceWorkerRegistration) => {
-			console.info('notification_message', notification_message)
+			// console.info('notification_message', notification_message)
 
 			registration.showNotification('sinProject Talk - Chat', {
 				body: notification_message,
@@ -392,8 +392,6 @@
 		setTimeout(() => {
 			name_element.focus()
 		}, 50)
-
-		console.debug('did_leave')
 	}
 
 	function leave(): void {
@@ -422,10 +420,12 @@
 	}
 
 	socket.on('connect', () => {
+		// eslint-disable-next-line no-console
 		console.debug('[socket.io] connected.')
 	})
 
 	socket.on('disconnect', () => {
+		// eslint-disable-next-line no-console
 		console.debug('[socket.io] disconnected.')
 		did_leave()
 	})
@@ -469,7 +469,7 @@
 	})
 
 	socket.on('join', (member: ChatMemberEntity) => {
-		console.debug('join', member.name)
+		// console.debug('join', member.name)
 		const notification_message = $_('joined', { values: { name: member.name } })
 
 		setTimeout(() => {
@@ -478,7 +478,7 @@
 	})
 
 	socket.on('leave', (member: ChatMemberEntity) => {
-		console.debug('leave', member.name)
+		// console.debug('leave', member.name)
 		const notification_message = $_('leaved', { values: { name: member.name } })
 
 		setTimeout(() => {

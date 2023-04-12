@@ -84,7 +84,7 @@ export class WebLogger {
 	}
 
 	public add_event_listeners(): void {
-		console.debug('[log] add_network_event_listeners')
+		// console.debug('[log] add_network_event_listeners')
 
 		window.addEventListener('offline', () => WebLogger.handle_network_change(this))
 		window.addEventListener('online', () => WebLogger.send_on_online(this))

@@ -84,6 +84,8 @@
 	export function get_textarea_element(): HTMLTextAreaElement {
 		return textarea_element
 	}
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <div class="main-box glass-panel row-span-1" dir={new Direction(locale_code.code).value}>

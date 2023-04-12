@@ -25,6 +25,8 @@
 
 		pin_input_element.select()
 	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <div class="flex items-center justify-center h-screen">

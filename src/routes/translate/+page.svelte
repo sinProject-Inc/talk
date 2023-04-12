@@ -192,6 +192,7 @@
 			try {
 				await audio_element.play()
 			} catch (error) {
+				// eslint-disable-next-line no-console
 				console.warn(error)
 			}
 		} else {
@@ -249,6 +250,7 @@
 				const message = $_(err.message_id)
 				partner_translate_box.set_value(message)
 			} else {
+				// eslint-disable-next-line no-console
 				console.error(err)
 			}
 		}
@@ -328,6 +330,8 @@
 		await select_default_locales()
 		source_translate_box.focus()
 	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <svelte:head>

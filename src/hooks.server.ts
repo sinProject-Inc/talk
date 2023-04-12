@@ -9,6 +9,7 @@ import type { Handle, HandleServerError } from '@sveltejs/kit'
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError: HandleServerError = ({ error, event }) => {
 	logger.error('[server] Unhandled Error:', error, { event })
+	// eslint-disable-next-line no-console
 	console.error('[server] Unhandled Error:', error)
 
 	const { code } = error as { code?: string }

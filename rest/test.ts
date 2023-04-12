@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const data = `{"id":"chatcmpl-6wodoF7WMhqdeYHkuejmFn4DrKNpI","object":"chat.completion.chunk","created":1679475708,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"This"},"index":0,"finish_reason":null}]}`
 
 console.log('data', data)
