@@ -2,6 +2,8 @@
 	import { page } from '$app/stores'
 	import { _ } from 'svelte-i18n'
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
+
+	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
 </script>
 
 <div class="flex flex-row sticky z-10 h-[53px] top-0 glass-panel rounded-none">
@@ -21,7 +23,9 @@
 			</div>
 		{:else}
 			<div class="ml-auto flex gap-2">
-				<a class="flex flex-row items-center no-underline" href="/sign-in"
+				<a
+					class="flex flex-row items-center no-underline"
+					href="/sign-in?redirect_url={encoded_redirect_url}"
 					><button class="flex flex-row gap-1 items-center glass-button pr-5">
 						<div class="flex flex-row justify-center h-5">
 							<SignInIcon />
