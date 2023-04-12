@@ -80,6 +80,5 @@
 			aria-hidden="true"
 		/>
 	</div>
-
 	<slot />
 </div>
