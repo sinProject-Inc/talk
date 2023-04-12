@@ -20,6 +20,7 @@ module.exports = {
 	rules: {
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
 		'@typescript-eslint/explicit-function-return-type': ['warn'],
+		'no-console': ['warn'],
 		'@typescript-eslint/naming-convention': [
 			'error',
 			{
