@@ -33,5 +33,7 @@
 	"join": "가입하다",
 	"leave": "떠나다",
 	"joined": "{name}님이 대화에 참여했습니다.",
-	"leaved": "{name}님이 대화에서 나갔습니다."
+	"leaved": "{name}님이 대화에서 나갔습니다.",
+	"translate": "번역",
+	"chat": "채팅"
 }

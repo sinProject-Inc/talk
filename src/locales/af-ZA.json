@@ -33,5 +33,7 @@
 	"join": "Sluit aan",
 	"leave": "Verlaat",
 	"joined": "{name} het by die gesprek aangesluit.",
-	"leaved": "{name} het die gesprek verlaat."
+	"leaved": "{name} het die gesprek verlaat.",
+	"translate": "Vertaal",
+	"chat": "klets"
 }

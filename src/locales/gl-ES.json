@@ -33,5 +33,7 @@
 	"join": "Únete",
 	"leave": "Saír",
 	"joined": "{name} uniuse á conversa.",
-	"leaved": "{name} saíu da conversa."
+	"leaved": "{name} saíu da conversa.",
+	"translate": "Traducir",
+	"chat": "Conversa"
 }

@@ -33,5 +33,7 @@
 	"join": "Join",
 	"leave": "Farðu",
 	"joined": "{name} tók þátt í samtalinu.",
-	"leaved": "{name} yfirgaf samtalið."
+	"leaved": "{name} yfirgaf samtalið.",
+	"translate": "Þýða",
+	"chat": "Spjall"
 }

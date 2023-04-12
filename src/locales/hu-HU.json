@@ -33,5 +33,7 @@
 	"join": "Csatlakozás",
 	"leave": "Hagyja",
 	"joined": "{name} csatlakozott a beszélgetéshez.",
-	"leaved": "{name} kilépett a beszélgetésből."
+	"leaved": "{name} kilépett a beszélgetésből.",
+	"translate": "Fordítás",
+	"chat": "Csevegés"
 }

@@ -33,5 +33,7 @@
 	"join": "加入",
 	"leave": "離開",
 	"joined": "{name} 加入咗嗰個傾偈。",
-	"leaved": "{name} 離開咗嗰個傾偈。"
+	"leaved": "{name} 離開咗嗰個傾偈。",
+	"translate": "翻譯",
+	"chat": "傾偈"
 }

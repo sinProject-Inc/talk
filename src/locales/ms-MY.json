@@ -33,5 +33,7 @@
 	"join": "Sertai",
 	"leave": "Tinggalkan",
 	"joined": "{name} menyertai perbualan.",
-	"leaved": "{name} meninggalkan perbualan."
+	"leaved": "{name} meninggalkan perbualan.",
+	"translate": "Terjemah",
+	"chat": "Cakap-cakap"
 }

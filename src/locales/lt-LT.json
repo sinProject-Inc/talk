@@ -33,5 +33,7 @@
 	"join": "Prisijungti",
 	"leave": "Palik",
 	"joined": "{name} prisijungė prie pokalbio.",
-	"leaved": "{name} išėjo iš pokalbio."
+	"leaved": "{name} išėjo iš pokalbio.",
+	"translate": "Versti",
+	"chat": "Pokalbis"
 }

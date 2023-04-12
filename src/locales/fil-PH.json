@@ -33,5 +33,7 @@
 	"join": "Sumali",
 	"leave": "Umalis",
 	"joined": "Sumali si {name} sa usapan.",
-	"leaved": "Umalis si {name} sa usapan."
+	"leaved": "Umalis si {name} sa usapan.",
+	"translate": "Isalin",
+	"chat": "Usapan"
 }
