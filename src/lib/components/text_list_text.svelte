@@ -16,6 +16,8 @@
 
 	$: selected = selected_text === text
 	$: is_last_text = i === texts.length - 1
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <div

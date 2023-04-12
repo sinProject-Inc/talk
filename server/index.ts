@@ -7,13 +7,15 @@ import morgan from 'morgan'
 
 process.on('unhandledRejection', (reason) => {
 	logger.error('[process] Unhandled Rejection:', reason)
-	console.log('Unhandled Rejection:', reason)
+	// eslint-disable-next-line no-console
+	console.error('Unhandled Rejection:', reason)
 	process.exit(1)
 })
 
 process.on('uncaughtException', (error) => {
 	logger.error('[process] Uncaught Exception:', error)
-	console.log('Uncaught Exception at:', error)
+	// eslint-disable-next-line no-console
+	console.error('Uncaught Exception at:', error)
 	process.exit(1)
 })
 

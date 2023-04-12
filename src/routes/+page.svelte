@@ -258,6 +258,8 @@
 		init_locale_select()
 		await select_default_locales()
 	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <svelte:head>
