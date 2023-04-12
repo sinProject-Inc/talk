@@ -33,5 +33,7 @@
 	"join": "Pievienoties",
 	"leave": "Aiziet",
 	"joined": "{name} pievienojās sarunai.",
-	"leaved": "{name} pameta sarunu."
+	"leaved": "{name} pameta sarunu.",
+	"translate": "Tulkot",
+	"chat": "Čats"
 }

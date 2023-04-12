@@ -33,5 +33,7 @@
 	"join": "Deelnemen",
 	"leave": "Verlaten",
 	"joined": "{name} nam deel aan het gesprek.",
-	"leaved": "{name} heeft het gesprek verlaten."
+	"leaved": "{name} heeft het gesprek verlaten.",
+	"translate": "Vertalen",
+	"chat": "Chat"
 }

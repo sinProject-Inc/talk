@@ -33,5 +33,7 @@
 	"join": "Beitreten",
 	"leave": "Verlassen",
 	"joined": "{name} ist der Unterhaltung beigetreten.",
-	"leaved": "{name} hat die Unterhaltung verlassen."
+	"leaved": "{name} hat die Unterhaltung verlassen.",
+	"translate": "Übersetzen",
+	"chat": "Chat"
 }

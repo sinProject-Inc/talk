@@ -33,5 +33,7 @@
 	"join": "参加",
 	"leave": "退出",
 	"joined": "{name} さんが会話に参加しました。",
-	"leaved": "{name} さんが会話から退出しました。"
+	"leaved": "{name} さんが会話から退出しました。",
+	"translate": "翻訳する",
+	"chat": "チャット"
 }

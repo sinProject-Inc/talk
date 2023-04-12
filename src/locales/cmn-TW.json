@@ -33,5 +33,7 @@
 	"join": "加入",
 	"leave": "離開",
 	"joined": "{name} 加入了對話。",
-	"leaved": "{name} 離開了對話。"
+	"leaved": "{name} 離開了對話。",
+	"translate": "翻譯",
+	"chat": "聊天"
 }

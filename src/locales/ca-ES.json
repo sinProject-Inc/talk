@@ -33,5 +33,7 @@
 	"join": "Uneix-te",
 	"leave": "Marxa",
 	"joined": "{name} s'ha unit a la conversa.",
-	"leaved": "{name} ha sortit de la conversa."
+	"leaved": "{name} ha sortit de la conversa.",
+	"translate": "Traduir",
+	"chat": "Xat"
 }

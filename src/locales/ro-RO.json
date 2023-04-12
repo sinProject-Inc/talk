@@ -33,5 +33,7 @@
 	"join": "Alăturați-vă",
 	"leave": "Pleca",
 	"joined": "{name} s-a alăturat conversației.",
-	"leaved": "{name} a părăsit conversația."
+	"leaved": "{name} a părăsit conversația.",
+	"translate": "Traduce",
+	"chat": "Chat"
 }

@@ -33,5 +33,7 @@
 	"join": "Gå med",
 	"leave": "Lämna",
 	"joined": "{name} gick med i konversationen.",
-	"leaved": "{name} lämnade konversationen."
+	"leaved": "{name} lämnade konversationen.",
+	"translate": "Översätt",
+	"chat": "Chatt"
 }

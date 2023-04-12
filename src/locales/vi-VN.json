@@ -33,5 +33,7 @@
 	"join": "Tham gia",
 	"leave": "Rời khỏi",
 	"joined": "{name} đã tham gia cuộc trò chuyện.",
-	"leaved": "{name} đã rời cuộc trò chuyện."
+	"leaved": "{name} đã rời cuộc trò chuyện.",
+	"translate": "Dịch",
+	"chat": "Trò chuyện"
 }

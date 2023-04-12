@@ -7,22 +7,20 @@
 </script>
 
 <div class="flex flex-row sticky z-10 h-[53px] top-0 glass-panel rounded-none">
-	<div class="center-container flex flex-row gap-4">
-		<a
-			href="/"
-			class="text-[22px] font-bold flex flex-row items-center flex-1 no-underline header-text-color"
-			>{$_('talk_title')}</a
-		>
+	<div class="center-container flex flex-row gap-4 items-center font-bold">
+		<a href="/" class="text-[22px] no-underline header-text-color">{$_('talk_title')}</a>
+		<a href="/translate" class="header-text-color">{$_('translate')}</a>
+		<a href="/chat" class="header-text-color">{$_('chat')}</a>
 
 		{#if $page.data.user}
-			<div class="ml-auto flex gap-4 items-center">
+			<div class="ms-auto flex gap-4 items-center">
 				<div>{$page.data.user.email}</div>
 				<form action="/sign-out" method="POST">
 					<button class="glass-button no-underline" type="submit">{$_('sign_out')}</button>
 				</form>
 			</div>
 		{:else}
-			<div class="ml-auto flex gap-2">
+			<div class="ms-auto flex gap-2">
 				<a
 					class="flex flex-row items-center no-underline"
 					href="/sign-in?redirect_url={encoded_redirect_url}"

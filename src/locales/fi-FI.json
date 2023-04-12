@@ -33,5 +33,7 @@
 	"join": "Liity",
 	"leave": "Jätä",
 	"joined": "{name} liittyi keskusteluun.",
-	"leaved": "{name} poistui keskustelusta."
+	"leaved": "{name} poistui keskustelusta.",
+	"translate": "Kääntää",
+	"chat": "Keskustelu"
 }

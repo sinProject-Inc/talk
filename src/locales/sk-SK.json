@@ -33,5 +33,7 @@
 	"join": "Pripojiť sa",
 	"leave": "opustiť",
 	"joined": "{name} sa pripojil ku konverzácii.",
-	"leaved": "{name} opustil konverzáciu."
+	"leaved": "{name} opustil konverzáciu.",
+	"translate": "Preložiť",
+	"chat": "Chat"
 }

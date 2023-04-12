@@ -33,5 +33,7 @@
 	"join": "הצטרף",
 	"leave": "עזוב",
 	"joined": "{name} הצטרף לשיחה.",
-	"leaved": "{name} עזב את השיחה."
+	"leaved": "{name} עזב את השיחה.",
+	"translate": "תרגם",
+	"chat": "צ'אט"
 }

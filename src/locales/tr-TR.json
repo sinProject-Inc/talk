@@ -12,7 +12,7 @@
 	"sign_up": "Kayıt ol",
 	"or_create_account": "Veya hesabınız yoksa yeni bir hesap oluşturun.",
 	"continue": "Devam",
-	"Please_sign_in": "Kaydolmak gerekli değildir. Lütfen oturum açın.",
+	"please_sign_in": "Kaydolmak gerekli değildir. Lütfen oturum açın.",
 	"enter_pin_code": "PIN kodunu girin",
 	"sent_pin_code": "{email} adresine bir doğrulama kodu gönderdik.",
 	"pin_code_is_required": "PIN kodu gerekli.",
@@ -29,9 +29,11 @@
 	"text_limit": "Yalnızca 250 karaktere kadar çeviri yapabilirsiniz.",
 	"copied": "Kopyalandı",
 	"name": "İsim",
-	"Please_allow_notification": "Okunmamış bildirimler almak için lütfen tarayıcınızda bildirimlere izin verin.",
+	"please_allow_notification": "Okunmamış bildirimler almak için lütfen tarayıcınızda bildirimlere izin verin.",
 	"join": "Katılmak",
 	"leave": "Ayrıl",
 	"joined": "{name} görüşmeye katıldı.",
-	"leaved": "{name} görüşmeden ayrıldı."
+	"leaved": "{name} görüşmeden ayrıldı.",
+	"translate": "Çevir",
+	"chat": "Sohbet"
 }

@@ -33,5 +33,7 @@
 	"join": "Sartu",
 	"leave": "Utzi",
 	"joined": "{name} elkarrizketan sartu da.",
-	"leaved": "{name} elkarrizketatik irten da."
+	"leaved": "{name} elkarrizketatik irten da.",
+	"translate": "Itzuli",
+	"chat": "Txat"
 }
