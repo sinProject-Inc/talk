@@ -130,3 +130,7 @@ a:focus {
 		color: #ffffff70;
 	}
 }
+
+#nprogress .bar {
+	background: var(--link-color) !important;
+}
