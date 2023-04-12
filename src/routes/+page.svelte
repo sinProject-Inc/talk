@@ -284,7 +284,7 @@
 				placeholder={$_('enter_new_text')}
 				bind:this={new_text_element}
 			/>
-			<IconButton on_click_handler={add_text}><AddIcon /></IconButton>
+			<IconButton on:click={add_text}><AddIcon /></IconButton>
 		</div>
 		<div class="overflow-y-scroll">
 			{#each texts as text, i}
@@ -293,7 +293,7 @@
 					{text}
 					{i}
 					{selected_text}
-					on_click_text={() => on_click_history_text(text)}
+					on:click={() => on_click_history_text(text)}
 					text_direction={new Direction(from_locale_code.code).value}
 				/>
 			{/each}
@@ -314,7 +314,7 @@
 		<div class="flex flex-col gap-2">
 			<div class="title flex flex-row gap-4 items-center">
 				{$_('speech')}
-				<IconButton on_click_handler={handle_listen_button}>
+				<IconButton on:click={handle_listen_button}>
 					{#if listening}
 						<StopIcon />
 					{:else}
@@ -335,7 +335,7 @@
 				/>
 			</div>
 			<div class="flex flex-row gap-2 items-center">
-				<IconButton on_click_handler={show_translation}>
+				<IconButton on:click={show_translation}>
 					<TranslateIcon />
 				</IconButton>
 				<div lang={to_locale_code.code} class="flex-1">
@@ -350,7 +350,7 @@
 					lang={to_locale_code.code}
 					bind:value={add_translation_string}
 				/>
-				<IconButton on_click_handler={add_translation}>
+				<IconButton on:click={add_translation}>
 					<AddIcon />
 				</IconButton>
 			</div>

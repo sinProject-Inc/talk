@@ -581,11 +581,11 @@
 					<div class="flex flex-row">
 						<div class="flex-1">
 							{#if listening}
-								<IconButton on_click_handler={stop_listening}>
+								<IconButton on:click={stop_listening}>
 									<StopIcon />
 								</IconButton>
 							{:else}
-								<IconButton on_click_handler={start_listening}>
+								<IconButton on:click={start_listening}>
 									<VoiceIcon />
 								</IconButton>
 							{/if}
@@ -596,9 +596,7 @@
 									<IconButton><LoadingIcon /></IconButton>
 								</div>
 							{:else}
-								<IconButton on_click_handler={on_click_send} enabled={can_send}
-									><FillIcon /></IconButton
-								>
+								<IconButton on:click={on_click_send} enabled={can_send}><FillIcon /></IconButton>
 							{/if}
 						</div>
 					</div>

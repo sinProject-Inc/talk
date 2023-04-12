@@ -7,7 +7,6 @@
 	export let text: Text
 	export let i: number
 	export let selected_text: Text | undefined = undefined
-	export let on_click_text: (text: Text) => void
 	export let deletable = false
 	export let text_direction = 'ltr'
 	export let delete_text: (text: Text) => void = () => {
@@ -28,19 +27,14 @@
 		{is_last_text ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
-	<div
-		class="text-body py-[10px] w-full"
-		on:click={() => on_click_text(text)}
-		on:keydown
-		dir={text_direction}
-	>
+	<div class="text-body py-[10px] w-full" on:click on:keydown dir={text_direction}>
 		{text.text}
 	</div>
 	{#if deletable}
 		<div
 			class="w-6 fill-white/30 ltr:mr-7 rtl:ml-7 my-1 invisible group-hover:visible delete-button"
 		>
-			<IconButton on_click_handler={() => delete_text(text)}><CloseIcon /></IconButton>
+			<IconButton on:click={() => delete_text(text)}><CloseIcon /></IconButton>
 		</div>
 	{/if}
 </div>
