@@ -65,7 +65,7 @@
 	}
 
 	async function fetch_history(): Promise<void> {
-		texts = await new TextsApi(from_locale_code, 500).fetch()
+		texts = await new TextsApi(from_locale_code).fetch()
 	}
 
 	function set_locale(): void {

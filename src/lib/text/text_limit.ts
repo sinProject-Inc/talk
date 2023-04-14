@@ -7,6 +7,8 @@ export class TextLimit {
 	public constructor(limit: number) {
 		const valid_limit = new ValidId(limit)
 
+		if (valid_limit.id > 100) throw new Error('TextLimit is not less than 100')
+
 		this._limit = valid_limit.id
 	}
 
