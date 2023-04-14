@@ -5,6 +5,8 @@
 
 // MOTE: num run dev -- --host
 
+// TODO: create e2e TEST CODE !!!
+
 ###
 GET {{host}}
 
@@ -28,3 +30,18 @@ Content-Type: application/json
 	"level": { "value": "info2" },
 	"message": "Hello World"
 }
+
+###
+GET {{host}}/api/text/ab-CD
+
+###
+GET {{host}}/api/add-text/en-US/Hello
+
+###
+GET {{host}}/api/get-translation/Hello/en-US/ja-JP
+
+###
+GET {{host}}/api/text-to-speech/Hello/en-US
+
+###
+GET {{host}}/api/add-translation/99999999/en-US/こんにちは

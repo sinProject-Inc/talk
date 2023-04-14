@@ -8,15 +8,23 @@ import type { Handle, HandleServerError } from '@sveltejs/kit'
 // NOTE: https://kit.svelte.jp/docs/errors
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const handleError: HandleServerError = ({ error, event }) => {
-	logger.error('[server] Unhandled Error:', error, { event })
-	// eslint-disable-next-line no-console
-	console.error('[server] Unhandled Error:', error)
+	const client_address = new ClientAddress(event.request, event.getClientAddress).value
 
 	const { code } = error as { code?: string }
+	const { message } = error as { message?: string }
+
+	if (message?.startsWith('Not found')) {
+		logger.warn(`${client_address} [SERVER] 404: ${message}`)
+	} else {
+		logger.error(`${client_address} [SERVER] Unhandled Error:`, error, { event })
+	}
+
+	// eslint-disable-next-line no-console
+	// console.error('[server] Unhandled Error:', error)
 
 	return {
-		message: 'Whoops!',
 		code: code ?? 'UNKNOWN',
+		message: 'Whoops!',
 	}
 }
 
