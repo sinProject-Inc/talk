@@ -12,7 +12,7 @@ export class TextsApi {
 		this._api_path = ApiPath.api_directory
 			.connect('text')
 			.connect(locale_code.code)
-			.connect_with_params({ limit: limit_string })
+			.connect(limit_string)
 	}
 
 	public async fetch(): Promise<Text[]> {
