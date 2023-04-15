@@ -30,6 +30,10 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Talk - Sign in</title>
+</svelte:head>
+
 <div class="flex items-center justify-center h-screen">
 	<div class="center-container card-parent">
 		<form

@@ -29,6 +29,10 @@
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
+<svelte:head>
+	<title>Talk - PIN code</title>
+</svelte:head>
+
 <div class="flex items-center justify-center h-screen">
 	<div class="center-container card-parent">
 		<form
