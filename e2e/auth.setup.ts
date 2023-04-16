@@ -6,7 +6,7 @@ import { auth_file_path, host } from './lib/setup.js'
 const url = `${host}/sign-in`
 
 setup('sign in', async ({ page }) => {
-	setup.setTimeout(15 * 1000)
+	setup.setTimeout(20 * 1000)
 
 	await page.goto(url)
 
@@ -20,9 +20,11 @@ setup('sign in', async ({ page }) => {
 
 	await expect(page).toHaveTitle('Talk - PIN code')
 
-	await sleep(process.env.CI ? 3000 : 1000)
+	await sleep(process.env.CI ? 5000 : 1000)
 
 	const pin_code = await get_pin_code_from_mail()
+
+	expect(pin_code).toMatch(/^\d{6}$/)
 
 	await page.getByPlaceholder('PIN code').fill(pin_code)
 	await page.getByRole('button', { name: 'Submit' }).click()
