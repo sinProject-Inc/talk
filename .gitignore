@@ -15,3 +15,5 @@ node_modules
 /logs/
 .eslintcache
 /coverage/
+playwright/.auth
+/actions-runner/

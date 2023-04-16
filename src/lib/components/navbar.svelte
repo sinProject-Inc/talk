@@ -14,7 +14,7 @@
 
 		{#if $page.data.user}
 			<div class="ms-auto flex gap-4 items-center">
-				<div>{$page.data.user.email}</div>
+				<!-- <div>{$page.data.user.email}</div> -->
 				<form action="/sign-out" method="POST">
 					<button class="glass-button no-underline" type="submit">{$_('sign_out')}</button>
 				</form>

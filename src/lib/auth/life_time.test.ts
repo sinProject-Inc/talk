@@ -14,11 +14,11 @@ test('generate_pin_code', async () => {
 })
 
 test('millisecond', async () => {
-	expect((await LifeTime.generate_session()).millisecond).toEqual(600 * 1000)
+	expect((await LifeTime.generate_session()).millisecond).toEqual(1000 * 60 * 60 * 24)
 })
 
 test('second', async () => {
-	expect((await LifeTime.generate_session()).second).toEqual(600)
+	expect((await LifeTime.generate_session()).second).toEqual(60 * 60 * 24)
 })
 
 test('limit_date', async () => {

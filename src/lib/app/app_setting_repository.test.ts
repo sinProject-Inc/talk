@@ -3,7 +3,9 @@ import { Repository } from './repository'
 import { SettingKey } from './setting_key'
 
 test('session_lifetime_sec', async () => {
-	expect(await Repository.app_setting.get_number(SettingKey.session_lifetime_sec)).toEqual(600)
+	expect(await Repository.app_setting.get_number(SettingKey.session_lifetime_sec)).toEqual(
+		60 * 60 * 24
+	)
 })
 
 test('pin_code_lifetime_sec', async () => {

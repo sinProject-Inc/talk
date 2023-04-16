@@ -3,7 +3,8 @@ import { Repository } from '$lib/app/repository'
 import { Session } from '$lib/auth/session'
 import { Signing } from '$lib/auth/signing'
 import { ClientAddress } from '$lib/network/client_address'
-import type { Handle, HandleServerError } from '@sveltejs/kit'
+import type { AuthToken, Role, User } from '@prisma/client'
+import type { Handle, HandleServerError, RequestEvent } from '@sveltejs/kit'
 
 // NOTE: https://kit.svelte.jp/docs/errors
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -28,25 +29,48 @@ export const handleError: HandleServerError = ({ error, event }) => {
 	}
 }
 
-export const handle: Handle = async ({ event, resolve }) => {
-	if (event.url.pathname !== '/api/log') {
-		const client_address = new ClientAddress(event.request, event.getClientAddress).value
-		logger.info(`${client_address} [${event.request.method}] ${event.url}`)
-	}
+function is_authorized_api(pathname: string): boolean {
+	return pathname.startsWith('/api/') && !pathname.includes('/api/log')
+}
 
+async function find_auth_token(event: RequestEvent): Promise<
+	| (AuthToken & {
+			user: User & {
+				role: Role
+			}
+	  })
+	| null
+> {
 	const session = new Session(event.cookies)
 
-	if (!session.id) return await resolve(event)
+	if (!session.id) return null
 
-	const auth_token = await Repository.auth_token.find(session)
+	return await Repository.auth_token.find(session)
+}
 
-	if (!auth_token) return await resolve(event)
+export const handle: Handle = async ({ event, resolve }) => {
+	const client_address = new ClientAddress(event.request, event.getClientAddress).value
 
-	await Signing.access_valid(auth_token, event.cookies)
+	const auth_token = await find_auth_token(event)
 
-	event.locals.user = {
-		email: auth_token.user.email,
-		role: auth_token.user.role.name,
+	if (auth_token) {
+		await Signing.access_valid(auth_token, event.cookies)
+
+		event.locals.user = {
+			email: auth_token.user.email,
+			role: auth_token.user.role.name,
+		}
+	} else {
+		if (is_authorized_api(event.url.pathname)) {
+			logger.warn(
+				`${client_address} [API] Unauthorized API request: [${event.request.method}] ${event.url}`
+			)
+			return new Response('Unauthorized', { status: 401 })
+		}
+	}
+
+	if (event.url.pathname !== '/api/log') {
+		logger.info(`${client_address} [${event.request.method}] ${event.url}`)
 	}
 
 	return await resolve(event)

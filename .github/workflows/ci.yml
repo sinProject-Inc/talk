@@ -16,12 +16,32 @@ concurrency:
 jobs:
   check:
     name: Check
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner: [ubuntu-latest, self-hosted]
     steps:
+      - run: echo 'This job is running on ${{ matrix.runner }} runner!!'
+
       - uses: actions/checkout@v3
 
       - uses: ./.github/actions/setup-and-cache
-      - uses: ./.github/actions/create-env-and-build
+
+      - name: Create .env
+        run: |
+          touch .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo SOUND_DIR=${{ secrets.SOUND_DIR }} >> .env
+          echo GOOGLE_PROJECT_ID=${{ secrets.GOOGLE_PROJECT_ID }} >> .env
+          echo GOOGLE_LOCATION=${{ secrets.GOOGLE_LOCATION }} >> .env
+          echo MICROSOFT_SPEECH_KEY=${{ secrets.MICROSOFT_SPEECH_KEY }} >> .env
+          echo DEEPL_AUTH_KEY=${{ secrets.DEEPL_AUTH_KEY }} >> .env
+          echo GMAIL_USER=${{ secrets.GMAIL_USER }} >> .env
+          echo GMAIL_PASS=${{ secrets.GMAIL_PASS }} >> .env
+
+      - name: Build
+        shell: bash
+        run: npm run build
 
       - name: Lint Check
         run: npm run lint
@@ -32,6 +52,10 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    # runs-on: ${{ matrix.runner }}
+    # strategy:
+    #   matrix:
+    #     runner: [ubuntu-latest, self-hosted]
 
     timeout-minutes: 10
 
@@ -72,7 +96,21 @@ jobs:
       - uses: ./.github/actions/prisma
         # run: npx playwright install --with-deps
 
-      - uses: ./.github/actions/create-env-and-build
+      - name: Create .env
+        run: |
+          touch .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo SOUND_DIR=${{ secrets.SOUND_DIR }} >> .env
+          echo GOOGLE_PROJECT_ID=${{ secrets.GOOGLE_PROJECT_ID }} >> .env
+          echo GOOGLE_LOCATION=${{ secrets.GOOGLE_LOCATION }} >> .env
+          echo MICROSOFT_SPEECH_KEY=${{ secrets.MICROSOFT_SPEECH_KEY }} >> .env
+          echo DEEPL_AUTH_KEY=${{ secrets.DEEPL_AUTH_KEY }} >> .env
+          echo GMAIL_USER=${{ secrets.GMAIL_USER }} >> .env
+          echo GMAIL_PASS=${{ secrets.GMAIL_PASS }} >> .env
+
+      - name: Build
+        shell: bash
+        run: npm run build
 
       - name: Vitest Test
         run: npm run test:ci
@@ -83,3 +121,10 @@ jobs:
 
       - name: Playwright Test
         run: npm run test:e2e
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
