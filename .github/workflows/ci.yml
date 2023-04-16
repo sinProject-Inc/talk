@@ -51,8 +51,10 @@ jobs:
 
   tests:
     name: Tests
-    runs-on: self-hosted
-    # runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner: [ubuntu-latest, self-hosted]
 
     timeout-minutes: 10
 
@@ -81,6 +83,8 @@ jobs:
           --health-retries 5
 
     steps:
+      - run: echo 'This job is running on ${{ matrix.runner }} runner!!'
+
       - uses: actions/checkout@v3
 
       - id: 'auth'
