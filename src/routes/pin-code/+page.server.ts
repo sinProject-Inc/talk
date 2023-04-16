@@ -9,7 +9,7 @@ import { PinCodeMailer } from '$lib/auth/pin_code_mailer'
 import { Signing } from '$lib/auth/signing'
 import type { User } from '@prisma/client'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
-import type { PageServerLoad } from '../$types'
+import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ locals, url, request }) => {
 	if (locals.user) {
