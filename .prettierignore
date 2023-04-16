@@ -18,3 +18,4 @@ yarn.lock
 /tests-examples/
 /coverage/
 playwright/.auth
+/actions-runner/

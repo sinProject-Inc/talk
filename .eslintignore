@@ -17,3 +17,4 @@ yarn.lock
 /playwright-report/
 /tests-examples/
 playwright/.auth
+/actions-runner/
