@@ -12,10 +12,11 @@ setup('sign in', async ({ page }) => {
 
 	const gmail_user = process.env.GMAIL_USER ?? ''
 
-	expect(gmail_user).toEqual('iam.o.sin@gmail.com')
+	expect(gmail_user).not.toBe('')
 
 	await page.getByPlaceholder('Enter email').fill(gmail_user)
 	await page.getByRole('button', { name: 'Continue' }).click()
+	await page.waitForURL(/\/pin-code/)
 
 	await expect(page).toHaveTitle('Talk - PIN code')
 
@@ -25,6 +26,7 @@ setup('sign in', async ({ page }) => {
 
 	await page.getByPlaceholder('PIN code').fill(pin_code)
 	await page.getByRole('button', { name: 'Submit' }).click()
+	await page.waitForURL(/\/$/)
 
 	await expect(page).toHaveTitle('Talk')
 
