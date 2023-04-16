@@ -20,7 +20,7 @@ setup('sign in', async ({ page }) => {
 
 	await expect(page).toHaveTitle('Talk - PIN code')
 
-	await sleep(1000)
+	await sleep(process.env.CI ? 3000 : 1000)
 
 	const pin_code = await get_pin_code_from_mail()
 
