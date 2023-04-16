@@ -16,4 +16,4 @@ yarn.lock
 /logs/
 /playwright-report/
 /tests-examples/
-.auth
+playwright/.auth

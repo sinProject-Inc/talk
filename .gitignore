@@ -15,4 +15,4 @@ node_modules
 /logs/
 .eslintcache
 /coverage/
-.auth
+playwright/.auth

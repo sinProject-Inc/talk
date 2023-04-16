@@ -1,12 +1,7 @@
 import { expect, test } from '@playwright/test'
-import { get_pin_code_from_mail } from './lib/get_pin_code_from_mail.js'
-import { sleep } from '../src/lib/general/system.js'
+import { auth_file_path, host } from './lib/setup.js'
 
-const host = 'http://localhost:5273'
-const path = '/chat'
-const url = `${host}${path}`
-
-const auth_file_path = 'playwright/.auth/user.json'
+const url = `${host}/chat`
 
 test.beforeEach(async ({ page }) => {
 	await page.goto(url)
@@ -14,31 +9,6 @@ test.beforeEach(async ({ page }) => {
 
 test('before sign in', async ({ page }) => {
 	await expect(page).toHaveTitle('Talk - Sign in')
-})
-
-test('sign in', async ({ page }) => {
-	test.setTimeout(20 * 1000)
-
-	// URL に sign-in が含まれているか
-	expect(page.url()).toContain('sign-in')
-
-	const gmail_user = process.env.GMAIL_USER ?? ''
-
-	await page.getByPlaceholder('Enter email').fill(gmail_user)
-	await page.getByRole('button', { name: 'Continue' }).click()
-
-	expect(page.url()).toContain('pin-code')
-
-	await sleep(1000)
-
-	const pin_code = await get_pin_code_from_mail()
-
-	await page.getByPlaceholder('PIN code').fill(pin_code)
-	await page.getByRole('button', { name: 'Submit' }).click()
-
-	await expect(page).toHaveTitle('Talk - Chat')
-
-	await page.context().storageState({ path: auth_file_path })
 })
 
 test.describe('after sign in', () => {

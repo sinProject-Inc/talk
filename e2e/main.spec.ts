@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { auth_file_path } from './lib/setup.js'
 
 const host = 'http://localhost:5273'
 const path = '/'
@@ -26,14 +27,18 @@ test('to locale combo box', async ({ page }) => {
 	await expect(page.getByRole('combobox').nth(1)).toHaveValue('ja-JP')
 })
 
-test('changing locale, and then moving pages keeps saved locale', async ({ page }) => {
-	await page.getByRole('combobox').first().selectOption('yue-HK')
-	await page.getByRole('combobox').last().selectOption('km-KH')
+test.describe('after sign in', () => {
+	test.use({ storageState: auth_file_path })
 
-	await page.goto(`${host}/translate`)
+	test('changing locale, and then moving pages keeps saved locale', async ({ page }) => {
+		await page.getByRole('combobox').first().selectOption('yue-HK')
+		await page.getByRole('combobox').last().selectOption('km-KH')
 
-	await expect(page.getByRole('combobox').first()).toHaveValue('km-KH')
-	await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
+		await page.goto(`${host}/translate`)
+
+		await expect(page.getByRole('combobox').first()).toHaveValue('km-KH')
+		await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
+	})
 })
 
 // TODO: GitHub Actions で動作させるにはデータが必要
