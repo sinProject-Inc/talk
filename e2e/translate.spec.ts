@@ -5,6 +5,13 @@ const url = `${host}/translate`
 
 test.beforeEach(async ({ page }) => {
 	await page.goto(url)
+
+	if (page.url().includes('/sign-in')) return
+
+	await page.locator('#language_1').selectOption('en-US')
+	await page.locator('#language_2').selectOption('ja-JP')
+
+	await page.waitForTimeout(process.env.CI ? 1000 : 500)
 })
 
 test('before sign in', async ({ page }) => {
@@ -100,11 +107,6 @@ test.describe('after sign in', () => {
 
 	// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
 	test('adding text should display the translation', async ({ page }) => {
-		await page.locator('#language_1').selectOption('en-US')
-		await page.locator('#language_2').selectOption('ja-JP')
-
-		await page.waitForTimeout(500)
-
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
@@ -136,11 +138,6 @@ test.describe('after sign in', () => {
 	// })
 
 	test('translate 250 characters', async ({ page }) => {
-		await page.locator('#language_1').selectOption('en-US')
-		await page.locator('#language_2').selectOption('ja-JP')
-
-		await page.waitForTimeout(500)
-
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
@@ -155,11 +152,6 @@ test.describe('after sign in', () => {
 	})
 
 	test('translate 251 characters', async ({ page }) => {
-		await page.locator('#language_1').selectOption('en-US')
-		await page.locator('#language_2').selectOption('ja-JP')
-
-		await page.waitForTimeout(500)
-
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
@@ -188,7 +180,6 @@ test.describe('after sign in', () => {
 	})
 
 	test('having text enables delete button', async ({ page }) => {
-		await page.waitForTimeout(500)
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
@@ -213,7 +204,6 @@ test.describe('after sign in', () => {
 	})
 
 	test('having text enables tts button', async ({ page }) => {
-		await page.waitForTimeout(500)
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
@@ -238,7 +228,6 @@ test.describe('after sign in', () => {
 	})
 
 	test('having text enables copy button', async ({ page }) => {
-		await page.waitForTimeout(500)
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
