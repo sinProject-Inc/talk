@@ -99,17 +99,22 @@ test.describe('after sign in', () => {
 	})
 
 	// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
-	// test('adding text should display the translation', async ({ page }) => {
-	// 	await page.waitForSelector('.text-area')
-	// 	const from_text_area = page.locator('.text-area').first()
+	test('adding text should display the translation', async ({ page }) => {
+		await page.locator('#language_1').selectOption('en-US')
+		await page.locator('#language_2').selectOption('ja-JP')
 
-	// 	await from_text_area.fill('Hello')
-	// 	await from_text_area.press('Enter')
+		await page.waitForTimeout(500)
 
-	// 	const bottom_textarea = page.getByRole('textbox').nth(1)
+		await page.waitForSelector('.text-area')
+		const from_text_area = page.locator('.text-area').first()
 
-	// 	await expect(bottom_textarea).toHaveValue('こんにちは')
-	// })
+		await from_text_area.fill('Hello')
+		await from_text_area.press('Enter')
+
+		const bottom_textarea = page.getByRole('textbox').nth(1)
+
+		await expect(bottom_textarea).toHaveValue('こんにちは')
+	})
 
 	// test('adding text should add it to the history', async ({ page }) => {
 	// 	await page.waitForSelector('.text-area')
@@ -130,24 +135,30 @@ test.describe('after sign in', () => {
 	// 	await expect(page.locator('#language-1')).toBeDisabled()
 	// })
 
-	// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
-	// test('translate 250 characters', async ({ page }) => {
-	// 	await page.waitForSelector('.text-area')
-	// 	const from_text_area = page.locator('.text-area').first()
+	test('translate 250 characters', async ({ page }) => {
+		await page.locator('#language_1').selectOption('en-US')
+		await page.locator('#language_2').selectOption('ja-JP')
 
-	// 	const dummy_text = 'a'.repeat(250)
+		await page.waitForTimeout(500)
 
-	// 	await from_text_area.fill(dummy_text)
-	// 	await from_text_area.press('Enter')
+		await page.waitForSelector('.text-area')
+		const from_text_area = page.locator('.text-area').first()
 
-	// 	const bottom_textarea = page.getByRole('textbox').nth(1)
+		const dummy_text = 'a'.repeat(250)
 
-	// 	await expect(bottom_textarea).toHaveValue(/あ/)
-	// })
+		await from_text_area.fill(dummy_text)
+		await from_text_area.press('Enter')
+
+		const bottom_textarea = page.getByRole('textbox').nth(1)
+
+		await expect(bottom_textarea).toHaveValue(/あ/)
+	})
 
 	test('translate 251 characters', async ({ page }) => {
 		await page.locator('#language_1').selectOption('en-US')
 		await page.locator('#language_2').selectOption('ja-JP')
+
+		await page.waitForTimeout(500)
 
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
@@ -164,6 +175,7 @@ test.describe('after sign in', () => {
 
 	test('having no text disables delete button', async ({ page }) => {
 		await page.waitForTimeout(500)
+
 		await page.waitForSelector('.text-area')
 		const from_text_area = page.locator('.text-area').first()
 
