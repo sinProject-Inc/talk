@@ -10,7 +10,11 @@ setup('sign in', async ({ page }) => {
 
 	await page.goto(url)
 
+	expect(process.env.DATABASE_URL).not.toBe('')
+
 	const gmail_user = process.env.GMAIL_USER ?? ''
+
+	expect(gmail_user).not.toBe('')
 
 	await page.getByPlaceholder('Enter email').fill(gmail_user)
 	await page.getByRole('button', { name: 'Continue' }).click()
