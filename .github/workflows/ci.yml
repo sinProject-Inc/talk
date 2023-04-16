@@ -16,9 +16,13 @@ concurrency:
 jobs:
   check:
     name: Check
-    runs-on: self-hosted
-    # runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner: [ubuntu-latest, self-hosted]
     steps:
+      - run: echo 'This job is running on ${{ matrix.runner }} runner!!'
+
       - uses: actions/checkout@v3
 
       - uses: ./.github/actions/setup-and-cache
