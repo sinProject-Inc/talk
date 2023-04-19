@@ -48,7 +48,9 @@ npx prisma generate
 npx prisma db seed
 ```
 
-6. Run locally
+6. Install [Redis](https://redis.io/), and run the command: `redis-server`
+
+7. Run locally
 
 ```bash
 # Start the server and open the app in a new browser tab
