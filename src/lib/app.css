@@ -9,7 +9,9 @@
 	--gray-color: rgb(83 100 113);
 	--header-text-color: #ffffffe6;
 	--text-color: #ffffffbf;
-	--link-color: #2f81f7;
+	--link-color: rgb(56 189 248);
+
+	/* --link-color: #2f81f7; */
 	--link-hover-color: rgb(26 140 216);
 	--blue-color: rgb(29 155 240);
 	--header-background-color: rgb(239 243 244 / 85%);
@@ -122,7 +124,7 @@ a:focus {
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 bg-black text-white/90 fill-white/90;
+		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 bg-black text-white/60 fill-white/70;
 	}
 
 	[contenteditable='true']:empty::before {
@@ -133,4 +135,35 @@ a:focus {
 
 #nprogress .bar {
 	background: var(--link-color) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply text-white/90;
+}
+
+h1 {
+	@apply text-3xl font-extrabold mb-3;
+}
+
+h2 {
+	@apply text-2xl font-bold mt-9 mb-3;
+}
+
+h3 {
+	@apply text-xl mt-6 mb-2;
+}
+
+.category {
+	color: var(--link-color);
+
+	@apply text-sm font-semibold mb-2;
+}
+
+p {
+	@apply leading-8;
 }
