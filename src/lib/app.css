@@ -18,14 +18,14 @@
 }
 
 a {
-	color: var(--link-color);
+	/* color: var(--link-color); */
 	text-decoration: none;
 }
 
-a:hover,
+/* a:hover,
 a:focus {
 	text-decoration: underline;
-}
+} */
 
 .text-color {
 	color: var(--text-color);
@@ -124,7 +124,7 @@ a:focus {
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70 bg-black text-white/60 fill-white/70;
+		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-80 bg-black text-white/60 fill-white/70;
 	}
 
 	[contenteditable='true']:empty::before {

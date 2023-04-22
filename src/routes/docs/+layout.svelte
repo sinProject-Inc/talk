@@ -5,10 +5,10 @@
 </script>
 
 <div class="p-8 glass h-screen flex flex-row">
-	<div class="w-80">
+	<div class="w-80 overflow-x-scroll">
 		<Sidebar sections={data?.sections ?? []} />
 	</div>
-	<div class="overflow-x-scroll">
+	<div class="w-full overflow-x-scroll">
 		<slot />
 	</div>
 </div>

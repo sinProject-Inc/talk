@@ -15,6 +15,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 				return {
 					category: Markdown.generate_category(sub_dir),
+					file_path,
 					page: Markdown.to_html(file_path),
 				}
 			}

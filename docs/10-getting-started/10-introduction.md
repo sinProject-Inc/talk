@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Thanks for reading the documentation.
+description: Thanks for reading this documentation.
 ---
 
 ## Before we begin
