@@ -86,7 +86,9 @@
 				class="{transitioning_background
 					? 'opacity-0 transition-all'
 					: 'opactiy-100'}  absolute w-full h-full pointer-events-none"
-				style="transition-duration: {background_transition_duration}ms"
+				style="transition-duration: {transitioning_background
+					? background_transition_duration
+					: 0}ms"
 				alt="background"
 				aria-hidden="true"
 			/>
