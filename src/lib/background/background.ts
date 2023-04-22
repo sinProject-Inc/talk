@@ -1,25 +1,23 @@
-import type { Cookies } from '@sveltejs/kit'
+import { BackgroundIndex } from '../background/background_index'
 import gradient_geometric_shapes from '../assets/gradient_geometric_shapes.png'
 import dog from '../assets/dog.jpg'
-import { BackgroundIndex } from '../background/background_index'
-import { BackgroundIndexApi } from './background_index_api'
-import type { Fetch } from '$lib/api/api'
+import pudding from '../assets/pudding.jpg'
 
 export class Background {
-	private readonly _background_urls: string[] = [gradient_geometric_shapes, dog]
+	private readonly _background_urls: string[] = [gradient_geometric_shapes, dog, pudding]
 	private _background_url: string
 
 	public constructor(private readonly _background_index: BackgroundIndex) {
 		this._background_url = this._background_urls[_background_index.index]
 	}
 
-	public static from_cookies(cookies: Cookies, fetch: Fetch): Background {
-		const saved_index = cookies.get('background_index')
+	public static from_local_storage(): Background {
+		const saved_index = localStorage.getItem('background_index')
 
 		if (!saved_index) {
 			const new_background = new Background(new BackgroundIndex(0))
 
-			new_background._set_cookies(fetch)
+			new_background._save_to_local_storage()
 
 			return new_background
 		}
@@ -30,8 +28,8 @@ export class Background {
 		return background
 	}
 
-	private async _set_cookies(fetch: Fetch): Promise<void> {
-		await new BackgroundIndexApi(this._background_index, fetch).fetch()
+	private _save_to_local_storage(): void {
+		localStorage.setItem('background_index', this._background_index.index.toString())
 	}
 
 	public get_next_background(): Background {
@@ -45,7 +43,7 @@ export class Background {
 	public transition_background(): Background {
 		const next_background = this.get_next_background()
 
-		next_background._set_cookies(fetch)
+		next_background._save_to_local_storage()
 
 		return next_background
 	}
