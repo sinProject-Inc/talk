@@ -2,4 +2,4 @@
 title: Routing
 ---
 
-test.
+Routing page.
