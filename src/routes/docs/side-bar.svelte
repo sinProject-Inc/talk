@@ -39,13 +39,10 @@
 			</h5>
 			<ul class="border-l space-y-2 border-slate-800">
 				{#each section.pages as { title, path }}
+					{@const active = path === $page.url.pathname}
+					{@const inactive = !active}
 					<li>
-						<a
-							href={path}
-							class="block pl-4 -ml-px border-l {path === $page.url.pathname
-								? 'border-current text-sky-400'
-								: 'border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300'}"
-						>
+						<a href={path} class="block pl-4 -ml-px border-l" class:active class:inactive>
 							{title}
 						</a>
 					</li>
@@ -54,3 +51,13 @@
 		</li>
 	{/each}
 </ul>
+
+<style lang="postcss">
+	.active {
+		@apply border-current text-sky-400;
+	}
+
+	.inactive {
+		@apply border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300;
+	}
+</style>
