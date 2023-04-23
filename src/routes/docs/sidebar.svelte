@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import type { Section } from '$lib/view/markdown'
 
 	export let sections: Section[] = []
@@ -37,16 +38,15 @@
 				{section.title}
 			</h5>
 			<ul class="border-l space-y-2 border-slate-800">
-				{#each section.pages as page}
+				{#each section.pages as { title, path }}
 					<li>
-						<!-- <a href={page.path} class="block pl-4 -ml-px border-l border-current text-sky-400">
-							{page.title}
-						</a> -->
 						<a
-							href={page.path}
-							class="block pl-4 -ml-px border-l border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300"
+							href={path}
+							class="block pl-4 -ml-px border-l {path === $page.url.pathname
+								? 'border-current text-sky-400'
+								: 'border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300'}"
 						>
-							{page.title}
+							{title}
 						</a>
 					</li>
 				{/each}
