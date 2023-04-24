@@ -1,59 +1,148 @@
 {
-	"keys": [
-		{
-			"path": ["title"],
-			"id": "title",
-			"weight": 1,
-			"src": "title",
-			"getFn": null
-		},
-		{
-			"path": ["description"],
-			"id": "description",
-			"weight": 1,
-			"src": "description",
-			"getFn": null
-		},
-		{
-			"path": ["content"],
-			"id": "content",
-			"weight": 1,
-			"src": "content",
-			"getFn": null
+	"documentCount": 4,
+	"nextId": 4,
+	"documentIds": {
+		"0": "docs/20-core-concepts/20-testing.md",
+		"1": "docs/20-core-concepts/10-routing.md",
+		"2": "docs/10-getting-started/20-creating-a-project.md",
+		"3": "docs/10-getting-started/10-introduction.md"
+	},
+	"fieldIds": { "title": 0, "description": 1, "content": 2 },
+	"fieldLength": {
+		"0": [2, null, 2],
+		"1": [1, null, 3],
+		"2": [3, null, 7],
+		"3": [1, 6, 116]
+	},
+	"averageFieldLength": [1.75, 1.5, 32],
+	"storedFields": {
+		"0": { "title": "テストだよ！" },
+		"1": { "title": "Routing" },
+		"2": { "title": "Creating a project" },
+		"3": {
+			"title": "Introduction",
+			"description": "Thanks for reading this documentation."
 		}
+	},
+	"dirtCount": 0,
+	"index": [
+		["etc", { "2": { "3": 1 } }],
+		["external", { "2": { "3": 1 } }],
+		["email", { "2": { "3": 1 } }],
+		["guideline", { "2": { "3": 1 } }],
+		["github", { "2": { "3": 2 } }],
+		["get", { "2": { "3": 1 } }],
+		["but", { "2": { "3": 1 } }],
+		["begin", { "2": { "3": 1 } }],
+		["before", { "2": { "3": 1 } }],
+		["net", { "2": { "3": 1 } }],
+		["voice", { "2": { "3": 1 } }],
+		["login", { "2": { "3": 1 } }],
+		["lot", { "2": { "3": 1 } }],
+		["language", { "2": { "3": 1 } }],
+		["languages", { "2": { "3": 2 } }],
+		["learning", { "2": { "3": 1 } }],
+		["learn", { "2": { "3": 2 } }],
+		["will", { "2": { "3": 1 } }],
+		["with", { "2": { "3": 3 } }],
+		["who", { "2": { "3": 1 } }],
+		["what", { "2": { "3": 4 } }],
+		["welcome", { "2": { "3": 1 } }],
+		["we", { "2": { "3": 1 } }],
+		["create", { "2": { "3": 1 } }],
+		["created", { "2": { "3": 1 } }],
+		["creating", { "0": { "2": 1 }, "2": { "2": 1 } }],
+		["conventions", { "2": { "3": 1 } }],
+		["conversations", { "2": { "3": 2 } }],
+		["coding", { "2": { "3": 2 } }],
+		["company", { "2": { "3": 1 } }],
+		["com", { "2": { "3": 1 } }],
+		["of", { "2": { "3": 1 } }],
+		["offer", { "2": { "3": 1 } }],
+		["other", { "2": { "3": 1 } }],
+		["osaka", { "2": { "3": 1 } }],
+		["on", { "2": { "3": 1 } }],
+		["o", { "2": { "3": 2 } }],
+		["or", { "2": { "3": 1 } }],
+		["handle", { "2": { "3": 1 } }],
+		["how", { "2": { "3": 6 } }],
+		["help", { "2": { "3": 1 } }],
+		["https", { "2": { "3": 3 } }],
+		["frameworks", { "2": { "3": 1 } }],
+		["first", { "2": { "3": 1 } }],
+		["for", { "1": { "3": 1 }, "2": { "3": 4 } }],
+		["deal", { "2": { "3": 1 } }],
+		["defines", { "2": { "3": 1 } }],
+		["define", { "2": { "3": 1 } }],
+		["defining", { "2": { "3": 1 } }],
+		["development", { "2": { "3": 1 } }],
+		["dev", { "2": { "3": 1 } }],
+		["do", { "2": { "3": 1 } }],
+		["does", { "2": { "3": 1 } }],
+		["document", { "2": { "3": 1 } }],
+		["documentation", { "1": { "3": 1 } }],
+		["different", { "2": { "3": 1 } }],
+		["serve", { "2": { "3": 1 } }],
+		["service", { "2": { "3": 2 } }],
+		["style", { "2": { "3": 1 } }],
+		["stuck", { "2": { "3": 1 } }],
+		["speak", { "2": { "3": 1 } }],
+		["speaking", { "2": { "3": 1 } }],
+		["sinproject", { "2": { "3": 6 } }],
+		["sin", { "2": { "3": 2 } }],
+		["sveltekit", { "2": { "3": 2 } }],
+		["svelte", { "2": { "3": 4 } }],
+		["you", { "2": { "3": 3 } }],
+		["use", { "2": { "3": 4 } }],
+		["typescript", { "2": { "3": 2 } }],
+		["text", { "2": { "3": 1 } }],
+		["time", { "2": { "3": 1 } }],
+		["talk", { "2": { "3": 3 } }],
+		["twitter", { "2": { "3": 2 } }],
+		["tutorial", { "2": { "3": 2 } }],
+		["try", { "2": { "3": 1 } }],
+		["to", { "2": { "3": 11 } }],
+		["than", { "2": { "3": 1 } }],
+		["thanks", { "1": { "3": 1 } }],
+		["the", { "2": { "3": 3 } }],
+		["this", { "1": { "3": 1 }, "2": { "2": 1, "3": 2 } }],
+		[">", { "2": { "3": 5 } }],
+		["real", { "2": { "3": 1 } }],
+		["reading", { "1": { "3": 1 }, "2": { "3": 1 } }],
+		["re", { "2": { "3": 1 } }],
+		["required", { "2": { "3": 1 } }],
+		["routing", { "0": { "1": 1 }, "2": { "1": 1 } }],
+		["i", { "2": { "3": 2 } }],
+		["inc", { "2": { "3": 2 } }],
+		["in", { "2": { "3": 5 } }],
+		["introduction", { "0": { "3": 1 } }],
+		["iam", { "2": { "3": 2 } }],
+		["if", { "2": { "3": 2 } }],
+		["is", { "2": { "3": 7 } }],
+		["it", { "2": { "2": 1, "3": 2 } }],
+		["policies", { "2": { "3": 1 } }],
+		["possible", { "2": { "3": 1 } }],
+		["purpose", { "2": { "3": 1 } }],
+		["products", { "2": { "3": 1 } }],
+		["production", { "2": { "3": 1 } }],
+		["programming", { "2": { "3": 1 } }],
+		["project", { "0": { "2": 1 }, "2": { "2": 1 } }],
+		["people", { "2": { "3": 1 } }],
+		["page", { "2": { "1": 1, "2": 1 } }],
+		["as", { "2": { "3": 1 } }],
+		["ask", { "2": { "3": 1 } }],
+		["apis", { "2": { "3": 1 } }],
+		["application", { "2": { "3": 1 } }],
+		["actions", { "2": { "3": 1 } }],
+		["also", { "2": { "3": 2 } }],
+		["addition", { "2": { "3": 1 } }],
+		["address", { "2": { "3": 1 } }],
+		["at", { "2": { "3": 2 } }],
+		["and", { "2": { "3": 4 } }],
+		["an", { "2": { "3": 2 } }],
+		["a", { "0": { "2": 1 }, "2": { "2": 2, "3": 3 } }],
+		["テストで作ったドキュメントです", { "2": { "0": 1 } }],
+		["テストだよ", { "0": { "0": 1 } }]
 	],
-	"records": [
-		{
-			"i": 0,
-			"$": {
-				"0": { "v": "テストだよ！", "n": 1 },
-				"2": { "v": "\nテストで作ったドキュメントです。\n", "n": 1 }
-			}
-		},
-		{
-			"i": 1,
-			"$": {
-				"0": { "v": "Routing", "n": 1 },
-				"2": { "v": "\nRouting page.\n", "n": 0.707 }
-			}
-		},
-		{
-			"i": 2,
-			"$": {
-				"0": { "v": "Creating a project", "n": 0.577 },
-				"2": { "v": "\nThis it a Creating a project page.\n", "n": 0.378 }
-			}
-		},
-		{
-			"i": 3,
-			"$": {
-				"0": { "v": "Introduction", "n": 1 },
-				"1": { "v": "Thanks for reading this documentation.", "n": 0.447 },
-				"2": {
-					"v": "\n## Before we begin\n\n> An email address is required to use the service.\n>\n> If you're reading this document to learn Svelte or SvelteKit, try the [Svelte tutorial](https://learn.svelte.dev/tutorial/welcome-to-svelte) first.\n>\n> If you get stuck, ask for help at [@iam_o_sin](https://twitter.com/iam_o_sin) on Twitter.\n\n## What is Talk?\n\nIt is a service for speaking in real time with people who speak different languages than you. Language learning is possible in addition to voice conversations and text conversations.\n\n## What is sinProject?\n\n[sinProject Inc.](https://sinproject.net/) is an application production company in Osaka. I use SvelteKit and TypeScript a lot, but I also use other programming languages and frameworks.\n\n## What does Talk offer sinProject?\n\nIt is also created for the purpose of defining coding conventions and development policies at sinProject Inc.\n\nIn Talk, how to use TypeScript, what to do with coding style, how to handle GitHub, how to define GitHub Actions, how to login, how to deal with external APIs, etc. defines This will serve as a guideline for how to create products in sinProject.\n",
-					"n": 0.079
-				}
-			}
-		}
-	]
+	"serializationVersion": 2
 }

@@ -1,25 +1,19 @@
 /* eslint-disable no-console */
 import fs from 'fs'
-import Fuse from 'fuse.js'
 import * as glob from 'glob'
 import matter from 'gray-matter'
 import { Markdown } from './markdown'
 import prettier from 'prettier'
+import MiniSearch from 'minisearch'
 
 type MarkdownData = {
-	path: string
+	id: string
 	title: string
 	description: string
 	content: string
 }
 
 export class SearchIndex {
-	public static options: Fuse.IFuseOptions<MarkdownData> = {
-		keys: ['title', 'description', 'content'],
-		// threshold: 0.2,
-		// includeScore: true,
-	}
-
 	public constructor(private readonly _markdown_dir: string) {}
 
 	private _load_markdown_files(): MarkdownData[] {
@@ -31,17 +25,21 @@ export class SearchIndex {
 			const { title, description } = metadata
 			// const path = path.relative(this._markdown_dir, file_path)
 
-			return { path: file_path, title, description, content }
+			return { id: file_path, title, description, content }
 		})
 	}
 
-	private _create(): Fuse.FuseIndex<MarkdownData> {
+	private _create(): MiniSearch<MarkdownData> {
 		const markdown_files = this._load_markdown_files()
 
-		const fuse = new Fuse(markdown_files, SearchIndex.options)
-		const index = fuse.getIndex()
+		const mini_search = new MiniSearch({
+			fields: ['title', 'description', 'content'],
+			storeFields: ['path', 'title', 'description'],
+		})
 
-		return index
+		mini_search.addAll(markdown_files)
+
+		return mini_search
 	}
 
 	public save(): void {
@@ -58,12 +56,8 @@ new SearchIndex(Markdown.docs_base_dir).save()
 console.log('Search index created')
 
 const index_data = fs.readFileSync(`${Markdown.docs_base_dir}/search_index.json`, 'utf8')
-const index = Fuse.parseIndex(JSON.parse(index_data))
+const mini_search = MiniSearch.loadJSON(index_data, { fields: ['title', 'description', 'content'] })
 
-const fuse = new Fuse([], SearchIndex.options, index)
-
-const results = fuse.search('Introduction')
-
-results.forEach((result) => {
-	console.log(result)
+mini_search.search('intro', { prefix: true, fuzzy: 0.2 }).forEach((result) => {
+	console.log('result', result)
 })
