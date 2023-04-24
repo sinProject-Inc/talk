@@ -6,7 +6,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"start": "npx tsx ./server/index.ts",
+		"start": "tsx ./server/index.ts",
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
 		"test:run": "vitest run",
@@ -18,10 +18,11 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"prepare": "husky install",
 		"typecheck": "tsc --noEmit",
-		"typecheck:why": "tsc --noEmit --explainFiles > explainTypes.txt"
+		"typecheck:why": "tsc --noEmit --explainFiles > explainTypes.txt",
+		"search-index": "tsx ./src/lib/docs/search_index.ts"
 	},
 	"prisma": {
-		"seed": "npx tsx prisma/seed.ts"
+		"seed": "tsx prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.32.1",
