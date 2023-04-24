@@ -1,4 +1,4 @@
-import { Markdown, type Page, type Section } from '$lib/view/markdown'
+import { Markdown, type Page, type Section } from '$lib/docs/markdown'
 import fs from 'fs'
 import type { LayoutServerLoad } from './$types'
 

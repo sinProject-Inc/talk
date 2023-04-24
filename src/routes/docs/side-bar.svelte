@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import type { Section } from '$lib/view/markdown'
+	import type { Section } from '$lib/docs/markdown'
 
 	export let sections: Section[] = []
 </script>

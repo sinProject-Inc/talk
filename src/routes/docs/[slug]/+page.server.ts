@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 import fs from 'fs'
 import type { PageServerLoad } from './$types'
-import { Markdown } from '$lib/view/markdown'
+import { Markdown } from '$lib/docs/markdown'
 
 const docs_base_dir = Markdown.docs_base_dir
 
