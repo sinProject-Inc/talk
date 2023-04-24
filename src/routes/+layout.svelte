@@ -42,7 +42,6 @@
 
 		transitioning_background = false
 
-		// await new Promise((resolve) => setTimeout(resolve, background_transition_duration))
 		next_background = next_background.transition_background()
 	}
 
