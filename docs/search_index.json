@@ -1,59 +1,23 @@
-{
-	"keys": [
-		{
-			"path": ["title"],
-			"id": "title",
-			"weight": 1,
-			"src": "title",
-			"getFn": null
-		},
-		{
-			"path": ["description"],
-			"id": "description",
-			"weight": 1,
-			"src": "description",
-			"getFn": null
-		},
-		{
-			"path": ["content"],
-			"id": "content",
-			"weight": 1,
-			"src": "content",
-			"getFn": null
-		}
-	],
-	"records": [
-		{
-			"i": 0,
-			"$": {
-				"0": { "v": "テストだよ！", "n": 1 },
-				"2": { "v": "\nテストで作ったドキュメントです。\n", "n": 1 }
-			}
-		},
-		{
-			"i": 1,
-			"$": {
-				"0": { "v": "Routing", "n": 1 },
-				"2": { "v": "\nRouting page.\n", "n": 0.707 }
-			}
-		},
-		{
-			"i": 2,
-			"$": {
-				"0": { "v": "Creating a project", "n": 0.577 },
-				"2": { "v": "\nThis it a Creating a project page.\n", "n": 0.378 }
-			}
-		},
-		{
-			"i": 3,
-			"$": {
-				"0": { "v": "Introduction", "n": 1 },
-				"1": { "v": "Thanks for reading this documentation.", "n": 0.447 },
-				"2": {
-					"v": "\n## Before we begin\n\n> An email address is required to use the service.\n>\n> If you're reading this document to learn Svelte or SvelteKit, try the [Svelte tutorial](https://learn.svelte.dev/tutorial/welcome-to-svelte) first.\n>\n> If you get stuck, ask for help at [@iam_o_sin](https://twitter.com/iam_o_sin) on Twitter.\n\n## What is Talk?\n\nIt is a service for speaking in real time with people who speak different languages than you. Language learning is possible in addition to voice conversations and text conversations.\n\n## What is sinProject?\n\n[sinProject Inc.](https://sinproject.net/) is an application production company in Osaka. I use SvelteKit and TypeScript a lot, but I also use other programming languages and frameworks.\n\n## What does Talk offer sinProject?\n\nIt is also created for the purpose of defining coding conventions and development policies at sinProject Inc.\n\nIn Talk, how to use TypeScript, what to do with coding style, how to handle GitHub, how to define GitHub Actions, how to login, how to deal with external APIs, etc. defines This will serve as a guideline for how to create products in sinProject.\n",
-					"n": 0.079
-				}
-			}
-		}
-	]
-}
+[
+	{
+		"path": "docs/20-core-concepts/20-testing.md",
+		"title": "テストだよ！",
+		"content": "\nテストで作ったドキュメントです。\n"
+	},
+	{
+		"path": "docs/20-core-concepts/10-routing.md",
+		"title": "Routing",
+		"content": "\nRouting page.\n"
+	},
+	{
+		"path": "docs/10-getting-started/20-creating-a-project.md",
+		"title": "Creating a project",
+		"content": "\nThis it a Creating a project page.\n"
+	},
+	{
+		"path": "docs/10-getting-started/10-introduction.md",
+		"title": "Introduction",
+		"description": "Thanks for reading this documentation.",
+		"content": "\n## Before we begin\n\n> An email address is required to use the service.\n>\n> If you're reading this document to learn Svelte or SvelteKit, try the [Svelte tutorial](https://learn.svelte.dev/tutorial/welcome-to-svelte) first.\n>\n> If you get stuck, ask for help at [@iam_o_sin](https://twitter.com/iam_o_sin) on Twitter.\n\n## What is Talk?\n\nIt is a service for speaking in real time with people who speak different languages than you. Language learning is possible in addition to voice conversations and text conversations.\n\n## What is sinProject?\n\n[sinProject Inc.](https://sinproject.net/) is an application production company in Osaka. I use SvelteKit and TypeScript a lot, but I also use other programming languages and frameworks.\n\n## What does Talk offer sinProject?\n\nIt is also created for the purpose of defining coding conventions and development policies at sinProject Inc.\n\nIn Talk, how to use TypeScript, what to do with coding style, how to handle GitHub, how to define GitHub Actions, how to login, how to deal with external APIs, etc. defines This will serve as a guideline for how to create products in sinProject.\n"
+	}
+]
