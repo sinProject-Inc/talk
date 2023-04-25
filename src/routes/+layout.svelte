@@ -12,6 +12,14 @@
 	}
 
 	NProgress.configure({ showSpinner: false })
+
+	$: {
+		if ($navigating) {
+			NProgress.start()
+		} else {
+			NProgress.done()
+		}
+	}
 </script>
 
 <div
