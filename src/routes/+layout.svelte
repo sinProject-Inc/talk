@@ -15,12 +15,10 @@
 	NProgress.configure({ showSpinner: false })
 
 	$: {
-		if (browser) {
-			if ($navigating) {
-				NProgress.start()
-			} else {
-				NProgress.done()
-			}
+		if ($navigating) {
+			NProgress.start()
+		} else {
+			NProgress.done()
 		}
 	}
 </script>
