@@ -2,7 +2,7 @@
 	import { page } from '$app/stores'
 	import type { Section } from '$lib/docs/markdown'
 
-	export let sections: Section[] = []
+	export let sections: Section[]
 </script>
 
 <!-- <div class="sticky top-0 -ml-0.5 pointer-events-none">

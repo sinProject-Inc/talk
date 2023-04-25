@@ -1,8 +1,15 @@
 <script lang="ts">
+	import { page } from '$app/stores'
+
 	export let data
 
 	const github_base_path = 'https://github.com/sinProject-Inc/talk/edit/main'
 	const git_path = `${github_base_path}${data.file_path.slice(1)}`
+
+	$: pages = data.sections?.flatMap((section) => section.pages) ?? []
+	$: page_index = pages.findIndex(({ path }) => path === $page.url.pathname)
+	$: prev_page = pages[page_index - 1]
+	$: next_page = pages[page_index + 1]
 </script>
 
 <svelte:head>
@@ -35,4 +42,44 @@
 
 		{@html data.page.html_content}
 	</div>
+
+	<footer class="text-s leading-6 mt-12">
+		<div class="text-sm text-slate-200 font-semibold flex items-center">
+			{#if prev_page}
+				<a href={prev_page.path} class="group flex items-center hover:text-white">
+					<svg
+						viewBox="0 0 3 6"
+						class="mr-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300"
+						><path
+							d="M3 0L0 3L3 6"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/></svg
+					>{prev_page.title}</a
+				>
+			{/if}
+
+			{#if next_page}
+				<a
+					class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white"
+					href={next_page.path}
+					>{next_page.title}<svg
+						viewBox="0 0 3 6"
+						class="ml-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300"
+						><path
+							d="M0 0L3 3L0 6"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/></svg
+					></a
+				>
+			{/if}
+		</div>
+	</footer>
 </div>
