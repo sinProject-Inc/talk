@@ -87,7 +87,7 @@ test.describe('after sign in', () => {
 
 	test('trim message', async ({ page }) => {
 		const input = '\nHello World!\n'
-		const output = '\nHello World!\n'
+		const output = 'Hello World!'
 		await test_send(page, input, output)
 	})
 
