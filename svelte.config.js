@@ -18,9 +18,6 @@ const config = {
 		version: {
 			name: pkg.version,
 		},
-		csrf: {
-			checkOrigin: false,
-		},
 	},
 }
 
