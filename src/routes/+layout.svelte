@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment'
 	import { navigating } from '$app/stores'
 	import '$lib/app.css'
 	import background from '$lib/assets/gradient_geometric_shapes.png'
@@ -14,10 +15,12 @@
 	NProgress.configure({ showSpinner: false })
 
 	$: {
-		if ($navigating) {
-			NProgress.start()
-		} else {
-			NProgress.done()
+		if (browser) {
+			if ($navigating) {
+				NProgress.start()
+			} else {
+				NProgress.done()
+			}
 		}
 	}
 </script>
