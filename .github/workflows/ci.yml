@@ -135,3 +135,10 @@ jobs:
           name: logs
           path: logs/
           retention-days: 30
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: env
+          path: .env
+          retention-days: 30
