@@ -108,10 +108,6 @@ jobs:
           echo GMAIL_USER=${{ secrets.GMAIL_USER }} >> .env
           echo GMAIL_PASS=${{ secrets.GMAIL_PASS }} >> .env
 
-      - name: Sveltekit Sync
-        shell: bash
-        run: npx svelte-kit sync
-
       - name: Build
         shell: bash
         run: npm run build
@@ -138,4 +134,11 @@ jobs:
         with:
           name: logs
           path: logs/
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: env
+          path: .env
           retention-days: 30
