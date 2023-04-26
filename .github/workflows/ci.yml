@@ -39,6 +39,11 @@ jobs:
           echo GMAIL_USER=${{ secrets.GMAIL_USER }} >> .env
           echo GMAIL_PASS=${{ secrets.GMAIL_PASS }} >> .env
 
+      - name: Install Node.js 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
       - name: Build
         shell: bash
         run: npm run build
@@ -107,11 +112,6 @@ jobs:
           echo DEEPL_AUTH_KEY=${{ secrets.DEEPL_AUTH_KEY }} >> .env
           echo GMAIL_USER=${{ secrets.GMAIL_USER }} >> .env
           echo GMAIL_PASS=${{ secrets.GMAIL_PASS }} >> .env
-
-      - name: Install Node.js 18.4.0
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.4.0'
 
       - name: Build
         shell: bash
