@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import OnThisPage from './on_this_page.svelte'
 
 	export let data
 
@@ -15,13 +16,13 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
-		.content a {
+		.content a:not(.border-none) {
 			color: #fff;
 			font-weight: 600;
 			border-bottom: 1px solid #38bdf8;
 		}
 
-		.content a:hover {
+		.content a:not(.border-none):hover {
 			border-bottom: 2px solid #38bdf8;
 		}
 	</style>
@@ -82,4 +83,6 @@
 			{/if}
 		</div>
 	</footer>
+
+	<OnThisPage details={data.page} />
 </div>
