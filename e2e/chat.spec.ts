@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { Page, expect, test } from '@playwright/test'
 import { auth_file_path, host } from './lib/setup.js'
 
 const url = `${host}/chat`
@@ -56,7 +56,7 @@ test.describe('after sign in', () => {
 		await expect(text).toBeFocused()
 	})
 
-	test('send message', async ({ page }) => {
+	async function test_send(page: Page, input: string, output: string): Promise<boolean> {
 		const name = page.getByPlaceholder('Name')
 		const text = page.locator('.outline-none')
 
@@ -67,13 +67,39 @@ test.describe('after sign in', () => {
 
 		await expect(text).toBeFocused()
 
-		await text.fill('Hello World!')
+		await text.fill(input)
 		await text.press('Enter')
 
 		const chat_name = page.getByTestId('chat_name').last()
 		const chat_message = page.getByTestId('chat_message').last()
 
 		await expect(chat_name).toHaveText('playwright test')
-		await expect(chat_message).toHaveText('Hello World!')
+		await expect(chat_message).toHaveText(output)
+
+		return true
+	}
+
+	test('send message', async ({ page }) => {
+		const input = 'Hello World!'
+		const output = 'Hello World!'
+		await test_send(page, input, output)
+	})
+
+	test('trim message', async ({ page }) => {
+		const input = '\nHello World!\n'
+		const output = 'Hello World!'
+		await test_send(page, input, output)
+	})
+
+	test('indent message', async ({ page }) => {
+		const input = 'Hello World!\nHello World!'
+		const output = 'Hello World!\nHello World!'
+		await test_send(page, input, output)
+	})
+
+	test('excess indentions', async ({ page }) => {
+		const input = 'Hello World!\n\n\n\nHello World!'
+		const output = 'Hello World!\n\nHello World!'
+		await test_send(page, input, output)
 	})
 })
