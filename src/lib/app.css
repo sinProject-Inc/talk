@@ -49,6 +49,10 @@ a:focus {
 		@apply border rounded-md overflow-hidden border-media-border bg-border;
 	}
 
+	a {
+		@apply transition;
+	}
+
 	button,
 	select {
 		@apply cursor-pointer;
@@ -159,7 +163,7 @@ h1 {
 }
 
 h2 {
-	@apply text-2xl font-bold mt-9 mb-3;
+	@apply text-2xl font-bold pt-8 mt-1 mb-3;
 }
 
 h3 {

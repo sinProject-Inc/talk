@@ -1,53 +1,94 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation'
 	import { page } from '$app/stores'
-	import { onMount } from 'svelte'
 	import type { PageData } from './$types'
 
 	export let details: PageData['page']
 
+	let active_elements: Element[] = []
+	let active_section_ids: string[] = []
+
+	function get_previous_heading(element: Element): Element | undefined {
+		const previous_element = element.previousElementSibling
+
+		if (!previous_element) return undefined
+
+		if (previous_element.tagName === 'H1' || previous_element.tagName === 'H2') {
+			return previous_element
+		}
+
+		return get_previous_heading(previous_element)
+	}
+
 	// オブザーバーを定義する関数
-	function create_observer(): void {
+	function observe_contents(): void {
 		const content = document.querySelector('.content')
+
+		// console.log('content', content)
+
 		const headings = content?.querySelectorAll('h1, h2[id]')
 
 		if (!headings) return
 
-		const next_element_observer = new IntersectionObserver((entries) => {
+		// console.log('headings', headings)
+
+		const content_observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
-				const previous_element = entry.target.previousElementSibling
-
-				if (!previous_element) return
-
 				if (entry.isIntersecting) {
-					// console.log('true', previous_element.id)
+					active_elements = [...active_elements, entry.target]
 				} else {
-					// console.log('false', previous_element.id)
+					active_elements = active_elements.filter((element) => element !== entry.target)
 				}
+
+				const heading_set = new Set(active_elements.map((element) => get_previous_heading(element)))
+
+				// console.log('heading_set', heading_set)
+
+				active_section_ids = [...heading_set].map((heading) => heading?.id ?? '')
+
+				// console.log('active_section_ids', active_section_ids)
 			})
 		})
 
-		headings.forEach((heading) => {
-			const next_element = heading.nextElementSibling
+		headings.forEach((heading, index) => {
+			const next_heading = index < headings.length - 1 ? headings[index + 1] : undefined
 
-			if (!next_element) return
+			let next_element = heading.nextElementSibling
 
-			next_element_observer.observe(next_element)
+			while (next_element && next_element !== next_heading) {
+				content_observer.observe(next_element)
+				next_element = next_element.nextElementSibling
+			}
 		})
 	}
 
-	onMount(async () => {
-		create_observer()
+	function contains(ids: string[], id: string): boolean {
+		return ids.includes(id)
+	}
+
+	afterNavigate(() => {
+		observe_contents()
 	})
 </script>
 
-<aside class="fixed top-0 end-0 py-8 pe-8 w-72 leading-8 text-sm">
+<aside class="fixed top-0 end-0 py-8 pe-8 w-72 leading-6 text-sm">
 	<h5 class="font-semibold mb-4">On this page</h5>
 	<nav>
-		<ul class="text-slate-400">
-			<li><a href={$page.url.pathname}>{details.title}</a></li>
+		<ul class="border-l space-y-2 border-slate-800">
+			<li>
+				<a
+					href={$page.url.pathname}
+					class="block pl-4 -ml-px border-l"
+					class:active={contains(active_section_ids, '')}>{details.title}</a
+				>
+			</li>
 			{#each details.sections as { title, slug }}
 				<li>
-					<a href={`#${slug}`}>{title}</a>
+					<a
+						href={`#${slug}`}
+						class="block pl-4 -ml-px border-l"
+						class:active={contains(active_section_ids, slug)}>{title}</a
+					>
 				</li>
 			{/each}
 		</ul>
@@ -55,7 +96,11 @@
 </aside>
 
 <style lang="postcss">
-	a {
-		@apply hover:text-slate-300;
+	a:not(.active) {
+		@apply border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300;
+	}
+
+	.active {
+		@apply border-current text-sky-400;
 	}
 </style>

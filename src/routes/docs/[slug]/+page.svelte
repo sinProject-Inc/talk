@@ -31,13 +31,16 @@
 <div class="text-slate-400">
 	<div class="pe-80">
 		<p class="category">{data.category}</p>
-		<h1 class="text-slate-200">{data.page.title}</h1>
-
-		<div class="text-sm mb-5 text-slate-400 hover:text-slate-300 font-semibold">
-			<a href={git_path} target="_blank" rel="noreferrer">Edit this page on GitHub</a>
-		</div>
 
 		<div class="content">
+			<h1 class="text-slate-200">{data.page.title}</h1>
+
+			<div class="text-sm mb-5 text-slate-400 hover:text-slate-300 font-semibold">
+				<a href={git_path} target="_blank" rel="noreferrer" class="border-none"
+					>Edit this page on GitHub</a
+				>
+			</div>
+
 			{#if data.page.description}
 				<span>{data.page.description}</span>
 			{/if}
