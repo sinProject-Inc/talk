@@ -143,7 +143,6 @@
 
 		name = name.trim()
 		message = message.trim()
-		message = message.replace(/(\r\n){3,}|\r{3,}|\n{3,}/g, '\n\n')
 
 		if (!name) {
 			name_element.focus()
@@ -523,24 +522,24 @@
 						</div>
 						{#if chat_log_item.translated}
 							<p>
-								<span data-testid="translated_chat_message">
-									<pre>{@html new Urlify(chat_log_item.translated).replace()}</pre>
-								</span>
+								<span data-testid="translated_chat_message"
+									>{@html new Urlify(chat_log_item.translated).replace()}</span
+								>
 							</p>
 							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<pre><span
-										data-testid="chat_message"
-										lang={chat_log_item.data.locale_code}
-										dir={new Direction(chat_log_item.data.locale_code).value}
-										>{chat_log_item.data.message}
-								</span></pre>
+								<span
+									data-testid="chat_message"
+									lang={chat_log_item.data.locale_code}
+									dir={new Direction(chat_log_item.data.locale_code).value}
+									>{chat_log_item.data.message}</span
+								>
 							</div>
 						{:else}
 							<p>
-								<span data-testid="chat_message">
-									<pre>{@html new Urlify(chat_log_item.data.message).replace()}</pre>
-								</span>
+								<span data-testid="chat_message"
+									>{@html new Urlify(chat_log_item.data.message).replace()}</span
+								>
 							</p>
 						{/if}
 					</div>
@@ -576,7 +575,7 @@
 						class="outline-none px-3 py-1"
 						placeholder={$_('enter_new_text')}
 						bind:this={message_div_element}
-						bind:innerText={message}
+						bind:textContent={message}
 						on:keydown={on_keydown_message}
 					/>
 					<div class="flex flex-row">
