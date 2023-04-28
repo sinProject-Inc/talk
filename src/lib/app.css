@@ -17,6 +17,10 @@
 	--header-background-color: rgb(239 243 244 / 85%);
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 a {
 	/* color: var(--link-color); */
 	text-decoration: none;

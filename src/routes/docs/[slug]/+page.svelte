@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import OnThisPage from './on_this_page.svelte'
+	import OnThisPage from './OnThisPage.svelte'
 
 	export let data
 

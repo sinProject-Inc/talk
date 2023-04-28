@@ -17,6 +17,9 @@ module.exports = {
 		es2017: true,
 		node: true,
 	},
+	globals: {
+		NodeListOf: false,
+	},
 	rules: {
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
 		'@typescript-eslint/explicit-function-return-type': ['error'],
