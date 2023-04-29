@@ -5,6 +5,7 @@
 	import SnsIcon from './icons/sns_icon.svelte'
 	import DescriptionIcon from './icons/description_icon.svelte'
 	import TranslateIcon from './icons/translate_icon.svelte'
+	import SignOutIcon from './icons/sign_out_icon.svelte'
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
 </script>
@@ -16,32 +17,31 @@
 			{$_('talk_title')}
 		</a>
 
-		{#if $page.data.user}
-			<div class="ms-auto flex gap-4 items-center">
-				<!-- <div>{$page.data.user.email}</div> -->
-				<form action="/sign-out" method="POST">
-					<button class="glass-button no-underline" type="submit">{$_('sign_out')}</button>
-				</form>
-			</div>
-		{:else}
-			<nav
-				class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200 ms-auto flex gap-4 items-center"
+		<nav
+			class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200 ms-auto flex gap-4 items-center"
+		>
+			<a href="/translate" class="flex gap-1 items-center">
+				<div class="h-4"><TranslateIcon /></div>
+				{$_('translate')}
+			</a>
+
+			<a href="/chat" class="flex gap-1 items-center"
+				><div class="h-4"><SnsIcon /></div>
+				{$_('chat')}</a
 			>
-				<a href="/translate" class="flex gap-1 items-center">
-					<div class="h-4"><TranslateIcon /></div>
-					{$_('translate')}
-				</a>
 
-				<a href="/chat" class="flex gap-1 items-center"
-					><div class="h-4"><SnsIcon /></div>
-					{$_('chat')}</a
-				>
+			<a href="/docs" class="flex gap-1 items-center"
+				><div class="h-4"><DescriptionIcon /></div>
+				Docs</a
+			>
 
-				<a href="/docs" class="flex gap-1 items-center"
-					><div class="h-4"><DescriptionIcon /></div>
-					Docs</a
-				>
-
+			{#if $page.data.user}
+				<form action="/sign-out" method="POST">
+					<button class="no-underline h-5 p-0 flex button" type="submit">
+						<SignOutIcon />
+					</button>
+				</form>
+			{:else}
 				<a
 					class="flex flex-row items-center no-underline"
 					href="/sign-in?redirect_url={encoded_redirect_url}"
@@ -49,13 +49,17 @@
 						<SignInIcon />
 					</div>
 				</a>
-			</nav>
-		{/if}
+			{/if}
+		</nav>
 	</div>
 </div>
 
 <style lang="postcss">
 	a:not(.title) {
+		@apply hover:text-sky-500 dark:hover:text-sky-400;
+	}
+
+	.button {
 		@apply hover:text-sky-500 dark:hover:text-sky-400;
 	}
 </style>
