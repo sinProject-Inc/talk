@@ -28,7 +28,7 @@
 	import { Web } from '$lib/view/web'
 	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
-	import { onMount } from 'svelte'
+	import { onDestroy, onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import type { PageData } from './$types'
 	import { fly, slide } from 'svelte/transition'
@@ -62,6 +62,9 @@
 	let chat_member_entities: ChatMemberEntity[] = []
 
 	let sending = false
+
+	let observer: ResizeObserver
+	let saved_chat_log_height = 0
 
 	const web_logger = new WebLogger('chat')
 
@@ -143,6 +146,7 @@
 
 		name = name.trim()
 		message = message.trim()
+		message = message.replace(/(\r\n){3,}|\r{3,}|\n{3,}/g, '\n\n')
 
 		if (!name) {
 			name_element.focus()
@@ -377,6 +381,9 @@
 
 		setTimeout(() => {
 			message_div_element.focus()
+			observer = new ResizeObserver(on_chat_log_div_resize)
+			observer.observe(chat_log_div_element)
+			saved_chat_log_height = chat_log_div_element.clientHeight
 		}, 50)
 	}
 
@@ -419,6 +426,30 @@
 		return locale.emoji
 	}
 
+	function is_scroll_at_bottom(): boolean {
+		const allowed_pixels_from_bottom = 25
+
+		const is_at_bottom =
+			chat_log_div_element.scrollHeight -
+				(chat_log_div_element.scrollTop + chat_log_div_element.clientHeight) <=
+			allowed_pixels_from_bottom
+
+		return is_at_bottom
+	}
+
+	function on_chat_log_div_resize(): void {
+		let difference = 0
+
+		if (is_scroll_at_bottom()) {
+			scroll_to_bottom()
+		} else {
+			difference = saved_chat_log_height - chat_log_div_element.clientHeight
+			chat_log_div_element.scrollTop = chat_log_div_element.scrollTop + difference
+		}
+
+		saved_chat_log_height = chat_log_div_element.clientHeight
+	}
+
 	socket.on('connect', () => {
 		// eslint-disable-next-line no-console
 		console.debug('[socket.io] connected.')
@@ -450,9 +481,7 @@
 			translated: '',
 		}
 
-		const is_at_bottom =
-			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop ===
-			chat_log_div_element.clientHeight
+		const is_at_bottom = is_scroll_at_bottom()
 
 		chat_log_items = [...chat_log_items, translated_chat_log]
 
@@ -499,6 +528,12 @@
 		init_focus()
 		// register_service_worker()
 	})
+
+	onDestroy(async () => {
+		if (!observer) return
+
+		observer.disconnect()
+	})
 </script>
 
 <svelte:head>
@@ -522,24 +557,25 @@
 						</div>
 						{#if chat_log_item.translated}
 							<p>
-								<span data-testid="translated_chat_message"
-									>{@html new Urlify(chat_log_item.translated).replace()}</span
-								>
+								<span class="whitespace-pre-wrap" data-testid="translated_chat_message">
+									{@html new Urlify(chat_log_item.translated).replace()}
+								</span>
 							</p>
 							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
 								<span
+									class="whitespace-pre-wrap"
 									data-testid="chat_message"
 									lang={chat_log_item.data.locale_code}
 									dir={new Direction(chat_log_item.data.locale_code).value}
-									>{chat_log_item.data.message}</span
-								>
+									>{chat_log_item.data.message}
+								</span>
 							</div>
 						{:else}
 							<p>
-								<span data-testid="chat_message"
-									>{@html new Urlify(chat_log_item.data.message).replace()}</span
-								>
+								<span class="whitespace-pre-wrap" data-testid="chat_message">
+									{@html new Urlify(chat_log_item.data.message).replace()}
+								</span>
 							</p>
 						{/if}
 					</div>
@@ -575,7 +611,7 @@
 						class="outline-none px-3 py-1"
 						placeholder={$_('enter_new_text')}
 						bind:this={message_div_element}
-						bind:textContent={message}
+						bind:innerText={message}
 						on:keydown={on_keydown_message}
 					/>
 					<div class="flex flex-row">

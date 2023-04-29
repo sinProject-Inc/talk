@@ -10,6 +10,8 @@ export class SettingKey {
 	public static readonly consecutive_fail_period_sec = new SettingKey('consecutive_fail_period_sec')
 	public static readonly consecutive_fail_count = new SettingKey('consecutive_fail_count')
 	public static readonly consecutive_fail_wait_sec = new SettingKey('consecutive_fail_wait_sec')
+	public static readonly background_period_sec = new SettingKey('background_period_sec')
+	public static readonly background_transition_sec = new SettingKey('background_transition_sec')
 
 	public constructor(key: string) {
 		const valid_key = new ValidKey(key)
