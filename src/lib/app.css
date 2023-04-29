@@ -132,7 +132,7 @@ a:focus {
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 bg-black text-white/60 fill-white/70;
+		@apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 bg-black text-white/60 fill-white/70;
 	}
 
 	.doc-base {
