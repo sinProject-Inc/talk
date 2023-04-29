@@ -72,7 +72,7 @@
 </script>
 
 <aside
-	class="top-[52px] py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto hidden xl:block end-[max(0px,calc(50%-45rem))]"
+	class="top-[53px] py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto hidden xl:block end-[max(0px,calc(50%-45rem))]"
 >
 	<h5 class="font-semibold mb-4">On this page</h5>
 	<nav>

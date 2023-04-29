@@ -10,10 +10,12 @@
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
 </script>
 
-<div class="flex flex-row sticky z-10 h-[53px] top-0 glass-panel rounded-none">
+<div
+	class="flex flex-row sticky z-10 h-[53px] top-0 backdrop-blur bg-transparent border-b border-slate-50/[0.06]"
+>
 	<div class="center-container flex flex-row gap-4 items-center font-bold">
 		<a href="/" class="text-[22px] no-underline header-text-color title flex gap-2 items-center">
-			<img src="/icon-144.png" class="h-8" />
+			<img src="/icon-144.png" class="h-8" alt="" />
 			{$_('talk_title')}
 		</a>
 

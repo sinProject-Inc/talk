@@ -7,9 +7,9 @@
 	$: sections = data?.sections ?? []
 </script>
 
-<Navbar />
-
 <div class="doc-base">
+	<Navbar />
+
 	<div class="max-w-8xl min-h-screen mx-auto">
 		<div class="md:w-72 ps-8 pe-4 pb-8 h-screen fixed overflow-y-auto hidden md:block">
 			<SideBar {sections} />
