@@ -7,7 +7,7 @@
 </script>
 
 <div class="doc-base min-h-screen">
-	<div class="w-72 ps-8 pe-4 pb-8 fixed overflow-y-auto">
+	<div class="w-72 ps-8 pe-4 pb-8 h-screen fixed overflow-y-auto">
 		<SideBar {sections} />
 	</div>
 	<div class="ps-80 py-8">
