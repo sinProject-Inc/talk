@@ -163,7 +163,15 @@ h1 {
 }
 
 h2 {
-	@apply text-2xl font-bold pt-8 mt-1 mb-3;
+	@apply text-2xl font-bold pt-8 mt-1 mb-3 flex items-center -ms-9 ps-9;
+}
+
+.permalink {
+	@apply bg-transparent text-transparent absolute left-0 rounded-md w-6 h-6 flex items-center justify-center transition;
+}
+
+h2:hover .permalink {
+	@apply bg-slate-700 text-slate-300;
 }
 
 h3 {

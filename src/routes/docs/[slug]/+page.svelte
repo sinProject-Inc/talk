@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import { not_equal } from 'svelte/internal'
 	import OnThisPage from './OnThisPage.svelte'
 
 	export let data
@@ -16,13 +17,13 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
-		.content a:not(.border-none) {
+		.content a:not(.border-none):not(.permalink) {
 			color: #fff;
 			font-weight: 600;
 			border-bottom: 1px solid #38bdf8;
 		}
 
-		.content a:not(.border-none):hover {
+		.content a:not(.border-none):not(.permalink):hover {
 			border-bottom: 2px solid #38bdf8;
 		}
 	</style>
