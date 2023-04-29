@@ -472,9 +472,7 @@
 			translated: '',
 		}
 
-		const is_at_bottom =
-			chat_log_div_element.scrollHeight - chat_log_div_element.scrollTop ===
-			chat_log_div_element.clientHeight
+		const is_at_bottom = is_scroll_at_bottom()
 
 		chat_log_items = [...chat_log_items, translated_chat_log]
 
@@ -524,6 +522,7 @@
 
 	onDestroy(async () => {
 		if (!observer) return
+
 		observer.disconnect()
 	})
 </script>
