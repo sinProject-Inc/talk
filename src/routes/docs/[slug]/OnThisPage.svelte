@@ -72,7 +72,7 @@
 </script>
 
 <aside
-	class="top-0 py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto hidden lg:block"
+	class="top-0 py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto hidden xl:block right-[max(0px,calc(50%-45rem))]"
 >
 	<h5 class="font-semibold mb-4">On this page</h5>
 	<nav>
@@ -98,14 +98,6 @@
 </aside>
 
 <style lang="postcss">
-	:root {
-		--side-bar-width: 20rem;
-	}
-
-	aside {
-		inset-inline-end: max(0px, calc(50% - var(--side-bar-width) * 2));
-	}
-
 	a:not(.active) {
 		@apply border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300;
 	}

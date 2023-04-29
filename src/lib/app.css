@@ -187,3 +187,7 @@ h3 {
 p {
 	@apply leading-8;
 }
+
+.max-w-8xl {
+	max-width: 90rem;
+}
