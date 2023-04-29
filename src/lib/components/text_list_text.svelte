@@ -28,7 +28,7 @@
 	id={text.id.toString()}
 >
 	<div class="text-body py-[10px] w-full" on:click on:keydown dir={text_direction}>
-		<pre style="font-family: Arial" class="whitespace-pre-wrap">{text.text}</pre>
+		<p class="whitespace-pre-wrap">{text.text}</p>
 	</div>
 	{#if deletable}
 		<div

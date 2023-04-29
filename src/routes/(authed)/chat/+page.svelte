@@ -522,27 +522,24 @@
 						</div>
 						{#if chat_log_item.translated}
 							<p>
-								<span data-testid="translated_chat_message">
-									<pre style="font-family: Arial">{@html new Urlify(
-											chat_log_item.translated
-										).replace()}</pre>
+								<span class="whitespace-pre-wrap" data-testid="translated_chat_message">
+									{@html new Urlify(chat_log_item.translated).replace()}
 								</span>
 							</p>
 							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<pre style="font-family: Arial"><span
-										data-testid="chat_message"
-										lang={chat_log_item.data.locale_code}
-										dir={new Direction(chat_log_item.data.locale_code).value}
-										>{chat_log_item.data.message}
-								</span></pre>
+								<span
+									class="whitespace-pre-wrap"
+									data-testid="chat_message"
+									lang={chat_log_item.data.locale_code}
+									dir={new Direction(chat_log_item.data.locale_code).value}
+									>{chat_log_item.data.message}
+								</span>
 							</div>
 						{:else}
 							<p>
-								<span data-testid="chat_message">
-									<pre style="font-family: Arial">{@html new Urlify(
-											chat_log_item.data.message
-										).replace()}</pre>
+								<span class="whitespace-pre-wrap" data-testid="chat_message">
+									{@html new Urlify(chat_log_item.data.message).replace()}
 								</span>
 							</p>
 						{/if}
