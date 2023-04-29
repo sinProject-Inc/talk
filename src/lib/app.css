@@ -83,7 +83,7 @@ a:focus {
 	}
 
 	.center-container {
-		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-3;
+		@apply mx-auto max-w-8xl w-full px-6;
 	}
 
 	.title {

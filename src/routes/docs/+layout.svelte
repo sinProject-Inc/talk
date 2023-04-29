@@ -1,10 +1,13 @@
 <script lang="ts">
+	import Navbar from '$lib/components/navbar.svelte'
 	import SideBar from './side-bar.svelte'
 
 	export let data
 
 	$: sections = data?.sections ?? []
 </script>
+
+<Navbar />
 
 <div class="doc-base">
 	<div class="max-w-8xl min-h-screen mx-auto">
