@@ -16,3 +16,9 @@
 		</div>
 	</div>
 </div>
+
+<style lang="postcss">
+	:root {
+		background: black;
+	}
+</style>
