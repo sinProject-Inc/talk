@@ -524,12 +524,14 @@
 						{#if chat_log_item.translated}
 							<p>
 								<span data-testid="translated_chat_message">
-									<pre>{@html new Urlify(chat_log_item.translated).replace()}</pre>
+									<pre style="font-family: Arial">{@html new Urlify(
+											chat_log_item.translated
+										).replace()}</pre>
 								</span>
 							</p>
 							<div class="flex flex-row gap-1 text-white/50">
 								<span>{chat_log_item.data.locale_code}:</span>
-								<pre><span
+								<pre style="font-family: Arial"><span
 										data-testid="chat_message"
 										lang={chat_log_item.data.locale_code}
 										dir={new Direction(chat_log_item.data.locale_code).value}
@@ -539,7 +541,9 @@
 						{:else}
 							<p>
 								<span data-testid="chat_message">
-									<pre>{@html new Urlify(chat_log_item.data.message).replace()}</pre>
+									<pre style="font-family: Arial">{@html new Urlify(
+											chat_log_item.data.message
+										).replace()}</pre>
 								</span>
 							</p>
 						{/if}
