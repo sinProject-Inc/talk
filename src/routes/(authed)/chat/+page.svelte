@@ -64,6 +64,7 @@
 	let sending = false
 
 	let observer: ResizeObserver
+	let saved_chat_log_height = 0
 
 	const web_logger = new WebLogger('chat')
 
@@ -382,6 +383,7 @@
 			message_div_element.focus()
 			observer = new ResizeObserver(on_chat_log_div_resize)
 			observer.observe(chat_log_div_element)
+			saved_chat_log_height = chat_log_div_element.clientHeight
 		}, 50)
 	}
 
@@ -436,9 +438,16 @@
 	}
 
 	function on_chat_log_div_resize(): void {
-		if (!is_scroll_at_bottom()) return
+		let difference = 0
 
-		scroll_to_bottom()
+		if (is_scroll_at_bottom()) {
+			scroll_to_bottom()
+		} else {
+			difference = saved_chat_log_height - chat_log_div_element.clientHeight
+			chat_log_div_element.scrollTop = chat_log_div_element.scrollTop + difference
+		}
+
+		saved_chat_log_height = chat_log_div_element.clientHeight
 	}
 
 	socket.on('connect', () => {
