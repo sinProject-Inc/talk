@@ -136,7 +136,7 @@ a:focus {
 	}
 
 	.doc-base {
-		@apply bg-clip-padding backdrop-filter bg-opacity-80 bg-black text-white/60 fill-white/70;
+		@apply bg-clip-padding backdrop-filter text-white/60 fill-white/70;
 	}
 
 	[contenteditable='true']:empty::before {
