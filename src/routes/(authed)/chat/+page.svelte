@@ -143,6 +143,7 @@
 
 		name = name.trim()
 		message = message.trim()
+		message = message.replace(/(\r\n){3,}|\r{3,}|\n{3,}/g, '\n\n')
 
 		if (!name) {
 			name_element.focus()
@@ -576,7 +577,7 @@
 						class="outline-none px-3 py-1"
 						placeholder={$_('enter_new_text')}
 						bind:this={message_div_element}
-						bind:textContent={message}
+						bind:innerText={message}
 						on:keydown={on_keydown_message}
 					/>
 					<div class="flex flex-row">
