@@ -71,7 +71,9 @@
 	})
 </script>
 
-<aside class="top-0 py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto">
+<aside
+	class="top-0 py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto hidden lg:block"
+>
 	<h5 class="font-semibold mb-4">On this page</h5>
 	<nav>
 		<ul class="border-l space-y-2 border-slate-800">

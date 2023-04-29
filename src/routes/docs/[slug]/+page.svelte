@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import { not_equal } from 'svelte/internal'
 	import OnThisPage from './OnThisPage.svelte'
 
 	export let data
@@ -30,7 +29,7 @@
 </svelte:head>
 
 <div class="text-slate-400">
-	<div class="pe-80">
+	<div>
 		<p class="category">{data.category}</p>
 
 		<div class="content">
