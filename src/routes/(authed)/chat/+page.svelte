@@ -28,7 +28,7 @@
 	import { Web } from '$lib/view/web'
 	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
-	import { onMount } from 'svelte'
+	import { onDestroy, onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
 	import type { PageData } from './$types'
 	import { fly, slide } from 'svelte/transition'
@@ -62,6 +62,8 @@
 	let chat_member_entities: ChatMemberEntity[] = []
 
 	let sending = false
+
+	let observer: ResizeObserver
 
 	const web_logger = new WebLogger('chat')
 
@@ -378,6 +380,8 @@
 
 		setTimeout(() => {
 			message_div_element.focus()
+			observer = new ResizeObserver(on_chat_log_div_resize)
+			observer.observe(chat_log_div_element)
 		}, 50)
 	}
 
@@ -418,6 +422,23 @@
 		if (!locale) return ''
 
 		return locale.emoji
+	}
+
+	function is_scroll_at_bottom(): boolean {
+		const allowed_pixels_from_bottom = 25
+
+		const is_at_bottom =
+			chat_log_div_element.scrollHeight -
+				(chat_log_div_element.scrollTop + chat_log_div_element.clientHeight) <=
+			allowed_pixels_from_bottom
+
+		return is_at_bottom
+	}
+
+	function on_chat_log_div_resize(): void {
+		if (!is_scroll_at_bottom()) return
+
+		scroll_to_bottom()
 	}
 
 	socket.on('connect', () => {
@@ -499,6 +520,11 @@
 		await init_locale()
 		init_focus()
 		// register_service_worker()
+	})
+
+	onDestroy(async () => {
+		if (!observer) return
+		observer.disconnect()
 	})
 </script>
 
