@@ -6,7 +6,7 @@
 	$: sections = data?.sections ?? []
 </script>
 
-<div class="doc-base min-h-screen">
+<div class="max-w-7xl min-h-screen mx-auto">
 	<div class="w-72 ps-8 pe-4 pb-8 h-screen fixed overflow-y-auto">
 		<SideBar {sections} />
 	</div>
