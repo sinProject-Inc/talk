@@ -3,7 +3,8 @@
 
 npm run typecheck
 npm run test:run
-# npm run test:e2e
+npm run test:e2e
+npm run build
 
 git fetch origin
 git merge --no-commit --no-ff origin/main

@@ -16,12 +16,13 @@ concurrency:
 jobs:
   check:
     name: Check
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      matrix:
-        runner: [ubuntu-latest, self-hosted]
+    runs-on: ubuntu-latest
+    # runs-on: ${{ matrix.runner }}
+    # strategy:
+    #   matrix:
+    #     runner: [ubuntu-latest, self-hosted]
     steps:
-      - run: echo 'This job is running on ${{ matrix.runner }} runner!!'
+      # - run: echo 'This job is running on ${{ matrix.runner }} runner!!'
 
       - uses: actions/checkout@v3
 
@@ -52,10 +53,6 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    # runs-on: ${{ matrix.runner }}
-    # strategy:
-    #   matrix:
-    #     runner: [ubuntu-latest, self-hosted]
 
     timeout-minutes: 10
 
@@ -116,18 +113,18 @@ jobs:
         run: npm run test:ci
 
       # https://playwright.dev/docs/ci-intro
-      - name: Install Playwright Browsers
-        run: npx playwright install chromium
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install chromium
 
-      - name: Playwright Test
-        run: npm run test:e2e
+      # - name: Playwright Test
+      #   run: npm run test:e2e
 
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+      # - uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 30
 
       - uses: actions/upload-artifact@v3
         if: always()
