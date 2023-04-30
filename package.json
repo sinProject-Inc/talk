@@ -6,7 +6,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"start": "npx tsx ./server/index.ts",
+		"start": "tsx ./server/index.ts",
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
 		"test:run": "vitest run",
@@ -18,10 +18,11 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"prepare": "husky install",
 		"typecheck": "tsc --noEmit",
-		"typecheck:why": "tsc --noEmit --explainFiles > explainTypes.txt"
+		"typecheck:why": "tsc --noEmit --explainFiles > explainTypes.txt",
+		"search-index": "tsx ./src/lib/docs/search_index.ts"
 	},
 	"prisma": {
-		"seed": "npx tsx prisma/seed.ts"
+		"seed": "tsx prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.33.0",
@@ -30,10 +31,14 @@
 		"@sveltejs/kit": "^1.15.9",
 		"@types/dom-speech-recognition": "^0.0.1",
 		"@types/express": "^4.17.17",
+		"@types/glob": "^8.1.0",
 		"@types/imap-simple": "^4.2.5",
+		"@types/jsdom": "^21.1.1",
+		"@types/markdown-it-link-attributes": "^3.0.1",
 		"@types/morgan": "^1.9.4",
 		"@types/nodemailer": "^6.4.7",
 		"@types/nprogress": "^0.2.0",
+		"@types/prettier": "^2.7.2",
 		"@types/redis": "^4.0.11",
 		"@types/uuid": "^9.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.59.1",
@@ -77,6 +82,11 @@
 		"@socket.io/sticky": "^1.0.3",
 		"deepl-node": "^1.9.0",
 		"express": "^4.18.2",
+		"fuse.js": "^6.6.2",
+		"glob": "^10.2.2",
+		"gray-matter": "^4.0.3",
+		"jsdom": "^21.1.1",
+		"markdown-it-link-attributes": "^4.0.1",
 		"microsoft-cognitiveservices-speech-sdk": "^1.27.0",
 		"morgan": "^1.10.0",
 		"nodemailer": "^6.9.1",

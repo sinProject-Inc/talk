@@ -3,7 +3,7 @@
 	import Divider from '$lib/components/divider.svelte'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
-	import TranslateIcon from '$lib/components/icons/translate_icon.svelte'
+	import TranslateIcon from '$lib/components/icons/language-hiragana_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
 	import Navbar from '$lib/components/navbar.svelte'

@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-node'
-import preprocess from 'svelte-preprocess'
+// import preprocess from 'svelte-preprocess'
+import { vitePreprocess } from '@sveltejs/kit/vite'
 import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 
@@ -11,7 +12,8 @@ const pkg = JSON.parse(json)
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: vitePreprocess(),
+	// preprocess: preprocess(),
 
 	kit: {
 		adapter: adapter(),

@@ -9,21 +9,27 @@
 	--gray-color: rgb(83 100 113);
 	--header-text-color: #ffffffe6;
 	--text-color: #ffffffbf;
-	--link-color: #2f81f7;
+	--link-color: rgb(56 189 248);
+
+	/* --link-color: #2f81f7; */
 	--link-hover-color: rgb(26 140 216);
 	--blue-color: rgb(29 155 240);
 	--header-background-color: rgb(239 243 244 / 85%);
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 a {
-	color: var(--link-color);
+	/* color: var(--link-color); */
 	text-decoration: none;
 }
 
-a:hover,
+/* a:hover,
 a:focus {
 	text-decoration: underline;
-}
+} */
 
 .text-color {
 	color: var(--text-color);
@@ -41,6 +47,10 @@ a:focus {
 @layer components {
 	.input-element {
 		@apply border rounded-md overflow-hidden border-media-border bg-border;
+	}
+
+	a {
+		@apply transition;
 	}
 
 	button,
@@ -73,7 +83,7 @@ a:focus {
 	}
 
 	.center-container {
-		@apply mx-auto max-w-[calc(768px+2rem)] w-full px-3;
+		@apply mx-auto max-w-8xl w-full px-6;
 	}
 
 	.title {
@@ -122,7 +132,11 @@ a:focus {
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 bg-black text-white/90 fill-white/90;
+		@apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 bg-black text-white/60 fill-white/70;
+	}
+
+	.doc-base {
+		@apply bg-clip-padding backdrop-filter text-white/60 fill-white/70;
 	}
 
 	[contenteditable='true']:empty::before {
@@ -133,4 +147,52 @@ a:focus {
 
 #nprogress .bar {
 	background: var(--link-color) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply text-white/90;
+}
+
+h1 {
+	@apply text-3xl font-extrabold mb-3;
+}
+
+h2 {
+	@apply text-2xl font-bold pt-8 mt-1 mb-3 flex items-center -ms-9 ps-9;
+}
+
+.permalink {
+	@apply bg-transparent text-transparent absolute left-0 rounded-md w-6 h-6 flex items-center justify-center transition;
+}
+
+.section {
+	margin-top: -53px;
+	padding-top: calc(53px + 2rem);
+}
+
+h2:hover .permalink {
+	@apply bg-slate-700 text-slate-300;
+}
+
+h3 {
+	@apply text-xl mt-6 mb-2;
+}
+
+.category {
+	color: var(--link-color);
+
+	@apply text-sm font-semibold mb-2;
+}
+
+p {
+	@apply leading-8;
+}
+
+.max-w-8xl {
+	max-width: 90rem;
 }

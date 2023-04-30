@@ -64,33 +64,25 @@
 	})
 </script>
 
-<div
-	class="bg-fixed min-h-screen bg-no-repeat bg-cover"
-	style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35))"
-	dir={get_direction($locale ?? '')}
->
-	<!-- <div class="shadow-in flex fixed min-h-screen w-full flex-col backdrop-blur-md backdrop-filter">
-	</div> -->
-
+<div class="bg-fixed min-h-screen bg-no-repeat bg-cover" dir={get_direction($locale ?? '')}>
 	<div>
 		{#if current_background}
-			<img
-				src={next_background.background_url}
-				class="absolute w-full h-full pointer-events-none"
-				alt="background"
-				aria-hidden="true"
-			/>
-			<img
-				src={current_background.background_url}
-				class="{transitioning_background
-					? 'opacity-0 transition-all'
-					: 'opactiy-100'}  absolute w-full h-full pointer-events-none"
-				style="transition-duration: {transitioning_background
-					? background_transition_duration
-					: 0}ms"
-				alt="background"
-				aria-hidden="true"
-			/>
+			<div class="fixed w-full h-screen -z-50">
+				<div
+					style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url({next_background.background_url}) bottom center/cover"
+					class="absolute w-full h-full pointer-events-none bg-fixed min-h-screen bg-no-repeat bg-cover"
+					aria-hidden="true"
+				/>
+				<div
+					class="{transitioning_background
+						? 'opacity-0 transition-all'
+						: 'opactiy-100'}  absolute w-full h-full pointer-events-none bg-fixed min-h-screen bg-no-repeat bg-cover"
+					style=" background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
+						? background_transition_duration
+						: 0}ms"
+					aria-hidden="true"
+				/>
+			</div>
 		{/if}
 	</div>
 	<slot />
