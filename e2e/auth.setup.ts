@@ -2,11 +2,19 @@ import { expect, test as setup } from '@playwright/test'
 import { sleep } from '../src/lib/general/system.js'
 import { get_pin_code_from_mail } from './lib/get_pin_code_from_mail.js'
 import { auth_file_path, host } from './lib/setup.js'
+import { promises as fs } from 'fs'
 
 const url = `${host}/sign-in`
 
 setup('sign in', async ({ page }) => {
 	setup.setTimeout(20 * 1000)
+
+	try {
+		await fs.access(auth_file_path, fs.constants.F_OK)
+		return
+	} catch {
+		// DO NEXT
+	}
 
 	await page.goto(url)
 
