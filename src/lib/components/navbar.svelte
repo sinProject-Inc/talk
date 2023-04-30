@@ -2,10 +2,12 @@
 	import { page } from '$app/stores'
 	import { _ } from 'svelte-i18n'
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
-	import SnsIcon from './icons/sns_icon.svelte'
-	import DescriptionIcon from './icons/description_icon.svelte'
-	import TranslateIcon from './icons/translate_icon.svelte'
+	import ChatIcon from './icons/message-chatbot_icon.svelte'
+	import DocumentIcon from './icons/book_icon.svelte'
+	import TranslateIcon from './icons/language-hiragana_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
+	import SearchIcon from './icons/search_icon.svelte'
+	import GithubIcon from './icons/github_icon.svelte'
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
 </script>
@@ -20,22 +22,34 @@
 		</a>
 
 		<nav
-			class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200 ms-auto flex gap-4 items-center"
+			class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200 ms-auto flex gap-5 items-center"
 		>
 			<a href="/translate" class="flex gap-1 items-center">
-				<div class="h-4"><TranslateIcon /></div>
+				<div class="h-5"><TranslateIcon /></div>
 				{$_('translate')}
 			</a>
 
 			<a href="/chat" class="flex gap-1 items-center"
-				><div class="h-4"><SnsIcon /></div>
+				><div class="h-5"><ChatIcon /></div>
 				{$_('chat')}</a
 			>
 
 			<a href="/docs" class="flex gap-1 items-center"
-				><div class="h-4"><DescriptionIcon /></div>
+				><div class="h-5"><DocumentIcon /></div>
 				Docs</a
 			>
+
+			<a href="#" class="flex gap-1 items-center">
+				<div class="h-5"><SearchIcon /></div>
+			</a>
+
+			<a
+				href="https://github.com/sinProject-Inc/talk"
+				target="_blank"
+				class="flex gap-1 items-center"
+			>
+				<div class="h-5"><GithubIcon /></div>
+			</a>
 
 			{#if $page.data.user}
 				<form action="/sign-out" method="POST">
