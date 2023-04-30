@@ -39,7 +39,7 @@
 				Docs</a
 			>
 
-			<a href="#" class="flex gap-1 items-center">
+			<a href="/search" class="flex gap-1 items-center">
 				<div class="h-5"><SearchIcon /></div>
 			</a>
 
