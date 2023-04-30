@@ -170,6 +170,11 @@ h2 {
 	@apply bg-transparent text-transparent absolute left-0 rounded-md w-6 h-6 flex items-center justify-center transition;
 }
 
+.section {
+	margin-top: -53px;
+	padding-top: calc(53px + 2rem);
+}
+
 h2:hover .permalink {
 	@apply bg-slate-700 text-slate-300;
 }

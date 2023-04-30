@@ -63,6 +63,7 @@ export class Markdown {
 			sections.push(section)
 
 			heading.classList.add('relative')
+			heading.classList.add('section')
 
 			heading.id = slug
 
