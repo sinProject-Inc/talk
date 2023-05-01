@@ -59,7 +59,7 @@
 
 		p {
 			line-height: 2rem;
-			margin: 1.2rem 0;
+			margin: 1.2rem 0 !important;
 			/* @apply leading-8 space-y-4; */
 		}
 	</style>
