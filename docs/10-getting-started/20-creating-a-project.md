@@ -20,7 +20,7 @@ title: Creating a Project
 
 Here are the steps:
 
-### Get the project and setup:
+1. Get the project and setup:
 
 ```bash
 # Clone the repo to your current directory
@@ -43,7 +43,6 @@ npx prisma db seed
 ```
 
 6. Install [Redis](https://redis.io/), and run the command: `redis-server`
-
 7. Run locally
 
 ```bash

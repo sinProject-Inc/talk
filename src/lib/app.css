@@ -166,6 +166,14 @@ h3 {
 	@apply text-xl font-semibold pt-6 mt-1 mb-2 flex items-center -ms-9 ps-9;
 }
 
+ol {
+	@apply list-decimal ps-5 font-semibold;
+}
+
+ol > li {
+	@apply my-2;
+}
+
 .permalink {
 	@apply bg-transparent text-transparent absolute left-0 rounded-md w-6 h-6 flex items-center justify-center transition;
 }

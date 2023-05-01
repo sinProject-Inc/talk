@@ -87,7 +87,7 @@
 				>
 			</li>
 			{#each details.sections as { level, title, slug }}
-				<li class="ps-{(level - 1) * 2}">
+				<li class="pl-{(level - 1) * 2}">
 					<a
 						href={`#${slug}`}
 						class="block pl-3 -ml-px border-l"

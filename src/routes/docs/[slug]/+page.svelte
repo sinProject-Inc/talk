@@ -30,12 +30,12 @@
 			border-bottom: 2px solid #38bdf8;
 		}
 
-		.content li {
+		.content ul > li {
 			padding-left: 1.7em;
 			position: relative;
 		}
 
-		.content li::before {
+		.content ul > li::before {
 			content: '';
 			width: 0.75em;
 			height: 0.125em;
