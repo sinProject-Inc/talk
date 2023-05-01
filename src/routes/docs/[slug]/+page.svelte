@@ -25,6 +25,22 @@
 		.content a:not(.border-none):not(.permalink):hover {
 			border-bottom: 2px solid #38bdf8;
 		}
+
+		.content li {
+			padding-left: 1.7em;
+			position: relative;
+		}
+
+		.content li::before {
+			content: '';
+			width: 0.75em;
+			height: 0.125em;
+			position: absolute;
+			top: 11px;
+			left: 0;
+			border-radius: 999px;
+			background-color: #cbd5e1;
+		}
 	</style>
 </svelte:head>
 
