@@ -6,9 +6,9 @@
 	import 'nprogress/nprogress.css'
 	import { locale } from 'svelte-i18n'
 	import type { LayoutServerData } from './$types'
-	import { onMount } from 'svelte'
 	import { Background } from '$lib/background/background'
 	import { browser } from '$app/environment'
+	import { afterNavigate } from '$app/navigation'
 
 	export let data: LayoutServerData
 
@@ -17,6 +17,7 @@
 	let current_background: Background
 	let next_background: Background
 	let transitioning_background = false
+	let interval_id: number
 
 	load_backgrounds()
 
@@ -35,6 +36,8 @@
 	}
 
 	async function transition_background(): Promise<void> {
+		if (transitioning_background) return
+
 		transitioning_background = true
 
 		await new Promise((resolve) => setTimeout(resolve, background_transition_duration))
@@ -52,15 +55,17 @@
 		next_background = current_background.get_next_background()
 	}
 
-	onMount(() => {
+	afterNavigate(() => {
+		clearInterval(interval_id)
+
 		current_background.transition_background()
 		next_background = current_background.get_next_background()
 
-		const interval = setInterval(() => {
+		transition_background()
+
+		interval_id = window.setInterval(() => {
 			transition_background()
 		}, background_period_duration)
-
-		return (): void => clearInterval(interval)
 	})
 </script>
 
