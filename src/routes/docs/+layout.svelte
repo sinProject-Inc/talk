@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Navbar from '$lib/components/navbar.svelte'
 	import SideBar from './side-bar.svelte'
+	import SearchModale from './search_modale.svelte'
 
 	export let data
 
@@ -8,6 +9,7 @@
 </script>
 
 <div class="doc-base">
+	<SearchModale />
 	<Navbar />
 
 	<div class="max-w-8xl min-h-screen mx-auto">

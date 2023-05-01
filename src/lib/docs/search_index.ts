@@ -6,7 +6,7 @@ import matter from 'gray-matter'
 import { Markdown } from './markdown'
 import prettier from 'prettier'
 
-type MarkdownData = {
+export type MarkdownData = {
 	path: string
 	title: string
 	description: string
