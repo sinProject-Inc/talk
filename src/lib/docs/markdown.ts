@@ -15,6 +15,7 @@ export type Section = {
 }
 
 type PageSection = {
+	level: number
 	title: string
 	slug: string
 }
@@ -56,6 +57,7 @@ export class Markdown {
 				.replace(/(^-|-$)+/g, '')
 
 			const section: PageSection = {
+				level: parseInt(heading.tagName[1]),
 				title: text_content,
 				slug,
 			}
