@@ -193,10 +193,6 @@ h3:hover .permalink {
 	max-width: 90rem;
 }
 
-ul {
-	@apply space-y-2;
-}
-
 blockquote {
 	@apply border-l-2 border-slate-700 pl-4 my-4;
 }
