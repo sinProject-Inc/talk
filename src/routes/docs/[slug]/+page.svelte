@@ -16,6 +16,10 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
+		html {
+			scroll-padding-top: var(--header-height);
+		}
+
 		.content a:not(.border-none):not(.permalink) {
 			color: #fff;
 			font-weight: 600;

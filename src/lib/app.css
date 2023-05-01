@@ -15,6 +15,7 @@
 	--link-hover-color: rgb(26 140 216);
 	--blue-color: rgb(29 155 240);
 	--header-background-color: rgb(239 243 244 / 85%);
+	--header-height: 53px;
 }
 
 html {
@@ -25,11 +26,6 @@ a {
 	/* color: var(--link-color); */
 	text-decoration: none;
 }
-
-/* a:hover,
-a:focus {
-	text-decoration: underline;
-} */
 
 .text-color {
 	color: var(--text-color);
@@ -168,11 +164,6 @@ h2 {
 
 .permalink {
 	@apply bg-transparent text-transparent absolute left-0 rounded-md w-6 h-6 flex items-center justify-center transition;
-}
-
-.section {
-	margin-top: -53px;
-	padding-top: calc(53px + 2rem);
 }
 
 h2:hover .permalink {
