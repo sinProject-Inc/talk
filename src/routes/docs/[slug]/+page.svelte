@@ -49,10 +49,17 @@
 		}
 
 		code.hljs {
+			margin: 12px 0;
 			border-radius: 0.75rem;
 			border: 1px solid rgb(248 250 252 / 0.06);
 			background-color: #0f172a88;
 			backdrop-filter: blur(4px);
+		}
+
+		p {
+			line-height: 2rem;
+			margin: 1.2rem 0;
+			/* @apply leading-8 space-y-4; */
 		}
 	</style>
 </svelte:head>

@@ -189,10 +189,6 @@ h3:hover .permalink {
 	@apply text-sm font-semibold mb-2;
 }
 
-p {
-	@apply leading-8;
-}
-
 .max-w-8xl {
 	max-width: 90rem;
 }
