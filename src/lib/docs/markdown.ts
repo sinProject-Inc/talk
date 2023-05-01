@@ -97,9 +97,12 @@ export class Markdown {
 		const md = new MarkdownIt()
 
 		md.use(MarkdownItLinkAttributes, {
+			matcher(href: string) {
+				return href.startsWith('http')
+			},
 			attrs: {
 				target: '_blank',
-				rel: 'noopener',
+				rel: 'noopener, noreferrer',
 			},
 		})
 

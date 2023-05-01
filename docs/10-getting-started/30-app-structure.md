@@ -4,12 +4,10 @@ title: App structure
 
 This app consists of:
 
-```
-- Talk
-- Translate
-- Chat
-- Docs
-```
+- [Talk](#talk)
+- [Translate](#translate)
+- [Chat](#chat)
+- [Docs](#docs)
 
 ## Talk
 
@@ -34,3 +32,11 @@ A service for conversing with people of multiple native languages.
 Each user sends messages in their native language. If the participants are multilingual, it will be automatically translated.
 
 In addition, even when a participating member speaks in another language, it will be translated into their own language and displayed.
+
+## Docs
+
+This document. This document consists of three further documents.
+
+- [Getting Started](./) - Introduction and usage of this app
+- [Development](./translate) - Introduction of methods for service development
+- [Our Concepts](./our-concepts) - Our development concepts
