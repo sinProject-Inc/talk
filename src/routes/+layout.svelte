@@ -74,7 +74,7 @@
 		{#if current_background}
 			<div class="fixed w-full h-screen -z-50">
 				<div
-					style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url({next_background.background_url}) bottom center/cover"
+					style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({next_background.background_url}) bottom center/cover"
 					class="absolute w-full h-full pointer-events-none bg-fixed min-h-screen bg-no-repeat bg-cover"
 					aria-hidden="true"
 				/>
@@ -82,7 +82,7 @@
 					class="{transitioning_background
 						? 'opacity-0 transition-all'
 						: 'opactiy-100'}  absolute w-full h-full pointer-events-none bg-fixed min-h-screen bg-no-repeat bg-cover"
-					style=" background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
+					style=" background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
 						? background_transition_duration
 						: 0}ms"
 					aria-hidden="true"

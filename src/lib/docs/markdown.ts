@@ -1,8 +1,9 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import MarkdownIt from 'markdown-it'
-import MarkdownItLinkAttributes from 'markdown-it-link-attributes'
 import { JSDOM } from 'jsdom'
+import MarkdownIt from 'markdown-it'
+import mdHighlightjs from 'markdown-it-highlightjs'
+import MarkdownItLinkAttributes from 'markdown-it-link-attributes'
 
 export type Page = {
 	title: string
@@ -101,6 +102,8 @@ export class Markdown {
 				rel: 'noopener',
 			},
 		})
+
+		md.use(mdHighlightjs)
 
 		const source_html_content = md.render(content)
 		const { sections, html_content } = this.generate_sections(source_html_content)
