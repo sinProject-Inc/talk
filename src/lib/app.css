@@ -196,3 +196,7 @@ p {
 .max-w-8xl {
 	max-width: 90rem;
 }
+
+ul {
+	@apply space-y-2;
+}
