@@ -36,6 +36,8 @@
 	}
 
 	async function transition_background(): Promise<void> {
+		if (transitioning_background) return
+
 		transitioning_background = true
 
 		await new Promise((resolve) => setTimeout(resolve, background_transition_duration))
@@ -59,9 +61,7 @@
 		current_background.transition_background()
 		next_background = current_background.get_next_background()
 
-		if (!transitioning_background) {
-			transition_background()
-		}
+		transition_background()
 
 		interval_id = window.setInterval(() => {
 			transition_background()
