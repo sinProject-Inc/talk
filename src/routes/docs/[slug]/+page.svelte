@@ -35,6 +35,7 @@
 		.content ul > li {
 			padding-left: 1.7em;
 			position: relative;
+			margin: 0.5em 0;
 		}
 
 		.content ul > li::before {
