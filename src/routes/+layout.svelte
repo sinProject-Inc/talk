@@ -17,7 +17,7 @@
 	let current_background: Background
 	let next_background: Background
 	let transitioning_background = false
-	let interval_id: number
+	let transition_background_timer: number
 
 	load_backgrounds()
 
@@ -56,14 +56,14 @@
 	}
 
 	afterNavigate(() => {
-		clearInterval(interval_id)
+		clearInterval(transition_background_timer)
 
 		current_background.transition_background()
 		next_background = current_background.get_next_background()
 
 		transition_background()
 
-		interval_id = window.setInterval(() => {
+		transition_background_timer = window.setInterval(() => {
 			transition_background()
 		}, background_period_duration)
 	})
