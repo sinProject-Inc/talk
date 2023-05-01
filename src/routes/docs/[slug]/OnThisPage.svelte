@@ -13,7 +13,11 @@
 
 		if (!previous_element) return undefined
 
-		if (previous_element.tagName === 'H1' || previous_element.tagName === 'H2') {
+		if (
+			previous_element.tagName === 'H1' ||
+			previous_element.tagName === 'H2' ||
+			previous_element.tagName === 'H3'
+		) {
 			return previous_element
 		}
 
@@ -26,11 +30,9 @@
 
 		// console.log('content', content)
 
-		const headings = content?.querySelectorAll('h1, h2[id]')
+		const headings = content?.querySelectorAll('h1, h2[id], h3[id]')
 
 		if (!headings) return
-
-		// console.log('headings', headings)
 
 		const content_observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
@@ -80,15 +82,15 @@
 			<li>
 				<a
 					href={$page.url.pathname}
-					class="block pl-4 -ml-px border-l"
+					class="block ps-3 -ms-px border-s"
 					class:active={contains(active_section_ids, '')}>{details.title}</a
 				>
 			</li>
-			{#each details.sections as { title, slug }}
-				<li>
+			{#each details.sections as { level, title, slug }}
+				<li class="ps-{(level - 1) * 2}">
 					<a
 						href={`#${slug}`}
-						class="block pl-4 -ml-px border-l"
+						class="block pl-3 -ml-px border-l"
 						class:active={contains(active_section_ids, slug)}>{title}</a
 					>
 				</li>

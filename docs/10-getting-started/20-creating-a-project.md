@@ -20,7 +20,7 @@ title: Creating a Project
 
 Here are the steps:
 
-1. Get the project and setup:
+### Get the project and setup:
 
 ```bash
 # Clone the repo to your current directory
