@@ -16,6 +16,8 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
+		@import '/node_modules/highlight.js/styles/atom-one-dark.css';
+
 		html {
 			scroll-padding-top: var(--header-height);
 		}
@@ -44,6 +46,13 @@
 			left: 0;
 			border-radius: 999px;
 			background-color: #cbd5e1;
+		}
+
+		code.hljs {
+			border-radius: 0.75rem;
+			border: 1px solid rgb(248 250 252 / 0.06);
+			background-color: #0f172a88;
+			backdrop-filter: blur(4px);
 		}
 	</style>
 </svelte:head>
