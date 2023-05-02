@@ -2,7 +2,7 @@
 title: VSCode Extensions
 ---
 
-Introducing the Extensions we use in VS Code.
+Introducing the VS Code extensions we use at sinProject.
 
 ## Git
 
@@ -62,7 +62,7 @@ Highlights matching closing and opening tags
 
 Provides ability to preview HTML documents.
 
-## Format
+## Code Style
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
@@ -90,7 +90,7 @@ Official Stylelint extension for Visual Studio Code
 
 Visual Studio Code plugin that autocompletes filenames
 
-## Error
+## Errors
 
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 
@@ -104,7 +104,7 @@ Make TypeScript errors prettier and more human-readable in VSCode
 
 Show error gutters to the right from line numbers
 
-## Test
+## Testing
 
 - [Vitest](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer)
 
@@ -114,19 +114,19 @@ Run and debug Vitest test cases
 
 Run Playwright Test tests in Visual Studio Code.
 
-## Database
+## Database Management
 
 - [Prisma](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma)
 
 Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.
 
-## REST
+## API
 
 - [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 REST Client for Visual Studio Code
 
-## Run
+## Code Execution
 
 - [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
@@ -136,7 +136,7 @@ Run C, C++, Java, JS, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, CMD,
 
 Automating the process of writing meaningful log messages.
 
-## Quality
+## Code Quality
 
 - [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
 
@@ -148,19 +148,19 @@ Display import/require package size in the editor
 
 Material Design Icons for Visual Studio Code
 
-## Team
+## Team Collaboration
 
 - [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
 
 Real-time collaborative development from the comfort of your favorite tools.
 
-## Language
+## Localization
 
 - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
 
 🌍 All in one i18n extension for VS Code
 
-## Utils
+## Other
 
 - [ToDo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
 

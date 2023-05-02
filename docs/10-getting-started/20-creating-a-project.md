@@ -31,9 +31,9 @@ cd /talk
 npm install
 ```
 
-2. Create a database named talk
+2. Create a database with the name "talk"
 3. Create a .env file by copying .env.example at the top level of the project
-4. rewrite the env file.
+4. Rewrite the .env file with your environment variables
 5. Push the initial schema and data to the database:
 
 ```bash
