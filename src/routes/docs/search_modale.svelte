@@ -1,34 +1,33 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte'
-
-	import Fuse from 'fuse.js'
+	import type Fuse from 'fuse.js'
 	import search_index from '$lib/assets/search_index.json'
 	import SearchIcon from '$lib/components/icons/search_icon.svelte'
+	import { Search, type Context } from '$lib/docs/search'
+	import type { MarkdownData } from '$lib/docs/search_index'
 
 	let query: string
-	let results: Fuse.FuseResult<{
-		path: string
-		title: string
-		content: string
-		description?: never
-	}>[] = []
+	// let results: Fuse.FuseResult<{
+	// 	path: string
+	// 	title: string
+	// 	content: string
+	// 	description?: never
+	// }>[] = []
+	let results: Fuse.FuseResult<MarkdownData>[] = []
 
-	const fuse = new Fuse(search_index, {
-		keys: ['title', 'description', 'content'],
-		threshold: 0.4,
-		includeScore: true,
-		includeMatches: true,
-	})
+	// TODO: Remove type assertion
+	const search = new Search(search_index as MarkdownData[])
 
-	function search(): void {
+	function get_search_results(): void {
 		if (!query) results = []
 
-		results = fuse.search(query)
+		results = search.search(query)
+	}
 
-		// console.log(results)
-		// results.forEach((result) => {
-		// 	console.log('found!', result.item.path, result.item.title)
-		// })
+	function get_context(result: Fuse.FuseResult<MarkdownData>): Context {
+		const context = search.get_context(result)
+
+		return context
 	}
 
 	const dispatch = createEventDispatcher()
@@ -72,14 +71,14 @@
 	<div
 		class="rounded-xl glass-panel bg-slate-800/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
 	>
-		<form class="px-4 py-3" on:submit|preventDefault={search}>
+		<form class="px-4 py-3" on:submit|preventDefault={get_search_results}>
 			<div class="flex">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
 					class="w-full pl-4 text-xl bg-inherit"
 					type="text"
 					bind:value={query}
-					on:input={search}
+					on:input={get_search_results}
 					placeholder="Search documentation"
 					id="search"
 				/>
@@ -90,9 +89,14 @@
 			{#if results.length > 0}
 				{#each results as result}
 					<div class="px-2 py-2 rounded-md hover:bg-slate-300/25">
-						<a class="block text-left" href={result.item.path} on:click={close}>
+						<a class="block text-left" href="${result.item.path}" on:click={close}>
 							<p class="text-lg font-bold text-white">{result.item.title}</p>
-							<p class="text-white/70">{result.item.path}</p>
+							<p class="text-white/90">
+								{get_context(result).split_context.before_match}<span
+									class="font-bold border-b border-[#38bdf8]"
+									>{get_context(result).split_context.matched_text}</span
+								>{get_context(result).split_context.after_match}
+							</p>
 						</a>
 					</div>
 				{/each}
