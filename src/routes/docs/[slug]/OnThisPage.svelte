@@ -49,7 +49,7 @@
 		headings.forEach((heading, index) => {
 			const next_heading = index < headings.length - 1 ? headings[index + 1] : undefined
 
-			let next_element = heading
+			let next_element: Element | null = heading
 
 			while (next_element && next_element !== next_heading) {
 				content_observer.observe(next_element)
