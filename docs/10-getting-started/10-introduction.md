@@ -13,14 +13,14 @@ description: Thanks for reading this documentation.
 
 ## What is Talk?
 
-It is a service for speaking in real time with people who speak different languages than you. Language learning is possible in addition to voice conversations and text conversations.
+Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.
 
 ## What is sinProject?
 
-[sinProject Inc.](https://sinproject.net/) is an application production company in Osaka. I use SvelteKit and TypeScript a lot, but I also use other programming languages and frameworks.
+[sinProject Inc.](https://sinproject.net/) is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.
 
 ## What does Talk offer sinProject?
 
-It is also created for the purpose of defining coding conventions and development policies at sinProject Inc.
+Talk was created to establish coding conventions and development policies at sinProject Inc.
 
-In Talk, how to use TypeScript, what to do with coding style, how to handle GitHub, how to define GitHub Actions, how to login, how to deal with external APIs, etc. defines This will serve as a guideline for how to create products in sinProject.
+This guide covers various topics, such as how to use TypeScript, coding styles, GitHub workflows, defining GitHub Actions, login procedures, handling external APIs, and more. It serves as a comprehensive guideline for product development at sinProject.
