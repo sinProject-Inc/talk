@@ -8,20 +8,14 @@
 	let active_elements: Element[] = []
 	let active_section_ids: string[] = []
 
-	function get_previous_heading(element: Element): Element | undefined {
-		const previous_element = element.previousElementSibling
+	function get_previous_heading(element: Element | null): Element | undefined {
+		if (!element) return undefined
 
-		if (!previous_element) return undefined
-
-		if (
-			previous_element.tagName === 'H1' ||
-			previous_element.tagName === 'H2' ||
-			previous_element.tagName === 'H3'
-		) {
-			return previous_element
+		if (element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3') {
+			return element
 		}
 
-		return get_previous_heading(previous_element)
+		return get_previous_heading(element.previousElementSibling)
 	}
 
 	// オブザーバーを定義する関数
@@ -55,7 +49,7 @@
 		headings.forEach((heading, index) => {
 			const next_heading = index < headings.length - 1 ? headings[index + 1] : undefined
 
-			let next_element = heading.nextElementSibling
+			let next_element = heading
 
 			while (next_element && next_element !== next_heading) {
 				content_observer.observe(next_element)
