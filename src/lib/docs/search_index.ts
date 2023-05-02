@@ -41,7 +41,8 @@ export class SearchIndex {
 		const serialized_search_index = JSON.stringify(documents)
 		const formatted_search_index = prettier.format(serialized_search_index, { parser: 'json' })
 
-		fs.writeFileSync(`${this._markdown_dir}/search_index.json`, formatted_search_index)
+		// fs.writeFileSync(`${this._markdown_dir}/search_index.json`, formatted_search_index)
+		fs.writeFileSync(`./src/lib/assets/search_index.json`, formatted_search_index)
 	}
 }
 
@@ -49,7 +50,8 @@ new SearchIndex(Markdown.docs_base_dir).save()
 // eslint-disable-next-line no-console
 console.log('Search index created')
 
-const file_content = fs.readFileSync(`${Markdown.docs_base_dir}/search_index.json`, 'utf8')
+// const file_content = fs.readFileSync(`${Markdown.docs_base_dir}/search_index.json`, 'utf8')
+const file_content = fs.readFileSync(`./src/lib/assets/search_index.json`, 'utf8')
 const documents: MarkdownData[] = JSON.parse(file_content)
 const fuse = new Fuse(documents, SearchIndex.options)
 const results = fuse.search('address')
