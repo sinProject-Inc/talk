@@ -11,7 +11,9 @@
 	<Navbar />
 
 	<div class="max-w-8xl min-h-screen mx-auto">
-		<div class="md:w-72 ps-8 pe-4 pb-8 h-screen fixed overflow-y-auto hidden md:block">
+		<div
+			class="md:w-72 ps-8 pe-4 pb-[calc(2rem+var(--header-height))] h-screen fixed overflow-y-auto hidden md:block"
+		>
 			<SideBar {sections} />
 		</div>
 		<div class="ps-12 pe-8 md:ps-80 py-8 xl:pe-80">
