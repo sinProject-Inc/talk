@@ -96,6 +96,10 @@ Visual Studio Code plugin that autocompletes filenames
 
 Improve highlighting of errors, warnings and other language diagnostics.
 
+- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
+
+Make TypeScript errors prettier and more human-readable in VSCode
+
 - [Error Gutters](https://marketplace.visualstudio.com/items?itemName=IgorSbitnev.error-gutters)
 
 Show error gutters to the right from line numbers
