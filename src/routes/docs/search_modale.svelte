@@ -95,7 +95,7 @@
 	<div
 		class="rounded-xl glass-panel bg-slate-800/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
 	>
-		<form class="px-4 py-3" on:submit|preventDefault={search} autocomplete="off">
+		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
 			<div class="flex">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
