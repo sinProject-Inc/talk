@@ -11,6 +11,7 @@
 	],
 	"eslint.validate": ["svelte"],
 	"cSpell.words": [
+		"autocompletes",
 		"autoincrement",
 		"codegen",
 		"cognitiveservices",
@@ -36,6 +37,7 @@
 		"Segoe",
 		"sinproject",
 		"stylelint",
+		"Tabnine",
 		"tailwindcss",
 		"testid",
 		"textbox",
