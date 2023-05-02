@@ -1,8 +1,9 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import MarkdownIt from 'markdown-it'
-import MarkdownItLinkAttributes from 'markdown-it-link-attributes'
 import { JSDOM } from 'jsdom'
+import MarkdownIt from 'markdown-it'
+import mdHighlightjs from 'markdown-it-highlightjs'
+import MarkdownItLinkAttributes from 'markdown-it-link-attributes'
 
 export type Page = {
 	title: string
@@ -96,11 +97,16 @@ export class Markdown {
 		const md = new MarkdownIt()
 
 		md.use(MarkdownItLinkAttributes, {
+			matcher(href: string) {
+				return href.startsWith('http')
+			},
 			attrs: {
 				target: '_blank',
-				rel: 'noopener',
+				rel: 'noopener, noreferrer',
 			},
 		})
+
+		md.use(mdHighlightjs)
 
 		const source_html_content = md.render(content)
 		const { sections, html_content } = this.generate_sections(source_html_content)

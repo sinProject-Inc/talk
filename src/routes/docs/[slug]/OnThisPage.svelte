@@ -8,20 +8,14 @@
 	let active_elements: Element[] = []
 	let active_section_ids: string[] = []
 
-	function get_previous_heading(element: Element): Element | undefined {
-		const previous_element = element.previousElementSibling
+	function get_previous_heading(element: Element | null): Element | undefined {
+		if (!element) return undefined
 
-		if (!previous_element) return undefined
-
-		if (
-			previous_element.tagName === 'H1' ||
-			previous_element.tagName === 'H2' ||
-			previous_element.tagName === 'H3'
-		) {
-			return previous_element
+		if (element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3') {
+			return element
 		}
 
-		return get_previous_heading(previous_element)
+		return get_previous_heading(element.previousElementSibling)
 	}
 
 	// オブザーバーを定義する関数
@@ -55,7 +49,7 @@
 		headings.forEach((heading, index) => {
 			const next_heading = index < headings.length - 1 ? headings[index + 1] : undefined
 
-			let next_element = heading.nextElementSibling
+			let next_element: Element | null = heading
 
 			while (next_element && next_element !== next_heading) {
 				content_observer.observe(next_element)
@@ -74,7 +68,7 @@
 </script>
 
 <aside
-	class="top-[var(--header-height)] py-8 pe-8 w-72 leading-6 text-sm h-screen fixed overflow-y-auto hidden xl:block end-[max(0px,calc(50%-45rem))]"
+	class="top-[var(--header-height)] pt-8 pb-[calc(2rem+var(--header-height))] pe-8 w-72 leading-6 text-sm h-full fixed overflow-y-auto hidden xl:block end-[max(0px,calc(50%-45rem))]"
 >
 	<h5 class="font-semibold mb-4">On this page</h5>
 	<nav>
@@ -87,7 +81,7 @@
 				>
 			</li>
 			{#each details.sections as { level, title, slug }}
-				<li class="ps-{(level - 1) * 2}">
+				<li class="pl-{(level - 1) * 2}">
 					<a
 						href={`#${slug}`}
 						class="block pl-3 -ml-px border-l"

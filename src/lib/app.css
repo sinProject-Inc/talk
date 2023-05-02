@@ -159,11 +159,19 @@ h1 {
 }
 
 h2 {
-	@apply text-2xl font-bold pt-8 mt-1 mb-3 flex items-center -ms-9 ps-9;
+	@apply text-2xl font-bold mt-8 mb-3 flex items-center -ms-9 ps-9;
 }
 
 h3 {
-	@apply text-xl font-semibold pt-6 mt-1 mb-2 flex items-center -ms-9 ps-9;
+	@apply text-xl font-semibold mt-6 mb-2 flex items-center -ms-9 ps-9;
+}
+
+ol {
+	@apply list-decimal ps-5 font-semibold;
+}
+
+ol > li {
+	@apply my-2;
 }
 
 .permalink {
@@ -181,14 +189,10 @@ h3:hover .permalink {
 	@apply text-sm font-semibold mb-2;
 }
 
-p {
-	@apply leading-8;
-}
-
 .max-w-8xl {
 	max-width: 90rem;
 }
 
-ul {
-	@apply space-y-2;
+blockquote {
+	@apply border-l-2 border-slate-700 pl-4 my-4;
 }

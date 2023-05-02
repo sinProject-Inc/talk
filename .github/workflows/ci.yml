@@ -50,6 +50,9 @@ jobs:
       - name: Type Check
         run: npm run typecheck
 
+      - name: Svelte Check
+        run: npm run check
+
   tests:
     name: Tests
     runs-on: ubuntu-latest

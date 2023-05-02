@@ -16,6 +16,8 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
+		@import '/node_modules/highlight.js/styles/atom-one-dark.css';
+
 		html {
 			scroll-padding-top: var(--header-height);
 		}
@@ -30,12 +32,13 @@
 			border-bottom: 2px solid #38bdf8;
 		}
 
-		.content li {
+		.content ul > li {
 			padding-left: 1.7em;
 			position: relative;
+			margin: 0.5em 0;
 		}
 
-		.content li::before {
+		.content ul > li::before {
 			content: '';
 			width: 0.75em;
 			height: 0.125em;
@@ -44,6 +47,20 @@
 			left: 0;
 			border-radius: 999px;
 			background-color: #cbd5e1;
+		}
+
+		code.hljs {
+			margin: 12px 0;
+			border-radius: 0.75rem;
+			border: 1px solid rgb(248 250 252 / 0.06);
+			background-color: #0f172a88;
+			backdrop-filter: blur(4px);
+		}
+
+		p:not(.category) {
+			line-height: 2rem;
+			margin-bottom: 1.2rem !important;
+			/* @apply leading-8 space-y-4; */
 		}
 	</style>
 </svelte:head>
