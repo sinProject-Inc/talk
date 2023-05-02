@@ -2,8 +2,11 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npm run typecheck
+npm run check
+
 npm run test:run
 npm run test:e2e
+
 npm run build
 
 git fetch origin
