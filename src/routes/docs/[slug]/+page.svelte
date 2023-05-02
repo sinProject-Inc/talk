@@ -57,9 +57,9 @@
 			backdrop-filter: blur(4px);
 		}
 
-		p {
+		p:not(.category) {
 			line-height: 2rem;
-			margin: 1.2rem 0 !important;
+			margin-bottom: 1.2rem !important;
 			/* @apply leading-8 space-y-4; */
 		}
 	</style>
