@@ -6,15 +6,8 @@
 	import { Search, type Context } from '$lib/docs/search'
 	import type { MarkdownData } from '$lib/docs/search_index'
 
-	const test_div_count = Array(10).fill(null)
-
 	let query: string
-	// let results: Fuse.FuseResult<{
-	// 	path: string
-	// 	title: string
-	// 	content: string
-	// 	description?: never
-	// }>[] = []
+
 	let results: Fuse.FuseResult<MarkdownData>[] = []
 
 	// TODO: Remove type assertion
@@ -125,14 +118,6 @@
 					</div>
 				{/each}
 			{:else}
-				{#each test_div_count as count}
-					<div class="px-2 py-2 rounded-md hover:bg-slate-300/25">
-						<div class="block text-left">
-							<p class="text-lg font-bold text-white">aaaa</p>
-							<p class="text-white/70">bbbb</p>
-						</div>
-					</div>
-				{/each}
 				<div class="h-40 flex items-center justify-center">
 					<p class="text">No recent searches</p>
 				</div>

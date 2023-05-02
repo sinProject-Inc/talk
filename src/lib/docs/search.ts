@@ -35,7 +35,7 @@ export class Search {
 		return this._fuse.search(query)
 	}
 
-	public get_context(result: Fuse.FuseResult<MarkdownData>, context_length = 50): Context {
+	public get_context(result: Fuse.FuseResult<MarkdownData>, context_length = 300): Context {
 		const content = result.item.content
 		const match = result.matches?.find((match) => match.key === 'content')
 
