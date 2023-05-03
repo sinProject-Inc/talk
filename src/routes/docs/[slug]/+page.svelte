@@ -50,7 +50,7 @@
 		}
 
 		code.hljs {
-			margin: 12px 0;
+			margin: 1.2rem 0;
 			border-radius: 0.75rem;
 			border: 1px solid rgb(248 250 252 / 0.06);
 			background-color: #0f172a88;

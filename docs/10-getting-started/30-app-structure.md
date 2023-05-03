@@ -1,5 +1,5 @@
 ---
-title: App structure
+title: App Structure
 ---
 
 This app consists the following screens:
