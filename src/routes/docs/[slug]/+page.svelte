@@ -5,8 +5,8 @@
 	export let data
 
 	const github_base_path = 'https://github.com/sinProject-Inc/talk/edit/main'
-	const git_path = `${github_base_path}${data.file_path.slice(1)}`
 
+	$: git_path = `${github_base_path}${data.file_path.slice(1)}`
 	$: pages = data.sections?.flatMap((section) => section.pages) ?? []
 	$: page_index = pages.findIndex(({ path }) => path === $page.url.pathname)
 	$: prev_page = pages[page_index - 1]
