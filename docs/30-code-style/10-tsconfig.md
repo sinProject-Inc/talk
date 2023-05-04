@@ -1,8 +1,12 @@
 ---
-title: tsconfig
+title: TypeScript Config
 ---
 
-Set strict to true, and additionally enable the following options:
+We modify the basic TypeScript code style by changing the tsconfig.json file.
+
+## TSConfig
+
+Set strict to true, and further enhance strictness by modifying the following options:
 
 ```json
 /// tsconfig.json
