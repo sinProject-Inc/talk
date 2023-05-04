@@ -74,7 +74,7 @@
 	}
 
 	onMount(() => {
-		document.addEventListener('wheel', handle_scroll, { passive: false })
+		window.addEventListener('wheel', handle_scroll, { passive: false })
 	})
 </script>
 
