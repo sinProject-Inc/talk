@@ -3,7 +3,8 @@
 	import type Fuse from 'fuse.js'
 	import search_index from '$lib/assets/search_index.json'
 	import SearchIcon from '$lib/components/icons/search_icon.svelte'
-	import { Search, type Context } from '$lib/docs/search'
+	import { Search } from '$lib/docs/search'
+	import { SearchResultContext, type SplitContextPortion } from '$lib/docs/search_result_context'
 	import type { MarkdownData } from '$lib/docs/search_index'
 
 	let query: string
@@ -14,15 +15,26 @@
 	const search = new Search(search_index as MarkdownData[])
 
 	function get_search_results(): void {
-		if (!query) results = []
+		if (query.trim().length === 0) {
+			results = []
+
+			return
+		}
 
 		results = search.search(query)
 	}
 
-	function get_context(result: Fuse.FuseResult<MarkdownData>): Context {
-		const context = search.get_context(result)
+	function get_context(result: Fuse.FuseResult<MarkdownData>): SplitContextPortion[] {
+		if (!result.matches) return []
 
-		return context
+		const context_max_length = 200
+
+		const context = new SearchResultContext(result.matches[0], query)
+		const split_context = context.get_split_context()
+
+		const shortened_split_context = context.shorten_split_context(split_context, context_max_length)
+
+		return shortened_split_context
 	}
 
 	const dispatch = createEventDispatcher()
@@ -107,13 +119,16 @@
 				{#each results as result}
 					<div class="px-2 py-2 rounded-md hover:bg-slate-300/25">
 						<a class="block text-left" href="${result.item.path}" on:click={close}>
-							<p class="text-lg font-bold text-white">{result.item.title}</p>
-							<p class="text-white/90">
-								{get_context(result).split_context.before_match}<span
-									class="font-bold border-b border-[#38bdf8]"
-									>{get_context(result).split_context.matched_text}</span
-								>{get_context(result).split_context.after_match}
-							</p>
+							<div class="text-lg font-bold text-white">{result.item.title}</div>
+							<div class="text-white/90">
+								{#each get_context(result) as context_potion}
+									{#if context_potion.is_match}
+										<span class="font-bold border-b border-[#38bdf8]">{context_potion.text}</span>
+									{:else}
+										{context_potion.text}
+									{/if}
+								{/each}
+							</div>
 						</a>
 					</div>
 				{/each}

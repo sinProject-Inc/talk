@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
 import fs from 'fs'
-import Fuse from 'fuse.js'
 import * as glob from 'glob'
 import matter from 'gray-matter'
-import { Markdown } from './markdown'
 import prettier from 'prettier'
 
 export type MarkdownData = {
@@ -14,13 +12,6 @@ export type MarkdownData = {
 }
 
 export class SearchIndex {
-	public static options: Fuse.IFuseOptions<MarkdownData> = {
-		keys: ['title', 'description', 'content'],
-		threshold: 0.4,
-		includeScore: true,
-		includeMatches: true,
-	}
-
 	public constructor(private readonly _markdown_dir: string) {}
 
 	private _load_markdown_files(): MarkdownData[] {
@@ -45,17 +36,3 @@ export class SearchIndex {
 		fs.writeFileSync(`./src/lib/assets/search_index.json`, formatted_search_index)
 	}
 }
-
-new SearchIndex(Markdown.docs_base_dir).save()
-// eslint-disable-next-line no-console
-console.log('Search index created')
-
-// const file_content = fs.readFileSync(`${Markdown.docs_base_dir}/search_index.json`, 'utf8')
-const file_content = fs.readFileSync(`./src/lib/assets/search_index.json`, 'utf8')
-const documents: MarkdownData[] = JSON.parse(file_content)
-const fuse = new Fuse(documents, SearchIndex.options)
-const results = fuse.search('address')
-
-results.forEach((result) => {
-	console.log('found!', result.item.path, result.item.title)
-})

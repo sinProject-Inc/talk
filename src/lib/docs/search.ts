@@ -1,6 +1,5 @@
 import Fuse from 'fuse.js'
 
-// TODO: Move this to a shared location
 interface MarkdownData {
 	path: string
 	title: string
@@ -18,10 +17,10 @@ export interface Context {
 }
 
 export class Search {
-	// TODO: Move this to a shared location
 	private _fuse_options: Fuse.IFuseOptions<MarkdownData> = {
 		keys: ['title', 'description', 'content'],
-		threshold: 0.4,
+		threshold: 0.0,
+		ignoreLocation: true,
 		includeScore: true,
 		includeMatches: true,
 	}
@@ -32,7 +31,9 @@ export class Search {
 	}
 
 	public search(query: string): Fuse.FuseResult<MarkdownData>[] {
-		return this._fuse.search(query)
+		const results = this._fuse.search(query)
+
+		return results
 	}
 
 	public get_context(result: Fuse.FuseResult<MarkdownData>, context_length = 300): Context {
