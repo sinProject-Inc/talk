@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import OnThisPage from './OnThisPage.svelte'
+	import '/node_modules/highlight.js/styles/atom-one-dark.css'
 
 	export let data
 
@@ -16,8 +17,6 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
-		@import '/node_modules/highlight.js/styles/atom-one-dark.css';
-
 		html {
 			scroll-padding-top: var(--header-height);
 		}

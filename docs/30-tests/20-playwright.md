@@ -15,7 +15,6 @@ Create an e2e directory, and name the files as \*.spec.ts.
 ```ts
 // e2e/chat.spec.ts
 import { Page, expect, test } from '@playwright/test'
-import { auth_file_path, host } from './lib/setup.js'
 
 const url = `${host}/chat`
 
