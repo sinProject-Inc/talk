@@ -3,6 +3,8 @@ import fs from 'fs'
 import * as glob from 'glob'
 import matter from 'gray-matter'
 import prettier from 'prettier'
+import removeMd from 'remove-markdown'
+import { Markdown } from './markdown'
 
 export type MarkdownData = {
 	path: string
@@ -23,16 +25,36 @@ export class SearchIndex {
 			const { title, description } = metadata
 			// const path = path.relative(this._markdown_dir, file_path)
 
-			return { path: file_path, title, description, content }
+			const file = file_path.split('/').pop()
+
+			if (!file) throw new Error('File path is invalid')
+
+			const slug = file.slice(3, -3)
+
+			return { path: slug, title, description, content }
 		})
 	}
 
 	public save(): void {
 		const documents = this._load_markdown_files()
-		const serialized_search_index = JSON.stringify(documents)
+
+		const documents_without_markdown = this._remove_markdown(documents)
+
+		const serialized_search_index = JSON.stringify(documents_without_markdown)
 		const formatted_search_index = prettier.format(serialized_search_index, { parser: 'json' })
 
 		// fs.writeFileSync(`${this._markdown_dir}/search_index.json`, formatted_search_index)
 		fs.writeFileSync(`./src/lib/assets/search_index.json`, formatted_search_index)
 	}
+
+	private _remove_markdown(content: MarkdownData[]): MarkdownData[] {
+		return content.map((item) => {
+			return {
+				...item,
+				content: removeMd(item.content),
+			}
+		})
+	}
 }
+
+new SearchIndex(Markdown.docs_base_dir).save()

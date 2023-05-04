@@ -24,6 +24,7 @@ export class Search {
 		includeScore: true,
 		includeMatches: true,
 	}
+
 	private _fuse: Fuse<MarkdownData>
 
 	public constructor(data: MarkdownData[]) {

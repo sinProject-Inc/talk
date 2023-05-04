@@ -6,8 +6,11 @@
 	import { Search } from '$lib/docs/search'
 	import { SearchResultContext, type SplitContextPortion } from '$lib/docs/search_result_context'
 	import type { MarkdownData } from '$lib/docs/search_index'
+	import { goto } from '$app/navigation'
 
 	let query: string
+
+	let input: HTMLInputElement
 
 	let results: Fuse.FuseResult<MarkdownData>[] = []
 	let active_result_index = 0
@@ -49,7 +52,6 @@
 	function handle_keydown(event: KeyboardEvent): void {
 		if (event.key === 'Escape') {
 			close()
-			return
 		}
 
 		if (event.key === 'ArrowUp') {
@@ -62,6 +64,15 @@
 			if (active_result_index >= results.length - 1) return
 
 			active_result_index++
+		}
+
+		if (event.key === 'Enter') {
+			const active_result = results[active_result_index]
+
+			if (!active_result) return
+
+			close()
+			goto(`${active_result.item.path}`)
 		}
 	}
 
@@ -77,7 +88,7 @@
 	}
 
 	function release_scroll(): void {
-		document.removeEventListener('wheel', handle_scroll)
+		window.removeEventListener('wheel', handle_scroll)
 	}
 
 	function results_div_has_overflow(target: HTMLElement, delta_y: number): boolean {
@@ -105,6 +116,8 @@
 
 	onMount(() => {
 		window.addEventListener('wheel', handle_scroll, { passive: false })
+
+		input.focus()
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -112,13 +125,17 @@
 
 <svelte:window on:keydown={handle_keydown} />
 
-<div class="fixed top-0 left-0 w-screen h-screen pointer-events-auto z-10" on:click={close} />
+<div
+	class="fixed top-0 left-0 w-screen h-screen pointer-events-auto z-10"
+	on:click={close}
+	on:keydown
+/>
 
 <div
 	class="fixed top-0 left-0 w-full h-full justify-center flex pointer-events-none px-4 z-20 backdrop-blur-sm py-20"
 >
 	<div
-		class="rounded-xl glass-panel bg-slate-800/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
+		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
 			<div class="flex">
@@ -127,6 +144,7 @@
 					class="w-full pl-4 text-xl bg-inherit"
 					type="text"
 					bind:value={query}
+					bind:this={input}
 					on:input={get_search_results}
 					placeholder="Search documentation"
 					id="search"
@@ -142,7 +160,7 @@
 						class:active={active_result_index === i}
 						on:mouseenter={() => on_mouse_to_result(i)}
 					>
-						<a class="block text-left" href="${result.item.path}" on:click={close}>
+						<a class="block text-left" href={result.item.path} on:click={close}>
 							<div class="text-lg font-bold text-white">{result.item.title}</div>
 							<div class="text-white/90">
 								{#each get_context(result) as context_potion}
