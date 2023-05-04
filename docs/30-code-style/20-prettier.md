@@ -16,7 +16,7 @@ When creating a SvelteKit project, modify the following items in the generated .
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.prettierrc)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.prettierrc)
 
 ## Formatting
 

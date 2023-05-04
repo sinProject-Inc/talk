@@ -2,7 +2,7 @@
 title: Playwright
 ---
 
-We are automating our tests using [Playwright](https://playwright.dev/).
+How we automate our tests using [Playwright](https://playwright.dev/).
 
 Playwright is an E2E (end-to-end) testing framework.
 
@@ -34,7 +34,7 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
 ### Target Browsers
 
@@ -63,7 +63,7 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
 ### Web Server
 
@@ -87,13 +87,13 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 	}
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
 [More information >](https://playwright.dev/docs/test-webserver#adding-a-baseurl)
 
 ### Setup
 
-Specify processes to be executed beforehand, such as login procedures. Add dependencies to the browser settings.
+Specify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.
 
 ```ts
 // playwright.config.ts
@@ -112,7 +112,7 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
 ## Sample Code
 
@@ -156,11 +156,11 @@ test.describe('after sign in', () => {
 })
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)
 
 ## Scripts
 
-We have prepared three scripts to execute Vitest.
+We have prepared the following scripts to execute Vitest.
 
 ```json
 // package.json
@@ -172,7 +172,7 @@ We have prepared three scripts to execute Vitest.
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
 
 ## VSCode Extension
 

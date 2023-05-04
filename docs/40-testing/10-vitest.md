@@ -2,13 +2,13 @@
 title: Vitest
 ---
 
-We are automating our tests using [Vitest](https://vitest.dev/).
+How we automate our tests using [Vitest](https://vitest.dev/).
 
 Vitest is a testing framework designed for unit testing.
 
 ## File Name
 
-In the same directory as the code to be tested, write the test code in a file named [filename of the code to be tested].test.ts.
+In the same directory as the file of the code to be tested is in, write test code in a file named [filename of the code to be tested].test.ts.
 
 ## Sample Code
 
@@ -22,7 +22,7 @@ test('1', () => {
 })
 ```
 
-In the case of checking errors that are thrown:
+When checking thrown errors:
 
 ```ts
 // src/lib/genera/valid_id.test.ts
@@ -34,11 +34,11 @@ test('NaN', () => {
 })
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/general/valid_id.test.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/general/valid_id.test.ts)
 
 ## Scripts
 
-We have prepared three scripts to execute Vitest.
+We have prepared the following scripts to execute Vitest.
 
 ```json
 // package.json
@@ -51,7 +51,7 @@ We have prepared three scripts to execute Vitest.
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
 
 ## Options
 
@@ -66,7 +66,7 @@ export default defineConfig({
 })
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
 
 ## VSCode Extension
 
