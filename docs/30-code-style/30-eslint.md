@@ -2,7 +2,7 @@
 title: ESLint
 ---
 
-We are defining code style using [ESLint](https://eslint.org/).
+How we define code style using [ESLint](https://eslint.org/).
 
 ## Rules
 
@@ -20,12 +20,12 @@ module.exports = {
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
 
 ## Naming conventions
 
 - Set variable names, argument names, and function names to snake_case.
-- For private cases, add an underscore at the beginning.
+- Prefix private variables with an underscore.
 
 ```js
 // .eslintrc.cjs
@@ -101,4 +101,4 @@ module.exports = {
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)

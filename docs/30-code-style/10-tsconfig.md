@@ -21,4 +21,4 @@ Set strict to true, and additionally enable the following options:
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)

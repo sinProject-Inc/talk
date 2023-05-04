@@ -2,7 +2,7 @@
 title: Prettier
 ---
 
-We are automating formatting using [Prettier](https://prettier.io/).
+How we use [Prettier](https://prettier.io/) to automate formatting.
 
 ## Configuration
 
@@ -20,7 +20,7 @@ When creating a SvelteKit project, modify the following items in the generated .
 
 ## Formatting
 
-- Format on Save and Paste events.
+- Enable format on save and paste events.
 - Use Prettier to format TypeScript, JavaScript, HTML, Svelte, and JSON files.
 
 ```json
@@ -46,4 +46,4 @@ When creating a SvelteKit project, modify the following items in the generated .
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
