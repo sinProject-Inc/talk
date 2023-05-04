@@ -1,10 +1,8 @@
 import { Page, expect, test } from '@playwright/test'
-import { auth_file_path, host } from './lib/setup.js'
-
-const url = `${host}/chat`
+import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto(url)
+	await page.goto('/chat')
 })
 
 test('before sign in', async ({ page }) => {
