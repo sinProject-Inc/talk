@@ -1,8 +1,8 @@
 ---
-title: App structure
+title: App Structure
 ---
 
-This app consists of:
+This app consists the following screens:
 
 - [Talk](#talk)
 - [Translate](#translate)
@@ -11,32 +11,32 @@ This app consists of:
 
 ## Talk
 
-A service for learning languages.
+On the [Talk](/) screen, you can select sentences and listen to how they are pronounced.
 
-Select a sentence and listen to the audio. After listening to the audio, you can check whether you have pronounced it correctly.
+After listening, you can check your own pronunciation through the app.
 
 You can also register new sentences and add new translations.
 
 ## Translate
 
-This service allows you to have voice conversations with people who speak other languages.
+On the [Translate](/translate) screen, people can have spoken conversations with other people who speak different languages.
 
-When you speak with your voice, it will be displayed in the language of the other party, and you will automatically hear the voice in the language of the other party.
+When you speak, your words will be displayed in the other party's language and you will hear their words in your own language.
 
-You can speak to each other in your own language and have a conversation.
+This service allows you to converse in your own language and have a conversation with someone who speaks a different language.
 
 ## Chat
 
-A service for conversing with people of multiple native languages.
+On the [Chat](/chat) screen, people can converse through text online with people who speak different languages.
 
-Each user sends messages in their native language. If the participants are multilingual, it will be automatically translated.
+Each user sends messages in their native language, and if the participants speak different languages, their messages will be automatically translated.
 
-In addition, even when a participating member speaks in another language, it will be translated into their own language and displayed.
+Additionally, when a participating member speaks in a different language, their message will be translated into the receiver's language.
 
 ## Docs
 
-This document. This document consists of three further documents.
+We have the following documentation pages available:
 
-- [Getting Started](./) - Introduction and usage of this app
-- [Development](./translate) - Introduction of methods for service development
-- [Our Concepts](./our-concepts) - Our development concepts
+- [Getting Started](./) - Introduction and usage guide for this app.
+- [Development](./translate) - An introduction to development methods for our services.
+- [Our Concepts](./our-concepts) - An explanation of our development concepts.

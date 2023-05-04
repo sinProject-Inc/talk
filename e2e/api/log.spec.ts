@@ -3,12 +3,10 @@ import test, { expect } from '@playwright/test'
 // API testing
 // calendar.google.com/calendar/u/0/r/month?pli=1
 
-const host = 'http://localhost:5273'
-const path = '/api/log'
-const url = `${host}${path}`
+const api_path = '/api/log'
 
 test('200', async ({ request }) => {
-	const response = await request.post(url, {
+	const response = await request.post(api_path, {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'application/json',
@@ -25,7 +23,7 @@ test('200', async ({ request }) => {
 })
 
 test('500', async ({ request }) => {
-	const response = await request.post(url, {
+	const response = await request.post(api_path, {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': 'application/json',

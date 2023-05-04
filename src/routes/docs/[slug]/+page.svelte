@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import OnThisPage from './OnThisPage.svelte'
+	import '/node_modules/highlight.js/styles/atom-one-dark.css'
 
 	export let data
 
 	const github_base_path = 'https://github.com/sinProject-Inc/talk/edit/main'
-	const git_path = `${github_base_path}${data.file_path.slice(1)}`
 
+	$: git_path = `${github_base_path}${data.file_path.slice(1)}`
 	$: pages = data.sections?.flatMap((section) => section.pages) ?? []
 	$: page_index = pages.findIndex(({ path }) => path === $page.url.pathname)
 	$: prev_page = pages[page_index - 1]
@@ -16,8 +17,6 @@
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
-		@import '/node_modules/highlight.js/styles/atom-one-dark.css';
-
 		html {
 			scroll-padding-top: var(--header-height);
 		}
@@ -50,7 +49,7 @@
 		}
 
 		code.hljs {
-			margin: 12px 0;
+			margin: 1.2rem 0;
 			border-radius: 0.75rem;
 			border: 1px solid rgb(248 250 252 / 0.06);
 			background-color: #0f172a88;

@@ -36,6 +36,8 @@ const config: PlaywrightTestConfig = {
 	reporter: [['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
+		baseURL: 'http://127.0.0.1:5173',
+
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
 		actionTimeout: 0,
 		/* Base URL to use in actions like `await page.goto('/')`. */
@@ -107,12 +109,18 @@ const config: PlaywrightTestConfig = {
 	// outputDir: 'test-results/',
 
 	/* Run your local dev server before starting the tests */
-	webServer: {
-		command: 'npm run dev -- --port 5273',
-		port: 5273,
-		// command: 'npm run start',
-		// port: 3000,
-	},
+	webServer: [
+		{
+			command: 'npm run dev',
+			url: 'http://127.0.0.1:5173',
+			reuseExistingServer: !process.env.CI,
+		},
+		// {
+		// 	command: 'npm run build && npm run preview',
+		// 	port: 4173,
+		// 	reuseExistingServer: !process.env.CI,
+		// },
+	],
 }
 
 export default config
