@@ -1,10 +1,8 @@
 import { test, expect, Page } from '@playwright/test'
-import { auth_file_path, host } from './lib/setup.js'
-
-const url = `${host}/translate`
+import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto(url)
+	await page.goto('/translate')
 
 	if (page.url().includes('/sign-in')) return
 
@@ -243,14 +241,14 @@ test.describe('after sign in', () => {
 	async function clear_text(page: Page): Promise<void> {
 		await page.reload()
 
-		await page.route(`${host}/api/text/en/10`, async (route) => {
+		await page.route('/api/text/en/10', async (route) => {
 			const json = {}
 			await route.fulfill({ json })
 		})
 	}
 
 	async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
-		await page.route(`${host}/api/text/en/10`, async (route) => {
+		await page.route('/api/text/en/10', async (route) => {
 			if (limit === 0) await route.fulfill({ json: {} })
 			const json = mock_data.slice(0, limit)
 			await route.fulfill({ json })

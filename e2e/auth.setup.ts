@@ -1,10 +1,8 @@
 import { expect, test as setup } from '@playwright/test'
 import { sleep } from '../src/lib/general/system.js'
 import { get_pin_code_from_mail } from './lib/get_pin_code_from_mail.js'
-import { auth_file_path, host } from './lib/setup.js'
+import { auth_file_path } from './lib/setup.js'
 import { promises as fs } from 'fs'
-
-const url = `${host}/sign-in`
 
 setup('sign in', async ({ page }) => {
 	setup.setTimeout(20 * 1000)
@@ -16,7 +14,7 @@ setup('sign in', async ({ page }) => {
 		// DO NEXT
 	}
 
-	await page.goto(url)
+	await page.goto('/sign-in')
 
 	const gmail_user = process.env.GMAIL_USER ?? ''
 

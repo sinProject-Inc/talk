@@ -10,52 +10,6 @@ Playwright is an E2E (end-to-end) testing framework.
 
 Create an e2e directory, and name the files as \*.spec.ts.
 
-## Sample Code
-
-```ts
-// e2e/chat.spec.ts
-import { Page, expect, test } from '@playwright/test'
-
-const url = `${host}/chat`
-
-test.beforeEach(async ({ page }) => {
-	await page.goto(url)
-})
-
-test('before sign in', async ({ page }) => {
-	await expect(page).toHaveTitle('Talk - Sign in')
-})
-```
-
-In cases where common setup is needed, such as for login processes:
-
-```ts
-// e2e/chat.spec.ts
-import { Page, expect, test } from '@playwright/test'
-import { auth_file_path, host } from './lib/setup.js'
-
-const url = `${host}/chat`
-
-test.beforeEach(async ({ page }) => {
-	await page.goto(url)
-})
-
-test.describe('after sign in', () => {
-	test.use({ storageState: auth_file_path })
-
-	test('has title', async ({ page }) => {
-		await expect(page).toHaveTitle('Talk - Chat')
-	})
-
-	test('init focus', async ({ page }) => {
-		const name = page.getByPlaceholder('Name')
-		await expect(name).toBeFocused()
-	})
-})
-```
-
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)
-
 ## Configuration
 
 ### Basic changes
@@ -111,6 +65,32 @@ const config: PlaywrightTestConfig = {
 
 [Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
+### Web Server
+
+To perform tests quickly, use a development server. Also, change the baseURL.
+
+```ts
+	webServer: [
+		{
+			command: 'npm run dev',
+			url: 'http://127.0.0.1:5173',
+			reuseExistingServer: !process.env.CI,
+		},
+		// {
+		// 	command: 'npm run build && npm run preview',
+		// 	port: 4173,
+		// 	reuseExistingServer: !process.env.CI,
+		// },
+	],
+	use: {
+		baseURL: 'http://127.0.0.1:5173',
+	}
+```
+
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+
+[More information >](https://playwright.dev/docs/test-webserver#adding-a-baseurl)
+
 ### Setup
 
 Specify processes to be executed beforehand, such as login procedures. Add dependencies to the browser settings.
@@ -133,6 +113,50 @@ const config: PlaywrightTestConfig = {
 ```
 
 [Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+
+## Sample Code
+
+```ts
+// e2e/chat.spec.ts
+import { Page, expect, test } from '@playwright/test'
+
+const url = `/chat`
+
+test.beforeEach(async ({ page }) => {
+	await page.goto('/chat')
+})
+
+test('before sign in', async ({ page }) => {
+	await expect(page).toHaveTitle('Talk - Sign in')
+})
+```
+
+In cases where common setup is needed, such as for login processes:
+
+```ts
+// e2e/chat.spec.ts
+import { Page, expect, test } from '@playwright/test'
+import { auth_file_path } from './lib/setup.js'
+
+test.beforeEach(async ({ page }) => {
+	await page.goto('/chat')
+})
+
+test.describe('after sign in', () => {
+	test.use({ storageState: auth_file_path })
+
+	test('has title', async ({ page }) => {
+		await expect(page).toHaveTitle('Talk - Chat')
+	})
+
+	test('init focus', async ({ page }) => {
+		const name = page.getByPlaceholder('Name')
+		await expect(name).toBeFocused()
+	})
+})
+```
+
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)
 
 ## Scripts
 
