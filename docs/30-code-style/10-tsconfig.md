@@ -2,11 +2,11 @@
 title: TypeScript Config
 ---
 
-We modify the basic TypeScript code style by changing the tsconfig.json file.
+How we modify our TypeScript code style with tsconfig.json.
 
 ## TSConfig
 
-Set strict to true, and further enhance strictness by modifying the following options:
+Set strict to true, and further increase strictness by modifying the following options:
 
 - [allowUnreachableCode](https://www.typescriptlang.org/tsconfig#allowUnreachableCode)
 - [exactOptionalPropertyTypes](https://www.typescriptlang.org/tsconfig#exactOptionalPropertyTypes)
@@ -31,4 +31,4 @@ Set strict to true, and further enhance strictness by modifying the following op
 }
 ```
 
-[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)
