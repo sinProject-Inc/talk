@@ -2,11 +2,11 @@
 title: TypeScript Config
 ---
 
-We modify the basic TypeScript code style by changing the tsconfig.json file.
+How we modify our TypeScript code style with tsconfig.json.
 
 ## TSConfig
 
-Set strict to true, and further enhance strictness by modifying the following options:
+Set strict to true, and further increase strictness by modifying the following options:
 
 ```json
 /// tsconfig.json
