@@ -9,8 +9,7 @@
 	let query: string
 
 	let results: Fuse.FuseResult<MarkdownData>[] = []
-	let results_max = 0
-	let results_active = 0
+	let active_result_index = 0
 
 	// TODO: Remove type assertion
 	const search = new Search(search_index as MarkdownData[])
@@ -19,8 +18,7 @@
 		if (!query) results = []
 
 		results = search.search(query)
-		results_max = results.length - 1
-		results_active = 0
+		active_result_index = 0
 	}
 
 	function get_context(result: Fuse.FuseResult<MarkdownData>): Context {
@@ -43,13 +41,15 @@
 		}
 
 		if (event.key === 'ArrowUp') {
-			if (results_active <= 0) return
-			results_active--
+			if (active_result_index <= 0) return
+
+			active_result_index--
 		}
 
 		if (event.key === 'ArrowDown') {
-			if (results_active >= results_max) return
-			results_active++
+			if (active_result_index >= results.length - 1) return
+
+			active_result_index++
 		}
 	}
 
@@ -87,8 +87,8 @@
 		return true
 	}
 
-	function on_mouse_to_result(result_no: number): void {
-		results_active = result_no
+	function on_mouse_to_result(result_index: number): void {
+		active_result_index = result_index
 	}
 
 	onMount(() => {
@@ -127,7 +127,7 @@
 				{#each results as result, i}
 					<div
 						class="px-2 py-2 rounded-md"
-						class:active={results_active === i}
+						class:active={active_result_index === i}
 						on:mouseenter={() => on_mouse_to_result(i)}
 					>
 						<a class="block text-left" href="${result.item.path}" on:click={close}>
