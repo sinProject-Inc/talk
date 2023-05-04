@@ -54,6 +54,8 @@ test.describe('after sign in', () => {
 })
 ```
 
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)
+
 ## Configuration
 
 ### Basic changes
@@ -77,6 +79,8 @@ const config: PlaywrightTestConfig = {
 	},
 }
 ```
+
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
 ### Target Browsers
 
@@ -105,6 +109,8 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+
 ### Setup
 
 Specify processes to be executed beforehand, such as login procedures. Add dependencies to the browser settings.
@@ -126,13 +132,14 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
+
 ## Scripts
 
 We have prepared three scripts to execute Vitest.
 
-- package.json
-
 ```json
+// package.json
 {
 	"scripts": {
 		"test:e2e": "playwright test",
@@ -140,6 +147,8 @@ We have prepared three scripts to execute Vitest.
 	}
 }
 ```
+
+[Check this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
 
 ## VSCode Extension
 
