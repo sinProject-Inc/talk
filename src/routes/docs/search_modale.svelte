@@ -10,6 +10,7 @@
 	let query: string
 
 	let results: Fuse.FuseResult<MarkdownData>[] = []
+	let active_result_index = 0
 
 	// TODO: Remove type assertion
 	const search = new Search(search_index as MarkdownData[])
@@ -22,6 +23,7 @@
 		}
 
 		results = search.search(query)
+		active_result_index = 0
 	}
 
 	function get_context(result: Fuse.FuseResult<MarkdownData>): SplitContextPortion[] {
@@ -48,6 +50,18 @@
 		if (event.key === 'Escape') {
 			close()
 			return
+		}
+
+		if (event.key === 'ArrowUp') {
+			if (active_result_index <= 0) return
+
+			active_result_index--
+		}
+
+		if (event.key === 'ArrowDown') {
+			if (active_result_index >= results.length - 1) return
+
+			active_result_index++
 		}
 	}
 
@@ -85,9 +99,15 @@
 		return true
 	}
 
+	function on_mouse_to_result(result_index: number): void {
+		active_result_index = result_index
+	}
+
 	onMount(() => {
-		document.addEventListener('wheel', handle_scroll, { passive: false })
+		window.addEventListener('wheel', handle_scroll, { passive: false })
 	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <svelte:window on:keydown={handle_keydown} />
@@ -116,8 +136,12 @@
 		<div class="w-full h-[1px] bg-white/20" />
 		<div class="popup px-3 overflow-y-auto py-2">
 			{#if results.length > 0}
-				{#each results as result}
-					<div class="px-2 py-2 rounded-md hover:bg-slate-300/25">
+				{#each results as result, i}
+					<div
+						class="px-2 py-2 rounded-md"
+						class:active={active_result_index === i}
+						on:mouseenter={() => on_mouse_to_result(i)}
+					>
 						<a class="block text-left" href="${result.item.path}" on:click={close}>
 							<div class="text-lg font-bold text-white">{result.item.title}</div>
 							<div class="text-white/90">
@@ -140,3 +164,9 @@
 		</div>
 	</div>
 </div>
+
+<style lang="postcss">
+	.active {
+		@apply bg-slate-300/25;
+	}
+</style>
