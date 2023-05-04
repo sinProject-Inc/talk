@@ -9,6 +9,8 @@
 	let query: string
 
 	let results: Fuse.FuseResult<MarkdownData>[] = []
+	let results_max = 0
+	let results_active = 0
 
 	// TODO: Remove type assertion
 	const search = new Search(search_index as MarkdownData[])
@@ -17,6 +19,8 @@
 		if (!query) results = []
 
 		results = search.search(query)
+		results_max = results.length - 1
+		results_active = 0
 	}
 
 	function get_context(result: Fuse.FuseResult<MarkdownData>): Context {
@@ -36,6 +40,16 @@
 		if (event.key === 'Escape') {
 			close()
 			return
+		}
+
+		if (event.key === 'ArrowUp') {
+			if (results_active <= 0) return
+			results_active--
+		}
+
+		if (event.key === 'ArrowDown') {
+			if (results_active >= results_max) return
+			results_active++
 		}
 	}
 
@@ -73,9 +87,15 @@
 		return true
 	}
 
+	function on_mouse_to_result(result_no: number): void {
+		results_active = result_no
+	}
+
 	onMount(() => {
 		document.addEventListener('wheel', handle_scroll, { passive: false })
 	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <svelte:window on:keydown={handle_keydown} />
@@ -104,8 +124,12 @@
 		<div class="w-full h-[1px] bg-white/20" />
 		<div class="popup px-3 overflow-y-auto py-2">
 			{#if results.length > 0}
-				{#each results as result}
-					<div class="px-2 py-2 rounded-md hover:bg-slate-300/25">
+				{#each results as result, i}
+					<div
+						class="px-2 py-2 rounded-md"
+						class:active={results_active === i}
+						on:mouseenter={() => on_mouse_to_result(i)}
+					>
 						<a class="block text-left" href="${result.item.path}" on:click={close}>
 							<p class="text-lg font-bold text-white">{result.item.title}</p>
 							<p class="text-white/90">
@@ -125,3 +149,9 @@
 		</div>
 	</div>
 </div>
+
+<style lang="postcss">
+	.active {
+		@apply bg-slate-300/25;
+	}
+</style>
