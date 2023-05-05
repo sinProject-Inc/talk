@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte'
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte'
 	import SideBar from './side-bar.svelte'
 	import type { Section } from '$lib/docs/markdown'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
@@ -56,6 +56,10 @@
 
 	onMount(() => {
 		window.addEventListener('wheel', handle_scroll, { passive: false })
+	})
+
+	onDestroy(() => {
+		release_scroll()
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
