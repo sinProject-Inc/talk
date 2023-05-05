@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let enabled = true
 
-	let class_name: string
+	let class_name = ''
 
 	export { class_name as class }
 
