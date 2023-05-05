@@ -2,6 +2,7 @@
 	import { page } from '$app/stores'
 	import OnThisPage from './OnThisPage.svelte'
 	import '/node_modules/highlight.js/styles/atom-one-dark.css'
+	import { current_page_title, current_page_category } from '$lib/docs/current_page_store'
 
 	export let data
 
@@ -12,13 +13,22 @@
 	$: page_index = pages.findIndex(({ path }) => path === $page.url.pathname)
 	$: prev_page = pages[page_index - 1]
 	$: next_page = pages[page_index + 1]
+
+	current_page_title.set(data.page.title)
+	current_page_category.set(data.category)
 </script>
 
 <svelte:head>
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
 		html {
-			scroll-padding-top: var(--header-height);
+			scroll-padding-top: calc(var(--header-height) * 2 + 2rem);
+		}
+
+		@media (min-width: 768px) {
+			html {
+				scroll-padding-top: calc(var(--header-height) + 2rem);
+			}
 		}
 
 		.content a:not(.border-none):not(.permalink) {
