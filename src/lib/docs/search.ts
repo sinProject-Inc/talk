@@ -1,19 +1,10 @@
 import Fuse from 'fuse.js'
 
-interface MarkdownData {
+type MarkdownData = {
 	path: string
 	title: string
 	description: string
 	content: string
-}
-
-export interface Context {
-	full_context: string
-	split_context: {
-		before_match: string
-		matched_text: string
-		after_match: string
-	}
 }
 
 export class Search {

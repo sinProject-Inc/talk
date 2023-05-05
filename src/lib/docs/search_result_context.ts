@@ -1,12 +1,12 @@
 import type Fuse from 'fuse.js'
 
-export interface SplitContextPortion {
+type SplitContextPortion = {
 	text: string
 	is_match: boolean
 	first_character_index: number
 }
 
-interface IndexRange {
+type IndexRange = {
 	start_index: number
 	end_index: number
 }
@@ -178,9 +178,7 @@ export class SearchResultContext {
 		start_index: number
 	): SplitContextPortion {
 		const portion_text = starting_portion.text
-		const remaining_length = start_index - starting_portion.first_character_index
-
-		const portion_start_index = portion_text.length - remaining_length
+		const portion_start_index = start_index - starting_portion.first_character_index
 
 		const text = portion_text.slice(portion_start_index, portion_text.length)
 
@@ -197,9 +195,7 @@ export class SearchResultContext {
 		end_index: number
 	): SplitContextPortion {
 		const portion_text = ending_portion.text
-		const remaining_length = end_index - ending_portion.first_character_index
-
-		const portion_end_index = portion_text.length - remaining_length
+		const portion_end_index = end_index - ending_portion.first_character_index
 
 		const text = portion_text.slice(0, portion_end_index)
 
