@@ -31,7 +31,7 @@ export class SearchIndex {
 
 			const slug = file.slice(3, -3)
 
-			return { path: slug, title, description, content }
+			return { path: slug, title, description: description ?? '', content }
 		})
 	}
 
