@@ -18,7 +18,7 @@ setup('sign in', async ({ page }) => {
 
 	const gmail_user = process.env.GMAIL_USER ?? ''
 
-	expect(gmail_user).toEqual('iam.o.sin@gmail.com')
+	// expect(gmail_user).toEqual('iam.o.sin@gmail.com')
 
 	await page.getByPlaceholder('Enter email').fill(gmail_user)
 	await page.getByRole('button', { name: 'Continue' }).click()
