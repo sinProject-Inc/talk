@@ -6,7 +6,6 @@
 	import DocumentIcon from './icons/book_icon.svelte'
 	import TranslateIcon from './icons/language-hiragana_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
-	import SearchIcon from './icons/search_icon.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
@@ -38,10 +37,6 @@
 				><div class="h-5"><DocumentIcon /></div>
 				Docs</a
 			>
-
-			<a href="/search" class="flex gap-1 items-center">
-				<div class="h-5"><SearchIcon /></div>
-			</a>
 
 			<a
 				href="https://github.com/sinProject-Inc/talk"

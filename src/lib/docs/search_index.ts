@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import fs from 'fs'
-import Fuse from 'fuse.js'
 import * as glob from 'glob'
 import matter from 'gray-matter'
-import { Markdown } from './markdown'
 import prettier from 'prettier'
+import removeMd from 'remove-markdown'
+import { Markdown } from './markdown'
 
-type MarkdownData = {
+export type MarkdownData = {
 	path: string
 	title: string
 	description: string
@@ -14,13 +14,6 @@ type MarkdownData = {
 }
 
 export class SearchIndex {
-	public static options: Fuse.IFuseOptions<MarkdownData> = {
-		keys: ['title', 'description', 'content'],
-		threshold: 0.4,
-		includeScore: true,
-		includeMatches: true,
-	}
-
 	public constructor(private readonly _markdown_dir: string) {}
 
 	private _load_markdown_files(): MarkdownData[] {
@@ -32,28 +25,36 @@ export class SearchIndex {
 			const { title, description } = metadata
 			// const path = path.relative(this._markdown_dir, file_path)
 
-			return { path: file_path, title, description, content }
+			const file = file_path.split('/').pop()
+
+			if (!file) throw new Error('File path is invalid')
+
+			const slug = file.slice(3, -3)
+
+			return { path: slug, title, description: description ?? '', content }
 		})
 	}
 
 	public save(): void {
 		const documents = this._load_markdown_files()
-		const serialized_search_index = JSON.stringify(documents)
+
+		const documents_without_markdown = this._remove_markdown(documents)
+
+		const serialized_search_index = JSON.stringify(documents_without_markdown)
 		const formatted_search_index = prettier.format(serialized_search_index, { parser: 'json' })
 
-		fs.writeFileSync(`${this._markdown_dir}/search_index.json`, formatted_search_index)
+		// fs.writeFileSync(`${this._markdown_dir}/search_index.json`, formatted_search_index)
+		fs.writeFileSync(`./src/lib/assets/search_index.json`, formatted_search_index)
+	}
+
+	private _remove_markdown(content: MarkdownData[]): MarkdownData[] {
+		return content.map((item) => {
+			return {
+				...item,
+				content: removeMd(item.content),
+			}
+		})
 	}
 }
 
 new SearchIndex(Markdown.docs_base_dir).save()
-// eslint-disable-next-line no-console
-console.log('Search index created')
-
-const file_content = fs.readFileSync(`${Markdown.docs_base_dir}/search_index.json`, 'utf8')
-const documents: MarkdownData[] = JSON.parse(file_content)
-const fuse = new Fuse(documents, SearchIndex.options)
-const results = fuse.search('address')
-
-results.forEach((result) => {
-	console.log('found!', result.item.path, result.item.title)
-})
