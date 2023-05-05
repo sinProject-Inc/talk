@@ -396,7 +396,7 @@
 				bind:listening={destination_listening}
 			/>
 			<div class="main-box history-box glass-panel grow flex flex-col {history_visible}">
-				<h2 class="title px-5 py-2">{$_('history')}</h2>
+				<div class="title px-5 py-2">{$_('history')}</div>
 				<div class="overflow-auto" lang={source_locale_code.code}>
 					{#each history_texts as text, i}
 						<TextListText
