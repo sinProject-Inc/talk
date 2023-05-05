@@ -1,8 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import SearchIcon from '$lib/components/icons/search_icon.svelte'
 	import type { Section } from '$lib/docs/markdown'
+	import { createEventDispatcher } from 'svelte'
 
 	export let sections: Section[]
+
+	const dispatch = createEventDispatcher()
+
+	function on_search_button_click(): void {
+		dispatch('show_search_modale')
+	}
 </script>
 
 <!-- <div class="sticky top-0 -ml-0.5 pointer-events-none">
@@ -32,6 +40,11 @@
 </div> -->
 
 <ul class="text-sm leading-6">
+	<button class="flex gap-3 items-center mt-8" on:click={on_search_button_click}>
+		<div class="h-5"><SearchIcon /></div>
+		Search
+	</button>
+
 	{#each sections as section}
 		<li class="mt-8">
 			<h5 class="font-semibold mb-3 text-slate-200">
