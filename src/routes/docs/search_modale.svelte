@@ -49,21 +49,63 @@
 		dispatch('close')
 	}
 
+	function set_active_result_index(delta_y: number): void {
+		if (results.length === 0) return
+
+		active_result_index = active_result_index + delta_y
+
+		if (active_result_index < 0) {
+			active_result_index = results.length - 1
+		}
+
+		if (active_result_index >= results.length) {
+			active_result_index = 0
+		}
+	}
+
+	function set_scroll_result(): void {
+		if (results.length === 0) return
+
+		const parent = document.getElementById('result')
+
+		if (!parent) return
+
+		const children = parent.children
+
+		if (!children) return
+
+		let index_0_top = children[0].getBoundingClientRect().top
+		let active_top = children[active_result_index].getBoundingClientRect().top
+		let active_bottom = children[active_result_index].getBoundingClientRect().bottom
+		let scroll_top = parent.scrollTop + Math.floor(index_0_top)
+		let scroll_bottom = parent.scrollTop + parent.clientHeight + Math.floor(index_0_top)
+
+		if (active_top < scroll_top) {
+			parent.scrollTop = active_top - Math.floor(index_0_top)
+		}
+
+		if (active_bottom > scroll_bottom) {
+			parent.scrollTop = active_bottom - parent.clientHeight - Math.floor(index_0_top) + 15
+		}
+	}
+
 	function handle_keydown(event: KeyboardEvent): void {
 		if (event.key === 'Escape') {
 			close()
 		}
 
 		if (event.key === 'ArrowUp') {
-			if (active_result_index <= 0) return
-
-			active_result_index--
+			const delta_y = -1
+			set_active_result_index(delta_y)
+			set_scroll_result()
+			event.preventDefault()
 		}
 
 		if (event.key === 'ArrowDown') {
-			if (active_result_index >= results.length - 1) return
-
-			active_result_index++
+			const delta_y = 1
+			set_active_result_index(delta_y)
+			set_scroll_result()
+			event.preventDefault()
 		}
 
 		if (event.key === 'Enter') {
@@ -96,7 +138,7 @@
 		let client_height = 0
 		let scroll_top = 0
 
-		const target_parent = target.closest('.popup')
+		const target_parent = target.closest('.result')
 
 		if (target_parent) {
 			scroll_height = target_parent.scrollHeight
@@ -152,13 +194,13 @@
 			</div>
 		</form>
 		<div class="w-full h-[1px] bg-white/20" />
-		<div class="popup px-3 overflow-y-auto py-2">
+		<div id="result" class="result px-3 overflow-y-auto py-2">
 			{#if results.length > 0}
 				{#each results as result, i}
 					<div
 						class="px-2 py-2 rounded-md"
 						class:active={active_result_index === i}
-						on:mouseenter={() => on_mouse_to_result(i)}
+						on:mousemove={() => on_mouse_to_result(i)}
 					>
 						<a class="block text-left" href={result.item.path} on:click={close}>
 							<div class="text-lg font-bold text-white">{result.item.title}</div>
