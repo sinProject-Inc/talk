@@ -14,6 +14,7 @@
 
 	let results: Fuse.FuseResult<MarkdownData>[] = []
 	let active_result_index = 0
+	let results_element: HTMLElement
 
 	// TODO: Remove type assertion
 	const search = new Search(search_index as MarkdownData[])
@@ -66,7 +67,7 @@
 	function set_scroll_result(): void {
 		if (results.length === 0) return
 
-		const parent = document.getElementById('result')
+		const parent = results_element
 
 		if (!parent) return
 
@@ -74,18 +75,22 @@
 
 		if (!children) return
 
-		let index_0_top = children[0].getBoundingClientRect().top
-		let active_top = children[active_result_index].getBoundingClientRect().top
-		let active_bottom = children[active_result_index].getBoundingClientRect().bottom
-		let scroll_top = parent.scrollTop + Math.floor(index_0_top)
-		let scroll_bottom = parent.scrollTop + parent.clientHeight + Math.floor(index_0_top)
+		let first_result_top = children[0].getBoundingClientRect().top
+		let active_result_top = children[active_result_index].getBoundingClientRect().top
+		let active_result_bottom = children[active_result_index].getBoundingClientRect().bottom
 
-		if (active_top < scroll_top) {
-			parent.scrollTop = active_top - Math.floor(index_0_top)
+		let scroll_top = parent.scrollTop + Math.floor(first_result_top)
+		let scroll_bottom = parent.scrollTop + parent.clientHeight + Math.floor(first_result_top)
+
+		if (active_result_top < scroll_top) {
+			parent.scrollTop = active_result_top - Math.floor(first_result_top)
 		}
 
-		if (active_bottom > scroll_bottom) {
-			parent.scrollTop = active_bottom - parent.clientHeight - Math.floor(index_0_top) + 15
+		if (active_result_bottom > scroll_bottom) {
+			const bottom_padding = 15
+
+			parent.scrollTop =
+				active_result_bottom - parent.clientHeight - Math.floor(first_result_top) + bottom_padding
 		}
 	}
 
@@ -95,17 +100,19 @@
 		}
 
 		if (event.key === 'ArrowUp') {
+			event.preventDefault()
+
 			const delta_y = -1
 			set_active_result_index(delta_y)
 			set_scroll_result()
-			event.preventDefault()
 		}
 
 		if (event.key === 'ArrowDown') {
+			event.preventDefault()
+
 			const delta_y = 1
 			set_active_result_index(delta_y)
 			set_scroll_result()
-			event.preventDefault()
 		}
 
 		if (event.key === 'Enter') {
@@ -194,7 +201,7 @@
 			</div>
 		</form>
 		<div class="w-full h-[1px] bg-white/20" />
-		<div id="result" class="result px-3 overflow-y-auto py-2">
+		<div class="result px-3 overflow-y-auto py-2" bind:this={results_element}>
 			{#if results.length > 0}
 				{#each results as result, i}
 					<div
