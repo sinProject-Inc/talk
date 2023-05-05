@@ -67,7 +67,6 @@ export class SearchResultContext {
 		if (!this._match.value) return []
 
 		const text = this._match.value
-
 		const first_matching_portion = split_context.find((portion) => portion.is_match)
 
 		if (!first_matching_portion) return []
@@ -86,10 +85,10 @@ export class SearchResultContext {
 
 		const starting_portion_shortened = {
 			...starting_portion,
-			text: `${starting_portion.text.slice(
+			text: starting_portion.text.slice(
 				index_range.start - starting_portion.string_index,
 				starting_portion.text.length
-			)}`,
+			),
 		}
 
 		const ending_portion_shortened = {

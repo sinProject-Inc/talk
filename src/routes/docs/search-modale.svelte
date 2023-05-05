@@ -16,8 +16,8 @@
 	let active_result_index = 0
 	let results_element: HTMLElement
 
-	// TODO: Remove type assertion
-	const search = new Search(search_index as MarkdownData[])
+	const markdown_data = search_index as MarkdownData[]
+	const search = new Search(markdown_data)
 
 	function get_search_results(): void {
 		if (query.trim().length === 0) {

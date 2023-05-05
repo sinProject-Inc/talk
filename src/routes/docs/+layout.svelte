@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Navbar from '$lib/components/navbar.svelte'
 	import SideBar from './side-bar.svelte'
-	import SearchModale from './search_modale.svelte'
+	import SearchModale from './search-modale.svelte'
 
 	let search_modale_open = false
 
