@@ -83,9 +83,3 @@
 		</div>
 	</div>
 </div>
-
-<style lang="postcss">
-	.active {
-		@apply bg-slate-300/25;
-	}
-</style>
