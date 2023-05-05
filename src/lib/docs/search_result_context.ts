@@ -7,8 +7,8 @@ export interface SplitContextPortion {
 }
 
 interface IndexRange {
-	start: number
-	end: number
+	start_index: number
+	end_index: number
 }
 
 export class SearchResultContext {
@@ -73,35 +73,24 @@ export class SearchResultContext {
 
 		const index_range = this._get_shortened_index_range(text, first_matching_portion, max_length)
 
-		const starting_portion =
-			split_context.find((portion) => {
-				return this._is_index_in_portion(portion, index_range.start)
-			}) ?? split_context[0]
+		const starting_portion = this._get_start_index_portion(split_context, index_range.start_index)
+		const ending_portion = this._get_end_index_portion(split_context, index_range.end_index)
 
-		const ending_portion =
-			split_context.find((portion) => {
-				return this._is_index_in_portion(portion, index_range.end)
-			}) ?? split_context[split_context.length - 1]
+		const starting_portion_shortened = this._shorten_starting_portion(
+			starting_portion,
+			index_range.start_index
+		)
 
-		const starting_portion_shortened = {
-			...starting_portion,
-			text: starting_portion.text.slice(
-				index_range.start - starting_portion.first_character_index,
-				starting_portion.text.length
-			),
-		}
+		const ending_portion_shortened = this._shorten_ending_portion(
+			ending_portion,
+			index_range.end_index
+		)
 
-		const ending_portion_shortened = {
-			...ending_portion,
-			text: ending_portion.text.slice(0, index_range.end - ending_portion.first_character_index),
-		}
-
-		const middle_portions = split_context.filter((portion) => {
-			return (
-				portion.first_character_index > starting_portion.first_character_index &&
-				portion.first_character_index < ending_portion.first_character_index
-			)
-		})
+		const middle_portions = this._get_middle_portions(
+			split_context,
+			starting_portion,
+			ending_portion
+		)
 
 		const shortened_context = [
 			starting_portion_shortened,
@@ -124,7 +113,7 @@ export class SearchResultContext {
 			const start = matching_portion.first_character_index
 			const end = matching_portion.first_character_index + match_length
 
-			return { start, end }
+			return { start_index: start, end_index: end }
 		}
 
 		const left_length = Math.floor(remaining_length / 2)
@@ -147,7 +136,99 @@ export class SearchResultContext {
 			}
 		}
 
-		return { start, end }
+		return { start_index: start, end_index: end }
+	}
+
+	private _get_start_index_portion(
+		split_context: SplitContextPortion[],
+		start_index: number
+	): SplitContextPortion {
+		const portion = this._get_portion_from_index(split_context, start_index, split_context[0])
+
+		return portion
+	}
+
+	private _get_end_index_portion(
+		split_context: SplitContextPortion[],
+		end_index: number
+	): SplitContextPortion {
+		const portion = this._get_portion_from_index(
+			split_context,
+			end_index,
+			split_context[split_context.length - 1]
+		)
+
+		return portion
+	}
+
+	private _get_portion_from_index(
+		split_context: SplitContextPortion[],
+		index: number,
+		fallback: SplitContextPortion
+	): SplitContextPortion {
+		const portion = split_context.find((portion) => {
+			return this._is_index_in_portion(portion, index)
+		})
+
+		return portion ?? fallback
+	}
+
+	private _shorten_starting_portion(
+		starting_portion: SplitContextPortion,
+		start_index: number
+	): SplitContextPortion {
+		const portion_text = starting_portion.text
+		const remaining_length = start_index - starting_portion.first_character_index
+
+		const portion_start_index = portion_text.length - remaining_length
+
+		const text = portion_text.slice(portion_start_index, portion_text.length)
+
+		const portion = {
+			...starting_portion,
+			text,
+		}
+
+		return portion
+	}
+
+	private _shorten_ending_portion(
+		ending_portion: SplitContextPortion,
+		end_index: number
+	): SplitContextPortion {
+		const portion_text = ending_portion.text
+		const remaining_length = end_index - ending_portion.first_character_index
+
+		const portion_end_index = portion_text.length - remaining_length
+
+		const text = portion_text.slice(0, portion_end_index)
+
+		const portion = {
+			...ending_portion,
+			text,
+		}
+
+		return portion
+	}
+
+	private _get_middle_portions(
+		split_context: SplitContextPortion[],
+		starting_portion: SplitContextPortion,
+		ending_portion: SplitContextPortion
+	): SplitContextPortion[] {
+		const middle_portions = split_context.filter((portion) => {
+			const is_first_character_after_starting_portion =
+				portion.first_character_index > starting_portion.first_character_index
+			const is_first_character_before_ending_portion =
+				portion.first_character_index < ending_portion.first_character_index
+
+			const is_middle_portion =
+				is_first_character_after_starting_portion && is_first_character_before_ending_portion
+
+			return is_middle_portion
+		})
+
+		return middle_portions
 	}
 
 	private _is_index_in_portion(portion: SplitContextPortion, index: number): boolean {
