@@ -6,7 +6,6 @@
 	import DocumentIcon from './icons/book_icon.svelte'
 	import TranslateIcon from './icons/language-hiragana_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
-	import SearchIcon from './icons/search_icon.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 	import IconButton from './icon_button.svelte'
 	import HamburgerIcon from './icons/hamburger_icon.svelte'
