@@ -8,6 +8,7 @@
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 	import IconButton from './icon_button.svelte'
+	import SearchIcon from './icons/search_icon.svelte'
 	import HamburgerIcon from './icons/hamburger_icon.svelte'
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
