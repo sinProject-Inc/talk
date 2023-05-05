@@ -55,7 +55,7 @@
 		next_background = current_background.get_next_background()
 	}
 
-	afterNavigate(() => {
+	function execute_transition(): void {
 		clearInterval(transition_background_timer)
 
 		current_background.transition_background()
@@ -66,6 +66,10 @@
 		transition_background_timer = window.setInterval(() => {
 			transition_background()
 		}, background_period_duration)
+	}
+
+	afterNavigate(() => {
+		execute_transition()
 	})
 </script>
 
