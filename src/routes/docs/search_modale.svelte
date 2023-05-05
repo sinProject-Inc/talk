@@ -103,6 +103,7 @@
 			event.preventDefault()
 
 			const delta_y = -1
+
 			set_active_result_index(delta_y)
 			set_scroll_result()
 		}
@@ -111,6 +112,7 @@
 			event.preventDefault()
 
 			const delta_y = 1
+
 			set_active_result_index(delta_y)
 			set_scroll_result()
 		}
