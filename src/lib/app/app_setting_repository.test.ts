@@ -4,7 +4,7 @@ import { SettingKey } from './setting_key'
 
 test('session_lifetime_sec', async () => {
 	expect(await Repository.app_setting.get_number(SettingKey.session_lifetime_sec)).toEqual(
-		60 * 60 * 24
+		60 * 60 * 24 * 3
 	)
 })
 
