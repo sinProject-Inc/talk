@@ -22,7 +22,13 @@
 	<title>{data.page.title} - sinProject Talk</title>
 	<style>
 		html {
-			scroll-padding-top: var(--header-height);
+			scroll-padding-top: calc(var(--header-height) * 2 + 2rem);
+		}
+
+		@media (min-width: 768px) {
+			html {
+				scroll-padding-top: calc(var(--header-height) + 2rem);
+			}
 		}
 
 		.content a:not(.border-none):not(.permalink) {

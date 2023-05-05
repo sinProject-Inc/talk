@@ -77,7 +77,7 @@
 	>
 		<div class="overflow-y-scroll h-screen side-bar-navigation w-full">
 			<SideBar {sections} search_bar_enabled={false} />
-			<IconButton class="absolute top-4 right-4" on:click={close}>
+			<IconButton class="absolute top-6 right-6" on:click={close}>
 				<CloseIcon />
 			</IconButton>
 		</div>
