@@ -1,0 +1,9 @@
+<svg
+	><path
+		d="M5 6h14M5 12h14M5 18h14"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+	/></svg
+>
