@@ -35,14 +35,15 @@
 </script>
 
 <div class="doc-base">
-	{#if search_modale_open}
-		<SearchModale on:close={close_search_modale} />
-	{/if}
 	<Navbar />
 	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
 
 	{#if mobile_side_bar_open}
 		<MobileSideBar {sections} on:close={close_mobile_side_bar} />
+	{/if}
+
+	{#if search_modale_open}
+		<SearchModale on:close={close_search_modale} />
 	{/if}
 
 	<div class="max-w-8xl min-h-screen mx-auto">
