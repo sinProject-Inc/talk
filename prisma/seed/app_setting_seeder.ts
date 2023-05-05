@@ -7,7 +7,7 @@ type AppSettingsSeed = {
 
 export class AppSettingSeeder {
 	private static readonly _seeds: AppSettingsSeed[] = [
-		{ key: 'session_lifetime_sec', value: (60 * 60 * 24).toString() },
+		{ key: 'session_lifetime_sec', value: (60 * 60 * 24 * 3).toString() },
 		{ key: 'pin_code_lifetime_sec', value: (60 * 5).toString() },
 		{ key: 'consecutive_fail_period_sec', value: (60 * 30).toString() },
 		{ key: 'consecutive_fail_count', value: '3' },
