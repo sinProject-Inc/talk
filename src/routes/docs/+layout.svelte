@@ -2,8 +2,12 @@
 	import Navbar from '$lib/components/navbar.svelte'
 	import SideBar from './side-bar.svelte'
 	import SearchModale from './search-modale.svelte'
+	import MobileSideBar from './mobile-side-bar.svelte'
+	import NavbarSecondRow from './navbar-second-row.svelte'
+	import { afterNavigate } from '$app/navigation'
 
 	let search_modale_open = false
+	let mobile_side_bar_open = false
 
 	export let data
 
@@ -16,6 +20,18 @@
 	function close_search_modale(): void {
 		search_modale_open = false
 	}
+
+	function open_mobile_side_bar(): void {
+		mobile_side_bar_open = true
+	}
+
+	function close_mobile_side_bar(): void {
+		mobile_side_bar_open = false
+	}
+
+	afterNavigate(() => {
+		close_mobile_side_bar()
+	})
 </script>
 
 <div class="doc-base">
@@ -23,6 +39,11 @@
 		<SearchModale on:close={close_search_modale} />
 	{/if}
 	<Navbar />
+	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
+
+	{#if mobile_side_bar_open}
+		<MobileSideBar {sections} on:close={close_mobile_side_bar} />
+	{/if}
 
 	<div class="max-w-8xl min-h-screen mx-auto">
 		<div

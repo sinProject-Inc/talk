@@ -7,17 +7,13 @@
 	import TranslateIcon from './icons/language-hiragana_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
-	import IconButton from './icon_button.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
-	import HamburgerIcon from './icons/hamburger_icon.svelte'
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
 </script>
 
-<div
-	class="sticky z-10 h-[calc(var(--header-height)*2)] md:h-[var(--header-height)] top-0 backdrop-blur bg-transparent border-b border-slate-50/[0.06] flex flex-col"
->
-	<div class="h-full border-b border-slate-50/[0.06] md:border-b-0 mx-6">
+<div class="sticky z-10 h-[var(--header-height)] top-0 backdrop-blur bg-transparent">
+	<div class="h-full border-b border-slate-50/[0.06] md:mx-0 md:px-6 mx-6">
 		<div class="center-container flex flex-row gap-4 items-center font-bold h-full px-0">
 			<a href="/" class="text-[22px] no-underline header-text-color title flex gap-2 items-center">
 				<img src="/icon-144.png" class="h-8" alt="" />
@@ -28,15 +24,15 @@
 			>
 				<a href="/translate" class="flex gap-1 items-center">
 					<div class="h-5"><TranslateIcon /></div>
-					{$_('translate')}
+					<span class="hidden md:block">{$_('translate')}</span>
 				</a>
 				<a href="/chat" class="flex gap-1 items-center"
 					><div class="h-5"><ChatIcon /></div>
-					{$_('chat')}</a
+					<span class="hidden md:block">{$_('chat')}</span></a
 				>
 				<a href="/docs" class="flex gap-1 items-center"
 					><div class="h-5"><DocumentIcon /></div>
-					Docs</a
+					<span class="hidden md:block">Docs</span></a
 				>
 				<a href="/search" class="flex gap-1 items-center">
 					<div class="h-5"><SearchIcon /></div>
@@ -65,11 +61,6 @@
 				{/if}
 			</nav>
 		</div>
-	</div>
-	<div class="flex md:hidden w-full h-full items-center center-container">
-		<IconButton class="-ml-[13px]" on:click>
-			<HamburgerIcon />
-		</IconButton>
 	</div>
 </div>
 

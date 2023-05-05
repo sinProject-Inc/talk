@@ -5,6 +5,7 @@
 	import { createEventDispatcher } from 'svelte'
 
 	export let sections: Section[]
+	export let search_bar_enabled = true
 
 	const dispatch = createEventDispatcher()
 
@@ -40,10 +41,12 @@
 </div> -->
 
 <ul class="text-sm leading-6">
-	<button class="flex gap-3 items-center mt-8" on:click={on_search_button_click}>
-		<div class="h-5"><SearchIcon /></div>
-		Search
-	</button>
+	{#if search_bar_enabled}
+		<button class="flex gap-3 items-center mt-8" on:click={on_search_button_click}>
+			<div class="h-5"><SearchIcon /></div>
+			Search
+		</button>
+	{/if}
 
 	{#each sections as section}
 		<li class="mt-8">
