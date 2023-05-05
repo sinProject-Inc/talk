@@ -1,6 +1,6 @@
 import type Fuse from 'fuse.js'
 
-type SplitContextPortion = {
+export type SplitContextPortion = {
 	text: string
 	is_match: boolean
 	first_character_index: number
