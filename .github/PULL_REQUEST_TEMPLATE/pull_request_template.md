@@ -1,14 +1,14 @@
-# PR confirmation and contact
+# Submitter checks and team communication
 
 - [ ] CI completes successfully
-- [ ] On Slack, mention the PR reviewer, write your thoughts, and inform them that the PR has been created
+- [ ] On Slack, mention the PR reviewer, write your thoughts on the issue, and inform them that the PR has been created
 
-# Requests for Reviewers
+# Checks for reviewers
 
-- [ ] Write each checklist item of this issue in tasks, one by one
-- [ ] Git: Create a branch with the name of the Issue
+- [ ] Each task for the related issue are written and in checkboxes
+- [ ] The branch name is close to the issue name
 - [ ] CI completes successfully
 - [ ] Changes include only what is necessary for this PR
-- [ ] Implement necessary Unit tests
-- [ ] Implement necessary E2E tests
+- [ ] Necessary unit tests are implemented
+- [ ] Necessary E2E tests are implemented
 - [ ] Perform functionality checks
