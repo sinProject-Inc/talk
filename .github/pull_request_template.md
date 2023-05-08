@@ -16,3 +16,8 @@ closes #ISSUE_NUMBER
 - [ ] Necessary unit tests are implemented
 - [ ] Necessary E2E tests are implemented
 - [ ] Perform functionality checks
+
+# Tasks for Reviewers
+
+- [ ] Leave an approval comment (e.g. LGTM)
+- [ ] Contact a project admin (or someone with merge permissions) to merge the PR
