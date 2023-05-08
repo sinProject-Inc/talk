@@ -194,8 +194,7 @@
 			<div class="flex">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
-					class="w-full pl-4 text-xl bg-inherit"
-					style="font-size:medium;"
+					class="w-full pl-4 text-base bg-inherit"
 					type="text"
 					bind:value={query}
 					bind:this={input}
