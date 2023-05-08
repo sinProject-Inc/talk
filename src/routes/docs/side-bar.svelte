@@ -3,15 +3,28 @@
 	import SearchIcon from '$lib/components/icons/search_icon.svelte'
 	import type { Section } from '$lib/docs/markdown'
 	import { createEventDispatcher } from 'svelte'
+	import { onMount } from 'svelte'
+	import { ModifierKey } from '$lib/view/modifier_key'
 
 	export let sections: Section[]
 	export let search_bar_enabled = true
+
+	let view_shortcut_key = ''
+	let cursor_on_search = false
 
 	const dispatch = createEventDispatcher()
 
 	function on_search_button_click(): void {
 		dispatch('show_search_modale')
 	}
+
+	onMount(() => {
+		const modifier_key = new ModifierKey()
+
+		view_shortcut_key = modifier_key.get_control_or_command_symbol()
+	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <!-- <div class="sticky top-0 -ml-0.5 pointer-events-none">
@@ -42,9 +55,21 @@
 
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
-		<button class="flex gap-3 items-center mt-8" on:click={on_search_button_click}>
+		<button
+			class="flex gap-3 items-center mt-8 w-full rounded-md border border-white border-opacity-20 {cursor_on_search
+				? 'bg-gray-500'
+				: 'bg-gray-600'}"
+			on:click={on_search_button_click}
+			on:mousemove={() => (cursor_on_search = true)}
+			on:mouseleave={() => (cursor_on_search = false)}
+		>
 			<div class="h-5"><SearchIcon /></div>
-			Search
+			<div class="flex w-full justify-between pr-2">
+				<div class="flex">Search</div>
+				{#if view_shortcut_key.length > 0}
+					<div class="flex">{view_shortcut_key}K</div>
+				{/if}
+			</div>
 		</button>
 	{/if}
 
