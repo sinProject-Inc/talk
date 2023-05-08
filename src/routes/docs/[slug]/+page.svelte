@@ -115,6 +115,7 @@
 
 				{#if next_page}
 					<a
+						data-testid="next-page"
 						class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white"
 						href={next_page.path}
 						>{next_page.title}<svg
