@@ -2,7 +2,7 @@
 title: Assets
 ---
 
-We use the assets of the following sites:
+We are using the assets from the following sites:
 
 ## Icons
 
