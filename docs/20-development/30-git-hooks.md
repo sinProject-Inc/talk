@@ -1,5 +1,5 @@
 ---
-title: Git hooks
+title: Git Hooks
 ---
 
 We use Husky for our Git Hooks.
@@ -20,6 +20,8 @@ npx lint-staged
 npm run lint
 ```
 
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.husky/pre-commit)
+
 ```json
 // package.json
 {
@@ -34,9 +36,11 @@ npm run lint
 }
 ```
 
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+
 ## pre-push
 
-Perform type checking, test execution, and check for conflicts.
+Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/) and [Playwright](https://playwright.dev/), and finally check for conflicts.
 
 ```bash
 # ./husky/pre-push
@@ -56,6 +60,8 @@ git merge --no-commit --no-ff origin/main
 git reset --hard HEAD
 ```
 
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.husky/pre-push)
+
 ```json
 // package.json
 {
@@ -67,3 +73,5 @@ git reset --hard HEAD
 	}
 }
 ```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)

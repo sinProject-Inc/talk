@@ -35,6 +35,7 @@ test('access next pages', async ({ page }) => {
 	await to_have_text_on_next_page(page, 'App Structure')
 	await to_have_text_on_next_page(page, 'VSCode Extensions')
 	await to_have_text_on_next_page(page, 'SvelteKit')
+	await to_have_text_on_next_page(page, 'Git Hooks')
 	await to_have_text_on_next_page(page, 'Assets')
 	await to_have_text_on_next_page(page, 'TypeScript Config')
 	await to_have_text_on_next_page(page, 'Prettier')
