@@ -1,13 +1,13 @@
 closes #ISSUE_NUMBER
 
-# Submitter checks and team communication
+# Tasks for the Submitter
 
 - [ ] Make sure "closes (issue number)" is written close to the top
 - [ ] Add reviewers
-- [ ] CI completes successfully
+- [ ] Make sure CI completes successfully
 - [ ] On Slack, mention the PR reviewer, write your thoughts on the issue, and inform them that the PR has been created
 
-# Checks for reviewers
+# Checks for Reviewers
 
 - [ ] Each task for the related issue are written and in checkboxes
 - [ ] The branch name is close to the issue name
