@@ -2,7 +2,7 @@ closes #ISSUE_NUMBER
 
 # Submitter checks and team communication
 
-- [ ] Write the Issue number to close at the top
+- [ ] Make sure "closes (issue number)" is written close to the top
 - [ ] Add reviewers
 - [ ] CI completes successfully
 - [ ] On Slack, mention the PR reviewer, write your thoughts on the issue, and inform them that the PR has been created
