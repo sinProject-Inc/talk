@@ -28,6 +28,8 @@
 
 		results = search.search(query)
 		active_result_index = 0
+
+		input = input
 	}
 
 	function get_context(result: Fuse.FuseResult<MarkdownData>): SplitContextPortion[] {
@@ -82,13 +84,13 @@
 		let scroll_top = parent.scrollTop + Math.floor(first_result_top)
 		let scroll_bottom = parent.scrollTop + parent.clientHeight + Math.floor(first_result_top)
 
+		const bottom_padding = 23
+
 		if (active_result_top < scroll_top) {
 			parent.scrollTop = active_result_top - Math.floor(first_result_top)
 		}
 
-		if (active_result_bottom > scroll_bottom) {
-			const bottom_padding = 15
-
+		if (active_result_bottom + bottom_padding > scroll_bottom) {
 			parent.scrollTop =
 				active_result_bottom - parent.clientHeight - Math.floor(first_result_top) + bottom_padding
 		}
@@ -193,6 +195,7 @@
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
 					class="w-full pl-4 text-xl bg-inherit"
+					style="font-size:medium;"
 					type="text"
 					bind:value={query}
 					bind:this={input}
@@ -203,7 +206,7 @@
 			</div>
 		</form>
 		<div class="w-full h-[1px] bg-white/20" />
-		<div class="result px-3 overflow-y-auto py-2" bind:this={results_element}>
+		<div class="result px-3 overflow-y-auto py-3" bind:this={results_element}>
 			{#if results.length > 0}
 				{#each results as result, i}
 					<div
@@ -227,7 +230,11 @@
 				{/each}
 			{:else}
 				<div class="h-40 flex items-center justify-center">
-					<p class="text">No recent searches</p>
+					{#if input?.value.length > 0}
+						<p class="text">No results for "{input.value}"</p>
+					{:else}
+						<p class="text">No recent searches</p>
+					{/if}
 				</div>
 			{/if}
 		</div>
