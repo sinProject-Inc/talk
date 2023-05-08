@@ -10,19 +10,20 @@ assignees: ''
 
 - [ ]
 
-# Writing the issue
+# Writing the Issue
 
 - [ ] Write each task for this issue using checkboxes
 - [ ] Write all verbal instructions as tasks
 
-# Before starting working on the issue
+# Before Working on the Issue
 
+- [ ] Assign yourself
 - [ ] Share your screen on Discord
 - [ ] Write which issue you are starting on Slack
 - [ ] Git: Fetch the latest main
 - [ ] Git: Create a branch with the name of the issue
 
-# Pre-PR Check
+# Pre-PR Checks
 
 - [ ] Insure that changes include only what is necessary for this PR
 - [ ] Implement necessary Unit tests
