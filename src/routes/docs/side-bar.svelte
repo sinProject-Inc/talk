@@ -59,7 +59,7 @@
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<button
-			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150"
+			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150 drop-shadow-2xl shadow-slate-900"
 			on:click={on_search_button_click}
 		>
 			<div class="h-5"><SearchIcon /></div>
@@ -72,24 +72,26 @@
 		</button>
 	{/if}
 
-	{#each sections as section}
-		<li class="mt-8">
-			<h5 class="font-semibold mb-3 text-slate-200">
-				{section.title}
-			</h5>
-			<ul class="border-l space-y-2 border-slate-800">
-				{#each section.pages as { title, path }}
-					{@const active = path === $page.url.pathname}
-					{@const inactive = !active}
-					<li>
-						<a href={path} class="block pl-4 -ml-px border-l" class:active class:inactive>
-							{title}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</li>
-	{/each}
+	<div class="h-[calc(100vh-(4.5rem+var(--header-height)))] overflow-y-auto pl-2">
+		{#each sections as section}
+			<li class="my-8">
+				<h5 class="font-semibold mb-3 text-slate-200">
+					{section.title}
+				</h5>
+				<ul class="border-l space-y-2 border-slate-800">
+					{#each section.pages as { title, path }}
+						{@const active = path === $page.url.pathname}
+						{@const inactive = !active}
+						<li>
+							<a href={path} class="block pl-4 -ml-px border-l" class:active class:inactive>
+								{title}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</li>
+		{/each}
+	</div>
 </ul>
 
 <style lang="postcss">
