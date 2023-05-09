@@ -191,7 +191,7 @@
 		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
-			<div class="flex">
+			<div class="flex items-center">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
 					class="w-full pl-4 bg-inherit"
@@ -202,6 +202,13 @@
 					placeholder="Search documentation"
 					id="search"
 				/>
+				<div
+					class="flex justify-center items-center outline outline-1 outline-white/50 text-white/50 hover:text-white/80 transition-all duration-200 hover:outline-white/80 rounded-md px-[5px] h-[24px] cursor-pointer text-[10px]"
+					on:click={close}
+					on:keydown
+				>
+					ESC
+				</div>
 			</div>
 		</form>
 		<div class="w-full h-[1px] bg-white/20" />
