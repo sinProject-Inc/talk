@@ -8,7 +8,7 @@ We use Husky for our Git Hooks.
 
 ## pre-commit
 
-Combine [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [lint-staged](https://github.com/okonet/lint-staged) to format our code.
+Combine [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [lint-staged](https://github.com/okonet/lint-staged) to format code.
 
 ```bash
 # ./husky/pre-commit
