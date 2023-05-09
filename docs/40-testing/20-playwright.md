@@ -114,6 +114,47 @@ const config: PlaywrightTestConfig = {
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
+## Scripts
+
+We have prepared the following scripts to execute Vitest.
+
+```json
+// package.json
+{
+	"scripts": {
+		"test:e2e": "playwright test",
+		"test:ci": "CI=true npm run test"
+	}
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+
+## VSCode Extension
+
+Use the [VSCode Extension](./vscode-extensions#testing) for testing.
+
+## Locate by test id
+
+To make it easier to identify an Element from Playwright, "data-testid" can be used.
+
+```html
+// src/routes/docs/[slug]/+page.svelte
+
+<a data-testid="next-page">Next Page</a>
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/routes/docs/[slug]/+page.svelte)
+
+```ts
+// e2e/docs.spec.ts
+await page.getByTestId('next-page').click()
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/docs.spec.ts)
+
+[More Information >](https://playwright.dev/docs/locators#locate-by-test-id)
+
 ## Sample Code
 
 ```ts
@@ -157,23 +198,3 @@ test.describe('after sign in', () => {
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)
-
-## Scripts
-
-We have prepared the following scripts to execute Vitest.
-
-```json
-// package.json
-{
-	"scripts": {
-		"test:e2e": "playwright test",
-		"test:ci": "CI=true npm run test"
-	}
-}
-```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
-
-## VSCode Extension
-
-Use the [VSCode Extension](./vscode-extensions#testing) for testing.
