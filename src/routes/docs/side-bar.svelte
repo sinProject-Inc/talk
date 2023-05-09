@@ -72,7 +72,7 @@
 		</button>
 	{/if}
 
-	<div class="h-[calc(100vh-(4.5rem+var(--header-height)))] overflow-y-auto pl-2">
+	<div class="h-[calc(100vh-(4.5rem+var(--header-height)))] overflow-y-auto pl-1">
 		{#each sections as section}
 			<li class="my-8">
 				<h5 class="font-semibold mb-3 text-slate-200">
