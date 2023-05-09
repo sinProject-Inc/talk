@@ -10,7 +10,6 @@
 	export let search_bar_enabled = true
 
 	let view_shortcut_key = ''
-	let cursor_on_search = false
 
 	const dispatch = createEventDispatcher()
 
@@ -18,10 +17,14 @@
 		dispatch('show_search_modale')
 	}
 
-	onMount(() => {
+	function set_view_shortcut_key(): void {
 		const modifier_key = new ModifierKey()
 
 		view_shortcut_key = modifier_key.get_control_or_command_symbol()
+	}
+
+	onMount(() => {
+		set_view_shortcut_key()
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -56,17 +59,13 @@
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<button
-			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md {cursor_on_search
-				? 'bg-slate-300/25'
-				: 'bg-slate-900/90'}"
+			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150"
 			on:click={on_search_button_click}
-			on:mousemove={() => (cursor_on_search = true)}
-			on:mouseleave={() => (cursor_on_search = false)}
 		>
 			<div class="h-5"><SearchIcon /></div>
 			<div class="flex w-full justify-between pr-2">
 				<div class="flex">Search</div>
-				{#if view_shortcut_key.length > 0}
+				{#if view_shortcut_key}
 					<div class="flex">{view_shortcut_key}K</div>
 				{/if}
 			</div>

@@ -28,6 +28,8 @@
 
 		results = search.search(query)
 		active_result_index = 0
+
+		input = input
 	}
 
 	function get_context(result: Fuse.FuseResult<MarkdownData>): SplitContextPortion[] {
@@ -82,13 +84,13 @@
 		let scroll_top = parent.scrollTop + Math.floor(first_result_top)
 		let scroll_bottom = parent.scrollTop + parent.clientHeight + Math.floor(first_result_top)
 
+		const bottom_padding = 23
+
 		if (active_result_top < scroll_top) {
 			parent.scrollTop = active_result_top - Math.floor(first_result_top)
 		}
 
-		if (active_result_bottom > scroll_bottom) {
-			const bottom_padding = 15
-
+		if (active_result_bottom + bottom_padding > scroll_bottom) {
 			parent.scrollTop =
 				active_result_bottom - parent.clientHeight - Math.floor(first_result_top) + bottom_padding
 		}
@@ -189,10 +191,10 @@
 		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
-			<div class="flex">
+			<div class="flex items-center">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
-					class="w-full pl-4 text-xl bg-inherit"
+					class="w-full pl-4 bg-inherit"
 					type="text"
 					bind:value={query}
 					bind:this={input}
@@ -200,10 +202,17 @@
 					placeholder="Search documentation"
 					id="search"
 				/>
+				<div
+					class="flex justify-center items-center outline outline-1 outline-white/50 text-white/50 hover:text-white/80 transition-all duration-200 hover:outline-white/80 rounded-md px-[5px] h-[24px] cursor-pointer text-[10px]"
+					on:click={close}
+					on:keydown
+				>
+					ESC
+				</div>
 			</div>
 		</form>
 		<div class="w-full h-[1px] bg-white/20" />
-		<div class="result px-3 overflow-y-auto py-2" bind:this={results_element}>
+		<div class="result px-3 overflow-y-auto py-3" bind:this={results_element}>
 			{#if results.length > 0}
 				{#each results as result, i}
 					<div
@@ -227,7 +236,11 @@
 				{/each}
 			{:else}
 				<div class="h-40 flex items-center justify-center">
-					<p class="text">No recent searches</p>
+					{#if input?.value.length > 0}
+						<p>No results for "{input.value}"</p>
+					{:else}
+						<p>No recent searches</p>
+					{/if}
 				</div>
 			{/if}
 		</div>
