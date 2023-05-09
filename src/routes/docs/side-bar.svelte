@@ -56,9 +56,7 @@
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<button
-			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md {cursor_on_search
-				? 'bg-slate-300/25'
-				: 'bg-slate-900/90'}"
+			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md bg-slate-900/90 hover:bg-slate-300/25"
 			on:click={on_search_button_click}
 			on:mousemove={() => (cursor_on_search = true)}
 			on:mouseleave={() => (cursor_on_search = false)}
