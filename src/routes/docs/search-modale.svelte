@@ -84,16 +84,33 @@
 		let scroll_top = parent.scrollTop + Math.floor(first_result_top)
 		let scroll_bottom = parent.scrollTop + parent.clientHeight + Math.floor(first_result_top)
 
+		set_scroll_top(parent, first_result_top, active_result_top, scroll_top)
+		set_scroll_bottom(parent, first_result_top, active_result_bottom, scroll_bottom)
+	}
+
+	function set_scroll_top(
+		parent: HTMLElement,
+		first_result_top: number,
+		active_result_top: number,
+		scroll_top: number
+	): void {
+		if (!(active_result_top < scroll_top)) return
+
+		parent.scrollTop = active_result_top - Math.floor(first_result_top)
+	}
+
+	function set_scroll_bottom(
+		parent: HTMLElement,
+		first_result_top: number,
+		active_result_bottom: number,
+		scroll_bottom: number
+	): void {
 		const bottom_padding = 23
 
-		if (active_result_top < scroll_top) {
-			parent.scrollTop = active_result_top - Math.floor(first_result_top)
-		}
+		if (!(active_result_bottom + bottom_padding > scroll_bottom)) return
 
-		if (active_result_bottom + bottom_padding > scroll_bottom) {
-			parent.scrollTop =
-				active_result_bottom - parent.clientHeight - Math.floor(first_result_top) + bottom_padding
-		}
+		parent.scrollTop =
+			active_result_bottom - parent.clientHeight - Math.floor(first_result_top) + bottom_padding
 	}
 
 	function handle_keydown(event: KeyboardEvent): void {
