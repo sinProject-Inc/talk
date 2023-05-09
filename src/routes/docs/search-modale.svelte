@@ -194,7 +194,7 @@
 			<div class="flex">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
-					class="w-full pl-4 text-base bg-inherit"
+					class="w-full pl-4 bg-inherit"
 					type="text"
 					bind:value={query}
 					bind:this={input}
@@ -230,9 +230,9 @@
 			{:else}
 				<div class="h-40 flex items-center justify-center">
 					{#if input?.value.length > 0}
-						<p class="text">No results for "{input.value}"</p>
+						<p>No results for "{input.value}"</p>
 					{:else}
-						<p class="text">No recent searches</p>
+						<p>No recent searches</p>
 					{/if}
 				</div>
 			{/if}
