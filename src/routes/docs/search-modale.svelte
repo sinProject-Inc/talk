@@ -189,6 +189,7 @@
 >
 	<div
 		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
+		data-testid="search-modale"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
 			<div class="flex items-center">

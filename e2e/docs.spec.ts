@@ -43,3 +43,25 @@ test('access next pages', async ({ page }) => {
 	await to_have_text_on_next_page(page, 'Vitest')
 	await to_have_text_on_next_page(page, 'Playwright')
 })
+
+test('open search modale with keyboard shortcut', async ({ page }) => {
+	await page.waitForTimeout(500)
+	await page.keyboard.press('Control+KeyK')
+
+	const search_modale = page.getByTestId('search-modale')
+
+	await expect(search_modale).toBeVisible()
+})
+
+test('close search modale with keyboard shortcut', async ({ page }) => {
+	await page.waitForTimeout(500)
+	await page.keyboard.press('Control+KeyK')
+
+	const search_modale = page.getByTestId('search-modale')
+
+	await expect(search_modale).toBeVisible()
+
+	await page.keyboard.press('Control+KeyK')
+
+	await expect(search_modale).not.toBeVisible()
+})

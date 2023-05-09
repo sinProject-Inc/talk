@@ -5,6 +5,8 @@
 	import MobileSideBar from './mobile-side-bar.svelte'
 	import NavbarSecondRow from './navbar-second-row.svelte'
 	import { afterNavigate } from '$app/navigation'
+	import { onMount } from 'svelte'
+	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -29,8 +31,31 @@
 		mobile_side_bar_open = false
 	}
 
+	function create_search_shortcut(): void {
+		const search_shortcut_params = {
+			control: true,
+			code: 'KeyK',
+		}
+
+		new KeyboardShortcutHandler(search_shortcut_params, handle_search_shortcut)
+	}
+
+	function handle_search_shortcut(): void {
+		if (search_modale_open) {
+			close_search_modale()
+
+			return
+		}
+
+		open_search_modale()
+	}
+
 	afterNavigate(() => {
 		close_mobile_side_bar()
+	})
+
+	onMount(() => {
+		create_search_shortcut()
 	})
 </script>
 
