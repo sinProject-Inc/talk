@@ -3,13 +3,13 @@
 https://playwright.dev/docs/intro
 https://learn.microsoft.com/ja-jp/microsoft-edge/playwright/
 
-# VS Code 拡張機能のインストール
+# VSCode 拡張機能のインストール
 
 ```
 Playwright Test for VSCode
 ```
 
-VS Code 上でテスト対象を選択できるようになります。
+VSCode 上でテスト対象を選択できるようになります。
 
 # インストール
 
@@ -20,7 +20,7 @@ npm init playwright@latest
 
 # テスト実行
 
-VS Code 「Testing」タブを利用してテストを実行する。
+VSCode 「Testing」タブを利用してテストを実行する。
 
 https://playwright.dev/docs/running-tests
 

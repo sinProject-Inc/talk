@@ -10,6 +10,42 @@ Vitest is a testing framework designed for unit testing.
 
 In the same directory as the file of the code to be tested is in, write test code in a file named [filename of the code to be tested].test.ts.
 
+## Options
+
+Change the files to be included in the test run.
+
+```ts
+// vite.config.ts
+export default defineConfig({
+	test: {
+		include: ['src/**/*.test.ts'],
+	},
+})
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
+
+## Scripts
+
+We have prepared the following scripts to execute Vitest.
+
+```json
+// package.json
+{
+	"scripts": {
+		"test": "vitest",
+		"coverage": "vitest run --coverage",
+		"test:run": "vitest run"
+	}
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+
+## VSCode Extension
+
+Use the [VSCode Extension](./vscode-extensions#testing) for testing.
+
 ## Sample Code
 
 ```ts
@@ -35,39 +71,3 @@ test('NaN', () => {
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/general/valid_id.test.ts)
-
-## Scripts
-
-We have prepared the following scripts to execute Vitest.
-
-```json
-// package.json
-{
-	"scripts": {
-		"test": "vitest",
-		"coverage": "vitest run --coverage",
-		"test:run": "vitest run"
-	}
-}
-```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
-
-## Options
-
-Change the files to be included in the test run.
-
-```ts
-// vite.config.ts
-export default defineConfig({
-	test: {
-		include: ['src/**/*.test.ts'],
-	},
-})
-```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
-
-## VSCode Extension
-
-Use the [VSCode Extension](./vscode-extensions#testing) for testing.

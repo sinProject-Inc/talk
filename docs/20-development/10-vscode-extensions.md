@@ -2,7 +2,7 @@
 title: VSCode Extensions
 ---
 
-Introducing the VS Code extensions we use at sinProject.
+Introducing the VSCode extensions we use at sinProject.
 
 ## Git
 
@@ -16,7 +16,7 @@ Pull Request and Issue Provider for GitHub
 
 - [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions)
 
-GitHub Actions workflows and runs for github.com hosted repositories in VS Code
+GitHub Actions workflows and runs for github.com hosted repositories in VSCode
 
 ## AI
 
@@ -30,19 +30,19 @@ JavaScript, Python, Java, Typescript & all other languages - AI Code completion 
 
 ## Svelte
 
-- [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
+- [Svelte for VSCode](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
 
-Svelte language support for VS Code
+Svelte language support for VSCode
 
 - [Svelte 3 snippets](https://marketplace.visualstudio.com/items?itemName=fivethree.vscode-svelte-snippets)
 
-Svelte 3 Snippets for VS Code
+Svelte 3 Snippets for VSCode
 
 ## CSS
 
 - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
-Intelligent Tailwind CSS tooling for VS Code
+Intelligent Tailwind CSS tooling for VSCode
 
 - [CSS Peek](https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek)
 
@@ -66,7 +66,7 @@ Provides ability to preview HTML documents.
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-Integrates ESLint JavaScript into VS Code.
+Integrates ESLint JavaScript into VSCode.
 
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
@@ -158,7 +158,7 @@ Real-time collaborative development from the comfort of your favorite tools.
 
 - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
 
-🌍 All in one i18n extension for VS Code
+🌍 All in one i18n extension for VSCode
 
 ## Other
 
