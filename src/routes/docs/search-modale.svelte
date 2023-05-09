@@ -201,7 +201,7 @@
 					id="search"
 				/>
 				<div
-					class="flex justify-center items-center bg-gray-600 rounded-md px-2 h-8 cursor-default text-sm"
+					class="flex justify-center items-center outline outline-1 outline-white/50 text-white/50 hover:text-white/80 transition-all duration-200 hover:outline-white/80 rounded-md px-[5px] h-[22px] cursor-pointer text-[10px]"
 					on:click={close}
 					on:keydown
 				>
