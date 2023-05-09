@@ -10,7 +10,6 @@
 	export let search_bar_enabled = true
 
 	let view_shortcut_key = ''
-	let cursor_on_search = false
 
 	const dispatch = createEventDispatcher()
 
@@ -58,13 +57,11 @@
 		<button
 			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150"
 			on:click={on_search_button_click}
-			on:mousemove={() => (cursor_on_search = true)}
-			on:mouseleave={() => (cursor_on_search = false)}
 		>
 			<div class="h-5"><SearchIcon /></div>
 			<div class="flex w-full justify-between pr-2">
 				<div class="flex">Search</div>
-				{#if view_shortcut_key.length > 0}
+				{#if view_shortcut_key}
 					<div class="flex">{view_shortcut_key}K</div>
 				{/if}
 			</div>
