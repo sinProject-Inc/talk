@@ -17,10 +17,14 @@
 		dispatch('show_search_modale')
 	}
 
-	onMount(() => {
+	function set_view_shortcut_key(): void {
 		const modifier_key = new ModifierKey()
 
 		view_shortcut_key = modifier_key.get_control_or_command_symbol()
+	}
+
+	onMount(() => {
+		set_view_shortcut_key()
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
