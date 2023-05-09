@@ -8,8 +8,17 @@
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
+	import { createEventDispatcher } from 'svelte'
+
+	export let search_bar_enabled = false
+
+	const dispatch = createEventDispatcher()
 
 	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
+
+	function on_search_button_click(): void {
+		dispatch('show_search_modale')
+	}
 </script>
 
 <div class="sticky z-10 h-[var(--header-height)] top-0 backdrop-blur bg-transparent">
@@ -34,9 +43,15 @@
 					><div class="h-5"><DocumentIcon /></div>
 					<span class="hidden md:block">Docs</span></a
 				>
-				<a href="/search" class="flex gap-1 items-center">
-					<div class="h-5"><SearchIcon /></div>
-				</a>
+				{#if search_bar_enabled}
+					<button
+						on:click={on_search_button_click}
+						class="button flex gap-1 items-center px-0"
+						data-testid="navbar-search-button"
+					>
+						<div class="h-5"><SearchIcon /></div>
+					</button>
+				{/if}
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
