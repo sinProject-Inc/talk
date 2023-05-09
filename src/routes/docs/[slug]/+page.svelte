@@ -14,10 +14,8 @@
 	$: prev_page = pages[page_index - 1]
 	$: next_page = pages[page_index + 1]
 
-	$: {
-		current_page_title.set(data.page.title)
-		current_page_category.set(data.category)
-	}
+	$: current_page_title.set(data.page.title)
+	$: current_page_category.set(data.category)
 </script>
 
 <svelte:head>
