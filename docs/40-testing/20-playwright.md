@@ -132,7 +132,7 @@ We have prepared the following scripts to execute Vitest.
 
 ## VSCode Extension
 
-Use the [VSCode Extension](./vscode-extensions#testing) for testing.
+Use [VSCode Extension](./vscode-extensions#testing) for testing through VSCode.
 
 ## Locate by test id
 
