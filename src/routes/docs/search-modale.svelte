@@ -106,11 +106,13 @@
 		scroll_bottom: number
 	): void {
 		const bottom_padding = 23
+		const adjusted_bottom = active_result_bottom + bottom_padding
 
-		if (!(active_result_bottom + bottom_padding > scroll_bottom)) return
+		if (!(adjusted_bottom > scroll_bottom)) return
 
-		parent.scrollTop =
-			active_result_bottom - parent.clientHeight - Math.floor(first_result_top) + bottom_padding
+		const active_result_top = adjusted_bottom - parent.clientHeight
+
+		parent.scrollTop = active_result_top - Math.floor(first_result_top)
 	}
 
 	function handle_keydown(event: KeyboardEvent): void {
