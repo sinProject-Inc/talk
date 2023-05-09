@@ -94,7 +94,7 @@
 		active_result_top: number,
 		scroll_top: number
 	): void {
-		if (!(active_result_top < scroll_top)) return
+		if (active_result_top >= scroll_top) return
 
 		parent.scrollTop = active_result_top - Math.floor(first_result_top)
 	}
@@ -108,7 +108,7 @@
 		const bottom_padding = 23
 		const adjusted_bottom = active_result_bottom + bottom_padding
 
-		if (!(adjusted_bottom > scroll_bottom)) return
+		if (adjusted_bottom <= scroll_bottom) return
 
 		const active_result_top = adjusted_bottom - parent.clientHeight
 
