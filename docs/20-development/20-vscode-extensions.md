@@ -80,6 +80,28 @@ Highlight trailing spaces and delete them in a flash!
 
 Spelling checker for source code
 
+```json
+// .vscode/settings.json
+{
+	"cSpell.words": [
+		"autocompletes",
+		"autoincrement",
+		"codegen",
+		...
+	],
+	"cSpell.ignorePaths": [
+		"**/settings.json",
+		"**/extensions.json",
+		"**/package.json",
+		"**/package-lock.json",
+		"**/yarn.lock",
+		"**/locales/**.json"
+	]
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
+
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 
 Official Stylelint extension for Visual Studio Code
@@ -110,6 +132,15 @@ Show error gutters to the right from line numbers
 
 Run and debug Vitest test cases
 
+```json
+// .vscode/settings.json
+{
+	"vitest.include": ["src/**/*.{test}.ts"]
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
+
 - [Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
 
 Run Playwright Test tests in Visual Studio Code.
@@ -131,6 +162,17 @@ REST Client for Visual Studio Code
 - [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
 Run C, C++, Java, JS, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, CMD, BASH, F#, C#, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml, R, AppleScript, Elixir, VB.NET, Clojure, Haxe, Obj-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart, Pascal, Haskell, Nim,
+
+```json
+// .vscode/settings.json
+{
+	"code-runner.executorMap": {
+		"typescript": "npx tsx"
+	}
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
 
 - [Turbo Console Log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log)
 
@@ -159,6 +201,18 @@ Real-time collaborative development from the comfort of your favorite tools.
 - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
 
 🌍 All in one i18n extension for VSCode
+
+```json
+// .vscode/settings.json
+{
+	"i18n-ally.localesPaths": ["src/locales", "src/routes/api/languages", "src/routes/api/locales"],
+	"i18n-ally.keystyle": "nested",
+	"i18n-ally.displayLanguage": "en-US",
+	"i18n-ally.sourceLanguage": "en-US"
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
 
 ## Other
 
