@@ -65,3 +65,13 @@ test('close search modale with keyboard shortcut', async ({ page }) => {
 
 	await expect(search_modale).not.toBeVisible()
 })
+
+test('open search modale with navbar button', async ({ page }) => {
+	await page.waitForTimeout(500)
+	const search_button = page.getByTestId('navbar-search-button')
+	await search_button.click()
+
+	const search_modale = page.getByTestId('search-modale')
+
+	await expect(search_modale).toBeVisible()
+})

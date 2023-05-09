@@ -60,7 +60,7 @@
 </script>
 
 <div class="doc-base">
-	<Navbar />
+	<Navbar search_bar_enabled on:show_search_modale={open_search_modale} />
 	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
 
 	{#if mobile_side_bar_open}
