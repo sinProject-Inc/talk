@@ -40,7 +40,7 @@ setup('sign in', async ({ page }) => {
 
 	// if (await find_auth_file()) return
 
-	await page.goto('/sign-in')
+	await page.goto('/sign-in', { waitUntil: 'networkidle' })
 
 	const gmail_user = process.env.GMAIL_USER ?? ''
 
