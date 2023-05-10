@@ -54,7 +54,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const auth_token = await find_auth_token(event)
 
 	if (auth_token) {
-		logger.info(`true: ${auth_token}`)
+		// logger.info(`true: ${auth_token}`)
 
 		await Signing.access_valid(auth_token, event.cookies)
 
@@ -63,7 +63,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			role: auth_token.user.role.name,
 		}
 	} else {
-		logger.info(`false: ${auth_token}`)
+		// logger.info(`false: ${auth_token}`)
 
 		if (is_authorized_api(event.url.pathname)) {
 			logger.warn(
