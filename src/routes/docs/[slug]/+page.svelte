@@ -71,6 +71,14 @@
 			margin-bottom: 1.2rem !important;
 			/* @apply leading-8 space-y-4; */
 		}
+
+		code:not(.hljs) {
+			/* color: #f00; */
+			padding: 0.25rem 0.5rem;
+			background-color: #0f172a88;
+			border-radius: 0.4rem;
+			/* color: #e2e8f0; */
+		}
 	</style>
 </svelte:head>
 
