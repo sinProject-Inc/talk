@@ -116,18 +116,18 @@ jobs:
         run: npm run test:ci
 
       # https://playwright.dev/docs/ci-intro
-      # - name: Install Playwright Browsers
-      #   run: npx playwright install chromium
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
 
-      # - name: Playwright Test
-      #   run: npm run test:e2e
+      - name: Playwright Test
+        run: npm run test:e2e
 
-      # - uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: playwright-report
-      #     path: playwright-report/
-      #     retention-days: 30
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 
       - uses: actions/upload-artifact@v3
         if: always()
