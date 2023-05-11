@@ -13,13 +13,8 @@ export class WebLogger {
 		localStorage.setItem('web_logs', JSON.stringify(web_logs))
 	}
 
-	private _send(web_log: WebLog): void {
-		if (!navigator.onLine) {
-			this._save_to_local_storage(web_log)
-			return
-		}
-
-		fetch('/api/log', {
+	private async _send(web_log: WebLog): Promise<void> {
+		const response = await fetch('/api/log', {
 			method: 'POST',
 			headers: {
 				// eslint-disable-next-line @typescript-eslint/naming-convention
@@ -27,6 +22,14 @@ export class WebLogger {
 			},
 			body: JSON.stringify(web_log),
 		})
+
+		if (response.status !== 200) {
+			this._save_to_local_storage(web_log)
+
+			return
+		}
+
+		WebLogger.send_stored_messages(this)
 	}
 
 	private _send_message(web_log_level: WebLogLevel, message: string): void {
@@ -60,7 +63,7 @@ export class WebLogger {
 		web_logger.warn(`Network changed: ${online_text}, user_agent: ${navigator.userAgent}`)
 	}
 
-	public static send_on_online(web_logger: WebLogger): void {
+	public static send_stored_messages(web_logger: WebLogger): void {
 		const web_logs = JSON.parse(localStorage.getItem('web_logs') || '[]') as WebLog[]
 
 		web_logs.forEach((web_log) => web_logger._send(web_log))
@@ -87,7 +90,7 @@ export class WebLogger {
 		// console.debug('[log] add_network_event_listeners')
 
 		window.addEventListener('offline', () => WebLogger.handle_network_change(this))
-		window.addEventListener('online', () => WebLogger.send_on_online(this))
+		window.addEventListener('online', () => WebLogger.send_stored_messages(this))
 		window.addEventListener('error', (event) => WebLogger.handle_error(this, event))
 		window.addEventListener('unhandledrejection', (event) =>
 			WebLogger.handle_unhandled_rejection(this, event)
