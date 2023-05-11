@@ -2,11 +2,11 @@
 title: GitHub Actions
 ---
 
-We use GitHub Actions to perform two types of CI: Checks and Tests.
+We use GitHub Actions to perform two types of CI: Checks and tests.
 
 ## Checks
 
-We run Lint Check, Type Check, and Svelte Check.
+Run a lint check, a type check, and Svelte check.
 
 ```yaml
 # .github/workflows/ci.yml
@@ -29,7 +29,7 @@ jobs:
 
 ## Tests
 
-We execute tests using Vitest and Playwright.
+Execute tests using Vitest and Playwright.
 
 ```yaml
 # .github/workflows/ci.yml
@@ -49,7 +49,7 @@ jobs:
 
 ## Output
 
-We output Playwright Report and logs.
+Output Playwright Report and logs.
 
 ```yaml
 # .github/workflows/ci.yml
