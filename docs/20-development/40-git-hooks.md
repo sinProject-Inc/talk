@@ -40,7 +40,7 @@ npm run lint
 
 ## pre-push
 
-Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/) and [Playwright](https://playwright.dev/), and finally check for conflicts.
+Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/), and finally check for conflicts.
 
 ```bash
 # ./husky/pre-push
@@ -51,9 +51,6 @@ npm run typecheck
 npm run check
 
 npm run test:run
-npm run test:e2e
-
-npm run build
 
 git fetch origin
 git merge --no-commit --no-ff origin/main
