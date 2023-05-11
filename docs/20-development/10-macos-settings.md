@@ -46,7 +46,7 @@ Select More Space to increase the amount of information displayed
 
 ### Desktop & Dock
 
-- Doc: Automatically hide and show the Dock: ON
+- Dock: Automatically hide and show the Dock: ON
 
 ## Dock
 
@@ -55,7 +55,7 @@ Right click all apps and turn off Options > Keep in Dock
 ## Finder
 
 - Menu > View > Show Path Bar
-- Menu > Settings > Sidebar > [Account Name]: CHecked
+- Menu > Settings > Sidebar > [Account Name]: Checked
 - Menu > Settings > Advanced > Show all filename extensions: Checked
 
 Show hidden files in Finder with `Command + Shift + .`
