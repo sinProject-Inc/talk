@@ -18,7 +18,7 @@ Include the issue title and issue number.
 Docs: Git Branches and Commits #743
 ```
 
-If there are multiple commits in the same branch, provide additional detailed information.
+If there are multiple commits in the same branch, provide additional details.
 
 ```bash
 Docs: Git Branches and Commits #743 Update docs
