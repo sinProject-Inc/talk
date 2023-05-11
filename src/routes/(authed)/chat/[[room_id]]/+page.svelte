@@ -33,6 +33,9 @@
 	import type { PageData } from './$types'
 	import { fly, slide } from 'svelte/transition'
 	import { SubmissionText } from '$lib/speech/submission_text'
+	import { v4 as uuidv4 } from 'uuid'
+	import { goto } from '$app/navigation'
+	import AddIcon from '$lib/components/icons/add_icon.svelte'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -369,7 +372,7 @@
 
 		// TODO: RoomId を指定する
 		const join_data: JoinData = {
-			room_id: 'room01',
+			room_id: data.room_id,
 			name: name,
 			locale_code: locale_select_element.value,
 			is_mobile_device: Web.is_mobile_device(),
@@ -448,6 +451,12 @@
 		}
 
 		saved_chat_log_height = chat_log_div_element.clientHeight
+	}
+
+	function new_room(): void {
+		const room_id = uuidv4()
+
+		goto(`/chat/${room_id}`)
 	}
 
 	socket.on('connect', () => {
@@ -544,6 +553,26 @@
 	<Navbar />
 
 	<div class="flex-1 flex flex-col gap-3 p-3 center-container w-screen overflow-y-scroll">
+		<div class="flex items-center justify-between gap-3">
+			<div class="flex gap-3 items-center glass-panel w-full p-3 h-[66px]">
+				<div class="text-white/80 font-bold ml-1">Room:</div>
+				<div data-testid="room-id">{data.room_id}</div>
+			</div>
+			{#if !joined}
+				<button
+					class="glass-button h-full glass-panel rounded-[0.75rem]"
+					on:click={new_room}
+					data-testid="new-room-button"
+				>
+					<div class="flex flex-row items-center gap-1.5">
+						<div class="w-[24px] h-[24px]">
+							<AddIcon />
+						</div>
+						<div class="whitespace-nowrap">New Room</div>
+					</div>
+				</button>
+			{/if}
+		</div>
 		{#if joined}
 			<div
 				class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3"
