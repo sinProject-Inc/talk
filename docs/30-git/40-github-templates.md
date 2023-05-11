@@ -6,7 +6,7 @@ We use templates for issues and PRs.
 
 ## Issue Template
 
-List the check items for the following:
+In the template, write tasks for the following:
 
 - Writing the Issue
 - Before Working on the Issue
@@ -16,7 +16,7 @@ List the check items for the following:
 
 ## Pull Request Template
 
-List the check items for the following:
+In the template, write tasks for the following:
 
 - For the Submitter
   - Tasks
