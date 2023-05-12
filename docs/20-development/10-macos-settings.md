@@ -62,13 +62,14 @@ Show hidden files in Finder with `Command + Shift + .`
 
 ## Apps
 
-- Alfred
+- [Homebrew](https://brew.sh/)
+- [Alfred](https://www.alfredapp.com/)
   - Appearance: Alfred Modern Dark
   - Advanced > Force Keyboard: Alphanumeric (Google)
-- Google Japanese Input
+- [Google Japanese Input](https://www.google.co.jp/ime/)
   - Input Preferences: General > Space input style: Halfwidth
   - Open Keyboard Settings: Removed everything except ABC, Alphanumeric (Google), Hiragana (Google).
-- Google Chrome
-- VSCode
-- Slack
-- LINE
+- [Google Chrome](https://www.google.com/intl/ja_jp/chrome/)
+- [VSCode](https://code.visualstudio.com/)
+- [Slack](https://slack.com/intl/ja-jp/downloads/)
+- [LINE](https://line.me/)
