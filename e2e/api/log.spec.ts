@@ -3,7 +3,7 @@ import test, { expect } from '@playwright/test'
 // API testing
 // calendar.google.com/calendar/u/0/r/month?pli=1
 
-const api_path = '/api/log'
+const api_path = './api/log'
 
 test('200', async ({ request }) => {
 	const response = await request.post(api_path, {

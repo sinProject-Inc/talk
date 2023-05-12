@@ -1,3 +1,4 @@
+import { base } from '$app/paths'
 import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { Session } from '$lib/auth/session'
@@ -30,7 +31,7 @@ export const handleError: HandleServerError = ({ error, event }) => {
 }
 
 function is_authorized_api(pathname: string): boolean {
-	return pathname.startsWith('/api/') && !pathname.includes('/api/log')
+	return pathname.startsWith(`${base}/api/`) && !pathname.includes(`${base}/api/log`)
 }
 
 async function find_auth_token(event: RequestEvent): Promise<
@@ -69,7 +70,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
-	if (event.url.pathname !== '/api/log') {
+	if (event.url.pathname !== `${base}/api/log`) {
 		logger.info(`${client_address} [${event.request.method}] ${event.url}`)
 	}
 
