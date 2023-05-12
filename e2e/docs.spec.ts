@@ -7,7 +7,7 @@ async function to_have_title(page: Page, title: string): Promise<void> {
 }
 
 test.beforeEach(async ({ page }) => {
-	await page.goto(docs_base)
+	await page.goto(docs_base, { waitUntil: 'networkidle' })
 })
 
 test('root access', async ({ page }) => {
@@ -37,6 +37,7 @@ test('access next pages', async ({ page }) => {
 	await to_have_text_on_next_page(page, 'Git Branches and Commits')
 	await to_have_text_on_next_page(page, 'Git Hooks')
 	await to_have_text_on_next_page(page, 'GitHub Actions')
+	await to_have_text_on_next_page(page, 'GitHub Templates')
 	await to_have_text_on_next_page(page, 'TypeScript Config')
 	await to_have_text_on_next_page(page, 'Prettier')
 	await to_have_text_on_next_page(page, 'ESLint')

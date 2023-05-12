@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto('./')
+	await page.goto('/', { waitUntil: 'networkidle' })
 })
 
 test('before sign in', async ({ page }) => {
@@ -33,10 +33,14 @@ test.describe('after sign in', () => {
 		test.use({ storageState: auth_file_path })
 
 		test('changing locale, and then moving pages keeps saved locale', async ({ page }) => {
+			test.setTimeout(5000)
+
 			await page.getByRole('combobox').first().selectOption('yue-HK')
 			await page.getByRole('combobox').last().selectOption('km-KH')
 
-			await page.goto('./translate')
+			page.waitForTimeout(500)
+
+			await page.goto('/translate', { waitUntil: 'networkidle' })
 
 			await expect(page.getByRole('combobox').first()).toHaveValue('km-KH')
 			await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
