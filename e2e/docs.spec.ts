@@ -51,7 +51,6 @@ test('access next pages', async ({ page }) => {
 })
 
 test('open search modale with keyboard shortcut', async ({ page }) => {
-	test.setTimeout(5000)
 	await page.waitForTimeout(500)
 
 	await page.keyboard.press('Control+KeyK')
@@ -62,7 +61,6 @@ test('open search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('close search modale with keyboard shortcut', async ({ page }) => {
-	test.setTimeout(5000)
 	await page.waitForTimeout(500)
 
 	await page.keyboard.press('Control+KeyK')
@@ -77,7 +75,6 @@ test('close search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('open search modale with navbar button', async ({ page }) => {
-	test.setTimeout(5000)
 	await page.waitForTimeout(500)
 
 	const search_button = page.getByTestId('navbar-search-button')
