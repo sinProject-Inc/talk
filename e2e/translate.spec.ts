@@ -2,7 +2,7 @@ import { test, expect, Page } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto('/translate')
+	await page.goto('./translate')
 
 	if (page.url().includes('/sign-in')) return
 
