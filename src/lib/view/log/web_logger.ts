@@ -66,6 +66,8 @@ export class WebLogger {
 	public static send_stored_messages(web_logger: WebLogger): void {
 		const web_logs = JSON.parse(localStorage.getItem('web_logs') || '[]') as WebLog[]
 
+		if (web_logs.length === 0) return
+
 		web_logs.forEach((web_log) => web_logger._send(web_log))
 
 		localStorage.removeItem('web_logs')
