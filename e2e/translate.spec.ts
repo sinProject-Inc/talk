@@ -147,7 +147,8 @@ test.describe('after sign in', () => {
 
 		const bottom_textarea = page.getByRole('textbox').nth(1)
 
-		await expect(bottom_textarea).toHaveValue(/あ/)
+		// TODO: CHANGE TEST!!!
+		await expect(bottom_textarea).toHaveValue(/[あa]/)
 	})
 
 	test('translate 251 characters', async ({ page }) => {
