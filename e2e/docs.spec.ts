@@ -43,6 +43,7 @@ test('access next pages', async ({ page }) => {
 	await to_have_text_on_next_page(page, 'Git Branches and Commits')
 	await to_have_text_on_next_page(page, 'Git Hooks')
 	await to_have_text_on_next_page(page, 'GitHub Actions')
+	await to_have_text_on_next_page(page, 'GitHub Templates')
 	await to_have_text_on_next_page(page, 'TypeScript Config')
 	await to_have_text_on_next_page(page, 'Prettier')
 	await to_have_text_on_next_page(page, 'ESLint')
