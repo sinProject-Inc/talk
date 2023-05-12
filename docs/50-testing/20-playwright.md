@@ -165,7 +165,7 @@ import { Page, expect, test } from '@playwright/test'
 const url = `/chat`
 
 test.beforeEach(async ({ page }) => {
-	await page.goto('/chat')
+	await page.goto('/chat', { waitUntil: 'networkidle' })
 })
 
 test('before sign in', async ({ page }) => {
@@ -181,7 +181,7 @@ import { Page, expect, test } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto('/chat')
+	await page.goto('/chat', { waitUntil: 'networkidle' })
 })
 
 test.describe('after sign in', () => {
