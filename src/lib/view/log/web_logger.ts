@@ -1,6 +1,7 @@
 import { FormattedDate } from '$lib/general/formatted_date'
 import { WebLog } from './web_log'
 import { WebLogLevel } from './web_log_level'
+import { base } from '$app/paths'
 
 export class WebLogger {
 	public constructor(private readonly _page_name: string) {}
@@ -14,7 +15,7 @@ export class WebLogger {
 	}
 
 	private async _send(web_log: WebLog): Promise<void> {
-		const response = await fetch('/api/log', {
+		const response = await fetch(`${base}/api/log`, {
 			method: 'POST',
 			headers: {
 				// eslint-disable-next-line @typescript-eslint/naming-convention

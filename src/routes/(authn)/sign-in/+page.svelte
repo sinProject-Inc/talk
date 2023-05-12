@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths'
 	import { page } from '$app/stores'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import { WebLogger } from '$lib/view/log/web_logger'
@@ -39,7 +40,7 @@
 		<form
 			class="md:mb-40 mb-0 card p-4 mx-3 glass-panel"
 			method="POST"
-			action="/pin-code?/sign_in&redirect_url={encoded_redirect_url}"
+			action="{base}/pin-code?/sign_in&redirect_url={encoded_redirect_url}"
 			on:submit={on_submit}
 		>
 			<div class="title w-full">
