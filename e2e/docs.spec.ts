@@ -13,7 +13,7 @@ async function to_have_title(page: Page, title: string): Promise<void> {
 }
 
 test.beforeEach(async ({ page }) => {
-	await page.goto(docs_path)
+	await page.goto(docs_path, { waitUntil: 'networkidle' })
 })
 
 test('root access', async ({ page }) => {
@@ -51,7 +51,9 @@ test('access next pages', async ({ page }) => {
 })
 
 test('open search modale with keyboard shortcut', async ({ page }) => {
+	test.setTimeout(5000)
 	await page.waitForTimeout(500)
+
 	await page.keyboard.press('Control+KeyK')
 
 	const search_modale = page.getByTestId('search-modale')
@@ -60,7 +62,9 @@ test('open search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('close search modale with keyboard shortcut', async ({ page }) => {
+	test.setTimeout(5000)
 	await page.waitForTimeout(500)
+
 	await page.keyboard.press('Control+KeyK')
 
 	const search_modale = page.getByTestId('search-modale')
@@ -73,7 +77,9 @@ test('close search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('open search modale with navbar button', async ({ page }) => {
+	test.setTimeout(5000)
 	await page.waitForTimeout(500)
+
 	const search_button = page.getByTestId('navbar-search-button')
 	await search_button.click()
 

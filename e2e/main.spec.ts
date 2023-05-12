@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto('/')
+	await page.goto('/', { waitUntil: 'networkidle' })
 })
 
 test('before sign in', async ({ page }) => {
