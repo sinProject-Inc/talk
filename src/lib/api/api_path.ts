@@ -1,3 +1,5 @@
+import { base } from '$app/paths'
+
 export class ApiPath {
 	public static readonly api_directory = new ApiPath().connect('api')
 
@@ -43,6 +45,6 @@ export class ApiPath {
 	}
 
 	public path(): string {
-		return this._path
+		return `${base}${this._path}`
 	}
 }

@@ -2,7 +2,7 @@ import { Page, expect, test } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
-	await page.goto('/chat')
+	await page.goto('./chat', { waitUntil: 'networkidle' })
 })
 
 test('before sign in', async ({ page }) => {
@@ -52,6 +52,29 @@ test.describe('after sign in', () => {
 		const text = page.locator('.outline-none')
 
 		await expect(text).toBeFocused()
+	})
+
+	test('default room is lobby', async ({ page }) => {
+		const room_id_div = page.getByTestId('room-id')
+
+		await expect(room_id_div).toHaveText('lobby')
+	})
+
+	test('new room button generates a room and navigates', async ({ page }) => {
+		await page.waitForLoadState('networkidle')
+		await page.waitForTimeout(500)
+
+		const new_room_button = page.getByTestId('new-room-button')
+		await new_room_button.click()
+
+		await page.waitForLoadState('networkidle')
+		await page.waitForTimeout(500)
+
+		const room_id_div = page.getByTestId('room-id')
+		const room_id = await room_id_div.innerText()
+
+		await expect(room_id).not.toContain('lobby')
+		await expect(page).toHaveURL(`/chat/${room_id}`)
 	})
 
 	async function test_send(page: Page, input: string, output: string): Promise<boolean> {
