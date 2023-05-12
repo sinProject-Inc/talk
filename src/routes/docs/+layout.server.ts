@@ -1,3 +1,4 @@
+import { base } from '$app/paths'
 import { Markdown, type Page, type Section } from '$lib/docs/markdown'
 import fs from 'fs'
 import type { LayoutServerLoad } from './$types'
@@ -12,7 +13,7 @@ function get_page(file_path: string): Page {
 
 	return {
 		title: page.title,
-		path: `/docs/${slug}`,
+		path: `${base}/docs/${slug}`,
 	}
 }
 

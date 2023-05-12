@@ -74,7 +74,7 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 	webServer: [
 		{
 			command: 'npm run dev',
-			url: 'http://127.0.0.1:5173',
+			url: 'http://127.0.0.1:5173/talk/',
 			reuseExistingServer: !process.env.CI,
 		},
 		// {
@@ -84,7 +84,7 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 		// },
 	],
 	use: {
-		baseURL: 'http://127.0.0.1:5173',
+			url: 'http://127.0.0.1:5173/talk/',
 	}
 ```
 
@@ -161,8 +161,6 @@ await page.getByTestId('next-page').click()
 ```ts
 // e2e/chat.spec.ts
 import { Page, expect, test } from '@playwright/test'
-
-const url = `/chat`
 
 test.beforeEach(async ({ page }) => {
 	await page.goto('/chat', { waitUntil: 'networkidle' })

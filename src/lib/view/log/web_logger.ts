@@ -1,6 +1,7 @@
 import { FormattedDate } from '$lib/general/formatted_date'
 import { WebLog } from './web_log'
 import { WebLogLevel } from './web_log_level'
+import { base } from '$app/paths'
 
 export class WebLogger {
 	public constructor(private readonly _page_name: string) {}
@@ -19,7 +20,7 @@ export class WebLogger {
 			return
 		}
 
-		fetch('/api/log', {
+		fetch(`${base}/api/log`, {
 			method: 'POST',
 			headers: {
 				// eslint-disable-next-line @typescript-eslint/naming-convention

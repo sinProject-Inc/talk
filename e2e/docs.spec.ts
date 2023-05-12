@@ -1,27 +1,21 @@
 import { test, expect, Page } from '@playwright/test'
 
-const docs_path = '/docs'
-
-async function goto(page: Page, path: string): Promise<void> {
-	const real_path = `${docs_path}/${path}`
-
-	await page.goto(real_path)
-}
+const docs_base = './docs'
 
 async function to_have_title(page: Page, title: string): Promise<void> {
 	await expect(page).toHaveTitle(`${title} - sinProject Talk`)
 }
 
 test.beforeEach(async ({ page }) => {
-	await page.goto(docs_path, { waitUntil: 'networkidle' })
+	await page.goto(docs_base, { waitUntil: 'networkidle' })
 })
 
 test('root access', async ({ page }) => {
-	await expect(page).toHaveURL('/docs/introduction')
+	await expect(page).toHaveURL(`${docs_base}/introduction`)
 })
 
 test('access an page', async ({ page }) => {
-	await goto(page, 'creating-a-project')
+	await page.goto(`${docs_base}/creating-a-project`)
 	await to_have_title(page, 'Creating a Project')
 })
 
@@ -52,6 +46,7 @@ test('access next pages', async ({ page }) => {
 })
 
 test('open search modale with keyboard shortcut', async ({ page }) => {
+	await page.waitForLoadState('networkidle')
 	await page.waitForTimeout(500)
 
 	await page.keyboard.press('Control+KeyK')
@@ -62,6 +57,7 @@ test('open search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('close search modale with keyboard shortcut', async ({ page }) => {
+	await page.waitForLoadState('networkidle')
 	await page.waitForTimeout(500)
 
 	await page.keyboard.press('Control+KeyK')
@@ -76,6 +72,7 @@ test('close search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('open search modale with navbar button', async ({ page }) => {
+	await page.waitForLoadState('networkidle')
 	await page.waitForTimeout(500)
 
 	const search_button = page.getByTestId('navbar-search-button')
