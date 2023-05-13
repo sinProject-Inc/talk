@@ -74,7 +74,7 @@ test.describe('after sign in', () => {
 		const room_id = await room_id_div.innerText()
 
 		await expect(room_id).not.toContain('lobby')
-		await expect(page).toHaveURL(`/chat/${room_id}`)
+		await expect(page).toHaveURL(`./chat/${room_id}`)
 	})
 
 	async function test_send(page: Page, input: string, output: string): Promise<boolean> {
