@@ -602,7 +602,7 @@
 			>
 				{#each chat_log_items as chat_log_item, i}
 					<div in:fly={{ y: 20 }} out:slide class="flex">
-						<div class="w-10 mr-4">
+						<div class="w-10 mr-4 pt-[2px]">
 							{#if should_show_name_and_time(chat_log_item, i)}
 								<img
 									class="w-full object-contain rounded-full"
