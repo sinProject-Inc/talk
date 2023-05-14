@@ -10,6 +10,7 @@
 	import ChatIcon from './icons/message-chatbot_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
+	import ProfileIcon from './icons/profile_icon.svelte'
 
 	export let search_bar_enabled = false
 
@@ -64,6 +65,9 @@
 					<div class="h-5"><GithubIcon /></div>
 				</a>
 				{#if $page.data.user}
+					<a href="{base}/profile" class="flex gap-1 items-center">
+						<div class="h-5"><ProfileIcon /></div>
+					</a>
 					<form action="{base}/sign-out" method="POST">
 						<button class="no-underline h-5 p-0 flex button" type="submit">
 							<SignOutIcon />

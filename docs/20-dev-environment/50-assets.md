@@ -8,6 +8,7 @@ We are using the assets from the following sites:
 
 - [tabler ICONS](https://tabler-icons.io/)
 - [Google Fonts - Icons](https://fonts.google.com/icons)
+- [Freepik - Flaticon](https://www.flaticon.com/free-icons/admin)
 
 ## Images
 
