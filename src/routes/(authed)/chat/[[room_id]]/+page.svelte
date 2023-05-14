@@ -36,6 +36,8 @@
 	import { v4 as uuidv4 } from 'uuid'
 	import { goto } from '$app/navigation'
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import { UserId } from '$lib/user/user_id'
+	import { AvatarUrl } from '$lib/avatar/avatar_url'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -70,6 +72,8 @@
 	let saved_chat_log_height = 0
 
 	const web_logger = new WebLogger('chat')
+
+	const user_id = new UserId(data.user_id)
 
 	$: can_send = !!name && !!message
 
@@ -166,6 +170,7 @@
 		const message_set: MessageSet = {
 			locale_code: locale_select_element.value,
 			name,
+			sender_id: user_id.id,
 			message: submission_text.text,
 		}
 
@@ -360,6 +365,7 @@
 	type JoinData = {
 		room_id: string
 		name: string
+		user_id: number
 		locale_code: string
 		is_mobile_device: boolean
 	}
@@ -374,6 +380,7 @@
 		const join_data: JoinData = {
 			room_id: data.room_id,
 			name: name,
+			user_id: user_id.id,
 			locale_code: locale_select_element.value,
 			is_mobile_device: Web.is_mobile_device(),
 		}
@@ -457,6 +464,21 @@
 		const room_id = uuidv4()
 
 		goto(`./chat/${room_id}`)
+	}
+
+	function should_show_name_and_time(chat_log_item: ChatLogItem, index: number): boolean {
+		if (index === 0) return true
+
+		const previous_chat_log_item = chat_log_items[index - 1]
+
+		if (chat_log_item.data.name !== previous_chat_log_item.data.name) return true
+
+		let current_minutes = new Date(chat_log_item.data.created_at).getMinutes()
+		let previous_minutes = new Date(previous_chat_log_item.data.created_at).getMinutes()
+
+		if (current_minutes === previous_minutes) return false
+
+		return false
 	}
 
 	socket.on('connect', () => {
@@ -554,13 +576,13 @@
 
 	<div class="center-container flex w-screen flex-1 flex-col gap-3 overflow-y-scroll p-3">
 		<div class="flex items-center justify-between gap-3">
-			<div class="glass-panel flex h-[66px] w-full items-center gap-3 p-3">
+			<div class="glass-panel flex h-[40px] w-full items-center gap-3 p-3">
 				<div class="ml-1 font-bold text-white/80">Room:</div>
 				<div data-testid="room-id">{data.room_id}</div>
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button glass-panel h-full rounded-[0.75rem]"
+					class="glass-button glass-panel h-[40px] rounded-[0.75rem]"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>
@@ -578,35 +600,48 @@
 				class="glass-panel flex flex-1 flex-col gap-3 overflow-y-scroll p-3"
 				bind:this={chat_log_div_element}
 			>
-				{#each chat_log_items as chat_log_item}
-					<div in:fly={{ y: 20 }} out:slide>
-						<div class="flex flex-row gap-1">
-							<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
-							<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
+				{#each chat_log_items as chat_log_item, i}
+					<div in:fly={{ y: 20 }} out:slide class="flex">
+						<div class="mr-4 w-10 pt-[2px]">
+							{#if should_show_name_and_time(chat_log_item, i)}
+								<img
+									class="w-full rounded-full object-contain"
+									src={new AvatarUrl(new UserId(chat_log_item.data.sender_id)).url}
+									alt="avatar"
+								/>
+							{/if}
 						</div>
-						{#if chat_log_item.translated}
-							<p>
-								<span class="whitespace-pre-wrap" data-testid="translated_chat_message">
-									{@html new Urlify(chat_log_item.translated).replace()}
-								</span>
-							</p>
-							<div class="flex flex-row gap-1 text-white/50">
-								<span>{chat_log_item.data.locale_code}:</span>
-								<span
-									class="whitespace-pre-wrap"
-									data-testid="chat_message"
-									lang={chat_log_item.data.locale_code}
-									dir={new Direction(chat_log_item.data.locale_code).value}
-									>{chat_log_item.data.message}
-								</span>
+						<div>
+							<div class="flex flex-row gap-1">
+								{#if should_show_name_and_time(chat_log_item, i)}
+									<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
+									<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
+								{/if}
 							</div>
-						{:else}
-							<p>
-								<span class="whitespace-pre-wrap" data-testid="chat_message">
-									{@html new Urlify(chat_log_item.data.message).replace()}
-								</span>
-							</p>
-						{/if}
+							{#if chat_log_item.translated}
+								<p>
+									<span class="whitespace-pre-wrap" data-testid="translated_chat_message">
+										{@html new Urlify(chat_log_item.translated).replace()}
+									</span>
+								</p>
+								<div class="flex flex-row gap-1 text-white/50">
+									<span>{chat_log_item.data.locale_code}:</span>
+									<span
+										class="whitespace-pre-wrap"
+										data-testid="chat_message"
+										lang={chat_log_item.data.locale_code}
+										dir={new Direction(chat_log_item.data.locale_code).value}
+										>{chat_log_item.data.message}
+									</span>
+								</div>
+							{:else}
+								<p>
+									<span class="whitespace-pre-wrap" data-testid="chat_message">
+										{@html new Urlify(chat_log_item.data.message).replace()}
+									</span>
+								</p>
+							{/if}
+						</div>
 					</div>
 				{/each}
 			</div>

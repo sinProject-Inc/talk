@@ -127,6 +127,7 @@ model ChatLog {
   room_id     String
   locale_code String
   name        String
+  sender_id   Int
   message     String   @db.VarChar(700)
   locale      Locale   @relation(fields: [locale_code], references: [code])
 }
@@ -138,6 +139,7 @@ model ChatMember {
   socket_id        String   @unique
   room_id          String
   name             String
+  user_id          Int
   locale_code      String
   is_mobile_device Boolean
 }
