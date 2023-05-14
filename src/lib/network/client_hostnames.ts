@@ -1,21 +1,21 @@
 import dns from 'dns'
+import { logger } from '$lib/app/logger'
 
 export class ClientHostName {
 	public constructor(private readonly _client_address: string) {}
 
 	public async get_hostname(): Promise<string[]> {
-		const hostname: string[] = await new Promise<string[]>((resolve, reject) => {
-			dns.reverse(this._client_address, (err, hostnames) => {
-				if (err) {
-					reject(err)
+		const hostname: string[] = await new Promise<string[]>((resolve) => {
+			dns.reverse(this._client_address, (e, hostnames) => {
+				if (e) {
+					logger.warn(`${this._client_address} [Network] Could not get hostname`)
+					resolve([])
 				} else {
 					resolve(hostnames)
 				}
 			})
 		})
 
-		const client_hostname = hostname
-
-		return client_hostname
+		return hostname
 	}
 }
