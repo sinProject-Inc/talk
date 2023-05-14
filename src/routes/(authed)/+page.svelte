@@ -267,8 +267,8 @@
 </svelte:head>
 
 <Navbar />
-<div class="center-container w-screen h-[calc(100vh-69px)] flex flex-col">
-	<div class="pt-3 glass-panel my-4 flex flex-col gap-2 flex-1 overflow-y-scroll">
+<div class="center-container flex h-[calc(100vh-69px)] w-screen flex-col">
+	<div class="glass-panel my-4 flex flex-1 flex-col gap-2 overflow-y-scroll pt-3">
 		<div class="px-5">
 			<select
 				class="glass-button h-full grow text-center"
@@ -277,7 +277,7 @@
 			/>
 		</div>
 
-		<div class="flex gap-2 items-center px-5">
+		<div class="flex items-center gap-2 px-5">
 			<input
 				type="text"
 				class="flex-1"
@@ -300,7 +300,7 @@
 		</div>
 	</div>
 
-	<div class="glass-panel pb-4 flex flex-col gap-4 px-5 pt-2">
+	<div class="glass-panel flex flex-col gap-4 px-5 pb-4 pt-2">
 		{#if selected_text}
 			<audio
 				class="mt-2"
@@ -312,7 +312,7 @@
 		{/if}
 
 		<div class="flex flex-col gap-2">
-			<div class="title flex flex-row gap-4 items-center">
+			<div class="title flex flex-row items-center gap-4">
 				{$_('speech')}
 				<IconButton on:click={handle_listen_button}>
 					{#if listening}
@@ -326,7 +326,7 @@
 		</div>
 		<Divider />
 		<div class="flex flex-col gap-2">
-			<div class="flex flex-row gap-4 items-center">
+			<div class="flex flex-row items-center gap-4">
 				<div class="title">{$_('translation')}</div>
 				<select
 					class="glass-button text-center"
@@ -334,7 +334,7 @@
 					on:change={() => on_change_locale_select()}
 				/>
 			</div>
-			<div class="flex flex-row gap-2 items-center">
+			<div class="flex flex-row items-center gap-2">
 				<IconButton on:click={show_translation}>
 					<TranslateIcon />
 				</IconButton>
@@ -342,7 +342,7 @@
 					{@html translations.join('<br />')}
 				</div>
 			</div>
-			<div class="flex flex-row gap-2 items-center">
+			<div class="flex flex-row items-center gap-2">
 				<input
 					type="text"
 					class="flex-1"

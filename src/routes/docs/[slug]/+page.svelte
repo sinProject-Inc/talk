@@ -89,7 +89,7 @@
 		<div class="content">
 			<h1 class="text-slate-200">{data.page.title}</h1>
 
-			<div class="text-sm mb-5 text-slate-400 hover:text-slate-300 font-semibold">
+			<div class="mb-5 text-sm font-semibold text-slate-400 hover:text-slate-300">
 				<a href={git_path} target="_blank" rel="noreferrer" class="border-none"
 					>Edit this page on GitHub</a
 				>
@@ -102,13 +102,13 @@
 			{@html data.page.html_content}
 		</div>
 
-		<footer class="text-s leading-6 mt-12">
-			<div class="text-sm text-slate-200 font-semibold flex items-center">
+		<footer class="text-s mt-12 leading-6">
+			<div class="flex items-center text-sm font-semibold text-slate-200">
 				{#if prev_page}
 					<a href={prev_page.path} class="group flex items-center hover:text-white">
 						<svg
 							viewBox="0 0 3 6"
-							class="mr-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
 							><path
 								d="M3 0L0 3L3 6"
 								fill="none"
@@ -128,7 +128,7 @@
 						href={next_page.path}
 						>{next_page.title}<svg
 							viewBox="0 0 3 6"
-							class="ml-3 w-auto h-1.5 text-slate-400 overflow-visible group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							class="ml-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
 							><path
 								d="M0 0L3 3L0 6"
 								fill="none"

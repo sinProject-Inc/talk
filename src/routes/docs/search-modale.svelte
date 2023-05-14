@@ -198,23 +198,23 @@
 <svelte:window on:keydown={handle_keydown} />
 
 <div
-	class="fixed top-0 left-0 w-screen h-screen pointer-events-auto z-10"
+	class="pointer-events-auto fixed left-0 top-0 z-10 h-screen w-screen"
 	on:click={close}
 	on:keydown
 />
 
 <div
-	class="fixed top-0 left-0 w-full h-full justify-center flex pointer-events-none p-6 z-20 backdrop-blur-sm md:p-20 lg:px-20 lg:py-28"
+	class="pointer-events-none fixed left-0 top-0 z-20 flex h-full w-full justify-center p-6 backdrop-blur-sm md:p-20 lg:px-20 lg:py-28"
 >
 	<div
-		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-full flex flex-col"
+		class="glass-panel pointer-events-auto mx-auto flex h-fit max-h-full w-full max-w-screen-md flex-col rounded-xl bg-slate-900/90 text-center backdrop-blur-md"
 		data-testid="search-modale"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
 			<div class="flex items-center">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
-					class="w-full pl-4 bg-inherit"
+					class="w-full bg-inherit pl-4"
 					type="text"
 					bind:value={query}
 					bind:this={input}
@@ -223,7 +223,7 @@
 					id="search"
 				/>
 				<div
-					class="flex justify-center items-center outline outline-1 outline-white/50 text-white/50 hover:text-white/80 transition-all duration-200 hover:outline-white/80 rounded-md px-[5px] h-[24px] cursor-pointer text-[10px]"
+					class="flex h-[24px] cursor-pointer items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-white/80 hover:outline-white/80"
 					on:click={close}
 					on:keydown
 				>
@@ -231,12 +231,12 @@
 				</div>
 			</div>
 		</form>
-		<div class="w-full h-[1px] bg-white/20" />
-		<div class="result px-3 overflow-y-auto py-3" bind:this={results_element}>
+		<div class="h-[1px] w-full bg-white/20" />
+		<div class="result overflow-y-auto px-3 py-3" bind:this={results_element}>
 			{#if results.length > 0}
 				{#each results as result, i}
 					<div
-						class="px-2 py-2 rounded-md"
+						class="rounded-md px-2 py-2"
 						class:active={active_result_index === i}
 						on:mousemove={() => on_mouse_to_result(i)}
 					>
@@ -245,7 +245,7 @@
 							<div class="text-white/90">
 								{#each get_context(result) as context_potion}
 									{#if context_potion.is_match}
-										<span class="font-bold border-b border-[#38bdf8]">{context_potion.text}</span>
+										<span class="border-b border-[#38bdf8] font-bold">{context_potion.text}</span>
 									{:else}
 										{context_potion.text}
 									{/if}
@@ -255,7 +255,7 @@
 					</div>
 				{/each}
 			{:else}
-				<div class="h-40 flex items-center justify-center">
+				<div class="flex h-40 items-center justify-center">
 					{#if input?.value.length > 0}
 						<p>No results for "{input.value}"</p>
 					{:else}

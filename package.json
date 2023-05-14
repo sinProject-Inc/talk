@@ -57,6 +57,7 @@
 		"postcss": "^8.4.23",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.0",
+		"prettier-plugin-tailwindcss": "^0.2.8",
 		"prisma": "^4.13.0",
 		"remove-markdown": "^0.5.0",
 		"stylelint": "^15.6.0",

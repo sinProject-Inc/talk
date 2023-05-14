@@ -89,7 +89,7 @@
 </script>
 
 <div class="main-box glass-panel row-span-1" dir={new Direction(locale_code.code).value}>
-	<div class="grid h-full -mb-11 pb-11">
+	<div class="-mb-11 grid h-full pb-11">
 		<div class="z-10 flex justify-end px-[24px] pt-1" style="grid-area: 1/8/1/9">
 			<div class="w-5" data-testid="delete_button">
 				<IconButton
@@ -116,7 +116,7 @@
 		/>
 	</div>
 	<div class="flex rounded-b-md p-1">
-		<div class="ml-auto flex gap-1 flex-1">
+		<div class="ml-auto flex flex-1 gap-1">
 			<div class="listen-button">
 				<IconButton on:click={handle_listen_button} enabled={listening_button_enabled()}>
 					{#if listening}

@@ -68,15 +68,15 @@
 </script>
 
 <aside
-	class="top-[var(--header-height)] pt-8 pb-[calc(2rem+var(--header-height))] pe-8 w-72 leading-6 text-sm h-full fixed overflow-y-auto hidden xl:block end-[max(0px,calc(50%-45rem))]"
+	class="fixed end-[max(0px,calc(50%-45rem))] top-[var(--header-height)] hidden h-full w-72 overflow-y-auto pb-[calc(2rem+var(--header-height))] pe-8 pt-8 text-sm leading-6 xl:block"
 >
-	<h5 class="font-semibold mb-4">On this page</h5>
+	<h5 class="mb-4 font-semibold">On this page</h5>
 	<nav>
-		<ul class="border-l space-y-2 border-slate-800">
+		<ul class="space-y-2 border-l border-slate-800">
 			<li>
 				<a
 					href={$page.url.pathname}
-					class="block ps-3 -ms-px border-s"
+					class="-ms-px block border-s ps-3"
 					class:active={contains(active_section_ids, '')}>{details.title}</a
 				>
 			</li>
@@ -84,7 +84,7 @@
 				<li class="pl-{(level - 1) * 2}">
 					<a
 						href={`#${slug}`}
-						class="block pl-3 -ml-px border-l"
+						class="-ml-px block border-l pl-3"
 						class:active={contains(active_section_ids, slug)}>{title}</a
 					>
 				</li>
@@ -95,7 +95,7 @@
 
 <style lang="postcss">
 	a:not(.active) {
-		@apply border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300;
+		@apply border-transparent text-slate-400 hover:border-slate-500 hover:text-slate-300;
 	}
 
 	.active {
