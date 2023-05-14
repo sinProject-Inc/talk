@@ -1,5 +1,4 @@
 import { sveltekit } from '@sveltejs/kit/vite'
-import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import type { UserConfig } from 'vite'
 import inject_socket_io from './server/socket-handler'
 
@@ -19,7 +18,7 @@ const web_socket = {
 }
 
 const config: UserConfig = {
-	plugins: [sveltekit(), SvelteKitPWA(), web_socket],
+	plugins: [sveltekit(), web_socket],
 	define: {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		'import.meta.vitest': 'undefined',
