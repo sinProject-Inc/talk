@@ -23,35 +23,35 @@
 	}
 </script>
 
-<div class="sticky z-10 h-[var(--header-height)] top-0 backdrop-blur bg-transparent">
-	<div class="h-full border-b border-slate-50/[0.06] md:mx-0 md:px-6 mx-6">
-		<div class="center-container flex flex-row gap-4 items-center font-bold h-full px-0">
+<div class="sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
+	<div class="mx-6 h-full border-b border-slate-50/[0.06] md:mx-0 md:px-6">
+		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a
 				href="{base}/"
-				class="text-[22px] no-underline header-text-color title flex gap-2 items-center"
+				class="header-text-color title flex items-center gap-2 text-[22px] no-underline"
 			>
 				<img src="/icon-144.png" class="h-8" alt="" />
 				{$_('talk_title')}
 			</a>
 			<nav
-				class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200 ms-auto flex gap-5 items-center"
+				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"
 			>
-				<a href="{base}/translate" class="flex gap-1 items-center">
+				<a href="{base}/translate" class="flex items-center gap-1">
 					<div class="h-5"><TranslateIcon /></div>
 					<span class="hidden md:block">{$_('translate')}</span>
 				</a>
-				<a href="{base}/chat" class="flex gap-1 items-center"
+				<a href="{base}/chat" class="flex items-center gap-1"
 					><div class="h-5"><ChatIcon /></div>
 					<span class="hidden md:block">{$_('chat')}</span></a
 				>
-				<a href="{base}/docs" class="flex gap-1 items-center"
+				<a href="{base}/docs" class="flex items-center gap-1"
 					><div class="h-5"><DocumentIcon /></div>
 					<span class="hidden md:block">Docs</span></a
 				>
 				{#if search_bar_enabled}
 					<button
 						on:click={on_search_button_click}
-						class="button flex gap-1 items-center px-0"
+						class="button flex items-center gap-1 px-0"
 						data-testid="navbar-search-button"
 					>
 						<div class="h-5"><SearchIcon /></div>
@@ -60,16 +60,16 @@
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
-					class="flex gap-1 items-center"
+					class="flex items-center gap-1"
 				>
 					<div class="h-5"><GithubIcon /></div>
 				</a>
 				{#if $page.data.user}
-					<a href="{base}/profile" class="flex gap-1 items-center">
+					<a href="{base}/profile" class="flex items-center gap-1">
 						<div class="h-5"><ProfileIcon /></div>
 					</a>
 					<form action="{base}/sign-out" method="POST">
-						<button class="no-underline h-5 p-0 flex button" type="submit">
+						<button class="button flex h-5 p-0 no-underline" type="submit">
 							<SignOutIcon />
 						</button>
 					</form>

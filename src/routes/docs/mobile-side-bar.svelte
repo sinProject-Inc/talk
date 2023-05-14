@@ -68,20 +68,20 @@
 <svelte:window on:keydown={handle_keydown} />
 
 <div
-	class="fixed top-0 left-0 w-screen h-screen pointer-events-auto z-10"
+	class="pointer-events-auto fixed left-0 top-0 z-10 h-screen w-screen"
 	on:click={close}
 	on:keydown
 />
 
 <div
-	class="fixed top-0 left-0 w-full h-full justify-center flex pointer-events-none z-20 backdrop-blur-sm pr-20"
+	class="pointer-events-none fixed left-0 top-0 z-20 flex h-full w-full justify-center pr-20 backdrop-blur-sm"
 >
 	<div
-		class="rounded-none glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto items-start pl-10 w-80 min-h-screen border-0 mr-auto"
+		class="glass-panel pointer-events-auto mr-auto min-h-screen w-80 items-start rounded-none border-0 bg-slate-900/90 pl-10 backdrop-blur-md"
 	>
-		<div class="overflow-y-scroll h-screen side-bar-navigation w-full">
+		<div class="side-bar-navigation h-screen w-full overflow-y-scroll">
 			<SideBar {sections} search_bar_enabled={false} />
-			<IconButton class="absolute top-6 right-6" on:click={close}>
+			<IconButton class="absolute right-6 top-6" on:click={close}>
 				<CloseIcon />
 			</IconButton>
 		</div>

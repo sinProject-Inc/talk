@@ -20,19 +20,19 @@
 </script>
 
 <div
-	class="group text cursor-pointer transition
+	class="text group cursor-pointer transition
 		{deletable ? 'ltr:pl-5 rtl:pr-5' : 'px-5'}
-		hover:bg-white/10 break-all flex justify-between
+		flex justify-between break-all hover:bg-white/10
 		{selected ? 'bg-white/10' : 'bg-inherit'}
 		{is_last_text ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
-	<div class="text-body py-[10px] w-full" on:click on:keydown dir={text_direction}>
+	<div class="text-body w-full py-[10px]" on:click on:keydown dir={text_direction}>
 		<p class="whitespace-pre-wrap">{text.text}</p>
 	</div>
 	{#if deletable}
 		<div
-			class="w-6 fill-white/30 ltr:mr-7 rtl:ml-7 my-1 invisible group-hover:visible delete-button"
+			class="delete-button invisible my-1 w-6 fill-white/30 group-hover:visible ltr:mr-7 rtl:ml-7"
 		>
 			<IconButton on:click={() => delete_text(text)}><CloseIcon /></IconButton>
 		</div>

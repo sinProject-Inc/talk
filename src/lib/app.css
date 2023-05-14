@@ -42,7 +42,7 @@ a {
 
 @layer components {
 	.input-element {
-		@apply border rounded-md overflow-hidden border-media-border bg-border;
+		@apply border-media-border bg-border overflow-hidden rounded-md border;
 	}
 
 	a {
@@ -55,35 +55,35 @@ a {
 	}
 
 	button {
-		@apply py-[6px] px-2;
+		@apply px-2 py-[6px];
 	}
 
 	select {
-		@apply py-[6px] px-3 bg-inherit appearance-none outline-0;
+		@apply appearance-none bg-inherit px-3 py-[6px] outline-0;
 	}
 
 	input {
-		@apply py-[7px] border-0 outline-none outline-0 focus:outline-none bg-black/10 rounded-md px-4;
+		@apply rounded-md border-0 bg-black/10 px-4 py-[7px] outline-none outline-0 focus:outline-none;
 	}
 
 	.input {
-		@apply border-0 outline-none outline-0 focus:outline-none bg-black/10 rounded-md;
+		@apply rounded-md border-0 bg-black/10 outline-none outline-0 focus:outline-none;
 	}
 
 	textarea {
-		@apply py-[10px] px-4 bg-inherit;
+		@apply bg-inherit px-4 py-[10px];
 	}
 
 	svg {
-		@apply fill-current w-full h-full;
+		@apply h-full w-full fill-current;
 	}
 
 	.center-container {
-		@apply mx-auto max-w-8xl w-full px-6;
+		@apply max-w-8xl mx-auto w-full px-6;
 	}
 
 	.title {
-		@apply font-bold text-lg;
+		@apply text-lg font-bold;
 	}
 
 	.card {
@@ -92,7 +92,7 @@ a {
 	}
 
 	.submit-button {
-		@apply bg-link text-white font-semibold border-link w-full box-border;
+		@apply bg-link border-link box-border w-full font-semibold text-white;
 	}
 
 	.card-parent {
@@ -114,11 +114,11 @@ a {
 	}
 
 	.glass-panel {
-		@apply glass rounded-[0.75rem] shadow-lg border border-[#F8FAFC]/[0.06];
+		@apply glass rounded-[0.75rem] border border-[#F8FAFC]/[0.06] shadow-lg;
 	}
 
 	.glass-button {
-		@apply bg-black/20 text-white/90 fill-white/80 py-2 px-4 hover:bg-black/10 transition-all duration-300 rounded-lg hover:shadow-sm;
+		@apply rounded-lg bg-black/20 fill-white/80 px-4 py-2 text-white/90 transition-all duration-300 hover:bg-black/10 hover:shadow-sm;
 	}
 }
 
@@ -128,11 +128,11 @@ a {
 	}
 
 	.glass {
-		@apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 bg-black text-white/60 fill-white/70;
+		@apply bg-black bg-opacity-20 bg-clip-padding fill-white/70 text-white/60 backdrop-blur-sm backdrop-filter;
 	}
 
 	.doc-base {
-		@apply bg-clip-padding backdrop-filter text-white/60 fill-white/70;
+		@apply bg-clip-padding fill-white/70 text-white/60 backdrop-filter;
 	}
 
 	[contenteditable='true']:empty::before {
@@ -155,15 +155,15 @@ h6 {
 }
 
 h1 {
-	@apply text-3xl font-extrabold mb-3;
+	@apply mb-3 text-3xl font-extrabold;
 }
 
 h2 {
-	@apply text-2xl font-bold mt-8 mb-3 flex items-center -ms-9 ps-9;
+	@apply -ms-9 mb-3 mt-8 flex items-center ps-9 text-2xl font-bold;
 }
 
 h3 {
-	@apply text-xl font-semibold mt-6 mb-2 flex items-center -ms-9 ps-9;
+	@apply -ms-9 mb-2 mt-6 flex items-center ps-9 text-xl font-semibold;
 }
 
 ol {
@@ -175,7 +175,7 @@ ol > li {
 }
 
 .permalink {
-	@apply bg-transparent text-transparent absolute left-0 rounded-md w-6 h-6 flex items-center justify-center transition;
+	@apply absolute left-0 flex h-6 w-6 items-center justify-center rounded-md bg-transparent text-transparent transition;
 }
 
 h2:hover .permalink,
@@ -186,7 +186,7 @@ h3:hover .permalink {
 .category {
 	color: var(--link-color);
 
-	@apply text-sm font-semibold mb-2;
+	@apply mb-2 text-sm font-semibold;
 }
 
 .max-w-8xl {
@@ -194,5 +194,5 @@ h3:hover .permalink {
 }
 
 blockquote {
-	@apply border-l-2 border-slate-700 pl-4 my-4;
+	@apply my-4 border-l-2 border-slate-700 pl-4;
 }

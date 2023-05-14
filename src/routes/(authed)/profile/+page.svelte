@@ -29,23 +29,23 @@
 <div>
 	<Navbar />
 	<div class="px-4">
-		<div class="glass-panel max-w-xl w-full flex flex-col px-10 py-4 min-w-fit mx-auto mb-36 mt-28">
+		<div class="glass-panel mx-auto mb-36 mt-28 flex w-full min-w-fit max-w-xl flex-col px-10 py-4">
 			<div class="title flex flex-row items-center">Profile</div>
-			<div class="flex flex-col items-center justify-center h-full pt-20 pb-24">
+			<div class="flex h-full flex-col items-center justify-center pb-24 pt-20">
 				<button
-					class="w-28 h-28 mb-6 rounded-full overflow-hidden flex items-center justify-center group cursor-pointer"
+					class="group mb-6 flex h-28 w-28 cursor-pointer items-center justify-center overflow-hidden rounded-full"
 					on:click={open_file_input}
 				>
 					<img
 						src={avatar_url}
 						alt="Profile"
-						class="w-28 h-28 absolute object-cover bg-white/50 rounded-full"
+						class="absolute h-28 w-28 rounded-full bg-white/50 object-cover"
 					/>
 					<div
-						class="w-28 h-28 absolute rounded-full group-hover:bg-black/60 transition-all duration-150 flex items-center justify-center"
+						class="absolute flex h-28 w-28 items-center justify-center rounded-full transition-all duration-150 group-hover:bg-black/60"
 					>
 						<div
-							class="font-bold text-center text-white/0 group-hover:text-white transition-all duration-150 select-none"
+							class="select-none text-center font-bold text-white/0 transition-all duration-150 group-hover:text-white"
 						>
 							CHANGE ICON
 						</div>

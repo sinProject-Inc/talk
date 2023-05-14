@@ -572,23 +572,23 @@
 	<title>Talk - Chat</title>
 </svelte:head>
 
-<div class="flex flex-col h-screen min-h-screen">
+<div class="flex h-screen min-h-screen flex-col">
 	<Navbar />
 
-	<div class="flex-1 flex flex-col gap-3 p-3 center-container w-screen overflow-y-scroll">
+	<div class="center-container flex w-screen flex-1 flex-col gap-3 overflow-y-scroll p-3">
 		<div class="flex items-center justify-between gap-3">
-			<div class="flex gap-3 items-center glass-panel w-full p-3 h-[40px]">
-				<div class="text-white/80 font-bold ml-1">Room:</div>
+			<div class="glass-panel flex h-[40px] w-full items-center gap-3 p-3">
+				<div class="ml-1 font-bold text-white/80">Room:</div>
 				<div data-testid="room-id">{data.room_id}</div>
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button glass-panel rounded-[0.75rem] h-[40px]"
+					class="glass-button glass-panel h-[40px] rounded-[0.75rem]"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>
 					<div class="flex flex-row items-center gap-1.5">
-						<div class="w-[24px] h-[24px]">
+						<div class="h-[24px] w-[24px]">
 							<AddIcon />
 						</div>
 						<div class="whitespace-nowrap">New Room</div>
@@ -598,15 +598,15 @@
 		</div>
 		{#if joined}
 			<div
-				class="flex-1 overflow-y-scroll glass-panel p-3 flex flex-col gap-3"
+				class="glass-panel flex flex-1 flex-col gap-3 overflow-y-scroll p-3"
 				bind:this={chat_log_div_element}
 			>
 				{#each chat_log_items as chat_log_item, i}
 					<div in:fly={{ y: 20 }} out:slide class="flex">
-						<div class="w-10 mr-4 pt-[2px]">
+						<div class="mr-4 w-10 pt-[2px]">
 							{#if should_show_name_and_time(chat_log_item, i)}
 								<img
-									class="w-full object-contain rounded-full"
+									class="w-full rounded-full object-contain"
 									src={new AvatarUrl(new UserId(chat_log_item.data.sender_id)).url}
 									alt="avatar"
 								/>
@@ -648,20 +648,20 @@
 			</div>
 		{/if}
 
-		<div class="p-3 glass-panel flex flex-col gap-3">
+		<div class="glass-panel flex flex-col gap-3 p-3">
 			{#if joined}
 				<div class="flex flex-row flex-wrap gap-3">
 					<div class="flex flex-row flex-wrap gap-0.5">
-						<span class="w-[24px] h-[24px]">
+						<span class="h-[24px] w-[24px]">
 							<PersonIcon />
 						</span>
 						{chat_member_entities.length}
 					</div>
 					{#each chat_member_entities as chat_member}
 						{@const locale_code = new LocaleCode(chat_member.locale_code)}
-						<div class="flex flex-row flex-wrap gap-1 items-center" in:fly={{ y: 20 }} out:slide>
+						<div class="flex flex-row flex-wrap items-center gap-1" in:fly={{ y: 20 }} out:slide>
 							<span>{get_country_emoji(locale_code)}</span>
-							<span class="w-4 h-4"
+							<span class="h-4 w-4"
 								>{#if chat_member.is_mobile_device}<PhoneAndroidIcon />{:else}<DesktopWindowsIcon
 									/>{/if}</span
 							>
@@ -673,7 +673,7 @@
 				<div class="input flex flex-col gap-1 p-1">
 					<div
 						contenteditable="true"
-						class="outline-none px-3 py-1"
+						class="px-3 py-1 outline-none"
 						placeholder={$_('enter_new_text')}
 						bind:this={message_div_element}
 						bind:innerText={message}
@@ -704,7 +704,7 @@
 				</div>
 			{/if}
 
-			<div class="flex gap-3 items-center flex-wrap">
+			<div class="flex flex-wrap items-center gap-3">
 				<select
 					class="glass-button text-center"
 					bind:this={locale_select_element}
@@ -727,7 +727,7 @@
 					{#if is_notification_enabled}
 						<button class="glass-button" on:click={disable_notification}>
 							<div class="flex flex-row items-center gap-1.5">
-								<div class="w-[24px] h-[24px]">
+								<div class="h-[24px] w-[24px]">
 									<NotificationsActiveIcon />
 								</div>
 							</div>
@@ -735,7 +735,7 @@
 					{:else}
 						<button class="glass-button" on:click={enable_notification}>
 							<div class="flex flex-row items-center gap-1.5">
-								<div class="w-[24px] h-[24px]">
+								<div class="h-[24px] w-[24px]">
 									<NotificationsIcon />
 								</div>
 							</div>
@@ -744,7 +744,7 @@
 
 					<button class="glass-button" on:click={leave}>
 						<div class="flex flex-row items-center gap-1.5">
-							<div class="w-[24px] h-[24px]">
+							<div class="h-[24px] w-[24px]">
 								<SignOutIcon />
 							</div>
 						</div>
@@ -752,7 +752,7 @@
 				{:else}
 					<button class="glass-button" on:click={on_click_join}>
 						<div class="flex flex-row items-center gap-1.5">
-							<div class="w-[24px] h-[24px]">
+							<div class="h-[24px] w-[24px]">
 								<SignInIcon />
 							</div>
 						</div>
@@ -761,7 +761,7 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center text-white/75 text-sm">
+		<div class="flex justify-center text-sm text-white/75">
 			<a
 				target="_blank"
 				rel="noreferrer"

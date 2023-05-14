@@ -35,20 +35,20 @@
 	<title>Talk - Sign in</title>
 </svelte:head>
 
-<div class="flex items-center justify-center h-screen">
+<div class="flex h-screen items-center justify-center">
 	<div class="center-container card-parent">
 		<form
-			class="md:mb-40 mb-0 card p-4 mx-3 glass-panel"
+			class="card glass-panel mx-3 mb-0 p-4 md:mb-40"
 			method="POST"
 			action="{base}/pin-code?/sign_in&redirect_url={encoded_redirect_url}"
 			on:submit={on_submit}
 		>
 			<div class="title w-full">
 				<h1 class="mb-2">{$_('sign_in')}</h1>
-				<h2 class="font-light text-sm text-white/70">{$_('or_create_account')}</h2>
+				<h2 class="text-sm font-light text-white/70">{$_('or_create_account')}</h2>
 			</div>
 
-			<div class="flex-col flex gap-3 mt-4">
+			<div class="mt-4 flex flex-col gap-3">
 				<input
 					type="email"
 					name="email"
@@ -59,7 +59,7 @@
 
 				<button class="glass-button flex flex-row justify-center" type="submit" disabled={sending}>
 					{#if sending}
-						<div class="animate-spin w-6">
+						<div class="w-6 animate-spin">
 							<LoadingIcon />
 						</div>
 					{:else}

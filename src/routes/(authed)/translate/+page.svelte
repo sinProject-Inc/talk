@@ -340,12 +340,12 @@
 
 <Navbar />
 
-<div class="center-container w-screen h-[calc(100vh-69px)]">
-	<div class="top-bar flex justify-evenly items-center glass-panel h-10 my-4">
+<div class="center-container h-[calc(100vh-69px)] w-screen">
+	<div class="top-bar glass-panel my-4 flex h-10 items-center justify-evenly">
 		<select
-			class="outline-0 bg-transparent p-2 text-center {listening
+			class="bg-transparent p-2 text-center outline-0 {listening
 				? ''
-				: 'hover:scale-110'} transition-all duration-300 appearance-none text-ellipsis"
+				: 'hover:scale-110'} appearance-none text-ellipsis transition-all duration-300"
 			name="language_1"
 			disabled={listening}
 			id="language_1"
@@ -361,9 +361,9 @@
 			>
 		</div>
 		<select
-			class="outline-0 bg-transparent p-2 text-center {listening
+			class="bg-transparent p-2 text-center outline-0 {listening
 				? ''
-				: 'hover:scale-110'} transition-all duration-300 appearance-none text-ellipsis"
+				: 'hover:scale-110'} appearance-none text-ellipsis transition-all duration-300"
 			name="language_2"
 			disabled={listening}
 			id="language_2"
@@ -371,8 +371,8 @@
 			on:change={() => on_change_locale_select(destination_locale_select_element)}
 		/>
 	</div>
-	<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
-		<div class="grid grid-rows-3 h-[calc(100vh-141px)] gap-y-4">
+	<div class="grid h-[calc(100vh-141px)] grid-rows-3 gap-y-4">
+		<div class="grid h-[calc(100vh-141px)] grid-rows-3 gap-y-4">
 			<TranslateBox
 				bind:this={source_translate_box}
 				on:keydown_enter={() => translate(source_translate_box)}
@@ -395,7 +395,7 @@
 				partner_listening={source_listening}
 				bind:listening={destination_listening}
 			/>
-			<div class="main-box history-box glass-panel grow flex flex-col {history_visible}">
+			<div class="main-box history-box glass-panel flex grow flex-col {history_visible}">
 				<div class="title px-5 py-2">{$_('history')}</div>
 				<div class="overflow-auto" lang={source_locale_code.code}>
 					{#each history_texts as text, i}

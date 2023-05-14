@@ -59,10 +59,10 @@
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<div
-			class="fixed top-24 bg-gradient-to-t rounded-2xl from-transparent via-slate-800 to-slate-800 h-16 w-56"
+			class="fixed top-24 h-16 w-56 rounded-2xl bg-gradient-to-t from-transparent via-slate-800 to-slate-800"
 		/>
 		<button
-			class="flex fixed top-24 glass-panel gap-3 items-center w-56 rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150 shadow-lg shadow-slate-900/70"
+			class="glass-panel fixed top-24 flex w-56 items-center gap-3 rounded-md bg-slate-900/90 shadow-lg shadow-slate-900/70 transition-all duration-150 hover:bg-slate-600/75"
 			on:click={on_search_button_click}
 		>
 			<div class="h-5"><SearchIcon /></div>
@@ -75,18 +75,18 @@
 		</button>
 	{/if}
 
-	<div class="pt-8 pl-1">
+	<div class="pl-1 pt-8">
 		{#each sections as section}
 			<li class="my-8">
-				<h5 class="font-semibold mb-3 text-slate-200">
+				<h5 class="mb-3 font-semibold text-slate-200">
 					{section.title}
 				</h5>
-				<ul class="border-l space-y-2 border-slate-800">
+				<ul class="space-y-2 border-l border-slate-800">
 					{#each section.pages as { title, path }}
 						{@const active = path === $page.url.pathname}
 						{@const inactive = !active}
 						<li>
-							<a href={path} class="block pl-4 -ml-px border-l" class:active class:inactive>
+							<a href={path} class="-ml-px block border-l pl-4" class:active class:inactive>
 								{title}
 							</a>
 						</li>
@@ -103,6 +103,6 @@
 	}
 
 	.inactive {
-		@apply border-transparent hover:border-slate-500 text-slate-400 hover:text-slate-300;
+		@apply border-transparent text-slate-400 hover:border-slate-500 hover:text-slate-300;
 	}
 </style>

@@ -71,13 +71,13 @@
 		<SearchModale on:close={close_search_modale} />
 	{/if}
 
-	<div class="max-w-8xl min-h-screen mx-auto">
+	<div class="max-w-8xl mx-auto min-h-screen">
 		<div
-			class="md:w-72 ps-8 pe-4 h-[calc(100vh-3rem-var(--header-height))] mt-12 overflow-y-auto fixed hidden md:block"
+			class="fixed mt-12 hidden h-[calc(100vh-3rem-var(--header-height))] overflow-y-auto pe-4 ps-8 md:block md:w-72"
 		>
 			<SideBar {sections} on:show_search_modale={open_search_modale} />
 		</div>
-		<div class="ps-12 pe-8 md:ps-80 py-8 xl:pe-80">
+		<div class="py-8 pe-8 ps-12 md:ps-80 xl:pe-80">
 			<slot />
 		</div>
 	</div>
