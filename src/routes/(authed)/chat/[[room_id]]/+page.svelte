@@ -560,7 +560,7 @@
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button h-full glass-panel rounded-[0.75rem]"
+					class="glass-button glass-panel rounded-[0.75rem] h-[40px]"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>
