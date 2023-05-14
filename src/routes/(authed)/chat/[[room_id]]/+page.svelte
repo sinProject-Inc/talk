@@ -456,7 +456,7 @@
 	function new_room(): void {
 		const room_id = uuidv4()
 
-		goto(`/chat/${room_id}`)
+		goto(`./chat/${room_id}`)
 	}
 
 	socket.on('connect', () => {
