@@ -38,6 +38,7 @@
 	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import { UserId } from '$lib/user/user_id'
 	import { AvatarUrl } from '$lib/avatar/avatar_url'
+	import { base } from '$app/paths'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -463,7 +464,7 @@
 	function new_room(): void {
 		const room_id = uuidv4()
 
-		goto(`./chat/${room_id}`)
+		goto(`${base}/chat/${room_id}`)
 	}
 
 	function should_show_name_and_time(chat_log_item: ChatLogItem, index: number): boolean {
