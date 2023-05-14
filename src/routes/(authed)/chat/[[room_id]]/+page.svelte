@@ -554,7 +554,7 @@
 
 	<div class="flex-1 flex flex-col gap-3 p-3 center-container w-screen overflow-y-scroll">
 		<div class="flex items-center justify-between gap-3">
-			<div class="flex gap-3 items-center glass-panel w-full p-3 h-[66px]">
+			<div class="flex gap-3 items-center glass-panel w-full p-3 h-[40px]">
 				<div class="text-white/80 font-bold ml-1">Room:</div>
 				<div data-testid="room-id">{data.room_id}</div>
 			</div>
