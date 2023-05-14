@@ -204,10 +204,10 @@
 />
 
 <div
-	class="fixed top-0 left-0 w-full h-full justify-center flex pointer-events-none px-4 z-20 backdrop-blur-sm py-20"
+	class="fixed top-0 left-0 w-full h-full justify-center flex pointer-events-none p-6 z-20 backdrop-blur-sm md:p-20 lg:px-20 lg:py-28"
 >
 	<div
-		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-[calc(75vh)] flex flex-col"
+		class="rounded-xl glass-panel bg-slate-900/90 backdrop-blur-md pointer-events-auto text-center mx-auto max-w-screen-md w-full h-fit max-h-full flex flex-col"
 		data-testid="search-modale"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
