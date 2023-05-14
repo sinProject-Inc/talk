@@ -58,8 +58,11 @@
 
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
+		<div
+			class="fixed top-24 bg-gradient-to-t rounded-2xl from-transparent via-slate-800 to-slate-800 h-16 w-56"
+		/>
 		<button
-			class="flex glass-panel gap-3 items-center mt-8 w-full rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150 drop-shadow-lg shadow-slate-900/70"
+			class="flex fixed top-24 glass-panel gap-3 items-center w-56 rounded-md bg-slate-900/90 hover:bg-slate-600/75 transition-all duration-150 shadow-lg shadow-slate-900/70"
 			on:click={on_search_button_click}
 		>
 			<div class="h-5"><SearchIcon /></div>
@@ -72,7 +75,7 @@
 		</button>
 	{/if}
 
-	<div class="h-[calc(100vh-(4.5rem+var(--header-height)))] overflow-y-auto pl-1">
+	<div class="pt-8 pl-1">
 		{#each sections as section}
 			<li class="my-8">
 				<h5 class="font-semibold mb-3 text-slate-200">
