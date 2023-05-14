@@ -1,6 +1,6 @@
 import { logger } from '$lib/app/logger'
 import { ClientAddress } from '$lib/network/client_address'
-import { ClientHostName } from '$lib/network/client_hostnames'
+import { ClientHostName } from '$lib/network/client_hostname'
 import type { WebLog } from '$lib/view/log/web_log'
 import { WebLogLevel } from '$lib/view/log/web_log_level'
 import type { RequestHandler } from '@sveltejs/kit'
