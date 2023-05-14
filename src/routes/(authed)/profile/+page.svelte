@@ -60,6 +60,7 @@
 			name="image"
 			type="file"
 			accept=".jpg, .jpeg"
+			size="5000000"
 			on:change={submit_form}
 			bind:this={file_input}
 		/>
