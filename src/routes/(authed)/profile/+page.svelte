@@ -1,19 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import type { LayoutServerParentData } from '../$types'
 	import Navbar from '$lib/components/navbar.svelte'
-	import empty_profile_picture from '$lib/assets/profile_picture.png'
+	import type { PageServerData } from './$types'
+	import { UserId } from '$lib/user/user_id'
+	import { AvatarUrl } from '$lib/avatar/avatar_url'
 
-	export let data: LayoutServerParentData
+	export let data: PageServerData
 
-	let email: string
+	const email = data.email
+	const user_id = new UserId(data.user_id)
+	let avatar_url = new AvatarUrl(user_id).url
 
 	let file_input: HTMLInputElement
 	let form: HTMLFormElement
-
-	function init(): void {
-		email = data.user.email
-	}
 
 	function submit_form(): void {
 		form.submit()
@@ -22,10 +20,6 @@
 	function open_file_input(): void {
 		file_input.click()
 	}
-
-	onMount(() => {
-		init()
-	})
 </script>
 
 <svelte:head>
@@ -43,7 +37,7 @@
 					on:click={open_file_input}
 				>
 					<img
-						src={empty_profile_picture}
+						src={avatar_url}
 						alt="Profile"
 						class="w-28 h-28 absolute object-cover bg-white/50 rounded-full"
 					/>

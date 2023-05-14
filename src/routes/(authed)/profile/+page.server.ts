@@ -1,9 +1,12 @@
 import { logger } from '$lib/app/logger'
 import { Repository } from '$lib/app/repository'
 import { Email } from '$lib/auth/email'
-import type { Actions } from '@sveltejs/kit'
+import { redirect, type Actions } from '@sveltejs/kit'
 import fs from 'fs'
 import { AVATAR_DIR } from '$env/static/private'
+import type { PageServerLoad } from '../$types'
+import { base } from '$app/paths'
+import { UserId } from '$lib/user/user_id'
 
 export const actions: Actions = {
 	default: async ({ locals, request }) => {
@@ -25,4 +28,22 @@ export const actions: Actions = {
 			logger.error(e)
 		}
 	},
+}
+
+export const load: PageServerLoad = async ({ locals, url }) => {
+	if (!locals.user) {
+		throw redirect(303, `${base}/sign-in?redirect_url=${url.pathname}`)
+	}
+
+	const email = new Email(locals.user.email)
+	const user = await Repository.user.find_unique(email)
+
+	if (!user) throw new Error('user is null')
+
+	const user_id = new UserId(user.id)
+
+	return {
+		user_id: user_id.id,
+		email: email.address,
+	}
 }

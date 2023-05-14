@@ -1,7 +1,6 @@
 import fs from 'fs'
-import { Repository } from '$lib/app/repository'
-import type { Email } from '$lib/auth/email'
 import { AvatarFilePath } from './avatar_file_path'
+import type { UserId } from '../user/user_id'
 
 export class Avatar {
 	public constructor(private readonly _data: Uint8Array) {}
@@ -10,13 +9,24 @@ export class Avatar {
 		return this._data
 	}
 
-	public static async read(email: Email): Promise<Avatar> {
-		const user = await Repository.user.find_unique(email)
+	public static async from_user_id(user_id: UserId): Promise<Avatar> {
+		const avatar_file_path = AvatarFilePath.from_user_id(user_id)
+		const avatar = Avatar.from_avatar_path(avatar_file_path)
 
-		if (!user) throw new Error('user is null')
+		return avatar
+	}
 
-		const avatar_file_path = AvatarFilePath.from_user_id(user.id)
-		const avatar_file_buffer = await fs.promises.readFile(avatar_file_path.path)
+	public static async from_avatar_path(avatar_file_path: AvatarFilePath): Promise<Avatar> {
+		let avatar_file_buffer: Buffer
+
+		try {
+			avatar_file_buffer = await fs.promises.readFile(avatar_file_path.path)
+		} catch (e) {
+			const default_avatar_path = 'src/lib/assets/default_avatar.png'
+
+			avatar_file_buffer = await fs.promises.readFile(default_avatar_path)
+		}
+
 		const avatar_file_unit8_array = new Uint8Array(avatar_file_buffer)
 		const avatar = new Avatar(avatar_file_unit8_array)
 

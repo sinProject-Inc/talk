@@ -4,7 +4,7 @@ export class ValidText {
 	public constructor(text: string | undefined) {
 		const trimmed_text = text?.trim() ?? ''
 
-		if (!trimmed_text) throw new Error('speech_text is empty')
+		if (!trimmed_text) throw new Error('text is empty')
 
 		this._text = trimmed_text
 	}

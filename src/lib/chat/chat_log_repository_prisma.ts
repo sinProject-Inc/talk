@@ -15,6 +15,7 @@ export class ChatLogRepositoryPrisma implements ChatLogRepository {
 				room_id: chat_entity.room_id.value,
 				locale_code: chat_entity.locale_code.value,
 				name: chat_entity.name.value,
+				sender_id: chat_entity.user_id.id,
 				message: chat_entity.message.value,
 			},
 		})

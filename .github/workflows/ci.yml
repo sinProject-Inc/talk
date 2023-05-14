@@ -33,6 +33,7 @@ jobs:
           touch .env
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
           echo SOUND_DIR=${{ secrets.SOUND_DIR }} >> .env
+          echo AVATAR_DIR=${{ secrets.AVATAR_DIR }} >> .env
           echo GOOGLE_PROJECT_ID=${{ secrets.GOOGLE_PROJECT_ID }} >> .env
           echo GOOGLE_LOCATION=${{ secrets.GOOGLE_LOCATION }} >> .env
           echo MICROSOFT_SPEECH_KEY=${{ secrets.MICROSOFT_SPEECH_KEY }} >> .env
