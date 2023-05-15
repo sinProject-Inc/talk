@@ -21,8 +21,8 @@
 <button on:click on:click={animate} disabled={!enabled}>
 	<div
 		class="{class_name} -m-[6.5px] flex h-9 w-9 flex-row justify-center rounded-full p-[6.5px] transition-colors {enabled
-			? 'hover:bg-white/5'
-			: 'fill-white/50'} {grow ? 'scale-110 duration-75 hover:bg-white/30' : 'duration-300'}"
+			? 'text-white/75 hover:bg-white/5'
+			: 'text-white/50'} {grow ? 'scale-110 duration-75 hover:bg-white/30' : 'duration-300'}"
 	>
 		<slot />
 	</div>
