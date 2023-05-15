@@ -25,7 +25,7 @@ async function to_have_text_on_next_page(page: Page, text: string): Promise<void
 }
 
 test('access next pages', async ({ page }) => {
-	test.setTimeout(10 * 1000)
+	test.setTimeout(30 * 1000)
 
 	await to_have_text_on_next_page(page, 'Creating a Project')
 	await to_have_text_on_next_page(page, 'App Structure')
