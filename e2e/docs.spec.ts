@@ -25,7 +25,7 @@ async function to_have_text_on_next_page(page: Page, text: string): Promise<void
 }
 
 test('access next pages', async ({ page }) => {
-	test.setTimeout(30 * 1000)
+	test.setTimeout(10 * 1000)
 
 	await to_have_text_on_next_page(page, 'Creating a Project')
 	await to_have_text_on_next_page(page, 'App Structure')
@@ -39,7 +39,6 @@ test('access next pages', async ({ page }) => {
 	await to_have_text_on_next_page(page, 'Git Hooks')
 	await to_have_text_on_next_page(page, 'GitHub Actions')
 	await to_have_text_on_next_page(page, 'GitHub Templates')
-	await to_have_text_on_next_page(page, 'Git User Profiles')
 	await to_have_text_on_next_page(page, 'TypeScript Config')
 	await to_have_text_on_next_page(page, 'Prettier')
 	await to_have_text_on_next_page(page, 'ESLint')
