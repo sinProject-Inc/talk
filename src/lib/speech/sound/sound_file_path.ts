@@ -1,6 +1,7 @@
 import { SOUND_DIR } from '$env/static/private'
 import type { SoundId } from '$lib/speech/sound/sound_id'
 import { ValidText } from '../../text/valid_text'
+import slash from 'slash'
 
 export class SoundFilePath {
 	private readonly _path: string
@@ -16,7 +17,7 @@ export class SoundFilePath {
 	}
 
 	public static from_id(sound_id: SoundId): SoundFilePath {
-		const sound_file_path = new SoundFilePath(`${SOUND_DIR}${sound_id.id}.mp3`)
+		const sound_file_path = new SoundFilePath(slash(`${SOUND_DIR}/${sound_id.id}.mp3`))
 
 		return sound_file_path
 	}
