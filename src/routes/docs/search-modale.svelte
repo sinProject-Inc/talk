@@ -146,6 +146,15 @@
 			close()
 			goto(`${active_result.item.path}`)
 		}
+
+		if (event.key === 'Tab') {
+			event.preventDefault()
+
+			const delta_y = event.shiftKey ? -1 : 1
+
+			set_active_result_index(delta_y)
+			set_scroll_result()
+		}
 	}
 
 	function handle_scroll(event: WheelEvent): void {
