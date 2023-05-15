@@ -451,6 +451,8 @@
 	function on_chat_log_div_resize(): void {
 		let difference = 0
 
+		if (!chat_log_div_element) return
+
 		if (is_scroll_at_bottom()) {
 			scroll_to_bottom()
 		} else {
