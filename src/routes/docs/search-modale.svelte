@@ -8,7 +8,7 @@
 	import type { MarkdownData } from '$lib/docs/search_index'
 	import { goto } from '$app/navigation'
 
-	let query: string
+	export let search_query = ''
 
 	let input: HTMLInputElement
 
@@ -19,14 +19,16 @@
 	const markdown_data = search_index as MarkdownData[]
 	const search = new Search(markdown_data)
 
+	get_search_results()
+
 	function get_search_results(): void {
-		if (query.trim().length === 0) {
+		if (search_query.trim().length === 0) {
 			results = []
 
 			return
 		}
 
-		results = search.search(query)
+		results = search.search(search_query)
 		active_result_index = 0
 
 		input = input
@@ -37,7 +39,7 @@
 
 		const context_max_length = 200
 
-		const context = new SearchResultContext(result.matches[0], query)
+		const context = new SearchResultContext(result.matches[0], search_query)
 		const split_context = context.get_split_context()
 
 		const shortened_split_context = context.shorten_split_context(split_context, context_max_length)
@@ -225,7 +227,7 @@
 				<input
 					class="w-full bg-inherit pl-4"
 					type="text"
-					bind:value={query}
+					bind:value={search_query}
 					bind:this={input}
 					on:input={get_search_results}
 					placeholder="Search documentation"
