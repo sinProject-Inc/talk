@@ -22,12 +22,12 @@ Configure the reporter not to open automatically, and output a video when an err
 // playwright.config.ts
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
-	timeout: 5 * 1000,
+	timeout: process.env.CI ? 20 * 1000 : 5 * 1000,
 	expect: {
 		timeout: 2000,
 	},
 	retries: 0,
-	workers: undefined,
+	workers: process.env.CI ? 1 : undefined,
 	reporter: [['html', { open: 'never' }]],
 	use: {
 		video: 'retain-on-failure',
@@ -124,7 +124,7 @@ We have prepared the following scripts to execute Vitest.
 {
 	"scripts": {
 		"test:e2e": "playwright test",
-		"test:ci": "CI=true npm run test"
+		"test:e2e:ci": "CI=true npm run test:e2e"
 	}
 }
 ```

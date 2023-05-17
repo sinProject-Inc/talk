@@ -19,6 +19,8 @@ Change the files to be included in the test run.
 export default defineConfig({
 	test: {
 		include: ['src/**/*.test.ts'],
+		hookTimeout: 3000,
+		teardownTimeout: 0,
 	},
 })
 ```
@@ -35,7 +37,8 @@ We have prepared the following scripts to execute Vitest.
 	"scripts": {
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
-		"test:run": "vitest run"
+		"test:run": "vitest run",
+		"test:ci": "CI=true npm run test"
 	}
 }
 ```
