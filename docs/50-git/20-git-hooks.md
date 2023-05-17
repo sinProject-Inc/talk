@@ -65,6 +65,9 @@ npm run typecheck
 npm run check
 
 npm run test:run
+# npm run test:e2e
+
+# npm run build
 
 git fetch origin
 git merge --no-commit --no-ff origin/main
