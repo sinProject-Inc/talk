@@ -8,7 +8,6 @@
 	import type { MarkdownData } from '$lib/docs/search_index'
 	import { goto } from '$app/navigation'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
-	import { fade } from 'svelte/transition'
 
 	export let search_query = ''
 
@@ -245,8 +244,7 @@
 				<div class="h[24px] mr-4 flex w-[30px]">
 					{#if search_query !== ''}
 						<div
-							transition:fade
-							class="flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-75 hover:text-red-400 hover:outline-red-400"
+							class="flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-red-400 hover:outline-red-400"
 							on:click={reset_search_query}
 							on:keydown
 						>
