@@ -14,6 +14,14 @@ We use Husky for our Git Hooks.
 npm install --save-dev husky
 ```
 
+```json
+// package.json
+{
+	"scripts": {
+		"prepare": "husky install",
+	}
+}
+
 - lint-staged
 
 ```bash
