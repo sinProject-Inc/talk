@@ -6,6 +6,18 @@ How we automate our tests using [Playwright](https://playwright.dev/).
 
 Playwright is an E2E (end-to-end) testing framework.
 
+## Installation
+
+```console
+$ npm init playwright@latest
+
+Getting started with writing end-to-end tests with Playwright:
+Initializing project in '.'
+✔ Where to put your end-to-end tests? · e2e
+✔ Add a GitHub Actions workflow? (y/N) · N
+✔ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · Y
+```
+
 ## File Name
 
 Create an e2e directory, and name the files as \*.spec.ts.
@@ -84,7 +96,7 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 		// },
 	],
 	use: {
-			url: 'http://127.0.0.1:5173/talk/',
+			baseURL: 'http://127.0.0.1:5173/talk/',
 	}
 ```
 
