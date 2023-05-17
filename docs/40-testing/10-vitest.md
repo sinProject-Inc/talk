@@ -6,6 +6,12 @@ How we automate our tests using [Vitest](https://vitest.dev/).
 
 Vitest is a testing framework designed for unit testing.
 
+## Installation
+
+```bash
+npm install -D vitest
+```
+
 ## File Name
 
 In the same directory as the file of the code to be tested is in, write test code in a file named [filename of the code to be tested].test.ts.
