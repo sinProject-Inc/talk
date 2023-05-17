@@ -2,31 +2,43 @@
 title: Git Hooks
 ---
 
-We use Husky for our Git Hooks.
+We use lint-staged and Husky for our Git Hooks.
 
+- [lint-staged](https://github.com/okonet/lint-staged) - Run linters against staged git files and don't let 💩 slip into your code base!
 - [Husky](https://typicode.github.io/husky/#/) - Husky improves your commits and more 🐶 woof!
 
-## Installation
+## lint-staged
 
-- husky
+### Installation
 
 ```bash
-npm install --save-dev husky
+npm install --save-dev lint-staged
 ```
+
+### Setup
 
 ```json
 // package.json
 {
 	"scripts": {
-		"prepare": "husky install",
+		"lint": "prettier --plugin-search-dir . --check . && eslint ."
+	},
+	"lint-staged": {
+		"*.{js,ts,svelte}": "eslint --cache --fix",
+		"*.css": "stylelint --fix",
+		"*.{js,css,md,ts,svelte,css,scss,json}": "prettier --write"
 	}
 }
 ```
 
-- lint-staged
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+
+## Husky
+
+### Installation
 
 ```bash
-npm install --save-dev lint-staged
+npx husky-init && npm install
 ```
 
 ## pre-commit
@@ -45,25 +57,23 @@ npm run lint
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.husky/pre-commit)
 
+## pre-push
+
+Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/), and finally check for conflicts.
+
 ```json
 // package.json
 {
 	"scripts": {
-		"lint": "prettier --plugin-search-dir . --check . && eslint ."
-	},
-	"lint-staged": {
-		"*.{js,ts,svelte}": "eslint --cache --fix",
-		"*.css": "stylelint --fix",
-		"*.{js,css,md,ts,svelte,css,scss,json}": "prettier --write"
+		"test:run": "vitest run",
+		"test:e2e": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"typecheck": "tsc --noEmit"
 	}
 }
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
-
-## pre-push
-
-Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/), and finally check for conflicts.
 
 ```bash
 # ./husky/pre-push
@@ -84,21 +94,3 @@ git reset --hard HEAD
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.husky/pre-push)
-
-```json
-// package.json
-{
-	"scripts": {
-		"test:run": "vitest run",
-		"test:e2e": "playwright test",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"typecheck": "tsc --noEmit"
-	}
-}
-```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
-
-```
-
-```
