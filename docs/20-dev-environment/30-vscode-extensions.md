@@ -4,6 +4,8 @@ title: VSCode Extensions
 
 Introducing the VSCode extensions we use at sinProject.
 
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/extensions.json)
+
 ## Git
 
 - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
