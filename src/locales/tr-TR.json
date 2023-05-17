@@ -35,5 +35,7 @@
 	"joined": "{name} görüşmeye katıldı.",
 	"leaved": "{name} görüşmeden ayrıldı.",
 	"translate": "Çevir",
-	"chat": "Sohbet"
+	"chat": "Sohbet",
+	"room": "Oda",
+	"new_room": "Yeni oda"
 }

@@ -35,5 +35,7 @@
 	"joined": "{name}님이 대화에 참여했습니다.",
 	"leaved": "{name}님이 대화에서 나갔습니다.",
 	"translate": "번역",
-	"chat": "채팅"
+	"chat": "채팅",
+	"room": "방",
+	"new_room": "새로운 방"
 }

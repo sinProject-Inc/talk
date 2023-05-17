@@ -35,5 +35,7 @@
 	"joined": "{name} prisijungė prie pokalbio.",
 	"leaved": "{name} išėjo iš pokalbio.",
 	"translate": "Versti",
-	"chat": "Pokalbis"
+	"chat": "Pokalbis",
+	"room": "Kambarys",
+	"new_room": "Naujas kambarys"
 }

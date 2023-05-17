@@ -35,5 +35,7 @@
 	"joined": "{name} s'ha unit a la conversa.",
 	"leaved": "{name} ha sortit de la conversa.",
 	"translate": "Traduir",
-	"chat": "Xat"
+	"chat": "Xat",
+	"room": "Habitació",
+	"new_room": "Habitació nova"
 }

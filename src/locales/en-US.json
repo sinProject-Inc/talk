@@ -35,5 +35,7 @@
 	"joined": "{name} joined the conversation.",
 	"leaved": "{name} leaved the conversation.",
 	"translate": "Translate",
-	"chat": "Chat"
+	"chat": "Chat",
+	"room": "Room",
+	"new_room": "New room"
 }

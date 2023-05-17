@@ -35,5 +35,7 @@
 	"joined": "{name} menyertai perbualan.",
 	"leaved": "{name} meninggalkan perbualan.",
 	"translate": "Terjemah",
-	"chat": "Cakap-cakap"
+	"chat": "Cakap-cakap",
+	"room": "Bilik",
+	"new_room": "Bilik baru"
 }

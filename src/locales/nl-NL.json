@@ -35,5 +35,7 @@
 	"joined": "{name} nam deel aan het gesprek.",
 	"leaved": "{name} heeft het gesprek verlaten.",
 	"translate": "Vertalen",
-	"chat": "Chat"
+	"chat": "Chat",
+	"room": "Kamer",
+	"new_room": "Nieuwe kamer"
 }
