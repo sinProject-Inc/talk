@@ -124,7 +124,7 @@ We have prepared the following scripts to execute Vitest.
 {
 	"scripts": {
 		"test:e2e": "playwright test",
-		"test:ci": "CI=true npm run test"
+		"test:e2e:ci": "CI=true npm run test:e2e"
 	}
 }
 ```
