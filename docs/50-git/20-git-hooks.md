@@ -14,7 +14,7 @@ We use Husky for our Git Hooks.
 npm install --save-dev husky
 ```
 
-- lint-stated
+- lint-staged
 
 ```bash
 npm install --save-dev lint-staged
