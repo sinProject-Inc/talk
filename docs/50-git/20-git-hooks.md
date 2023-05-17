@@ -6,6 +6,20 @@ We use Husky for our Git Hooks.
 
 - [Husky](https://typicode.github.io/husky/#/) - Husky improves your commits and more 🐶 woof!
 
+## Installation
+
+- husky
+
+```bash
+npm install --save-dev husky
+```
+
+- lint-stated
+
+```bash
+npm install --save-dev lint-staged
+```
+
 ## pre-commit
 
 Combine [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [lint-staged](https://github.com/okonet/lint-staged) to format code.
@@ -72,3 +86,7 @@ git reset --hard HEAD
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
+
+```
+
+```
