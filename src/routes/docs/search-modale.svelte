@@ -209,6 +209,7 @@
 		window.addEventListener('wheel', handle_scroll, { passive: false })
 
 		input.focus()
+		input.select()
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
