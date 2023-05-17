@@ -35,5 +35,7 @@
 	"joined": "{name} sa pripojil ku konverzácii.",
 	"leaved": "{name} opustil konverzáciu.",
 	"translate": "Preložiť",
-	"chat": "Chat"
+	"chat": "Chat",
+	"room": "Izba",
+	"new_room": "Nová izba"
 }

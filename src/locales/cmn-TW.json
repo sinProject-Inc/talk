@@ -35,5 +35,7 @@
 	"joined": "{name} 加入了對話。",
 	"leaved": "{name} 離開了對話。",
 	"translate": "翻譯",
-	"chat": "聊天"
+	"chat": "聊天",
+	"room": "房間",
+	"new_room": "新房間"
 }

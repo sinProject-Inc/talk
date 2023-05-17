@@ -35,5 +35,7 @@
 	"joined": "{name} הצטרף לשיחה.",
 	"leaved": "{name} עזב את השיחה.",
 	"translate": "תרגם",
-	"chat": "צ'אט"
+	"chat": "צ'אט",
+	"room": "חדר חדש",
+	"new_room": "חדר"
 }

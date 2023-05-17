@@ -35,5 +35,7 @@
 	"joined": "{name} pievienojās sarunai.",
 	"leaved": "{name} pameta sarunu.",
 	"translate": "Tulkot",
-	"chat": "Čats"
+	"chat": "Čats",
+	"room": "Istaba",
+	"new_room": "Jauna istaba"
 }
