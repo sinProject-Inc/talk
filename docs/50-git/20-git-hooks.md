@@ -21,6 +21,7 @@ npm install --save-dev husky
 		"prepare": "husky install",
 	}
 }
+```
 
 - lint-staged
 
