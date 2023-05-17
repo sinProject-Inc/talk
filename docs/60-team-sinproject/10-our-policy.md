@@ -8,6 +8,17 @@ title: Our Policy
 - We will engage in enjoyable activities as a team.
 - We will act for the sake of the team and for ourselves.
 
+## Deadline and Quality
+
+- We will respect deadlines.
+- We will maintain high quality.
+
+## Suggestion
+
+- We will propose new projects.
+- We will actively make suggestions.
+- We will promote improvements.
+
 ## Growth
 
 - We will strive for personal growth and continue to learn every day.
@@ -31,9 +42,3 @@ As a matter of business and etiquette, we will:
 
 - We will tidy up the things we have used.
 - We will always keep the shared spaces neat and tidy.
-
-## Suggestion
-
-- We will propose new projects.
-- We will actively make suggestions.
-- We will promote improvements.
