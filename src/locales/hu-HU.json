@@ -35,5 +35,7 @@
 	"joined": "{name} csatlakozott a beszélgetéshez.",
 	"leaved": "{name} kilépett a beszélgetésből.",
 	"translate": "Fordítás",
-	"chat": "Csevegés"
+	"chat": "Csevegés",
+	"room": "Szoba",
+	"new_room": "Új szoba"
 }

@@ -6,6 +6,18 @@ How we automate our tests using [Playwright](https://playwright.dev/).
 
 Playwright is an E2E (end-to-end) testing framework.
 
+## Installation
+
+```console
+$ npm init playwright@latest
+
+Getting started with writing end-to-end tests with Playwright:
+Initializing project in '.'
+✔ Where to put your end-to-end tests? · e2e
+✔ Add a GitHub Actions workflow? (y/N) · N
+✔ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · Y
+```
+
 ## File Name
 
 Create an e2e directory, and name the files as \*.spec.ts.
@@ -22,12 +34,12 @@ Configure the reporter not to open automatically, and output a video when an err
 // playwright.config.ts
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
-	timeout: 5 * 1000,
+	timeout: process.env.CI ? 20 * 1000 : 5 * 1000,
 	expect: {
 		timeout: 2000,
 	},
 	retries: 0,
-	workers: undefined,
+	workers: process.env.CI ? 1 : undefined,
 	reporter: [['html', { open: 'never' }]],
 	use: {
 		video: 'retain-on-failure',
@@ -84,7 +96,7 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 		// },
 	],
 	use: {
-			url: 'http://127.0.0.1:5173/talk/',
+			baseURL: 'http://127.0.0.1:5173/talk/',
 	}
 ```
 
@@ -124,7 +136,7 @@ We have prepared the following scripts to execute Vitest.
 {
 	"scripts": {
 		"test:e2e": "playwright test",
-		"test:ci": "CI=true npm run test"
+		"test:e2e:ci": "CI=true npm run test:e2e"
 	}
 }
 ```

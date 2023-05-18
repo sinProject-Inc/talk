@@ -6,6 +6,12 @@ How we automate our tests using [Vitest](https://vitest.dev/).
 
 Vitest is a testing framework designed for unit testing.
 
+## Installation
+
+```bash
+npm install -D vitest
+```
+
 ## File Name
 
 In the same directory as the file of the code to be tested is in, write test code in a file named [filename of the code to be tested].test.ts.
@@ -19,6 +25,8 @@ Change the files to be included in the test run.
 export default defineConfig({
 	test: {
 		include: ['src/**/*.test.ts'],
+		hookTimeout: 3000,
+		teardownTimeout: 0,
 	},
 })
 ```
@@ -35,7 +43,8 @@ We have prepared the following scripts to execute Vitest.
 	"scripts": {
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
-		"test:run": "vitest run"
+		"test:run": "vitest run",
+		"test:ci": "CI=true npm run test"
 	}
 }
 ```

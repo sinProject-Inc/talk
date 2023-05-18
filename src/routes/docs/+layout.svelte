@@ -15,7 +15,15 @@
 
 	$: sections = data?.sections ?? []
 
+	let search_query = ''
+
 	function open_search_modale(): void {
+		const selection = window.getSelection()
+
+		if (selection?.toString()) {
+			search_query = String(selection.toString())
+		}
+
 		search_modale_open = true
 	}
 
@@ -68,7 +76,7 @@
 	{/if}
 
 	{#if search_modale_open}
-		<SearchModale on:close={close_search_modale} />
+		<SearchModale on:close={close_search_modale} bind:search_query />
 	{/if}
 
 	<div class="max-w-8xl mx-auto min-h-screen">

@@ -7,8 +7,9 @@
 	import { SearchResultContext, type SplitContextPortion } from '$lib/docs/search_result_context'
 	import type { MarkdownData } from '$lib/docs/search_index'
 	import { goto } from '$app/navigation'
+	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 
-	let query: string
+	export let search_query = ''
 
 	let input: HTMLInputElement
 
@@ -19,14 +20,16 @@
 	const markdown_data = search_index as MarkdownData[]
 	const search = new Search(markdown_data)
 
+	get_search_results()
+
 	function get_search_results(): void {
-		if (query.trim().length === 0) {
+		if (search_query.trim().length === 0) {
 			results = []
 
 			return
 		}
 
-		results = search.search(query)
+		results = search.search(search_query)
 		active_result_index = 0
 
 		input = input
@@ -37,7 +40,7 @@
 
 		const context_max_length = 200
 
-		const context = new SearchResultContext(result.matches[0], query)
+		const context = new SearchResultContext(result.matches[0], search_query)
 		const split_context = context.get_split_context()
 
 		const shortened_split_context = context.shorten_split_context(split_context, context_max_length)
@@ -50,6 +53,13 @@
 	function close(): void {
 		release_scroll()
 		dispatch('close')
+	}
+
+	function reset_search_query(): void {
+		search_query = ''
+		get_search_results()
+
+		input.focus()
 	}
 
 	function set_active_result_index(delta_y: number): void {
@@ -199,6 +209,7 @@
 		window.addEventListener('wheel', handle_scroll, { passive: false })
 
 		input.focus()
+		input.select()
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -220,19 +231,30 @@
 		data-testid="search-modale"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
-			<div class="flex items-center">
+			<div class="flex items-center justify-between">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
 					class="w-full bg-inherit pl-4"
 					type="text"
-					bind:value={query}
+					bind:value={search_query}
 					bind:this={input}
 					on:input={get_search_results}
 					placeholder="Search documentation"
 					id="search"
 				/>
+				<div class="h[24px] mr-4 flex w-[30px]">
+					{#if search_query !== ''}
+						<div
+							class="flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-red-400 hover:outline-red-400"
+							on:click={reset_search_query}
+							on:keydown
+						>
+							<CloseIcon />
+						</div>
+					{/if}
+				</div>
 				<div
-					class="flex h-[24px] cursor-pointer items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-white/80 hover:outline-white/80"
+					class="flex h-[24px] cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-white/80 hover:outline-white/80"
 					on:click={close}
 					on:keydown
 				>

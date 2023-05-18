@@ -102,3 +102,17 @@ module.exports = {
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
+
+## Missing return type on function in the HTML part of Svelte
+
+In the HTML part of Svelte, if "Missing return type on function" is displayed, add an eslint-disable line at the bottom of the script block.
+
+```ts
+<script lang="ts">
+	...
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
+</script>
+
+<button on:click={() => on_click_button(text)} />
+```

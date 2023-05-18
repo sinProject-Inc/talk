@@ -35,5 +35,7 @@
 	"joined": "{name} dołączył do rozmowy.",
 	"leaved": "{name} opuścił rozmowę.",
 	"translate": "Tłumaczyć",
-	"chat": "Czat"
+	"chat": "Czat",
+	"room": "Pokój",
+	"new_room": "Nowy pokój"
 }
