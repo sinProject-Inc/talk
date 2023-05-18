@@ -35,5 +35,7 @@
 	"joined": "{name} tók þátt í samtalinu.",
 	"leaved": "{name} yfirgaf samtalið.",
 	"translate": "Þýða",
-	"chat": "Spjall"
+	"chat": "Spjall",
+	"room": "Herbergi",
+	"new_room": "Ný herbergi"
 }

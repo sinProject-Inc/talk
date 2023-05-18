@@ -35,5 +35,7 @@
 	"joined": "Sumali si {name} sa usapan.",
 	"leaved": "Umalis si {name} sa usapan.",
 	"translate": "Isalin",
-	"chat": "Usapan"
+	"chat": "Usapan",
+	"room": "Kuwarto",
+	"new_room": "Bagong kuwarto"
 }

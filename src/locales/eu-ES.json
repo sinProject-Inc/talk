@@ -35,5 +35,7 @@
 	"joined": "{name} elkarrizketan sartu da.",
 	"leaved": "{name} elkarrizketatik irten da.",
 	"translate": "Itzuli",
-	"chat": "Txat"
+	"chat": "Txat",
+	"room": "Gela",
+	"new_room": "Gela berria"
 }

@@ -35,5 +35,7 @@
 	"joined": "{name} uniuse á conversa.",
 	"leaved": "{name} saíu da conversa.",
 	"translate": "Traducir",
-	"chat": "Conversa"
+	"chat": "Conversa",
+	"room": "Habitación",
+	"new_room": "Habitación nova"
 }

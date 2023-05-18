@@ -36,8 +36,6 @@ async function get_pin_code_from_database(gmail_user: string): Promise<string> {
 }
 
 setup('sign in', async ({ page }) => {
-	setup.setTimeout(20 * 1000)
-
 	// if (await find_auth_file()) return
 
 	await page.goto('./sign-in', { waitUntil: 'networkidle' })

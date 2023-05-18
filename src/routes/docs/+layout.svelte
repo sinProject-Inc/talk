@@ -18,6 +18,12 @@
 	let search_query = ''
 
 	function open_search_modale(): void {
+		const selection = window.getSelection()
+
+		if (selection?.toString()) {
+			search_query = String(selection.toString())
+		}
+
 		search_modale_open = true
 	}
 

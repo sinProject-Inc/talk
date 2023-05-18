@@ -35,5 +35,7 @@
 	"joined": "{name} đã tham gia cuộc trò chuyện.",
 	"leaved": "{name} đã rời cuộc trò chuyện.",
 	"translate": "Dịch",
-	"chat": "Trò chuyện"
+	"chat": "Trò chuyện",
+	"room": "Phòng",
+	"new_room": "Phòng mới"
 }

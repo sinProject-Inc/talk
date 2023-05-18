@@ -35,5 +35,7 @@
 	"joined": "{name} liittyi keskusteluun.",
 	"leaved": "{name} poistui keskustelusta.",
 	"translate": "Kääntää",
-	"chat": "Keskustelu"
+	"chat": "Keskustelu",
+	"room": "Huone",
+	"new_room": "Uusi huone"
 }

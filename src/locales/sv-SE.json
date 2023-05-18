@@ -35,5 +35,7 @@
 	"joined": "{name} gick med i konversationen.",
 	"leaved": "{name} lämnade konversationen.",
 	"translate": "Översätt",
-	"chat": "Chatt"
+	"chat": "Chatt",
+	"room": "Rum",
+	"new_room": "Nytt rum"
 }
