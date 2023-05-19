@@ -9,8 +9,7 @@ How we define code style using [ESLint](https://eslint.org/).
 - Make accessibility and return type mandatory.
 - Prohibit console output.
 
-```js
-// .eslintrc.cjs
+```js:.eslintrc.cjs
 module.exports = {
 	rules: {
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
@@ -27,8 +26,7 @@ module.exports = {
 - Set variable names, argument names, and function names to snake_case.
 - Prefix private variables with an underscore.
 
-```js
-// .eslintrc.cjs
+```js:.eslintrc.cjs
 module.exports = {
 	rules: {
 		'@typescript-eslint/naming-convention': [

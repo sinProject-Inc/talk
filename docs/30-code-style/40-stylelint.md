@@ -13,8 +13,7 @@ npm i stylelint-config-standard --save-dev
 
 ## Configuration
 
-```json
-// .stylelintrc.json
+```json:.stylelintrc.json
 {
 	"extends": ["stylelint-config-standard"],
 	"rules": {

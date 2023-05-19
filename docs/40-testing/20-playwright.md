@@ -30,8 +30,7 @@ Change the test directory, timeout duration, and other settings as needed.
 
 Configure the reporter not to open automatically, and output a video when an error occurs.
 
-```ts
-// playwright.config.ts
+```ts:playwright.config.ts
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
 	timeout: process.env.CI ? 20 * 1000 : 5 * 1000,
@@ -53,8 +52,7 @@ const config: PlaywrightTestConfig = {
 
 Ensure that tests are not run on browsers where testing is not necessary.
 
-```ts
-// playwright.config.ts
+```ts:playwright.config.ts
 const config: PlaywrightTestConfig = {
 	projects: [
 		{
@@ -108,8 +106,7 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 
 Specify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.
 
-```ts
-// playwright.config.ts
+```ts:playwright.config.ts
 const config: PlaywrightTestConfig = {
 	projects: [
 		{ name: 'setup', testMatch: /.*\.setup\.ts/ },
@@ -131,8 +128,7 @@ const config: PlaywrightTestConfig = {
 
 We have prepared the following scripts to execute Vitest.
 
-```json
-// package.json
+```json:package.json
 {
 	"scripts": {
 		"test:e2e": "playwright test",
@@ -151,16 +147,13 @@ Use [VSCode Extension](./vscode-extensions#testing) for testing through VSCode.
 
 To make it easier to identify an Element from Playwright, "data-testid" can be used.
 
-```html
-// src/routes/docs/[slug]/+page.svelte
-
+```html:src/routes/docs/[slug]/+page.svelte
 <a data-testid="next-page">Next Page</a>
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/routes/docs/[slug]/+page.svelte)
 
-```ts
-// e2e/docs.spec.ts
+```ts:e2e/docs.spec.ts
 await page.getByTestId('next-page').click()
 ```
 
@@ -170,8 +163,7 @@ await page.getByTestId('next-page').click()
 
 ## Sample Code
 
-```ts
-// e2e/chat.spec.ts
+```ts:e2e/chat.spec.ts
 import { Page, expect, test } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
@@ -185,8 +177,7 @@ test('before sign in', async ({ page }) => {
 
 In cases where common setup is needed, such as for login processes:
 
-```ts
-// e2e/chat.spec.ts
+```ts:e2e/chat.spec.ts
 import { Page, expect, test } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 

@@ -2,8 +2,9 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import { JSDOM } from 'jsdom'
 import MarkdownIt from 'markdown-it'
-import mdHighlightjs from 'markdown-it-highlightjs'
+// import mdHighlightjs from 'markdown-it-highlightjs'
 import MarkdownItLinkAttributes from 'markdown-it-link-attributes'
+import hljs from 'highlight.js'
 
 export type Page = {
 	title: string
@@ -86,6 +87,47 @@ export class Markdown {
 		return { sections, html_content }
 	}
 
+	public static code_block_name_plugin(md: MarkdownIt): void {
+		md.set({
+			highlight: function (str: string, lang: string) {
+				if (lang && hljs.getLanguage(lang)) {
+					try {
+						return hljs.highlight(str, { language: lang }).value
+					} catch (__) {
+						// DO NOTHING
+					}
+				}
+
+				return '' // use external default escaping
+			},
+		})
+
+		md.renderer.rules.fence = function (tokens, idx): string {
+			const token = tokens[idx]
+			const [lang, filename] = (token.info || '').split(':')
+
+			let highlighted_code = ''
+
+			if (lang && hljs.getLanguage(lang)) {
+				try {
+					highlighted_code = hljs.highlight(token.content, { language: lang }).value
+				} catch (__) {
+					// DO NOTHING
+				}
+			} else {
+				highlighted_code = md.utils.escapeHtml(token.content)
+			}
+
+			let filename_tag = ''
+
+			if (filename) {
+				filename_tag = `<div class="filename">${filename}</div>`
+			}
+
+			return `<pre>${filename_tag}<code class="hljs ${lang}">${highlighted_code}</code></pre>`
+		}
+	}
+
 	public static generate_page_content(file_path: string): {
 		title: string
 		description: string
@@ -106,7 +148,8 @@ export class Markdown {
 			},
 		})
 
-		md.use(mdHighlightjs)
+		// md.use(mdHighlightjs)
+		md.use(Markdown.code_block_name_plugin)
 
 		const source_html_content = md.render(content)
 		const { sections, html_content } = this.generate_sections(source_html_content)

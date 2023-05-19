@@ -8,8 +8,7 @@ We have added the following to VSCode's workspace configuration.
 
 Show lines connecting pairs of brackets
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"editor.guides.bracketPairs": true
 }
@@ -21,8 +20,7 @@ Show lines connecting pairs of brackets
 
 Hide Minimap
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"editor.minimap.enabled": false
 }
