@@ -22,6 +22,8 @@ type PageSection = {
 	slug: string
 }
 
+const github_url = 'https://github.com/sinProject-Inc/talk/blob/main/'
+
 export class Markdown {
 	public static docs_base_dir = './docs'
 
@@ -121,7 +123,7 @@ export class Markdown {
 			let filename_tag = ''
 
 			if (filename) {
-				filename_tag = `<div class="filename">${filename}</div>`
+				filename_tag = `<div class="filename"><a href="${github_url}${filename}" target="blank">${filename}</div>`
 			}
 
 			return `<pre>${filename_tag}<code class="hljs ${lang}">${highlighted_code}</code></pre>`
