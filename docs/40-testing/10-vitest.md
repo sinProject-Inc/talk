@@ -80,3 +80,42 @@ test('NaN', () => {
 ```
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/general/valid_id.test.ts)
+
+## In-source testing
+
+```ts
+// src/lib/locale/i18n.ts
+if (import.meta.vitest) {
+	const { test, expect } = import.meta.vitest
+
+	test('get_initial_app_locale_code', () => {
+		expect(get_initial_locale_code()).toBe('en-US')
+	})
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/locale/i18n.ts)
+
+```ts
+// vite.config.ts
+export default defineConfig({
+	define: {
+		'import.meta.vitest': 'undefined',
+	},
+})
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
+
+```json
+// tsconfig.json
+{
+	"compilerOptions": {
+		"types": ["vitest/importMeta"]
+	}
+}
+```
+
+[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)
+
+[Here is the official documentation >](https://vitest.dev/guide/in-source.html)
