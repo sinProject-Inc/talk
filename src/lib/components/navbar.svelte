@@ -30,7 +30,7 @@
 				href="{base}/"
 				class="header-text-color title flex items-center gap-2 text-[22px] no-underline"
 			>
-				<img src="/icon-144.png" class="h-8" alt="" />
+				<img src="{base}/icon-144.png" class="h-8" alt="" />
 				{$_('talk_title')}
 			</a>
 			<nav
