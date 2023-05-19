@@ -46,8 +46,6 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
-
 ### Target Browsers
 
 Ensure that tests are not run on browsers where testing is not necessary.
@@ -74,13 +72,11 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
-
 ### Web Server
 
 To perform tests quickly, use a development server. Also, change the baseURL.
 
-```ts
+```ts:playwright.config.ts
 	webServer: [
 		{
 			command: 'npm run dev',
@@ -97,8 +93,6 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 			baseURL: 'http://127.0.0.1:5173/talk/',
 	}
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
 
 [More information >](https://playwright.dev/docs/test-webserver#adding-a-baseurl)
 
@@ -122,8 +116,6 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/playwright.config.ts)
-
 ## Scripts
 
 We have prepared the following scripts to execute Vitest.
@@ -137,8 +129,6 @@ We have prepared the following scripts to execute Vitest.
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
-
 ## VSCode Extension
 
 Use [VSCode Extension](./vscode-extensions#testing) for testing through VSCode.
@@ -151,13 +141,9 @@ To make it easier to identify an Element from Playwright, "data-testid" can be u
 <a data-testid="next-page">Next Page</a>
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/routes/docs/[slug]/+page.svelte)
-
 ```ts:e2e/docs.spec.ts
 await page.getByTestId('next-page').click()
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/docs.spec.ts)
 
 [More Information >](https://playwright.dev/docs/locators#locate-by-test-id)
 
@@ -198,5 +184,3 @@ test.describe('after sign in', () => {
 	})
 })
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/e2e/chat.spec.ts)

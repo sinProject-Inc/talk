@@ -30,8 +30,6 @@ export default defineConfig({
 })
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
-
 ## Scripts
 
 We have prepared the following scripts to execute Vitest.
@@ -46,8 +44,6 @@ We have prepared the following scripts to execute Vitest.
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
 
 ## VSCode Extension
 
@@ -75,12 +71,9 @@ test('NaN', () => {
 })
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/general/valid_id.test.ts)
-
 ## In-source testing
 
-```ts
-// src/lib/locale/i18n.ts
+```ts:src/lib/locale/i18n.ts
 if (import.meta.vitest) {
 	const { test, expect } = import.meta.vitest
 
@@ -90,10 +83,7 @@ if (import.meta.vitest) {
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/src/lib/locale/i18n.ts)
-
-```ts
-// vite.config.ts
+```ts:vite.config.ts
 export default defineConfig({
 	define: {
 		'import.meta.vitest': 'undefined',
@@ -101,17 +91,12 @@ export default defineConfig({
 })
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/vite.config.ts)
-
-```json
-// tsconfig.json
+```json:tsconfig.json
 {
 	"compilerOptions": {
 		"types": ["vitest/importMeta"]
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)
 
 [Here is the official documentation >](https://vitest.dev/guide/in-source.html)

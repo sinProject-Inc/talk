@@ -24,8 +24,6 @@ jobs:
         run: npm run check
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.github/workflows/ci.yml)
-
 ## Tests
 
 Execute tests using Vitest and Playwright.
@@ -42,8 +40,6 @@ jobs:
       - name: Playwright Test
         run: npm run test:e2e
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.github/workflows/ci.yml)
 
 ## Output
 
@@ -69,5 +65,3 @@ jobs:
           path: logs/
           retention-days: 30
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.github/workflows/ci.yml)

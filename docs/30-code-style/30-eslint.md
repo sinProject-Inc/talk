@@ -19,8 +19,6 @@ module.exports = {
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
-
 ## Naming conventions
 
 - Set variable names, argument names, and function names to snake_case.
@@ -98,8 +96,6 @@ module.exports = {
 	},
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
 
 ## Missing return type on function in the HTML part of Svelte
 

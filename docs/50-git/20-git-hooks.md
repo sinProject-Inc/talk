@@ -30,8 +30,6 @@ npm install --save-dev lint-staged
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
-
 ## Husky
 
 ### Installation
@@ -53,8 +51,6 @@ npx lint-staged
 npm run lint
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.husky/pre-commit)
-
 ## pre-push
 
 Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/), and finally check for conflicts.
@@ -69,8 +65,6 @@ Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/), 
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/package.json)
 
 ```bash:./husky/pre-push
 #!/bin/sh
@@ -88,5 +82,3 @@ git fetch origin
 git merge --no-commit --no-ff origin/main
 git reset --hard HEAD
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.husky/pre-push)

@@ -29,5 +29,3 @@ Set strict to true, and further increase strictness by modifying the following o
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/tsconfig.json)
