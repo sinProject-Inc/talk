@@ -31,13 +31,13 @@
 			}
 		}
 
-		.content a:not(.border-none):not(.permalink) {
+		.content a:not(.border-none):not(.permalink):not(.code-title) {
 			color: #fff;
 			font-weight: 600;
 			border-bottom: 1px solid #38bdf8;
 		}
 
-		.content a:not(.border-none):not(.permalink):hover {
+		.content a:not(.border-none):not(.permalink):not(.code-title):hover {
 			border-bottom: 2px solid #38bdf8;
 		}
 
@@ -67,13 +67,13 @@
 
 		pre > div {
 			padding: 0.5rem 1rem;
-			background-color: #0f172acc;
+			background-color: #0f172aff;
 			backdrop-filter: blur(4px);
 			/* background-color: rgb(248 250 252 / 0.06) */
 		}
 
 		code.hljs {
-			border: 1px solid rgb(248 250 252 / 0.06);
+			/* border: 1px solid rgb(248 250 252 / 0.06); */
 			background-color: #0f172a88;
 			backdrop-filter: blur(4px);
 		}
