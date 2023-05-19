@@ -58,9 +58,21 @@
 			background-color: #cbd5e1;
 		}
 
-		code.hljs {
-			margin: 1.2rem 0;
+		pre {
+			margin: 1.2rem 0 !important;
 			border-radius: 0.75rem;
+			border: 1px solid rgb(248 250 252 / 0.06);
+			overflow: hidden;
+		}
+
+		pre > div {
+			padding: 0.5rem 1rem;
+			background-color: #0f172acc;
+			backdrop-filter: blur(4px);
+			/* background-color: rgb(248 250 252 / 0.06) */
+		}
+
+		code.hljs {
 			border: 1px solid rgb(248 250 252 / 0.06);
 			background-color: #0f172a88;
 			backdrop-filter: blur(4px);
@@ -72,13 +84,12 @@
 			/* @apply leading-8 space-y-4; */
 		}
 
-		code:not(.hljs) {
-			/* color: #f00; */
-			padding: 0.25rem 0.5rem;
-			background-color: #0f172a88;
-			border-radius: 0.4rem;
-			/* color: #e2e8f0; */
-		}
+		/* code:not(.hljs) {
+			// /* color: #f00; */
+		/* padding: 0.25rem 0.5rem; */
+		/* background-color: #0f172a88; */
+		/* border-radius: 0.4rem; */
+		/* } */
 	</style>
 </svelte:head>
 

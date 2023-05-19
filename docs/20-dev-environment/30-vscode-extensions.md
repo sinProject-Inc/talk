@@ -82,8 +82,7 @@ Highlight trailing spaces and delete them in a flash!
 
 Spelling checker for source code
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"cSpell.words": [
 		"autocompletes",
@@ -134,8 +133,7 @@ Show error gutters to the right from line numbers
 
 Run and debug Vitest test cases
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"vitest.include": ["src/**/*.{test}.ts"]
 }
@@ -165,8 +163,7 @@ REST Client for Visual Studio Code
 
 Run C, C++, Java, JS, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, CMD, BASH, F#, C#, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml, R, AppleScript, Elixir, VB.NET, Clojure, Haxe, Obj-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart, Pascal, Haskell, Nim,
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"code-runner.executorMap": {
 		"typescript": "npx tsx"
@@ -204,8 +201,7 @@ Real-time collaborative development from the comfort of your favorite tools.
 
 🌍 All in one i18n extension for VSCode
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"i18n-ally.localesPaths": ["src/locales", "src/routes/api/languages", "src/routes/api/locales"],
 	"i18n-ally.keystyle": "nested",

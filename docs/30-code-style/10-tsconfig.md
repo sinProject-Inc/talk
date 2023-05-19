@@ -14,8 +14,7 @@ Set strict to true, and further increase strictness by modifying the following o
 - [noImplicitReturns](https://www.typescriptlang.org/tsconfig#noImplicitReturns)
 - [noFallthroughCasesInSwitch](https://www.typescriptlang.org/tsconfig#noFallthroughCasesInSwitch)
 
-```json
-/// tsconfig.json
+```json:tsconfig.json
 {
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {

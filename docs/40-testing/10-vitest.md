@@ -20,8 +20,7 @@ In the same directory as the file of the code to be tested is in, write test cod
 
 Change the files to be included in the test run.
 
-```ts
-// vite.config.ts
+```ts:vite.config.ts
 export default defineConfig({
 	test: {
 		include: ['src/**/*.test.ts'],
@@ -37,8 +36,7 @@ export default defineConfig({
 
 We have prepared the following scripts to execute Vitest.
 
-```json
-// package.json
+```json:package.json
 {
 	"scripts": {
 		"test": "vitest",
@@ -57,8 +55,7 @@ Use the [VSCode Extension](./vscode-extensions#testing) for testing.
 
 ## Sample Code
 
-```ts
-// src/lib/genera/valid_id.test.ts
+```ts:src/lib/genera/valid_id.test.ts
 import { expect, test } from 'vitest'
 import { ValidId } from './valid_id'
 
@@ -69,8 +66,7 @@ test('1', () => {
 
 When checking thrown errors:
 
-```ts
-// src/lib/genera/valid_id.test.ts
+```ts:src/lib/genera/valid_id.test.ts
 import { expect, test } from 'vitest'
 import { ValidId } from './valid_id'
 
