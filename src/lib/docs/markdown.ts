@@ -123,7 +123,7 @@ export class Markdown {
 			let filename_tag = ''
 
 			if (filename) {
-				filename_tag = `<div class="filename"><a href="${github_url}${filename}" target="blank">${filename}</div>`
+				filename_tag = `<div><a class="code-title font-semibold text-slate-400 hover:text-slate-300" href="${github_url}${filename}" target="blank">${filename}</div>`
 			}
 
 			return `<pre>${filename_tag}<code class="hljs ${lang}">${highlighted_code}</code></pre>`
