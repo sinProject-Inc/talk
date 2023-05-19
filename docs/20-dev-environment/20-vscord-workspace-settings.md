@@ -14,8 +14,6 @@ Show lines connecting pairs of brackets
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
-
 ## Minimap
 
 Hide Minimap
@@ -25,5 +23,3 @@ Hide Minimap
 	"editor.minimap.enabled": false
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)

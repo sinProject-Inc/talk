@@ -101,8 +101,6 @@ Spelling checker for source code
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
-
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 
 Official Stylelint extension for Visual Studio Code
@@ -139,8 +137,6 @@ Run and debug Vitest test cases
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
-
 - [Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
 
 Run Playwright Test tests in Visual Studio Code.
@@ -170,8 +166,6 @@ Run C, C++, Java, JS, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, CMD,
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
 
 - [Turbo Console Log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log)
 
@@ -209,8 +203,6 @@ Real-time collaborative development from the comfort of your favorite tools.
 	"i18n-ally.sourceLanguage": "en-US"
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)
 
 ## Other
 

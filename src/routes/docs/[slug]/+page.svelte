@@ -58,18 +58,24 @@
 			background-color: #cbd5e1;
 		}
 
-		pre {
+		.code-container {
 			margin: 1.2rem 0 !important;
 			border-radius: 0.75rem;
 			border: 1px solid rgb(248 250 252 / 0.06);
 			overflow: hidden;
 		}
 
-		pre > div {
+		.code-container > div {
 			padding: 0.5rem 1rem;
 			background-color: #0f172aff;
 			backdrop-filter: blur(4px);
 			/* background-color: rgb(248 250 252 / 0.06) */
+		}
+
+		.code-title {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
 		}
 
 		code.hljs {

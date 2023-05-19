@@ -15,8 +15,6 @@ When creating a SvelteKit project, modify the following items in the generated .
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.prettierrc)
-
 ## Formatting
 
 - Enable format on save and paste events.
@@ -43,5 +41,3 @@ When creating a SvelteKit project, modify the following items in the generated .
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)

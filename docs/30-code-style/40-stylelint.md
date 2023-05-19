@@ -26,5 +26,3 @@ npm i stylelint-config-standard --save-dev
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.stylelintrc.json)
