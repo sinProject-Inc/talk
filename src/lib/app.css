@@ -42,7 +42,7 @@ a {
 
 @layer components {
 	.input-element {
-		@apply border-media-border bg-border overflow-hidden rounded-md border;
+		@apply overflow-hidden rounded-md border border-media-border bg-border;
 	}
 
 	a {
@@ -51,7 +51,7 @@ a {
 
 	button,
 	select {
-		@apply cursor-pointer;
+		@apply cursor-pointer transition;
 	}
 
 	button {
@@ -92,7 +92,7 @@ a {
 	}
 
 	.submit-button {
-		@apply bg-link border-link box-border w-full font-semibold text-white;
+		@apply box-border w-full border-link bg-link font-semibold text-white;
 	}
 
 	.card-parent {

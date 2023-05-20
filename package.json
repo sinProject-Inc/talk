@@ -81,6 +81,7 @@
 		"@prisma/client": "^4.14.1",
 		"@socket.io/redis-adapter": "^8.2.1",
 		"@types/markdown-it": "^12.2.3",
+		"country-flag-emoji-polyfill": "^0.1.4",
 		"deepl-node": "^1.9.0",
 		"express": "^4.18.2",
 		"fuse.js": "^6.6.2",

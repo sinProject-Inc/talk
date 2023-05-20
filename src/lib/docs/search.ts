@@ -1,15 +1,9 @@
 import Fuse from 'fuse.js'
-
-type MarkdownData = {
-	path: string
-	title: string
-	description: string
-	content: string
-}
+import type { MarkdownData } from './search_index'
 
 export class Search {
 	private _fuse_options: Fuse.IFuseOptions<MarkdownData> = {
-		keys: ['title', 'description', 'content'],
+		keys: ['description', 'content'],
 		threshold: 0.0,
 		ignoreLocation: true,
 		includeScore: true,

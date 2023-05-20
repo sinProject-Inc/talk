@@ -2,7 +2,7 @@
 title: VSCode Workspace Settings
 ---
 
-We have added the following to VSCode's workspace configuration.
+Here are the VSCode workspace settings that we commonly use at sinProject.
 
 ## Bracket Pairs
 

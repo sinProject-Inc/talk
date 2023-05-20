@@ -469,21 +469,6 @@
 		goto(`${base}/chat/${room_id}`)
 	}
 
-	function should_show_name_and_time(chat_log_item: ChatLogItem, index: number): boolean {
-		if (index === 0) return true
-
-		const previous_chat_log_item = chat_log_items[index - 1]
-
-		if (chat_log_item.data.name !== previous_chat_log_item.data.name) return true
-
-		let current_minutes = new Date(chat_log_item.data.created_at).getMinutes()
-		let previous_minutes = new Date(previous_chat_log_item.data.created_at).getMinutes()
-
-		if (current_minutes === previous_minutes) return false
-
-		return false
-	}
-
 	socket.on('connect', () => {
 		// eslint-disable-next-line no-console
 		console.debug('[socket.io] connected.')
@@ -606,20 +591,16 @@
 				{#each chat_log_items as chat_log_item, i}
 					<div in:fly={{ y: 20 }} out:slide class="flex">
 						<div class="mr-4 w-10 pt-[2px]">
-							{#if should_show_name_and_time(chat_log_item, i)}
-								<img
-									class="w-full rounded-full object-contain"
-									src={new AvatarUrl(new UserId(chat_log_item.data.sender_id)).url}
-									alt="avatar"
-								/>
-							{/if}
+							<img
+								class="w-full rounded-full object-contain"
+								src={new AvatarUrl(new UserId(chat_log_item.data.sender_id)).url}
+								alt="avatar"
+							/>
 						</div>
 						<div>
 							<div class="flex flex-row gap-1">
-								{#if should_show_name_and_time(chat_log_item, i)}
-									<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
-									<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
-								{/if}
+								<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
+								<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
 							</div>
 							{#if chat_log_item.translated}
 								<p>

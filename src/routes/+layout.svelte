@@ -9,6 +9,7 @@
 	import { Background } from '$lib/background/background'
 	import { browser } from '$app/environment'
 	import { afterNavigate } from '$app/navigation'
+	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
 
 	export let data: LayoutServerData
 
@@ -20,6 +21,7 @@
 	let transition_background_timer: number
 
 	load_backgrounds()
+	polyfillCountryFlagEmojis()
 
 	function get_direction(locale_code: string): string {
 		return new Direction(locale_code).value
@@ -73,7 +75,10 @@
 	})
 </script>
 
-<div class="min-h-screen bg-cover bg-fixed bg-no-repeat" dir={get_direction($locale ?? '')}>
+<div
+	class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
+	dir={get_direction($locale ?? '')}
+>
 	<div>
 		{#if current_background}
 			<div class="fixed -z-50 h-screen w-full">
