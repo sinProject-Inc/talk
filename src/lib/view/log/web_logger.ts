@@ -15,6 +15,11 @@ export class WebLogger {
 	}
 
 	private async _send(web_log: WebLog): Promise<void> {
+		if (!navigator.onLine) {
+			this._save_to_local_storage(web_log)
+			return
+		}
+
 		const response = await fetch(`${base}/api/log`, {
 			method: 'POST',
 			headers: {
@@ -72,8 +77,6 @@ export class WebLogger {
 		web_logs.forEach((web_log) => web_logger._send(web_log))
 
 		localStorage.removeItem('web_logs')
-
-		WebLogger.handle_network_change(web_logger)
 	}
 
 	public static handle_error(web_logger: WebLogger, event: ErrorEvent): void {
@@ -93,7 +96,7 @@ export class WebLogger {
 		// console.debug('[log] add_network_event_listeners')
 
 		window.addEventListener('offline', () => WebLogger.handle_network_change(this))
-		window.addEventListener('online', () => WebLogger.send_stored_messages(this))
+		window.addEventListener('online', () => WebLogger.handle_network_change(this))
 		window.addEventListener('error', (event) => WebLogger.handle_error(this, event))
 		window.addEventListener('unhandledrejection', (event) =>
 			WebLogger.handle_unhandled_rejection(this, event)
