@@ -60,7 +60,7 @@
 
 		.code-container {
 			margin: 1.2rem 0 !important;
-			border-radius: 0.75rem;
+			border-radius: 0.5rem;
 			border: 1px solid rgb(248 250 252 / 0.06);
 			overflow: hidden;
 		}

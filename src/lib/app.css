@@ -51,7 +51,7 @@ a {
 
 	button,
 	select {
-		@apply cursor-pointer;
+		@apply cursor-pointer transition;
 	}
 
 	button {
