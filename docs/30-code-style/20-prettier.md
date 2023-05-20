@@ -8,23 +8,19 @@ How we use [Prettier](https://prettier.io/) to automate formatting.
 
 When creating a SvelteKit project, modify the following items in the generated .prettierrc file:
 
-```json
-// .prettierrc
+```json:.prettierrc
 {
 	"trailingComma": "es5",
 	"semi": false
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.prettierrc)
-
 ## Formatting
 
 - Enable format on save and paste events.
 - Use Prettier to format TypeScript, JavaScript, HTML, Svelte, and JSON files.
 
-```json
-// .vscode/settings.json
+```json:.vscode/settings.json
 {
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
@@ -45,5 +41,3 @@ When creating a SvelteKit project, modify the following items in the generated .
 	}
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.vscode/settings.json)

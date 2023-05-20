@@ -1,5 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite'
-import type { UserConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import inject_socket_io from './server/socket-handler'
 
 // # Dev
@@ -17,7 +17,7 @@ const web_socket = {
 	},
 }
 
-const config: UserConfig = {
+export default defineConfig({
 	plugins: [sveltekit(), web_socket],
 	define: {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
@@ -36,6 +36,4 @@ const config: UserConfig = {
 	server: {
 		host: true,
 	},
-}
-
-export default config
+})

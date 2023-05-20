@@ -1,7 +1,6 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
-		"types": ["vitest/importMeta"],
 		"allowJs": true,
 		"checkJs": true,
 		"esModuleInterop": true,
@@ -23,8 +22,10 @@
 		"exactOptionalPropertyTypes": true,
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
 		// "noUncheckedIndexedAccess": true,
+
+		"types": ["vitest/importMeta"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
