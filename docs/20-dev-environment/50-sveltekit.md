@@ -2,13 +2,13 @@
 title: SvelteKit
 ---
 
-When we create web applications, we use [SvelteKit](https://kit.svelte.dev/).
+For web application development, we utilize [SvelteKit](https://kit.svelte.dev/).
 
-This documentation app is also written in SvelteKit and TypeScript. On the backend, it investigates the folder structure to create menu data, retrieves Markdown files, and applies styles using CSS in the browser.
+This documentation app is also built using SvelteKit and TypeScript. On the server side, it examines the folder structure to generate menu data, retrieves markdown files, and applies styles using CSS within the browser.
 
 ## Tutorial
 
-The SvelteKit official website provides [interactive tutorial](https://learn.svelte.dev/tutorial/welcome-to-svelte). To learn about Svelte and SvelteKit, start by referring to this tutorials.
+The SvelteKit official website offers an [interactive tutorial](https://learn.svelte.dev/tutorial/welcome-to-svelte) for beginners. To get started with Svelte and SvelteKit, we recommend exploring these tutorials first.
 
 ## Docs
 
