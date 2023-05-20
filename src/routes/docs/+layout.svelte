@@ -90,6 +90,7 @@
 		</div>
 	</div>
 </div>
+<img class="github-link !hidden" alt="" />
 
 <style lang="postcss">
 	:root {
