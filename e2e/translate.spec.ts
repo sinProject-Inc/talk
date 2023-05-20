@@ -112,6 +112,8 @@ test.describe('after sign in', () => {
 		await from_text_area.fill('Hello')
 		await from_text_area.press('Enter')
 
+		await page.waitForTimeout(1000)
+
 		const bottom_textarea = page.getByRole('textbox').nth(1)
 
 		await expect(bottom_textarea).toHaveValue('こんにちは')

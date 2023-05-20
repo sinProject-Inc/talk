@@ -9,8 +9,7 @@ How we define code style using [ESLint](https://eslint.org/).
 - Make accessibility and return type mandatory.
 - Prohibit console output.
 
-```js
-// .eslintrc.cjs
+```js:.eslintrc.cjs
 module.exports = {
 	rules: {
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
@@ -20,15 +19,12 @@ module.exports = {
 }
 ```
 
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
-
 ## Naming conventions
 
 - Set variable names, argument names, and function names to snake_case.
 - Prefix private variables with an underscore.
 
-```js
-// .eslintrc.cjs
+```js:.eslintrc.cjs
 module.exports = {
 	rules: {
 		'@typescript-eslint/naming-convention': [
@@ -100,8 +96,6 @@ module.exports = {
 	},
 }
 ```
-
-[View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.eslintrc.cjs)
 
 ## Missing return type on function in the HTML part of Svelte
 
