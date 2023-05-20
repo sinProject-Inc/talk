@@ -1,5 +1,5 @@
 ---
-title: Global npm Packages
+title: Global NPM Packages
 ---
 
 ## Installing packages globally
@@ -8,13 +8,13 @@ title: Global npm Packages
 npm install -g <package_name>
 ```
 
-## How to Check All Global Packages
+## Checking all global packages
 
 ```bash
 npm list -g
 ```
 
-## The npm Packages We Are Installing Globally
+## The packages we install globally
 
 - [npm-check-updates](https://github.com/raineorshine/npm-check-updates)
 - [typescript](https://www.typescriptlang.org/)

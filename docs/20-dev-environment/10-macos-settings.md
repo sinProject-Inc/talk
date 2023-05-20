@@ -2,7 +2,7 @@
 title: macOS Settings
 ---
 
-We change the macOS settings as follows.
+Here are the macOS settings that we commonly use at sinProject.
 
 ## System Settings
 
