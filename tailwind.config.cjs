@@ -13,7 +13,7 @@ module.exports = {
 				link: 'rgb(29,155,240)',
 			},
 			fontFamily: {
-				sans: ['Segoe UI', 'Meiryo', ...defaultTheme.fontFamily.sans],
+				sans: ['Twemoji Country Flags', 'Segoe UI', 'Meiryo', ...defaultTheme.fontFamily.sans],
 			},
 			screens: {
 				xs: '410px',
