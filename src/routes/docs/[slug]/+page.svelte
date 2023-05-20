@@ -72,12 +72,6 @@
 			/* background-color: rgb(248 250 252 / 0.06) */
 		}
 
-		.code-title {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-		}
-
 		code.hljs {
 			/* border: 1px solid rgb(248 250 252 / 0.06); */
 			background-color: #0f172a88;
