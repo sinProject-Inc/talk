@@ -8,6 +8,7 @@
 	import type { MarkdownData } from '$lib/docs/search_index'
 	import { goto } from '$app/navigation'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
+	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
 
 	export let search_query = ''
 
@@ -29,7 +30,25 @@
 			return
 		}
 
-		results = search.search(search_query)
+		const searched_results = search.search(search_query)
+
+		results = searched_results
+
+		// results = searched_results.filter((result) => {
+		// 	if (!result.matches) return false
+
+		// 	for (const match of result.matches) {
+		// 		// console.log(match)
+		// 		if (
+		// 			match.key === 'content' &&
+		// 			match.value?.toLocaleLowerCase().includes(search_query.toLocaleLowerCase())
+		// 		)
+		// 			return true
+		// 	}
+
+		// 	return false
+		// })
+
 		active_result_index = 0
 
 		input = input
@@ -272,7 +291,16 @@
 						on:mousemove={() => on_mouse_to_result(i)}
 					>
 						<a class="block text-left" href={result.item.path} on:click={close}>
-							<div class="text-lg font-bold text-white">{result.item.title}</div>
+							<div class="flex items-center gap-3">
+								<div class="text-lg font-bold text-white">{result.item.title}</div>
+								{#if result.item.heading}
+									<div class="flex h-1 w-1 items-center justify-center">
+										<RightArrowIcon />
+									</div>
+									<div class="text-lg font-semibold text-white/90">{result.item.heading}</div>
+								{/if}
+							</div>
+							<div class="text-lg font-bold text-red-600" />
 							<div class="text-white/90">
 								{#each get_context(result) as context_potion}
 									{#if context_potion.is_match}
