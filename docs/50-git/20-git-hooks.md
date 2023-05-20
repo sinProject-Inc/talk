@@ -42,7 +42,7 @@ npx husky-init && npm install
 
 Combine [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [lint-staged](https://github.com/okonet/lint-staged) to format code.
 
-```bash:./husky/pre-commit
+```bash:.husky/pre-commit
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
@@ -66,7 +66,7 @@ Perform TypeScript type checking, run tests with [Vitest](https://vitest.dev/), 
 }
 ```
 
-```bash:./husky/pre-push
+```bash:.husky/pre-push
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
