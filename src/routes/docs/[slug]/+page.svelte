@@ -125,6 +125,7 @@
 		.link-with-arrow::after {
 			content: url('/talk/right_arrow.svg');
 			position: relative;
+			margin-inline-start: 0.2rem;
 		}
 
 		/* code:not(.hljs) {
@@ -153,7 +154,7 @@
 						<GithubIcon />
 					</div>
 					<div>Edit this page</div>
-					<div class="-mx-3 h-1 w-1">
+					<div class="-mx-2 h-1 w-1">
 						<RightArrowIcon />
 					</div>
 				</a>

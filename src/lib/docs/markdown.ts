@@ -120,36 +120,63 @@ export class Markdown {
 				highlighted_code = md.utils.escapeHtml(token.content)
 			}
 
-			let filename_tag = ''
+			const title_element = filename
+				? `
+					<a class="code-title flex gap-1.5 items-center font-semibold text-slate-400 hover:text-slate-300" href="${github_url}${filename}" target="blank">
+						<div style="width:20px">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-brand-github-filled"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path
+									d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z"
+									stroke-width="0"
+									fill="currentColor"
+								/>
+							</svg>
+						</div>
+						${filename}
+					</a>
+				`
+				: `
+					<div class="code-title flex gap-1.5 items-center font-semibold text-slate-400">
+						<div style="width:20px">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-terminal-2"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path d="M8 9l3 3l-3 3" fill="none" />
+								<path d="M13 15l3 0" fill="none" />
+								<path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" fill="none" />
+							</svg>
+						</div>
+						${hljs.getLanguage(lang)?.name}
+					</div>
+				`
 
-			if (filename) {
-				filename_tag = `
-					<div class="flex gap-2 justify-between">
-						<a class="code-title flex gap-1.5 items-center font-semibold text-slate-400 hover:text-slate-300" href="${github_url}${filename}" target="blank">
-							<div style="width:20px">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									class="icon icon-tabler icon-tabler-brand-github-filled"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									stroke-width="2"
-									stroke="currentColor"
-									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-								>
-									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-									<path
-										d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z"
-										stroke-width="0"
-										fill="currentColor"
-									/>
-								</svg>
-							</div>
-							${filename}
-						</a>
-						<div style="width:20px; display: none">
+			const code_header_element = `
+				<div class="flex gap-2 justify-between">
+					${title_element}
+					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold text-slate-400 hover:text-slate-300">
+						<div style="width:20px;">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="icon icon-tabler icon-tabler-copy"
@@ -170,13 +197,15 @@ export class Markdown {
 								<path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" fill="none" />
 							</svg>
 						</div>
-					</div>
-				`
-			}
+					</button>
+				</div>
+			`
 
-			return `<div class="code-container">${filename_tag}<pre><code class="hljs ${lang}">${highlighted_code}</code></pre></div>`
+			return `<div class="code-container">${code_header_element}<pre><code class="hljs ${lang}">${highlighted_code}</code></pre></div>`
 		}
+	}
 
+	public static github_link_plugin(md: MarkdownIt): void {
 		md.renderer.rules.text = function (tokens, idx): string {
 			const text = tokens[idx].content
 			let string_after_render = text
@@ -231,6 +260,7 @@ export class Markdown {
 
 		// md.use(mdHighlightjs)
 		md.use(Markdown.code_block_name_plugin)
+		md.use(Markdown.github_link_plugin)
 
 		const source_html_content = md.render(content)
 		const { sections, html_content } = this.generate_sections(source_html_content)

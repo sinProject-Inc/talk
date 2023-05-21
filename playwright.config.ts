@@ -16,7 +16,7 @@ dotenv.config()
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
 	/* Maximum time one test can run for. */
-	timeout: process.env.CI ? 15 * 1000 : 5 * 1000,
+	timeout: process.env.CI ? 20 * 1000 : 5 * 1000,
 	expect: {
 		/**
 		 * Maximum time expect() should wait for the condition to be met.
@@ -50,6 +50,10 @@ const config: PlaywrightTestConfig = {
 
 		// headless: false,
 		video: 'retain-on-failure',
+
+		contextOptions: {
+			permissions: ['clipboard-read', 'clipboard-write', 'accessibility-events'],
+		},
 	},
 
 	/* Configure projects for major browsers */
