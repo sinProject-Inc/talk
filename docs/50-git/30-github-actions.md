@@ -2,7 +2,7 @@
 title: GitHub Actions
 ---
 
-We use GitHub Actions to perform two types of CI: Checks and tests.
+We use [GitHub Actions](https://docs.github.com/en/actions) to perform two types of CI: Checks and tests.
 
 ## Checks
 

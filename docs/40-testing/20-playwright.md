@@ -49,6 +49,8 @@ const config: PlaywrightTestConfig = {
 }
 ```
 
+[Playwright - TestConfig >](https://playwright.dev/docs/api/class-testconfig)
+
 ### Target Browsers
 
 Ensure that tests are not run on browsers where testing is not necessary.

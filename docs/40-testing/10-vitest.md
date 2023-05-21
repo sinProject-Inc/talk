@@ -30,6 +30,8 @@ export default defineConfig({
 })
 ```
 
+[Configuring Vitest >](https://vitest.dev/config/)
+
 ## Scripts
 
 We have prepared the following scripts to execute Vitest.
