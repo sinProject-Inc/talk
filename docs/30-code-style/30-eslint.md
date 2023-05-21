@@ -19,7 +19,15 @@ module.exports = {
 }
 ```
 
+[typescript-eslint - explicit-member-accessibility >](https://typescript-eslint.io/rules/explicit-member-accessibility/)
+
+[typescript-eslint - explicit-function-return-type >](https://typescript-eslint.io/rules/explicit-function-return-type/)
+
+[ESLint - no-console >](https://eslint.org/docs/latest/rules/no-console)
+
 ## Naming conventions
+
+[Enforce naming conventions for everything across a codebase.](https://typescript-eslint.io/rules/naming-convention/)
 
 - Set variable names, argument names, and function names to snake_case.
 - Prefix private variables with an underscore.
