@@ -205,6 +205,7 @@
 		let scroll_height = 0
 		let client_height = 0
 		let scroll_top = 0
+		let scroll_bottom = 0
 
 		const target_parent = target.closest('.result')
 
@@ -212,10 +213,15 @@
 			scroll_height = target_parent.scrollHeight
 			client_height = target_parent.clientHeight
 			scroll_top = target_parent.scrollTop
+			scroll_bottom = scroll_top + client_height
 		}
 
-		if (scroll_top === 0 && delta_y < 0) return false
-		if (scroll_top + client_height === scroll_height && delta_y > 0) return false
+		const tolerable_bottom = 1
+		const client_is_top = scroll_top === 0
+		const client_is_bottom = Math.abs(scroll_bottom - scroll_height) < tolerable_bottom
+
+		if (client_is_top && delta_y < 0) return false
+		if (client_is_bottom && delta_y > 0) return false
 
 		return true
 	}

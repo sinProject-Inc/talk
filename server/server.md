@@ -4,7 +4,7 @@
 
 `npm start`
 
-実際は `npx tsx server.ts `
+実際は `npx tsx server.ts`
 
 ## クラスター起動
 

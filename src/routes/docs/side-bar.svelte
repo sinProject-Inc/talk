@@ -59,10 +59,10 @@
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<div
-			class="fixed top-24 h-16 w-56 rounded-2xl bg-gradient-to-t from-transparent via-slate-800 to-slate-800"
+			class="fixed top-[84px] h-16 w-56 rounded-2xl bg-gradient-to-t from-transparent via-slate-800 to-slate-800"
 		/>
 		<button
-			class="glass-panel fixed top-24 flex w-56 items-center gap-3 rounded-md bg-slate-900/90 shadow-lg shadow-slate-900/70 transition-all duration-150 hover:bg-slate-600/75"
+			class="glass-panel fixed top-[84px] flex w-56 items-center gap-3 rounded-md bg-slate-900/90 shadow-lg shadow-slate-900/70 transition-all duration-150 hover:bg-slate-600/75"
 			on:click={on_search_button_click}
 		>
 			<div class="h-5"><SearchIcon /></div>
@@ -75,7 +75,7 @@
 		</button>
 	{/if}
 
-	<div class="pl-1 pt-8">
+	<div class="pl-1 pt-4">
 		{#each sections as section}
 			<li class="my-8">
 				<h5 class="mb-3 font-semibold text-slate-200">

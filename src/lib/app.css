@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+	/* NOTE* サンプル。カラーテーマ変更対応のときに不要であれば削除 */
+
+	/* color-scheme: light dark; */
+	color-scheme: dark;
+
 	--background-color: #fff;
 	--border-color: rgb(239 243 244);
 	--media-border-color: rgb(207 217 222);
@@ -18,8 +23,21 @@
 	--header-height: 53px;
 }
 
+/* NOTE* サンプル。カラーテーマ変更対応のときに不要であれば削除 */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-color: #000;
+		--text-color: #fff;
+	}
+}
+
 html {
 	scroll-behavior: smooth;
+}
+
+/* NOTE* サンプル。カラーテーマ変更対応のときに不要であれば削除 */
+body {
+	transition: 0.5s ease-in-out;
 }
 
 a {

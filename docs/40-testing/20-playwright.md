@@ -42,9 +42,14 @@ const config: PlaywrightTestConfig = {
 	reporter: [['html', { open: 'never' }]],
 	use: {
 		video: 'retain-on-failure',
+		contextOptions: {
+			permissions: ['clipboard-read', 'clipboard-write', 'accessibility-events'],
+		},
 	},
 }
 ```
+
+[Playwright - TestConfig >](https://playwright.dev/docs/api/class-testconfig)
 
 ### Target Browsers
 

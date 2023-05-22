@@ -133,6 +133,7 @@
 
 	<Snackbar text={$_('copied')} visible={copied_snackbar_visible} />
 </div>
+<img class="github-link !hidden" alt="" />
 
 <style lang="postcss">
 	:root {

@@ -175,7 +175,7 @@ export class Markdown {
 			const code_header_element = `
 				<div class="flex gap-2 justify-between">
 					${title_element}
-					<button class="copy-code flex gap-1.5 items-center font-semibold text-slate-400  rounded-full hover:bg-white/50 hover:text-black/75 active:scale-110 duration-75">
+					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold text-slate-400  rounded-full hover:text-slate-300 hover:bg-white/50 hover:text-black/75 active:scale-110 duration-75">
 						<div style="width:20px;">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -205,6 +205,39 @@ export class Markdown {
 		}
 	}
 
+	public static github_link_plugin(md: MarkdownIt): void {
+		md.renderer.rules.text = function (tokens, idx): string {
+			const text = tokens[idx].content
+			let string_after_render = text
+
+			if (text.includes('>')) {
+				const cut_text = text.replace('>', '')
+
+				string_after_render = `
+					<div style="display: flex; flex-direction: row;">
+						<div class="link-with-arrow">
+							${cut_text}
+						</div>
+					</div>
+				`
+			}
+
+			if (text.includes('on GitHub >')) {
+				const cut_text = text.replace('on GitHub >', '')
+
+				string_after_render = `
+					<div style="display: flex; flex-direction: row;">
+						<div class="github-link link-with-arrow">
+							${cut_text}
+						</div>
+					</div>
+				`
+			}
+
+			return string_after_render
+		}
+	}
+
 	public static generate_page_content(file_path: string): {
 		title: string
 		description: string
@@ -227,6 +260,7 @@ export class Markdown {
 
 		// md.use(mdHighlightjs)
 		md.use(Markdown.code_block_name_plugin)
+		md.use(Markdown.github_link_plugin)
 
 		const source_html_content = md.render(content)
 		const { sections, html_content } = this.generate_sections(source_html_content)

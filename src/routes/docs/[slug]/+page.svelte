@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import GithubIcon from '$lib/components/icons/github_icon.svelte'
+	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
 	import { current_page_category, current_page_title } from '$lib/docs/current_page_store'
 	import OnThisPage from './OnThisPage.svelte'
 	import '/node_modules/highlight.js/styles/atom-one-dark.css'
@@ -84,6 +86,18 @@
 			/* @apply leading-8 space-y-4; */
 		}
 
+		.github-link::before {
+			content: url('/talk/github_icon.svg');
+			position: relative;
+			top: 4px;
+		}
+
+		.link-with-arrow::after {
+			content: url('/talk/right_arrow.svg');
+			position: relative;
+			margin-inline-start: 0.2rem;
+		}
+
 		/* code:not(.hljs) {
 			// /* color: #f00; */
 		/* padding: 0.25rem 0.5rem; */
@@ -101,9 +115,19 @@
 			<h1 class="text-slate-200">{data.page.title}</h1>
 
 			<div class="mb-5 text-sm font-semibold text-slate-400 hover:text-slate-300">
-				<a href={git_path} target="_blank" rel="noreferrer" class="border-none"
-					>Edit this page on GitHub</a
-				>
+				<a
+					href={git_path}
+					target="_blank"
+					rel="noreferrer"
+					class="flex items-center gap-1 border-none"
+					><div class="h-5 w-5">
+						<GithubIcon />
+					</div>
+					<div>Edit this page</div>
+					<div class="-mx-2 h-1 w-1">
+						<RightArrowIcon />
+					</div>
+				</a>
 			</div>
 
 			{#if data.page.description}
@@ -117,9 +141,10 @@
 			<div class="flex items-center text-sm font-semibold text-slate-200">
 				{#if prev_page}
 					<a href={prev_page.path} class="group flex items-center hover:text-white">
+						<!-- class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" -->
 						<svg
 							viewBox="0 0 3 6"
-							class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-300"
 							><path
 								d="M3 0L0 3L3 6"
 								fill="none"
@@ -135,11 +160,11 @@
 				{#if next_page}
 					<a
 						data-testid="next-page"
-						class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white"
+						class="group ml-auto flex items-center hover:text-white"
 						href={next_page.path}
 						>{next_page.title}<svg
 							viewBox="0 0 3 6"
-							class="ml-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							class="ml-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-300"
 							><path
 								d="M0 0L3 3L0 6"
 								fill="none"

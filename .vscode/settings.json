@@ -13,19 +13,25 @@
 	"cSpell.words": [
 		"autocompletes",
 		"autoincrement",
+		"autoload",
 		"codegen",
 		"cognitiveservices",
 		"combobox",
+		"compinit",
 		"Consolas",
 		"datasource",
 		"deepl",
+		"esbenp",
 		"Flaticon",
+		"FPATH",
 		"Freepik",
 		"Halfwidth",
+		"Haxe",
 		"highlightjs",
 		"imaps",
 		"iwasaki",
 		"japanwest",
+		"keystyle",
 		"Meiryo",
 		"Menlo",
 		"Modale",
@@ -43,6 +49,7 @@
 		"Segoe",
 		"sinproject",
 		"stylelint",
+		"stylelintrc",
 		"tabler",
 		"Tabnine",
 		"tailwindcss",
@@ -140,5 +147,9 @@
 		"**/package-lock.json",
 		"**/yarn.lock",
 		"**/locales/**.json"
-	]
+	],
+	"markdownlint.config": {
+		"no-inline-html": false,
+		"no-hard-tabs": false
+	}
 }
