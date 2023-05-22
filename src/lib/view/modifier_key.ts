@@ -3,7 +3,7 @@ import { OSInfo, OS } from './os_info'
 enum ModifierKeySymbols {
 	alt = 'Alt',
 	shift = '⇧',
-	control = 'Ctrl',
+	control = 'Ctrl ',
 	command = '⌘',
 }
 
