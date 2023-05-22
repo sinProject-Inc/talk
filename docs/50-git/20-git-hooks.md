@@ -7,15 +7,19 @@ We use lint-staged and Husky for our Git Hooks.
 - [lint-staged](https://github.com/okonet/lint-staged) - Run linters against staged git files and don't let 💩 slip into your code base!
 - [Husky](https://typicode.github.io/husky/#/) - Husky improves your commits and more 🐶 woof!
 
-## lint-staged
-
-### Installation
+## Installation
 
 ```bash
 npm install --save-dev lint-staged
 ```
 
-### Setup
+```bash
+npx husky-init && npm install
+```
+
+## pre-commit
+
+Combine [ESLint](https://eslint.org/), [Stylelint](https://stylelint.io/), [Prettier](https://prettier.io/), and [lint-staged](https://github.com/okonet/lint-staged) to format code.
 
 ```json:package.json
 {
@@ -29,18 +33,6 @@ npm install --save-dev lint-staged
 	}
 }
 ```
-
-## Husky
-
-### Installation
-
-```bash
-npx husky-init && npm install
-```
-
-## pre-commit
-
-Combine [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [lint-staged](https://github.com/okonet/lint-staged) to format code.
 
 ```bash:.husky/pre-commit
 #!/bin/sh
