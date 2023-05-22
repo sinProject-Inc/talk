@@ -31,10 +31,10 @@ cd /talk
 npm install
 ```
 
-2. Create a database with the name "talk"
-3. Create a .env file by copying .env.example at the top level of the project
-4. Rewrite the .env file with your environment variables
-5. Push the initial schema and data to the database:
+1. Create a database with the name "talk"
+1. Create a .env file by copying .env.example at the top level of the project
+1. Rewrite the .env file with your environment variables
+1. Push the initial schema and data to the database:
 
 ```bash
 npx prisma db push
@@ -42,8 +42,8 @@ npx prisma generate
 npx prisma db seed
 ```
 
-6. Install [Redis](https://redis.io/), and run the command: `redis-server`
-7. Run locally
+1. Install [Redis](https://redis.io/), and run the command: `redis-server`
+1. Run locally
 
 ```bash
 # Start the server and open the app in a new browser tab
