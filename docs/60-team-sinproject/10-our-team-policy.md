@@ -12,6 +12,9 @@ title: Our Team Policy
 
 - We are committed to honoring project deadlines.
 - We strive to deliver work of the highest quality.
+- To improve quality, we will implement necessary tests.
+- To improve quality, manual merging is to be conducted by two or more people.
+- To reduce work hours, we will verify what needs to be implemented before implementing.
 
 ## Innovative Suggestions
 
