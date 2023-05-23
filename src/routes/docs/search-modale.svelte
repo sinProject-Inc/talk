@@ -307,10 +307,10 @@
 								{/if}
 							</div>
 							<div class="text-lg font-bold text-red-600" />
-							<div class="text-white/90">
+							<div class="text-slate-400">
 								{#each get_context(result) as context_potion}
 									{#if context_potion.is_match}
-										<span class="border-b border-[#38bdf8] font-bold">{context_potion.text}</span>
+										<span class="text-sky-400">{context_potion.text}</span>
 									{:else}
 										{context_potion.text}
 									{/if}
