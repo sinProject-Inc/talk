@@ -75,7 +75,7 @@
 		</button>
 	{/if}
 
-	<div class="pl-1 pt-8">
+	<div class="pl-1 pt-4">
 		{#each sections as section}
 			<li class="my-8">
 				<h5 class="mb-3 font-semibold text-slate-200">
