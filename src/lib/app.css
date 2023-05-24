@@ -132,7 +132,7 @@ a {
 	}
 
 	.glass-panel {
-		@apply glass rounded-[0.75rem] border border-[#F8FAFC]/[0.06] shadow-lg;
+		@apply glass rounded-[0.5rem] border border-[#F8FAFC]/[0.06] shadow-lg;
 	}
 
 	.glass-button {
