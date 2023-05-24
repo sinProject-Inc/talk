@@ -25,7 +25,7 @@ export class SearchIndex {
 			const { data: metadata, content } = matter(file_content)
 			const { title, description } = metadata
 
-			const file = file_path.split('/').pop()
+			const file = file_path.split(/[/\\]/).pop()
 			if (!file) throw new Error('File path is invalid')
 			const slug = file.slice(3, -3)
 
