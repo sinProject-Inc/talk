@@ -1,6 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-	><path
-		fill="currentColor"
-		d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-8 8v-2.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20H4Z"
-	/></svg
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	class="icon icon-tabler icon-tabler-user"
+	width="24"
+	height="24"
+	viewBox="0 0 24 24"
+	stroke-width="2"
+	stroke="currentColor"
+	fill="none"
+	stroke-linecap="round"
+	stroke-linejoin="round"
 >
+	<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+	<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" fill="none" />
+	<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" fill="none" />
+</svg>
