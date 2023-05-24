@@ -75,7 +75,7 @@
 
 <div class="pointer-events-none fixed left-0 top-0 z-20 flex h-full w-full justify-center pr-20">
 	<div
-		class="glass-panel pointer-events-auto mr-auto min-h-screen w-80 items-start rounded-none border-0 bg-slate-900/90 pl-10 backdrop-blur-md"
+		class="glass-panel pointer-events-auto mr-auto min-h-screen w-80 items-start rounded-none border-0 bg-slate-900/90 pl-10"
 	>
 		<div class="side-bar-navigation h-screen w-full overflow-y-scroll">
 			<SideBar {sections} search_bar_enabled={false} />
