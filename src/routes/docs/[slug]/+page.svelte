@@ -71,6 +71,7 @@
 
 		.content a:not(.border-none):not(.permalink):not(.code-title):hover {
 			border-bottom: 2px solid #38bdf8;
+			margin-bottom: -1px;
 		}
 
 		.content ul > li {
