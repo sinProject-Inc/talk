@@ -564,13 +564,13 @@
 
 	<div class="center-container flex w-screen flex-1 flex-col gap-3 overflow-y-scroll p-3">
 		<div class="flex items-center justify-between gap-3">
-			<div class="glass-panel flex h-[40px] w-full items-center gap-3 p-3">
+			<div class="glass-panel flex h-[40px] w-full items-center gap-3 rounded-[0.5rem] p-3">
 				<div class="ml-1 font-bold text-white/80">{$_('room')}:</div>
 				<div data-testid="room-id">{data.room_id}</div>
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button glass-panel flex h-[40px] items-center rounded-[0.75rem]"
+					class="glass-button glass-panel flex h-[40px] items-center rounded-[0.5rem]"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>
