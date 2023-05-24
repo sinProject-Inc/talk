@@ -2,30 +2,17 @@
 	import { page } from '$app/stores'
 	import SearchIcon from '$lib/components/icons/search_icon.svelte'
 	import type { Section } from '$lib/docs/markdown'
+	import { CommandOrControlShortcut } from '$lib/view/modifier_key'
 	import { createEventDispatcher } from 'svelte'
-	import { onMount } from 'svelte'
-	import { ModifierKey } from '$lib/view/modifier_key'
 
 	export let sections: Section[]
 	export let search_bar_enabled = true
-
-	let view_shortcut_key = ''
 
 	const dispatch = createEventDispatcher()
 
 	function on_search_button_click(): void {
 		dispatch('show_search_modale')
 	}
-
-	function set_view_shortcut_key(): void {
-		const modifier_key = new ModifierKey()
-
-		view_shortcut_key = modifier_key.get_control_or_command_symbol()
-	}
-
-	onMount(() => {
-		set_view_shortcut_key()
-	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
@@ -68,9 +55,7 @@
 			<div class="h-5"><SearchIcon /></div>
 			<div class="flex w-full justify-between pr-2">
 				<div class="flex">Search</div>
-				{#if view_shortcut_key}
-					<div class="flex">{view_shortcut_key}K</div>
-				{/if}
+				<div class="flex">{CommandOrControlShortcut.generate('k')}</div>
 			</div>
 		</button>
 	{/if}
