@@ -9,7 +9,7 @@
 	export let sections: Section[]
 	export let search_bar_enabled = true
 
-	let view_shortcut_key: string
+	let view_shortcut_key = ''
 
 	const dispatch = createEventDispatcher()
 
@@ -20,12 +20,7 @@
 	function set_view_shortcut_key(): void {
 		const modifier_key = new ModifierKey()
 
-		const modifier_key_symbol = modifier_key.get_control_or_command_symbol()
-		view_shortcut_key = modifier_key_symbol.symbol
-
-		if (modifier_key_symbol.is_alphanumeric) {
-			view_shortcut_key += ' '
-		}
+		view_shortcut_key = modifier_key.get_control_or_command_symbol()
 	}
 
 	onMount(() => {
