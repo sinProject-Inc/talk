@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation'
 	import { page } from '$app/stores'
 	import GithubIcon from '$lib/components/icons/github_icon.svelte'
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
@@ -19,35 +18,6 @@
 
 	$: current_page_title.set(data.page.title)
 	$: current_page_category.set(data.category)
-
-	function add_copy_code_event(): void {
-		const copy_code_elements = document.querySelectorAll('.copy-code')
-
-		copy_code_elements.forEach((element) => {
-			element.addEventListener('click', (event) => {
-				if (!event.target) return
-
-				const target_element = event.target as HTMLElement
-				let current_element = target_element.parentElement
-
-				while (current_element) {
-					if (current_element.classList.contains('code-container')) break
-
-					current_element = current_element.parentElement
-				}
-
-				if (!current_element) return
-
-				const code = current_element.querySelector('code')?.textContent ?? ''
-
-				navigator.clipboard.writeText(code)
-			})
-		})
-	}
-
-	afterNavigate(() => {
-		add_copy_code_event()
-	})
 </script>
 
 <svelte:head>

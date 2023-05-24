@@ -175,7 +175,7 @@ export class Markdown {
 			const code_header_element = `
 				<div class="flex gap-2 justify-between">
 					${title_element}
-					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold text-slate-400 hover:text-slate-300">
+					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold text-slate-400  rounded-full hover:text-slate-300 hover:bg-white/50 hover:text-black/75 active:scale-110 duration-75">
 						<div style="width:20px;">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
