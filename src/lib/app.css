@@ -97,7 +97,7 @@ a {
 	}
 
 	.center-container {
-		@apply mx-auto w-screen px-6;
+		@apply max-w-8xl mx-auto w-full px-6;
 	}
 
 	.title {
