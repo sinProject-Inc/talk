@@ -10,7 +10,7 @@
 	import NavbarSecondRow from './navbar-second-row.svelte'
 	import SearchModale from './search-modale.svelte'
 	import SideBar from './side-bar.svelte'
-	import { fly, fade } from 'svelte/transition'
+	import { fly } from 'svelte/transition'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -113,8 +113,13 @@
 	<Navbar search_bar_enabled on:show_search_modale={open_search_modale} />
 	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
 
+	<div
+		class:blur={mobile_side_bar_open}
+		class="pointer-events-none fixed left-0 top-0 z-20 flex h-full w-full justify-center pr-20"
+	/>
+
 	{#if mobile_side_bar_open}
-		<div class="fixed top-0 z-50 w-full" transition:fly={{ x: -100 }}>
+		<div class="fixed left-0 top-0 z-50 w-full" transition:fly={{ x: -100, duration: 250 }}>
 			<MobileSideBar {sections} on:close={close_mobile_side_bar} />
 		</div>
 	{/if}
@@ -141,5 +146,9 @@
 <style lang="postcss">
 	:root {
 		background: black;
+	}
+
+	.blur {
+		backdrop-filter: blur(4px);
 	}
 </style>
