@@ -1,14 +1,40 @@
-import { OSInfo, OS } from './os_info'
-import { ModifierKeySymbol, ModifierKeySymbols } from './modifier_key_symbol'
+import { browser } from '$app/environment'
+import { OSInfo } from './os_info'
 
-export class ModifierKey {
-	private readonly _os_info = new OSInfo()
+enum ModifierKeySymbol {
+	alt = 'Alt',
+	shift = '⇧',
+	control = 'Ctrl',
+	command = '⌘',
+	unknown = '',
+}
 
-	public get_control_or_command_symbol(): ModifierKeySymbol {
-		const os = this._os_info.get_os()
+export class CommandOrControlShortcut {
+	private _modifier_key_symbol: ModifierKeySymbol
 
-		if (os === OS.mac_os || os === OS.ios) return new ModifierKeySymbol(ModifierKeySymbols.command)
+	public constructor() {
+		this._modifier_key_symbol = this._get_symbol()
+	}
 
-		return new ModifierKeySymbol(ModifierKeySymbols.control)
+	private _get_symbol(): ModifierKeySymbol {
+		const is_mac_or_ios = OSInfo.is_mac_or_ios()
+		const modifier_key = is_mac_or_ios ? ModifierKeySymbol.command : ModifierKeySymbol.control
+
+		return modifier_key
+	}
+
+	public get is_alphanumeric(): boolean {
+		const alphanumeric_regex = /^[a-z0-9]+$/i
+
+		return alphanumeric_regex.test(this._modifier_key_symbol)
+	}
+
+	public static generate(key: string): string {
+		if (!browser) return ''
+
+		const control_or_command = new CommandOrControlShortcut()
+		const spacer = control_or_command.is_alphanumeric ? ' ' : ''
+
+		return `${control_or_command._modifier_key_symbol}${spacer}${key.toUpperCase()}`
 	}
 }
