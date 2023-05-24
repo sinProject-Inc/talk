@@ -10,6 +10,7 @@
 	import NavbarSecondRow from './navbar-second-row.svelte'
 	import SearchModale from './search-modale.svelte'
 	import SideBar from './side-bar.svelte'
+	import { fly, fade } from 'svelte/transition'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -113,7 +114,9 @@
 	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
 
 	{#if mobile_side_bar_open}
-		<MobileSideBar {sections} on:close={close_mobile_side_bar} />
+		<div class="fixed top-0 z-50 w-full" transition:fly={{ x: -100 }}>
+			<MobileSideBar {sections} on:close={close_mobile_side_bar} />
+		</div>
 	{/if}
 
 	{#if search_modale_open}
