@@ -570,7 +570,7 @@
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button glass-panel h-[40px] rounded-[0.75rem]"
+					class="glass-button glass-panel flex h-[40px] items-center rounded-[0.75rem]"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>

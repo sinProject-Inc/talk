@@ -33,9 +33,10 @@
 				<img src="{base}/icon-144.png" class="h-8" alt="" />
 				{$_('talk_title')}
 			</a>
-			<nav
+			<nav class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 text-slate-200">
+				<!-- <nav
 				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"
-			>
+			> -->
 				<a href="{base}/translate" class="flex items-center gap-1">
 					<div class="h-5"><TranslateIcon /></div>
 					<span class="hidden md:block">{$_('translate')}</span>

@@ -4,7 +4,7 @@ import { Repository } from '$lib/app/repository'
 import { Session } from '$lib/auth/session'
 import { Signing } from '$lib/auth/signing'
 import { ClientAddress } from '$lib/network/client_address'
-import { ClientHostName } from '$lib/network/client_hostname'
+// import { ClientHostName } from '$lib/network/client_hostname'
 import type { AuthToken, Role, User } from '@prisma/client'
 import type { Handle, HandleServerError, RequestEvent } from '@sveltejs/kit'
 
@@ -52,7 +52,7 @@ async function find_auth_token(event: RequestEvent): Promise<
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const client_address = new ClientAddress(event.request, event.getClientAddress).value
-	const client_hostname = await new ClientHostName(client_address).get_hostname()
+	// const client_hostname = await new ClientHostName(client_address).reverse()
 
 	const auth_token = await find_auth_token(event)
 
@@ -66,14 +66,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 	} else {
 		if (is_authorized_api(event.url.pathname)) {
 			logger.warn(
-				`${client_address} ${client_hostname} [API] Unauthorized API request: [${event.request.method}] ${event.url}`
+				`${client_address} [API] Unauthorized API request: [${event.request.method}] ${event.url}`
 			)
 			return new Response('Unauthorized', { status: 401 })
 		}
 	}
 
 	if (event.url.pathname !== `${base}/api/log`) {
-		logger.info(`${client_address} ${client_hostname} [${event.request.method}] ${event.url}`)
+		logger.info(`${client_address} [${event.request.method}] ${event.url}`)
 	}
 
 	return await resolve(event)

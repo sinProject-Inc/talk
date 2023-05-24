@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation'
 	import { page } from '$app/stores'
 	import GithubIcon from '$lib/components/icons/github_icon.svelte'
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
@@ -19,35 +18,6 @@
 
 	$: current_page_title.set(data.page.title)
 	$: current_page_category.set(data.category)
-
-	function add_copy_code_event(): void {
-		const copy_code_elements = document.querySelectorAll('.copy-code')
-
-		copy_code_elements.forEach((element) => {
-			element.addEventListener('click', (event) => {
-				if (!event.target) return
-
-				const target_element = event.target as HTMLElement
-				let current_element = target_element.parentElement
-
-				while (current_element) {
-					if (current_element.classList.contains('code-container')) break
-
-					current_element = current_element.parentElement
-				}
-
-				if (!current_element) return
-
-				const code = current_element.querySelector('code')?.textContent ?? ''
-
-				navigator.clipboard.writeText(code)
-			})
-		})
-	}
-
-	afterNavigate(() => {
-		add_copy_code_event()
-	})
 </script>
 
 <svelte:head>
@@ -71,6 +41,7 @@
 
 		.content a:not(.border-none):not(.permalink):not(.code-title):hover {
 			border-bottom: 2px solid #38bdf8;
+			margin-bottom: -1px;
 		}
 
 		.content ul > li {
@@ -171,9 +142,10 @@
 			<div class="flex items-center text-sm font-semibold text-slate-200">
 				{#if prev_page}
 					<a href={prev_page.path} class="group flex items-center hover:text-white">
+						<!-- class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" -->
 						<svg
 							viewBox="0 0 3 6"
-							class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-300"
 							><path
 								d="M3 0L0 3L3 6"
 								fill="none"
@@ -189,11 +161,11 @@
 				{#if next_page}
 					<a
 						data-testid="next-page"
-						class="group ml-auto flex items-center hover:text-slate-900 dark:hover:text-white"
+						class="group ml-auto flex items-center hover:text-white"
 						href={next_page.path}
 						>{next_page.title}<svg
 							viewBox="0 0 3 6"
-							class="ml-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+							class="ml-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-300"
 							><path
 								d="M0 0L3 3L0 6"
 								fill="none"
