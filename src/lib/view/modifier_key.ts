@@ -3,7 +3,7 @@ import { OSInfo, OS } from './os_info'
 enum ModifierKeySymbols {
 	alt = 'Alt',
 	shift = '⇧',
-	control = 'Ctrl ',
+	control = 'Ctrl',
 	command = '⌘',
 }
 
@@ -16,5 +16,11 @@ export class ModifierKey {
 		if (os === OS.mac_os || os === OS.ios) return ModifierKeySymbols.command
 
 		return ModifierKeySymbols.control
+	}
+
+	public is_alphanumeric(symbol: ModifierKeySymbols): boolean {
+		const alphanumeric_regex = /^[a-z0-9]+$/i
+
+		return alphanumeric_regex.test(symbol)
 	}
 }

@@ -21,6 +21,10 @@
 		const modifier_key = new ModifierKey()
 
 		view_shortcut_key = modifier_key.get_control_or_command_symbol()
+
+		if (modifier_key.is_alphanumeric(modifier_key.get_control_or_command_symbol())) {
+			view_shortcut_key += ' '
+		}
 	}
 
 	onMount(() => {
