@@ -11,6 +11,7 @@
 	import SearchModale from './search-modale.svelte'
 	import SideBar from './side-bar.svelte'
 	import { fly } from 'svelte/transition'
+	import Vivus from 'vivus'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -104,8 +105,21 @@
 		add_copy_code_event()
 	})
 
+	function register_vivus(): void {
+		document.querySelectorAll('svg').forEach((svg_element) => {
+			new Vivus(svg_element as unknown as HTMLElement, {
+				duration: 100,
+				animTimingFunction: Vivus.EASE_OUT,
+			})
+		})
+	}
+
 	onMount(() => {
 		create_search_shortcut()
+	})
+
+	afterNavigate(() => {
+		register_vivus()
 	})
 </script>
 
