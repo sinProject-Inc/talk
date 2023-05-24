@@ -81,7 +81,7 @@
 
 	<div class="max-w-8xl mx-auto min-h-screen">
 		<div
-			class="fixed mt-12 hidden h-[calc(100vh-3rem-var(--header-height))] overflow-y-auto pe-4 ps-8 md:block md:w-72"
+			class="fixed mt-8 hidden h-[calc(100vh-2rem-var(--header-height))] overflow-y-auto pe-4 ps-8 md:block md:w-72"
 		>
 			<SideBar {sections} on:show_search_modale={open_search_modale} />
 		</div>
