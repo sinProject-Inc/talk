@@ -268,7 +268,7 @@
 
 <Navbar />
 <div class="center-container flex h-[calc(100vh-69px)] w-screen flex-col">
-	<div class="glass-panel my-4 flex flex-1 flex-col gap-2 overflow-y-scroll pt-3">
+	<div class="glass-panel my-4 flex flex-1 flex-col gap-2 overflow-y-auto pt-3">
 		<div class="px-5">
 			<select
 				class="glass-button h-full grow text-center"
@@ -286,7 +286,7 @@
 			/>
 			<IconButton on:click={add_text}><AddIcon /></IconButton>
 		</div>
-		<div class="overflow-y-scroll">
+		<div class="overflow-y-auto">
 			{#each texts as text, i}
 				<TextListText
 					{texts}
