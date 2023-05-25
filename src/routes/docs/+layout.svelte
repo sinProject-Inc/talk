@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation'
+	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
@@ -100,26 +100,65 @@
 		})
 	}
 
-	afterNavigate(() => {
-		close_mobile_side_bar()
-		add_copy_code_event()
-	})
+	let svg_elements: SVGSVGElement[] = []
+	let observers: IntersectionObserver[] = []
+	let vivus_instances: Vivus[] = []
 
-	function register_vivus(): void {
+	function disconnect_vivus(): void {
+		svg_elements.forEach((svg_element, index) => {
+			observers[index].disconnect()
+			vivus_instances[index].stop()
+		})
+
+		svg_elements = []
+		observers = []
+		vivus_instances = []
+	}
+
+	function connect_vivus(): void {
 		document.querySelectorAll('svg').forEach((svg_element) => {
-			new Vivus(svg_element as unknown as HTMLElement, {
-				duration: 100,
+			svg_elements.push(svg_element)
+		})
+
+		svg_elements.forEach((svg_element, index) => {
+			const vivus = new Vivus(svg_element as unknown as HTMLElement, {
+				duration: 150,
 				animTimingFunction: Vivus.EASE_OUT,
 			})
+
+			vivus_instances.push(vivus)
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							vivus_instances[index].play()
+						} else {
+							vivus_instances[index].stop()
+							vivus_instances[index].reset()
+						}
+					})
+				},
+				{ rootMargin: '-0px', threshold: 0.5 }
+			)
+
+			observer.observe(svg_element)
+			observers.push(observer)
 		})
 	}
 
-	onMount(() => {
-		create_search_shortcut()
+	beforeNavigate(() => {
+		disconnect_vivus()
 	})
 
 	afterNavigate(() => {
-		register_vivus()
+		close_mobile_side_bar()
+		add_copy_code_event()
+		connect_vivus()
+	})
+
+	onMount(() => {
+		create_search_shortcut()
 	})
 </script>
 
