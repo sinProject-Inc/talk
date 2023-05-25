@@ -81,11 +81,11 @@ a {
 	}
 
 	input {
-		@apply rounded-md border-0 bg-black/30 px-4 py-[7px] outline-none outline-0 focus:outline-none;
+		@apply rounded-md border-0 bg-black/10 px-4 py-[7px] outline-none outline-0 focus:outline-none;
 	}
 
 	.input {
-		@apply rounded-md border-0 bg-black/30 outline-none outline-0 focus:outline-none;
+		@apply rounded-md border-0 bg-black/10 outline-none outline-0 focus:outline-none;
 	}
 
 	textarea {
@@ -136,7 +136,7 @@ a {
 	}
 
 	.glass-button {
-		@apply rounded-lg bg-black/50 fill-white/80 px-4 py-2 text-white/90 transition-all duration-300 hover:bg-black/30 hover:shadow-sm;
+		@apply rounded-lg bg-black/20 fill-white/80 px-4 py-2 text-white/90 transition-all duration-300 hover:bg-black/10 hover:shadow-sm;
 	}
 }
 
@@ -146,7 +146,7 @@ a {
 	}
 
 	.glass {
-		@apply bg-black bg-opacity-40 bg-clip-padding fill-white/70 text-white/80 backdrop-blur-sm backdrop-filter;
+		@apply bg-[#0f172a]/50 bg-clip-padding fill-white/70 text-white/60 backdrop-blur-sm backdrop-filter;
 	}
 
 	.doc-base {
