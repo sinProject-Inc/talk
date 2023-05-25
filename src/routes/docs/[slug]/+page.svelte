@@ -110,10 +110,10 @@
 
 <div class="text-slate-400">
 	<div>
-		<p class="category">{data.category}</p>
+		<p class="slide-fade-in category">{data.category}</p>
 
 		<div class="content">
-			<h1 class="text-slate-200">{data.page.title}</h1>
+			<h1 class="slide-fade-in text-slate-200">{data.page.title}</h1>
 
 			<div class="mb-5 text-sm font-semibold text-slate-400 hover:text-slate-300">
 				<a
