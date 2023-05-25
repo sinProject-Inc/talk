@@ -70,6 +70,7 @@ export class Markdown {
 
 			heading.classList.add('relative')
 			heading.classList.add('section')
+			heading.classList.add('slide-fade-in')
 
 			heading.id = slug
 

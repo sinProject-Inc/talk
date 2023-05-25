@@ -71,7 +71,7 @@
 	class="fixed end-[max(0px,calc(50%-45rem))] top-[var(--header-height)] hidden h-full w-72 overflow-y-auto pb-[calc(2rem+var(--header-height))] pe-8 pt-8 text-sm leading-6 xl:block"
 >
 	<h5 class="mb-4 font-semibold">On this page</h5>
-	<nav>
+	<nav class="slide-fade-in">
 		<ul class="space-y-2 border-l border-slate-800">
 			<li>
 				<a

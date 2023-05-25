@@ -147,20 +147,75 @@
 		})
 	}
 
+	function invisible_slide_fade_in(): void {
+		const elements = document.querySelectorAll('.slide-fade-in-visible')
+
+		elements.forEach((element) => {
+			element.classList.remove('slide-fade-in-visible')
+		})
+	}
+
+	function add_slide_in_animation(): void {
+		const elements = document.querySelectorAll('.slide-fade-in')
+
+		elements.forEach((element) => {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							element.classList.add('slide-fade-in-visible')
+						} else {
+							element.classList.remove('slide-fade-in-visible')
+						}
+					})
+				},
+				{ rootMargin: '-0px', threshold: 0 }
+			)
+
+			observer.observe(element)
+		})
+	}
+
 	beforeNavigate(() => {
 		disconnect_vivus()
+		invisible_slide_fade_in()
 	})
 
 	afterNavigate(() => {
 		close_mobile_side_bar()
 		add_copy_code_event()
 		connect_vivus()
+		add_slide_in_animation()
 	})
 
 	onMount(() => {
 		create_search_shortcut()
 	})
 </script>
+
+<svelte:head>
+	<style>
+		@keyframes slide-fade-in {
+			0% {
+				transform: translateX(50px);
+				opacity: 0;
+			}
+			100% {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		.slide-fade-in {
+			visibility: hidden;
+		}
+
+		.slide-fade-in-visible {
+			animation: slide-fade-in 1s ease-out;
+			visibility: visible;
+		}
+	</style>
+</svelte:head>
 
 <div class="doc-base">
 	<Navbar search_bar_enabled on:show_search_modale={open_search_modale} />
