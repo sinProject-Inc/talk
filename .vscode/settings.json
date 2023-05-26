@@ -12,6 +12,7 @@
 	"eslint.validate": ["svelte"],
 	"cSpell.words": [
 		"autocompletes",
+		"autocrlf",
 		"autoincrement",
 		"autoload",
 		"codegen",
@@ -152,5 +153,6 @@
 	"markdownlint.config": {
 		"no-inline-html": false,
 		"no-hard-tabs": false
-	}
+	},
+	"files.eol": "\n"
 }

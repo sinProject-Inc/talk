@@ -23,3 +23,13 @@ Hide Minimap
 	"editor.minimap.enabled": false
 }
 ```
+
+## The default end of line character
+
+When creating a new file on Windows, you can specify the line break code as LF (Line Feed).
+
+```json:.vscode/settings.json
+{
+	"files.eol": "\n"
+}
+```
