@@ -106,8 +106,8 @@
 		<!-- Bug in tailwind-dir prevents from using rtl: and ltr: here -->
 		<textarea
 			class="text-area {new Direction(locale_code.code).value === 'rtl'
-				? 'pl-8'
-				: 'pr-8'} resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
+				? 'pl-12'
+				: 'pr-12'} resize-none rounded-t-md border-0 outline-none outline-0 focus:outline-none"
 			style="grid-area: 1/1/10/9"
 			lang={locale_code.code}
 			bind:this={textarea_element}
