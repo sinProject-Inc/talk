@@ -413,8 +413,8 @@
 			</div>
 		</div>
 	</div>
-	<Snackbar text={$_('copied')} visible={copied_snackbar_visible} />
 </div>
+<Snackbar text={$_('copied')} visible={copied_snackbar_visible} />
 
 <audio class="mt-2 hidden" controls bind:this={audio_element} src={text_to_speech_url} autoplay />
 {#if confirming_delete_text}
