@@ -6,12 +6,13 @@
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
+	import { fly } from 'svelte/transition'
+	import Vivus from 'vivus'
+	import Audio from './audio.svelte'
 	import MobileSideBar from './mobile-side-bar.svelte'
 	import NavbarSecondRow from './navbar-second-row.svelte'
 	import SearchModale from './search-modale.svelte'
 	import SideBar from './side-bar.svelte'
-	import { fly } from 'svelte/transition'
-	import Vivus from 'vivus'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -216,6 +217,8 @@
 		}
 	</style>
 </svelte:head>
+
+<Audio />
 
 <div class="doc-base">
 	<Navbar search_bar_enabled on:show_search_modale={open_search_modale} />
