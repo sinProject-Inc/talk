@@ -146,7 +146,7 @@ a {
 	}
 
 	.glass {
-		@apply bg-black bg-opacity-20 bg-clip-padding fill-white/70 text-white/60 backdrop-blur-sm backdrop-filter;
+		@apply bg-[#0f172a]/50 bg-clip-padding fill-white/70 text-white/60 backdrop-blur-sm backdrop-filter;
 	}
 
 	.doc-base {
