@@ -68,13 +68,13 @@ jobs:
     timeout-minutes: 10
 
     env:
-      DATABASE_URL: mysql://root:rootroot@127.0.0.1:3306/talk
+      DATABASE_URL: mysql://root:rootroot@127.0.0.1:13306/talk
 
     services:
       mysql:
         image: mysql
         ports:
-          - 3306:3306
+          - 13306:3306
         env:
           MYSQL_DATABASE: talk
           MYSQL_ROOT_USER: root
@@ -84,7 +84,7 @@ jobs:
       redis:
         image: redis
         ports:
-          - 6379:6379
+          - 16379:6379
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -109,7 +109,7 @@ jobs:
       - name: Create .env
         run: |
           touch .env
-          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo DATABASE_URL=${{ env.DATABASE_URL }} >> .env
           echo SOUND_DIR=${{ secrets.SOUND_DIR }} >> .env
           echo AVATAR_DIR=${{ secrets.AVATAR_DIR }} >> .env
           echo GOOGLE_PROJECT_ID=${{ secrets.GOOGLE_PROJECT_ID }} >> .env
@@ -118,6 +118,7 @@ jobs:
           echo DEEPL_AUTH_KEY=${{ secrets.DEEPL_AUTH_KEY }} >> .env
           echo GMAIL_USER=${{ secrets.GMAIL_USER }} >> .env
           echo GMAIL_PASS=${{ secrets.GMAIL_PASS }} >> .env
+          echo REDIS_PORT=16379 >> .env
 
       - name: Build
         shell: bash
