@@ -11,6 +11,7 @@
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import ProfileIcon from './icons/profile_icon.svelte'
+	import Dropdown from './dropdown.svelte'
 
 	export let search_bar_enabled = false
 
@@ -58,6 +59,7 @@
 						<div class="h-5"><SearchIcon /></div>
 					</button>
 				{/if}
+				<Dropdown />
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
