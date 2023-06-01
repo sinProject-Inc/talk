@@ -7,7 +7,8 @@
 
 	export let id_paths = new Map([
 		['on-mouse-over', `${base}/sound/button-124476.mp3`],
-		['on-click', `${base}/sound/interface-124464.mp3`],
+		// ['on-click', `${base}/sound/interface-124464.mp3`],
+		['on-click', `${base}/sound/button-124476.mp3`],
 	])
 
 	let audio_context: AudioContext
@@ -19,7 +20,14 @@
 		if (!audio_buffer) return
 
 		audio_source.buffer = audio_buffer
-		audio_source.connect(audio_context.destination)
+
+		const gain_node = audio_context.createGain()
+
+		gain_node.gain.value = 0.1
+
+		audio_source.connect(gain_node)
+		gain_node.connect(audio_context.destination)
+		// audio_source.connect(audio_context.destination)
 
 		audio_sources.set(id, audio_source)
 	}
