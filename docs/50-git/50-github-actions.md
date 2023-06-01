@@ -6,7 +6,7 @@ We use [GitHub Actions](https://docs.github.com/en/actions) to perform two types
 
 ## Secrets
 
-Do not write confidential information directly, register it in GitHub's Secrets.
+Do not write confidential information (environment variables etc.) directly. Instead, register it in GitHub's Secrets.
 
 ```md
 - GitHub > Repository > Settings
@@ -14,7 +14,7 @@ Do not write confidential information directly, register it in GitHub's Secrets.
 - New repository secret
 ```
 
-If you want to use it, refer to it as follows, secret.[SECRET_NAME].
+If you want to use the secret, refer to it as `[SECRET_NAME]`.
 
 ```yaml:.github/workflows/ci.yml
 echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
