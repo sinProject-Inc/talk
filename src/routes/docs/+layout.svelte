@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
-	import Navbar from '$lib/components/nav_bar.svelte'
-	import Snackbar from '$lib/components/snack_bar.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
+	import Snackbar from '$lib/components/snackbar.svelte'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
