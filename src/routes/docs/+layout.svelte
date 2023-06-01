@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
-	import Navbar from '$lib/components/navbar.svelte'
-	import Snackbar from '$lib/components/snackbar.svelte'
+	import Navbar from '$lib/components/nav_bar.svelte'
+	import Snackbar from '$lib/components/snack_bar.svelte'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
@@ -9,10 +9,10 @@
 	import { fly } from 'svelte/transition'
 	import Vivus from 'vivus'
 	import Audio from './audio.svelte'
-	import MobileSideBar from './mobile-side-bar.svelte'
-	import NavbarSecondRow from './navbar-second-row.svelte'
-	import SearchModale from './search-modale.svelte'
-	import SideBar from './side-bar.svelte'
+	import MobileSideBar from './mobile_side_bar.svelte'
+	import NavbarSecondRow from './navbar_second_row.svelte'
+	import SearchModale from './search_modale.svelte'
+	import SideBar from './side_bar.svelte'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
