@@ -6,7 +6,7 @@
 	import TranslateIcon from '$lib/components/icons/language_hiragana_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
-	import Navbar from '$lib/components/nav_bar.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import { DefaultLocales } from '$lib/locale/default_locales'
 	import { LocaleCode } from '$lib/locale/locale_code'

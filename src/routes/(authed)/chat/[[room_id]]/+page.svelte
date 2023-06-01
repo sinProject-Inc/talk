@@ -13,7 +13,7 @@
 	import SignOutIcon from '$lib/components/icons/sign_out_icon.svelte'
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
-	import Navbar from '$lib/components/nav_bar.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
 	import { AppLocalStorage } from '$lib/locale/app_local_storage'
 	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechDivElement } from '$lib/speech/speech_div_element'

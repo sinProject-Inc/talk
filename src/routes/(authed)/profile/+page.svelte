@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Navbar from '$lib/components/nav_bar.svelte'
+	import Navbar from '$lib/components/navbar.svelte'
 	import type { PageServerData } from './$types'
 	import { UserId } from '$lib/user/user_id'
 	import { AvatarUrl } from '$lib/avatar/avatar_url'
