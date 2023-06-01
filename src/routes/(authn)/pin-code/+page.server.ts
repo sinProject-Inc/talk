@@ -10,6 +10,7 @@ import { Signing } from '$lib/auth/signing'
 import type { User } from '@prisma/client'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+import { sleep } from '$lib/general/system'
 
 export const load: PageServerLoad = async ({ locals, url, request }) => {
 	if (locals.user) {
@@ -30,10 +31,6 @@ async function send_mail(user: User, pin_code: PinCode): Promise<void> {
 	} catch (error) {
 		logger.error(`[mail] Failed to send mail to ${user.email}`, error)
 	}
-}
-
-async function wait(ms: number): Promise<void> {
-	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 export const actions: Actions = {
@@ -92,7 +89,7 @@ export const actions: Actions = {
 						SettingKey.consecutive_fail_wait_sec
 					)
 
-					await wait(1000 * wait_sec)
+					await sleep(1000 * wait_sec)
 				}
 
 				return fail(400, { credentials: true, email_address })
