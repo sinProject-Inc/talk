@@ -100,7 +100,6 @@
 		}
 
 		code:not(.hljs) {
-			// color: #f00;
 			padding: 0.25rem 0.5rem;
 			font-weight: 400;
 			/* color: #e2e8f0; */
