@@ -38,7 +38,7 @@ const config: PlaywrightTestConfig = {
 		timeout: 2000,
 	},
 	retries: 0,
-	workers: process.env.CI ? 1 : undefined,
+	workers: undefined,
 	reporter: [['html', { open: 'never' }]],
 	use: {
 		video: 'retain-on-failure',
