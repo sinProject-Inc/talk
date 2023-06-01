@@ -99,12 +99,14 @@
 			margin-inline-start: 0.2rem;
 		}
 
-		/* code:not(.hljs) {
-			// /* color: #f00; */
-		/* padding: 0.25rem 0.5rem; */
-		/* background-color: #0f172a88; */
-		/* border-radius: 0.4rem; */
-		/* } */
+		code:not(.hljs) {
+			// color: #f00;
+			padding: 0.25rem 0.5rem;
+			font-weight: 400;
+			/* color: #e2e8f0; */
+			background-color: #38bdf81a;
+			border-radius: 0.4rem;
+		}
 	</style>
 </svelte:head>
 
