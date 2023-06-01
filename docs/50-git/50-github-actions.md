@@ -14,7 +14,7 @@ Do not write confidential information (environment variables etc.) directly. Ins
 - New repository secret
 ```
 
-If you want to use the secret, refer to it as `[SECRET_NAME]`.
+If you want to use the secret, refer to it as `secrets.[SECRET_NAME]`.
 
 ```yaml:.github/workflows/ci.yml
 echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
