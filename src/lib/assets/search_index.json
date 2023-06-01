@@ -24,29 +24,29 @@
 		"path": "slack",
 		"title": "Slack",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "slack#mentions-reactions",
 		"title": "Slack",
 		"description": "",
-		"content": "Mentions & Reactions",
-		"heading": "Mentions & Reactions"
+		"heading": "Mentions & Reactions",
+		"content": "Mentions & Reactions"
 	},
 	{
 		"path": "slack#communication",
 		"title": "Slack",
 		"description": "",
-		"content": "Communication",
-		"heading": "Communication"
+		"heading": "Communication",
+		"content": "Communication"
 	},
 	{
 		"path": "slack",
 		"title": "Slack",
 		"description": "",
-		"content": "Slack",
-		"heading": ""
+		"heading": "",
+		"content": "Slack"
 	},
 	{
 		"path": "docs-history",
@@ -59,43 +59,43 @@
 		"path": "docs-history#docs-history",
 		"title": "Docs History",
 		"description": "",
-		"content": "\n\nView history on GitHub\n",
+		"content": "\n\nView history on GitHub >\n",
 		"heading": "Docs History"
 	},
 	{
 		"path": "docs-history#docs-files",
 		"title": "Docs History",
 		"description": "",
-		"content": "\n\nView files on GitHub\n",
+		"content": "\n\nView files on GitHub >\n",
 		"heading": "Docs Files"
 	},
 	{
 		"path": "docs-history",
 		"title": "Docs History",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "docs-history#docs-history",
 		"title": "Docs History",
 		"description": "",
-		"content": "Docs History",
-		"heading": "Docs History"
+		"heading": "Docs History",
+		"content": "Docs History"
 	},
 	{
 		"path": "docs-history#docs-files",
 		"title": "Docs History",
 		"description": "",
-		"content": "Docs Files",
-		"heading": "Docs Files"
+		"heading": "Docs Files",
+		"content": "Docs Files"
 	},
 	{
 		"path": "docs-history",
 		"title": "Docs History",
 		"description": "",
-		"content": "Docs History",
-		"heading": ""
+		"heading": "",
+		"content": "Docs History"
 	},
 	{
 		"path": "our-team-policy",
@@ -115,7 +115,7 @@
 		"path": "our-team-policy#deadline-adherence-and-quality-assurance",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "\n\nWe are committed to honoring project deadlines.\nWe strive to deliver work of the highest quality.\n",
+		"content": "\n\nWe are committed to honoring project deadlines.\nWe strive to deliver work of the highest quality.\nTo improve quality, we will implement necessary tests.\nTo improve quality, manual merging is to be conducted by two or more people.\nTo reduce work hours, we will verify what needs to be implemented before implementing.\n",
 		"heading": "Deadline Adherence and Quality Assurance"
 	},
 	{
@@ -136,7 +136,7 @@
 		"path": "our-team-policy#documentation-compliance",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "\n\nWe will adhere to the guidelines set out in the Documentation for all projects.\nIf application of the guidelines is difficult, unclear, or a more efficient solution is available, we will consult the administrator.\nWe will acknowledge that we have reviewed the Documentation by providing a response.\nEach project lead will confirm when they have fully implemented the guidelines from the Documentation.\n",
+		"content": "\n\nWe will adhere to the guidelines set out in the Documentation for all projects.\nIf application of the guidelines is difficult, unclear, or a more efficient solution is available, we will consult an administrator.\nWe will acknowledge that we have reviewed the Documentation by providing a response.\nEach project lead will confirm when they have fully implemented the guidelines from the Documentation.\n",
 		"heading": "Documentation Compliance"
 	},
 	{
@@ -157,64 +157,99 @@
 		"path": "our-team-policy",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "our-team-policy#teamwork",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Teamwork",
-		"heading": "Teamwork"
+		"heading": "Teamwork",
+		"content": "Teamwork"
 	},
 	{
 		"path": "our-team-policy#deadline-adherence-and-quality-assurance",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Deadline Adherence and Quality Assurance",
-		"heading": "Deadline Adherence and Quality Assurance"
+		"heading": "Deadline Adherence and Quality Assurance",
+		"content": "Deadline Adherence and Quality Assurance"
 	},
 	{
 		"path": "our-team-policy#innovative-suggestions",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Innovative Suggestions",
-		"heading": "Innovative Suggestions"
+		"heading": "Innovative Suggestions",
+		"content": "Innovative Suggestions"
 	},
 	{
 		"path": "our-team-policy#personal-and-team-growth",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Personal and Team Growth",
-		"heading": "Personal and Team Growth"
+		"heading": "Personal and Team Growth",
+		"content": "Personal and Team Growth"
 	},
 	{
 		"path": "our-team-policy#documentation-compliance",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Documentation Compliance",
-		"heading": "Documentation Compliance"
+		"heading": "Documentation Compliance",
+		"content": "Documentation Compliance"
 	},
 	{
 		"path": "our-team-policy#business-etiquette",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Business Etiquette",
-		"heading": "Business Etiquette"
+		"heading": "Business Etiquette",
+		"content": "Business Etiquette"
 	},
 	{
 		"path": "our-team-policy#workplace-cleanliness",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Workplace Cleanliness",
-		"heading": "Workplace Cleanliness"
+		"heading": "Workplace Cleanliness",
+		"content": "Workplace Cleanliness"
 	},
 	{
 		"path": "our-team-policy",
 		"title": "Our Team Policy",
 		"description": "",
-		"content": "Our Team Policy",
+		"heading": "",
+		"content": "Our Team Policy"
+	},
+	{
+		"path": "git-for-windows",
+		"title": "Git for Windows",
+		"description": "",
+		"content": "",
 		"heading": ""
+	},
+	{
+		"path": "git-for-windows#core-autocrlf",
+		"title": "Git for Windows",
+		"description": "",
+		"content": "\n\nWe will use LF (Line Feed) for line breaks at the time of commit, but do not change the line break code when pulling.\n\ngit config --global core.autocrlf input\n",
+		"heading": "core.autocrlf"
+	},
+	{
+		"path": "git-for-windows",
+		"title": "Git for Windows",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "git-for-windows#core-autocrlf",
+		"title": "Git for Windows",
+		"description": "",
+		"heading": "core.autocrlf",
+		"content": "core.autocrlf"
+	},
+	{
+		"path": "git-for-windows",
+		"title": "Git for Windows",
+		"description": "",
+		"heading": "",
+		"content": "Git for Windows"
 	},
 	{
 		"path": "git-user-profiles",
@@ -255,92 +290,43 @@
 		"path": "git-user-profiles",
 		"title": "Git User Profiles",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "git-user-profiles#installing-the-extension",
 		"title": "Git User Profiles",
 		"description": "",
-		"content": "Installing the Extension",
-		"heading": "Installing the Extension"
+		"heading": "Installing the Extension",
+		"content": "Installing the Extension"
 	},
 	{
 		"path": "git-user-profiles#creating-a-git-config-user-profile",
 		"title": "Git User Profiles",
 		"description": "",
-		"content": "Creating a Git Config User Profile",
-		"heading": "Creating a Git Config User Profile"
+		"heading": "Creating a Git Config User Profile",
+		"content": "Creating a Git Config User Profile"
 	},
 	{
 		"path": "git-user-profiles#selecting-a-git-config-user-profile",
 		"title": "Git User Profiles",
 		"description": "",
-		"content": "Selecting a Git Config User Profile",
-		"heading": "Selecting a Git Config User Profile"
+		"heading": "Selecting a Git Config User Profile",
+		"content": "Selecting a Git Config User Profile"
 	},
 	{
 		"path": "git-user-profiles#resolving-account-information-discrepancies",
 		"title": "Git User Profiles",
 		"description": "",
-		"content": "Resolving Account Information Discrepancies",
-		"heading": "Resolving Account Information Discrepancies"
+		"heading": "Resolving Account Information Discrepancies",
+		"content": "Resolving Account Information Discrepancies"
 	},
 	{
 		"path": "git-user-profiles",
 		"title": "Git User Profiles",
 		"description": "",
-		"content": "Git User Profiles",
-		"heading": ""
-	},
-	{
-		"path": "github-templates",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "\nWe use templates for issues and PRs.\n",
-		"heading": ""
-	},
-	{
-		"path": "github-templates#issue-template",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "\n\nIn the template, write tasks for the following:\n\nWriting the Issue\nBefore Working on the Issue\nPre-PR Checks\n\nView this file on GitHub >\n",
-		"heading": "Issue Template"
-	},
-	{
-		"path": "github-templates#pull-request-template",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "\n\nIn the template, write tasks for the following:\n\nFor the Submitter\n  Tasks\nFor the Reviewer\n  Before Reviewing\n  Checks\n  After Reviewing\n\nView this file on GitHub >\n",
-		"heading": "Pull Request Template"
-	},
-	{
-		"path": "github-templates",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "",
-		"heading": ""
-	},
-	{
-		"path": "github-templates#issue-template",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "Issue Template",
-		"heading": "Issue Template"
-	},
-	{
-		"path": "github-templates#pull-request-template",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "Pull Request Template",
-		"heading": "Pull Request Template"
-	},
-	{
-		"path": "github-templates",
-		"title": "GitHub Templates",
-		"description": "",
-		"content": "GitHub Templates",
-		"heading": ""
+		"heading": "",
+		"content": "Git User Profiles"
 	},
 	{
 		"path": "github-actions",
@@ -374,36 +360,36 @@
 		"path": "github-actions",
 		"title": "GitHub Actions",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "github-actions#checks",
 		"title": "GitHub Actions",
 		"description": "",
-		"content": "Checks",
-		"heading": "Checks"
+		"heading": "Checks",
+		"content": "Checks"
 	},
 	{
 		"path": "github-actions#tests",
 		"title": "GitHub Actions",
 		"description": "",
-		"content": "Tests",
-		"heading": "Tests"
+		"heading": "Tests",
+		"content": "Tests"
 	},
 	{
 		"path": "github-actions#output",
 		"title": "GitHub Actions",
 		"description": "",
-		"content": "Output",
-		"heading": "Output"
+		"heading": "Output",
+		"content": "Output"
 	},
 	{
 		"path": "github-actions",
 		"title": "GitHub Actions",
 		"description": "",
-		"content": "GitHub Actions",
-		"heading": ""
+		"heading": "",
+		"content": "GitHub Actions"
 	},
 	{
 		"path": "git-hooks",
@@ -413,24 +399,17 @@
 		"heading": ""
 	},
 	{
-		"path": "git-hooks#lint-staged",
+		"path": "git-hooks#installation",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "\nInstallation\n\nnpm install --save-dev lint-staged\n\nSetup\n\n{\n\t\"scripts\": {\n\t\t\"lint\": \"prettier --plugin-search-dir . --check . && eslint .\"\n\t},\n\t\"lint-staged\": {\n\t\t\"*.{js,ts,svelte}\": \"eslint --cache --fix\",\n\t\t\"*.css\": \"stylelint --fix\",\n\t\t\"*.{js,css,md,ts,svelte,css,scss,json}\": \"prettier --write\"\n\t}\n}\n",
-		"heading": "lint-staged"
-	},
-	{
-		"path": "git-hooks#husky",
-		"title": "Git Hooks",
-		"description": "",
-		"content": "\nInstallation\n\nnpx husky-init && npm install\n",
-		"heading": "Husky"
+		"content": "\n\nnpm install --save-dev lint-staged\n\nnpx husky-init && npm install\n",
+		"heading": "Installation"
 	},
 	{
 		"path": "git-hooks#pre-commit",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "\n\nCombine ESLint, Prettier, and lint-staged to format code.\n\n#!/bin/sh\n. \"$(dirname \"$0\")/_/husky.sh\"\n\nnpx lint-staged\n\nnpm run lint\n",
+		"content": "\n\nCombine ESLint, Stylelint, Prettier, and lint-staged to format code.\n\n{\n\t\"scripts\": {\n\t\t\"lint\": \"prettier --plugin-search-dir . --check . && eslint .\"\n\t},\n\t\"lint-staged\": {\n\t\t\"*.{js,ts,svelte}\": \"eslint --cache --fix\",\n\t\t\"*.css\": \"stylelint --fix\",\n\t\t\"*.{js,css,md,ts,svelte,css,scss,json}\": \"prettier --write\"\n\t}\n}\n\n#!/bin/sh\n. \"$(dirname \"$0\")/_/husky.sh\"\n\nnpx lint-staged\n\nnpm run lint\n",
 		"heading": "pre-commit"
 	},
 	{
@@ -444,43 +423,36 @@
 		"path": "git-hooks",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
-		"path": "git-hooks#lint-staged",
+		"path": "git-hooks#installation",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "lint-staged",
-		"heading": "lint-staged"
-	},
-	{
-		"path": "git-hooks#husky",
-		"title": "Git Hooks",
-		"description": "",
-		"content": "Husky",
-		"heading": "Husky"
+		"heading": "Installation",
+		"content": "Installation"
 	},
 	{
 		"path": "git-hooks#pre-commit",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "pre-commit",
-		"heading": "pre-commit"
+		"heading": "pre-commit",
+		"content": "pre-commit"
 	},
 	{
 		"path": "git-hooks#pre-push",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "pre-push",
-		"heading": "pre-push"
+		"heading": "pre-push",
+		"content": "pre-push"
 	},
 	{
 		"path": "git-hooks",
 		"title": "Git Hooks",
 		"description": "",
-		"content": "Git Hooks",
-		"heading": ""
+		"heading": "",
+		"content": "Git Hooks"
 	},
 	{
 		"path": "git-branches-and-commits",
@@ -507,29 +479,197 @@
 		"path": "git-branches-and-commits",
 		"title": "Git Branches and Commits",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "git-branches-and-commits#git-branch-naming-conventions",
 		"title": "Git Branches and Commits",
 		"description": "",
-		"content": "Git branch naming conventions",
-		"heading": "Git branch naming conventions"
+		"heading": "Git branch naming conventions",
+		"content": "Git branch naming conventions"
 	},
 	{
 		"path": "git-branches-and-commits#commit-message-conventions",
 		"title": "Git Branches and Commits",
 		"description": "",
-		"content": "Commit message conventions",
-		"heading": "Commit message conventions"
+		"heading": "Commit message conventions",
+		"content": "Commit message conventions"
 	},
 	{
 		"path": "git-branches-and-commits",
 		"title": "Git Branches and Commits",
 		"description": "",
-		"content": "Git Branches and Commits",
+		"heading": "",
+		"content": "Git Branches and Commits"
+	},
+	{
+		"path": "github-pull_requests",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"content": "\nOn completing an issues, we create a pull request (PR).\n",
 		"heading": ""
+	},
+	{
+		"path": "github-pull_requests#pull-request-template",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"content": "\n\nIn the template, write tasks for the following:\n\nFor the Submitter\n  Tasks\nFor the Reviewer\n  Before Reviewing\n  Checks\n  After Reviewing\n\nView this file on GitHub >\n",
+		"heading": "Pull Request Template"
+	},
+	{
+		"path": "github-pull_requests#title",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"content": "\n\nFormat\n\n\nExample\n\nDocs: Show scrollbar like Mac #942\n",
+		"heading": "Title"
+	},
+	{
+		"path": "github-pull_requests#reviewers",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"content": "\n\nAssign the person in charge of reviewing.\n",
+		"heading": "Reviewers"
+	},
+	{
+		"path": "github-pull_requests#labels",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"content": "\n\nIf it's related to an enhancement, add the 'enhancement' label.\n\nIf it involves a significant change, add the 'breaking-change' label.\n",
+		"heading": "Labels"
+	},
+	{
+		"path": "github-pull_requests",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "github-pull_requests#pull-request-template",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"heading": "Pull Request Template",
+		"content": "Pull Request Template"
+	},
+	{
+		"path": "github-pull_requests#title",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"heading": "Title",
+		"content": "Title"
+	},
+	{
+		"path": "github-pull_requests#reviewers",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"heading": "Reviewers",
+		"content": "Reviewers"
+	},
+	{
+		"path": "github-pull_requests#labels",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"heading": "Labels",
+		"content": "Labels"
+	},
+	{
+		"path": "github-pull_requests",
+		"title": "GitHub Pull Requests",
+		"description": "",
+		"heading": "",
+		"content": "GitHub Pull Requests"
+	},
+	{
+		"path": "github-issues",
+		"title": "GitHub Issues",
+		"description": "",
+		"content": "\nWe manage tasks using GitHub issues.\n",
+		"heading": ""
+	},
+	{
+		"path": "github-issues#issue-template",
+		"title": "GitHub Issues",
+		"description": "",
+		"content": "\n\nIn the template, write tasks for the following:\n\nWriting the issue\nBefore Working on the issue\nPre-PR Checks\n\nView this file on GitHub >\n",
+		"heading": "Issue Template"
+	},
+	{
+		"path": "github-issues#title",
+		"title": "GitHub Issues",
+		"description": "",
+		"content": "\n\nFormat\n\n:\n\nExample\n\nDocs: Show scrollbar like Mac\n",
+		"heading": "Title"
+	},
+	{
+		"path": "github-issues#assignees",
+		"title": "GitHub Issues",
+		"description": "",
+		"content": "\n\nAssign the person in charge of the issue.\n",
+		"heading": "Assignees"
+	},
+	{
+		"path": "github-issues#labels",
+		"title": "GitHub Issues",
+		"description": "",
+		"content": "\n\nSpecify one or more labels. If there are no available labels, propose a new one.\n",
+		"heading": "Labels"
+	},
+	{
+		"path": "github-issues#milestones",
+		"title": "GitHub Issues",
+		"description": "",
+		"content": "\n\nCreate milestones for items with a deadline and associate them with the milestone.\n",
+		"heading": "Milestones"
+	},
+	{
+		"path": "github-issues",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "github-issues#issue-template",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "Issue Template",
+		"content": "Issue Template"
+	},
+	{
+		"path": "github-issues#title",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "Title",
+		"content": "Title"
+	},
+	{
+		"path": "github-issues#assignees",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "Assignees",
+		"content": "Assignees"
+	},
+	{
+		"path": "github-issues#labels",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "Labels",
+		"content": "Labels"
+	},
+	{
+		"path": "github-issues#milestones",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "Milestones",
+		"content": "Milestones"
+	},
+	{
+		"path": "github-issues",
+		"title": "GitHub Issues",
+		"description": "",
+		"heading": "",
+		"content": "GitHub Issues"
 	},
 	{
 		"path": "playwright",
@@ -556,7 +696,7 @@
 		"path": "playwright#configuration",
 		"title": "Playwright",
 		"description": "",
-		"content": "\nBasic changes\n\nChange the test directory, timeout duration, and other settings as needed.\n\nConfigure the reporter not to open automatically, and output a video when an error occurs.\n\nconst config: PlaywrightTestConfig = {\n\ttestDir: './e2e',\n\ttimeout: process.env.CI ? 20 * 1000 : 5 * 1000,\n\texpect: {\n\t\ttimeout: 2000,\n\t},\n\tretries: 0,\n\tworkers: process.env.CI ? 1 : undefined,\n\treporter: [['html', { open: 'never' }]],\n\tuse: {\n\t\tvideo: 'retain-on-failure',\n\t},\n}\n\nTarget Browsers\n\nEnsure that tests are not run on browsers where testing is not necessary.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t},\n\n\t\t// {\n\t\t//   name: 'firefox',\n\t\t//   use: {\n\t\t//     ...devices['Desktop Firefox'],\n\t\t//   },\n\t\t// },\n\n\t\t// ...\n\t}\n}\n\nWeb Server\n\nTo perform tests quickly, use a development server. Also, change the baseURL.\n\n\twebServer: [\n\t\t{\n\t\t\tcommand: 'npm run dev',\n\t\t\turl: 'http://127.0.0.1:5173/talk/',\n\t\t\treuseExistingServer: !process.env.CI,\n\t\t},\n\t\t// {\n\t\t// \tcommand: 'npm run build && npm run preview',\n\t\t// \tport: 4173,\n\t\t// \treuseExistingServer: !process.env.CI,\n\t\t// },\n\t],\n\tuse: {\n\t\t\tbaseURL: 'http://127.0.0.1:5173/talk/',\n\t}\n\nMore information >\n\nSetup\n\nSpecify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{ name: 'setup', testMatch: /.*\\.setup\\.ts/ },\n\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t\tdependencies: ['setup'],\n\t\t},\n\t}\n}\n",
+		"content": "\nBasic changes\n\nChange the test directory, timeout duration, and other settings as needed.\n\nConfigure the reporter not to open automatically, and output a video when an error occurs.\n\nconst config: PlaywrightTestConfig = {\n\ttestDir: './e2e',\n\ttimeout: process.env.CI ? 20 * 1000 : 5 * 1000,\n\texpect: {\n\t\ttimeout: 2000,\n\t},\n\tretries: 0,\n\tworkers: process.env.CI ? 1 : undefined,\n\treporter: [['html', { open: 'never' }]],\n\tuse: {\n\t\tvideo: 'retain-on-failure',\n\t\tcontextOptions: {\n\t\t\tpermissions: ['clipboard-read', 'clipboard-write', 'accessibility-events'],\n\t\t},\n\t},\n}\n\nPlaywright - TestConfig >\n\nTarget Browsers\n\nEnsure that tests are not run on browsers where testing is not necessary.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t},\n\n\t\t// {\n\t\t//   name: 'firefox',\n\t\t//   use: {\n\t\t//     ...devices['Desktop Firefox'],\n\t\t//   },\n\t\t// },\n\n\t\t// ...\n\t}\n}\n\nWeb Server\n\nTo perform tests quickly, use a development server. Also, change the baseURL.\n\n\twebServer: [\n\t\t{\n\t\t\tcommand: 'npm run dev',\n\t\t\turl: 'http://127.0.0.1:5173/talk/',\n\t\t\treuseExistingServer: !process.env.CI,\n\t\t},\n\t\t// {\n\t\t// \tcommand: 'npm run build && npm run preview',\n\t\t// \tport: 4173,\n\t\t// \treuseExistingServer: !process.env.CI,\n\t\t// },\n\t],\n\tuse: {\n\t\t\tbaseURL: 'http://127.0.0.1:5173/talk/',\n\t}\n\nMore information >\n\nSetup\n\nSpecify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{ name: 'setup', testMatch: /.*\\.setup\\.ts/ },\n\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t\tdependencies: ['setup'],\n\t\t},\n\t}\n}\n",
 		"heading": "Configuration"
 	},
 	{
@@ -591,64 +731,64 @@
 		"path": "playwright",
 		"title": "Playwright",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "playwright#installation",
 		"title": "Playwright",
 		"description": "",
-		"content": "Installation",
-		"heading": "Installation"
+		"heading": "Installation",
+		"content": "Installation"
 	},
 	{
 		"path": "playwright#file-name",
 		"title": "Playwright",
 		"description": "",
-		"content": "File Name",
-		"heading": "File Name"
+		"heading": "File Name",
+		"content": "File Name"
 	},
 	{
 		"path": "playwright#configuration",
 		"title": "Playwright",
 		"description": "",
-		"content": "Configuration",
-		"heading": "Configuration"
+		"heading": "Configuration",
+		"content": "Configuration"
 	},
 	{
 		"path": "playwright#scripts",
 		"title": "Playwright",
 		"description": "",
-		"content": "Scripts",
-		"heading": "Scripts"
+		"heading": "Scripts",
+		"content": "Scripts"
 	},
 	{
 		"path": "playwright#vscode-extension",
 		"title": "Playwright",
 		"description": "",
-		"content": "VSCode Extension",
-		"heading": "VSCode Extension"
+		"heading": "VSCode Extension",
+		"content": "VSCode Extension"
 	},
 	{
 		"path": "playwright#locate-by-test-id",
 		"title": "Playwright",
 		"description": "",
-		"content": "Locate by test id",
-		"heading": "Locate by test id"
+		"heading": "Locate by test id",
+		"content": "Locate by test id"
 	},
 	{
 		"path": "playwright#sample-code",
 		"title": "Playwright",
 		"description": "",
-		"content": "Sample Code",
-		"heading": "Sample Code"
+		"heading": "Sample Code",
+		"content": "Sample Code"
 	},
 	{
 		"path": "playwright",
 		"title": "Playwright",
 		"description": "",
-		"content": "Playwright",
-		"heading": ""
+		"heading": "",
+		"content": "Playwright"
 	},
 	{
 		"path": "vitest",
@@ -675,7 +815,7 @@
 		"path": "vitest#options",
 		"title": "Vitest",
 		"description": "",
-		"content": "\n\nChange the files to be included in the test run.\n\nexport default defineConfig({\n\ttest: {\n\t\tinclude: ['src/*/.test.ts'],\n\t\thookTimeout: 3000,\n\t\tteardownTimeout: 0,\n\t},\n})\n",
+		"content": "\n\nChange the files to be included in the test run.\n\nexport default defineConfig({\n\ttest: {\n\t\tinclude: ['src/*/.test.ts'],\n\t\thookTimeout: 3000,\n\t\tteardownTimeout: 0,\n\t},\n})\n\nConfiguring Vitest >\n",
 		"heading": "Options"
 	},
 	{
@@ -710,64 +850,64 @@
 		"path": "vitest",
 		"title": "Vitest",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "vitest#installation",
 		"title": "Vitest",
 		"description": "",
-		"content": "Installation",
-		"heading": "Installation"
+		"heading": "Installation",
+		"content": "Installation"
 	},
 	{
 		"path": "vitest#file-name",
 		"title": "Vitest",
 		"description": "",
-		"content": "File Name",
-		"heading": "File Name"
+		"heading": "File Name",
+		"content": "File Name"
 	},
 	{
 		"path": "vitest#options",
 		"title": "Vitest",
 		"description": "",
-		"content": "Options",
-		"heading": "Options"
+		"heading": "Options",
+		"content": "Options"
 	},
 	{
 		"path": "vitest#scripts",
 		"title": "Vitest",
 		"description": "",
-		"content": "Scripts",
-		"heading": "Scripts"
+		"heading": "Scripts",
+		"content": "Scripts"
 	},
 	{
 		"path": "vitest#vscode-extension",
 		"title": "Vitest",
 		"description": "",
-		"content": "VSCode Extension",
-		"heading": "VSCode Extension"
+		"heading": "VSCode Extension",
+		"content": "VSCode Extension"
 	},
 	{
 		"path": "vitest#sample-code",
 		"title": "Vitest",
 		"description": "",
-		"content": "Sample Code",
-		"heading": "Sample Code"
+		"heading": "Sample Code",
+		"content": "Sample Code"
 	},
 	{
 		"path": "vitest#in-source-testing",
 		"title": "Vitest",
 		"description": "",
-		"content": "In-source testing",
-		"heading": "In-source testing"
+		"heading": "In-source testing",
+		"content": "In-source testing"
 	},
 	{
 		"path": "vitest",
 		"title": "Vitest",
 		"description": "",
-		"content": "Vitest",
-		"heading": ""
+		"heading": "",
+		"content": "Vitest"
 	},
 	{
 		"path": "stylelint",
@@ -794,29 +934,29 @@
 		"path": "stylelint",
 		"title": "Stylelint",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "stylelint#installation",
 		"title": "Stylelint",
 		"description": "",
-		"content": "Installation",
-		"heading": "Installation"
+		"heading": "Installation",
+		"content": "Installation"
 	},
 	{
 		"path": "stylelint#configuration",
 		"title": "Stylelint",
 		"description": "",
-		"content": "Configuration",
-		"heading": "Configuration"
+		"heading": "Configuration",
+		"content": "Configuration"
 	},
 	{
 		"path": "stylelint",
 		"title": "Stylelint",
 		"description": "",
-		"content": "Stylelint",
-		"heading": ""
+		"heading": "",
+		"content": "Stylelint"
 	},
 	{
 		"path": "eslint",
@@ -829,14 +969,14 @@
 		"path": "eslint#rules",
 		"title": "ESLint",
 		"description": "",
-		"content": "\n\nMake accessibility and return type mandatory.\nProhibit console output.\n\nmodule.exports = {\n\trules: {\n\t\t'@typescript-eslint/explicit-member-accessibility': ['error'],\n\t\t'@typescript-eslint/explicit-function-return-type': ['error'],\n\t\t'no-console': ['error'],\n\t},\n}\n",
+		"content": "\n\nMake accessibility and return type mandatory.\nProhibit console output.\n\nmodule.exports = {\n\trules: {\n\t\t'@typescript-eslint/explicit-member-accessibility': ['error'],\n\t\t'@typescript-eslint/explicit-function-return-type': ['error'],\n\t\t'no-console': ['error'],\n\t},\n}\n\ntypescript-eslint - explicit-member-accessibility >\n\ntypescript-eslint - explicit-function-return-type >\n\nESLint - no-console >\n",
 		"heading": "Rules"
 	},
 	{
 		"path": "eslint#naming-conventions",
 		"title": "ESLint",
 		"description": "",
-		"content": "\n\nSet variable names, argument names, and function names to snake_case.\nPrefix private variables with an underscore.\n\nmodule.exports = {\n\trules: {\n\t\t'@typescript-eslint/naming-convention': [\n\t\t\t'error',\n\t\t\t{\n\t\t\t\tselector: 'typeParameter',\n\t\t\t\tformat: ['UPPER_CASE'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['class', 'interface', 'typeAlias'],\n\t\t\t\tformat: ['PascalCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tmodifiers: ['private'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tmodifiers: ['protected'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\t// format: ['snake_case', 'camelCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: [\n\t\t\t\t\t'property',\n\t\t\t\t\t'accessor',\n\t\t\t\t\t'parameter',\n\t\t\t\t\t'parameterProperty',\n\t\t\t\t\t'variable',\n\t\t\t\t\t'enumMember',\n\t\t\t\t],\n\t\t\t\tmodifiers: ['private'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: [\n\t\t\t\t\t'property',\n\t\t\t\t\t'accessor',\n\t\t\t\t\t'parameter',\n\t\t\t\t\t'parameterProperty',\n\t\t\t\t\t'variable',\n\t\t\t\t\t'enumMember',\n\t\t\t\t],\n\t\t\t\tmodifiers: ['protected'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['accessor', 'parameter', 'parameterProperty', 'enumMember'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['property'],\n\t\t\t\tformat: ['snake_case', 'camelCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['variable'],\n\t\t\t\tformat: ['snake_case', 'UPPER_CASE'],\n\t\t\t},\n\t\t],\n\t},\n}\n",
+		"content": "\n\nEnforce naming conventions for everything across a codebase.\n\nSet variable names, argument names, and function names to snake_case.\nPrefix private variables with an underscore.\n\nmodule.exports = {\n\trules: {\n\t\t'@typescript-eslint/naming-convention': [\n\t\t\t'error',\n\t\t\t{\n\t\t\t\tselector: 'typeParameter',\n\t\t\t\tformat: ['UPPER_CASE'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['class', 'interface', 'typeAlias'],\n\t\t\t\tformat: ['PascalCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tmodifiers: ['private'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tmodifiers: ['protected'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\t// format: ['snake_case', 'camelCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: [\n\t\t\t\t\t'property',\n\t\t\t\t\t'accessor',\n\t\t\t\t\t'parameter',\n\t\t\t\t\t'parameterProperty',\n\t\t\t\t\t'variable',\n\t\t\t\t\t'enumMember',\n\t\t\t\t],\n\t\t\t\tmodifiers: ['private'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: [\n\t\t\t\t\t'property',\n\t\t\t\t\t'accessor',\n\t\t\t\t\t'parameter',\n\t\t\t\t\t'parameterProperty',\n\t\t\t\t\t'variable',\n\t\t\t\t\t'enumMember',\n\t\t\t\t],\n\t\t\t\tmodifiers: ['protected'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['accessor', 'parameter', 'parameterProperty', 'enumMember'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['property'],\n\t\t\t\tformat: ['snake_case', 'camelCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['variable'],\n\t\t\t\tformat: ['snake_case', 'UPPER_CASE'],\n\t\t\t},\n\t\t],\n\t},\n}\n",
 		"heading": "Naming conventions"
 	},
 	{
@@ -850,36 +990,36 @@
 		"path": "eslint",
 		"title": "ESLint",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "eslint#rules",
 		"title": "ESLint",
 		"description": "",
-		"content": "Rules",
-		"heading": "Rules"
+		"heading": "Rules",
+		"content": "Rules"
 	},
 	{
 		"path": "eslint#naming-conventions",
 		"title": "ESLint",
 		"description": "",
-		"content": "Naming conventions",
-		"heading": "Naming conventions"
+		"heading": "Naming conventions",
+		"content": "Naming conventions"
 	},
 	{
 		"path": "eslint#missing-return-type-on-function-in-the-html-part-of-svelte",
 		"title": "ESLint",
 		"description": "",
-		"content": "Missing return type on function in the HTML part of Svelte",
-		"heading": "Missing return type on function in the HTML part of Svelte"
+		"heading": "Missing return type on function in the HTML part of Svelte",
+		"content": "Missing return type on function in the HTML part of Svelte"
 	},
 	{
 		"path": "eslint",
 		"title": "ESLint",
 		"description": "",
-		"content": "ESLint",
-		"heading": ""
+		"heading": "",
+		"content": "ESLint"
 	},
 	{
 		"path": "prettier",
@@ -906,29 +1046,29 @@
 		"path": "prettier",
 		"title": "Prettier",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "prettier#configuration",
 		"title": "Prettier",
 		"description": "",
-		"content": "Configuration",
-		"heading": "Configuration"
+		"heading": "Configuration",
+		"content": "Configuration"
 	},
 	{
 		"path": "prettier#formatting",
 		"title": "Prettier",
 		"description": "",
-		"content": "Formatting",
-		"heading": "Formatting"
+		"heading": "Formatting",
+		"content": "Formatting"
 	},
 	{
 		"path": "prettier",
 		"title": "Prettier",
 		"description": "",
-		"content": "Prettier",
-		"heading": ""
+		"heading": "",
+		"content": "Prettier"
 	},
 	{
 		"path": "tsconfig",
@@ -948,22 +1088,113 @@
 		"path": "tsconfig",
 		"title": "TypeScript Config",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "tsconfig#tsconfig",
 		"title": "TypeScript Config",
 		"description": "",
-		"content": "TSConfig",
-		"heading": "TSConfig"
+		"heading": "TSConfig",
+		"content": "TSConfig"
 	},
 	{
 		"path": "tsconfig",
 		"title": "TypeScript Config",
 		"description": "",
-		"content": "TypeScript Config",
+		"heading": "",
+		"content": "TypeScript Config"
+	},
+	{
+		"path": "chatgpt-prompts",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"content": "\nWe are using the following ChatGPT prompts. (In Japanese)\n",
 		"heading": ""
+	},
+	{
+		"path": "chatgpt-prompts#coding-english",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"content": "\nInstructions\n\nYou are a professional programmer. In this conversation, please provide the best possible answers within the following constraints:\n\nConstraints\n\nThe language is TypeScript\nThis is a web app developed with SvelteKit\nDo not explain installation procedures\nFunction names, variable names, and argument names are in snake_case. For private members, prepend an underscore to the name.\nUtilize async/await for asynchronous processing\nUse the function keyword for function declarations\n",
+		"heading": "Coding (English)"
+	},
+	{
+		"path": "chatgpt-prompts#translating-english",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"content": "\n\n`md",
+		"heading": "Translating (English)"
+	},
+	{
+		"path": "chatgpt-prompts#instructions-english",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"content": "\n\nYou are a professional translator. In this conversation, please provide the best possible translations.\n",
+		"heading": "Instructions (English)"
+	},
+	{
+		"path": "chatgpt-prompts#coding-japanese",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"content": "\n命令書\n\n貴方はプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。\n\n制約条件\n\n言語は TypeScript\nWeb アプリは SvelteKit で開発\nインストール手順は説明しない\n関数名、変数名、引数名の命名規則は snake_case。private の場合は名前の先頭にアンダースコアを付ける\n非同期処理は async/await を活用する\n関数宣言は function キーワードを使う\n",
+		"heading": "Coding (Japanese)"
+	},
+	{
+		"path": "chatgpt-prompts#translating-japanese",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"content": "\n命令書\n\n貴方はプロの翻訳者です。今後この会話では、最高の翻訳をしてください。\n",
+		"heading": "Translating (Japanese)"
+	},
+	{
+		"path": "chatgpt-prompts",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "chatgpt-prompts#coding-english",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "Coding (English)",
+		"content": "Coding (English)"
+	},
+	{
+		"path": "chatgpt-prompts#translating-english",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "Translating (English)",
+		"content": "Translating (English)"
+	},
+	{
+		"path": "chatgpt-prompts#instructions-english",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "Instructions (English)",
+		"content": "Instructions (English)"
+	},
+	{
+		"path": "chatgpt-prompts#coding-japanese",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "Coding (Japanese)",
+		"content": "Coding (Japanese)"
+	},
+	{
+		"path": "chatgpt-prompts#translating-japanese",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "Translating (Japanese)",
+		"content": "Translating (Japanese)"
+	},
+	{
+		"path": "chatgpt-prompts",
+		"title": "ChatGPT Prompts",
+		"description": "",
+		"heading": "",
+		"content": "ChatGPT Prompts"
 	},
 	{
 		"path": "assets",
@@ -1004,43 +1235,43 @@
 		"path": "assets",
 		"title": "Assets",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "assets#icons",
 		"title": "Assets",
 		"description": "",
-		"content": "Icons",
-		"heading": "Icons"
+		"heading": "Icons",
+		"content": "Icons"
 	},
 	{
 		"path": "assets#images",
 		"title": "Assets",
 		"description": "",
-		"content": "Images",
-		"heading": "Images"
+		"heading": "Images",
+		"content": "Images"
 	},
 	{
 		"path": "assets#fonts",
 		"title": "Assets",
 		"description": "",
-		"content": "Fonts",
-		"heading": "Fonts"
+		"heading": "Fonts",
+		"content": "Fonts"
 	},
 	{
 		"path": "assets#sounds",
 		"title": "Assets",
 		"description": "",
-		"content": "Sounds",
-		"heading": "Sounds"
+		"heading": "Sounds",
+		"content": "Sounds"
 	},
 	{
 		"path": "assets",
 		"title": "Assets",
 		"description": "",
-		"content": "Assets",
-		"heading": ""
+		"heading": "",
+		"content": "Assets"
 	},
 	{
 		"path": "customize-zsh",
@@ -1081,43 +1312,43 @@
 		"path": "customize-zsh",
 		"title": "Customize Zsh",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "customize-zsh#oh-my-zsh",
 		"title": "Customize Zsh",
 		"description": "",
-		"content": "oh-my-zsh",
-		"heading": "oh-my-zsh"
+		"heading": "oh-my-zsh",
+		"content": "oh-my-zsh"
 	},
 	{
 		"path": "customize-zsh#zsh-completions",
 		"title": "Customize Zsh",
 		"description": "",
-		"content": "zsh-completions",
-		"heading": "zsh-completions"
+		"heading": "zsh-completions",
+		"content": "zsh-completions"
 	},
 	{
 		"path": "customize-zsh#zsh-autosuggestions",
 		"title": "Customize Zsh",
 		"description": "",
-		"content": "zsh-autosuggestions",
-		"heading": "zsh-autosuggestions"
+		"heading": "zsh-autosuggestions",
+		"content": "zsh-autosuggestions"
 	},
 	{
 		"path": "customize-zsh#zsh-syntax-highlighting",
 		"title": "Customize Zsh",
 		"description": "",
-		"content": "zsh-syntax-highlighting",
-		"heading": "zsh-syntax-highlighting"
+		"heading": "zsh-syntax-highlighting",
+		"content": "zsh-syntax-highlighting"
 	},
 	{
 		"path": "customize-zsh",
 		"title": "Customize Zsh",
 		"description": "",
-		"content": "Customize Zsh",
-		"heading": ""
+		"heading": "",
+		"content": "Customize Zsh"
 	},
 	{
 		"path": "sveltekit",
@@ -1144,29 +1375,29 @@
 		"path": "sveltekit",
 		"title": "SvelteKit",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "sveltekit#tutorial",
 		"title": "SvelteKit",
 		"description": "",
-		"content": "Tutorial",
-		"heading": "Tutorial"
+		"heading": "Tutorial",
+		"content": "Tutorial"
 	},
 	{
 		"path": "sveltekit#docs",
 		"title": "SvelteKit",
 		"description": "",
-		"content": "Docs",
-		"heading": "Docs"
+		"heading": "Docs",
+		"content": "Docs"
 	},
 	{
 		"path": "sveltekit",
 		"title": "SvelteKit",
 		"description": "",
-		"content": "SvelteKit",
-		"heading": ""
+		"heading": "",
+		"content": "SvelteKit"
 	},
 	{
 		"path": "global-npm-packages",
@@ -1200,36 +1431,36 @@
 		"path": "global-npm-packages",
 		"title": "Global NPM Packages",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "global-npm-packages#installing-packages-globally",
 		"title": "Global NPM Packages",
 		"description": "",
-		"content": "Installing packages globally",
-		"heading": "Installing packages globally"
+		"heading": "Installing packages globally",
+		"content": "Installing packages globally"
 	},
 	{
 		"path": "global-npm-packages#checking-all-global-packages",
 		"title": "Global NPM Packages",
 		"description": "",
-		"content": "Checking all global packages",
-		"heading": "Checking all global packages"
+		"heading": "Checking all global packages",
+		"content": "Checking all global packages"
 	},
 	{
 		"path": "global-npm-packages#the-packages-we-install-globally",
 		"title": "Global NPM Packages",
 		"description": "",
-		"content": "The packages we install globally",
-		"heading": "The packages we install globally"
+		"heading": "The packages we install globally",
+		"content": "The packages we install globally"
 	},
 	{
 		"path": "global-npm-packages",
 		"title": "Global NPM Packages",
 		"description": "",
-		"content": "Global NPM Packages",
-		"heading": ""
+		"heading": "",
+		"content": "Global NPM Packages"
 	},
 	{
 		"path": "vscode-extensions",
@@ -1361,134 +1592,134 @@
 		"path": "vscode-extensions",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "vscode-extensions#git",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Git",
-		"heading": "Git"
+		"heading": "Git",
+		"content": "Git"
 	},
 	{
 		"path": "vscode-extensions#ai",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "AI",
-		"heading": "AI"
+		"heading": "AI",
+		"content": "AI"
 	},
 	{
 		"path": "vscode-extensions#svelte",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Svelte",
-		"heading": "Svelte"
+		"heading": "Svelte",
+		"content": "Svelte"
 	},
 	{
 		"path": "vscode-extensions#css",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "CSS",
-		"heading": "CSS"
+		"heading": "CSS",
+		"content": "CSS"
 	},
 	{
 		"path": "vscode-extensions#html",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "HTML",
-		"heading": "HTML"
+		"heading": "HTML",
+		"content": "HTML"
 	},
 	{
 		"path": "vscode-extensions#code-style",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Code Style",
-		"heading": "Code Style"
+		"heading": "Code Style",
+		"content": "Code Style"
 	},
 	{
 		"path": "vscode-extensions#intellisense",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Intellisense",
-		"heading": "Intellisense"
+		"heading": "Intellisense",
+		"content": "Intellisense"
 	},
 	{
 		"path": "vscode-extensions#errors",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Errors",
-		"heading": "Errors"
+		"heading": "Errors",
+		"content": "Errors"
 	},
 	{
 		"path": "vscode-extensions#testing",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Testing",
-		"heading": "Testing"
+		"heading": "Testing",
+		"content": "Testing"
 	},
 	{
 		"path": "vscode-extensions#database-management",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Database Management",
-		"heading": "Database Management"
+		"heading": "Database Management",
+		"content": "Database Management"
 	},
 	{
 		"path": "vscode-extensions#api",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "API",
-		"heading": "API"
+		"heading": "API",
+		"content": "API"
 	},
 	{
 		"path": "vscode-extensions#code-execution",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Code Execution",
-		"heading": "Code Execution"
+		"heading": "Code Execution",
+		"content": "Code Execution"
 	},
 	{
 		"path": "vscode-extensions#code-quality",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Code Quality",
-		"heading": "Code Quality"
+		"heading": "Code Quality",
+		"content": "Code Quality"
 	},
 	{
 		"path": "vscode-extensions#theme",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Theme",
-		"heading": "Theme"
+		"heading": "Theme",
+		"content": "Theme"
 	},
 	{
 		"path": "vscode-extensions#team-collaboration",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Team Collaboration",
-		"heading": "Team Collaboration"
+		"heading": "Team Collaboration",
+		"content": "Team Collaboration"
 	},
 	{
 		"path": "vscode-extensions#localization",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Localization",
-		"heading": "Localization"
+		"heading": "Localization",
+		"content": "Localization"
 	},
 	{
 		"path": "vscode-extensions#other",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "Other",
-		"heading": "Other"
+		"heading": "Other",
+		"content": "Other"
 	},
 	{
 		"path": "vscode-extensions",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "VSCode Extensions",
-		"heading": ""
+		"heading": "",
+		"content": "VSCode Extensions"
 	},
 	{
 		"path": "vscode-workspace-settings",
@@ -1512,32 +1743,46 @@
 		"heading": "Minimap"
 	},
 	{
+		"path": "vscode-workspace-settings#the-default-end-of-line-character",
+		"title": "VSCode Workspace Settings",
+		"description": "",
+		"content": "\n\nWhen creating a new file on Windows, you can specify the line break code as LF (Line Feed).\n\n{\n\t\"files.eol\": \"\\n\"\n}\n",
+		"heading": "The default end of line character"
+	},
+	{
 		"path": "vscode-workspace-settings",
 		"title": "VSCode Workspace Settings",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "vscode-workspace-settings#bracket-pairs",
 		"title": "VSCode Workspace Settings",
 		"description": "",
-		"content": "Bracket Pairs",
-		"heading": "Bracket Pairs"
+		"heading": "Bracket Pairs",
+		"content": "Bracket Pairs"
 	},
 	{
 		"path": "vscode-workspace-settings#minimap",
 		"title": "VSCode Workspace Settings",
 		"description": "",
-		"content": "Minimap",
-		"heading": "Minimap"
+		"heading": "Minimap",
+		"content": "Minimap"
+	},
+	{
+		"path": "vscode-workspace-settings#the-default-end-of-line-character",
+		"title": "VSCode Workspace Settings",
+		"description": "",
+		"heading": "The default end of line character",
+		"content": "The default end of line character"
 	},
 	{
 		"path": "vscode-workspace-settings",
 		"title": "VSCode Workspace Settings",
 		"description": "",
-		"content": "VSCode Workspace Settings",
-		"heading": ""
+		"heading": "",
+		"content": "VSCode Workspace Settings"
 	},
 	{
 		"path": "macos-settings",
@@ -1578,43 +1823,43 @@
 		"path": "macos-settings",
 		"title": "macOS Settings",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "macos-settings#system-settings",
 		"title": "macOS Settings",
 		"description": "",
-		"content": "System Settings",
-		"heading": "System Settings"
+		"heading": "System Settings",
+		"content": "System Settings"
 	},
 	{
 		"path": "macos-settings#dock",
 		"title": "macOS Settings",
 		"description": "",
-		"content": "Dock",
-		"heading": "Dock"
+		"heading": "Dock",
+		"content": "Dock"
 	},
 	{
 		"path": "macos-settings#finder",
 		"title": "macOS Settings",
 		"description": "",
-		"content": "Finder",
-		"heading": "Finder"
+		"heading": "Finder",
+		"content": "Finder"
 	},
 	{
 		"path": "macos-settings#apps",
 		"title": "macOS Settings",
 		"description": "",
-		"content": "Apps",
-		"heading": "Apps"
+		"heading": "Apps",
+		"content": "Apps"
 	},
 	{
 		"path": "macos-settings",
 		"title": "macOS Settings",
 		"description": "",
-		"content": "macOS Settings",
-		"heading": ""
+		"heading": "",
+		"content": "macOS Settings"
 	},
 	{
 		"path": "app-structure",
@@ -1655,43 +1900,43 @@
 		"path": "app-structure",
 		"title": "App Structure",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "app-structure#talk",
 		"title": "App Structure",
 		"description": "",
-		"content": "Talk",
-		"heading": "Talk"
+		"heading": "Talk",
+		"content": "Talk"
 	},
 	{
 		"path": "app-structure#translate",
 		"title": "App Structure",
 		"description": "",
-		"content": "Translate",
-		"heading": "Translate"
+		"heading": "Translate",
+		"content": "Translate"
 	},
 	{
 		"path": "app-structure#chat",
 		"title": "App Structure",
 		"description": "",
-		"content": "Chat",
-		"heading": "Chat"
+		"heading": "Chat",
+		"content": "Chat"
 	},
 	{
 		"path": "app-structure#docs",
 		"title": "App Structure",
 		"description": "",
-		"content": "Docs",
-		"heading": "Docs"
+		"heading": "Docs",
+		"content": "Docs"
 	},
 	{
 		"path": "app-structure",
 		"title": "App Structure",
 		"description": "",
-		"content": "App Structure",
-		"heading": ""
+		"heading": "",
+		"content": "App Structure"
 	},
 	{
 		"path": "creating-a-project",
@@ -1732,43 +1977,43 @@
 		"path": "creating-a-project",
 		"title": "Creating a Project",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "creating-a-project#prerequisites",
 		"title": "Creating a Project",
 		"description": "",
-		"content": "Prerequisites",
-		"heading": "Prerequisites"
+		"heading": "Prerequisites",
+		"content": "Prerequisites"
 	},
 	{
 		"path": "creating-a-project#prerequisites-for-text-to-speech",
 		"title": "Creating a Project",
 		"description": "",
-		"content": "Prerequisites for Text-to-Speech",
-		"heading": "Prerequisites for Text-to-Speech"
+		"heading": "Prerequisites for Text-to-Speech",
+		"content": "Prerequisites for Text-to-Speech"
 	},
 	{
 		"path": "creating-a-project#prerequisites-for-translation",
 		"title": "Creating a Project",
 		"description": "",
-		"content": "Prerequisites for Translation",
-		"heading": "Prerequisites for Translation"
+		"heading": "Prerequisites for Translation",
+		"content": "Prerequisites for Translation"
 	},
 	{
 		"path": "creating-a-project#setting-up-the-project",
 		"title": "Creating a Project",
 		"description": "",
-		"content": "Setting up the project",
-		"heading": "Setting up the project"
+		"heading": "Setting up the project",
+		"content": "Setting up the project"
 	},
 	{
 		"path": "creating-a-project",
 		"title": "Creating a Project",
 		"description": "",
-		"content": "Creating a Project",
-		"heading": ""
+		"heading": "",
+		"content": "Creating a Project"
 	},
 	{
 		"path": "introduction",
@@ -1809,42 +2054,42 @@
 		"path": "introduction",
 		"title": "Introduction",
 		"description": "",
-		"content": "",
-		"heading": ""
+		"heading": "",
+		"content": ""
 	},
 	{
 		"path": "introduction#before-we-begin",
 		"title": "Introduction",
 		"description": "",
-		"content": "Before we begin",
-		"heading": "Before we begin"
+		"heading": "Before we begin",
+		"content": "Before we begin"
 	},
 	{
 		"path": "introduction#what-is-talk",
 		"title": "Introduction",
 		"description": "",
-		"content": "What is Talk?",
-		"heading": "What is Talk?"
+		"heading": "What is Talk?",
+		"content": "What is Talk?"
 	},
 	{
 		"path": "introduction#what-is-sinproject",
 		"title": "Introduction",
 		"description": "",
-		"content": "What is sinProject?",
-		"heading": "What is sinProject?"
+		"heading": "What is sinProject?",
+		"content": "What is sinProject?"
 	},
 	{
 		"path": "introduction#what-does-talk-offer-sinproject",
 		"title": "Introduction",
 		"description": "",
-		"content": "What does Talk offer sinProject?",
-		"heading": "What does Talk offer sinProject?"
+		"heading": "What does Talk offer sinProject?",
+		"content": "What does Talk offer sinProject?"
 	},
 	{
 		"path": "introduction",
 		"title": "Introduction",
 		"description": "",
-		"content": "Introduction",
-		"heading": ""
+		"heading": "",
+		"content": "Introduction"
 	}
 ]
