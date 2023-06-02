@@ -7,6 +7,7 @@
 
 	export let sections: Section[]
 	export let search_bar_enabled = true
+	export let scroll_transparent = false
 
 	const dispatch = createEventDispatcher()
 
@@ -60,10 +61,10 @@
 		</button>
 	{/if}
 
-	<div class="pl-1 pt-8">
+	<div class="pl-1 {scroll_transparent ? 'pt-16' : 'pt-8'}" id="sidebar-parent">
 		{#each sections as section}
 			<li class="my-8">
-				<h5 class="mb-3 font-semibold text-slate-200">
+				<h5 class="sidebar-content titles mb-3 font-semibold text-slate-200">
 					{section.title}
 				</h5>
 				<ul class="space-y-2 border-l border-slate-800">
@@ -71,7 +72,12 @@
 						{@const active = path === $page.url.pathname}
 						{@const inactive = !active}
 						<li>
-							<a href={path} class="-ml-px block border-l pl-4" class:active class:inactive>
+							<a
+								href={path}
+								class="sidebar-content -ml-px block border-l pl-4"
+								class:active
+								class:inactive
+							>
 								{title}
 							</a>
 						</li>

@@ -17,6 +17,8 @@
 	let search_modale_open = false
 	let mobile_side_bar_open = false
 
+	let sidebar_element: HTMLElement
+
 	export let data
 
 	$: sections = data?.sections ?? []
@@ -177,6 +179,90 @@
 		})
 	}
 
+	function handle_scroll_on_sidebar(): void {
+		let list_parent = document.getElementById('sidebar-parent')
+
+		if (!list_parent) return
+
+		const children: NodeListOf<HTMLElement> = list_parent.querySelectorAll('.sidebar-content')
+
+		if (!children) return
+
+		for (var i = 0; i < children.length; i++) {
+			const transparency_threshold = 110
+
+			if (!children[i]) return
+
+			children[i].getBoundingClientRect().top <= transparency_threshold
+				? toggle_transparency(children[i], true)
+				: toggle_transparency(children[i], false)
+		}
+	}
+
+	function toggle_transparency(target: HTMLElement, flag: boolean): void {
+		let style_active_flag = ''
+
+		style_active_flag = get_style_active_flag(target)
+
+		if (flag) {
+			set_transparent(target, style_active_flag)
+		} else {
+			remove_transparent(target, style_active_flag)
+		}
+	}
+
+	function get_style_active_flag(target: HTMLElement): string {
+		if (!target) return ''
+
+		if (target.classList.contains('titles')) return ''
+
+		const current_url = window.location.href
+		const current_page = get_page_name_from_url(current_url)
+
+		const target_text = target.textContent
+		const target_text_to_lower = target_text?.toLowerCase()
+
+		if (current_page == target_text_to_lower) {
+			return 'active'
+		} else {
+			return 'inactive'
+		}
+	}
+
+	function get_page_name_from_url(url: string): string {
+		let page_name = url.split('/').pop()
+
+		if (!page_name) return ''
+
+		page_name = page_name.replace('-', ' ')
+
+		return page_name
+	}
+
+	function set_transparent(target: HTMLElement, style_active_flag: string): void {
+		target.classList.add('text-transparent')
+		target.classList.add('border-transparent')
+
+		if (style_active_flag == 'active') {
+			target.classList.remove('active')
+		}
+		if (style_active_flag == 'inactive') {
+			target.classList.remove('inactive')
+		}
+	}
+
+	function remove_transparent(target: HTMLElement, style_active_flag: string): void {
+		target.classList.remove('text-transparent')
+		target.classList.remove('border-transparent')
+
+		if (style_active_flag == 'active') {
+			target.classList.add('active')
+		}
+		if (style_active_flag == 'inactive') {
+			target.classList.add('inactive')
+		}
+	}
+
 	beforeNavigate(() => {
 		disconnect_vivus()
 		invisible_slide_fade_in()
@@ -191,6 +277,7 @@
 
 	onMount(() => {
 		create_search_shortcut()
+		sidebar_element.addEventListener('scroll', handle_scroll_on_sidebar)
 	})
 </script>
 
@@ -241,9 +328,10 @@
 
 	<div class="max-w-8xl mx-auto min-h-screen">
 		<div
-			class="fixed mt-8 hidden h-[calc(100vh-2rem-var(--header-height))] overflow-y-auto pe-4 ps-8 md:block md:w-72"
+			class="fixed hidden h-[calc(100vh-var(--header-height))] overflow-y-auto pe-4 ps-8 md:block md:w-72"
+			bind:this={sidebar_element}
 		>
-			<SideBar {sections} on:show_search_modale={open_search_modale} />
+			<SideBar {sections} scroll_transparent={true} on:show_search_modale={open_search_modale} />
 		</div>
 		<div class="py-8 pe-8 ps-12 md:ps-80 xl:pe-80">
 			<slot />
