@@ -88,13 +88,13 @@
 		}
 
 		.github-link::before {
-			content: url('/talk/github_icon.svg');
+			content: url('/github_icon.svg');
 			position: relative;
 			top: 4px;
 		}
 
 		.link-with-arrow::after {
-			content: url('/talk/right_arrow.svg');
+			content: url('/right_arrow.svg');
 			position: relative;
 			margin-inline-start: 0.2rem;
 		}

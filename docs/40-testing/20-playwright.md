@@ -82,10 +82,13 @@ const config: PlaywrightTestConfig = {
 To perform tests quickly, use a development server. Also, change the baseURL.
 
 ```ts:playwright.config.ts
+const base = ''
+// const base = '/talk'
+const config: PlaywrightTestConfig = {
 	webServer: [
 		{
 			command: 'npm run dev',
-			url: 'http://127.0.0.1:5173/talk/',
+			url: `http://127.0.0.1:5173${base}/`,
 			reuseExistingServer: !process.env.CI,
 		},
 		// {
@@ -95,8 +98,9 @@ To perform tests quickly, use a development server. Also, change the baseURL.
 		// },
 	],
 	use: {
-			baseURL: 'http://127.0.0.1:5173/talk/',
+		baseURL: `http://127.0.0.1:5173${base}/`,
 	}
+}
 ```
 
 [More information >](https://playwright.dev/docs/test-webserver#adding-a-baseurl)
