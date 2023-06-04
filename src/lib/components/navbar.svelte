@@ -22,7 +22,7 @@
 </script>
 
 <div class="sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
-	<div class="mx-6 h-full border-b border-slate-50/[0.06] md:mx-0 md:px-6">
+	<div class="mx-3 h-full border-b border-slate-50/[0.06] px-3 md:mx-0 md:px-6">
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a
 				href="{base}/"
