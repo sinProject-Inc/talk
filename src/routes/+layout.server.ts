@@ -3,6 +3,7 @@ import { Repository } from '$lib/app/repository'
 import { SettingKey } from '$lib/app/setting_key'
 import { Email } from '$lib/auth/email'
 import { Theme } from '@prisma/client'
+import { theme_service } from '$lib/theme/theme_service'
 
 export const load: LayoutServerLoad = async ({ locals }) => {
 	const background_period_duration =

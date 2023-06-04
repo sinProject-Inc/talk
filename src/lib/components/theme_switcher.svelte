@@ -45,7 +45,7 @@
 	})
 </script>
 
-{#if current_theme}
+{#await theme_service.ready then}
 	<button class="button flex h-5 p-0 no-underline" on:click={handle_click}>
 		{#if current_theme === Theme.light}
 			<SunIcon />
@@ -53,6 +53,6 @@
 			<MoonIcon />
 		{/if}
 	</button>
-{/if}
+{/await}
 
 <svelte:window on:unload={unsubscribe_to_theme} />

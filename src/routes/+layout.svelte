@@ -88,8 +88,6 @@
 	}
 
 	onMount(async () => {
-		await theme_service.init_store(data.theme)
-
 		await subscribe_to_theme()
 	})
 
@@ -98,38 +96,37 @@
 	})
 </script>
 
-{#if current_theme}
-	<div class={current_theme}>
-		<div
-			class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
-			dir={get_direction($locale ?? '')}
-		>
-			<div>
-				{#if current_background}
-					<div class="fixed -z-50 h-screen w-full">
-						<div
-							style="background: linear-gradient({current_theme === Theme.dark
-								? background_dark_overlay
-								: background_light_overlay}), url({next_background.background_url}) bottom center/cover"
-							class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-							aria-hidden="true"
-						/>
-						<div
-							class="{transitioning_background
-								? 'opacity-0 transition-all'
-								: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-							style="background: linear-gradient({current_theme === Theme.dark
-								? background_dark_overlay
-								: background_light_overlay}), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
-								? background_transition_duration
-								: 0}ms"
-							aria-hidden="true"
-						/>
-					</div>
-				{/if}
-			</div>
-			<slot />
+<div class="{current_theme} {current_theme ? 'visible' : 'invisible'}">
+	<div
+		class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
+		dir={get_direction($locale ?? '')}
+	>
+		<div>
+			{#if current_background}
+				<div class="fixed -z-50 h-screen w-full">
+					<div
+						style="background: linear-gradient({current_theme === Theme.dark
+							? background_dark_overlay
+							: background_light_overlay}), url({next_background.background_url}) bottom center/cover"
+						class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
+						aria-hidden="true"
+					/>
+					<div
+						class="{transitioning_background
+							? 'opacity-0 transition-all'
+							: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
+						style="background: linear-gradient({current_theme === Theme.dark
+							? background_dark_overlay
+							: background_light_overlay}), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
+							? background_transition_duration
+							: 0}ms"
+						aria-hidden="true"
+					/>
+				</div>
+			{/if}
 		</div>
+		<slot />
 	</div>
-{/if}
+</div>
+
 <svelte:window on:unload={unsubscribe_to_theme} />
