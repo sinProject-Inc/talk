@@ -188,7 +188,7 @@ a {
 	}
 
 	.glass-border {
-		@apply border-2 border-primary-9/[0.06] dark:border-primary-dark-9/[0.06];
+		@apply border border-primary-9/[0.06] dark:border-primary-dark-9/[0.06];
 	}
 
 	.glass-text-faint-md {
