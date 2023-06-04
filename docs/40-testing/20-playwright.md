@@ -142,6 +142,42 @@ We have prepared the following scripts to execute Vitest.
 
 Use [VSCode Extension](./vscode-extensions#testing) for testing through VSCode.
 
+## Running tests
+
+- Running all tests
+
+```bash
+npx playwright test
+```
+
+- Running a single test file
+
+```bash
+npx playwright test <filename>
+```
+
+[More Info >](https://playwright.dev/docs/running-tests)
+
+## Running Codegen
+
+Use the codegen command to run the test generator followed by the URL of the website you want to generate tests for. The URL is optional and you can always run the command without it and then add the URL directly into the browser window instead.
+
+```bash
+npx playwright codegen localhost:5173
+```
+
+[More Info >](https://playwright.dev/docs/codegen-intro)
+
+## Reporters
+
+A quick way of opening the last test run report is:
+
+```bash
+npx playwright show-report
+```
+
+[More Info >](https://playwright.dev/docs/test-reporters#html-reporter)
+
 ## Locate by test id
 
 To make it easier to identify an Element from Playwright, "data-testid" can be used.
