@@ -35,6 +35,7 @@ process.on('SIGTERM', shutdown_gracefully)
 
 const app = express()
 const server = http.createServer(app)
+const port = process.env.PORT || 3000
 
 app.set('trust proxy', true)
 
@@ -45,6 +46,6 @@ inject_socket_io(server)
 app.use(morgan_middleware)
 app.use(handler)
 
-server.listen(3000, () => {
-	logger.info('[server] Running on http://localhost:3000')
+server.listen(port, () => {
+	logger.info(`[server] Running on http://localhost:${port}`)
 })

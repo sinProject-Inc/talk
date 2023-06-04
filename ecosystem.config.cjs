@@ -1,5 +1,3 @@
-// $ pm2 start ecosystem.config.cjs
-
 module.exports = {
 	apps: [
 		{
@@ -9,7 +7,11 @@ module.exports = {
 			interpreterArgs: '--loader tsx',
 			instances: '-1',
 			exec_mode: 'cluster',
-			watch: true,
+			watch: false,
+			ignore_watch: ['logs'],
+			env: {
+				PORT: 3002,
+			},
 		},
 	],
 }

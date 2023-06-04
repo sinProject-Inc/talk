@@ -9,10 +9,10 @@
 	import { fly } from 'svelte/transition'
 	import Vivus from 'vivus'
 	import Audio from './audio.svelte'
-	import MobileSideBar from './mobile-side-bar.svelte'
-	import NavbarSecondRow from './navbar-second-row.svelte'
-	import SearchModale from './search-modale.svelte'
-	import SideBar from './side-bar.svelte'
+	import MobileSideBar from './mobile_side_bar.svelte'
+	import NavbarSecondRow from './navbar_second_row.svelte'
+	import SearchModale from './search_modale.svelte'
+	import SideBar from './side_bar.svelte'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false

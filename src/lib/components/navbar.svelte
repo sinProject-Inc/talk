@@ -4,13 +4,11 @@
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 	import { _ } from 'svelte-i18n'
-	import DocumentIcon from './icons/book_icon.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
-	import TranslateIcon from './icons/language-hiragana_icon.svelte'
-	import ChatIcon from './icons/message-chatbot_icon.svelte'
+	import ProfileIcon from './icons/profile_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
-	import ProfileIcon from './icons/profile_icon.svelte'
+	import NavItemTab from './nav_item_tab.svelte'
 	import DropdownMenu from './dropdown_menu.svelte'
 
 	export let search_bar_enabled = false
@@ -33,22 +31,15 @@
 				<img src="{base}/icon-144.png" class="h-8" alt="" />
 				{$_('talk_title')}
 			</a>
-			<nav class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6">
+			<nav class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6">
 				<!-- <nav
 				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"
 			> -->
-				<a href="{base}/translate" class="flex items-center gap-1">
-					<div class="h-5"><TranslateIcon /></div>
-					<span class="hidden md:block">{$_('translate')}</span>
-				</a>
-				<a href="{base}/chat" class="flex items-center gap-1"
-					><div class="h-5"><ChatIcon /></div>
-					<span class="hidden md:block">{$_('chat')}</span></a
-				>
-				<a href="{base}/docs" class="flex items-center gap-1"
-					><div class="h-5"><DocumentIcon /></div>
-					<span class="hidden md:block">Docs</span></a
-				>
+
+				<NavItemTab name="translate" />
+				<NavItemTab name="chat" />
+				<NavItemTab name="docs" />
+
 				{#if search_bar_enabled}
 					<button
 						on:click={on_search_button_click}

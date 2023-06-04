@@ -2,14 +2,14 @@
 title: GitHub Issues
 ---
 
-We manage tasks using GitHub Issues.
+We manage tasks using GitHub issues.
 
 ## Issue Template
 
 In the template, write tasks for the following:
 
-- Writing the Issue
-- Before Working on the Issue
+- Writing the issue
+- Before Working on the issue
 - Pre-PR Checks
 
 [View this file on GitHub >](https://github.com/sinProject-Inc/talk/blob/main/.github/ISSUE_TEMPLATE/custom.md)
@@ -30,12 +30,12 @@ Docs: Show scrollbar like Mac
 
 ## Assignees
 
-If a person in charge has been determined, assign them.
+Assign the person in charge of the issue.
 
 ## Labels
 
 Specify one or more labels. If there are no available labels, propose a new one.
 
-## Milestone
+## Milestones
 
-Create a milestone for items with a deadline and associate it with the milestone.
+Create milestones for items with a deadline and associate them with the milestone.

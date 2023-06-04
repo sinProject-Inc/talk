@@ -20,9 +20,9 @@ const config = {
 		version: {
 			name: pkg.version,
 		},
-		paths: {
-			base: '/talk',
-		},
+		// paths: {
+		// 	base: '/talk',
+		// },
 	},
 }
 

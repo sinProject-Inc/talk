@@ -562,7 +562,7 @@
 <div class="flex h-screen min-h-screen flex-col">
 	<Navbar />
 
-	<div class="center-container flex w-screen flex-1 flex-col gap-3 overflow-y-auto p-3">
+	<div class="center-container mt-4 flex w-screen flex-1 flex-col gap-3 overflow-y-auto">
 		<div class="flex items-center justify-between gap-3">
 			<div class="glass-panel glass-text-4 flex h-[40px] w-full items-center gap-3 p-3">
 				<div class="ml-1 font-bold">{$_('room')}:</div>

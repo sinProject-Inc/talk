@@ -30,7 +30,7 @@ title: Our Team Policy
 ## Documentation Compliance
 
 - We will adhere to the guidelines set out in the Documentation for all projects.
-- If application of the guidelines is difficult, unclear, or a more efficient solution is available, we will consult the administrator.
+- If application of the guidelines is difficult, unclear, or a more efficient solution is available, we will consult an administrator.
 - We will acknowledge that we have reviewed the Documentation by providing a response.
 - Each project lead will confirm when they have fully implemented the guidelines from the Documentation.
 
