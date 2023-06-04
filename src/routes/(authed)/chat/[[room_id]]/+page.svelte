@@ -562,7 +562,7 @@
 <div class="flex h-screen min-h-screen flex-col">
 	<Navbar />
 
-	<div class="center-container mt-6 flex w-screen flex-1 flex-col gap-4 overflow-y-auto">
+	<div class="center-container flex w-screen flex-1 flex-col gap-3 overflow-y-auto p-3">
 		<div class="flex items-center justify-between gap-3">
 			<div class="glass-panel flex h-[40px] w-full items-center gap-3 p-3">
 				<div class="ml-1 font-bold text-white/80">{$_('room')}:</div>
@@ -743,13 +743,13 @@
 				{/if}
 			</div>
 		</div>
-	</div>
-	<div class="flex h-6 justify-center text-sm text-white/75">
-		<a
-			target="_blank"
-			rel="noreferrer"
-			href="https://github.com/sinProject-Inc/talk/"
-			class="text-color">sinProject Talk {version}</a
-		>
+		<div class="flex h-6 justify-center text-sm text-white/75">
+			<a
+				target="_blank"
+				rel="noreferrer"
+				href="https://github.com/sinProject-Inc/talk/"
+				class="text-color">sinProject Talk {version}</a
+			>
+		</div>
 	</div>
 </div>
