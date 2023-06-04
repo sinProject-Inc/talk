@@ -44,18 +44,6 @@
 			margin-bottom: 1.2rem !important;
 			/* @apply leading-8 space-y-4; */
 		}
-
-		.github-link::before {
-			content: url('/github_icon.svg');
-			position: relative;
-			top: 4px;
-		}
-
-		.link-with-arrow::after {
-			content: url('/right_arrow.svg');
-			position: relative;
-			margin-inline-start: 0.2rem;
-		}
 	</style>
 </svelte:head>
 
