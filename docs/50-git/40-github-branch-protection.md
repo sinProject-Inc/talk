@@ -21,7 +21,7 @@ title: GitHub Branch Protection
 
 ### Protect matching branches
 
-Check the following items:
+Apply the following settings:
 
 - Require a pull request before merging
   - Require approvals: 1

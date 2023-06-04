@@ -1,5 +1,89 @@
 [
 	{
+		"path": "docs-history",
+		"title": "Docs History",
+		"description": "",
+		"content": "",
+		"heading": ""
+	},
+	{
+		"path": "docs-history#docs-history",
+		"title": "Docs History",
+		"description": "",
+		"content": "\n\nView history on GitHub >\n",
+		"heading": "Docs History"
+	},
+	{
+		"path": "docs-history#docs-files",
+		"title": "Docs History",
+		"description": "",
+		"content": "\n\nView files on GitHub >\n",
+		"heading": "Docs Files"
+	},
+	{
+		"path": "docs-history",
+		"title": "Docs History",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "docs-history#docs-history",
+		"title": "Docs History",
+		"description": "",
+		"heading": "Docs History",
+		"content": "Docs History"
+	},
+	{
+		"path": "docs-history#docs-files",
+		"title": "Docs History",
+		"description": "",
+		"heading": "Docs Files",
+		"content": "Docs Files"
+	},
+	{
+		"path": "docs-history",
+		"title": "Docs History",
+		"description": "",
+		"heading": "",
+		"content": "Docs History"
+	},
+	{
+		"path": "locales",
+		"title": "Locales",
+		"description": "",
+		"content": "\nText-to-Speech Supported Languages\n\nGoogle Cloud\nMicrosoft Azure\n",
+		"heading": ""
+	},
+	{
+		"path": "locales#translations",
+		"title": "Locales",
+		"description": "",
+		"content": "\n\nUsing the VSCode Extension, i18n Ally, makes it easy.\n",
+		"heading": "Translations"
+	},
+	{
+		"path": "locales",
+		"title": "Locales",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "locales#translations",
+		"title": "Locales",
+		"description": "",
+		"heading": "Translations",
+		"content": "Translations"
+	},
+	{
+		"path": "locales",
+		"title": "Locales",
+		"description": "",
+		"heading": "",
+		"content": "Locales"
+	},
+	{
 		"path": "slack",
 		"title": "Slack",
 		"description": "",
@@ -49,53 +133,25 @@
 		"content": "Slack"
 	},
 	{
-		"path": "docs-history",
-		"title": "Docs History",
+		"path": "books",
+		"title": "Books",
 		"description": "",
-		"content": "",
+		"content": "\nWe recommend the following books.\n\n良いコード/悪いコードで学ぶ設計入門 ―保守しやすい 成長し続けるコードの書き方\nなぜ、あなたの仕事は終わらないのか スピードは最強の武器である\n現場で役立つシステム設計の原則 ~変更を楽で安全にするオブジェクト指向の実践技法\nリーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック\n",
 		"heading": ""
 	},
 	{
-		"path": "docs-history#docs-history",
-		"title": "Docs History",
-		"description": "",
-		"content": "\n\nView history on GitHub >\n",
-		"heading": "Docs History"
-	},
-	{
-		"path": "docs-history#docs-files",
-		"title": "Docs History",
-		"description": "",
-		"content": "\n\nView files on GitHub >\n",
-		"heading": "Docs Files"
-	},
-	{
-		"path": "docs-history",
-		"title": "Docs History",
+		"path": "books",
+		"title": "Books",
 		"description": "",
 		"heading": "",
 		"content": ""
 	},
 	{
-		"path": "docs-history#docs-history",
-		"title": "Docs History",
-		"description": "",
-		"heading": "Docs History",
-		"content": "Docs History"
-	},
-	{
-		"path": "docs-history#docs-files",
-		"title": "Docs History",
-		"description": "",
-		"heading": "Docs Files",
-		"content": "Docs Files"
-	},
-	{
-		"path": "docs-history",
-		"title": "Docs History",
+		"path": "books",
+		"title": "Books",
 		"description": "",
 		"heading": "",
-		"content": "Docs History"
+		"content": "Books"
 	},
 	{
 		"path": "our-team-policy",
@@ -217,6 +273,188 @@
 		"content": "Our Team Policy"
 	},
 	{
+		"path": "pm2",
+		"title": "PM2",
+		"description": "",
+		"content": "\nPM2 is a daemon process manager that will help you manage and keep your application online 24/7.\n\nPM2 Quick Start >\n",
+		"heading": ""
+	},
+	{
+		"path": "pm2#installation",
+		"title": "PM2",
+		"description": "",
+		"content": "\n\nnpm install pm2@latest -g\n",
+		"heading": "Installation"
+	},
+	{
+		"path": "pm2#starting",
+		"title": "PM2",
+		"description": "",
+		"content": "\n\npm2 start app.js\n",
+		"heading": "Starting"
+	},
+	{
+		"path": "pm2#monitoring",
+		"title": "PM2",
+		"description": "",
+		"content": "\n\npm2 monit\n",
+		"heading": "Monitoring"
+	},
+	{
+		"path": "pm2#microservice",
+		"title": "PM2",
+		"description": "",
+		"content": "\n\nlist all processes:\n\npm2 list\n\ndisplay logs:\n\npm2 logs\n\nAct on them:\n\npm2 stop [app_name | all]\npm2 restart [app_name | all]\npm2 delete [app_name | all]\n",
+		"heading": "Microservice"
+	},
+	{
+		"path": "pm2#troubleshooting",
+		"title": "PM2",
+		"description": "",
+		"content": "\n\nIf the 'stop' or 'delete' commands do not work, execute the following command.\n\npm2 reload [app_name | all]\n",
+		"heading": "Troubleshooting"
+	},
+	{
+		"path": "pm2#ecosystem-file",
+		"title": "PM2",
+		"description": "",
+		"content": "\n\nmodule.exports = {\n\tapps: [\n\t\t{\n\t\t\tname: 'talk',\n\t\t\tscript: './server/index.ts',\n\t\t\tinterpreter: 'node',\n\t\t\tinterpreterArgs: '--loader tsx',\n\t\t\tinstances: '-1',\n\t\t\texec_mode: 'cluster',\n\t\t\twatch: false,\n\t\t\tignore_watch: ['logs'],\n\t\t\tenv: {\n\t\t\t\tPORT: 3002,\n\t\t\t},\n\t\t},\n\t],\n}\n\nStart it easily:\n\npm2 start ecosystem.config.cjs\n\nMore info >\n",
+		"heading": "Ecosystem File"
+	},
+	{
+		"path": "pm2",
+		"title": "PM2",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "pm2#installation",
+		"title": "PM2",
+		"description": "",
+		"heading": "Installation",
+		"content": "Installation"
+	},
+	{
+		"path": "pm2#starting",
+		"title": "PM2",
+		"description": "",
+		"heading": "Starting",
+		"content": "Starting"
+	},
+	{
+		"path": "pm2#monitoring",
+		"title": "PM2",
+		"description": "",
+		"heading": "Monitoring",
+		"content": "Monitoring"
+	},
+	{
+		"path": "pm2#microservice",
+		"title": "PM2",
+		"description": "",
+		"heading": "Microservice",
+		"content": "Microservice"
+	},
+	{
+		"path": "pm2#troubleshooting",
+		"title": "PM2",
+		"description": "",
+		"heading": "Troubleshooting",
+		"content": "Troubleshooting"
+	},
+	{
+		"path": "pm2#ecosystem-file",
+		"title": "PM2",
+		"description": "",
+		"heading": "Ecosystem File",
+		"content": "Ecosystem File"
+	},
+	{
+		"path": "pm2",
+		"title": "PM2",
+		"description": "",
+		"heading": "",
+		"content": "PM2"
+	},
+	{
+		"path": "ssh",
+		"title": "SSH",
+		"description": "",
+		"content": "",
+		"heading": ""
+	},
+	{
+		"path": "ssh#ssh-key-generation",
+		"title": "SSH",
+		"description": "",
+		"content": "\n\n$ mkdir ~/.ssh\n$ cd ~/.ssh\n$ ssh-keygen -t rsa\nEnter file: ubuntu@sinpro-dev\nEnter passphrase: **\n\nssh -i ~/.ssh/ubuntu@sinpro-dev ubuntu@153.127..\n",
+		"heading": "SSH Key Generation"
+	},
+	{
+		"path": "ssh#using-the-ssh-config-file",
+		"title": "SSH",
+		"description": "",
+		"content": "\n\nCreate a new SSH client configuration: ~/.ssh/config\n\nHost sinpro-dev\n\tHostName 153.127..\n\tPort **\n\tIdentityFile ~/.ssh/dev@sinpro-dev\n\tUser dev\n\nYou can connect with the following command:\n\nssh sinpro-dev\n",
+		"heading": "Using the SSH Config File"
+	},
+	{
+		"path": "ssh#port-changing",
+		"title": "SSH",
+		"description": "",
+		"content": "\nPacket Filtering\n\nSet up a packet filter so you can connect to the destination port.\n\nInstalling netstat on Ubuntu\n\nsudo apt update && sudo apt upgrade\nsudo apt install net-tools\n\nMore Info >\n\nRun the netstat\n\nThe SSH server on Ubuntu listen on TCP port 22 by default. You can run the netstat command to check ssh port currently running on:\n\nsudo netstat -tulnp | grep ssh\n\nConfigurations\n\nOpen the file:\n\nsudo micro /etc/ssh/sshd_config\n\nEdit the file:\n\nPort XXXX\n\nRestart the SSH server\n\nsudo systemctl restart ssh\n\nConfirm that the port has been changed\n\nsudo netstat -tulnp | grep ssh\n",
+		"heading": "Port changing"
+	},
+	{
+		"path": "ssh#vscode-configuration",
+		"title": "SSH",
+		"description": "",
+		"content": "\n\nInstall Remote - SSH VSCode Extension.\n\nThis extension allows you to use VSCode by connecting via SSH.\n",
+		"heading": "VSCode configuration"
+	},
+	{
+		"path": "ssh",
+		"title": "SSH",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "ssh#ssh-key-generation",
+		"title": "SSH",
+		"description": "",
+		"heading": "SSH Key Generation",
+		"content": "SSH Key Generation"
+	},
+	{
+		"path": "ssh#using-the-ssh-config-file",
+		"title": "SSH",
+		"description": "",
+		"heading": "Using the SSH Config File",
+		"content": "Using the SSH Config File"
+	},
+	{
+		"path": "ssh#port-changing",
+		"title": "SSH",
+		"description": "",
+		"heading": "Port changing",
+		"content": "Port changing"
+	},
+	{
+		"path": "ssh#vscode-configuration",
+		"title": "SSH",
+		"description": "",
+		"heading": "VSCode configuration",
+		"content": "VSCode configuration"
+	},
+	{
+		"path": "ssh",
+		"title": "SSH",
+		"description": "",
+		"heading": "",
+		"content": "SSH"
+	},
+	{
 		"path": "git-for-windows",
 		"title": "Git for Windows",
 		"description": "",
@@ -336,6 +574,13 @@
 		"heading": ""
 	},
 	{
+		"path": "github-actions#secrets",
+		"title": "GitHub Actions",
+		"description": "",
+		"content": "\n\nDo not write confidential information (environment variables etc.) directly. Instead, register it in GitHub's Secrets.\n\nGitHub > Repository > Settings\nSecrets and Variables > Actions\nNew repository secret\n\nIf you want to use the secret, refer to it as secrets.[SECRET_NAME].\n\necho DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env\n",
+		"heading": "Secrets"
+	},
+	{
 		"path": "github-actions#checks",
 		"title": "GitHub Actions",
 		"description": "",
@@ -362,6 +607,13 @@
 		"description": "",
 		"heading": "",
 		"content": ""
+	},
+	{
+		"path": "github-actions#secrets",
+		"title": "GitHub Actions",
+		"description": "",
+		"heading": "Secrets",
+		"content": "Secrets"
 	},
 	{
 		"path": "github-actions#checks",
@@ -455,6 +707,69 @@
 		"content": "Git Hooks"
 	},
 	{
+		"path": "github-branch-protection",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"content": "",
+		"heading": ""
+	},
+	{
+		"path": "github-branch-protection#managing-a-branch-protection-rule",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"content": "You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch.\n\nMore Information >\n",
+		"heading": "Managing a branch protection rule"
+	},
+	{
+		"path": "github-branch-protection#how-to-create-a-branch-protection-rule",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"content": "\n\nOpen Target Repository > Settings > Branches\nPush Add rule button\n",
+		"heading": "How to create a branch protection rule"
+	},
+	{
+		"path": "github-branch-protection#settings",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"content": "\nBranch name pattern\n\nmain\n\nProtect matching branches\n\nApply the following settings:\n\nRequire a pull request before merging\n  Require approvals: 1\n  Dismiss stale pull request approvals when new commits are pushed\nRequire status checks to pass before merging\n  Status checks that are required.: Search for the target Actions and add them.\nRestrict who can push to matching branches\n  Restrict pushes that create matching branches\n",
+		"heading": "Settings"
+	},
+	{
+		"path": "github-branch-protection",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "github-branch-protection#managing-a-branch-protection-rule",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"heading": "Managing a branch protection rule",
+		"content": "Managing a branch protection rule"
+	},
+	{
+		"path": "github-branch-protection#how-to-create-a-branch-protection-rule",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"heading": "How to create a branch protection rule",
+		"content": "How to create a branch protection rule"
+	},
+	{
+		"path": "github-branch-protection#settings",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"heading": "Settings",
+		"content": "Settings"
+	},
+	{
+		"path": "github-branch-protection",
+		"title": "GitHub Branch Protection",
+		"description": "",
+		"heading": "",
+		"content": "GitHub Branch Protection"
+	},
+	{
 		"path": "git-branches-and-commits",
 		"title": "Git Branches and Commits",
 		"description": "",
@@ -467,6 +782,13 @@
 		"description": "",
 		"content": "\n\nWrite the issue number and issue title in kebab-case, connected with a hyphen.\n\n743-git-branches-and-commits\n",
 		"heading": "Git branch naming conventions"
+	},
+	{
+		"path": "git-branches-and-commits#script",
+		"title": "Git Branches and Commits",
+		"description": "",
+		"content": "\n\nWe have prepared a script to create branches issue names.\n\nnpm run create-branch \" #\"\n\nexample:\n\nnpm run create-branch \"Docs: Correct English #990\"\n",
+		"heading": "Script"
 	},
 	{
 		"path": "git-branches-and-commits#commit-message-conventions",
@@ -490,6 +812,13 @@
 		"content": "Git branch naming conventions"
 	},
 	{
+		"path": "git-branches-and-commits#script",
+		"title": "Git Branches and Commits",
+		"description": "",
+		"heading": "Script",
+		"content": "Script"
+	},
+	{
 		"path": "git-branches-and-commits#commit-message-conventions",
 		"title": "Git Branches and Commits",
 		"description": "",
@@ -504,77 +833,77 @@
 		"content": "Git Branches and Commits"
 	},
 	{
-		"path": "github-pull_requests",
+		"path": "github-pull-requests",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"content": "\nOn completing an issues, we create a pull request (PR).\n",
 		"heading": ""
 	},
 	{
-		"path": "github-pull_requests#pull-request-template",
+		"path": "github-pull-requests#pull-request-template",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"content": "\n\nIn the template, write tasks for the following:\n\nFor the Submitter\n  Tasks\nFor the Reviewer\n  Before Reviewing\n  Checks\n  After Reviewing\n\nView this file on GitHub >\n",
 		"heading": "Pull Request Template"
 	},
 	{
-		"path": "github-pull_requests#title",
+		"path": "github-pull-requests#title",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"content": "\n\nFormat\n\n\nExample\n\nDocs: Show scrollbar like Mac #942\n",
 		"heading": "Title"
 	},
 	{
-		"path": "github-pull_requests#reviewers",
+		"path": "github-pull-requests#reviewers",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"content": "\n\nAssign the person in charge of reviewing.\n",
 		"heading": "Reviewers"
 	},
 	{
-		"path": "github-pull_requests#labels",
+		"path": "github-pull-requests#labels",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"content": "\n\nIf it's related to an enhancement, add the 'enhancement' label.\n\nIf it involves a significant change, add the 'breaking-change' label.\n",
 		"heading": "Labels"
 	},
 	{
-		"path": "github-pull_requests",
+		"path": "github-pull-requests",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"heading": "",
 		"content": ""
 	},
 	{
-		"path": "github-pull_requests#pull-request-template",
+		"path": "github-pull-requests#pull-request-template",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"heading": "Pull Request Template",
 		"content": "Pull Request Template"
 	},
 	{
-		"path": "github-pull_requests#title",
+		"path": "github-pull-requests#title",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"heading": "Title",
 		"content": "Title"
 	},
 	{
-		"path": "github-pull_requests#reviewers",
+		"path": "github-pull-requests#reviewers",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"heading": "Reviewers",
 		"content": "Reviewers"
 	},
 	{
-		"path": "github-pull_requests#labels",
+		"path": "github-pull-requests#labels",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"heading": "Labels",
 		"content": "Labels"
 	},
 	{
-		"path": "github-pull_requests",
+		"path": "github-pull-requests",
 		"title": "GitHub Pull Requests",
 		"description": "",
 		"heading": "",
@@ -696,7 +1025,7 @@
 		"path": "playwright#configuration",
 		"title": "Playwright",
 		"description": "",
-		"content": "\nBasic changes\n\nChange the test directory, timeout duration, and other settings as needed.\n\nConfigure the reporter not to open automatically, and output a video when an error occurs.\n\nconst config: PlaywrightTestConfig = {\n\ttestDir: './e2e',\n\ttimeout: process.env.CI ? 20 * 1000 : 5 * 1000,\n\texpect: {\n\t\ttimeout: 2000,\n\t},\n\tretries: 0,\n\tworkers: process.env.CI ? 1 : undefined,\n\treporter: [['html', { open: 'never' }]],\n\tuse: {\n\t\tvideo: 'retain-on-failure',\n\t\tcontextOptions: {\n\t\t\tpermissions: ['clipboard-read', 'clipboard-write', 'accessibility-events'],\n\t\t},\n\t},\n}\n\nPlaywright - TestConfig >\n\nTarget Browsers\n\nEnsure that tests are not run on browsers where testing is not necessary.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t},\n\n\t\t// {\n\t\t//   name: 'firefox',\n\t\t//   use: {\n\t\t//     ...devices['Desktop Firefox'],\n\t\t//   },\n\t\t// },\n\n\t\t// ...\n\t}\n}\n\nWeb Server\n\nTo perform tests quickly, use a development server. Also, change the baseURL.\n\n\twebServer: [\n\t\t{\n\t\t\tcommand: 'npm run dev',\n\t\t\turl: 'http://127.0.0.1:5173/talk/',\n\t\t\treuseExistingServer: !process.env.CI,\n\t\t},\n\t\t// {\n\t\t// \tcommand: 'npm run build && npm run preview',\n\t\t// \tport: 4173,\n\t\t// \treuseExistingServer: !process.env.CI,\n\t\t// },\n\t],\n\tuse: {\n\t\t\tbaseURL: 'http://127.0.0.1:5173/talk/',\n\t}\n\nMore information >\n\nSetup\n\nSpecify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{ name: 'setup', testMatch: /.*\\.setup\\.ts/ },\n\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t\tdependencies: ['setup'],\n\t\t},\n\t}\n}\n",
+		"content": "\nBasic changes\n\nChange the test directory, timeout duration, and other settings as needed.\n\nConfigure the reporter not to open automatically, and output a video when an error occurs.\n\nconst config: PlaywrightTestConfig = {\n\ttestDir: './e2e',\n\ttimeout: process.env.CI ? 20 * 1000 : 5 * 1000,\n\texpect: {\n\t\ttimeout: 2000,\n\t},\n\tretries: 0,\n\tworkers: undefined,\n\treporter: [['html', { open: 'never' }]],\n\tuse: {\n\t\tvideo: 'retain-on-failure',\n\t\tcontextOptions: {\n\t\t\tpermissions: ['clipboard-read', 'clipboard-write', 'accessibility-events'],\n\t\t},\n\t},\n}\n\nPlaywright - TestConfig >\n\nTarget Browsers\n\nEnsure that tests are not run on browsers where testing is not necessary.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t},\n\n\t\t// {\n\t\t//   name: 'firefox',\n\t\t//   use: {\n\t\t//     ...devices['Desktop Firefox'],\n\t\t//   },\n\t\t// },\n\n\t\t// ...\n\t}\n}\n\nWeb Server\n\nTo perform tests quickly, use a development server. Also, change the baseURL.\n\nconst base = ''\n// const base = '/talk'\nconst config: PlaywrightTestConfig = {\n\twebServer: [\n\t\t{\n\t\t\tcommand: 'npm run dev',\n\t\t\turl: http://127.0.0.1:5173${base}/,\n\t\t\treuseExistingServer: !process.env.CI,\n\t\t},\n\t\t// {\n\t\t// \tcommand: 'npm run build && npm run preview',\n\t\t// \tport: 4173,\n\t\t// \treuseExistingServer: !process.env.CI,\n\t\t// },\n\t],\n\tuse: {\n\t\tbaseURL: http://127.0.0.1:5173${base}/,\n\t}\n}\n\nMore information >\n\nSetup\n\nSpecify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{ name: 'setup', testMatch: /.*\\.setup\\.ts/ },\n\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t\tdependencies: ['setup'],\n\t\t},\n\t}\n}\n",
 		"heading": "Configuration"
 	},
 	{
@@ -712,6 +1041,27 @@
 		"description": "",
 		"content": "\n\nUse VSCode Extension for testing through VSCode.\n",
 		"heading": "VSCode Extension"
+	},
+	{
+		"path": "playwright#running-tests",
+		"title": "Playwright",
+		"description": "",
+		"content": "\n\nRunning all tests\n\nnpx playwright test\n\nRunning a single test file\n\nnpx playwright test\n\nMore Info >\n",
+		"heading": "Running tests"
+	},
+	{
+		"path": "playwright#running-codegen",
+		"title": "Playwright",
+		"description": "",
+		"content": "\n\nUse the codegen command to run the test generator followed by the URL of the website you want to generate tests for. The URL is optional and you can always run the command without it and then add the URL directly into the browser window instead.\n\nnpx playwright codegen localhost:5173\n\nMore Info >\n",
+		"heading": "Running Codegen"
+	},
+	{
+		"path": "playwright#reporters",
+		"title": "Playwright",
+		"description": "",
+		"content": "\n\nA quick way of opening the last test run report is:\n\nnpx playwright show-report\n\nMore Info >\n",
+		"heading": "Reporters"
 	},
 	{
 		"path": "playwright#locate-by-test-id",
@@ -768,6 +1118,27 @@
 		"description": "",
 		"heading": "VSCode Extension",
 		"content": "VSCode Extension"
+	},
+	{
+		"path": "playwright#running-tests",
+		"title": "Playwright",
+		"description": "",
+		"heading": "Running tests",
+		"content": "Running tests"
+	},
+	{
+		"path": "playwright#running-codegen",
+		"title": "Playwright",
+		"description": "",
+		"heading": "Running Codegen",
+		"content": "Running Codegen"
+	},
+	{
+		"path": "playwright#reporters",
+		"title": "Playwright",
+		"description": "",
+		"heading": "Reporters",
+		"content": "Reporters"
 	},
 	{
 		"path": "playwright#locate-by-test-id",
@@ -1123,15 +1494,8 @@
 		"path": "chatgpt-prompts#translating-english",
 		"title": "ChatGPT Prompts",
 		"description": "",
-		"content": "\n\n`md",
+		"content": "\nInstructions\n\nYou are a professional translator. In this conversation, please provide the best possible translations.\n",
 		"heading": "Translating (English)"
-	},
-	{
-		"path": "chatgpt-prompts#instructions-english",
-		"title": "ChatGPT Prompts",
-		"description": "",
-		"content": "\n\nYou are a professional translator. In this conversation, please provide the best possible translations.\n",
-		"heading": "Instructions (English)"
 	},
 	{
 		"path": "chatgpt-prompts#coding-japanese",
@@ -1167,13 +1531,6 @@
 		"description": "",
 		"heading": "Translating (English)",
 		"content": "Translating (English)"
-	},
-	{
-		"path": "chatgpt-prompts#instructions-english",
-		"title": "ChatGPT Prompts",
-		"description": "",
-		"heading": "Instructions (English)",
-		"content": "Instructions (English)"
 	},
 	{
 		"path": "chatgpt-prompts#coding-japanese",
@@ -1494,7 +1851,7 @@
 		"path": "vscode-extensions#css",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "\n\nTailwind CSS IntelliSense\n\nIntelligent Tailwind CSS tooling for VSCode\n\nCSS Peek\n\nAllow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.\n",
+		"content": "\n\nTailwind CSS IntelliSense\n\nIntelligent Tailwind CSS tooling for VSCode\n\nCSS Peek\n\nAllow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.\n\nColor Highlight\n\nHighlight web colors in your editor\n",
 		"heading": "CSS"
 	},
 	{
@@ -1540,11 +1897,11 @@
 		"heading": "Database Management"
 	},
 	{
-		"path": "vscode-extensions#api",
+		"path": "vscode-extensions#networking",
 		"title": "VSCode Extensions",
 		"description": "",
-		"content": "\n\nREST Client\n\nREST Client for Visual Studio Code\n",
-		"heading": "API"
+		"content": "\n\nREST Client\n\nREST Client for Visual Studio Code\n\nRemote - SSH\n\nOpen any folder on a remote machine using SSH and take advantage of VS Code's full feature set.\n",
+		"heading": "Networking"
 	},
 	{
 		"path": "vscode-extensions#code-execution",
@@ -1666,11 +2023,11 @@
 		"content": "Database Management"
 	},
 	{
-		"path": "vscode-extensions#api",
+		"path": "vscode-extensions#networking",
 		"title": "VSCode Extensions",
 		"description": "",
-		"heading": "API",
-		"content": "API"
+		"heading": "Networking",
+		"content": "Networking"
 	},
 	{
 		"path": "vscode-extensions#code-execution",
