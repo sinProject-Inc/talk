@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navigating, page } from '$app/stores'
+	import { navigating } from '$app/stores'
 	import '$lib/app.css'
 	import { Direction } from '$lib/view/direction'
 	import NProgress from 'nprogress'
@@ -10,8 +10,10 @@
 	import { browser } from '$app/environment'
 	import { afterNavigate } from '$app/navigation'
 	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
-	import { theme_store } from '$lib/theme/theme_service'
+	import { theme_service } from '$lib/theme/theme_service'
 	import { Theme } from '@prisma/client'
+	import { onMount } from 'svelte'
+	import type { Unsubscriber } from 'svelte/store'
 
 	export let data: LayoutServerData
 
@@ -22,15 +24,12 @@
 	let transitioning_background = false
 	let transition_background_timer: number
 
-	let theme_class: Theme = data.theme
+	let current_theme: Theme
+
 	const background_dark_overlay = 'rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)'
 	const background_light_overlay = 'rgba(241,245,249, 0.9), rgba(241,245,249, 0.9)'
 
-	const unsubscribe_to_theme = theme_store.subscribe((theme) => {
-		theme_class = theme
-	})
-
-	theme_class = data.theme
+	let unsubscribe_to_theme: Unsubscriber
 
 	load_backgrounds()
 	polyfillCountryFlagEmojis()
@@ -82,13 +81,25 @@
 		}, background_period_duration)
 	}
 
+	async function subscribe_to_theme(): Promise<void> {
+		unsubscribe_to_theme = await theme_service.subscribe((theme) => {
+			current_theme = theme
+		})
+	}
+
+	onMount(async () => {
+		await theme_service.init_store(data.theme)
+
+		await subscribe_to_theme()
+	})
+
 	afterNavigate(() => {
 		execute_transition()
 	})
 </script>
 
-{#if theme_class}
-	<div class={theme_class}>
+{#if current_theme}
+	<div class={current_theme}>
 		<div
 			class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
 			dir={get_direction($locale ?? '')}
@@ -97,7 +108,7 @@
 				{#if current_background}
 					<div class="fixed -z-50 h-screen w-full">
 						<div
-							style="background: linear-gradient({theme_class === Theme.dark
+							style="background: linear-gradient({current_theme === Theme.dark
 								? background_dark_overlay
 								: background_light_overlay}), url({next_background.background_url}) bottom center/cover"
 							class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
@@ -107,7 +118,7 @@
 							class="{transitioning_background
 								? 'opacity-0 transition-all'
 								: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-							style="background: linear-gradient({theme_class === Theme.dark
+							style="background: linear-gradient({current_theme === Theme.dark
 								? background_dark_overlay
 								: background_light_overlay}), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
 								? background_transition_duration

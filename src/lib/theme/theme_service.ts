@@ -1,29 +1,44 @@
 import { Theme } from '@prisma/client'
 import { writable, type Unsubscriber, type Writable } from 'svelte/store'
-import { GetThemeApi } from './get_theme_api'
 import { UpdateThemeApi } from './update_theme_api'
 
 export class ThemeService {
+	private _ready: Promise<void>
 	private _store: Writable<Theme>
 
-	public constructor(theme: Theme) {
-		this._store = writable(theme)
+	public constructor() {
+		this._ready = new Promise<void>(() => {
+			return
+		})
+
+		this._store = writable(Theme.dark)
 	}
 
-	public subscribe(run: (value: Theme) => void): Unsubscriber {
+	public async subscribe(run: (value: Theme) => void): Promise<Unsubscriber> {
+		await this._ready
+
 		return this._store.subscribe(run)
 	}
 
-	public static async from_database(): Promise<Theme> {
-		const theme = await new GetThemeApi().fetch()
+	public async update_store(value: Theme): Promise<void> {
+		await this._ready
 
-		return theme
+		this._store.set(value)
 	}
 
-	public async set(value: Theme): Promise<void> {
-		this._store.set(value)
+	public async update_database(value: Theme): Promise<void> {
 		await new UpdateThemeApi(value).fetch()
+	}
+
+	public async init_store(theme: Theme): Promise<void> {
+		this._store = writable(theme)
+
+		this._ready = Promise.resolve()
+	}
+
+	public get ready(): Promise<void> {
+		return this._ready
 	}
 }
 
-export const theme_store = new ThemeService(Theme.dark)
+export const theme_service = new ThemeService()

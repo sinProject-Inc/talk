@@ -9,7 +9,8 @@
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
-	import DropdownMenu from './dropdown_menu.svelte'
+	import ThemeSwitcher from './theme_switcher.svelte'
+	import NavItem from './nav_item.svelte'
 
 	export let search_bar_enabled = false
 
@@ -49,7 +50,7 @@
 						<div class="h-5"><SearchIcon /></div>
 					</button>
 				{/if}
-				<DropdownMenu />
+				<ThemeSwitcher />
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
