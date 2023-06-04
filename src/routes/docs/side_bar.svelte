@@ -18,10 +18,10 @@
 </script>
 
 <!-- <div class="sticky top-0 -ml-0.5 pointer-events-none">
-	<div class="bg-white dark:bg-slate-900 relative pointer-events-auto">
+	<div class="dark:bg-base-dark bg-base relative pointer-events-auto">
 		<button
 			type="button"
-			class="hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-1.5 pl-2 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700"
+			class="hidden w-full lg:flex items-center text-sm leading-6 dark:text-primary-dark-3 text-primary-3 rounded-md ring-1 dark:ring-base-dark/10 ring-base/10 shadow-sm py-1.5 pl-2 pr-3 dark:hover:ring-primary-dark-300 hover:ring-primary-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700"
 			><svg width="24" height="24" fill="none" aria-hidden="true" class="mr-3 flex-none"
 				><path
 					d="m19 19-3.5-3.5"
@@ -42,14 +42,14 @@
 		>
 	</div>
 </div> -->
-
 <ul class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<div
-			class="fixed top-[84px] h-16 w-56 rounded-2xl bg-gradient-to-t from-transparent via-slate-800 to-slate-800"
+			class="fixed top-[84px] h-16 w-56 rounded-2xl bg-gradient-to-t from-transparent via-primary-dark-5 to-primary-dark-5 dark:via-primary-5 dark:to-primary-5
+"
 		/>
 		<button
-			class="glass-panel fixed top-[84px] flex w-56 items-center gap-3 rounded-md bg-slate-900/90 shadow-lg shadow-slate-900/70 transition-all duration-150 hover:bg-slate-600/75"
+			class="glass-panel fixed top-[84px] flex w-56 items-center gap-3 rounded-md bg-base/90 shadow-lg shadow-base/70 transition-all duration-150 hover:bg-primary-dark-3/20 dark:bg-base-dark/90 dark:shadow-base-dark/70 dark:hover:bg-primary-3/75"
 			on:click={on_search_button_click}
 		>
 			<div class="h-5"><SearchIcon /></div>
@@ -63,10 +63,10 @@
 	<div class="pl-1 pt-8">
 		{#each sections as section}
 			<li class="my-8">
-				<h5 class="mb-3 font-semibold text-slate-200">
+				<h5 class="glass-text-5 mb-3 font-semibold">
 					{section.title}
 				</h5>
-				<ul class="space-y-2 border-l border-slate-800">
+				<ul class="space-y-2 border-l border-primary-dark-5 dark:border-primary-5">
 					{#each section.pages as { title, path }}
 						{@const active = path === $page.url.pathname}
 						{@const inactive = !active}
@@ -84,10 +84,10 @@
 
 <style lang="postcss">
 	.active {
-		@apply border-current text-sky-400;
+		@apply border-current text-secondary dark:text-secondary-dark;
 	}
 
 	.inactive {
-		@apply border-transparent text-slate-400 hover:border-slate-500 hover:text-slate-300;
+		@apply border-transparent  text-primary-3  hover:border-primary-2 hover:text-primary-4 dark:text-primary-dark-3 dark:hover:border-primary-dark-2 dark:hover:text-primary-dark-4;
 	}
 </style>

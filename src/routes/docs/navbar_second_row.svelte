@@ -13,7 +13,7 @@
 </script>
 
 <div
-	class="sticky top-[var(--header-height)] z-10 flex h-[var(--header-height)] flex-col border-b border-slate-50/[0.06] bg-transparent backdrop-blur md:hidden"
+	class="sticky top-[var(--header-height)] z-10 flex h-[var(--header-height)] flex-col border-b border-primary-9/[0.06] bg-transparent backdrop-blur dark:border-primary-dark-9/[0.06] md:hidden"
 >
 	<div class="center-container flex h-full w-full items-center md:hidden">
 		<IconButton class="-ml-[10.5px] mr-0" on:click={open_mobile_side_bar}>
@@ -24,7 +24,7 @@
 			<div class="flex h-1 w-1 items-center justify-center">
 				<RightArrowIcon />
 			</div>
-			<div class="font-semibold text-white/90">{$current_page_title}</div>
+			<div class="glass-text-5 font-semibold">{$current_page_title}</div>
 		</div>
 	</div>
 </div>

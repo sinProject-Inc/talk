@@ -345,7 +345,7 @@
 			<div class="flex flex-row items-center gap-2">
 				<input
 					type="text"
-					class="flex-1"
+					class="input flex-1"
 					placeholder={$_('enter_new_translation')}
 					lang={to_locale_code.code}
 					bind:value={add_translation_string}
