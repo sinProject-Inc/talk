@@ -264,6 +264,11 @@
 
 <svelte:head>
 	<title>Talk</title>
+	<style>
+		option {
+			background-color: white !important;
+		}
+	</style>
 </svelte:head>
 
 <Navbar />

@@ -336,6 +336,11 @@
 
 <svelte:head>
 	<title>Talk - Translate</title>
+	<style>
+		option {
+			background-color: white !important;
+		}
+	</style>
 </svelte:head>
 
 <Navbar />
