@@ -134,11 +134,11 @@ a {
 	}
 
 	.glass-panel {
-		@apply glass glass-border rounded-[0.5rem] shadow-lg;
+		@apply glass glass-border rounded-[0.5rem] shadow-sm;
 	}
 
 	.glass-button {
-		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
+		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine glass-border rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
 	}
 }
 
@@ -188,7 +188,7 @@ a {
 	}
 
 	.glass-border {
-		@apply border border-primary-9/[0.06] dark:border-primary-dark-9/[0.06];
+		@apply border-2 border-primary-9/[0.06] dark:border-primary-dark-9/[0.06];
 	}
 
 	.glass-text-faint-md {
