@@ -5,6 +5,7 @@
 	import MoonIcon from './icons/moon_icon.svelte'
 	import type { Unsubscriber } from 'svelte/store'
 	import { onMount } from 'svelte'
+	import { afterNavigate } from '$app/navigation'
 
 	let current_theme: Theme
 
@@ -27,10 +28,8 @@
 	async function toggle_theme(): Promise<void> {
 		if (current_theme === Theme.dark) {
 			await set_to_light_mode()
-			await theme_service.update_database(Theme.light)
 		} else {
 			await set_to_dark_mode()
-			await theme_service.update_database(Theme.dark)
 		}
 	}
 
@@ -54,5 +53,3 @@
 		{/if}
 	</button>
 {/await}
-
-<svelte:window on:unload={unsubscribe_to_theme} />

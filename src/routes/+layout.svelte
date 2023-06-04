@@ -8,11 +8,10 @@
 	import type { LayoutServerData } from './$types'
 	import { Background } from '$lib/background/background'
 	import { browser } from '$app/environment'
-	import { afterNavigate } from '$app/navigation'
+	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
 	import { theme_service } from '$lib/theme/theme_service'
 	import { Theme } from '@prisma/client'
-	import { onMount } from 'svelte'
 	import type { Unsubscriber } from 'svelte/store'
 
 	export let data: LayoutServerData
@@ -87,12 +86,14 @@
 		})
 	}
 
-	onMount(async () => {
-		await subscribe_to_theme()
-	})
-
 	afterNavigate(() => {
 		execute_transition()
+
+		subscribe_to_theme()
+	})
+
+	beforeNavigate(() => {
+		unsubscribe_to_theme()
 	})
 </script>
 
@@ -128,5 +129,3 @@
 		<slot />
 	</div>
 </div>
-
-<svelte:window on:unload={unsubscribe_to_theme} />
