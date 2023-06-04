@@ -24,7 +24,7 @@
 
 <div class="glass-text-5 sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
 	<div
-		class="mx-6 h-full border-b border-primary-9/[0.06] dark:border-primary-9/[0.06] md:mx-0 md:px-6"
+		class="mx-6 h-full border-b border-primary-9/[0.06] dark:border-primary-dark-9/[0.06] md:mx-0 md:px-6"
 	>
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a href="{base}/" class="flex items-center gap-2 text-[22px] no-underline">

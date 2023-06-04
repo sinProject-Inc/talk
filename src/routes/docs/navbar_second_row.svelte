@@ -24,7 +24,7 @@
 			<div class="flex h-1 w-1 items-center justify-center">
 				<RightArrowIcon />
 			</div>
-			<div class="font-semibold text-white/90">{$current_page_title}</div>
+			<div class="glass-text-5 font-semibold">{$current_page_title}</div>
 		</div>
 	</div>
 </div>
