@@ -134,15 +134,11 @@ a {
 	}
 
 	.glass-panel {
-		@apply glass glass-border overflow-hidden rounded-[0.5rem] shadow-lg;
+		@apply glass glass-border overflow-hidden rounded-[0.5rem] shadow-sm;
 	}
 
 	.glass-button {
 		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
-	}
-
-	.glowing-icon {
-		@apply hover:fill-secondary hover:text-secondary dark:hover:fill-secondary-dark dark:hover:text-secondary-dark;
 	}
 }
 

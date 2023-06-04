@@ -169,7 +169,7 @@
 	}
 
 	:global(.code-container) {
-		@apply border-[1px] border-primary-9/[0.06];
+		@apply border border-primary-9/[0.06];
 		margin: 1.2rem 0 !important;
 		border-radius: 0.5rem;
 		overflow: hidden;
