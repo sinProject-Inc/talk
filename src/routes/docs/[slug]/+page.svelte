@@ -33,52 +33,10 @@
 			}
 		}
 
-		.content a:not(.border-none):not(.permalink):not(.code-title) {
-			color: #fff;
-			font-weight: 600;
-			border-bottom: 1px solid #38bdf8;
-		}
-
-		.content a:not(.border-none):not(.permalink):not(.code-title):hover {
-			border-bottom: 2px solid #38bdf8;
-			margin-bottom: -1px;
-		}
-
 		.content ul > li {
 			padding-left: 1.7em;
 			position: relative;
 			margin: 0.5em 0;
-		}
-
-		.content ul > li::before {
-			content: '';
-			width: 0.75em;
-			height: 0.125em;
-			position: absolute;
-			top: 11px;
-			left: 0;
-			border-radius: 999px;
-			background-color: #cbd5e1;
-		}
-
-		.code-container {
-			margin: 1.2rem 0 !important;
-			border-radius: 0.5rem;
-			border: 1px solid rgb(248 250 252 / 0.06);
-			overflow: hidden;
-		}
-
-		.code-container > div {
-			padding: 0.5rem 1rem;
-			background-color: #0f172aff;
-			backdrop-filter: blur(4px);
-			/* background-color: rgb(248 250 252 / 0.06) */
-		}
-
-		code.hljs {
-			/* border: 1px solid rgb(248 250 252 / 0.06); */
-			background-color: #0f172a88;
-			backdrop-filter: blur(4px);
 		}
 
 		p:not(.category) {
@@ -108,14 +66,16 @@
 	</style>
 </svelte:head>
 
-<div class="text-slate-400">
+<div class="glass-text-3">
 	<div>
 		<p class="slide-fade-in category">{data.category}</p>
 
 		<div class="content">
-			<h1 class="slide-fade-in text-slate-200">{data.page.title}</h1>
+			<h1 class="slide-fade-in glass-text-5">{data.page.title}</h1>
 
-			<div class="mb-5 text-sm font-semibold text-slate-400 hover:text-slate-300">
+			<div
+				class="glass-text-3 mb-5 text-sm font-semibold hover:text-primary-4 dark:hover:text-primary-dark-4"
+			>
 				<a
 					href={git_path}
 					target="_blank"
@@ -139,13 +99,13 @@
 		</div>
 
 		<footer class="text-s mt-12 leading-6">
-			<div class="flex items-center text-sm font-semibold text-slate-200">
+			<div class="glass-text-5 flex items-center text-sm font-semibold">
 				{#if prev_page}
-					<a href={prev_page.path} class="group flex items-center hover:text-white">
+					<a href={prev_page.path} class="hover:glass-text-10 group flex items-center">
 						<!-- class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" -->
 						<svg
 							viewBox="0 0 3 6"
-							class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-300"
+							class="glass-text-3 group-hover:glass-text-4 mr-3 h-1.5 w-auto overflow-visible"
 							><path
 								d="M3 0L0 3L3 6"
 								fill="none"
@@ -165,7 +125,7 @@
 						href={next_page.path}
 						>{next_page.title}<svg
 							viewBox="0 0 3 6"
-							class="ml-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-300"
+							class="glass-text-3 group-hover:glass-text-4 ml-3 h-1.5 w-auto overflow-visible"
 							><path
 								d="M0 0L3 3L0 6"
 								fill="none"
@@ -183,3 +143,78 @@
 
 	<OnThisPage details={data.page} />
 </div>
+
+<!-- <style lang="postcss">
+	/* .content a:not(.border-none):not(.permalink):not(.code-title) {
+		@apply border border-b-[1px] border-secondary font-semibold text-primary-10 dark:border-secondary-dark dark:text-primary-dark-10;
+	}
+
+	.content a:not(.border-none):not(.permalink):not(.code-title):hover {
+		@apply -mb-[1px] border-b-2 border-secondary dark:border-secondary-dark;
+	} */
+</style> -->
+
+<style lang="postcss">
+	:global(.content a:not(.border-none):not(.permalink):not(.code-title)) {
+		@apply border-b-[1px] border-secondary font-semibold  text-primary-10;
+	}
+
+	:global(:has(.dark) .content a:not(.border-none):not(.permalink):not(.code-title)) {
+		@apply border-secondary-dark text-primary-dark-10;
+	}
+
+	:global(.content a:not(.border-none):not(.permalink):not(.code-title):hover) {
+		@apply -mb-[1px] border-b-2 border-secondary;
+	}
+
+	:global(:has(.dark) .content a:not(.border-none):not(.permalink):not(.code-title):hover) {
+		@apply border-secondary-dark;
+	}
+
+	:global(.content ul > li::before) {
+		@apply bg-primary-4;
+
+		content: '';
+		width: 0.75em;
+		height: 0.125em;
+		position: absolute;
+		top: 11px;
+		left: 0;
+		border-radius: 999px;
+	}
+
+	:global(:has(.dark) .content ul > li::before) {
+		@apply bg-primary-dark-4;
+	}
+
+	:global(.code-container) {
+		@apply border-[1px] border-primary-9/[0.06];
+		margin: 1.2rem 0 !important;
+		border-radius: 0.5rem;
+		overflow: hidden;
+	}
+
+	:global(:has(.dark) .code-container) {
+		@apply border-primary-dark-9/[0.06];
+	}
+
+	:global(.code-container > div) {
+		@apply bg-primary-dark-8;
+		padding: 0.5rem 1rem;
+		backdrop-filter: blur(4px);
+	}
+
+	:global(:has(.dark) .code-container > div) {
+		@apply bg-primary-8;
+	}
+
+	:global(code.hljs) {
+		@apply bg-primary-dark-8/50;
+		backdrop-filter: blur(4px);
+	}
+
+	:global(:has(.dark) code.hljs) {
+		@apply bg-primary-8/50;
+		backdrop-filter: blur(4px);
+	}
+</style>

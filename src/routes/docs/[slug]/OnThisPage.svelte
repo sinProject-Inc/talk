@@ -72,7 +72,7 @@
 >
 	<h5 class="mb-4 font-semibold">On this page</h5>
 	<nav class="slide-fade-in">
-		<ul class="space-y-2 border-l border-slate-800">
+		<ul class="space-y-2 border-l border-primary-dark-5 dark:border-primary-5">
 			<li>
 				<a
 					href={$page.url.pathname}

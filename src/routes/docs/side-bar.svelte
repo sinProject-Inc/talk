@@ -63,10 +63,10 @@
 	<div class="pl-1 pt-8">
 		{#each sections as section}
 			<li class="my-8">
-				<h5 class="mb-3 font-semibold text-slate-200">
+				<h5 class="glass-text-5 mb-3 font-semibold">
 					{section.title}
 				</h5>
-				<ul class="space-y-2 border-l border-slate-800">
+				<ul class="space-y-2 border-l border-primary-dark-5 dark:border-primary-5">
 					{#each section.pages as { title, path }}
 						{@const active = path === $page.url.pathname}
 						{@const inactive = !active}
@@ -84,10 +84,10 @@
 
 <style lang="postcss">
 	.active {
-		@apply border-current text-sky-400;
+		@apply border-current text-secondary dark:text-secondary-dark;
 	}
 
 	.inactive {
-		@apply border-transparent text-slate-400 hover:border-slate-500 hover:text-slate-300;
+		@apply border-transparent  text-primary-3  hover:border-slate-500 hover:text-primary-4 dark:text-primary-dark-3 dark:hover:border-primary-dark-2 dark:hover:text-primary-dark-4;
 	}
 </style>

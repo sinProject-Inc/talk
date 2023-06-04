@@ -53,14 +53,14 @@
 		>
 			<div class="title w-full">
 				<h1 class="mb-2">{$_('enter_pin_code')}</h1>
-				<p class="break-words text-sm font-light text-white/70">
+				<p class="glass-text-faint-md break-words text-sm font-light">
 					{$_('sent_pin_code', { values: { email: form?.email_address } })}
 				</p>
 			</div>
 			<div class="mt-4 flex flex-col gap-3">
 				<input type="hidden" name="email" value={form?.email_address} />
 				<input
-					class="focus:outline-link]"
+					class="focus:outline-link] input"
 					type="text"
 					name="pin_code"
 					placeholder={$_('pin_code')}

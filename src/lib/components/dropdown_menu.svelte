@@ -7,6 +7,12 @@
 	let dropdown_button_element: HTMLElement
 	let dropdown_open = false
 
+	let current_theme: Theme
+
+	const unsubscribe_to_theme = theme_store.subscribe((theme) => {
+		current_theme = theme
+	})
+
 	function toggle_dropdown(): void {
 		dropdown_open = !dropdown_open
 	}
@@ -67,12 +73,19 @@
 		<div class="absolute right-0 z-10 mt-2 w-48 overflow-hidden rounded-md bg-white shadow-xl">
 			<button
 				on:click={set_to_dark_mode}
-				class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dark Mode</button
+				class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {current_theme ==
+				Theme.dark
+					? 'bg-gray-100'
+					: ''}">Dark Mode</button
 			>
 			<button
 				on:click={set_to_light_mode}
-				class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Light Mode</button
+				class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {current_theme ==
+				Theme.light
+					? 'bg-gray-100'
+					: ''}">Light Mode</button
 			>
 		</div>
 	{/if}
 </div>
+<svelte:window on:unload={unsubscribe_to_theme} />

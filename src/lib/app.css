@@ -59,9 +59,11 @@ a {
 }
 
 @layer components {
-	.input-element {
+	/* .input-element {
 		@apply overflow-hidden rounded-md border border-media-border bg-border;
-	}
+	} */
+
+	/* TODO: Remove unnecessary global styles */
 
 	a {
 		@apply transition;
@@ -81,11 +83,11 @@ a {
 	}
 
 	input {
-		@apply rounded-md border-0 bg-black/10 px-4 py-[7px] outline-none outline-0 focus:outline-none;
+		@apply input glass-indentation-bg rounded-md border-0 px-4 py-[7px] outline-none outline-0 focus:outline-none;
 	}
 
 	.input {
-		@apply rounded-md border-0 bg-black/10 outline-none outline-0 focus:outline-none;
+		@apply rounded-md outline-none outline-0 focus:outline-none;
 	}
 
 	textarea {
@@ -132,11 +134,11 @@ a {
 	}
 
 	.glass-panel {
-		@apply glass rounded-[0.5rem] border border-[#F8FAFC]/[0.06] shadow-lg;
+		@apply glass glass-border rounded-[0.5rem] shadow-lg;
 	}
 
 	.glass-button {
-		@apply rounded-lg bg-black/20 fill-white/80 px-4 py-2 text-white/90 transition-all duration-300 hover:bg-black/10 hover:shadow-sm;
+		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
 	}
 }
 
@@ -146,16 +148,73 @@ a {
 	}
 
 	.glass {
-		@apply bg-[#0f172a]/50 bg-clip-padding fill-white/70 text-white/60 backdrop-blur-sm backdrop-filter;
+		@apply glass-text-3 glass-bg bg-clip-padding fill-white/70 backdrop-blur-sm backdrop-filter;
 	}
 
 	.doc-base {
-		@apply bg-clip-padding fill-white/70 text-white/60 backdrop-filter;
+		@apply bg-clip-padding fill-black/70 text-black/60 backdrop-filter dark:fill-white/70 dark:text-white/60;
+	}
+
+	.glass-bg {
+		@apply bg-base/50 dark:bg-base-dark/50;
+	}
+
+	.glass-text-3 {
+		@apply text-primary-3 dark:text-primary-dark-3;
+	}
+
+	.glass-text-4 {
+		@apply text-primary-4 dark:text-primary-dark-4;
+	}
+
+	.glass-text-5 {
+		@apply text-primary-5 dark:text-primary-dark-5;
+	}
+
+	.glass-text-8 {
+		@apply text-primary-8 dark:text-primary-dark-8;
+	}
+
+	.glass-text-9 {
+		@apply text-primary-9 dark:text-primary-dark-9;
+	}
+
+	.glass-text-10 {
+		@apply text-primary-10 dark:text-primary-dark-10;
+	}
+
+	.glass-border {
+		@apply border border-primary-9/[0.06] dark:border-primary-dark-9/[0.06];
+	}
+
+	.glass-text-faint-md {
+		@apply text-primary-5/50 dark:text-primary-dark-5/50;
+	}
+
+	.glass-text-faint-lg {
+		@apply text-primary-5/30 dark:text-primary-dark-5/30;
+	}
+
+	.glass-text-faint-sm {
+		@apply text-primary-5/80 dark:text-primary-dark-5/80;
+	}
+
+	.glass-bump-bg {
+		@apply bg-primary-5/10 dark:bg-base-dark/90;
+	}
+
+	.glass-bump-bg-shine {
+		@apply hover:bg-primary-5/20 dark:hover:bg-primary-dark-5/5;
+	}
+
+	.glass-indentation-bg {
+		@apply bg-primary-5/5 dark:bg-base-dark/50;
 	}
 
 	[contenteditable='true']:empty::before {
 		content: attr(placeholder);
-		color: #ffffff70;
+
+		@apply glass-text-faint-lg;
 	}
 }
 
@@ -169,7 +228,7 @@ h3,
 h4,
 h5,
 h6 {
-	@apply text-white/90;
+	@apply glass-text-9;
 }
 
 h1 {
@@ -198,7 +257,7 @@ ol > li {
 
 h2:hover .permalink,
 h3:hover .permalink {
-	@apply bg-slate-700 text-slate-300;
+	@apply glass-text-4 bg-primary-dark-4 dark:bg-primary-4;
 }
 
 .category {

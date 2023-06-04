@@ -45,21 +45,21 @@
 	class="pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center px-4"
 >
 	<div
-		class=" glass-panel pointer-events-auto mx-auto w-full max-w-[calc(370px+2rem)] pb-8 pt-6 text-center"
+		class="glass-panel pointer-events-auto mx-auto w-full max-w-[calc(370px+2rem)] pb-8 pt-6 text-center"
 	>
 		<div class="px-4 sm:px-8">
 			<div class="mb-5 text-lg font-bold">{$_('confirm_delete')}</div>
 			<div class="mb-8">{$_('are_you_sure')}</div>
 			<div class="flex justify-center gap-4">
 				<button
-					class="glass-button delete-cancel flex w-full justify-center gap-2 bg-white/5 hover:bg-white/10"
+					class="glass-button delete-cancel flex w-full justify-center gap-2 dark:bg-primary-dark-5/5 hover:dark:bg-primary-dark-5/10"
 					on:click={close}
 				>
 					<div class="w-6"><CloseIcon /></div>
 					{$_('cancel')}
 				</button>
 				<button
-					class="glass-button delete-confirm flex w-full justify-center gap-2 text-red-400"
+					class="glass-button delete-confirm flex w-full justify-center gap-2 bg-red-400/60 text-base hover:bg-red-500/60 dark:bg-slate-950 dark:!text-red-400"
 					on:click={confirm_delete}
 				>
 					<div class="w-6"><CheckIcon /></div>

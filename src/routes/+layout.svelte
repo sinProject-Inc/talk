@@ -11,7 +11,7 @@
 	import { afterNavigate } from '$app/navigation'
 	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
 	import { theme_store } from '$lib/theme/theme_service'
-	import type { Theme } from '@prisma/client'
+	import { Theme } from '@prisma/client'
 
 	export let data: LayoutServerData
 
@@ -23,6 +23,8 @@
 	let transition_background_timer: number
 
 	let theme_class: Theme = data.theme
+	const background_dark_overlay = 'rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)'
+	const background_light_overlay = 'rgba(241,245,249, 0.9), rgba(241,245,249, 0.9)'
 
 	const unsubscribe_to_theme = theme_store.subscribe((theme) => {
 		theme_class = theme
@@ -88,14 +90,16 @@
 {#if theme_class}
 	<div class={theme_class}>
 		<div
-			class="min-h-screen bg-green-500 bg-cover bg-fixed bg-no-repeat font-sans dark:bg-red-500"
+			class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
 			dir={get_direction($locale ?? '')}
 		>
 			<div>
 				{#if current_background}
 					<div class="fixed -z-50 h-screen w-full">
 						<div
-							style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({next_background.background_url}) bottom center/cover"
+							style="background: linear-gradient({theme_class === Theme.dark
+								? background_dark_overlay
+								: background_light_overlay}), url({next_background.background_url}) bottom center/cover"
 							class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
 							aria-hidden="true"
 						/>
@@ -103,7 +107,9 @@
 							class="{transitioning_background
 								? 'opacity-0 transition-all'
 								: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-							style=" background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
+							style="background: linear-gradient({theme_class === Theme.dark
+								? background_dark_overlay
+								: background_light_overlay}), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
 								? background_transition_duration
 								: 0}ms"
 							aria-hidden="true"

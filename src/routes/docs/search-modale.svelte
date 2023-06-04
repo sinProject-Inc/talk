@@ -259,7 +259,7 @@
 			<div class="flex items-center justify-between">
 				<label class="w-7" for="search"><SearchIcon /></label>
 				<input
-					class="w-full bg-inherit pl-4"
+					class="input w-full bg-inherit pl-4"
 					type="text"
 					bind:value={search_query}
 					bind:this={input}
