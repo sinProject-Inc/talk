@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk -</title>
+	<title>Talk - Sign in</title>
 </svelte:head>
 
 <div class="flex h-screen items-center justify-center">
