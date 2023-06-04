@@ -25,8 +25,8 @@
 
 	let current_theme: Theme
 
-	const background_dark_overlay = 'rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)'
-	const background_light_overlay = 'rgba(241,245,249, 0.9), rgba(241,245,249, 0.9)'
+	const background_dark_overlay = 'rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.9)'
+	const background_light_overlay = 'rgba(241, 245, 248, 0.9), rgba(241, 245, 248, 0.9)'
 
 	let unsubscribe_to_theme: Unsubscriber
 
