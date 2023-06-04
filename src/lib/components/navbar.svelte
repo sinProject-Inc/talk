@@ -9,6 +9,7 @@
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
+	import ThemeSwitcher from './theme_switcher.svelte'
 
 	export let search_bar_enabled = false
 
@@ -21,21 +22,18 @@
 	}
 </script>
 
-<div class="sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
-	<div class="mx-6 h-full border-b border-slate-50/[0.06] md:mx-0 md:px-6">
+<div class="glass-text-5 sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
+	<div
+		class="mx-6 h-full border-b border-primary-9/[0.06] dark:border-primary-dark-9/[0.06] md:mx-0 md:px-6"
+	>
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
-			<a
-				href="{base}/"
-				class="header-text-color title flex items-center gap-2 text-[22px] no-underline"
-			>
+			<a href="{base}/" class="flex items-center gap-2 text-[22px] no-underline">
 				<img src="{base}/icon-144.png" class="h-8" alt="" />
 				{$_('talk_title')}
 			</a>
-			<nav
-				class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6 text-slate-200"
-			>
+			<nav class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6">
 				<!-- <nav
-				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"
+				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 dark:text-primary-dark-5 text-primary-5"
 			> -->
 
 				<NavItemTab name="translate" />
@@ -51,6 +49,7 @@
 						<div class="h-5"><SearchIcon /></div>
 					</button>
 				{/if}
+				<ThemeSwitcher />
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
@@ -83,10 +82,10 @@
 
 <style lang="postcss">
 	a:not(.title) {
-		@apply hover:text-sky-500 dark:hover:text-sky-400;
+		@apply hover:text-secondary dark:hover:text-secondary-dark;
 	}
 
 	.button {
-		@apply hover:text-sky-500 dark:hover:text-sky-400;
+		@apply hover:text-secondary dark:hover:text-secondary-dark;
 	}
 </style>

@@ -22,8 +22,8 @@
 <div
 	class="text group cursor-pointer transition
 		{deletable ? 'ltr:pl-5 rtl:pr-5' : 'px-5'}
-		flex justify-between break-all hover:bg-white/10
-		{selected ? 'bg-white/10' : 'bg-inherit'}
+		flex justify-between break-all hover:bg-primary-5/5 dark:hover:bg-primary-dark-5/5
+		{selected ? ' bg-primary-5/5 dark:bg-primary-dark-5/5' : 'bg-inherit'}
 		{is_last_text ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
@@ -31,9 +31,7 @@
 		<p class="whitespace-pre-wrap">{text.text}</p>
 	</div>
 	{#if deletable}
-		<div
-			class="delete-button invisible my-1 w-6 fill-white/30 group-hover:visible ltr:mr-7 rtl:ml-7"
-		>
+		<div class="delete-button invisible my-1 w-6 group-hover:visible ltr:mr-7 rtl:ml-7">
 			<IconButton on:click={() => delete_text(text)}><CloseIcon /></IconButton>
 		</div>
 	{/if}

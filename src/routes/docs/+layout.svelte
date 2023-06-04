@@ -256,6 +256,6 @@
 
 <style lang="postcss">
 	:root {
-		background: black;
+		@apply bg-base dark:bg-base-dark;
 	}
 </style>
