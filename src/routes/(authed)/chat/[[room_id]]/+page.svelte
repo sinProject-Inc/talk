@@ -743,8 +743,7 @@
 				{/if}
 			</div>
 		</div>
-
-		<div class="glass-text-faint-sm flex justify-center text-sm">
+		<div class="glass-text-faint-sm flex h-6 justify-center text-sm">
 			<a target="_blank" rel="noreferrer" href="https://github.com/sinProject-Inc/talk/"
 				>sinProject Talk {version}</a
 			>

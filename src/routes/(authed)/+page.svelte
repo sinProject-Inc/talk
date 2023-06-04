@@ -267,8 +267,8 @@
 </svelte:head>
 
 <Navbar />
-<div class="center-container flex h-[calc(100vh-69px)] w-screen flex-col">
-	<div class="glass-panel my-4 flex flex-1 flex-col gap-2 overflow-y-auto pt-3">
+<div class="center-container my-3 flex h-[calc(100vh-77px)] w-screen flex-col gap-3">
+	<div class="glass-panel flex flex-1 flex-col gap-2 overflow-y-auto pt-3">
 		<div class="px-5">
 			<select
 				class="glass-button h-full grow text-center"
