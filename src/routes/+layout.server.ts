@@ -11,7 +11,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	const background_transition_duration =
 		(await Repository.app_setting.get_number(SettingKey.background_transition_sec)) * 1000
 
-	let theme: Theme = Theme.dark
+	let theme: Theme = Theme.system
 
 	if (locals.user) {
 		const email = new Email(locals.user.email)

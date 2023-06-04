@@ -5,7 +5,6 @@
 	import MoonIcon from './icons/moon_icon.svelte'
 	import type { Unsubscriber } from 'svelte/store'
 	import { onMount } from 'svelte'
-	import { afterNavigate } from '$app/navigation'
 
 	let current_theme: Theme
 
@@ -41,6 +40,8 @@
 
 	onMount(async () => {
 		await subscribe_to_theme()
+
+		return unsubscribe_to_theme()
 	})
 </script>
 

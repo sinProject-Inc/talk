@@ -27,6 +27,7 @@ model Role {
 }
 
 enum Theme {
+  system
   light
   dark
 }
@@ -37,7 +38,7 @@ model User {
   updated_at DateTime    @updatedAt
   role_id    Int
   email      String      @unique
-  theme      Theme       @default(dark)
+  theme      Theme       @default(system)
   role       Role        @relation(fields: [role_id], references: [id])
   auth_pin   AuthPin[]
   auth_token AuthToken[]

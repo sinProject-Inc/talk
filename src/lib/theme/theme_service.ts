@@ -11,7 +11,7 @@ export class ThemeService {
 			return
 		})
 
-		this._store = writable(Theme.dark)
+		this._store = writable(Theme.system)
 	}
 
 	public async subscribe(run: (value: Theme) => void): Promise<Unsubscriber> {
@@ -23,17 +23,33 @@ export class ThemeService {
 	public async update_store(value: Theme): Promise<void> {
 		await this._ready
 
-		this._store.set(value)
+		const theme = value === Theme.system ? this._get_system_theme() : value
+
+		this._store.set(theme)
 	}
 
 	public async update_database(value: Theme): Promise<void> {
 		await new UpdateThemeApi(value).fetch()
 	}
 
-	public async init_store(theme: Theme): Promise<void> {
+	public async init_store(value: Theme): Promise<void> {
+		const theme = value === Theme.system ? this._get_system_theme() : value
+
 		this._store = writable(theme)
 
 		this._ready = Promise.resolve()
+	}
+
+	private _get_system_theme(): Theme {
+		if (!window) {
+			return Theme.dark
+		}
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return Theme.dark
+		} else {
+			return Theme.light
+		}
 	}
 
 	public get ready(): Promise<void> {
