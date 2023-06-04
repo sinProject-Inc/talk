@@ -270,7 +270,7 @@
 				<div class="h[24px] mr-4 flex w-[30px]">
 					{#if search_query !== ''}
 						<div
-							class="keyboard-shortcut flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:text-red-400 hover:outline-red-400"
+							class="keyboard-shortcut flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:!text-red-400 hover:!outline-red-400"
 							on:click={reset_search_query}
 							on:keydown
 						>
@@ -279,7 +279,7 @@
 					{/if}
 				</div>
 				<div
-					class="keyboard-shortcut flex h-[24px] cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:text-primary-8 hover:outline-primary-8 dark:hover:text-primary-dark-8 dark:hover:outline-primary-dark-8"
+					class="keyboard-shortcut flex h-[24px] cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:!text-primary-8 hover:!outline-primary-8 dark:hover:!text-primary-dark-8 dark:hover:!outline-primary-dark-8"
 					on:click={close}
 					on:keydown
 				>
