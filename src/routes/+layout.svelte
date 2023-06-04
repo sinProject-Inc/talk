@@ -93,6 +93,8 @@
 	})
 
 	beforeNavigate(() => {
+		if (!unsubscribe_to_theme) return
+
 		unsubscribe_to_theme()
 	})
 </script>
