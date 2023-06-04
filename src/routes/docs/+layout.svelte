@@ -13,6 +13,10 @@
 	import NavbarSecondRow from './navbar_second_row.svelte'
 	import SearchModale from './search_modale.svelte'
 	import SideBar from './side_bar.svelte'
+	import { theme_service } from '$lib/theme/theme_service'
+	import { animation_store } from '$lib/view/animation_store'
+	import { sleep } from '$lib/general/system'
+	import { browser } from '$app/environment'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -20,6 +24,8 @@
 	export let data
 
 	$: sections = data?.sections ?? []
+
+	let animations_enabled: boolean
 
 	let search_query = ''
 	let copied_snackbar_visible = false
@@ -116,7 +122,11 @@
 		vivus_instances = []
 	}
 
-	function connect_vivus(): void {
+	async function connect_vivus(): Promise<void> {
+		await theme_service.ready
+
+		await sleep(1)
+
 		document.querySelectorAll('svg').forEach((svg_element) => {
 			svg_elements.push(svg_element)
 		})
@@ -177,19 +187,56 @@
 		})
 	}
 
-	beforeNavigate(() => {
+	function disable_slide_in_animation(): void {
+		const elements = document.querySelectorAll('.slide-fade-in')
+
+		elements.forEach((element) => {
+			element.classList.add('visible')
+		})
+	}
+
+	function enable_animations(): void {
+		if (!browser) return
+
+		connect_vivus()
+		add_slide_in_animation()
+	}
+
+	function disable_animations(): void {
+		if (!browser) return
+
 		disconnect_vivus()
+		disable_slide_in_animation()
+	}
+
+	function subscribe_to_animation_store(): void {
+		animation_store.subscribe((value) => {
+			animations_enabled = value
+
+			if (animations_enabled) {
+				enable_animations()
+			} else {
+				disable_animations()
+			}
+		})
+	}
+
+	beforeNavigate(() => {
 		invisible_slide_fade_in()
+		disable_animations()
 	})
 
 	afterNavigate(() => {
 		close_mobile_side_bar()
 		add_copy_code_event()
-		connect_vivus()
-		add_slide_in_animation()
+
+		if (!animations_enabled) return
+
+		enable_animations()
 	})
 
 	onMount(() => {
+		subscribe_to_animation_store()
 		create_search_shortcut()
 	})
 </script>
@@ -211,6 +258,10 @@
 			visibility: hidden;
 		}
 
+		.visible {
+			visibility: visible !important;
+		}
+
 		.slide-fade-in-visible {
 			animation: slide-fade-in 1s ease-out;
 			visibility: visible;
@@ -221,7 +272,7 @@
 <Audio />
 
 <div class="doc-base">
-	<Navbar search_bar_enabled on:show_search_modale={open_search_modale} />
+	<Navbar is_on_docs on:show_search_modale={open_search_modale} />
 	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
 
 	{#if mobile_side_bar_open}
@@ -256,6 +307,6 @@
 
 <style lang="postcss">
 	:root {
-		background: black;
+		@apply bg-base dark:bg-base-dark;
 	}
 </style>

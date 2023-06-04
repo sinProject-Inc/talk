@@ -34,6 +34,7 @@
 		"github.vscode-github-actions",
 		"formulahendry.code-runner",
 		"george-alisson.html-preview-vscode",
+		"naumovs.color-highlight",
 		"ms-vscode-remote.remote-ssh"
 	]
 }

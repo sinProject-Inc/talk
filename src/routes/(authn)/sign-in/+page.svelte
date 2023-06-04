@@ -45,13 +45,14 @@
 		>
 			<div class="title w-full">
 				<h1 class="mb-2">{$_('sign_in')}</h1>
-				<h2 class="text-sm font-light text-white/70">{$_('or_create_account')}</h2>
+				<h2 class="glass-text-faint-sm text-sm font-light">{$_('or_create_account')}</h2>
 			</div>
 
 			<div class="mt-4 flex flex-col gap-3">
 				<input
 					type="email"
 					name="email"
+					class="input"
 					placeholder={$_('email')}
 					required
 					bind:this={email_input_element}

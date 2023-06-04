@@ -564,13 +564,13 @@
 
 	<div class="center-container flex w-screen flex-1 flex-col gap-3 overflow-y-auto p-3">
 		<div class="flex items-center justify-between gap-3">
-			<div class="glass-panel flex h-[40px] w-full items-center gap-3 p-3">
-				<div class="ml-1 font-bold text-white/80">{$_('room')}:</div>
+			<div class="glass-panel glass-text-4 flex h-[40px] w-full items-center gap-3 p-3">
+				<div class="ml-1 font-bold">{$_('room')}:</div>
 				<div data-testid="room-id">{data.room_id}</div>
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button glass-panel flex h-[40px] items-center bg-[#0f172a]/50 hover:bg-[#0f172a]/20"
+					class="glass-button glass-panel flex h-[40px] items-center hover:!shadow-lg"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>
@@ -600,7 +600,7 @@
 						<div>
 							<div class="flex flex-row gap-1">
 								<span class="font-bold" data-testid="chat_name">{chat_log_item.data.name}</span>
-								<span class="text-white/50">{to_local_time(chat_log_item.data.created_at)}</span>
+								<span class="glass-text-faint">{to_local_time(chat_log_item.data.created_at)}</span>
 							</div>
 							{#if chat_log_item.translated}
 								<p>
@@ -608,7 +608,7 @@
 										{@html new Urlify(chat_log_item.translated).replace()}
 									</span>
 								</p>
-								<div class="flex flex-row gap-1 text-white/50">
+								<div class="glass-text-faint flex flex-row gap-1">
 									<span>{chat_log_item.data.locale_code}:</span>
 									<span
 										class="whitespace-pre-wrap"
@@ -696,7 +696,7 @@
 				/>
 
 				<input
-					class="grow"
+					class="input grow"
 					type="text"
 					bind:this={name_element}
 					bind:value={name}
@@ -744,12 +744,9 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center text-sm text-white/75">
-			<a
-				target="_blank"
-				rel="noreferrer"
-				href="https://github.com/sinProject-Inc/talk/"
-				class="text-color">sinProject Talk {version}</a
+		<div class="glass-text-faint-sm flex justify-center text-sm">
+			<a target="_blank" rel="noreferrer" href="https://github.com/sinProject-Inc/talk/"
+				>sinProject Talk {version}</a
 			>
 		</div>
 	</div>

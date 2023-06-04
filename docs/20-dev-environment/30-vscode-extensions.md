@@ -50,6 +50,10 @@ Intelligent Tailwind CSS tooling for VSCode
 
 Allow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.
 
+- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
+
+Highlight web colors in your editor
+
 ## HTML
 
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
@@ -147,11 +151,15 @@ Run Playwright Test tests in Visual Studio Code.
 
 Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.
 
-## API
+## Networking
 
 - [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 REST Client for Visual Studio Code
+
+- [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+
+Open any folder on a remote machine using SSH and take advantage of VS Code's full feature set.
 
 ## Code Execution
 

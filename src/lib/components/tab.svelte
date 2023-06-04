@@ -8,6 +8,6 @@
 
 <style lang="postcss">
 	.active {
-		@apply border-b-2 border-sky-500 pt-[2px];
+		@apply border-b-2 border-secondary pt-[2px] dark:border-secondary-dark;
 	}
 </style>
