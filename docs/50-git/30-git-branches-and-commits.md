@@ -12,7 +12,7 @@ Write the issue number and issue title in kebab-case, connected with a hyphen.
 
 ## Script
 
-We have prepared a script to create a branch from the issue name.
+We have prepared a script to create branches issue names.
 
 ```bash
 npm run create-branch "<branch-name> #<branch-number>"
