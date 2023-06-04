@@ -2,8 +2,8 @@
 	import { base } from '$app/paths'
 	import { _ } from 'svelte-i18n'
 	import BookIcon from './icons/book_icon.svelte'
-	import LanguageHiraganaIcon from './icons/language-hiragana_icon.svelte'
-	import MessageChatbotIcon from './icons/message-chatbot_icon.svelte'
+	import LanguageHiraganaIcon from './icons/language_hiragana_icon.svelte'
+	import MessageChatbotIcon from './icons/message_chatbot_icon.svelte'
 
 	export let name: string
 

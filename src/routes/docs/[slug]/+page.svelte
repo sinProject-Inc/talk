@@ -3,7 +3,7 @@
 	import GithubIcon from '$lib/components/icons/github_icon.svelte'
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
 	import { current_page_category, current_page_title } from '$lib/docs/current_page_store'
-	import OnThisPage from './OnThisPage.svelte'
+	import OnThisPage from './on_this_page.svelte'
 	import '/node_modules/highlight.js/styles/atom-one-dark.css'
 
 	export let data
