@@ -53,7 +53,7 @@
 		>
 			<div class="title w-full">
 				<h1 class="mb-2">{$_('enter_pin_code')}</h1>
-				<p class="glass-text-faint-md break-words text-sm font-light">
+				<p class="glass-text-faint-sm break-words text-sm font-light">
 					{$_('sent_pin_code', { values: { email: form?.email_address } })}
 				</p>
 			</div>

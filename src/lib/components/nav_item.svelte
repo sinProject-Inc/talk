@@ -25,6 +25,6 @@
 
 <style lang="postcss">
 	a {
-		@apply hover:text-sky-500 dark:hover:text-sky-400;
+		@apply hover:text-secondary dark:hover:text-secondary-dark;
 	}
 </style>

@@ -33,7 +33,7 @@
 			</a>
 			<nav class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6">
 				<!-- <nav
-				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"
+				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 dark:text-primary-dark-5 text-primary-5"
 			> -->
 
 				<NavItemTab name="translate" />
@@ -82,10 +82,10 @@
 
 <style lang="postcss">
 	a:not(.title) {
-		@apply hover:text-sky-500 dark:hover:text-sky-400;
+		@apply hover:text-secondary dark:hover:text-secondary-dark;
 	}
 
 	.button {
-		@apply hover:text-sky-500 dark:hover:text-sky-400;
+		@apply hover:text-secondary dark:hover:text-secondary-dark;
 	}
 </style>

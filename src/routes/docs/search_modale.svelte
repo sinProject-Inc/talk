@@ -252,7 +252,7 @@
 	class="pointer-events-none fixed left-0 top-0 z-20 flex h-full w-full justify-center p-6 backdrop-blur-sm md:p-20 lg:px-20 lg:py-28"
 >
 	<div
-		class="glass-panel pointer-events-auto mx-auto flex h-fit max-h-full w-full max-w-screen-md flex-col rounded-xl bg-slate-900/90 text-center backdrop-blur-md"
+		class="glass-panel pointer-events-auto mx-auto flex h-fit max-h-full w-full max-w-screen-md flex-col rounded-xl bg-primary-dark-8/90 text-center backdrop-blur-md dark:bg-primary-8/90"
 		data-testid="search-modale"
 	>
 		<form class="px-4 py-3" on:submit|preventDefault={get_search_results} autocomplete="off">
@@ -270,7 +270,7 @@
 				<div class="h[24px] mr-4 flex w-[30px]">
 					{#if search_query !== ''}
 						<div
-							class="flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-red-400 hover:outline-red-400"
+							class="keyboard-shortcut flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:text-red-400 hover:outline-red-400"
 							on:click={reset_search_query}
 							on:keydown
 						>
@@ -279,7 +279,7 @@
 					{/if}
 				</div>
 				<div
-					class="flex h-[24px] cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] text-white/50 outline outline-1 outline-white/50 transition-all duration-200 hover:text-white/80 hover:outline-white/80"
+					class="keyboard-shortcut flex h-[24px] cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:text-primary-8 hover:outline-primary-8 dark:hover:text-primary-dark-8 dark:hover:outline-primary-dark-8"
 					on:click={close}
 					on:keydown
 				>
@@ -297,20 +297,26 @@
 						on:mousemove={() => on_mouse_to_result(i)}
 					>
 						<a class="block text-left" href={result.item.path} on:click={close}>
-							<div class="flex items-center gap-3">
-								<div class="text-lg font-bold text-white">{result.item.title}</div>
+							<div class="flex items-center gap-3 text-primary-5 dark:text-primary-dark-5">
+								<div class="text-lg font-bold">
+									{result.item.title}
+								</div>
 								{#if result.item.heading}
 									<div class="flex h-1 w-1 items-center justify-center">
 										<RightArrowIcon />
 									</div>
-									<div class="text-lg font-semibold text-white/90">{result.item.heading}</div>
+									<div class="text-lg font-semibold">
+										{result.item.heading}
+									</div>
 								{/if}
 							</div>
 							<div class="text-lg font-bold text-red-600" />
-							<div class="text-slate-400">
+							<div class="text-primary-3 dark:text-primary-dark-3">
 								{#each get_context(result) as context_potion}
 									{#if context_potion.is_match}
-										<span class="text-sky-400">{context_potion.text}</span>
+										<span class="text-secondary dark:text-secondary-dark"
+											>{context_potion.text}</span
+										>
 									{:else}
 										{context_potion.text}
 									{/if}
@@ -334,6 +340,10 @@
 
 <style lang="postcss">
 	.active {
-		@apply bg-slate-300/25;
+		@apply bg-primary-4/25 dark:bg-primary-dark-4/25;
+	}
+
+	.keyboard-shortcut {
+		@apply text-primary-5/50 outline-primary-5/50 dark:text-primary-dark-5/50 dark:outline-primary-dark-5/50;
 	}
 </style>

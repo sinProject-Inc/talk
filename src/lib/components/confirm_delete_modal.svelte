@@ -59,7 +59,7 @@
 					{$_('cancel')}
 				</button>
 				<button
-					class="glass-button delete-confirm flex w-full justify-center gap-2 bg-red-400/60 text-base hover:bg-red-500/60 dark:bg-slate-950 dark:!text-red-400"
+					class="glass-button delete-confirm flex w-full justify-center gap-2 bg-red-400/60 text-base hover:bg-red-500/60 dark:bg-primary-9/50 dark:!text-red-400"
 					on:click={confirm_delete}
 				>
 					<div class="w-6"><CheckIcon /></div>

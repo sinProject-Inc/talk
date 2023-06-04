@@ -144,7 +144,7 @@ export class Markdown {
 
 			const title_element = filename
 				? `
-					<a class="code-title flex gap-1.5 items-center font-semibold text-slate-400 hover:text-slate-300" href="${github_url}${filename}" target="blank">
+					<a class="code-title flex gap-1.5 items-center font-semibold dark:text-primary-dark-3 text-primary-3 dark:hover:text-primary-dark-4 hover:text-primary-4" href="${github_url}${filename}" target="blank">
 						<div style="width:20px">
 							${github_icon_element}
 						</div>
@@ -152,7 +152,7 @@ export class Markdown {
 					</a>
 				`
 				: `
-					<div class="code-title flex gap-1.5 items-center font-semibold text-slate-400">
+					<div class="code-title flex gap-1.5 items-center font-semibold dark:text-primary-dark-3 text-primary-3">
 						<div style="width:20px">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +179,7 @@ export class Markdown {
 			const code_header_element = `
 				<div class="flex gap-2 justify-between">
 					${title_element}
-					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold text-slate-400 ">
+					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold dark:text-primary-dark-3 text-primary-3 ">
 						<div class="h-[33px] w-[33px] rounded-full hover:bg-white/10 active:scale-125 duration-150 -m-[6.5px] p-[6.5px]">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

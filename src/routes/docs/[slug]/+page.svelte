@@ -56,14 +56,6 @@
 			position: relative;
 			margin-inline-start: 0.2rem;
 		}
-
-		code:not(.hljs) {
-			padding: 0.25rem 0.5rem;
-			font-weight: 400;
-			/* color: #e2e8f0; */
-			background-color: #38bdf81a;
-			border-radius: 0.4rem;
-		}
 	</style>
 </svelte:head>
 
@@ -103,7 +95,7 @@
 			<div class="glass-text-5 flex items-center text-sm font-semibold">
 				{#if prev_page}
 					<a href={prev_page.path} class="hover:glass-text-10 group flex items-center">
-						<!-- class="mr-3 h-1.5 w-auto overflow-visible text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" -->
+						<!-- class="mr-3 h-1.5 w-auto overflow-visible dark:text-primary-dark-3 text-primary-3 group-hover:dark:text-primary-3 text-primary-dark-3 dark:group-dark:hover:text-primary-dark-4 hover:text-primary-4" -->
 						<svg
 							viewBox="0 0 3 6"
 							class="glass-text-3 group-hover:glass-text-4 mr-3 h-1.5 w-auto overflow-visible"
@@ -122,7 +114,7 @@
 				{#if next_page}
 					<a
 						data-testid="next-page"
-						class="group ml-auto flex items-center hover:text-white"
+						class="hover:glass-text-10 group ml-auto flex items-center"
 						href={next_page.path}
 						>{next_page.title}<svg
 							viewBox="0 0 3 6"
@@ -217,5 +209,17 @@
 	:global(:has(.dark) code.hljs) {
 		@apply bg-primary-8/50;
 		backdrop-filter: blur(4px);
+	}
+
+	:global(code:not(.hljs)) {
+		@apply bg-secondary/10;
+		padding: 0.25rem 0.5rem;
+		font-weight: 400;
+		/* color: #e2e8f0; */
+		border-radius: 0.4rem;
+	}
+
+	:global(:has(.dark) code:not(.hljs)) {
+		@apply bg-secondary-dark/10;
 	}
 </style>

@@ -183,6 +183,10 @@ a {
 		@apply text-primary-10 dark:text-primary-dark-10;
 	}
 
+	.test-text {
+		@apply text-red-500 dark:text-green-500;
+	}
+
 	.glass-border {
 		@apply border border-primary-9/[0.06] dark:border-primary-dark-9/[0.06];
 	}
@@ -261,9 +265,7 @@ h3:hover .permalink {
 }
 
 .category {
-	color: var(--link-color);
-
-	@apply mb-2 text-sm font-semibold;
+	@apply mb-2 text-sm font-semibold text-secondary dark:text-secondary-dark;
 }
 
 .max-w-8xl {

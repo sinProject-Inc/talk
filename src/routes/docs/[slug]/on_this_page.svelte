@@ -95,10 +95,10 @@
 
 <style lang="postcss">
 	a:not(.active) {
-		@apply border-transparent text-slate-400 hover:border-slate-500 hover:text-slate-300;
+		@apply border-transparent  text-primary-3 hover:border-primary-2 hover:text-primary-4  dark:text-primary-dark-3 dark:hover:border-primary-dark-2 dark:hover:text-primary-dark-4;
 	}
 
 	.active {
-		@apply border-current text-sky-400;
+		@apply border-current text-secondary dark:text-secondary-dark;
 	}
 </style>

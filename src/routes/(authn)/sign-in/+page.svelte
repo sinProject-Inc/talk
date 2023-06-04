@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk - Sign in</title>
+	<title>Talk -</title>
 </svelte:head>
 
 <div class="flex h-screen items-center justify-center">
@@ -45,7 +45,7 @@
 		>
 			<div class="title w-full">
 				<h1 class="mb-2">{$_('sign_in')}</h1>
-				<h2 class="glass-text-faint-sm text-md font-light">{$_('or_create_account')}</h2>
+				<h2 class="glass-text-faint-sm text-sm font-light">{$_('or_create_account')}</h2>
 			</div>
 
 			<div class="mt-4 flex flex-col gap-3">
