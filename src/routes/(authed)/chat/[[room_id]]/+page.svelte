@@ -557,6 +557,11 @@
 
 <svelte:head>
 	<title>Talk - Chat</title>
+	<style>
+		option {
+			background-color: white !important;
+		}
+	</style>
 </svelte:head>
 
 <div class="flex h-screen min-h-screen flex-col">
