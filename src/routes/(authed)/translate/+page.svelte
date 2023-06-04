@@ -340,8 +340,8 @@
 
 <Navbar />
 
-<div class="center-container h-[calc(100vh-69px)] w-screen">
-	<div class="top-bar glass-panel mb-4 mt-6 flex h-10 items-center justify-evenly">
+<div class="center-container h-[calc(100vh-65px)] w-screen">
+	<div class="top-bar glass-panel my-3 flex h-10 items-center justify-evenly">
 		<select
 			class="bg-transparent p-2 text-center outline-0 {listening
 				? ''
@@ -371,8 +371,8 @@
 			on:change={() => on_change_locale_select(destination_locale_select_element)}
 		/>
 	</div>
-	<div class="grid h-[calc(100vh-157px)] grid-rows-3 gap-y-4">
-		<div class="grid h-[calc(100vh-157px)] grid-rows-3 gap-y-4">
+	<div class="grid h-[calc(100vh-129px)] grid-rows-3 gap-y-3">
+		<div class="grid h-[calc(100vh-129px)] grid-rows-3 gap-y-3">
 			<TranslateBox
 				bind:this={source_translate_box}
 				on:keydown_enter={() => translate(source_translate_box)}
