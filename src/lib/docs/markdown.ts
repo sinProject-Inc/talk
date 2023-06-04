@@ -180,7 +180,8 @@ export class Markdown {
 				<div class="flex gap-2 justify-between">
 					${title_element}
 					<button data-testid="copy-code" class="copy-code flex gap-1.5 items-center font-semibold dark:text-primary-dark-3 text-primary-3 ">
-						<div class="h-[33px] w-[33px] rounded-full hover:bg-white/10 active:scale-125 duration-150 -m-[6.5px] p-[6.5px]">
+						<div class="h-[33px] w-[33px] rounded-full hover:bg-white/10 active:scale-125 -m-[6.5px] p-[6.5px]"
+						style="transition-duration: 350ms;">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="icon icon-tabler icon-tabler-copy"
