@@ -246,7 +246,7 @@ async function on_connection(io: Server, socket: Socket): Promise<void> {
 
 async function adapt_redis(io: Server): Promise<void> {
 	const port = Number(process.env.REDIS_PORT ?? 6379)
-	const pub_client = createClient({ socket: { port } })
+	const pub_client = createClient()
 	const sub_client = pub_client.duplicate()
 	const redis_adapter = createAdapter(pub_client, sub_client)
 
