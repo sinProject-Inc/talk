@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import { onMount, onDestroy } from 'svelte'
+	import { theme_store } from '$lib/theme/theme_service'
+	import { Theme } from '@prisma/client'
 
 	let dropdown_button_element: HTMLElement
 	let dropdown_open = false
@@ -31,6 +33,14 @@
 		window.removeEventListener('click', handle_click)
 	}
 
+	function set_to_dark_mode(): void {
+		theme_store.set(Theme.dark)
+	}
+
+	function set_to_light_mode(): void {
+		theme_store.set(Theme.light)
+	}
+
 	onMount(() => {
 		add_click_listener()
 	})
@@ -55,8 +65,14 @@
 
 	{#if dropdown_open}
 		<div class="absolute right-0 z-10 mt-2 w-48 overflow-hidden rounded-md bg-white shadow-xl">
-			<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Link #1 </a>
-			<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Link #2 </a>
+			<button
+				on:click={set_to_dark_mode}
+				class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dark Mode</button
+			>
+			<button
+				on:click={set_to_light_mode}
+				class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Light Mode</button
+			>
 		</div>
 	{/if}
 </div>

@@ -26,12 +26,18 @@ model Role {
   users      User[]
 }
 
+enum Theme {
+  light
+  dark
+}
+
 model User {
   id         Int         @id @default(autoincrement())
   created_at DateTime    @default(now())
   updated_at DateTime    @updatedAt
   role_id    Int
   email      String      @unique
+  theme      Theme       @default(dark)
   role       Role        @relation(fields: [role_id], references: [id])
   auth_pin   AuthPin[]
   auth_token AuthToken[]

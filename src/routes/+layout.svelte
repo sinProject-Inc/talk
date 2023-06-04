@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navigating } from '$app/stores'
+	import { navigating, page } from '$app/stores'
 	import '$lib/app.css'
 	import { Direction } from '$lib/view/direction'
 	import NProgress from 'nprogress'
@@ -10,6 +10,8 @@
 	import { browser } from '$app/environment'
 	import { afterNavigate } from '$app/navigation'
 	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
+	import { theme_store } from '$lib/theme/theme_service'
+	import type { Theme } from '@prisma/client'
 
 	export let data: LayoutServerData
 
@@ -19,6 +21,14 @@
 	let next_background: Background
 	let transitioning_background = false
 	let transition_background_timer: number
+
+	let theme_class: Theme = data.theme
+
+	const unsubscribe_to_theme = theme_store.subscribe((theme) => {
+		theme_class = theme
+	})
+
+	theme_class = data.theme
 
 	load_backgrounds()
 	polyfillCountryFlagEmojis()
@@ -75,29 +85,34 @@
 	})
 </script>
 
-<div
-	class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
-	dir={get_direction($locale ?? '')}
->
-	<div>
-		{#if current_background}
-			<div class="fixed -z-50 h-screen w-full">
-				<div
-					style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({next_background.background_url}) bottom center/cover"
-					class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-					aria-hidden="true"
-				/>
-				<div
-					class="{transitioning_background
-						? 'opacity-0 transition-all'
-						: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-					style=" background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
-						? background_transition_duration
-						: 0}ms"
-					aria-hidden="true"
-				/>
+{#if theme_class}
+	<div class={theme_class}>
+		<div
+			class="min-h-screen bg-green-500 bg-cover bg-fixed bg-no-repeat font-sans dark:bg-red-500"
+			dir={get_direction($locale ?? '')}
+		>
+			<div>
+				{#if current_background}
+					<div class="fixed -z-50 h-screen w-full">
+						<div
+							style="background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({next_background.background_url}) bottom center/cover"
+							class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
+							aria-hidden="true"
+						/>
+						<div
+							class="{transitioning_background
+								? 'opacity-0 transition-all'
+								: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
+							style=" background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
+								? background_transition_duration
+								: 0}ms"
+							aria-hidden="true"
+						/>
+					</div>
+				{/if}
 			</div>
-		{/if}
+			<slot />
+		</div>
 	</div>
-	<slot />
-</div>
+{/if}
+<svelte:window on:unload={unsubscribe_to_theme} />
