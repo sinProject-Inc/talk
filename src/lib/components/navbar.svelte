@@ -10,7 +10,6 @@
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
-	import NavItem from './nav_item.svelte'
 
 	export let search_bar_enabled = false
 
