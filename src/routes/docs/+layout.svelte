@@ -111,17 +111,6 @@
 	let observers: IntersectionObserver[] = []
 	let vivus_instances: Vivus[] = []
 
-	function disconnect_vivus(): void {
-		svg_elements.forEach((svg_element, index) => {
-			observers[index].disconnect()
-			vivus_instances[index].stop()
-		})
-
-		svg_elements = []
-		observers = []
-		vivus_instances = []
-	}
-
 	async function connect_vivus(): Promise<void> {
 		await theme_service.ready
 
@@ -142,6 +131,8 @@
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
+						if (!animations_enabled) return
+
 						if (entry.isIntersecting) {
 							vivus_instances[index].play()
 						} else {
@@ -173,6 +164,8 @@
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
+						if (!animations_enabled) return
+
 						if (entry.isIntersecting) {
 							element.classList.add('slide-fade-in-visible')
 						} else {
@@ -205,7 +198,6 @@
 	function disable_animations(): void {
 		if (!browser) return
 
-		disconnect_vivus()
 		disable_slide_in_animation()
 	}
 

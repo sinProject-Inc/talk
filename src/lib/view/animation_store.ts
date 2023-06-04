@@ -33,6 +33,7 @@ export class AnimationStore {
 
 	public get_from_local_storage(): boolean {
 		const item = localStorage.getItem('animation_enabled')
+
 		if (item) {
 			return JSON.parse(item)
 		}

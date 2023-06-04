@@ -51,7 +51,9 @@
 					</button>
 					<AnimationSwitcher />
 				{/if}
-				<ThemeSwitcher />
+				{#if $page.data.user}
+					<ThemeSwitcher />
+				{/if}
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
