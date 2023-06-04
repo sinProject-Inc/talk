@@ -27,7 +27,7 @@
 	async function toggle_theme(): Promise<void> {
 		if (current_theme === Theme.dark) {
 			await set_to_light_mode()
-		} else {
+		} else if (current_theme === Theme.light) {
 			await set_to_dark_mode()
 		}
 	}
@@ -40,8 +40,6 @@
 
 	onMount(async () => {
 		await subscribe_to_theme()
-
-		return unsubscribe_to_theme()
 	})
 </script>
 
@@ -49,7 +47,7 @@
 	<button class="button flex h-5 p-0 no-underline" on:click={handle_click}>
 		{#if current_theme === Theme.light}
 			<SunIcon />
-		{:else}
+		{:else if current_theme === Theme.dark}
 			<MoonIcon />
 		{/if}
 	</button>

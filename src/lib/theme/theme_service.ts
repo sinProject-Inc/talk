@@ -41,10 +41,6 @@ export class ThemeService {
 	}
 
 	private _get_system_theme(): Theme {
-		if (!window) {
-			return Theme.dark
-		}
-
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			return Theme.dark
 		} else {
