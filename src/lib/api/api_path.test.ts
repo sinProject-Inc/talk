@@ -1,7 +1,8 @@
 import { ApiPath } from '$lib/api/api_path'
 import { expect, test } from 'vitest'
 
-const base = '/talk'
+const base = ''
+// const base = '/talk'
 
 test('/api', () => {
 	const api_path = ApiPath.api_directory

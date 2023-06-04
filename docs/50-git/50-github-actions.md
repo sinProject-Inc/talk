@@ -4,6 +4,22 @@ title: GitHub Actions
 
 We use [GitHub Actions](https://docs.github.com/en/actions) to perform two types of CI: Checks and tests.
 
+## Secrets
+
+Do not write confidential information (environment variables etc.) directly. Instead, register it in GitHub's Secrets.
+
+```md
+- GitHub > Repository > Settings
+- Secrets and Variables > Actions
+- New repository secret
+```
+
+If you want to use the secret, refer to it as `secrets.[SECRET_NAME]`.
+
+```yaml:.github/workflows/ci.yml
+echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+```
+
 ## Checks
 
 Run a lint check, a type check, and Svelte check.

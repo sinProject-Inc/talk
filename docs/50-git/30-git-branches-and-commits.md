@@ -10,6 +10,20 @@ Write the issue number and issue title in kebab-case, connected with a hyphen.
 743-git-branches-and-commits
 ```
 
+## Script
+
+We have prepared a script to create a branch from the issue name.
+
+```bash
+npm run create-branch "<branch-name> #<branch-number>"
+```
+
+example:
+
+```bash
+npm run create-branch "Docs: Correct English #990"
+```
+
 ## Commit message conventions
 
 Include the issue title and issue number.

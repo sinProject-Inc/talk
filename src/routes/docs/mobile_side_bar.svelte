@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte'
-	import SideBar from './side-bar.svelte'
+	import SideBar from './side_bar.svelte'
 	import type { Section } from '$lib/docs/markdown'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'

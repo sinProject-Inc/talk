@@ -33,6 +33,7 @@
 		"chakrounanas.turbo-console-log",
 		"github.vscode-github-actions",
 		"formulahendry.code-runner",
-		"george-alisson.html-preview-vscode"
+		"george-alisson.html-preview-vscode",
+		"ms-vscode-remote.remote-ssh"
 	]
 }

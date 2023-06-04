@@ -3,7 +3,7 @@
 	import GithubIcon from '$lib/components/icons/github_icon.svelte'
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
 	import { current_page_category, current_page_title } from '$lib/docs/current_page_store'
-	import OnThisPage from './OnThisPage.svelte'
+	import OnThisPage from './on_this_page.svelte'
 	import '/node_modules/highlight.js/styles/atom-one-dark.css'
 
 	export let data
@@ -88,23 +88,24 @@
 		}
 
 		.github-link::before {
-			content: url('/talk/github_icon.svg');
+			content: url('/github_icon.svg');
 			position: relative;
 			top: 4px;
 		}
 
 		.link-with-arrow::after {
-			content: url('/talk/right_arrow.svg');
+			content: url('/right_arrow.svg');
 			position: relative;
 			margin-inline-start: 0.2rem;
 		}
 
-		/* code:not(.hljs) {
-			// /* color: #f00; */
-		/* padding: 0.25rem 0.5rem; */
-		/* background-color: #0f172a88; */
-		/* border-radius: 0.4rem; */
-		/* } */
+		code:not(.hljs) {
+			padding: 0.25rem 0.5rem;
+			font-weight: 400;
+			/* color: #e2e8f0; */
+			background-color: #38bdf81a;
+			border-radius: 0.4rem;
+		}
 	</style>
 </svelte:head>
 

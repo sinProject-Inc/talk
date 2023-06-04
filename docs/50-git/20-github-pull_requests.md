@@ -2,7 +2,7 @@
 title: GitHub Pull Requests
 ---
 
-Once the Issues are completed, we will create a Pull Request (PR).
+On completing an issues, we create a pull request (PR).
 
 ## Pull Request Template
 
@@ -33,7 +33,7 @@ Docs: Show scrollbar like Mac #942
 
 ## Reviewers
 
-If a person in charge has been determined, assign them.
+Assign the person in charge of reviewing.
 
 ## Labels
 
