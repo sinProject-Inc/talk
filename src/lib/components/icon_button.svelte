@@ -24,7 +24,7 @@
 			? 'glass-text-4 glass-bump-bg-shine'
 			: 'glass-text-faint-md'} {grow
 			? 'scale-110 duration-75 hover:bg-primary-5/5 dark:hover:bg-primary-dark-5/5'
-			: 'duration-300'}"
+			: 'duration-[350ms]'}"
 	>
 		<slot />
 	</div>
