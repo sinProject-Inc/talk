@@ -99,7 +99,7 @@ a {
 	}
 
 	.center-container {
-		@apply max-w-8xl mx-auto w-full px-6;
+		@apply max-w-8xl mx-auto w-full px-3;
 	}
 
 	.title {
@@ -134,11 +134,11 @@ a {
 	}
 
 	.glass-panel {
-		@apply glass glass-border rounded-[0.5rem] shadow-sm;
+		@apply glass glass-border overflow-hidden rounded-[0.5rem] shadow-sm;
 	}
 
 	.glass-button {
-		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine glass-border rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
+		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
 	}
 }
 
@@ -208,7 +208,7 @@ a {
 	}
 
 	.glass-bump-bg-shine {
-		@apply hover:bg-primary-5/20 dark:hover:bg-primary-dark-5/5;
+		@apply hover:bg-primary-5/20 dark:hover:bg-white/10;
 	}
 
 	.glass-indentation-bg {

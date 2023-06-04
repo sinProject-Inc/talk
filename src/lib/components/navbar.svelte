@@ -10,8 +10,9 @@
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
+	import AnimationSwitcher from './animation_switcher.svelte'
 
-	export let search_bar_enabled = false
+	export let is_on_docs = false
 
 	const dispatch = createEventDispatcher()
 
@@ -24,7 +25,7 @@
 
 <div class="glass-text-5 sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
 	<div
-		class="mx-6 h-full border-b border-primary-9/[0.06] dark:border-primary-dark-9/[0.06] md:mx-0 md:px-6"
+		class="mx-3 h-full border-b border-primary-9/[0.06] px-3 dark:border-primary-dark-9/[0.06] md:mx-0 md:px-6"
 	>
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a href="{base}/" class="flex items-center gap-2 text-[22px] no-underline">
@@ -40,14 +41,15 @@
 				<NavItemTab name="chat" />
 				<NavItemTab name="docs" />
 
-				{#if search_bar_enabled}
+				{#if is_on_docs}
 					<button
 						on:click={on_search_button_click}
-						class="button flex items-center gap-1 px-0"
+						class="glowing-icon flex items-center gap-1 px-0"
 						data-testid="navbar-search-button"
 					>
 						<div class="h-5"><SearchIcon /></div>
 					</button>
+					<AnimationSwitcher />
 				{/if}
 				<ThemeSwitcher />
 				<a
@@ -62,7 +64,7 @@
 						<div class="h-5"><ProfileIcon /></div>
 					</a>
 					<form action="{base}/sign-out" method="POST">
-						<button class="button flex h-5 p-0 no-underline" type="submit">
+						<button class="glowing-icon flex h-5 p-0 no-underline" type="submit">
 							<SignOutIcon />
 						</button>
 					</form>
@@ -82,10 +84,6 @@
 
 <style lang="postcss">
 	a:not(.title) {
-		@apply hover:text-secondary dark:hover:text-secondary-dark;
-	}
-
-	.button {
 		@apply hover:text-secondary dark:hover:text-secondary-dark;
 	}
 </style>

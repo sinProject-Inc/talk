@@ -1,5 +1,5 @@
 import { logger } from '../app/logger'
-import type { PrismaClient, Theme, User } from '@prisma/client'
+import type { AvatarExtension, PrismaClient, Theme, User } from '@prisma/client'
 import type { Email } from './email'
 import type { UserRepository } from './user_repository'
 
@@ -46,6 +46,25 @@ export class UserRepositoryPrisma implements UserRepository {
 			return theme
 		} catch (error) {
 			logger.error(`[DB] Failed to update theme for user: ${user.email}`, error)
+			return undefined
+		}
+	}
+
+	public async update_avatar_extension(
+		user: User,
+		extension: AvatarExtension
+	): Promise<string | undefined> {
+		try {
+			await this._prisma_client.user.update({
+				where: { id: user.id },
+				data: { avatar_extension: extension },
+			})
+
+			logger.info(`[DB] Updated avatar extension for user: ${user.email}`)
+
+			return extension
+		} catch (error) {
+			logger.error(`[DB] Failed to update avatar extension for user: ${user.email}`, error)
 			return undefined
 		}
 	}

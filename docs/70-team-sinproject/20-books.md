@@ -2,7 +2,7 @@
 title: Books
 ---
 
-We are reading the following books.
+We recommend the following books.
 
 - [良いコード/悪いコードで学ぶ設計入門 ―保守しやすい 成長し続けるコードの書き方](https://amzn.to/3Caza0s)
 - [なぜ、あなたの仕事は終わらないのか スピードは最強の武器である](https://amzn.to/43xGeQE)

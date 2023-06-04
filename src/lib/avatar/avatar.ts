@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { AvatarFilePath } from './avatar_file_path'
 import type { UserId } from '../user/user_id'
+import type { AvatarExtension } from '@prisma/client'
 
 export class Avatar {
 	public constructor(private readonly _data: Uint8Array) {}
@@ -9,8 +10,8 @@ export class Avatar {
 		return this._data
 	}
 
-	public static async from_user_id(user_id: UserId): Promise<Avatar> {
-		const avatar_file_path = AvatarFilePath.from_user_id(user_id)
+	public static async from_user_id(user_id: UserId, extension: AvatarExtension): Promise<Avatar> {
+		const avatar_file_path = AvatarFilePath.from_user_id(user_id, extension)
 		const avatar = Avatar.from_avatar_path(avatar_file_path)
 
 		return avatar
