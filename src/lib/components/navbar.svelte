@@ -4,13 +4,14 @@
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 	import { _ } from 'svelte-i18n'
+	import AnimationSwitcher from './animation_switcher.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 	import ProfileIcon from './icons/profile_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
-	import AnimationSwitcher from './animation_switcher.svelte'
+	import VolumeSwitcher from './volume_switcher.svelte'
 
 	export let is_on_docs = false
 
@@ -44,11 +45,12 @@
 				{#if is_on_docs}
 					<button
 						on:click={on_search_button_click}
-						class="glowing-icon flex items-center gap-1 px-0"
+						class="glowing-icon"
 						data-testid="navbar-search-button"
 					>
-						<div class="h-5"><SearchIcon /></div>
+						<div class="h-nav-icon"><SearchIcon /></div>
 					</button>
+					<VolumeSwitcher />
 					<AnimationSwitcher />
 				{/if}
 				{#if $page.data.user}
@@ -59,14 +61,14 @@
 					target="_blank"
 					class="flex items-center gap-1"
 				>
-					<div class="h-5"><GithubIcon /></div>
+					<div class="h-nav-icon"><GithubIcon /></div>
 				</a>
 				{#if $page.data.user}
 					<a href="{base}/profile" class="flex items-center gap-1">
-						<div class="h-5"><ProfileIcon /></div>
+						<div class="h-nav-icon"><ProfileIcon /></div>
 					</a>
 					<form action="{base}/sign-out" method="POST">
-						<button class="glowing-icon flex h-5 p-0 no-underline" type="submit">
+						<button class="glowing-icon flex" type="submit">
 							<SignOutIcon />
 						</button>
 					</form>
@@ -74,7 +76,7 @@
 					<a
 						class="flex flex-row items-center no-underline"
 						href="{base}/sign-in?redirect_url={encoded_redirect_url}"
-						><div class="h-5">
+						><div class="h-nav-icon">
 							<SignInIcon />
 						</div>
 					</a>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation'
 	import { base } from '$app/paths'
+	import { volume_enabled } from '$lib/stores'
+	import { get } from 'svelte/store'
 
 	const audio_buffers = new Map<string, AudioBuffer>()
 	const audio_sources = new Map<string, AudioBufferSourceNode>()
@@ -51,6 +53,8 @@
 	}
 
 	export async function play_sound(id: string): Promise<void> {
+		if (!get(volume_enabled)) return
+
 		if (!audio_context) {
 			await init_audio_context()
 		}

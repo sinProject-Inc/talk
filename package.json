@@ -102,6 +102,7 @@
 		"socket.io": "^4.6.1",
 		"socket.io-client": "^4.6.1",
 		"svelte-i18n": "^3.6.0",
+		"svelte-local-storage-store": "^0.4.0",
 		"uuid": "^9.0.0",
 		"vivus": "^0.4.6",
 		"winston": "^3.8.2",

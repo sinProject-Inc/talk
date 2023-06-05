@@ -44,7 +44,7 @@
 </script>
 
 {#await theme_service.ready then}
-	<button class="button glowing-icon flex h-5 p-0 no-underline" on:click={handle_click}>
+	<button class="glowing-icon" on:click={handle_click}>
 		{#if current_theme === Theme.light}
 			<SunIcon />
 		{:else if current_theme === Theme.dark}

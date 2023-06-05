@@ -141,8 +141,12 @@ a {
 		@apply glass-bump-bg glass-text-3 glass-bump-bg-shine rounded-lg px-4 py-2 transition-all duration-300 hover:shadow-sm;
 	}
 
+	.h-nav-icon {
+		@apply h-5;
+	}
+
 	.glowing-icon {
-		@apply hover:fill-secondary hover:text-secondary dark:hover:fill-secondary-dark dark:hover:text-secondary-dark;
+		@apply h-nav-icon p-0 hover:fill-secondary hover:text-secondary dark:hover:fill-secondary-dark dark:hover:text-secondary-dark;
 	}
 }
 

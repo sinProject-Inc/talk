@@ -11,7 +11,7 @@
 </script>
 
 <a href="{base}/{name}" class="flex items-center gap-1">
-	<div class="h-5">
+	<div class="h-nav-icon">
 		{#if name === 'translate'}
 			<LanguageHiraganaIcon />
 		{:else if name === 'chat'}

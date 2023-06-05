@@ -14,9 +14,9 @@
 	import SearchModale from './search_modale.svelte'
 	import SideBar from './side_bar.svelte'
 	import { theme_service } from '$lib/theme/theme_service'
-	import { animation_store } from '$lib/view/animation_store'
 	import { sleep } from '$lib/general/system'
 	import { browser } from '$app/environment'
+	import { animations_enabled } from '$lib/stores'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -24,8 +24,6 @@
 	export let data
 
 	$: sections = data?.sections ?? []
-
-	let animations_enabled: boolean
 
 	let search_query = ''
 	let copied_snackbar_visible = false
@@ -108,7 +106,7 @@
 	}
 
 	let svg_elements: SVGSVGElement[] = []
-	let observers: IntersectionObserver[] = []
+	let svg_observers: IntersectionObserver[] = []
 	let vivus_instances: Vivus[] = []
 
 	async function connect_vivus(): Promise<void> {
@@ -131,8 +129,6 @@
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
-						if (!animations_enabled) return
-
 						if (entry.isIntersecting) {
 							vivus_instances[index].play()
 						} else {
@@ -145,9 +141,25 @@
 			)
 
 			observer.observe(svg_element)
-			observers.push(observer)
+			svg_observers.push(observer)
 		})
 	}
+
+	function disconnect_vivus(): void {
+		svg_observers.forEach((observer) => {
+			observer.disconnect()
+		})
+
+		svg_observers = []
+
+		vivus_instances.forEach((vivus) => {
+			vivus.destroy()
+		})
+
+		vivus_instances = []
+	}
+
+	let fading_observers: IntersectionObserver[] = []
 
 	function invisible_slide_fade_in(): void {
 		const elements = document.querySelectorAll('.slide-fade-in-visible')
@@ -177,6 +189,7 @@
 			)
 
 			observer.observe(element)
+			fading_observers.push(observer)
 		})
 	}
 
@@ -186,6 +199,12 @@
 		elements.forEach((element) => {
 			element.classList.add('visible')
 		})
+
+		fading_observers.forEach((observer) => {
+			observer.disconnect()
+		})
+
+		fading_observers = []
 	}
 
 	function enable_animations(): void {
@@ -198,19 +217,16 @@
 	function disable_animations(): void {
 		if (!browser) return
 
+		disconnect_vivus()
 		disable_slide_in_animation()
 	}
 
-	function subscribe_to_animation_store(): void {
-		animation_store.subscribe((value) => {
-			animations_enabled = value
-
-			if (animations_enabled) {
-				enable_animations()
-			} else {
-				disable_animations()
-			}
-		})
+	function switch_animations(animations_enabled: boolean): void {
+		if (animations_enabled) {
+			enable_animations()
+		} else {
+			disable_animations()
+		}
 	}
 
 	beforeNavigate(() => {
@@ -221,14 +237,14 @@
 	afterNavigate(() => {
 		close_mobile_side_bar()
 		add_copy_code_event()
-
-		if (!animations_enabled) return
-
-		enable_animations()
+		switch_animations($animations_enabled)
 	})
 
+	$: {
+		switch_animations($animations_enabled)
+	}
+
 	onMount(() => {
-		subscribe_to_animation_store()
 		create_search_shortcut()
 	})
 </script>

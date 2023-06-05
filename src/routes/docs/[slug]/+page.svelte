@@ -62,7 +62,7 @@
 					target="_blank"
 					rel="noreferrer"
 					class="flex items-center gap-1 border-none"
-					><div class="h-5 w-5">
+					><div class="h-nav-icon">
 						<GithubIcon />
 					</div>
 					<div>Edit this page</div>

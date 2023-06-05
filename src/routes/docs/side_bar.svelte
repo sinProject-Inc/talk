@@ -52,7 +52,7 @@
 			class="glass-panel fixed top-[84px] flex w-56 items-center gap-3 rounded-md border bg-base/90 shadow-lg shadow-base/70 transition-all duration-150 hover:bg-primary-dark-3/20 dark:bg-base-dark/90 dark:shadow-base-dark/70 dark:hover:bg-primary-3/75"
 			on:click={on_search_button_click}
 		>
-			<div class="h-5"><SearchIcon /></div>
+			<div class="h-nav-icon"><SearchIcon /></div>
 			<div class="flex w-full justify-between pr-2">
 				<div class="flex">Search</div>
 				<div class="flex">{CommandOrControlShortcut.generate('k')}</div>
