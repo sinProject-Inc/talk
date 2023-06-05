@@ -3,15 +3,15 @@
 	import VolumeOffIcon from './icons/volume_off_icon.svelte'
 	import VolumeOnIcon from './icons/volume_on_icon.svelte'
 	import { get } from 'svelte/store'
-	import { volume_on } from '$lib/stores'
+	import { volume_enabled } from '$lib/stores'
 
-	function toggle(): void {
-		volume_on.set(!get(volume_on))
+	function handle_click(): void {
+		volume_enabled.set(!get(volume_enabled))
 	}
 </script>
 
-<button class="glowing-icon" on:click={toggle}>
-	{#if $volume_on}
+<button class="glowing-icon" on:click={handle_click}>
+	{#if $volume_enabled}
 		<VolumeOnIcon />
 	{:else}
 		<VolumeOffIcon />
