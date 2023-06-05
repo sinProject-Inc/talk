@@ -144,7 +144,7 @@ export class Markdown {
 
 			const title_element = filename
 				? `
-					<a class="code-title flex gap-1.5 items-center font-semibold dark:text-primary-dark-3 text-primary-3 dark:hover:text-primary-dark-4 hover:text-primary-4" href="${github_url}${filename}" target="blank">
+					<a class="code-title flex gap-1.5 items-center font-semibold dark:text-primary-dark-3 text-primary-3 dark:hover:text-primary-dark-4 hover:text-primary-10" href="${github_url}${filename}" target="blank">
 						<div style="width:20px">
 							${github_icon_element}
 						</div>

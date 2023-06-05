@@ -55,7 +55,7 @@
 			<h1 class="slide-fade-in glass-text-5">{data.page.title}</h1>
 
 			<div
-				class="glass-text-3 mb-5 text-sm font-semibold hover:text-primary-4 dark:hover:text-primary-dark-4"
+				class="glass-text-3 mb-5 text-sm font-semibold hover:text-primary-10 dark:hover:text-primary-dark-4"
 			>
 				<a
 					href={git_path}
