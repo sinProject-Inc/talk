@@ -216,7 +216,7 @@ a {
 	}
 
 	.glass-bump-bg-shine {
-		@apply hover:bg-primary-5/20 dark:hover:bg-white/10;
+		@apply hover:bg-primary-5/10 dark:hover:bg-white/10;
 	}
 
 	.glass-indentation-bg {
