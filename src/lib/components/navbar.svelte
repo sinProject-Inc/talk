@@ -4,13 +4,14 @@
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 	import { _ } from 'svelte-i18n'
+	import AnimationSwitcher from './animation_switcher.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 	import ProfileIcon from './icons/profile_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
 	import SignOutIcon from './icons/sign_out_icon.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
-	import AnimationSwitcher from './animation_switcher.svelte'
+	import VolumeSwitcher from './volume_switcher.svelte'
 
 	export let is_on_docs = false
 
@@ -49,6 +50,7 @@
 					>
 						<div class="h-5"><SearchIcon /></div>
 					</button>
+					<VolumeSwitcher />
 					<AnimationSwitcher />
 				{/if}
 				{#if $page.data.user}
