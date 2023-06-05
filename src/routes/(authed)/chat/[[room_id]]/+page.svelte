@@ -575,7 +575,7 @@
 			</div>
 			{#if !joined}
 				<button
-					class="glass-button glass-panel flex h-[40px] items-center border-primary-9/[0.13] hover:!shadow-sm"
+					class="glass-button glass-panel flex h-[40px] items-center overflow-visible border-primary-9/[0.13] hover:!shadow-sm"
 					on:click={new_room}
 					data-testid="new-room-button"
 				>
