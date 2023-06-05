@@ -42,7 +42,7 @@
 	})
 </script>
 
-<button class="button glowing-icon flex h-5 p-0 no-underline" on:click={handle_click}>
+<button class="glowing-icon" on:click={handle_click}>
 	{#if animations_enabled}
 		<PlayIcon />
 	{:else}

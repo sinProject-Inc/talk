@@ -45,10 +45,10 @@
 				{#if is_on_docs}
 					<button
 						on:click={on_search_button_click}
-						class="glowing-icon flex items-center gap-1 px-0"
+						class="glowing-icon"
 						data-testid="navbar-search-button"
 					>
-						<div class="h-5"><SearchIcon /></div>
+						<div class="h-nav-icon"><SearchIcon /></div>
 					</button>
 					<VolumeSwitcher />
 					<AnimationSwitcher />
@@ -61,14 +61,14 @@
 					target="_blank"
 					class="flex items-center gap-1"
 				>
-					<div class="h-5"><GithubIcon /></div>
+					<div class="h-nav-icon"><GithubIcon /></div>
 				</a>
 				{#if $page.data.user}
 					<a href="{base}/profile" class="flex items-center gap-1">
-						<div class="h-5"><ProfileIcon /></div>
+						<div class="h-nav-icon"><ProfileIcon /></div>
 					</a>
 					<form action="{base}/sign-out" method="POST">
-						<button class="glowing-icon flex h-5 p-0 no-underline" type="submit">
+						<button class="glowing-icon flex" type="submit">
 							<SignOutIcon />
 						</button>
 					</form>
@@ -76,7 +76,7 @@
 					<a
 						class="flex flex-row items-center no-underline"
 						href="{base}/sign-in?redirect_url={encoded_redirect_url}"
-						><div class="h-5">
+						><div class="h-nav-icon">
 							<SignInIcon />
 						</div>
 					</a>

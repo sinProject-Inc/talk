@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
+	// import { onMount } from 'svelte'
 	import VolumeOffIcon from './icons/volume_off_icon.svelte'
 	import VolumeOnIcon from './icons/volume_on_icon.svelte'
+	import { get } from 'svelte/store'
+	import { volume_on } from '$lib/stores'
 
-	let volume_on = true
+	function toggle(): void {
+		volume_on.set(!get(volume_on))
+	}
 </script>
 
-<!-- ボタンのクラス定義を共通化する -->
-<button class="glowing-icon px-0">
-	<div class="h-5">
-		{#if volume_on}
-			<VolumeOnIcon />
-		{:else}
-			<VolumeOffIcon />
-		{/if}
-	</div>
+<button class="glowing-icon" on:click={toggle}>
+	{#if $volume_on}
+		<VolumeOnIcon />
+	{:else}
+		<VolumeOffIcon />
+	{/if}
 </button>
