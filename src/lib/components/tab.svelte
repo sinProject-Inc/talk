@@ -8,6 +8,6 @@
 
 <style lang="postcss">
 	.active {
-		@apply border-b border-secondary pt-[2px] dark:border-secondary-dark;
+		@apply border-b border-secondary pt-[1px] dark:border-secondary-dark;
 	}
 </style>
