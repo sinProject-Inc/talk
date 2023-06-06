@@ -35,7 +35,7 @@
 	import type { ChatLog, Locale } from '@prisma/client'
 	import { io } from 'socket.io-client'
 	import { onDestroy, onMount } from 'svelte'
-	import { _, locale, waitLocale } from 'svelte-i18n'
+	import { _ } from 'svelte-i18n'
 	import { fly, slide } from 'svelte/transition'
 	import { v4 as uuidv4 } from 'uuid'
 	import type { PageData } from './$types'
@@ -211,11 +211,10 @@
 	}
 
 	async function set_app_locale(): Promise<void> {
-		const locale_code = new LocaleCode(locale_select_element.value)
-
-		$locale = locale_code.code
-
-		await waitLocale($locale)
+		// DO NOTHING
+		// const locale_code = new LocaleCode(locale_select_element.value)
+		// $locale = locale_code.code
+		// await waitLocale($locale)
 	}
 
 	function init_name(): void {

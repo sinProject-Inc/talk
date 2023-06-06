@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { base } from '$app/paths'
 	import { page } from '$app/stores'
+	import { App } from '$lib/app/app'
 	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
 	import { createEventDispatcher } from 'svelte'
-	import { _ } from 'svelte-i18n'
 	import AnimationSwitcher from './animation_switcher.svelte'
 	import GithubIcon from './icons/github_icon.svelte'
 	import ProfileIcon from './icons/profile_icon.svelte'
@@ -12,7 +12,6 @@
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
 	import VolumeSwitcher from './volume_switcher.svelte'
-	import { App } from '$lib/app/app'
 
 	export let is_on_docs = false
 
