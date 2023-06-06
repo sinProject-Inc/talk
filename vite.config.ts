@@ -1,6 +1,16 @@
 import { sveltekit } from '@sveltejs/kit/vite'
+import { createRequire } from 'module'
+import path from 'path'
 import { defineConfig } from 'vitest/config'
 import inject_socket_io from './server/socket-handler'
+
+const require = createRequire(import.meta.url)
+
+const prisma_client = require
+	.resolve('@prisma/client')
+	.replace(/@prisma(\/|\\)client(\/|\\)index\.js/, '.prisma/client/index-browser.js')
+
+const prisma_index_browser = path.normalize(path.relative(process.cwd(), prisma_client))
 
 // # Dev
 // npm run dev
@@ -36,4 +46,6 @@ export default defineConfig({
 	server: {
 		host: true,
 	},
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	resolve: { alias: { '.prisma/client/index-browser': prisma_index_browser } },
 })
