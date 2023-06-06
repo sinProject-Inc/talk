@@ -55,7 +55,7 @@
 			<h1 class="slide-fade-in glass-text-5">{data.page.title}</h1>
 
 			<div
-				class="glass-text-3 mb-5 text-sm font-semibold hover:text-primary-4 dark:hover:text-primary-dark-4"
+				class="glass-text-3 mb-5 text-sm font-semibold hover:text-primary-10 dark:hover:text-primary-dark-4"
 			>
 				<a
 					href={git_path}
@@ -80,13 +80,14 @@
 		</div>
 
 		<footer class="text-s mt-12 leading-6">
-			<div class="glass-text-5 flex items-center text-sm font-semibold">
+			<div class="glass-text-3 flex items-center text-sm font-semibold">
 				{#if prev_page}
-					<a href={prev_page.path} class="hover:glass-text-10 group flex items-center">
+					<a
+						href={prev_page.path}
+						class="flex items-center hover:text-primary-10 dark:hover:text-primary-dark-4"
+					>
 						<!-- class="mr-3 h-1.5 w-auto overflow-visible dark:text-primary-dark-3 text-primary-3 group-hover:dark:text-primary-3 text-primary-dark-3 dark:group-dark:hover:text-primary-dark-4 hover:text-primary-4" -->
-						<svg
-							viewBox="0 0 3 6"
-							class="glass-text-3 group-hover:glass-text-4 mr-3 h-1.5 w-auto overflow-visible"
+						<svg viewBox="0 0 3 6" class="mr-3 h-1.5 w-auto overflow-visible"
 							><path
 								d="M3 0L0 3L3 6"
 								fill="none"
@@ -102,11 +103,9 @@
 				{#if next_page}
 					<a
 						data-testid="next-page"
-						class="hover:glass-text-10 group ml-auto flex items-center"
 						href={next_page.path}
-						>{next_page.title}<svg
-							viewBox="0 0 3 6"
-							class="glass-text-3 group-hover:glass-text-4 ml-3 h-1.5 w-auto overflow-visible"
+						class="ml-auto flex items-center hover:text-primary-10 dark:hover:text-primary-dark-4"
+						>{next_page.title}<svg viewBox="0 0 3 6" class="ml-3 h-1.5 w-auto overflow-visible"
 							><path
 								d="M0 0L3 3L0 6"
 								fill="none"
