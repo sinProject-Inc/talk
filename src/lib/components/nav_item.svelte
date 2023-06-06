@@ -7,7 +7,7 @@
 
 	export let name: string
 
-	const text = name === 'docs' ? 'Docs' : $_(name)
+	$: text = name === 'docs' ? 'Docs' : $_(name)
 </script>
 
 <a href="{base}/{name}" class="flex items-center gap-1">
