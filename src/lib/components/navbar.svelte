@@ -12,6 +12,7 @@
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
 	import VolumeSwitcher from './volume_switcher.svelte'
+	import { App } from '$lib/app/app'
 
 	export let is_on_docs = false
 
@@ -31,7 +32,7 @@
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a href="{base}/" class="flex items-center gap-2 text-[22px] no-underline">
 				<img src="{base}/icon-144.png" class="h-8" alt="" />
-				{$_('talk_title')}
+				{App.app_name}
 			</a>
 			<nav class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6">
 				<!-- <nav

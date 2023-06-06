@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths'
 	import { page } from '$app/stores'
+	import { App } from '$lib/app/app'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
@@ -32,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk - Sign in</title>
+	<title>{App.get_page_title('Sign in')}</title>
 </svelte:head>
 
 <div class="flex h-screen items-center justify-center">

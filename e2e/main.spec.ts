@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('before sign in', async ({ page }) => {
-	await expect(page).toHaveTitle('Talk - Sign in')
+	await expect(page).toHaveTitle('Sign in - Talk')
 })
 
 test.describe('after sign in', () => {

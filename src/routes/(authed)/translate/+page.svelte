@@ -26,6 +26,8 @@
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	import VersionFooter from '$lib/components/version_footer.svelte'
+	import { App } from '$lib/app/app'
 
 	export let data: PageData
 
@@ -335,7 +337,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk - Translate</title>
+	<title>{App.get_page_title('Translate')}</title>
 	<style>
 		option {
 			background-color: white !important;
@@ -416,6 +418,8 @@
 					{/each}
 				</div>
 			</div>
+
+			<VersionFooter />
 		</div>
 	</div>
 </div>
