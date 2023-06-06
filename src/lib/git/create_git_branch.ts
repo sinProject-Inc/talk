@@ -17,7 +17,7 @@ export class CreateGitBranch {
 		}
 
 		const issue_number = issue_parts[2].substring(1)
-		const issue_name = issue_parts[1].replaceAll(/[^a-zA-Z0-9- ]/g, '').trim()
+		const issue_name = issue_parts[1].replaceAll(/[^a-zA-Z0-9- .]/g, '').trim()
 		const kebab_case_issue_name = this._to_kebab_case(issue_name)
 
 		// Issue番号とkebab-case形式のIssue名を組み合わせてブランチ名を生成
