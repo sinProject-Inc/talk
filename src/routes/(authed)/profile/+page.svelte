@@ -3,6 +3,7 @@
 	import type { PageServerData } from './$types'
 	import { UserId } from '$lib/user/user_id'
 	import { AvatarUrl } from '$lib/avatar/avatar_url'
+	import { App } from '$lib/app/app'
 
 	export let data: PageServerData
 
@@ -23,7 +24,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk - Profile</title>
+	<title>{App.get_page_title('Profile')}</title>
 </svelte:head>
 
 <div>

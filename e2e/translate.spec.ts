@@ -13,14 +13,14 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('before sign in', async ({ page }) => {
-	await expect(page).toHaveTitle('Talk - Sign in')
+	await expect(page).toHaveTitle('Sign in - Talk')
 })
 
 test.describe('after sign in', () => {
 	test.use({ storageState: auth_file_path })
 
 	test('has title', async ({ page }) => {
-		await expect(page).toHaveTitle('Talk - Translate')
+		await expect(page).toHaveTitle('Translate - Talk')
 	})
 
 	// TODO FIX TEST

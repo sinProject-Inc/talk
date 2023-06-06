@@ -29,6 +29,8 @@
 	import { onMount } from 'svelte'
 	import { locale, waitLocale, _ } from 'svelte-i18n'
 	import type { PageData } from './$types'
+	import VersionFooter from '$lib/components/version_footer.svelte'
+	import { App } from '$lib/app/app'
 	// import { version } from '$app/environment'
 
 	// console.log('version', version)
@@ -263,7 +265,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk</title>
+	<title>{App.app_name}</title>
 	<style>
 		option {
 			background-color: white !important;
@@ -272,6 +274,7 @@
 </svelte:head>
 
 <Navbar />
+
 <div class="center-container my-3 flex h-[calc(100vh-77px)] w-screen flex-col gap-3">
 	<div class="glass-panel flex flex-1 flex-col gap-2 overflow-y-auto pt-3">
 		<div class="px-5">
@@ -361,7 +364,8 @@
 			</div>
 		</div>
 	</div>
+
+	<VersionFooter />
 </div>
-<div />
 
 <!-- <input type="text" bind:this={search_text} /> -->

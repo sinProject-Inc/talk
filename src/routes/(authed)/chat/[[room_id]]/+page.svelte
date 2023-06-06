@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { version } from '$app/environment'
+	import { goto } from '$app/navigation'
+	import { base } from '$app/paths'
+	import { AvatarUrl } from '$lib/avatar/avatar_url'
 	import type { ChatMemberEntity, MessageSet } from '$lib/chat/chat'
 	import IconButton from '$lib/components/icon_button.svelte'
+	import AddIcon from '$lib/components/icons/add_icon.svelte'
 	import DesktopWindowsIcon from '$lib/components/icons/desktop_windows_icon.svelte'
 	import FillIcon from '$lib/components/icons/fill_icon.svelte'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
@@ -14,12 +17,15 @@
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
+	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { AppLocalStorage } from '$lib/locale/app_local_storage'
 	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechDivElement } from '$lib/speech/speech_div_element'
 	import { SpeechText } from '$lib/speech/speech_text'
+	import { SubmissionText } from '$lib/speech/submission_text'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
+	import { UserId } from '$lib/user/user_id'
 	import { Direction } from '$lib/view/direction'
 	import { EventKey } from '$lib/view/event_key'
 	import { LocaleSelectElement } from '$lib/view/locale_select_element'
@@ -30,15 +36,10 @@
 	import { io } from 'socket.io-client'
 	import { onDestroy, onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
-	import type { PageData } from './$types'
 	import { fly, slide } from 'svelte/transition'
-	import { SubmissionText } from '$lib/speech/submission_text'
 	import { v4 as uuidv4 } from 'uuid'
-	import { goto } from '$app/navigation'
-	import AddIcon from '$lib/components/icons/add_icon.svelte'
-	import { UserId } from '$lib/user/user_id'
-	import { AvatarUrl } from '$lib/avatar/avatar_url'
-	import { base } from '$app/paths'
+	import type { PageData } from './$types'
+	import { App } from '$lib/app/app'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -125,7 +126,7 @@
 		navigator.serviceWorker.ready.then((registration: ServiceWorkerRegistration) => {
 			// console.info('notification_message', notification_message)
 
-			registration.showNotification('sinProject Talk - Chat', {
+			registration.showNotification(`${App.company_and_app_name} - Chat`, {
 				body: notification_message,
 				icon: '/icon-192.png',
 			})
@@ -556,7 +557,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk - Chat</title>
+	<title>{App.get_page_title('Chat')}</title>
 	<style>
 		option {
 			background-color: white !important;
@@ -748,10 +749,6 @@
 				{/if}
 			</div>
 		</div>
-		<div class="glass-text-faint-sm flex h-6 justify-center text-sm">
-			<a target="_blank" rel="noreferrer" href="https://github.com/sinProject-Inc/talk/"
-				>sinProject Talk {version}</a
-			>
-		</div>
+		<VersionFooter />
 	</div>
 </div>

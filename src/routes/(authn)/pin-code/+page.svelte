@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
 	import type { ActionData } from './$types'
+	import { App } from '$lib/app/app'
 
 	export let form: ActionData
 
@@ -30,7 +31,7 @@
 </script>
 
 <svelte:head>
-	<title>Talk - PIN code</title>
+	<title>{App.get_page_title('PIN code')}</title>
 </svelte:head>
 
 <div class="flex h-screen items-center justify-center">

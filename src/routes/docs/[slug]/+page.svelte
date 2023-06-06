@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import { App } from '$lib/app/app'
 	import GithubIcon from '$lib/components/icons/github_icon.svelte'
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
+	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { current_page_category, current_page_title } from '$lib/docs/current_page_store'
 	import OnThisPage from './on_this_page.svelte'
 	import '/node_modules/highlight.js/styles/atom-one-dark.css'
@@ -21,7 +23,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.page.title} - sinProject Talk</title>
+	<title>{App.get_docs_title(data.page.title)}</title>
 	<style>
 		html {
 			scroll-padding-top: calc(var(--header-height) * 2 + 2rem);
@@ -119,6 +121,10 @@
 				{/if}
 			</div>
 		</footer>
+	</div>
+
+	<div class="mt-8 border-t border-slate-200 pt-8 dark:border-slate-200/5">
+		<VersionFooter />
 	</div>
 
 	<OnThisPage details={data.page} />

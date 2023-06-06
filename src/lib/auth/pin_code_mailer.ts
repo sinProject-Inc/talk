@@ -5,6 +5,7 @@ import type SMTPTransport from 'nodemailer/lib/smtp-transport'
 import { Email } from './email'
 import type { MailSubject } from './mail_subject'
 import type { PinCode } from './pin_code'
+import { App } from '$lib/app/app'
 
 export class PinCodeMailer {
 	private readonly _transporter = nodemailer.createTransport({
@@ -25,7 +26,7 @@ export class PinCodeMailer {
 	) {}
 
 	private get _from(): string {
-		return `Talk <${this._from_email.address}>`
+		return `${App.app_name} <${this._from_email.address}>`
 	}
 
 	public async send(): Promise<SMTPTransport.SentMessageInfo> {
