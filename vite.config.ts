@@ -36,4 +36,10 @@ export default defineConfig({
 	server: {
 		host: true,
 	},
+	resolve: {
+		alias: {
+			// eslint-disable-next-line @typescript-eslint/naming-convention
+			'.prisma/client/index-browser': './node_modules/.prisma/client/index-browser.js',
+		},
+	},
 })
