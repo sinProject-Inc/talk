@@ -1,18 +1,18 @@
 <script lang="ts">
+	import { browser } from '$app/environment'
+	import { afterNavigate } from '$app/navigation'
 	import { navigating } from '$app/stores'
 	import '$lib/app.css'
+	import { Background } from '$lib/background/background'
+	import { theme } from '$lib/stores'
 	import { Direction } from '$lib/view/direction'
+	import { Theme } from '@prisma/client'
+	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
 	import NProgress from 'nprogress'
 	import 'nprogress/nprogress.css'
 	import { locale } from 'svelte-i18n'
 	import type { LayoutServerData } from './$types'
-	import { Background } from '$lib/background/background'
-	import { browser } from '$app/environment'
-	import { afterNavigate, beforeNavigate } from '$app/navigation'
-	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
-	import { theme_service } from '$lib/theme/theme_service'
-	import { Theme } from '@prisma/client'
-	import type { Unsubscriber } from 'svelte/store'
+	import { onMount } from 'svelte'
 
 	export let data: LayoutServerData
 
@@ -23,12 +23,8 @@
 	let transitioning_background = false
 	let transition_background_timer: number
 
-	let current_theme: Theme
-
 	const background_dark_overlay = 'rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.9)'
 	const background_light_overlay = 'rgba(241, 245, 248, 0.9), rgba(241, 245, 248, 0.9)'
-
-	let unsubscribe_to_theme: Unsubscriber
 
 	load_backgrounds()
 	polyfillCountryFlagEmojis()
@@ -80,26 +76,29 @@
 		}, background_period_duration)
 	}
 
-	async function subscribe_to_theme(): Promise<void> {
-		unsubscribe_to_theme = await theme_service.subscribe((theme) => {
-			current_theme = theme
-		})
-	}
-
 	afterNavigate(() => {
 		execute_transition()
-
-		subscribe_to_theme()
 	})
 
-	beforeNavigate(() => {
-		if (!unsubscribe_to_theme) return
+	let ready = false
 
-		unsubscribe_to_theme()
+	onMount(async () => {
+		if (!$theme) {
+			if (data.theme === 'system') {
+				$theme =
+					window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+						? 'dark'
+						: 'light'
+			} else {
+				$theme = data.theme
+			}
+		}
+
+		ready = true
 	})
 </script>
 
-<div class="{current_theme} {current_theme ? 'visible' : 'invisible'}">
+<div class="{$theme} {ready ? 'visible' : 'invisible'}">
 	<div
 		class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
 		dir={get_direction($locale ?? '')}
@@ -108,7 +107,7 @@
 			{#if current_background}
 				<div class="fixed -z-50 h-screen w-full">
 					<div
-						style="background: linear-gradient({current_theme === Theme.dark
+						style="background: linear-gradient({$theme === Theme.dark
 							? background_dark_overlay
 							: background_light_overlay}), url({next_background.background_url}) bottom center/cover"
 						class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
@@ -118,7 +117,7 @@
 						class="{transitioning_background
 							? 'opacity-0 transition-all'
 							: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
-						style="background: linear-gradient({current_theme === Theme.dark
+						style="background: linear-gradient({$theme === Theme.dark
 							? background_dark_overlay
 							: background_light_overlay}), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
 							? background_transition_duration
