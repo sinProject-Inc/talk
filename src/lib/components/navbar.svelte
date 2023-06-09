@@ -53,9 +53,7 @@
 					<VolumeSwitcher />
 					<AnimationSwitcher />
 				{/if}
-				{#if $page.data.user}
-					<ThemeSwitcher />
-				{/if}
+				<ThemeSwitcher />
 				<a
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
