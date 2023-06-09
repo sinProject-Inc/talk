@@ -5,8 +5,10 @@
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
 	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { current_page_category, current_page_title } from '$lib/docs/current_page_store'
+	import { theme } from '$lib/stores'
 	import OnThisPage from './on_this_page.svelte'
-	import '/node_modules/highlight.js/styles/atom-one-dark.css'
+	// import '/node_modules/highlight.js/styles/atom-one-dark.css'
+	// import '/node_modules/highlight.js/styles/atom-one-light.css'
 
 	export let data
 
@@ -24,6 +26,13 @@
 
 <svelte:head>
 	<title>{App.get_docs_title(data.page.title)}</title>
+
+	{#if $theme === 'dark'}
+		<link rel="stylesheet" href="/node_modules/highlight.js/styles/atom-one-dark.css" />
+	{:else}
+		<link rel="stylesheet" href="/node_modules/highlight.js/styles/atom-one-light.css" />
+	{/if}
+
 	<style>
 		html {
 			scroll-padding-top: calc(var(--header-height) * 2 + 2rem);
