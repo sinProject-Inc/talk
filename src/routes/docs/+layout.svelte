@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { browser } from '$app/environment'
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
+	import { animations_enabled } from '$lib/stores'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
@@ -13,10 +15,6 @@
 	import NavbarSecondRow from './navbar_second_row.svelte'
 	import SearchModale from './search_modale.svelte'
 	import SideBar from './side_bar.svelte'
-	import { theme_service } from '$lib/theme/theme_service'
-	import { sleep } from '$lib/general/system'
-	import { browser } from '$app/environment'
-	import { animations_enabled } from '$lib/stores'
 
 	let search_modale_open = false
 	let mobile_side_bar_open = false
@@ -110,10 +108,6 @@
 	let vivus_instances: Vivus[] = []
 
 	async function connect_vivus(): Promise<void> {
-		await theme_service.ready
-
-		await sleep(1)
-
 		document.querySelectorAll('svg').forEach((svg_element) => {
 			svg_elements.push(svg_element)
 		})

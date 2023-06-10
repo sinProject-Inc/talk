@@ -56,6 +56,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const auth_token = await find_auth_token(event)
 
+	let theme = ''
+
 	if (auth_token) {
 		await Signing.access_valid(auth_token, event.cookies)
 
@@ -63,6 +65,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 			email: auth_token.user.email,
 			role: auth_token.user.role.name,
 		}
+
+		theme = auth_token.user.theme.replace('system', '')
 	} else {
 		if (is_authorized_api(event.url.pathname)) {
 			logger.warn(
@@ -79,7 +83,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// TODO: 実際にこの値を利用する
 	const response = await resolve(event, {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
-		transformPageChunk: ({ html }) => html.replace('data-theme=""', 'data-theme="dark"'),
+		transformPageChunk: ({ html }) =>
+			html.replace('data-theme=""', `data-theme="${theme}" class="${theme}"`),
 	})
 
 	return response
