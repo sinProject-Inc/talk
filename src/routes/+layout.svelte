@@ -13,6 +13,7 @@
 	import { locale } from 'svelte-i18n'
 	import type { LayoutServerData } from './$types'
 	import { onMount } from 'svelte'
+	import { UpdateThemeApi } from '$lib/theme/update_theme_api'
 
 	export let data: LayoutServerData
 
@@ -80,25 +81,56 @@
 		execute_transition()
 	})
 
-	let ready = false
+	async function change_theme(theme: string): Promise<void> {
+		if (!ready_theme_updating) return
+		if (!browser) return
 
-	onMount(async () => {
-		if (!$theme) {
-			if (data.theme === 'system') {
-				$theme =
-					window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-						? 'dark'
-						: 'light'
-			} else {
-				$theme = data.theme
-			}
+		const html = document.documentElement
+		html.className = theme
+		html.dataset.theme = theme
+
+		if (!data.user) return
+		if (dataset_theme === theme) return
+
+		await new UpdateThemeApi(theme as Theme).fetch()
+	}
+
+	$: {
+		change_theme($theme)
+	}
+
+	let dataset_theme = ''
+
+	function init_theme(): void {
+		const html = document.documentElement
+		dataset_theme = html.dataset.theme ?? ''
+
+		if (dataset_theme) {
+			$theme = dataset_theme
+			ready_theme_updating = true
+			return
 		}
 
-		ready = true
+		ready_theme_updating = true
+
+		if (!$theme) {
+			$theme =
+				window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark'
+					: 'light'
+		}
+
+		change_theme($theme)
+	}
+
+	let ready_theme_updating = false
+
+	onMount(async () => {
+		init_theme()
 	})
 </script>
 
-<div class="{$theme} {ready ? 'visible' : 'invisible'}">
+<div class={$theme ? 'visible' : 'invisible'}>
 	<div
 		class="min-h-screen bg-cover bg-fixed bg-no-repeat font-sans"
 		dir={get_direction($locale ?? '')}

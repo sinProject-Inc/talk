@@ -154,7 +154,7 @@
 		@apply border-b-[1px] border-secondary font-semibold  text-primary-10;
 	}
 
-	:global(:has(.dark) .content a:not(.border-none):not(.permalink):not(.code-title)) {
+	:global(html.dark .content a:not(.border-none):not(.permalink):not(.code-title)) {
 		@apply border-secondary-dark text-primary-dark-10;
 	}
 
@@ -162,7 +162,7 @@
 		@apply -mb-[1px] border-b-2 border-secondary;
 	}
 
-	:global(:has(.dark) .content a:not(.border-none):not(.permalink):not(.code-title):hover) {
+	:global(html.dark .content a:not(.border-none):not(.permalink):not(.code-title):hover) {
 		@apply border-secondary-dark;
 	}
 
@@ -178,7 +178,7 @@
 		border-radius: 999px;
 	}
 
-	:global(:has(.dark) .content ul > li::before) {
+	:global(html.dark .content ul > li::before) {
 		@apply bg-primary-dark-4;
 	}
 
@@ -189,7 +189,7 @@
 		overflow: hidden;
 	}
 
-	:global(:has(.dark) .code-container) {
+	:global(html.dark .code-container) {
 		@apply border-primary-dark-9/[0.06];
 	}
 
@@ -199,7 +199,7 @@
 		backdrop-filter: blur(4px);
 	}
 
-	:global(:has(.dark) .code-container > div) {
+	:global(html.dark .code-container > div) {
 		@apply bg-primary-8;
 	}
 
@@ -208,7 +208,7 @@
 		backdrop-filter: blur(4px);
 	}
 
-	:global(:has(.dark) code.hljs) {
+	:global(html.dark code.hljs) {
 		@apply bg-primary-8/50;
 		backdrop-filter: blur(4px);
 	}
@@ -221,7 +221,7 @@
 		border-radius: 0.4rem;
 	}
 
-	:global(:has(.dark) code:not(.hljs)) {
+	:global(html.dark code:not(.hljs)) {
 		@apply bg-secondary-dark/10;
 	}
 </style>
