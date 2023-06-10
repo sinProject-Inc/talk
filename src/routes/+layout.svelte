@@ -141,17 +141,17 @@
 					<div
 						style="background: linear-gradient({$theme === Theme.dark
 							? background_dark_overlay
-							: background_light_overlay}), url({next_background.background_url}) bottom center/cover"
-						class="pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
+							: background_light_overlay}), url({next_background.background_url}) center/cover"
+						class="absolute h-full w-full"
 						aria-hidden="true"
 					/>
 					<div
 						class="{transitioning_background
 							? 'opacity-0 transition-all'
-							: 'opactiy-100'}  pointer-events-none absolute h-full min-h-screen w-full bg-cover bg-fixed bg-no-repeat"
+							: 'opactiy-100'} absolute h-full w-full"
 						style="background: linear-gradient({$theme === Theme.dark
 							? background_dark_overlay
-							: background_light_overlay}), url({current_background.background_url}) bottom center/cover; transition-duration: {transitioning_background
+							: background_light_overlay}), url({current_background.background_url}) center/cover; transition-duration: {transitioning_background
 							? background_transition_duration
 							: 0}ms"
 						aria-hidden="true"
