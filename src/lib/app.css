@@ -283,3 +283,11 @@ h3:hover .permalink {
 blockquote {
 	@apply my-4 border-l-2 border-slate-700 pl-4;
 }
+
+.flex-books {
+	@apply flex flex-wrap items-end gap-4;
+}
+
+.flex-books > * {
+	max-width: calc((100% - 1rem * 2) / 3);
+}

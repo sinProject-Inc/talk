@@ -8,4 +8,4 @@ title: Docs History
 
 ## Docs Files
 
-[View files on GitHub >](https://github.com/sinProject-Inc/talk/tree/main/docs)
+[View files on GitHub &gt;](https://github.com/sinProject-Inc/talk/tree/main/docs)
