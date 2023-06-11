@@ -9,6 +9,7 @@
 	import { goto } from '$app/navigation'
 	import CloseIcon from '$lib/components/icons/close_icon.svelte'
 	import RightArrowIcon from '$lib/components/icons/right_arrow_icon.svelte'
+	import { blur } from 'svelte/transition'
 
 	export let search_query = ''
 
@@ -250,6 +251,8 @@
 
 <div
 	class="pointer-events-none fixed left-0 top-0 z-20 flex h-full w-full justify-center p-6 backdrop-blur-sm md:p-20 lg:px-20 lg:py-28"
+	in:blur={{ duration: 100 }}
+	out:blur={{ duration: 250 }}
 >
 	<div
 		class="glass-panel pointer-events-auto mx-auto flex h-fit max-h-full w-full max-w-screen-md flex-col rounded-xl bg-primary-dark-8/90 text-center backdrop-blur-md dark:bg-primary-8/90"
