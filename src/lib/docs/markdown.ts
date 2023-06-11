@@ -243,8 +243,9 @@ export class Markdown {
 			const text = tokens[idx].content
 			let string_after_render = text
 
-			if (text.includes('>')) {
-				const cut_text = text.replace('>', '')
+			// TODO: replace ">" to arrow
+			if (text.includes('&gt;')) {
+				const cut_text = text.replace('&gt;', '')
 
 				string_after_render = `
 					<div style="display: flex; flex-direction: row;">
