@@ -60,9 +60,11 @@
 		new KeyboardShortcutHandler(search_shortcut_params, handle_search_shortcut)
 	}
 
+	let search_modale: SearchModale
+
 	function handle_search_shortcut(): void {
-		if (search_modale_open) {
-			close_search_modale()
+		if (search_modale_open && search_modale) {
+			search_modale.close()
 
 			return
 		}
@@ -289,7 +291,7 @@
 	{/if}
 
 	{#if search_modale_open}
-		<SearchModale on:close={close_search_modale} bind:search_query />
+		<SearchModale on:close={close_search_modale} bind:search_query bind:this={search_modale} />
 	{/if}
 
 	<div class="max-w-8xl mx-auto min-h-screen">
