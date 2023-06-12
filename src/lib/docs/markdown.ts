@@ -78,6 +78,7 @@ export class Markdown {
 			link.href = `#${slug}`
 			link.innerHTML = '#'
 			link.classList.add('permalink')
+			link.title = text_content
 
 			link.innerHTML =
 				'<div><svg width="12" height="12" fill="none" aria-hidden="true"><path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>'

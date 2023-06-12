@@ -8,9 +8,11 @@
 	function handle_click(): void {
 		volume_enabled.set(!get(volume_enabled))
 	}
+
+	$: title = $volume_enabled ? 'Disable volume' : 'Enable volume'
 </script>
 
-<button class="glowing-icon" on:click={handle_click}>
+<button class="glowing-icon" on:click={handle_click} {title}>
 	{#if $volume_enabled}
 		<VolumeOnIcon />
 	{:else}
