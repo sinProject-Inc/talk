@@ -70,7 +70,7 @@
 
 	const dispatch = createEventDispatcher()
 
-	function close(): void {
+	export function close(): void {
 		release_scroll()
 		dispatch('close')
 	}
