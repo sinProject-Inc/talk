@@ -1,5 +1,6 @@
 ---
 title: Git User Profiles
+description: This document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.
 ---
 
 This document will guide you on setting up your git user profiles using the [Git Config User Profiles](https://marketplace.visualstudio.com/items?itemName=syler.git-config-user-profiles) extension in VSCode. This is especially helpful for people who share a development device.

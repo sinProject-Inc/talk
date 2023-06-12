@@ -1,6 +1,9 @@
 ---
 title: 'Locales'
+description: This is an explanation about the Locales setting.
 ---
+
+This is an explanation about the Locales setting.
 
 ### Text-to-Speech Supported Languages
 

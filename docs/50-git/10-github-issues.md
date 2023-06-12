@@ -1,5 +1,6 @@
 ---
 title: GitHub Issues
+description: We manage tasks using GitHub issues.
 ---
 
 We manage tasks using GitHub issues.

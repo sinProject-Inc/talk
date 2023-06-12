@@ -6,6 +6,7 @@
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
+	import { MetaTags } from 'svelte-meta-tags'
 
 	let email_input_element: HTMLInputElement
 
@@ -32,9 +33,7 @@
 	})
 </script>
 
-<svelte:head>
-	<title>{App.get_page_title('Sign in')}</title>
-</svelte:head>
+<MetaTags title={App.get_page_title('Sign in')} description={App.description} />
 
 <div class="flex h-screen items-center justify-center">
 	<div class="center-container card-parent">

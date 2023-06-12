@@ -6,6 +6,7 @@
 	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { current_page_category, current_page_title } from '$lib/docs/current_page_store'
 	import { theme } from '$lib/stores'
+	import { MetaTags } from 'svelte-meta-tags'
 	import OnThisPage from './on_this_page.svelte'
 	// import '/node_modules/highlight.js/styles/atom-one-dark.css'
 	// import '/node_modules/highlight.js/styles/atom-one-light.css'
@@ -57,6 +58,8 @@
 		}
 	</style>
 </svelte:head>
+
+<MetaTags title={App.get_docs_title(data.page.title)} description={data.page.description} />
 
 <div class="glass-text-3">
 	<div>

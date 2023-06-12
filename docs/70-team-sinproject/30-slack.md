@@ -1,5 +1,6 @@
 ---
 title: Slack
+description: How we use Slack to communicate and collaborate.
 ---
 
 How we use [Slack](https://slack.com/) to communicate and collaborate.

@@ -1,5 +1,6 @@
 ---
 title: Our Team Policy
+description: We have posted our policies.
 ---
 
 ## Teamwork

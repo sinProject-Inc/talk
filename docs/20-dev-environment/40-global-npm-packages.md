@@ -1,5 +1,6 @@
 ---
 title: Global NPM Packages
+description: Installing NPM packages
 ---
 
 ## Installing packages globally

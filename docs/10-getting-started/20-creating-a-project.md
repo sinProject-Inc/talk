@@ -1,5 +1,6 @@
 ---
 title: Creating a Project
+description: Prerequisites and Setting up the project
 ---
 
 ## Prerequisites

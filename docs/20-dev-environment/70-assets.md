@@ -1,5 +1,6 @@
 ---
 title: Assets
+description: We are using the assets from the following sites
 ---
 
 We are using the assets from the following sites:

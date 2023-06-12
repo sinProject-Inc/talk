@@ -1,5 +1,6 @@
 ---
 title: 'SSH'
+description: We use SSH as follows.
 ---
 
 ## SSH Key Generation

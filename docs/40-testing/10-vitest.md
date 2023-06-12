@@ -1,5 +1,6 @@
 ---
 title: Vitest
+description: How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.
 ---
 
 How we automate our tests using [Vitest](https://vitest.dev/).

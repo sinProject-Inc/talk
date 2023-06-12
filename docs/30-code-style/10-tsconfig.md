@@ -1,5 +1,6 @@
 ---
 title: TypeScript Config
+description: How we modify our TypeScript code style with tsconfig.json.
 ---
 
 How we modify our TypeScript code style with tsconfig.json.

@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
+	import { App } from '$lib/app/app'
 	import Divider from '$lib/components/divider.svelte'
-	import AddIcon from '$lib/components/icons/add_icon.svelte'
-	import StopIcon from '$lib/components/icons/stop_icon.svelte'
-	import TranslateIcon from '$lib/components/icons/language_hiragana_icon.svelte'
-	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
+	import AddIcon from '$lib/components/icons/add_icon.svelte'
+	import TranslateIcon from '$lib/components/icons/language_hiragana_icon.svelte'
+	import StopIcon from '$lib/components/icons/stop_icon.svelte'
+	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
+	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { DefaultLocales } from '$lib/locale/default_locales'
 	import { LocaleCode } from '$lib/locale/locale_code'
 	import { SpeechText } from '$lib/speech/speech_text'
@@ -16,8 +18,8 @@
 	import { TextToSpeechUrl } from '$lib/speech/text_to_speech_url'
 	import { WebSpeechRecognition } from '$lib/speech/web_speech_recognition'
 	import { AddTextApi } from '$lib/text/add_text_api'
-	import { TextsApi } from '$lib/text/texts_api'
 	import { TextId } from '$lib/text/text_id'
+	import { TextsApi } from '$lib/text/texts_api'
 	import { AddTranslationApi } from '$lib/translation/add_translation_api'
 	import { GetTranslationApi } from '$lib/translation/get_translation_api'
 	import { TranslationText } from '$lib/translation/translation_text'
@@ -27,10 +29,9 @@
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
-	import { locale, waitLocale, _ } from 'svelte-i18n'
+	import { _, locale, waitLocale } from 'svelte-i18n'
+	import { MetaTags } from 'svelte-meta-tags'
 	import type { PageData } from './$types'
-	import VersionFooter from '$lib/components/version_footer.svelte'
-	import { App } from '$lib/app/app'
 	// import { version } from '$app/environment'
 
 	// console.log('version', version)
@@ -265,13 +266,14 @@
 </script>
 
 <svelte:head>
-	<title>{App.app_name}</title>
 	<style>
 		option {
 			background-color: white !important;
 		}
 	</style>
 </svelte:head>
+
+<MetaTags title={App.app_name} description={App.description} />
 
 <Navbar />
 
