@@ -1,6 +1,6 @@
 ---
 title: Style Guide
-description: Some of the code style we use.
+description: This doc goes over some of the code style we use.
 ---
 
 This doc goes over some of the code style we use.
