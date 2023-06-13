@@ -1346,14 +1346,14 @@
 	{
 		"path": "style-guide",
 		"title": "Style Guide",
-		"description": "Some of the code style we use.",
+		"description": "This doc goes over some of the code style we use.",
 		"content": "\nThis doc goes over some of the code style we use.\n",
 		"heading": ""
 	},
 	{
 		"path": "style-guide#async-code",
 		"title": "Style Guide",
-		"description": "Some of the code style we use.",
+		"description": "This doc goes over some of the code style we use.",
 		"content": "\n\nPrefer writing async code with try and catch blocks and using await over using .then() and .catch().\n\nasync function foo(): Promise {\n\ttry {\n\t\tawait bar()\n\t} catch (error) {\n\t\tconsole.error(error)\n\t}\n}\n",
 		"heading": "Async Code"
 	},
@@ -1578,7 +1578,7 @@
 		"path": "warp",
 		"title": "Warp",
 		"description": "Warp is a blazingly fast, Rust-based terminal reimagined from the ground up to work like a modern app.",
-		"content": "\nWe use Warp as our default terminal.\n",
+		"content": "\nWarp is a blazingly fast, Rust-based terminal reimagined from the ground up to work like a modern app.\nWe use Warp as our default terminal.\n",
 		"heading": ""
 	},
 	{
@@ -1683,14 +1683,14 @@
 		"path": "chatgpt-prompts#coding-japanese",
 		"title": "ChatGPT Prompts",
 		"description": "We are using the following ChatGPT prompts.",
-		"content": "\n命令書\n\n貴方はプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。\n\n制約条件\n\n言語は TypeScript\nWeb アプリは SvelteKit で開発\nインストール手順は説明しない\n関数名、変数名、引数名の命名規則は snake_case。private の場合は名前の先頭にアンダースコアを付ける\n非同期処理は async/await を活用する\n関数宣言は function キーワードを使う\n",
+		"content": "\n命令書\n\nあなたはプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。\n\n制約条件\n\n言語は TypeScript\nWeb アプリは SvelteKit で開発\nインストール手順は説明しない\n関数名、変数名、引数名の命名規則は snake_case。private の場合は名前の先頭にアンダースコアを付ける\n非同期処理は async/await を活用する\n関数宣言は function キーワードを使う\n",
 		"heading": "Coding (Japanese)"
 	},
 	{
 		"path": "chatgpt-prompts#translating-japanese",
 		"title": "ChatGPT Prompts",
 		"description": "We are using the following ChatGPT prompts.",
-		"content": "\n命令書\n\n貴方はプロの翻訳者です。今後この会話では、最高の翻訳をしてください。\n",
+		"content": "\n命令書\n\nあなたはプロの翻訳者です。今後この会話では、最高の翻訳をしてください。\n",
 		"heading": "Translating (Japanese)"
 	},
 	{
@@ -2558,7 +2558,7 @@
 		"path": "introduction",
 		"title": "Introduction",
 		"description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
-		"content": "",
+		"content": "\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n",
 		"heading": ""
 	},
 	{

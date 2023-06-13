@@ -87,10 +87,6 @@
 				</a>
 			</div>
 
-			{#if data.page.description}
-				<span>{data.page.description}</span>
-			{/if}
-
 			{@html data.page.html_content}
 		</div>
 
