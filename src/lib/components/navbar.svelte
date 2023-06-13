@@ -30,7 +30,7 @@
 	>
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a href="{base}/" class="flex items-center gap-2 text-[22px] no-underline">
-				<img src="{base}/icon-144.png" class="h-8" alt="" />
+				<img src="{base}/icon-144.png" width="32" height="32" alt="" />
 				{App.app_name}
 			</a>
 			<nav class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6">

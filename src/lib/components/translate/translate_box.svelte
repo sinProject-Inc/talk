@@ -133,7 +133,7 @@
 			</div>
 		</div>
 		<div data-testid="copy_button" class="ml-auto">
-			<IconButton on:click={copy} enabled={button_enabled()}>
+			<IconButton on:click={copy} enabled={button_enabled()} title="Copy">
 				<CopyIcon />
 			</IconButton>
 		</div>
