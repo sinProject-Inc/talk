@@ -21,7 +21,8 @@
 		"typecheck": "tsc --noEmit",
 		"typecheck:why": "tsc --noEmit --explainFiles > explainTypes.txt",
 		"search-index": "tsx ./src/lib/docs/search_index.ts",
-		"create-branch": "tsx ./src/lib/git/create_git_branch.ts"
+		"create-branch": "tsx ./src/lib/git/create_git_branch.ts",
+		"postbuild": "npm run search-index"
 	},
 	"prisma": {
 		"seed": "tsx prisma/seed.ts"
