@@ -30,7 +30,7 @@
 	>
 		<div class="center-container flex h-full flex-row items-center gap-4 px-0 font-bold">
 			<a href="{base}/" class="flex items-center gap-2 text-[22px] no-underline">
-				<img src="{base}/icon-144.png" class="h-8" alt="" />
+				<img src="{base}/icon-144.png" width="32" height="32" alt="" />
 				{App.app_name}
 			</a>
 			<nav class="ms-auto flex h-full items-center gap-5 text-sm font-semibold leading-6">
@@ -44,6 +44,7 @@
 
 				{#if is_on_docs}
 					<button
+						title="Search"
 						on:click={on_search_button_click}
 						class="glowing-icon"
 						data-testid="navbar-search-button"
@@ -58,20 +59,22 @@
 					href="https://github.com/sinProject-Inc/talk"
 					target="_blank"
 					class="flex items-center gap-1"
+					title="GitHub"
 				>
 					<div class="h-nav-icon"><GithubIcon /></div>
 				</a>
 				{#if $page.data.user}
-					<a href="{base}/profile" class="flex items-center gap-1">
+					<a href="{base}/profile" class="flex items-center gap-1" title="Profile">
 						<div class="h-nav-icon"><ProfileIcon /></div>
 					</a>
 					<form action="{base}/sign-out" method="POST">
-						<button class="glowing-icon flex" type="submit">
+						<button class="glowing-icon flex" type="submit" title="Sign out">
 							<SignOutIcon />
 						</button>
 					</form>
 				{:else}
 					<a
+						title="Sign in"
 						class="flex flex-row items-center no-underline"
 						href="{base}/sign-in?redirect_url={encoded_redirect_url}"
 						><div class="h-nav-icon">

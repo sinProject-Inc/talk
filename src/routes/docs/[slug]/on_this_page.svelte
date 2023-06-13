@@ -70,7 +70,7 @@
 <aside
 	class="fixed end-[max(0px,calc(50%-45rem))] top-[var(--header-height)] hidden h-full w-72 overflow-y-auto pb-[calc(2rem+var(--header-height))] pe-8 pt-8 text-sm leading-6 xl:block"
 >
-	<h5 class="mb-4 font-semibold">On this page</h5>
+	<div class="glass-text-9 mb-4 font-semibold">On this page</div>
 	<nav class="slide-fade-in">
 		<ul class="space-y-2 border-l border-primary-dark-5 dark:border-primary-5">
 			<li>

@@ -1,5 +1,6 @@
 ---
 title: App Structure
+description: This app consists the following screens. talk, translate, chat and docs.
 ---
 
 This app consists the following screens:

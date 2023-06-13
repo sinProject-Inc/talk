@@ -1,5 +1,6 @@
 ---
 title: Playwright
+description: How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.
 ---
 
 How we automate our tests using [Playwright](https://playwright.dev/).

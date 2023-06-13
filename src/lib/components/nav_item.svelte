@@ -10,7 +10,7 @@
 	$: text = name === 'docs' ? 'Docs' : $_(name)
 </script>
 
-<a href="{base}/{name}" class="flex items-center gap-1">
+<a href="{base}/{name}" class="flex items-center gap-1" title={text}>
 	<div class="h-nav-icon">
 		{#if name === 'translate'}
 			<LanguageHiraganaIcon />

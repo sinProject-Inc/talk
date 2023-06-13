@@ -1,5 +1,6 @@
 ---
 title: SvelteKit
+description: For web application development, we utilize SvelteKit.
 ---
 
 For web application development, we utilize [SvelteKit](https://kit.svelte.dev/).

@@ -1,9 +1,10 @@
 <script lang="ts">
-	import Navbar from '$lib/components/navbar.svelte'
-	import type { PageServerData } from './$types'
-	import { UserId } from '$lib/user/user_id'
-	import { AvatarUrl } from '$lib/avatar/avatar_url'
 	import { App } from '$lib/app/app'
+	import { AvatarUrl } from '$lib/avatar/avatar_url'
+	import Navbar from '$lib/components/navbar.svelte'
+	import { UserId } from '$lib/user/user_id'
+	import { MetaTags } from 'svelte-meta-tags'
+	import type { PageServerData } from './$types'
 
 	export let data: PageServerData
 
@@ -23,9 +24,7 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{App.get_page_title('Profile')}</title>
-</svelte:head>
+<MetaTags title={App.get_page_title('Profile')} description={App.description} />
 
 <div>
 	<Navbar />

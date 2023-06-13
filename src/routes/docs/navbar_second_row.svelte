@@ -16,7 +16,7 @@
 	class="sticky top-[var(--header-height)] z-10 flex h-[var(--header-height)] flex-col border-b border-primary-9/[0.06] bg-transparent backdrop-blur dark:border-primary-dark-9/[0.06] md:hidden"
 >
 	<div class="center-container flex h-full w-full items-center md:hidden">
-		<IconButton class="-ml-[10.5px] mr-0" on:click={open_mobile_side_bar}>
+		<IconButton class="-ml-[10.5px] mr-0" on:click={open_mobile_side_bar} title="Open the menu">
 			<HamburgerIcon />
 		</IconButton>
 		<div class="flex items-center gap-3">

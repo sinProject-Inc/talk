@@ -1,5 +1,6 @@
 ---
 title: Prettier
+description: How we use Prettier to automate formatting.
 ---
 
 How we use [Prettier](https://prettier.io/) to automate formatting.

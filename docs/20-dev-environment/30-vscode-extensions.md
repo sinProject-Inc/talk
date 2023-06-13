@@ -1,5 +1,6 @@
 ---
 title: VSCode Extensions
+description: Here are the VSCode extensions that we commonly use at sinProject.
 ---
 
 Here are the VSCode extensions that we commonly use at sinProject.

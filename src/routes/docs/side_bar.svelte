@@ -42,7 +42,7 @@
 		>
 	</div>
 </div> -->
-<ul class="text-sm leading-6">
+<div class="text-sm leading-6">
 	{#if search_bar_enabled}
 		<div
 			class="fixed top-[84px] h-16 w-56 rounded-2xl bg-gradient-to-t from-transparent via-primary-dark-5 to-primary-dark-5 dark:via-primary-5 dark:to-primary-5
@@ -60,7 +60,7 @@
 		</button>
 	{/if}
 
-	<div class="pl-1 pt-8">
+	<ul class="pl-1 pt-8">
 		{#each sections as section}
 			<li class="my-8">
 				<h5 class="glass-text-5 mb-3 font-semibold">
@@ -79,8 +79,8 @@
 				</ul>
 			</li>
 		{/each}
-	</div>
-</ul>
+	</ul>
+</div>
 
 <style lang="postcss">
 	.active {

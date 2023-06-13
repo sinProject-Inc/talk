@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import { App } from '$lib/app/app'
 	import LoadingIcon from '$lib/components/icons/loading_icon.svelte'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
+	import { MetaTags } from 'svelte-meta-tags'
 	import type { ActionData } from './$types'
-	import { App } from '$lib/app/app'
 
 	export let form: ActionData
 
@@ -30,9 +31,7 @@
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
-<svelte:head>
-	<title>{App.get_page_title('PIN code')}</title>
-</svelte:head>
+<MetaTags title={App.get_page_title('PIN code')} description={App.description} />
 
 <div class="flex h-screen items-center justify-center">
 	<div class="center-container card-parent">

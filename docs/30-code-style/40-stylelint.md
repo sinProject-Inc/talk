@@ -1,5 +1,6 @@
 ---
 title: Stylelint
+description: How we use Stylelint to automate formatting for CSS.
 ---
 
 How we use [Stylelint](https://github.com/stylelint/stylelint) to automate formatting for CSS.

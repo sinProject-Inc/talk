@@ -1,5 +1,6 @@
 ---
 title: Books
+description: We recommend the following books.
 ---
 
 We recommend the following books.

@@ -1,5 +1,6 @@
 ---
 title: GitHub Pull Requests
+description: On completing an issues, we create a pull request (PR).
 ---
 
 On completing an issues, we create a pull request (PR).

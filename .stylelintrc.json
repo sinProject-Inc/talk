@@ -7,5 +7,6 @@
 				"ignoreAtRules": ["extends", "tailwind"]
 			}
 		]
-	}
+	},
+	"ignoreFiles": ["static/styles/**/*"]
 }

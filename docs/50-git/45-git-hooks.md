@@ -1,5 +1,6 @@
 ---
 title: Git Hooks
+description: We use lint-staged and Husky for our Git Hooks.
 ---
 
 We use lint-staged and Husky for our Git Hooks.

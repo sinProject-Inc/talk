@@ -1,6 +1,9 @@
 ---
 title: Docs History
+description: We will provide a list and update history of the document files.
 ---
+
+We will provide a list and update history of the document files.
 
 ## Docs History
 

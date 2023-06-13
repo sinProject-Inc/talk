@@ -7,9 +7,11 @@
 	function handle_click(): void {
 		theme.set(get(theme) === 'dark' ? 'light' : 'dark')
 	}
+
+	$: title = $theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
 </script>
 
-<button class="glowing-icon" on:click={handle_click}>
+<button class="glowing-icon" on:click={handle_click} {title}>
 	{#if $theme === 'dark'}
 		<MoonIcon />
 	{:else}

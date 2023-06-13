@@ -1,5 +1,6 @@
 ---
 title: VSCode Workspace Settings
+description: Here are the VSCode workspace settings that we commonly use at sinProject.
 ---
 
 Here are the VSCode workspace settings that we commonly use at sinProject.

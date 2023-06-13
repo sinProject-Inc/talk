@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
+	import { App } from '$lib/app/app'
 	import ConfirmDeleteModal from '$lib/components/confirm_delete_modal.svelte'
-	import SwapIcon from '$lib/components/icons/swap_icon.svelte'
 	import IconButton from '$lib/components/icon_button.svelte'
+	import SwapIcon from '$lib/components/icons/swap_icon.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
+	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { TextError } from '$lib/general/text_error'
 	import { DefaultLocales } from '$lib/locale/default_locales'
 	import { LocaleCode } from '$lib/locale/locale_code'
@@ -24,10 +26,9 @@
 	import { Message } from '$lib/view/message'
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
-	import { locale, waitLocale, _ } from 'svelte-i18n'
+	import { _, locale, waitLocale } from 'svelte-i18n'
+	import { MetaTags } from 'svelte-meta-tags'
 	import type { PageData } from './$types'
-	import VersionFooter from '$lib/components/version_footer.svelte'
-	import { App } from '$lib/app/app'
 
 	export let data: PageData
 
@@ -337,13 +338,14 @@
 </script>
 
 <svelte:head>
-	<title>{App.get_page_title('Translate')}</title>
 	<style>
 		option {
 			background-color: white !important;
 		}
 	</style>
 </svelte:head>
+
+<MetaTags title={App.get_page_title('Translate')} description={App.description} />
 
 <Navbar />
 

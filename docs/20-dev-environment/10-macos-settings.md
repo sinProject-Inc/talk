@@ -1,5 +1,6 @@
 ---
 title: macOS Settings
+description: Here are the macOS settings that we commonly use at sinProject.
 ---
 
 Here are the macOS settings that we commonly use at sinProject.

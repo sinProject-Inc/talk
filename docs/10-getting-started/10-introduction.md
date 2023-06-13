@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Thanks for reading this documentation.
+description: Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.
 ---
 
 ## Before we begin

@@ -7,9 +7,11 @@
 	function handle_click(): void {
 		animations_enabled.set(!get(animations_enabled))
 	}
+
+	$: title = $animations_enabled ? 'Disable animations' : 'Enable animations'
 </script>
 
-<button class="glowing-icon" on:click={handle_click}>
+<button class="glowing-icon" on:click={handle_click} {title}>
 	{#if $animations_enabled}
 		<PlayIcon />
 	{:else}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation'
 	import { base } from '$app/paths'
+	import { App } from '$lib/app/app'
 	import { AvatarUrl } from '$lib/avatar/avatar_url'
 	import type { ChatMemberEntity, MessageSet } from '$lib/chat/chat'
 	import IconButton from '$lib/components/icon_button.svelte'
@@ -36,10 +37,10 @@
 	import { io } from 'socket.io-client'
 	import { onDestroy, onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
+	import { MetaTags } from 'svelte-meta-tags'
 	import { fly, slide } from 'svelte/transition'
 	import { v4 as uuidv4 } from 'uuid'
 	import type { PageData } from './$types'
-	import { App } from '$lib/app/app'
 
 	type ChatLogItem = {
 		data: ChatLog
@@ -556,13 +557,14 @@
 </script>
 
 <svelte:head>
-	<title>{App.get_page_title('Chat')}</title>
 	<style>
 		option {
 			background-color: white !important;
 		}
 	</style>
 </svelte:head>
+
+<MetaTags title={App.get_page_title('Chat')} description={App.description} />
 
 <div class="flex h-screen min-h-screen flex-col">
 	<Navbar />

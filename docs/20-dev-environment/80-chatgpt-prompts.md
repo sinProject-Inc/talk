@@ -1,8 +1,9 @@
 ---
 title: ChatGPT Prompts
+description: We are using the following ChatGPT prompts.
 ---
 
-We are using the following ChatGPT prompts. (In Japanese)
+We are using the following ChatGPT prompts.
 
 ## Coding (English)
 
