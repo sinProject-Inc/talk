@@ -35,7 +35,7 @@ You are a professional translator. In this conversation, please provide the best
 ```md
 # 命令書
 
-貴方はプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。
+あなたはプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。
 
 # 制約条件
 
@@ -52,5 +52,5 @@ You are a professional translator. In this conversation, please provide the best
 ```md
 # 命令書
 
-貴方はプロの翻訳者です。今後この会話では、最高の翻訳をしてください。
+あなたはプロの翻訳者です。今後この会話では、最高の翻訳をしてください。
 ```

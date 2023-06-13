@@ -2,22 +2,22 @@
 	{
 		"path": "docs-history",
 		"title": "Docs History",
-		"description": "",
-		"content": "",
+		"description": "We will provide a list and update history of the document files.",
+		"content": "\nWe will provide a list and update history of the document files.\n",
 		"heading": ""
 	},
 	{
 		"path": "docs-history#docs-history",
 		"title": "Docs History",
-		"description": "",
+		"description": "We will provide a list and update history of the document files.",
 		"content": "\n\nView history on GitHub >\n",
 		"heading": "Docs History"
 	},
 	{
 		"path": "docs-history#docs-files",
 		"title": "Docs History",
-		"description": "",
-		"content": "\n\nView files on GitHub >\n",
+		"description": "We will provide a list and update history of the document files.",
+		"content": "\n\nView files on GitHub &gt;\n",
 		"heading": "Docs Files"
 	},
 	{
@@ -51,14 +51,14 @@
 	{
 		"path": "locales",
 		"title": "Locales",
-		"description": "",
-		"content": "\nText-to-Speech Supported Languages\n\nGoogle Cloud\nMicrosoft Azure\n",
+		"description": "This is an explanation about the Locales setting.",
+		"content": "\nThis is an explanation about the Locales setting.\n\nText-to-Speech Supported Languages\n\nGoogle Cloud\nMicrosoft Azure\n",
 		"heading": ""
 	},
 	{
 		"path": "locales#translations",
 		"title": "Locales",
-		"description": "",
+		"description": "This is an explanation about the Locales setting.",
 		"content": "\n\nUsing the VSCode Extension, i18n Ally, makes it easy.\n",
 		"heading": "Translations"
 	},
@@ -86,21 +86,21 @@
 	{
 		"path": "slack",
 		"title": "Slack",
-		"description": "",
+		"description": "How we use Slack to communicate and collaborate.",
 		"content": "\nHow we use Slack to communicate and collaborate.\n",
 		"heading": ""
 	},
 	{
 		"path": "slack#mentions-reactions",
 		"title": "Slack",
-		"description": "",
+		"description": "How we use Slack to communicate and collaborate.",
 		"content": "\n\nMake sure that you can check messaged addressed to everyone in Mentions & reactions.\nCheck daily for messages that you haven't reacted / responded to in Mentions & reactions.\nProactively react to other people's messages.\n",
 		"heading": "Mentions & Reactions"
 	},
 	{
 		"path": "slack#communication",
 		"title": "Slack",
-		"description": "",
+		"description": "How we use Slack to communicate and collaborate.",
 		"content": "\n\nShare information for the benefit of others.\nSend a message when starting a task.\nSend a message including your thoughts when finishing a task.\n",
 		"heading": "Communication"
 	},
@@ -135,8 +135,8 @@
 	{
 		"path": "books",
 		"title": "Books",
-		"description": "",
-		"content": "\nWe recommend the following books.\n\n良いコード/悪いコードで学ぶ設計入門 ―保守しやすい 成長し続けるコードの書き方\nなぜ、あなたの仕事は終わらないのか スピードは最強の武器である\n現場で役立つシステム設計の原則 ~変更を楽で安全にするオブジェクト指向の実践技法\nリーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック\n",
+		"description": "We recommend the following books.",
+		"content": "\nWe recommend the following books.\n\n\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\t\n\t\t\n\t\n\n",
 		"heading": ""
 	},
 	{
@@ -156,56 +156,56 @@
 	{
 		"path": "our-team-policy",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "our-team-policy#teamwork",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nOur goal is to grow and strengthen as a team.\nWe aim to partake in enjoyable team-building activities.\nWe pledge to act with the best interests of the team and ourselves in mind.\n",
 		"heading": "Teamwork"
 	},
 	{
 		"path": "our-team-policy#deadline-adherence-and-quality-assurance",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nWe are committed to honoring project deadlines.\nWe strive to deliver work of the highest quality.\nTo improve quality, we will implement necessary tests.\nTo improve quality, manual merging is to be conducted by two or more people.\nTo reduce work hours, we will verify what needs to be implemented before implementing.\n",
 		"heading": "Deadline Adherence and Quality Assurance"
 	},
 	{
 		"path": "our-team-policy#innovative-suggestions",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nWe encourage proposing new project ideas.\nWe advocate for active contribution of suggestions.\nWe will foster an environment that promotes continuous improvement.\n",
 		"heading": "Innovative Suggestions"
 	},
 	{
 		"path": "our-team-policy#personal-and-team-growth",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nWe are dedicated to pursuing personal growth and lifelong learning.\nWe are committed to contributing to the growth of our team and its members.\n",
 		"heading": "Personal and Team Growth"
 	},
 	{
 		"path": "our-team-policy#documentation-compliance",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nWe will adhere to the guidelines set out in the Documentation for all projects.\nIf application of the guidelines is difficult, unclear, or a more efficient solution is available, we will consult an administrator.\nWe will acknowledge that we have reviewed the Documentation by providing a response.\nEach project lead will confirm when they have fully implemented the guidelines from the Documentation.\n",
 		"heading": "Documentation Compliance"
 	},
 	{
 		"path": "our-team-policy#business-etiquette",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nIn terms of business etiquette, we will:\n\nInitiate greetings in a proactive and cheerful manner.\nMaintain clear eye contact when greeting others.\n",
 		"heading": "Business Etiquette"
 	},
 	{
 		"path": "our-team-policy#workplace-cleanliness",
 		"title": "Our Team Policy",
-		"description": "",
+		"description": "We have posted our policies.",
 		"content": "\n\nWe are responsible for tidying up after ourselves.\nWe will maintain the cleanliness and organization of shared spaces.\n",
 		"heading": "Workplace Cleanliness"
 	},
@@ -273,51 +273,114 @@
 		"content": "Our Team Policy"
 	},
 	{
+		"path": "caddy",
+		"title": "Caddy",
+		"description": "Caddy is an open-source, HTTP/2-enabled web server written in Go.",
+		"content": "\nCaddy is an open-source, HTTP/2-enabled web server. It's notable for its easy configuration, automatic HTTPS, and capability to serve static sites or reverse proxy.\n\nCaddy Quick Start >\n",
+		"heading": ""
+	},
+	{
+		"path": "caddy#installation",
+		"title": "Caddy",
+		"description": "Caddy is an open-source, HTTP/2-enabled web server written in Go.",
+		"content": "\n\nGet Caddy on Ubuntu:\n\nsudo apt install -y debian-keyring debian-archive-keyring apt-transport-https\ncurl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg\ncurl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list\nsudo apt update\nsudo apt install caddy\n",
+		"heading": "Installation"
+	},
+	{
+		"path": "caddy#starting-caddy-service",
+		"title": "Caddy",
+		"description": "Caddy is an open-source, HTTP/2-enabled web server written in Go.",
+		"content": "\n\nCheck if Caddy service is running:\n\nsudo systemctl status caddy\n\nIf it's not running, start it:\n\nsudo systemctl enable --now caddy\n\nEnabling the service will start Caddy automatically when the server boots up.\n",
+		"heading": "Starting Caddy Service"
+	},
+	{
+		"path": "caddy#caddy-configuration",
+		"title": "Caddy",
+		"description": "Caddy is an open-source, HTTP/2-enabled web server written in Go.",
+		"content": "\n\nEdit the Caddyfile:\n\nsudo micro /etc/caddy/Caddyfile\n\nAdd your site configurations:\n\nexample.dev {\n\treverse_proxy :3001\n}\n\ntalk.example.dev {\n\treverse_proxy :3002\n}\n\n\nFinally, restart the Caddy service to apply the changes:\n\nsudo systemctl restart caddy\n\nMore info >\n",
+		"heading": "Caddy Configuration"
+	},
+	{
+		"path": "caddy",
+		"title": "Caddy",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "caddy#installation",
+		"title": "Caddy",
+		"description": "",
+		"heading": "Installation",
+		"content": "Installation"
+	},
+	{
+		"path": "caddy#starting-caddy-service",
+		"title": "Caddy",
+		"description": "",
+		"heading": "Starting Caddy Service",
+		"content": "Starting Caddy Service"
+	},
+	{
+		"path": "caddy#caddy-configuration",
+		"title": "Caddy",
+		"description": "",
+		"heading": "Caddy Configuration",
+		"content": "Caddy Configuration"
+	},
+	{
+		"path": "caddy",
+		"title": "Caddy",
+		"description": "",
+		"heading": "",
+		"content": "Caddy"
+	},
+	{
 		"path": "pm2",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\nPM2 is a daemon process manager that will help you manage and keep your application online 24/7.\n\nPM2 Quick Start >\n",
 		"heading": ""
 	},
 	{
 		"path": "pm2#installation",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\n\nnpm install pm2@latest -g\n",
 		"heading": "Installation"
 	},
 	{
 		"path": "pm2#starting",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\n\npm2 start app.js\n",
 		"heading": "Starting"
 	},
 	{
 		"path": "pm2#monitoring",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\n\npm2 monit\n",
 		"heading": "Monitoring"
 	},
 	{
 		"path": "pm2#microservice",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\n\nlist all processes:\n\npm2 list\n\ndisplay logs:\n\npm2 logs\n\nAct on them:\n\npm2 stop [app_name | all]\npm2 restart [app_name | all]\npm2 delete [app_name | all]\n",
 		"heading": "Microservice"
 	},
 	{
 		"path": "pm2#troubleshooting",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\n\nIf the 'stop' or 'delete' commands do not work, execute the following command.\n\npm2 reload [app_name | all]\n",
 		"heading": "Troubleshooting"
 	},
 	{
 		"path": "pm2#ecosystem-file",
 		"title": "PM2",
-		"description": "",
+		"description": "PM2 is a daemon process manager that will help you manage and keep your application online 24/7.",
 		"content": "\n\nmodule.exports = {\n\tapps: [\n\t\t{\n\t\t\tname: 'talk',\n\t\t\tscript: './server/index.ts',\n\t\t\tinterpreter: 'node',\n\t\t\tinterpreterArgs: '--loader tsx',\n\t\t\tinstances: '-1',\n\t\t\texec_mode: 'cluster',\n\t\t\twatch: false,\n\t\t\tignore_watch: ['logs'],\n\t\t\tenv: {\n\t\t\t\tPORT: 3002,\n\t\t\t},\n\t\t},\n\t],\n}\n\nStart it easily:\n\npm2 start ecosystem.config.cjs\n\nMore info >\n",
 		"heading": "Ecosystem File"
 	},
@@ -380,35 +443,35 @@
 	{
 		"path": "ssh",
 		"title": "SSH",
-		"description": "",
+		"description": "We use SSH as follows.",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "ssh#ssh-key-generation",
 		"title": "SSH",
-		"description": "",
+		"description": "We use SSH as follows.",
 		"content": "\n\n$ mkdir ~/.ssh\n$ cd ~/.ssh\n$ ssh-keygen -t rsa\nEnter file: ubuntu@sinpro-dev\nEnter passphrase: **\n\nssh -i ~/.ssh/ubuntu@sinpro-dev ubuntu@153.127..\n",
 		"heading": "SSH Key Generation"
 	},
 	{
 		"path": "ssh#using-the-ssh-config-file",
 		"title": "SSH",
-		"description": "",
+		"description": "We use SSH as follows.",
 		"content": "\n\nCreate a new SSH client configuration: ~/.ssh/config\n\nHost sinpro-dev\n\tHostName 153.127..\n\tPort **\n\tIdentityFile ~/.ssh/dev@sinpro-dev\n\tUser dev\n\nYou can connect with the following command:\n\nssh sinpro-dev\n",
 		"heading": "Using the SSH Config File"
 	},
 	{
 		"path": "ssh#port-changing",
 		"title": "SSH",
-		"description": "",
+		"description": "We use SSH as follows.",
 		"content": "\nPacket Filtering\n\nSet up a packet filter so you can connect to the destination port.\n\nInstalling netstat on Ubuntu\n\nsudo apt update && sudo apt upgrade\nsudo apt install net-tools\n\nMore Info >\n\nRun the netstat\n\nThe SSH server on Ubuntu listen on TCP port 22 by default. You can run the netstat command to check ssh port currently running on:\n\nsudo netstat -tulnp | grep ssh\n\nConfigurations\n\nOpen the file:\n\nsudo micro /etc/ssh/sshd_config\n\nEdit the file:\n\nPort XXXX\n\nRestart the SSH server\n\nsudo systemctl restart ssh\n\nConfirm that the port has been changed\n\nsudo netstat -tulnp | grep ssh\n",
 		"heading": "Port changing"
 	},
 	{
 		"path": "ssh#vscode-configuration",
 		"title": "SSH",
-		"description": "",
+		"description": "We use SSH as follows.",
 		"content": "\n\nInstall Remote - SSH VSCode Extension.\n\nThis extension allows you to use VSCode by connecting via SSH.\n",
 		"heading": "VSCode configuration"
 	},
@@ -457,14 +520,14 @@
 	{
 		"path": "git-for-windows",
 		"title": "Git for Windows",
-		"description": "",
+		"description": "We will use LF (Line Feed) for line breaks at the time of commit, but do not change the line break code when pulling.",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "git-for-windows#core-autocrlf",
 		"title": "Git for Windows",
-		"description": "",
+		"description": "We will use LF (Line Feed) for line breaks at the time of commit, but do not change the line break code when pulling.",
 		"content": "\n\nWe will use LF (Line Feed) for line breaks at the time of commit, but do not change the line break code when pulling.\n\ngit config --global core.autocrlf input\n",
 		"heading": "core.autocrlf"
 	},
@@ -492,35 +555,35 @@
 	{
 		"path": "git-user-profiles",
 		"title": "Git User Profiles",
-		"description": "",
+		"description": "This document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.",
 		"content": "\nThis document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.\n",
 		"heading": ""
 	},
 	{
 		"path": "git-user-profiles#installing-the-extension",
 		"title": "Git User Profiles",
-		"description": "",
+		"description": "This document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.",
 		"content": "\n\nNavigate to the Extensions tab.\nSearch for Git Config User Profiles and install it.\n",
 		"heading": "Installing the Extension"
 	},
 	{
 		"path": "git-user-profiles#creating-a-git-config-user-profile",
 		"title": "Git User Profiles",
-		"description": "",
+		"description": "This document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.",
 		"content": "\n\nOpen the command palette with Shift + Command + P.\nSearch and execute git config user profiles: create a git config user profile.\nYou will then be prompted to enter your profile name, account name, and an email address to create your profile.\n",
 		"heading": "Creating a Git Config User Profile"
 	},
 	{
 		"path": "git-user-profiles#selecting-a-git-config-user-profile",
 		"title": "Git User Profiles",
-		"description": "",
+		"description": "This document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.",
 		"content": "\n\nOpen the command palette again.\nSearch and execute Git Config User Profiles: Select a git config user profile.\nA confirmation pop-up will appear in the bottom right corner. If there are no issues, proceed with the selection.\n\nNote: This operation will update the account information documented in the open project to the selected profile.\n",
 		"heading": "Selecting a Git Config User Profile"
 	},
 	{
 		"path": "git-user-profiles#resolving-account-information-discrepancies",
 		"title": "Git User Profiles",
-		"description": "",
+		"description": "This document will guide you on setting up your git user profiles using the Git Config User Profiles extension in VSCode. This is especially helpful for people who share a development device.",
 		"content": "\n\nIf there are discrepancies between the account information in the selected profile and the open file, a warning will be displayed in yellow on the blue bar at the bottom of the screen. To resolve this:\n\nClick on the warning or,\nRepeat step [3] of the Selecting a Git Config User Profile section above to select the correct profile.\n\nView this guide on GitHub >\n",
 		"heading": "Resolving Account Information Discrepancies"
 	},
@@ -569,35 +632,35 @@
 	{
 		"path": "github-actions",
 		"title": "GitHub Actions",
-		"description": "",
+		"description": "We use GitHub Actions to perform two types of CI Checks and tests.",
 		"content": "\nWe use GitHub Actions to perform two types of CI: Checks and tests.\n",
 		"heading": ""
 	},
 	{
 		"path": "github-actions#secrets",
 		"title": "GitHub Actions",
-		"description": "",
+		"description": "We use GitHub Actions to perform two types of CI Checks and tests.",
 		"content": "\n\nDo not write confidential information (environment variables etc.) directly. Instead, register it in GitHub's Secrets.\n\nGitHub > Repository > Settings\nSecrets and Variables > Actions\nNew repository secret\n\nIf you want to use the secret, refer to it as secrets.[SECRET_NAME].\n\necho DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env\n",
 		"heading": "Secrets"
 	},
 	{
 		"path": "github-actions#checks",
 		"title": "GitHub Actions",
-		"description": "",
+		"description": "We use GitHub Actions to perform two types of CI Checks and tests.",
 		"content": "\n\nRun a lint check, a type check, and Svelte check.\n\njobs:\n  check:\n    name: Check\n    runs-on: ubuntu-latest\n    steps:\n      name: Lint Check\n        run: npm run lint\n\n      name: Type Check\n        run: npm run typecheck\n\n      name: Svelte Check\n        run: npm run check\n",
 		"heading": "Checks"
 	},
 	{
 		"path": "github-actions#tests",
 		"title": "GitHub Actions",
-		"description": "",
+		"description": "We use GitHub Actions to perform two types of CI Checks and tests.",
 		"content": "\n\nExecute tests using Vitest and Playwright.\n\njobs:\n  tests:\n    name: Tests\n    runs-on: ubuntu-latest\n    steps:\n      name: Vitest Test\n        run: npm run test:ci\n\n      name: Playwright Test\n        run: npm run test:e2e\n",
 		"heading": "Tests"
 	},
 	{
 		"path": "github-actions#output",
 		"title": "GitHub Actions",
-		"description": "",
+		"description": "We use GitHub Actions to perform two types of CI Checks and tests.",
 		"content": "\n\nOutput Playwright Report and logs.\n\njobs:\n  tests:\n    name: Tests\n    runs-on: ubuntu-latest\n    steps:\n      uses: actions/upload-artifact@v3\n        if: always()\n        with:\n          name: playwright-report\n          path: playwright-report/\n          retention-days: 30\n\n      uses: actions/upload-artifact@v3\n        if: always()\n        with:\n          name: logs\n          path: logs/\n          retention-days: 30\n",
 		"heading": "Output"
 	},
@@ -646,28 +709,28 @@
 	{
 		"path": "git-hooks",
 		"title": "Git Hooks",
-		"description": "",
+		"description": "We use lint-staged and Husky for our Git Hooks.",
 		"content": "\nWe use lint-staged and Husky for our Git Hooks.\n\nlint-staged - Run linters against staged git files and don't let 💩 slip into your code base!\nHusky - Husky improves your commits and more 🐶 woof!\n",
 		"heading": ""
 	},
 	{
 		"path": "git-hooks#installation",
 		"title": "Git Hooks",
-		"description": "",
+		"description": "We use lint-staged and Husky for our Git Hooks.",
 		"content": "\n\nnpm install --save-dev lint-staged\n\nnpx husky-init && npm install\n",
 		"heading": "Installation"
 	},
 	{
 		"path": "git-hooks#pre-commit",
 		"title": "Git Hooks",
-		"description": "",
+		"description": "We use lint-staged and Husky for our Git Hooks.",
 		"content": "\n\nCombine ESLint, Stylelint, Prettier, and lint-staged to format code.\n\n{\n\t\"scripts\": {\n\t\t\"lint\": \"prettier --plugin-search-dir . --check . && eslint .\"\n\t},\n\t\"lint-staged\": {\n\t\t\"*.{js,ts,svelte}\": \"eslint --cache --fix\",\n\t\t\"*.css\": \"stylelint --fix\",\n\t\t\"*.{js,css,md,ts,svelte,css,scss,json}\": \"prettier --write\"\n\t}\n}\n\n#!/bin/sh\n. \"$(dirname \"$0\")/_/husky.sh\"\n\nnpx lint-staged\n\nnpm run lint\n",
 		"heading": "pre-commit"
 	},
 	{
 		"path": "git-hooks#pre-push",
 		"title": "Git Hooks",
-		"description": "",
+		"description": "We use lint-staged and Husky for our Git Hooks.",
 		"content": "\n\nPerform TypeScript type checking, run tests with Vitest, and finally check for conflicts.\n\n{\n\t\"scripts\": {\n\t\t\"test:run\": \"vitest run\",\n\t\t\"test:e2e\": \"playwright test\",\n\t\t\"check\": \"svelte-kit sync && svelte-check --tsconfig ./tsconfig.json\",\n\t\t\"typecheck\": \"tsc --noEmit\"\n\t}\n}\n\n#!/bin/sh\n. \"$(dirname \"$0\")/_/husky.sh\"\n\nnpm run typecheck\nnpm run check\n\nnpm run test:run\nnpm run test:e2e\n\nnpm run build\n\ngit fetch origin\ngit merge --no-commit --no-ff origin/main\ngit reset --hard HEAD\n",
 		"heading": "pre-push"
 	},
@@ -709,28 +772,28 @@
 	{
 		"path": "github-branch-protection",
 		"title": "GitHub Branch Protection",
-		"description": "",
+		"description": "You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch.",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "github-branch-protection#managing-a-branch-protection-rule",
 		"title": "GitHub Branch Protection",
-		"description": "",
+		"description": "You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch.",
 		"content": "You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch.\n\nMore Information >\n",
 		"heading": "Managing a branch protection rule"
 	},
 	{
 		"path": "github-branch-protection#how-to-create-a-branch-protection-rule",
 		"title": "GitHub Branch Protection",
-		"description": "",
+		"description": "You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch.",
 		"content": "\n\nOpen Target Repository > Settings > Branches\nPush Add rule button\n",
 		"heading": "How to create a branch protection rule"
 	},
 	{
 		"path": "github-branch-protection#settings",
 		"title": "GitHub Branch Protection",
-		"description": "",
+		"description": "You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch.",
 		"content": "\nBranch name pattern\n\nmain\n\nProtect matching branches\n\nApply the following settings:\n\nRequire a pull request before merging\n  Require approvals: 1\n  Dismiss stale pull request approvals when new commits are pushed\nRequire status checks to pass before merging\n  Status checks that are required.: Search for the target Actions and add them.\nRestrict who can push to matching branches\n  Restrict pushes that create matching branches\n",
 		"heading": "Settings"
 	},
@@ -772,28 +835,28 @@
 	{
 		"path": "git-branches-and-commits",
 		"title": "Git Branches and Commits",
-		"description": "",
+		"description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "git-branches-and-commits#git-branch-naming-conventions",
 		"title": "Git Branches and Commits",
-		"description": "",
+		"description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
 		"content": "\n\nWrite the issue number and issue title in kebab-case, connected with a hyphen.\n\n743-git-branches-and-commits\n",
 		"heading": "Git branch naming conventions"
 	},
 	{
 		"path": "git-branches-and-commits#script",
 		"title": "Git Branches and Commits",
-		"description": "",
+		"description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
 		"content": "\n\nWe have prepared a script to create branches issue names.\n\nnpm run create-branch \" #\"\n\nexample:\n\nnpm run create-branch \"Docs: Correct English #990\"\n",
 		"heading": "Script"
 	},
 	{
 		"path": "git-branches-and-commits#commit-message-conventions",
 		"title": "Git Branches and Commits",
-		"description": "",
+		"description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
 		"content": "\n\nInclude the issue title and issue number.\n\nDocs: Git Branches and Commits #743\n\nIf there are multiple commits in the same branch, provide additional details.\n\nDocs: Git Branches and Commits #743 Update docs\n",
 		"heading": "Commit message conventions"
 	},
@@ -835,35 +898,35 @@
 	{
 		"path": "github-pull-requests",
 		"title": "GitHub Pull Requests",
-		"description": "",
+		"description": "On completing an issues, we create a pull request (PR).",
 		"content": "\nOn completing an issues, we create a pull request (PR).\n",
 		"heading": ""
 	},
 	{
 		"path": "github-pull-requests#pull-request-template",
 		"title": "GitHub Pull Requests",
-		"description": "",
+		"description": "On completing an issues, we create a pull request (PR).",
 		"content": "\n\nIn the template, write tasks for the following:\n\nFor the Submitter\n  Tasks\nFor the Reviewer\n  Before Reviewing\n  Checks\n  After Reviewing\n\nView this file on GitHub >\n",
 		"heading": "Pull Request Template"
 	},
 	{
 		"path": "github-pull-requests#title",
 		"title": "GitHub Pull Requests",
-		"description": "",
+		"description": "On completing an issues, we create a pull request (PR).",
 		"content": "\n\nFormat\n\n\nExample\n\nDocs: Show scrollbar like Mac #942\n",
 		"heading": "Title"
 	},
 	{
 		"path": "github-pull-requests#reviewers",
 		"title": "GitHub Pull Requests",
-		"description": "",
+		"description": "On completing an issues, we create a pull request (PR).",
 		"content": "\n\nAssign the person in charge of reviewing.\n",
 		"heading": "Reviewers"
 	},
 	{
 		"path": "github-pull-requests#labels",
 		"title": "GitHub Pull Requests",
-		"description": "",
+		"description": "On completing an issues, we create a pull request (PR).",
 		"content": "\n\nIf it's related to an enhancement, add the 'enhancement' label.\n\nIf it involves a significant change, add the 'breaking-change' label.\n",
 		"heading": "Labels"
 	},
@@ -912,42 +975,42 @@
 	{
 		"path": "github-issues",
 		"title": "GitHub Issues",
-		"description": "",
+		"description": "We manage tasks using GitHub issues.",
 		"content": "\nWe manage tasks using GitHub issues.\n",
 		"heading": ""
 	},
 	{
 		"path": "github-issues#issue-template",
 		"title": "GitHub Issues",
-		"description": "",
+		"description": "We manage tasks using GitHub issues.",
 		"content": "\n\nIn the template, write tasks for the following:\n\nWriting the issue\nBefore Working on the issue\nPre-PR Checks\n\nView this file on GitHub >\n",
 		"heading": "Issue Template"
 	},
 	{
 		"path": "github-issues#title",
 		"title": "GitHub Issues",
-		"description": "",
+		"description": "We manage tasks using GitHub issues.",
 		"content": "\n\nFormat\n\n:\n\nExample\n\nDocs: Show scrollbar like Mac\n",
 		"heading": "Title"
 	},
 	{
 		"path": "github-issues#assignees",
 		"title": "GitHub Issues",
-		"description": "",
+		"description": "We manage tasks using GitHub issues.",
 		"content": "\n\nAssign the person in charge of the issue.\n",
 		"heading": "Assignees"
 	},
 	{
 		"path": "github-issues#labels",
 		"title": "GitHub Issues",
-		"description": "",
+		"description": "We manage tasks using GitHub issues.",
 		"content": "\n\nSpecify one or more labels. If there are no available labels, propose a new one.\n",
 		"heading": "Labels"
 	},
 	{
 		"path": "github-issues#milestones",
 		"title": "GitHub Issues",
-		"description": "",
+		"description": "We manage tasks using GitHub issues.",
 		"content": "\n\nCreate milestones for items with a deadline and associate them with the milestone.\n",
 		"heading": "Milestones"
 	},
@@ -1003,77 +1066,77 @@
 	{
 		"path": "playwright",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\nHow we automate our tests using Playwright.\n\nPlaywright is an E2E (end-to-end) testing framework.\n",
 		"heading": ""
 	},
 	{
 		"path": "playwright#installation",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\n$ npm init playwright@latest\n\nGetting started with writing end-to-end tests with Playwright:\nInitializing project in '.'\n✔ Where to put your end-to-end tests? · e2e\n✔ Add a GitHub Actions workflow? (y/N) · N\n✔ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · Y\n",
 		"heading": "Installation"
 	},
 	{
 		"path": "playwright#file-name",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nCreate an e2e directory, and name the files as \\*.spec.ts.\n",
 		"heading": "File Name"
 	},
 	{
 		"path": "playwright#configuration",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\nBasic changes\n\nChange the test directory, timeout duration, and other settings as needed.\n\nConfigure the reporter not to open automatically, and output a video when an error occurs.\n\nconst config: PlaywrightTestConfig = {\n\ttestDir: './e2e',\n\ttimeout: process.env.CI ? 20 * 1000 : 5 * 1000,\n\texpect: {\n\t\ttimeout: 2000,\n\t},\n\tretries: 0,\n\tworkers: undefined,\n\treporter: [['html', { open: 'never' }]],\n\tuse: {\n\t\tvideo: 'retain-on-failure',\n\t\tcontextOptions: {\n\t\t\tpermissions: ['clipboard-read', 'clipboard-write', 'accessibility-events'],\n\t\t},\n\t},\n}\n\nPlaywright - TestConfig >\n\nTarget Browsers\n\nEnsure that tests are not run on browsers where testing is not necessary.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t},\n\n\t\t// {\n\t\t//   name: 'firefox',\n\t\t//   use: {\n\t\t//     ...devices['Desktop Firefox'],\n\t\t//   },\n\t\t// },\n\n\t\t// ...\n\t}\n}\n\nWeb Server\n\nTo perform tests quickly, use a development server. Also, change the baseURL.\n\nconst base = ''\n// const base = '/talk'\nconst config: PlaywrightTestConfig = {\n\twebServer: [\n\t\t{\n\t\t\tcommand: 'npm run dev',\n\t\t\turl: http://127.0.0.1:5173${base}/,\n\t\t\treuseExistingServer: !process.env.CI,\n\t\t},\n\t\t// {\n\t\t// \tcommand: 'npm run build && npm run preview',\n\t\t// \tport: 4173,\n\t\t// \treuseExistingServer: !process.env.CI,\n\t\t// },\n\t],\n\tuse: {\n\t\tbaseURL: http://127.0.0.1:5173${base}/,\n\t}\n}\n\nMore information >\n\nSetup\n\nSpecify processes to be executed beforehand, such as logging in. Add dependencies to the browser settings.\n\nconst config: PlaywrightTestConfig = {\n\tprojects: [\n\t\t{ name: 'setup', testMatch: /.*\\.setup\\.ts/ },\n\n\t\t{\n\t\t\tname: 'chromium',\n\t\t\tuse: {\n\t\t\t\t...devices['Desktop Chrome'],\n\t\t\t},\n\t\t\tdependencies: ['setup'],\n\t\t},\n\t}\n}\n",
 		"heading": "Configuration"
 	},
 	{
 		"path": "playwright#scripts",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nWe have prepared the following scripts to execute Vitest.\n\n{\n\t\"scripts\": {\n\t\t\"test:e2e\": \"playwright test\",\n\t\t\"test:e2e:ci\": \"CI=true npm run test:e2e\"\n\t}\n}\n",
 		"heading": "Scripts"
 	},
 	{
 		"path": "playwright#vscode-extension",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nUse VSCode Extension for testing through VSCode.\n",
 		"heading": "VSCode Extension"
 	},
 	{
 		"path": "playwright#running-tests",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nRunning all tests\n\nnpx playwright test\n\nRunning a single test file\n\nnpx playwright test\n\nMore Info >\n",
 		"heading": "Running tests"
 	},
 	{
 		"path": "playwright#running-codegen",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nUse the codegen command to run the test generator followed by the URL of the website you want to generate tests for. The URL is optional and you can always run the command without it and then add the URL directly into the browser window instead.\n\nnpx playwright codegen localhost:5173\n\nMore Info >\n",
 		"heading": "Running Codegen"
 	},
 	{
 		"path": "playwright#reporters",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nA quick way of opening the last test run report is:\n\nnpx playwright show-report\n\nMore Info >\n",
 		"heading": "Reporters"
 	},
 	{
 		"path": "playwright#locate-by-test-id",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nTo make it easier to identify an Element from Playwright, \"data-testid\" can be used.\n\nNext Page\n\nawait page.getByTestId('next-page').click()\n\nMore Information >\n",
 		"heading": "Locate by test id"
 	},
 	{
 		"path": "playwright#sample-code",
 		"title": "Playwright",
-		"description": "",
+		"description": "How we automate our tests using Playwright. Playwright is an E2E (end-to-end) testing framework.",
 		"content": "\n\nimport { Page, expect, test } from '@playwright/test'\n\ntest.beforeEach(async ({ page }) => {\n\tawait page.goto('./chat', { waitUntil: 'networkidle' })\n})\n\ntest('before sign in', async ({ page }) => {\n\tawait expect(page).toHaveTitle('Talk - Sign in')\n})\n\nIn cases where common setup is needed, such as for login processes:\n\nimport { Page, expect, test } from '@playwright/test'\nimport { auth_file_path } from './lib/setup.js'\n\ntest.beforeEach(async ({ page }) => {\n\tawait page.goto('./chat', { waitUntil: 'networkidle' })\n})\n\ntest.describe('after sign in', () => {\n\ttest.use({ storageState: auth_file_path })\n\n\ttest('has title', async ({ page }) => {\n\t\tawait expect(page).toHaveTitle('Talk - Chat')\n\t})\n\n\ttest('init focus', async ({ page }) => {\n\t\tconst name = page.getByPlaceholder('Name')\n\t\tawait expect(name).toBeFocused()\n\t})\n})\n",
 		"heading": "Sample Code"
 	},
@@ -1164,56 +1227,56 @@
 	{
 		"path": "vitest",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\nHow we automate our tests using Vitest.\n\nVitest is a testing framework designed for unit testing.\n",
 		"heading": ""
 	},
 	{
 		"path": "vitest#installation",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nnpm install -D vitest\n",
 		"heading": "Installation"
 	},
 	{
 		"path": "vitest#file-name",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nIn the same directory as the file of the code to be tested is in, write test code in a file named [filename of the code to be tested].test.ts.\n",
 		"heading": "File Name"
 	},
 	{
 		"path": "vitest#options",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nChange the files to be included in the test run.\n\nexport default defineConfig({\n\ttest: {\n\t\tinclude: ['src/*/.test.ts'],\n\t\thookTimeout: 3000,\n\t\tteardownTimeout: 0,\n\t},\n})\n\nConfiguring Vitest >\n",
 		"heading": "Options"
 	},
 	{
 		"path": "vitest#scripts",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nWe have prepared the following scripts to execute Vitest.\n\n{\n\t\"scripts\": {\n\t\t\"test\": \"vitest\",\n\t\t\"coverage\": \"vitest run --coverage\",\n\t\t\"test:run\": \"vitest run\",\n\t\t\"test:ci\": \"CI=true npm run test\"\n\t}\n}\n",
 		"heading": "Scripts"
 	},
 	{
 		"path": "vitest#vscode-extension",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nUse the VSCode Extension for testing.\n",
 		"heading": "VSCode Extension"
 	},
 	{
 		"path": "vitest#sample-code",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nimport { expect, test } from 'vitest'\nimport { ValidId } from './valid_id'\n\ntest('1', () => {\n\texpect(new ValidId(1).id).toEqual(1)\n})\n\nWhen checking thrown errors:\n\nimport { expect, test } from 'vitest'\nimport { ValidId } from './valid_id'\n\ntest('NaN', () => {\n\texpect(() => new ValidId(NaN)).toThrow('id is not number')\n})\n",
 		"heading": "Sample Code"
 	},
 	{
 		"path": "vitest#in-source-testing",
 		"title": "Vitest",
-		"description": "",
+		"description": "How we automate our tests using Vitest. Vitest is a testing framework designed for unit testing.",
 		"content": "\n\nif (import.meta.vitest) {\n\tconst { test, expect } = import.meta.vitest\n\n\ttest('get_initial_app_locale_code', () => {\n\t\texpect(get_initial_locale_code()).toBe('en-US')\n\t})\n}\n\nexport default defineConfig({\n\tdefine: {\n\t\t'import.meta.vitest': 'undefined',\n\t},\n})\n\n{\n\t\"compilerOptions\": {\n\t\t\"types\": [\"vitest/importMeta\"]\n\t}\n}\n\nHere is the official documentation >\n",
 		"heading": "In-source testing"
 	},
@@ -1281,23 +1344,58 @@
 		"content": "Vitest"
 	},
 	{
+		"path": "style-guide",
+		"title": "Style Guide",
+		"description": "This doc goes over some of the code style we use.",
+		"content": "\nThis doc goes over some of the code style we use.\n",
+		"heading": ""
+	},
+	{
+		"path": "style-guide#async-code",
+		"title": "Style Guide",
+		"description": "This doc goes over some of the code style we use.",
+		"content": "\n\nPrefer writing async code with try and catch blocks and using await over using .then() and .catch().\n\nasync function foo(): Promise {\n\ttry {\n\t\tawait bar()\n\t} catch (error) {\n\t\tconsole.error(error)\n\t}\n}\n",
+		"heading": "Async Code"
+	},
+	{
+		"path": "style-guide",
+		"title": "Style Guide",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "style-guide#async-code",
+		"title": "Style Guide",
+		"description": "",
+		"heading": "Async Code",
+		"content": "Async Code"
+	},
+	{
+		"path": "style-guide",
+		"title": "Style Guide",
+		"description": "",
+		"heading": "",
+		"content": "Style Guide"
+	},
+	{
 		"path": "stylelint",
 		"title": "Stylelint",
-		"description": "",
+		"description": "How we use Stylelint to automate formatting for CSS.",
 		"content": "\nHow we use Stylelint to automate formatting for CSS.\n",
 		"heading": ""
 	},
 	{
 		"path": "stylelint#installation",
 		"title": "Stylelint",
-		"description": "",
+		"description": "How we use Stylelint to automate formatting for CSS.",
 		"content": "\n\nnpm i stylelint --save-dev\nnpm i stylelint-config-standard --save-dev\n",
 		"heading": "Installation"
 	},
 	{
 		"path": "stylelint#configuration",
 		"title": "Stylelint",
-		"description": "",
+		"description": "How we use Stylelint to automate formatting for CSS.",
 		"content": "\n\n{\n\t\"extends\": [\"stylelint-config-standard\"],\n\t\"rules\": {\n\t\t\"at-rule-no-unknown\": [\n\t\t\ttrue,\n\t\t\t{\n\t\t\t\t\"ignoreAtRules\": [\"extends\", \"tailwind\"]\n\t\t\t}\n\t\t]\n\t}\n}\n",
 		"heading": "Configuration"
 	},
@@ -1332,28 +1430,28 @@
 	{
 		"path": "eslint",
 		"title": "ESLint",
-		"description": "",
+		"description": "How we define code style using ESLint.",
 		"content": "\nHow we define code style using ESLint.\n",
 		"heading": ""
 	},
 	{
 		"path": "eslint#rules",
 		"title": "ESLint",
-		"description": "",
+		"description": "How we define code style using ESLint.",
 		"content": "\n\nMake accessibility and return type mandatory.\nProhibit console output.\n\nmodule.exports = {\n\trules: {\n\t\t'@typescript-eslint/explicit-member-accessibility': ['error'],\n\t\t'@typescript-eslint/explicit-function-return-type': ['error'],\n\t\t'no-console': ['error'],\n\t},\n}\n\ntypescript-eslint - explicit-member-accessibility >\n\ntypescript-eslint - explicit-function-return-type >\n\nESLint - no-console >\n",
 		"heading": "Rules"
 	},
 	{
 		"path": "eslint#naming-conventions",
 		"title": "ESLint",
-		"description": "",
+		"description": "How we define code style using ESLint.",
 		"content": "\n\nEnforce naming conventions for everything across a codebase.\n\nSet variable names, argument names, and function names to snake_case.\nPrefix private variables with an underscore.\n\nmodule.exports = {\n\trules: {\n\t\t'@typescript-eslint/naming-convention': [\n\t\t\t'error',\n\t\t\t{\n\t\t\t\tselector: 'typeParameter',\n\t\t\t\tformat: ['UPPER_CASE'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['class', 'interface', 'typeAlias'],\n\t\t\t\tformat: ['PascalCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tmodifiers: ['private'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tmodifiers: ['protected'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['method', 'function'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\t// format: ['snake_case', 'camelCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: [\n\t\t\t\t\t'property',\n\t\t\t\t\t'accessor',\n\t\t\t\t\t'parameter',\n\t\t\t\t\t'parameterProperty',\n\t\t\t\t\t'variable',\n\t\t\t\t\t'enumMember',\n\t\t\t\t],\n\t\t\t\tmodifiers: ['private'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: [\n\t\t\t\t\t'property',\n\t\t\t\t\t'accessor',\n\t\t\t\t\t'parameter',\n\t\t\t\t\t'parameterProperty',\n\t\t\t\t\t'variable',\n\t\t\t\t\t'enumMember',\n\t\t\t\t],\n\t\t\t\tmodifiers: ['protected'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t\tleadingUnderscore: 'require',\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['accessor', 'parameter', 'parameterProperty', 'enumMember'],\n\t\t\t\tformat: ['snake_case'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['property'],\n\t\t\t\tformat: ['snake_case', 'camelCase'],\n\t\t\t},\n\t\t\t{\n\t\t\t\tselector: ['variable'],\n\t\t\t\tformat: ['snake_case', 'UPPER_CASE'],\n\t\t\t},\n\t\t],\n\t},\n}\n",
 		"heading": "Naming conventions"
 	},
 	{
 		"path": "eslint#missing-return-type-on-function-in-the-html-part-of-svelte",
 		"title": "ESLint",
-		"description": "",
+		"description": "How we define code style using ESLint.",
 		"content": "\n\nIn the HTML part of Svelte, if \"Missing return type on function\" is displayed, add an eslint-disable line at the bottom of the script block.\n\n\n\t...\n\n\t/* eslint-disable @typescript-eslint/explicit-function-return-type */\n\n\n on_click_button(text)} />\n",
 		"heading": "Missing return type on function in the HTML part of Svelte"
 	},
@@ -1395,21 +1493,21 @@
 	{
 		"path": "prettier",
 		"title": "Prettier",
-		"description": "",
+		"description": "How we use Prettier to automate formatting.",
 		"content": "\nHow we use Prettier to automate formatting.\n",
 		"heading": ""
 	},
 	{
 		"path": "prettier#configuration",
 		"title": "Prettier",
-		"description": "",
+		"description": "How we use Prettier to automate formatting.",
 		"content": "\n\nWhen creating a SvelteKit project, modify the following items in the generated .prettierrc file:\n\n{\n\t\"trailingComma\": \"es5\",\n\t\"semi\": false\n}\n",
 		"heading": "Configuration"
 	},
 	{
 		"path": "prettier#formatting",
 		"title": "Prettier",
-		"description": "",
+		"description": "How we use Prettier to automate formatting.",
 		"content": "\n\nEnable format on save and paste events.\nUse Prettier to format TypeScript, JavaScript, HTML, Svelte, and JSON files.\n\n{\n\t\"editor.formatOnSave\": true,\n\t\"editor.formatOnPaste\": true,\n\t\"[typescript]\": {\n\t\t\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"\n\t},\n\t\"[javascript]\": {\n\t\t\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"\n\t},\n\t\"[html]\": {\n\t\t\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"\n\t},\n\t\"[svelte]\": {\n\t\t\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"\n\t},\n\t\"[json]\": {\n\t\t\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"\n\t}\n}\n",
 		"heading": "Formatting"
 	},
@@ -1444,14 +1542,14 @@
 	{
 		"path": "tsconfig",
 		"title": "TypeScript Config",
-		"description": "",
+		"description": "How we modify our TypeScript code style with tsconfig.json.",
 		"content": "\nHow we modify our TypeScript code style with tsconfig.json.\n",
 		"heading": ""
 	},
 	{
 		"path": "tsconfig#tsconfig",
 		"title": "TypeScript Config",
-		"description": "",
+		"description": "How we modify our TypeScript code style with tsconfig.json.",
 		"content": "\n\nSet strict to true, and further increase strictness by modifying the following options:\n\nallowUnreachableCode\nexactOptionalPropertyTypes\nnoImplicitOverride\nnoImplicitReturns\nnoFallthroughCasesInSwitch\n\n{\n\t\"extends\": \"./.svelte-kit/tsconfig.json\",\n\t\"compilerOptions\": {\n\t\t\"strict\": true,\n\n\t\t\"allowUnreachableCode\": false,\n\t\t\"exactOptionalPropertyTypes\": true,\n\t\t\"noImplicitOverride\": true,\n\t\t\"noImplicitReturns\": true,\n\t\t\"noFallthroughCasesInSwitch\": true\n\t\t// \"noUncheckedIndexedAccess\": true,\n\t}\n}\n",
 		"heading": "TSConfig"
 	},
@@ -1477,38 +1575,122 @@
 		"content": "TypeScript Config"
 	},
 	{
+		"path": "warp",
+		"title": "Warp",
+		"description": "Warp is a blazingly fast, Rust-based terminal reimagined from the ground up to work like a modern app.",
+		"content": "\nWarp is a blazingly fast, Rust-based terminal reimagined from the ground up to work like a modern app.\nWe use Warp as our default terminal.\n",
+		"heading": ""
+	},
+	{
+		"path": "warp#installation",
+		"title": "Warp",
+		"description": "Warp is a blazingly fast, Rust-based terminal reimagined from the ground up to work like a modern app.",
+		"content": "\n\nbrew install --cask warp\n",
+		"heading": "Installation"
+	},
+	{
+		"path": "warp",
+		"title": "Warp",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "warp#installation",
+		"title": "Warp",
+		"description": "",
+		"heading": "Installation",
+		"content": "Installation"
+	},
+	{
+		"path": "warp",
+		"title": "Warp",
+		"description": "",
+		"heading": "",
+		"content": "Warp"
+	},
+	{
+		"path": "tailwind-css",
+		"title": "Tailwind CSS",
+		"description": "For designing user interfaces, we utilize Tailwind CSS.",
+		"content": "\nFor designing user interfaces, we utilize Tailwind CSS.\n\nThis application's frontend is also built using Tailwind CSS. It allows us to build a custom, utility-first CSS framework that is designed to be highly efficient and productive.\n",
+		"heading": ""
+	},
+	{
+		"path": "tailwind-css#tutorial",
+		"title": "Tailwind CSS",
+		"description": "For designing user interfaces, we utilize Tailwind CSS.",
+		"content": "\n\nThe Tailwind CSS official website offers a comprehensive documentation that acts as a tutorial for beginners. To get started with Tailwind CSS, we recommend exploring these documents first.\n",
+		"heading": "Tutorial"
+	},
+	{
+		"path": "tailwind-css#docs",
+		"title": "Tailwind CSS",
+		"description": "For designing user interfaces, we utilize Tailwind CSS.",
+		"content": "\n\nMore detailed information can be found in the Docs.\n\nTailwind CSS Docs\nTailwind CSS Installation Guide\nTailwind CSS Utility Guide\n",
+		"heading": "Docs"
+	},
+	{
+		"path": "tailwind-css",
+		"title": "Tailwind CSS",
+		"description": "",
+		"heading": "",
+		"content": ""
+	},
+	{
+		"path": "tailwind-css#tutorial",
+		"title": "Tailwind CSS",
+		"description": "",
+		"heading": "Tutorial",
+		"content": "Tutorial"
+	},
+	{
+		"path": "tailwind-css#docs",
+		"title": "Tailwind CSS",
+		"description": "",
+		"heading": "Docs",
+		"content": "Docs"
+	},
+	{
+		"path": "tailwind-css",
+		"title": "Tailwind CSS",
+		"description": "",
+		"heading": "",
+		"content": "Tailwind CSS"
+	},
+	{
 		"path": "chatgpt-prompts",
 		"title": "ChatGPT Prompts",
-		"description": "",
-		"content": "\nWe are using the following ChatGPT prompts. (In Japanese)\n",
+		"description": "We are using the following ChatGPT prompts.",
+		"content": "\nWe are using the following ChatGPT prompts.\n",
 		"heading": ""
 	},
 	{
 		"path": "chatgpt-prompts#coding-english",
 		"title": "ChatGPT Prompts",
-		"description": "",
+		"description": "We are using the following ChatGPT prompts.",
 		"content": "\nInstructions\n\nYou are a professional programmer. In this conversation, please provide the best possible answers within the following constraints:\n\nConstraints\n\nThe language is TypeScript\nThis is a web app developed with SvelteKit\nDo not explain installation procedures\nFunction names, variable names, and argument names are in snake_case. For private members, prepend an underscore to the name.\nUtilize async/await for asynchronous processing\nUse the function keyword for function declarations\n",
 		"heading": "Coding (English)"
 	},
 	{
 		"path": "chatgpt-prompts#translating-english",
 		"title": "ChatGPT Prompts",
-		"description": "",
+		"description": "We are using the following ChatGPT prompts.",
 		"content": "\nInstructions\n\nYou are a professional translator. In this conversation, please provide the best possible translations.\n",
 		"heading": "Translating (English)"
 	},
 	{
 		"path": "chatgpt-prompts#coding-japanese",
 		"title": "ChatGPT Prompts",
-		"description": "",
-		"content": "\n命令書\n\n貴方はプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。\n\n制約条件\n\n言語は TypeScript\nWeb アプリは SvelteKit で開発\nインストール手順は説明しない\n関数名、変数名、引数名の命名規則は snake_case。private の場合は名前の先頭にアンダースコアを付ける\n非同期処理は async/await を活用する\n関数宣言は function キーワードを使う\n",
+		"description": "We are using the following ChatGPT prompts.",
+		"content": "\n命令書\n\nあなたはプロのプログラマーです。今後この会話では、以下の制約条件から最高の回答をしてください。\n\n制約条件\n\n言語は TypeScript\nWeb アプリは SvelteKit で開発\nインストール手順は説明しない\n関数名、変数名、引数名の命名規則は snake_case。private の場合は名前の先頭にアンダースコアを付ける\n非同期処理は async/await を活用する\n関数宣言は function キーワードを使う\n",
 		"heading": "Coding (Japanese)"
 	},
 	{
 		"path": "chatgpt-prompts#translating-japanese",
 		"title": "ChatGPT Prompts",
-		"description": "",
-		"content": "\n命令書\n\n貴方はプロの翻訳者です。今後この会話では、最高の翻訳をしてください。\n",
+		"description": "We are using the following ChatGPT prompts.",
+		"content": "\n命令書\n\nあなたはプロの翻訳者です。今後この会話では、最高の翻訳をしてください。\n",
 		"heading": "Translating (Japanese)"
 	},
 	{
@@ -1556,35 +1738,35 @@
 	{
 		"path": "assets",
 		"title": "Assets",
-		"description": "",
+		"description": "We are using the assets from the following sites",
 		"content": "\nWe are using the assets from the following sites:\n",
 		"heading": ""
 	},
 	{
 		"path": "assets#icons",
 		"title": "Assets",
-		"description": "",
+		"description": "We are using the assets from the following sites",
 		"content": "\n\ntabler ICONS\nGoogle Fonts - Icons\nFreepik - Flaticon\n",
 		"heading": "Icons"
 	},
 	{
 		"path": "assets#images",
 		"title": "Assets",
-		"description": "",
+		"description": "We are using the assets from the following sites",
 		"content": "\n\nUnsplash\nPixels\n",
 		"heading": "Images"
 	},
 	{
 		"path": "assets#fonts",
 		"title": "Assets",
-		"description": "",
+		"description": "We are using the assets from the following sites",
 		"content": "\n\nGoogle Fonts\n",
 		"heading": "Fonts"
 	},
 	{
 		"path": "assets#sounds",
 		"title": "Assets",
-		"description": "",
+		"description": "We are using the assets from the following sites",
 		"content": "\n\npixabay\n",
 		"heading": "Sounds"
 	},
@@ -1633,35 +1815,35 @@
 	{
 		"path": "customize-zsh",
 		"title": "Customize Zsh",
-		"description": "",
+		"description": "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "customize-zsh#oh-my-zsh",
 		"title": "Customize Zsh",
-		"description": "",
+		"description": "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...",
 		"content": "\n\nOh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout... More Info >\n\nsh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"\n",
 		"heading": "oh-my-zsh"
 	},
 	{
 		"path": "customize-zsh#zsh-completions",
 		"title": "Customize Zsh",
-		"description": "",
+		"description": "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...",
 		"content": "\n\nAdditional completion definitions for Zsh. More Info >\n\nbrew install zsh-completions\n\nTo activate these completions, add the following to your .zshrc:\n\nif type brew &>/dev/null; then\n\tFPATH=$(brew --prefix)/share/zsh-completions:$FPATH\n\n\tautoload -Uz compinit\n\tcompinit\nfi\n",
 		"heading": "zsh-completions"
 	},
 	{
 		"path": "customize-zsh#zsh-autosuggestions",
 		"title": "Customize Zsh",
-		"description": "",
+		"description": "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...",
 		"content": "\n\nIt suggests commands as you type based on history and completions. More Info >\n\nbrew install zsh-autosuggestions\n\nTo activate the autosuggestions, add the following at the end of your .zshrc:\n\nsource /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh\n",
 		"heading": "zsh-autosuggestions"
 	},
 	{
 		"path": "customize-zsh#zsh-syntax-highlighting",
 		"title": "Customize Zsh",
-		"description": "",
+		"description": "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...",
 		"content": "\n\nFish shell-like syntax highlighting for Zsh. More Info >\n\nbrew install zsh-syntax-highlighting\n\nyou may need to add the following to your .zshenv:\n\nexport ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters\n",
 		"heading": "zsh-syntax-highlighting"
 	},
@@ -1710,21 +1892,21 @@
 	{
 		"path": "sveltekit",
 		"title": "SvelteKit",
-		"description": "",
+		"description": "For web application development, we utilize SvelteKit.",
 		"content": "\nFor web application development, we utilize SvelteKit.\n\nThis documentation app is also built using SvelteKit and TypeScript. On the server side, it examines the folder structure to generate menu data, retrieves markdown files, and applies styles using CSS within the browser.\n",
 		"heading": ""
 	},
 	{
 		"path": "sveltekit#tutorial",
 		"title": "SvelteKit",
-		"description": "",
+		"description": "For web application development, we utilize SvelteKit.",
 		"content": "\n\nThe SvelteKit official website offers an interactive tutorial for beginners. To get started with Svelte and SvelteKit, we recommend exploring these tutorials first.\n",
 		"heading": "Tutorial"
 	},
 	{
 		"path": "sveltekit#docs",
 		"title": "SvelteKit",
-		"description": "",
+		"description": "For web application development, we utilize SvelteKit.",
 		"content": "\n\nMore detailed information can be found in the Docs.\n\nSvelte Docs\nSvelteKit Docs\n",
 		"heading": "Docs"
 	},
@@ -1759,28 +1941,28 @@
 	{
 		"path": "global-npm-packages",
 		"title": "Global NPM Packages",
-		"description": "",
+		"description": "Installing NPM packages",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "global-npm-packages#installing-packages-globally",
 		"title": "Global NPM Packages",
-		"description": "",
+		"description": "Installing NPM packages",
 		"content": "\n\nnpm install -g\n",
 		"heading": "Installing packages globally"
 	},
 	{
 		"path": "global-npm-packages#checking-all-global-packages",
 		"title": "Global NPM Packages",
-		"description": "",
+		"description": "Installing NPM packages",
 		"content": "\n\nnpm list -g\n",
 		"heading": "Checking all global packages"
 	},
 	{
 		"path": "global-npm-packages#the-packages-we-install-globally",
 		"title": "Global NPM Packages",
-		"description": "",
+		"description": "Installing NPM packages",
 		"content": "\n\nnpm-check-updates\ntypescript\n",
 		"heading": "The packages we install globally"
 	},
@@ -1822,126 +2004,126 @@
 	{
 		"path": "vscode-extensions",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\nHere are the VSCode extensions that we commonly use at sinProject.\n\nView this file on GitHub >\n",
 		"heading": ""
 	},
 	{
 		"path": "vscode-extensions#git",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nGit Graph\n\nView a Git Graph of your repository, and perform Git actions from the graph.\n\nGitHub Pull Request and Issues\n\nPull Request and Issue Provider for GitHub\n\nGitHub Actions\n\nGitHub Actions workflows and runs for github.com hosted repositories in VSCode\n",
 		"heading": "Git"
 	},
 	{
 		"path": "vscode-extensions#ai",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nChatGPT - Genie AI\n\nYour best AI pair programmer. Save conversations and continue any time. A Visual Studio Code - ChatGPT Integration. Supports GPT-4, GPT3.5, GPT3 and Codex models. Create new files, view diffs with one click; your copilot to learn code, add tests, find bugs and more.\n\nTabnine AI Autocomplete for Javascript, Python, Typescript, PHP, Go, Java, Ruby & more\n\nJavaScript, Python, Java, Typescript & all other languages - AI Code completion plugin. Tabnine makes developers more productive by auto-completing their code.\n",
 		"heading": "AI"
 	},
 	{
 		"path": "vscode-extensions#svelte",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nSvelte for VSCode\n\nSvelte language support for VSCode\n\nSvelte 3 snippets\n\nSvelte 3 Snippets for VSCode\n",
 		"heading": "Svelte"
 	},
 	{
 		"path": "vscode-extensions#css",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nTailwind CSS IntelliSense\n\nIntelligent Tailwind CSS tooling for VSCode\n\nCSS Peek\n\nAllow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.\n\nColor Highlight\n\nHighlight web colors in your editor\n",
 		"heading": "CSS"
 	},
 	{
 		"path": "vscode-extensions#html",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nAuto Rename Tag\n\nAuto rename paired HTML/XML tag\n\nHighlight Matching Tag\n\nHighlights matching closing and opening tags\n\nHTML Preview\n\nProvides ability to preview HTML documents.\n",
 		"heading": "HTML"
 	},
 	{
 		"path": "vscode-extensions#code-style",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nESLint\n\nIntegrates ESLint JavaScript into VSCode.\n\nPrettier - Code formatter\n\nCode formatter using prettier\n\nTrailing Spaces\n\nHighlight trailing spaces and delete them in a flash!\n\nCode Spell Checker\n\nSpelling checker for source code\n\n{\n\t\"cSpell.words\": [\n\t\t\"autocompletes\",\n\t\t\"autoincrement\",\n\t\t\"codegen\",\n\t\t...\n\t],\n\t\"cSpell.ignorePaths\": [\n\t\t\"**/settings.json\",\n\t\t\"**/extensions.json\",\n\t\t\"**/package.json\",\n\t\t\"**/package-lock.json\",\n\t\t\"**/yarn.lock\",\n\t\t\"/locales/.json\"\n\t]\n}\n\nStylelint\n\nOfficial Stylelint extension for Visual Studio Code\n",
 		"heading": "Code Style"
 	},
 	{
 		"path": "vscode-extensions#intellisense",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nPath Intellisense\n\nVisual Studio Code plugin that autocompletes filenames\n",
 		"heading": "Intellisense"
 	},
 	{
 		"path": "vscode-extensions#errors",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nError Lens\n\nImprove highlighting of errors, warnings and other language diagnostics.\n\nPretty TypeScript Errors\n\nMake TypeScript errors prettier and more human-readable in VSCode\n\nError Gutters\n\nShow error gutters to the right from line numbers\n",
 		"heading": "Errors"
 	},
 	{
 		"path": "vscode-extensions#testing",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nVitest\n\nRun and debug Vitest test cases\n\n{\n\t\"vitest.include\": [\"src/*/.{test}.ts\"]\n}\n\nPlaywright Test for VSCode\n\nRun Playwright Test tests in Visual Studio Code.\n",
 		"heading": "Testing"
 	},
 	{
 		"path": "vscode-extensions#database-management",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nPrisma\n\nAdds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.\n",
 		"heading": "Database Management"
 	},
 	{
 		"path": "vscode-extensions#networking",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nREST Client\n\nREST Client for Visual Studio Code\n\nRemote - SSH\n\nOpen any folder on a remote machine using SSH and take advantage of VS Code's full feature set.\n",
 		"heading": "Networking"
 	},
 	{
 		"path": "vscode-extensions#code-execution",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nCode Runner\n\nRun C, C++, Java, JS, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, CMD, BASH, F#, C#, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml, R, AppleScript, Elixir, VB.NET, Clojure, Haxe, Obj-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart, Pascal, Haskell, Nim,\n\n{\n\t\"code-runner.executorMap\": {\n\t\t\"typescript\": \"npx tsx\"\n\t}\n}\n\nTurbo Console Log\n\nAutomating the process of writing meaningful log messages.\n",
 		"heading": "Code Execution"
 	},
 	{
 		"path": "vscode-extensions#code-quality",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nImport Cost\n\nDisplay import/require package size in the editor\n",
 		"heading": "Code Quality"
 	},
 	{
 		"path": "vscode-extensions#theme",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nMaterial Icon Theme\n\nMaterial Design Icons for Visual Studio Code\n",
 		"heading": "Theme"
 	},
 	{
 		"path": "vscode-extensions#team-collaboration",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nLive Share\n\nReal-time collaborative development from the comfort of your favorite tools.\n",
 		"heading": "Team Collaboration"
 	},
 	{
 		"path": "vscode-extensions#localization",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\ni18n Ally\n\n🌍 All in one i18n extension for VSCode\n\n{\n\t\"i18n-ally.localesPaths\": [\"src/locales\", \"src/routes/api/languages\", \"src/routes/api/locales\"],\n\t\"i18n-ally.keystyle\": \"nested\",\n\t\"i18n-ally.displayLanguage\": \"en-US\",\n\t\"i18n-ally.sourceLanguage\": \"en-US\"\n}\n",
 		"heading": "Localization"
 	},
 	{
 		"path": "vscode-extensions#other",
 		"title": "VSCode Extensions",
-		"description": "",
+		"description": "Here are the VSCode extensions that we commonly use at sinProject.",
 		"content": "\n\nToDo Tree\n\nShow TODO, FIXME, etc. comment tags in a tree view\n\nBookmarks\n\nMark lines and jump to them\n\nPostCSS Language Support\n\nSyntax highlighting for modern and experimental CSS in VSCode\n",
 		"heading": "Other"
 	},
@@ -2081,28 +2263,28 @@
 	{
 		"path": "vscode-workspace-settings",
 		"title": "VSCode Workspace Settings",
-		"description": "",
+		"description": "Here are the VSCode workspace settings that we commonly use at sinProject.",
 		"content": "\nHere are the VSCode workspace settings that we commonly use at sinProject.\n",
 		"heading": ""
 	},
 	{
 		"path": "vscode-workspace-settings#bracket-pairs",
 		"title": "VSCode Workspace Settings",
-		"description": "",
+		"description": "Here are the VSCode workspace settings that we commonly use at sinProject.",
 		"content": "\n\nShow lines connecting pairs of brackets\n\n{\n\t\"editor.guides.bracketPairs\": true\n}\n",
 		"heading": "Bracket Pairs"
 	},
 	{
 		"path": "vscode-workspace-settings#minimap",
 		"title": "VSCode Workspace Settings",
-		"description": "",
+		"description": "Here are the VSCode workspace settings that we commonly use at sinProject.",
 		"content": "\n\nHide Minimap\n\n{\n\t\"editor.minimap.enabled\": false\n}\n",
 		"heading": "Minimap"
 	},
 	{
 		"path": "vscode-workspace-settings#the-default-end-of-line-character",
 		"title": "VSCode Workspace Settings",
-		"description": "",
+		"description": "Here are the VSCode workspace settings that we commonly use at sinProject.",
 		"content": "\n\nWhen creating a new file on Windows, you can specify the line break code as LF (Line Feed).\n\n{\n\t\"files.eol\": \"\\n\"\n}\n",
 		"heading": "The default end of line character"
 	},
@@ -2144,35 +2326,35 @@
 	{
 		"path": "macos-settings",
 		"title": "macOS Settings",
-		"description": "",
+		"description": "Here are the macOS settings that we commonly use at sinProject.",
 		"content": "\nHere are the macOS settings that we commonly use at sinProject.\n",
 		"heading": ""
 	},
 	{
 		"path": "macos-settings#system-settings",
 		"title": "macOS Settings",
-		"description": "",
+		"description": "Here are the macOS settings that we commonly use at sinProject.",
 		"content": "\nAppearance\n\nAppearance: Dark\n\nLanguage & Region\n\nAdd English to the beginning of your preferred language\n\nDisplays\n\nSelect More Space to increase the amount of information displayed\n\nTrackpad\n\nTap to click: ON\n\nTrackpad Options\n\nUse trackpad for dragging: ON\nDragging style: Three Finger Drag\n\nKeyboard\n\nKey repeat rate: Fast\nDelay until repeat: Short\n\nFunction Keys\n\nUse F1, F2, etc: ON\n\nCustomize modifier keys\n\nCaps Lock key: Command\n\nControl Center\n\nBluetooth: Show in Menu Bar\n\nDesktop & Dock\n\nDock: Automatically hide and show the Dock: ON\n",
 		"heading": "System Settings"
 	},
 	{
 		"path": "macos-settings#dock",
 		"title": "macOS Settings",
-		"description": "",
+		"description": "Here are the macOS settings that we commonly use at sinProject.",
 		"content": "\n\nRight click all apps and turn off Options > Keep in Dock\n",
 		"heading": "Dock"
 	},
 	{
 		"path": "macos-settings#finder",
 		"title": "macOS Settings",
-		"description": "",
+		"description": "Here are the macOS settings that we commonly use at sinProject.",
 		"content": "\n\nMenu > View > Show Path Bar\nMenu > Settings > Sidebar > [Account Name]: Checked\nMenu > Settings > Advanced > Show all filename extensions: Checked\n\nShow hidden files in Finder with Command + Shift + .\n",
 		"heading": "Finder"
 	},
 	{
 		"path": "macos-settings#apps",
 		"title": "macOS Settings",
-		"description": "",
+		"description": "Here are the macOS settings that we commonly use at sinProject.",
 		"content": "\n\nHomebrew\nAlfred\n  Appearance: Alfred Modern Dark\n  Advanced > Force Keyboard: Alphanumeric (Google)\nGoogle Japanese Input\n  Input Preferences: General > Space input style: Halfwidth\n  Open Keyboard Settings: Remove everything except ABC, Alphanumeric (Google), Hiragana (Google).\nGoogle Chrome\nVSCode\nSlack\nLINE\n",
 		"heading": "Apps"
 	},
@@ -2221,35 +2403,35 @@
 	{
 		"path": "app-structure",
 		"title": "App Structure",
-		"description": "",
+		"description": "This app consists the following screens. talk, translate, chat and docs.",
 		"content": "\nThis app consists the following screens:\n\nTalk\nTranslate\nChat\nDocs\n",
 		"heading": ""
 	},
 	{
 		"path": "app-structure#talk",
 		"title": "App Structure",
-		"description": "",
+		"description": "This app consists the following screens. talk, translate, chat and docs.",
 		"content": "\n\nOn the Talk screen, you can select sentences and listen to how they are pronounced.\n\nAfter listening, you can check your own pronunciation through the app.\n\nYou can also register new sentences and add new translations.\n",
 		"heading": "Talk"
 	},
 	{
 		"path": "app-structure#translate",
 		"title": "App Structure",
-		"description": "",
+		"description": "This app consists the following screens. talk, translate, chat and docs.",
 		"content": "\n\nOn the Translate screen, people can have spoken conversations with other people who speak different languages.\n\nWhen you speak, your words will be displayed in the other party's language and you will hear their words in your own language.\n\nThis service allows you to converse in your own language and have a conversation with someone who speaks a different language.\n",
 		"heading": "Translate"
 	},
 	{
 		"path": "app-structure#chat",
 		"title": "App Structure",
-		"description": "",
+		"description": "This app consists the following screens. talk, translate, chat and docs.",
 		"content": "\n\nOn the Chat screen, people can converse through text online with people who speak different languages.\n\nEach user sends messages in their native language, and if the participants speak different languages, their messages will be automatically translated.\n\nAdditionally, when a participating member speaks in a different language, their message will be translated into the receiver's language.\n",
 		"heading": "Chat"
 	},
 	{
 		"path": "app-structure#docs",
 		"title": "App Structure",
-		"description": "",
+		"description": "This app consists the following screens. talk, translate, chat and docs.",
 		"content": "\n\nWe have the following documentation pages available:\n\nGetting Started - Introduction and usage guide for this app.\nDevelopment - An introduction to development methods for our services.\nOur Concepts - An explanation of our development concepts.\n",
 		"heading": "Docs"
 	},
@@ -2298,35 +2480,35 @@
 	{
 		"path": "creating-a-project",
 		"title": "Creating a Project",
-		"description": "",
+		"description": "Prerequisites and Setting up the project",
 		"content": "",
 		"heading": ""
 	},
 	{
 		"path": "creating-a-project#prerequisites",
 		"title": "Creating a Project",
-		"description": "",
+		"description": "Prerequisites and Setting up the project",
 		"content": "\n\nMySQL Community Server 8.0.30 or higher\nNode.js 18.4.0 or higher\nnpm 8.13.2 or higher\n",
 		"heading": "Prerequisites"
 	},
 	{
 		"path": "creating-a-project#prerequisites-for-text-to-speech",
 		"title": "Creating a Project",
-		"description": "",
+		"description": "Prerequisites and Setting up the project",
 		"content": "\n\nSet up Google Cloud Text-to-Speech\n",
 		"heading": "Prerequisites for Text-to-Speech"
 	},
 	{
 		"path": "creating-a-project#prerequisites-for-translation",
 		"title": "Creating a Project",
-		"description": "",
+		"description": "Prerequisites and Setting up the project",
 		"content": "\n\nSet up DeepL API\n",
 		"heading": "Prerequisites for Translation"
 	},
 	{
 		"path": "creating-a-project#setting-up-the-project",
 		"title": "Creating a Project",
-		"description": "",
+		"description": "Prerequisites and Setting up the project",
 		"content": "\n\nHere are the steps:\n\nGet the project and setup:\n\nClone the repo to your current directory\ngit clone https://github.com/sinProject-Inc/talk.git\n\nInstall the dependencies\ncd /talk\nnpm install\n\nCreate a database with the name \"talk\"\nCreate a .env file by copying .env.example at the top level of the project\nRewrite the .env file with your environment variables\nPush the initial schema and data to the database:\n\nnpx prisma db push\nnpx prisma generate\nnpx prisma db seed\n\nInstall Redis, and run the command: redis-server\nRun locally\n\nStart the server and open the app in a new browser tab\nnpm run dev -- --open\n",
 		"heading": "Setting up the project"
 	},
@@ -2375,35 +2557,35 @@
 	{
 		"path": "introduction",
 		"title": "Introduction",
-		"description": "Thanks for reading this documentation.",
-		"content": "",
+		"description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
+		"content": "\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n",
 		"heading": ""
 	},
 	{
 		"path": "introduction#before-we-begin",
 		"title": "Introduction",
-		"description": "Thanks for reading this documentation.",
+		"description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
 		"content": "An email address is required to use the service.\nIf you're reading this document to learn Svelte or SvelteKit, try the Svelte tutorial first.\nIf you get stuck, ask for help at @iam_o_sin on Twitter.\n",
 		"heading": "Before we begin"
 	},
 	{
 		"path": "introduction#what-is-talk",
 		"title": "Introduction",
-		"description": "Thanks for reading this documentation.",
+		"description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
 		"content": "\n\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n",
 		"heading": "What is Talk?"
 	},
 	{
 		"path": "introduction#what-is-sinproject",
 		"title": "Introduction",
-		"description": "Thanks for reading this documentation.",
+		"description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
 		"content": "\n\nsinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.\n",
 		"heading": "What is sinProject?"
 	},
 	{
 		"path": "introduction#what-does-talk-offer-sinproject",
 		"title": "Introduction",
-		"description": "Thanks for reading this documentation.",
+		"description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
 		"content": "\n\nTalk was created to establish coding conventions and development policies at sinProject Inc.\n\nThis guide covers various topics, such as how to use TypeScript, coding styles, GitHub workflows, defining GitHub Actions, login procedures, handling external APIs, and more. It serves as a comprehensive guideline for product development at sinProject.\n",
 		"heading": "What does Talk offer sinProject?"
 	},
