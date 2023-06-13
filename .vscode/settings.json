@@ -15,6 +15,7 @@
 		"autocrlf",
 		"autoincrement",
 		"autoload",
+		"Caddyfile",
 		"codegen",
 		"cognitiveservices",
 		"combobox",
