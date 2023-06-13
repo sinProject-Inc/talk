@@ -88,18 +88,18 @@ const base = ''
 const config: PlaywrightTestConfig = {
 	webServer: [
 		{
-			command: 'npm run dev',
-			url: `http://127.0.0.1:5173${base}/`,
+			command: 'npm run build && npm run preview',
+			port: 4173,
 			reuseExistingServer: !process.env.CI,
 		},
 		// {
-		// 	command: 'npm run build && npm run preview',
-		// 	port: 4173,
+		// 	command: 'npm run dev',
+		// 	url: `http://127.0.0.1:5173${base}/`,
 		// 	reuseExistingServer: !process.env.CI,
 		// },
 	],
 	use: {
-		baseURL: `http://127.0.0.1:5173${base}/`,
+		baseURL: `http://127.0.0.1:4173${base}/`,
 	}
 }
 ```
