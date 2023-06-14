@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { base } from '$app/paths'
-	import { page } from '$app/stores'
 	import { App } from '$lib/app/app'
-	import SignInIcon from '$lib/components/icons/sign_in_icon.svelte'
-	import { createEventDispatcher } from 'svelte'
+	import { mobile_menu_open } from '$lib/stores'
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte'
 	import AnimationSwitcher from './animation_switcher.svelte'
-	import GithubIcon from './icons/github_icon.svelte'
-	import ProfileIcon from './icons/profile_icon.svelte'
+	import DotIcon from './icons/dot_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
-	import SignOutIcon from './icons/sign_out_icon.svelte'
+	import MenuItemsSub from './menu_items_sub.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
 	import VolumeSwitcher from './volume_switcher.svelte'
@@ -17,11 +15,26 @@
 
 	const dispatch = createEventDispatcher()
 
-	const encoded_redirect_url = encodeURIComponent($page.url.pathname)
-
 	function on_search_button_click(): void {
 		dispatch('show_search_modale')
 	}
+
+	let is_mobile = false
+
+	onMount(() => {
+		const media_query = window.matchMedia('(max-width: 768px)')
+		const handle_media_change = (e: MediaQueryListEvent): boolean => (is_mobile = e.matches)
+		8
+		media_query.addEventListener('change', handle_media_change)
+
+		is_mobile = media_query.matches
+
+		onDestroy(() => {
+			media_query.removeEventListener('change', handle_media_change)
+		})
+	})
+
+	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
 
 <div class="glass-text-5 sticky top-0 z-10 h-[var(--header-height)] bg-transparent backdrop-blur">
@@ -38,9 +51,11 @@
 				class="ms-auto flex items-center gap-5 text-sm font-semibold leading-6 dark:text-primary-dark-5 text-primary-5"
 			> -->
 
-				<NavItemTab name="translate" />
-				<NavItemTab name="chat" />
-				<NavItemTab name="docs" />
+				<div class="hidden md:contents">
+					<NavItemTab name="translate" />
+					<NavItemTab name="chat" />
+					<NavItemTab name="docs" />
+				</div>
 
 				{#if is_on_docs}
 					<button
@@ -55,32 +70,21 @@
 					<AnimationSwitcher />
 				{/if}
 				<ThemeSwitcher />
-				<a
-					href="https://github.com/sinProject-Inc/talk"
-					target="_blank"
-					class="flex items-center gap-1"
-					title="GitHub"
-				>
-					<div class="h-nav-icon"><GithubIcon /></div>
-				</a>
-				{#if $page.data.user}
-					<a href="{base}/profile" class="flex items-center gap-1" title="Profile">
-						<div class="h-nav-icon"><ProfileIcon /></div>
-					</a>
-					<form action="{base}/sign-out" method="POST">
-						<button class="glowing-icon flex" type="submit" title="Sign out">
-							<SignOutIcon />
+
+				{#if is_mobile}
+					<div class="h-5">
+						<button
+							class="glowing-icon"
+							title="More"
+							on:click={() => {
+								$mobile_menu_open = true
+							}}
+						>
+							<DotIcon />
 						</button>
-					</form>
+					</div>
 				{:else}
-					<a
-						title="Sign in"
-						class="flex flex-row items-center no-underline"
-						href="{base}/sign-in?redirect_url={encoded_redirect_url}"
-						><div class="h-nav-icon">
-							<SignInIcon />
-						</div>
-					</a>
+					<MenuItemsSub />
 				{/if}
 			</nav>
 		</div>

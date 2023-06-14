@@ -20,7 +20,7 @@
 			<BookIcon />
 		{/if}
 	</div>
-	<span class="hidden md:block">{text}</span>
+	<span>{text}</span>
 </a>
 
 <style lang="postcss">

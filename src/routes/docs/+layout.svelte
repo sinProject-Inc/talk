@@ -3,7 +3,7 @@
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
-	import { animations_enabled } from '$lib/stores'
+	import { animations_enabled, mobile_menu_open } from '$lib/stores'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
@@ -11,13 +11,13 @@
 	import { fly } from 'svelte/transition'
 	import Vivus from 'vivus'
 	import Audio from './audio.svelte'
-	import MobileSideBar from './mobile_side_bar.svelte'
+	import MobileDocsSideBar from './mobile_docs_side_bar.svelte'
 	import NavbarSecondRow from './navbar_second_row.svelte'
 	import SearchModale from './search_modale.svelte'
 	import SideBar from './side_bar.svelte'
 
 	let search_modale_open = false
-	let mobile_side_bar_open = false
+	let mobile_docs_side_bar_open = false
 
 	export let data
 
@@ -43,12 +43,20 @@
 		search_modale_open = false
 	}
 
-	function open_mobile_side_bar(): void {
-		mobile_side_bar_open = true
+	function open_mobile_docs_side_bar(): void {
+		mobile_docs_side_bar_open = true
 	}
 
-	function close_mobile_side_bar(): void {
-		mobile_side_bar_open = false
+	function close_mobile_docs_side_bar(): void {
+		mobile_docs_side_bar_open = false
+	}
+
+	function open_mobile_menu_bar(): void {
+		$mobile_menu_open = true
+	}
+
+	function close_mobile_menu_bar(): void {
+		$mobile_menu_open = false
 	}
 
 	function create_search_shortcut(): void {
@@ -231,7 +239,7 @@
 	})
 
 	afterNavigate(() => {
-		close_mobile_side_bar()
+		close_mobile_docs_side_bar()
 		add_copy_code_event()
 		switch_animations($animations_enabled)
 	})
@@ -277,16 +285,16 @@
 
 <div class="doc-base">
 	<Navbar is_on_docs on:show_search_modale={open_search_modale} />
-	<NavbarSecondRow on:open_mobile_side_bar={open_mobile_side_bar} />
+	<NavbarSecondRow on:open_mobile_docs_side_bar={open_mobile_docs_side_bar} />
 
-	{#if mobile_side_bar_open}
+	{#if mobile_docs_side_bar_open}
 		<div
 			class="fixed left-0 top-0 z-20 h-full w-full backdrop-blur-sm"
 			transition:fly={{ duration: 250 }}
 		/>
 
 		<div class="fixed left-0 top-0 z-50 w-full" transition:fly={{ x: -100, duration: 250 }}>
-			<MobileSideBar {sections} on:close={close_mobile_side_bar} />
+			<MobileDocsSideBar {sections} on:close={close_mobile_docs_side_bar} />
 		</div>
 	{/if}
 
