@@ -19,3 +19,4 @@ yarn.lock
 /coverage/
 playwright/.auth
 /actions-runner/
+/src/lib/assets/search_index.json

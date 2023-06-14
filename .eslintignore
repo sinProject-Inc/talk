@@ -18,3 +18,4 @@ yarn.lock
 /tests-examples/
 playwright/.auth
 /actions-runner/
+/src/lib/assets/search_index.json
