@@ -10,12 +10,13 @@ assignees: ''
 
 ## Tasks
 
-- [ ] package を書き換える
+- [ ] package のバージョンを 3 箇所書き換える。
+- [ ] push して、PR でマージする。
 
 ## GitHub
 
-- [ ] Close されている PR にラベルを付ける
-- [ ] リリースを作成する
+- [ ] Close されている PR にラベルを付ける。
+- [ ] リリースを作成する。
 
 ## Server
 
