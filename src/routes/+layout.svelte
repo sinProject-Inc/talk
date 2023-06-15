@@ -130,6 +130,10 @@
 	onMount(async () => {
 		init_theme()
 	})
+
+	afterNavigate(async () => {
+		$mobile_menu_open = false
+	})
 </script>
 
 <div class={$theme ? 'visible' : 'invisible'}>

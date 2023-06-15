@@ -2,7 +2,7 @@
 	import { base } from '$app/paths'
 	import { App } from '$lib/app/app'
 	import { mobile_menu_open } from '$lib/stores'
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte'
+	import { createEventDispatcher, onMount } from 'svelte'
 	import AnimationSwitcher from './animation_switcher.svelte'
 	import DotIcon from './icons/dot_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
@@ -19,19 +19,18 @@
 		dispatch('show_search_modale')
 	}
 
-	let is_mobile = false
+	let is_tablet = false
 
 	onMount(() => {
-		const media_query = window.matchMedia('(max-width: 768px)')
-		const handle_media_change = (e: MediaQueryListEvent): boolean => (is_mobile = e.matches)
-		8
+		const media_query = window.matchMedia('(min-width: 768px)')
+		const handle_media_change = (e: MediaQueryListEvent): boolean => (is_tablet = e.matches)
 		media_query.addEventListener('change', handle_media_change)
 
-		is_mobile = media_query.matches
+		is_tablet = media_query.matches
 
-		onDestroy(() => {
+		return (): void => {
 			media_query.removeEventListener('change', handle_media_change)
-		})
+		}
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -71,7 +70,9 @@
 				{/if}
 				<ThemeSwitcher />
 
-				{#if is_mobile}
+				{#if is_tablet}
+					<MenuItemsSub />
+				{:else}
 					<div class="h-5">
 						<button
 							class="glowing-icon"
@@ -83,8 +84,6 @@
 							<DotIcon />
 						</button>
 					</div>
-				{:else}
-					<MenuItemsSub />
 				{/if}
 			</nav>
 		</div>
