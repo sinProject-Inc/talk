@@ -4,7 +4,7 @@
 	import { navigating } from '$app/stores'
 	import '$lib/app.css'
 	import { Background } from '$lib/background/background'
-	import { theme } from '$lib/stores'
+	import { mobile_menu_open, theme } from '$lib/stores'
 	import { Direction } from '$lib/view/direction'
 	import { Theme } from '@prisma/client'
 	import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill'
@@ -14,6 +14,8 @@
 	import type { LayoutServerData } from './$types'
 	import { onMount } from 'svelte'
 	import { UpdateThemeApi } from '$lib/theme/update_theme_api'
+	import { fly } from 'svelte/transition'
+	import MobileMenuBar from '$lib/components/mobile_menu_bar.svelte'
 
 	export let data: LayoutServerData
 
@@ -128,6 +130,10 @@
 	onMount(async () => {
 		init_theme()
 	})
+
+	afterNavigate(async () => {
+		$mobile_menu_open = false
+	})
 </script>
 
 <div class={$theme ? 'visible' : 'invisible'}>
@@ -162,3 +168,14 @@
 		<slot />
 	</div>
 </div>
+
+{#if $mobile_menu_open}
+	<div
+		class="fixed left-0 top-0 z-20 h-full w-full backdrop-blur-sm"
+		transition:fly={{ duration: 250 }}
+	/>
+
+	<div class="fixed left-0 top-0 z-50 w-full" transition:fly={{ x: 100, duration: 250 }}>
+		<MobileMenuBar />
+	</div>
+{/if}
