@@ -61,7 +61,7 @@
 	</div>
 </div>
 
-<style lang="postcss">
+<!-- <style lang="postcss">
 	.active {
 		@apply border-current text-secondary dark:text-secondary-dark;
 	}
@@ -69,4 +69,4 @@
 	.inactive {
 		@apply border-transparent text-primary-3 hover:border-primary-2 hover:text-primary-10 dark:text-primary-dark-3 dark:hover:border-primary-dark-2 dark:hover:text-primary-dark-4;
 	}
-</style>
+</style> -->
