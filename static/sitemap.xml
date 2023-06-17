@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://talk.sinpro.dev/docs/introduction</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/creating-a-project</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/app-structure</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/macos-settings</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/vscode-workspace-settings</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/vscode-extensions</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/global-npm-packages</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/sveltekit</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/customize-zsh</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/assets</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/chatgpt-prompts</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/tailwind-css</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/warp</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/tsconfig</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/prettier</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/eslint</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/stylelint</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/style-guide</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/vitest</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/playwright</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/github-issues</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/github-pull-requests</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/git-branches-and-commits</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/github-branch-protection</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/git-hooks</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/github-actions</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/git-user-profiles</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/git-for-windows</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/ssh</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/pm2</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/caddy</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/our-team-policy</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/books</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/slack</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/locales</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://talk.sinpro.dev/docs/docs-history</loc>
+  <lastmod>2023-06-16T13:25:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
