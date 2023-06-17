@@ -37,5 +37,7 @@
 	"translate": "Översätt",
 	"chat": "Chatt",
 	"room": "Rum",
-	"new_room": "Nytt rum"
+	"new_room": "Nytt rum",
+	"profile": "Profil",
+	"change_icon": "Byta ikon"
 }

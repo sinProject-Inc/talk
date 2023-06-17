@@ -37,5 +37,7 @@
 	"translate": "翻訳する",
 	"chat": "チャット",
 	"room": "ルーム",
-	"new_room": "新規ルーム"
+	"new_room": "新規ルーム",
+	"profile": "プロフィール",
+	"change_icon": "アイコンの変更"
 }

@@ -37,5 +37,7 @@
 	"translate": "번역",
 	"chat": "채팅",
 	"room": "방",
-	"new_room": "새로운 방"
+	"new_room": "새로운 방",
+	"profile": "프로필",
+	"change_icon": "아이콘 변경"
 }

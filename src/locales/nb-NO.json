@@ -37,5 +37,7 @@
 	"translate": "Oversett",
 	"chat": "Chat",
 	"room": "Rom",
-	"new_room": "Nytt rom"
+	"new_room": "Nytt rom",
+	"profile": "Profil",
+	"change_icon": "Endre ikon"
 }
