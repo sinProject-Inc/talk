@@ -4,6 +4,7 @@
 	import BookIcon from './icons/book_icon.svelte'
 	import LanguageHiraganaIcon from './icons/language_hiragana_icon.svelte'
 	import MessageChatbotIcon from './icons/message_chatbot_icon.svelte'
+	import BellSchoolIcon from './icons/bell_school_icon.svelte'
 
 	export let name: string
 
@@ -12,7 +13,9 @@
 
 <a href="{base}/{name}" class="flex items-center gap-1" title={text}>
 	<div class="h-nav-icon">
-		{#if name === 'translate'}
+		{#if name === 'learn'}
+			<BellSchoolIcon />
+		{:else if name === 'translate'}
 			<LanguageHiraganaIcon />
 		{:else if name === 'chat'}
 			<MessageChatbotIcon />
