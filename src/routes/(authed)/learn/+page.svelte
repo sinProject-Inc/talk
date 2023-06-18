@@ -273,7 +273,7 @@
 	</style>
 </svelte:head>
 
-<MetaTags title={App.app_name} description={App.description} />
+<MetaTags title={App.get_page_title('Learn')} description={App.description} />
 
 <Navbar />
 
