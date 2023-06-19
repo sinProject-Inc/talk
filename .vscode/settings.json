@@ -161,5 +161,6 @@
 		"no-inline-html": false,
 		"no-hard-tabs": false
 	},
-	"files.eol": "\n"
+	"files.eol": "\n",
+	"rest-client.previewResponseInUntitledDocument": true
 }

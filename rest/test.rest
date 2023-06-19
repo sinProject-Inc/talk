@@ -48,3 +48,6 @@ GET {{host}}/api/add-translation/99999999/en-US/こんにちは
 
 ###
 GET {{host}}/api/text/en-US/100
+
+###
+GET http://talk.sinpro.dev/icon-144.png

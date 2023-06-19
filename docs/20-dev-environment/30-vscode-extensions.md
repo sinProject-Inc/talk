@@ -158,6 +158,12 @@ Adds syntax highlighting, formatting, auto-completion, jump-to-definition and li
 
 REST Client for Visual Studio Code
 
+```json:.vscode/settings.json
+{
+	"rest-client.previewResponseInUntitledDocument": true
+}
+```
+
 - [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
 
 Open any folder on a remote machine using SSH and take advantage of VS Code's full feature set.
