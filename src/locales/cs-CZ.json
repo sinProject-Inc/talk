@@ -38,5 +38,7 @@
 	"chat": "Chat",
 	"room": "Místnost",
 	"new_room": "Nová místnost",
-	"learn": "Učit se"
+	"learn": "Učit se",
+	"profile": "Profil",
+	"change_icon": "ZMĚNIT IKONU"
 }

@@ -38,5 +38,7 @@
 	"chat": "Keskustelu",
 	"room": "Huone",
 	"new_room": "Uusi huone",
-	"learn": "Oppia"
+	"learn": "Oppia",
+	"profile": "Profiili",
+	"change_icon": "VAIHDA KUVAKE"
 }

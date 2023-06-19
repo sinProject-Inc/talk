@@ -3,6 +3,7 @@
 	import { AvatarUrl } from '$lib/avatar/avatar_url'
 	import Navbar from '$lib/components/navbar.svelte'
 	import { UserId } from '$lib/user/user_id'
+	import { _ } from 'svelte-i18n'
 	import { MetaTags } from 'svelte-meta-tags'
 	import type { PageServerData } from './$types'
 
@@ -30,7 +31,7 @@
 	<Navbar />
 	<div class="px-4">
 		<div class="glass-panel mx-auto mb-36 mt-28 flex w-full min-w-fit max-w-xl flex-col px-10 py-4">
-			<div class="title flex flex-row items-center">Profile</div>
+			<div class="title flex flex-row items-center">{$_('profile')}</div>
 			<div class="flex h-full flex-col items-center justify-center pb-24 pt-20">
 				<button
 					class="group mb-6 flex h-28 w-28 cursor-pointer items-center justify-center overflow-hidden rounded-full"
@@ -47,7 +48,7 @@
 						<div
 							class="select-none text-center font-bold text-white/0 transition-all duration-150 group-hover:text-white"
 						>
-							CHANGE ICON
+							{$_('change_icon')}
 						</div>
 					</div>
 				</button>
