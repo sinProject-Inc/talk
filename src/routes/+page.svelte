@@ -26,6 +26,7 @@
 	@font-face {
 		font-family: 'title';
 		src: url('/fonts/press-start-2p.ttf') format('truetype');
+		font-display: swap;
 	}
 
 	.font-title {
