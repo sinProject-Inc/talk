@@ -38,5 +38,7 @@
 	"chat": "Chat",
 	"room": "Habitación",
 	"new_room": "Nueva habitación",
-	"learn": "Aprender"
+	"learn": "Aprender",
+	"profile": "Perfil",
+	"change_icon": "CAMBIAR EL ÍCONO"
 }
