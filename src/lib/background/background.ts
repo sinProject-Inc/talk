@@ -1,7 +1,7 @@
 import { BackgroundIndex } from '../background/background_index'
 import gradient_geometric_shapes from '../assets/gradient_geometric_shapes.avif'
-import dog from '../assets/dog.avif'
-import pudding from '../assets/pudding.avif'
+import dog from '../assets/dog-30.avif'
+import pudding from '../assets/pudding-30.avif'
 
 export class Background {
 	private readonly _background_urls: string[] = [gradient_geometric_shapes, dog, pudding]
