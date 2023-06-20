@@ -53,7 +53,17 @@ example.dev {
 talk.example.dev {
 	reverse_proxy :3002
 }
+```
 
+Add cache control:
+
+```bash
+talk.example.dev {
+	reverse_proxy :3002
+
+	@static path *.png *.jpg *.jpeg *.gif *.svg *.ico *.ttf *.woff
+	header @static Cache-Control "public, max-age=86400, must-revalidate"
+}
 ```
 
 Finally, restart the Caddy service to apply the changes:
