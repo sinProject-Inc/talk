@@ -46,13 +46,15 @@ test.describe('after sign in', () => {
 
 		test('change locale', async ({ page }) => {
 			const locale_combobox = page.getByTestId('from-locale-select')
-
 			await locale_combobox.selectOption('ja-JP')
 			await expect(page.locator('.nav-item-text').first()).toHaveText('学ぶ')
 
 			await page.goto('/', { waitUntil: 'networkidle' })
-
 			await expect(page.locator('.nav-item-text').first()).toHaveText('学ぶ')
+
+			await page.goto('./learn', { waitUntil: 'networkidle' })
+			const locale_combobox2 = page.getByTestId('from-locale-select')
+			await locale_combobox2.selectOption('en-US')
 		})
 	})
 
