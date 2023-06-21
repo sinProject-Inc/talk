@@ -85,7 +85,6 @@
 		const default_locales = new DefaultLocales(from_locale_select_element, to_locale_select_element)
 
 		default_locales.load_from_storage()
-		set_locale()
 	}
 
 	function store_locale(): void {

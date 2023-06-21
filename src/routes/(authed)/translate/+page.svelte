@@ -86,7 +86,6 @@
 		)
 
 		default_locales.load_from_storage()
-		set_locale()
 	}
 
 	function store_locale(): void {
