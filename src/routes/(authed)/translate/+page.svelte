@@ -352,7 +352,7 @@
 <div class="center-container h-[calc(100vh-65px)] w-screen">
 	<div class="top-bar glass-panel my-3 flex h-10 items-center justify-evenly">
 		<select
-			class="bg-transparent p-2 text-center outline-0 {listening
+			class="w-full bg-transparent p-2 text-center outline-0 {listening
 				? ''
 				: 'hover:scale-110'} appearance-none text-ellipsis transition-all duration-300"
 			name="language_1"
@@ -370,7 +370,7 @@
 			>
 		</div>
 		<select
-			class="bg-transparent p-2 text-center outline-0 {listening
+			class="w-full bg-transparent p-2 text-center outline-0 {listening
 				? ''
 				: 'hover:scale-110'} appearance-none text-ellipsis transition-all duration-300"
 			name="language_2"
