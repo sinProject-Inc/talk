@@ -81,7 +81,7 @@ test.describe('after sign in', () => {
 		await clear_text(page)
 		await fulfill_mock_text(page, 0)
 
-		const history_box = page.locator('.history-box')
+		const history_box = page.getByTestId('history-box')
 
 		await expect(history_box).toHaveClass(/invisible/)
 	})
@@ -90,7 +90,7 @@ test.describe('after sign in', () => {
 		await clear_text(page)
 		await fulfill_mock_text(page, 1)
 
-		const history_box = page.locator('.history-box')
+		const history_box = page.getByTestId('history-box')
 
 		await expect(history_box).toBeVisible()
 	})
@@ -99,7 +99,7 @@ test.describe('after sign in', () => {
 		await clear_text(page)
 		await fulfill_mock_text(page, 10)
 
-		const history_box = page.locator('.history-box')
+		const history_box = page.getByTestId('history-box')
 
 		await expect(history_box).toBeVisible()
 	})
