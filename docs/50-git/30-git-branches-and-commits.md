@@ -13,7 +13,7 @@ Write the issue number and issue title in kebab-case, connected with a hyphen.
 
 ## Script
 
-We have prepared a script to create branches issue names.
+We have prepared [a script to create branches issue names](https://github.com/sinProject-Inc/talk/blob/main/src/lib/git/create_git_branch.ts).
 
 ```bash
 npm run create-branch "<branch-name> #<branch-number>"
