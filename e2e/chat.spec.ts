@@ -21,14 +21,6 @@ test.describe('after sign in', () => {
 		await expect(title).toBeVisible()
 	})
 
-	// TODO: Fix this test
-	// test('change locale', async ({ page }) => {
-	// 	await page.getByRole('combobox').selectOption('ja-JP')
-
-	// 	const title = page.getByRole('link', { name: 'トーク', exact: true })
-	// 	await expect(title).toBeVisible()
-	// })
-
 	test('init focus', async ({ page }) => {
 		const name = page.getByPlaceholder('Name')
 		await expect(name).toBeFocused()

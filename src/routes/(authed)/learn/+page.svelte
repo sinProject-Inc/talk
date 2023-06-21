@@ -281,6 +281,7 @@
 		<div class="px-5">
 			<select
 				class="glass-button h-full grow text-center"
+				data-testid="from-locale-select"
 				bind:this={from_locale_select_element}
 				on:change={() => on_change_locale_select()}
 			/>
