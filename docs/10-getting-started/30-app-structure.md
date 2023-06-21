@@ -1,18 +1,18 @@
 ---
 title: App Structure
-description: This app consists the following screens. talk, translate, chat and docs.
+description: This app consists the following screens. learn, translate, chat and docs.
 ---
 
 This app consists the following screens:
 
-- [Talk](#talk)
+- [Learn](#learn)
 - [Translate](#translate)
 - [Chat](#chat)
 - [Docs](#docs)
 
-## Talk
+## Learn
 
-On the [Talk](/) screen, you can select sentences and listen to how they are pronounced.
+On the [Learn](/learn) screen, you can select sentences and listen to how they are pronounced.
 
 After listening, you can check your own pronunciation through the app.
 
@@ -39,5 +39,5 @@ Additionally, when a participating member speaks in a different language, their 
 We have the following documentation pages available:
 
 - [Getting Started](./) - Introduction and usage guide for this app.
-- [Development](./translate) - An introduction to development methods for our services.
-- [Our Concepts](./our-concepts) - An explanation of our development concepts.
+- [Dev Environment](./macos-settings) - An introduction to development methods for our services.
+- [Team sinProject](./our-team-policy) - An explanation of our development concepts.
