@@ -337,9 +337,9 @@
 		<Divider />
 		<div class="flex flex-col gap-2">
 			<div class="flex flex-row items-center gap-4">
-				<div class="title">{$_('translation')}</div>
+				<div class="title whitespace-nowrap">{$_('translation')}</div>
 				<select
-					class="glass-button text-center"
+					class="glass-button w-full text-center md:w-fit"
 					bind:this={to_locale_select_element}
 					on:change={() => on_change_locale_select()}
 				/>
