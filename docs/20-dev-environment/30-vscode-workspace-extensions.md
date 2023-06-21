@@ -1,5 +1,5 @@
 ---
-title: VSCode Extensions
+title: VSCode Workspace Extensions
 description: Here are the VSCode extensions that we commonly use at sinProject.
 ---
 
