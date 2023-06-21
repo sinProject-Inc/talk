@@ -330,6 +330,7 @@
 		web_logger.add_event_listeners()
 		init_locale_select()
 		await select_default_locales()
+		await fetch_history()
 		source_translate_box.focus()
 	})
 
@@ -403,7 +404,10 @@
 				partner_listening={source_listening}
 				bind:listening={destination_listening}
 			/>
-			<div class="main-box history-box glass-panel flex grow flex-col {history_visible}">
+			<div
+				class="main-box glass-panel flex grow flex-col {history_visible}"
+				data-testid="history-box"
+			>
 				<div class="title px-5 py-2">{$_('history')}</div>
 				<div class="overflow-auto" lang={source_locale_code.code}>
 					{#each history_texts as text, i}
