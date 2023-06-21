@@ -95,7 +95,7 @@ a {
 	}
 
 	svg {
-		@apply h-full w-full fill-current;
+		@apply max-h-full min-h-full min-w-full max-w-full fill-current;
 	}
 
 	.center-container {
