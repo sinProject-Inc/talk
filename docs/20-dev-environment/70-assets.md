@@ -18,6 +18,7 @@ We are using the assets from the following sites:
 
 ## Fonts
 
+- [DaFont](https://www.dafont.com/)
 - [Google Fonts](https://fonts.google.com/)
 
 ## Sounds
