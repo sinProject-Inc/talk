@@ -354,7 +354,7 @@
 		<select
 			class="w-full bg-transparent p-2 text-center outline-0 {listening
 				? ''
-				: 'hover:scale-110'} appearance-none text-ellipsis transition-all duration-300"
+				: 'hover:glass-bump-bg'} appearance-none text-ellipsis transition-all duration-300"
 			name="language_1"
 			disabled={listening}
 			id="language_1"
@@ -372,7 +372,7 @@
 		<select
 			class="w-full bg-transparent p-2 text-center outline-0 {listening
 				? ''
-				: 'hover:scale-110'} appearance-none text-ellipsis transition-all duration-300"
+				: 'hover:glass-bump-bg'} appearance-none text-ellipsis transition-all duration-300"
 			name="language_2"
 			disabled={listening}
 			id="language_2"
