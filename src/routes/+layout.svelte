@@ -92,7 +92,6 @@
 		html.dataset.theme = theme
 
 		if (!data.user) return
-		if (dataset_theme === theme) return
 
 		await new UpdateThemeApi(theme as Theme).fetch()
 	}
