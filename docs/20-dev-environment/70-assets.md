@@ -14,7 +14,7 @@ We are using the assets from the following sites:
 ## Images
 
 - [Unsplash](https://unsplash.com/)
-- [Pixels](https://www.pexels.com/)
+- [Pexels](https://www.pexels.com/)
 
 ## Fonts
 
