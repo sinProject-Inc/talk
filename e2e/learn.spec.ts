@@ -43,6 +43,21 @@ test.describe('after sign in', () => {
 			await expect(page.getByRole('combobox').first()).toHaveValue('km-KH')
 			await expect(page.getByRole('combobox').last()).toHaveValue('yue-HK')
 		})
+
+		// if (!process.env.CI) {
+		// 	test('change locale', async ({ page }) => {
+		// 		const locale_combobox = page.getByTestId('from-locale-select')
+		// 		await locale_combobox.selectOption('ja-JP')
+		// 		await expect(page.locator('.nav-item-text').first()).toHaveText('学ぶ')
+
+		// 		await page.goto('/', { waitUntil: 'networkidle' })
+		// 		await expect(page.locator('.nav-item-text').first()).toHaveText('学ぶ')
+
+		// 		await page.goto('./learn', { waitUntil: 'networkidle' })
+		// 		const locale_combobox2 = page.getByTestId('from-locale-select')
+		// 		await locale_combobox2.selectOption('en-US')
+		// 	})
+		// }
 	})
 
 	// TODO: GitHub Actions で動作させるにはデータが必要

@@ -23,7 +23,7 @@
 			<BookIcon />
 		{/if}
 	</div>
-	<span>{text}</span>
+	<span class="nav-item-text">{text}</span>
 </a>
 
 <style lang="postcss">
