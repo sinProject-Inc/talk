@@ -9,7 +9,9 @@ This doc goes over some of the code style we use.
 
 Prefer writing async code with `try` and `catch` blocks and using `await`.
 
-```ts:Good Example
+### Good Example
+
+```ts
 public async get_hostname(): Promise<string> {
 	const reverse_dns = util.promisify(dns.reverse)
 
@@ -23,7 +25,9 @@ public async get_hostname(): Promise<string> {
 }
 ```
 
-```ts:Bad Example
+### Bad Example
+
+```ts
 public async get_hostname(): Promise<string> {
 	const hostname: string[] = await new Promise<string[]>((resolve) => {
 		dns.reverse(this._client_address, (e, hostnames) => {
