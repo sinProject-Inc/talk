@@ -1,10 +1,30 @@
-import { BackgroundIndex } from '../background/background_index'
-import gradient_geometric_shapes from '../assets/gradient_geometric_shapes.avif'
+import beach from '../assets/beach-30.avif'
+import chair from '../assets/chair-30.avif'
+import cloudy from '../assets/cloudy-30.avif'
 import dog from '../assets/dog-30.avif'
+import flower from '../assets/flower-30.avif'
+import gradient_geometric_shapes from '../assets/gradient_geometric_shapes.avif'
+import lake from '../assets/lake-30.avif'
+import mountain from '../assets/mountain-30.avif'
 import pudding from '../assets/pudding-30.avif'
+import purple from '../assets/purple-30.avif'
+import purple2 from '../assets/purple2-30.avif'
+import { BackgroundIndex } from '../background/background_index'
 
 export class Background {
-	private readonly _background_urls: string[] = [gradient_geometric_shapes, dog, pudding]
+	private readonly _background_urls: string[] = [
+		beach,
+		chair,
+		cloudy,
+		dog,
+		flower,
+		gradient_geometric_shapes,
+		lake,
+		mountain,
+		pudding,
+		purple,
+		purple2,
+	]
 	private _background_url: string
 
 	public constructor(private readonly _background_index: BackgroundIndex) {
