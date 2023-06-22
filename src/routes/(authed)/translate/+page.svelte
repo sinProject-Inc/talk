@@ -86,6 +86,7 @@
 		)
 
 		default_locales.load_from_storage()
+		set_locale()
 	}
 
 	function store_locale(): void {
@@ -330,7 +331,6 @@
 		web_logger.add_event_listeners()
 		init_locale_select()
 		await select_default_locales()
-		await fetch_history()
 		source_translate_box.focus()
 	})
 
