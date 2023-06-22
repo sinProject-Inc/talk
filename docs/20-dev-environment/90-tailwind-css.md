@@ -15,6 +15,21 @@ The Tailwind CSS official website offers a [comprehensive documentation](https:/
 
 More detailed information can be found in the Docs.
 
+## Config
+
+- By adding the xs breakpoint, we can support devices with smaller screens like the iPhone SE.
+
+```js:tailwind.config.cjs
+module.exports = {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	theme: {
+		extend: {
+			screens: {
+				xs: '410px',
+			},
+		},
+	},
+}
+```
+
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Tailwind CSS Installation Guide](https://tailwindcss.com/docs/installation)
-- [Tailwind CSS Utility Guide](https://tailwindcss.com/docs/utility-first)
