@@ -330,6 +330,7 @@
 		web_logger.add_event_listeners()
 		init_locale_select()
 		await select_default_locales()
+		await fetch_history()
 		source_translate_box.focus()
 	})
 
