@@ -8,7 +8,6 @@
 		target="_blank"
 		rel="noreferrer"
 		href="https://github.com/sinProject-Inc/talk/"
-		class="hover:text-primary-10 dark:hover:text-primary-dark-4"
-		>{App.company_and_app_name} {version}</a
+		class="hover:text-primary-10 dark:hover:text-primary-dark-4">{App.copyright} v{version}</a
 	>
 </div>
