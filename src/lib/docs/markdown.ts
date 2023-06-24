@@ -283,7 +283,7 @@ export class Markdown {
 	} {
 		const { title, description, content } = this.read_file(file_path)
 
-		const md = new MarkdownIt({ html: true })
+		const md = new MarkdownIt({ html: true, breaks: true, linkify: true, typographer: true })
 
 		md.use(MarkdownItLinkAttributes, {
 			matcher(href: string) {
