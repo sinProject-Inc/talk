@@ -56,7 +56,7 @@ Right click all apps and turn off Options > Keep in Dock
 ## Finder
 
 - Menu > View > Show Path Bar
-- Menu > Settings > Sidebar > [Account Name]: Checked
+- Menu > Settings > Sidebar > &lt;Account Name&gt;: Checked
 - Menu > Settings > Advanced > Show all filename extensions: Checked
 
 Show hidden files in Finder with `Command + Shift + .`

@@ -241,21 +241,21 @@ export class Markdown {
 		`
 
 		md.renderer.rules.text = function (tokens, idx): string {
-			const text = tokens[idx].content
+			const text = md.utils.escapeHtml(tokens[idx].content)
 			let string_after_render = text
 
 			// TODO: replace ">" to arrow
-			if (text.includes('&gt;')) {
-				const cut_text = text.replace('&gt;', '')
+			// if (text.includes('&gt;')) {
+			// 	const cut_text = text.replace('&gt;', '')
 
-				string_after_render = `
-					<div style="display: flex; flex-direction: row;">
-						<div class="link-with-arrow">
-							${cut_text}
-						</div>
-					</div>
-				`
-			}
+			// 	string_after_render = `
+			// 		<div style="display: flex; flex-direction: row;">
+			// 			<div class="link-with-arrow">
+			// 				${cut_text}
+			// 			</div>
+			// 		</div>
+			// 	`
+			// }
 
 			if (text.includes('on GitHub >')) {
 				const cut_text = text.replace('on GitHub >', '')
@@ -283,7 +283,7 @@ export class Markdown {
 	} {
 		const { title, description, content } = this.read_file(file_path)
 
-		const md = new MarkdownIt()
+		const md = new MarkdownIt({ html: true })
 
 		md.use(MarkdownItLinkAttributes, {
 			matcher(href: string) {
