@@ -115,7 +115,7 @@
 					<a
 						data-testid="next-page"
 						href={next_page.path}
-						class="ml-auto flex items-center hover:text-primary-10 dark:hover:text-primary-dark-4"
+						class="ml-auto flex items-center text-end hover:text-primary-10 dark:hover:text-primary-dark-4"
 						>{next_page.title}<svg viewBox="0 0 3 6" class="ml-3 h-1.5 w-auto overflow-visible"
 							><path
 								d="M0 0L3 3L0 6"
