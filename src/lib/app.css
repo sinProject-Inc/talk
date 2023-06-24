@@ -293,5 +293,7 @@ blockquote {
 }
 
 .flex-books > * {
-	max-width: calc((100% - 1rem * 2) / 3);
+	@apply flex items-center justify-center;
+
+	width: calc((100% - 1rem * 2) / 3);
 }
