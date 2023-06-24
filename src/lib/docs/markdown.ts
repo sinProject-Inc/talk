@@ -257,8 +257,8 @@ export class Markdown {
 			// 	`
 			// }
 
-			if (text.includes('on GitHub >')) {
-				const cut_text = text.replace('on GitHub >', '')
+			if (text.includes('on GitHub &gt;')) {
+				const cut_text = text.replace('on GitHub &gt;', '')
 
 				string_after_render = `
 					<div style="display: flex; flex-direction: row;">
