@@ -27,8 +27,6 @@
 </script>
 
 <svelte:head>
-	<title>{App.get_docs_title(data.page.title)}</title>
-
 	{#if $theme === 'dark'}
 		<link rel="stylesheet" href="{base}/styles/atom-one-dark.css" />
 	{:else}
