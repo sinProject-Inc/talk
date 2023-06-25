@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { base } from '$app/paths'
 	import { App } from '$lib/app/app'
-	import { mobile_menu_open } from '$lib/stores'
-	import { createEventDispatcher, onMount } from 'svelte'
+	import { is_min_width_768, mobile_menu_open } from '$lib/stores'
+	import { createEventDispatcher } from 'svelte'
 	import AnimationSwitcher from './animation_switcher.svelte'
 	import DotIcon from './icons/dot_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
@@ -18,20 +18,6 @@
 	function on_search_button_click(): void {
 		dispatch('show_search_modale')
 	}
-
-	let is_tablet = false
-
-	onMount(() => {
-		const media_query = window.matchMedia('(min-width: 768px)')
-		const handle_media_change = (e: MediaQueryListEvent): boolean => (is_tablet = e.matches)
-		media_query.addEventListener('change', handle_media_change)
-
-		is_tablet = media_query.matches
-
-		return (): void => {
-			media_query.removeEventListener('change', handle_media_change)
-		}
-	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
 </script>
@@ -67,11 +53,13 @@
 						<div class="h-nav-icon"><SearchIcon /></div>
 					</button>
 					<VolumeSwitcher />
-					<AnimationSwitcher />
+					{#if $is_min_width_768}
+						<AnimationSwitcher />
+					{/if}
 				{/if}
 				<ThemeSwitcher />
 
-				{#if is_tablet}
+				{#if $is_min_width_768}
 					<MenuItemsSub />
 				{:else}
 					<div class="h-5">

@@ -6,3 +6,4 @@ export const animations_enabled = persisted('animations_enabled', true)
 export const theme = persisted('theme', '')
 
 export const mobile_menu_open = writable(false)
+export const is_min_width_768 = writable(false)

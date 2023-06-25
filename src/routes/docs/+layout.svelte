@@ -3,7 +3,7 @@
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
-	import { animations_enabled, mobile_menu_open } from '$lib/stores'
+	import { animations_enabled, is_min_width_768, mobile_menu_open } from '$lib/stores'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
@@ -241,15 +241,25 @@
 	afterNavigate(() => {
 		close_mobile_docs_side_bar()
 		add_copy_code_event()
-		switch_animations($animations_enabled)
+		switch_animations($animations_enabled && $is_min_width_768)
 	})
 
 	$: {
-		switch_animations($animations_enabled)
+		switch_animations($animations_enabled && $is_min_width_768)
 	}
 
 	onMount(() => {
 		create_search_shortcut()
+
+		const media_query = window.matchMedia('(min-width: 768px)')
+		const handle_media_change = (e: MediaQueryListEvent): boolean => ($is_min_width_768 = e.matches)
+		media_query.addEventListener('change', handle_media_change)
+
+		$is_min_width_768 = media_query.matches
+
+		return (): void => {
+			media_query.removeEventListener('change', handle_media_change)
+		}
 	})
 </script>
 
