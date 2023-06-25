@@ -7,14 +7,16 @@ const docs_base_dir = Markdown.docs_base_dir
 
 export const load: PageServerLoad = async ({ params }) => {
 	for (const sub_dir of fs.readdirSync(docs_base_dir)) {
-		if (!fs.statSync(`${docs_base_dir}/${sub_dir}`).isDirectory()) continue
+		const sub_dir_path = `${docs_base_dir}/${sub_dir}`
 
-		for (const file of fs.readdirSync(`${docs_base_dir}/${sub_dir}`)) {
+		if (!fs.statSync(sub_dir_path).isDirectory()) continue
+
+		for (const file of fs.readdirSync(sub_dir_path)) {
 			if (file.slice(3, -3) === params.slug) {
-				const file_path = `${docs_base_dir}/${sub_dir}/${file}`
+				const file_path = `${sub_dir_path}/${file}`
 
 				return {
-					category: Markdown.generate_category(sub_dir),
+					category: Markdown.get_section_title(sub_dir_path),
 					file_path,
 					page: Markdown.generate_page_content(file_path),
 				}
