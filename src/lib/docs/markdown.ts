@@ -305,13 +305,9 @@ export class Markdown {
 		return { title, description, html_content, sections }
 	}
 
-	public static generate_category(input: string): string {
-		const result = input
-			.split('-')
-			.slice(1)
-			.map((word) => word[0].toUpperCase() + word.slice(1))
-			.join(' ')
+	public static get_section_title(sub_dir_path: string): string {
+		const meta = JSON.parse(fs.readFileSync(`${sub_dir_path}/meta.json`, 'utf8'))
 
-		return result
+		return meta.title
 	}
 }

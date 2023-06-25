@@ -33,11 +33,11 @@ function get_pages(sub_dir_path: string): Page[] {
 }
 
 function get_section(sub_dir_path: string): Section {
-	const meta = JSON.parse(fs.readFileSync(`${sub_dir_path}/meta.json`, 'utf8'))
+	const title = Markdown.get_section_title(sub_dir_path)
 	const pages = get_pages(sub_dir_path)
 
 	return {
-		title: meta.title,
+		title,
 		pages,
 	}
 }
