@@ -33,13 +33,16 @@ Please note that running the npm version command will create a new commit includ
 
 1. Create a PR (Pull Request). In this case, since the issue is not closed, it is not necessary to rewrite the template.
 1. Merge the PR (Pull Request) without any checks.
+1. Push the created tag to origin.
 
 ## GitHub
 
-1. Attach the `enhancement` label to closed PRs that appear to be feature enhancements.
-1. Open the release creation page on GitHub and create a tag.
-1. Preview the automatically generated release notes to check for any issues.
-1. If there are no problems, create the release.
+1. Attach the `enhancement` label to [closed PRs](https://github.com/sinProject-Inc/talk/pulls?q=is%3Apr+sort%3Aupdated-desc+is%3Aclosed) that appear to be feature enhancements.
+1. Open [the release creation page](https://github.com/sinProject-Inc/talk/releases) on GitHub and click the `Draft a new release` button.
+1. Select the newly created tag with `Choose a tag`.
+1. Press the `Generate release notes` button.
+1. Preview the automatically generated release notes to check for any problems.
+1. If there are no problems, press the `Publish release` button to create the release.
 
 ## Connecting Server
 
