@@ -18,17 +18,20 @@ assignees: ''
 
 ## Tasks
 
-- [ ] package のバージョンを 3 箇所書き換える。
+- [ ] `npm version minor` or `npm version patch` で package のバージョンを 3 箇所書き換える。
 - [ ] push する。
 - [ ] PR を作成する。その際、Issue は Close しないので書き換えなくていい。
 - [ ] PR は、何もチェックせずにマージする。
+- [ ] 作成された タグを origin に push する。
 
 ## GitHub
 
-- [ ] Close されている PR で、機能拡張だと思われるものに Enhancement のラベルを付ける。
-- [ ] GitHub のリリース 作成ページを開き、あたらしいタグを作成する。
+- [ ] [Close されている PR 一覧](https://github.com/sinProject-Inc/talk/pulls?q=is%3Apr+sort%3Aupdated-desc+is%3Aclosed) で、機能拡張だと思われるものに `enhancement` のラベルを付ける。
+- [ ] [GitHub のリリース 作成ページ](https://github.com/sinProject-Inc/talk/releases)を開き、`Draft a new release` ボタンをクリックする。
+- [ ] `Choose a tag` で、新規作成したタグを選択する。
+- [ ] `Generate release notes` ボタンを押す。
 - [ ] 自動生成されたリリースノートを Preview して問題がないかを確認する。
-- [ ] 問題なければ、リリースを作成する。
+- [ ] 問題なければ、`Publish release` ボタンを押してリリースを作成する。
 
 ## Server
 
