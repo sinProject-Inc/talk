@@ -297,3 +297,7 @@ blockquote {
 
 	width: calc((100% - 1rem * 2) / 3);
 }
+
+.flex-equipment {
+	@apply flex gap-4;
+}
