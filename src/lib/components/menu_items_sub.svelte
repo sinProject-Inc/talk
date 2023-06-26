@@ -32,8 +32,14 @@
 		title="Sign in"
 		class="flex flex-row items-center no-underline"
 		href="{base}/sign-in?redirect_url={encoded_redirect_url}"
-		><div class="h-nav-icon">
+		><div class="glowing-icon">
 			<SignInIcon />
 		</div>
 	</a>
 {/if}
+
+<style lang="postcss">
+	a {
+		@apply hover:text-secondary dark:hover:text-secondary-dark;
+	}
+</style>
