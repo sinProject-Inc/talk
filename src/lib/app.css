@@ -299,5 +299,19 @@ blockquote {
 }
 
 .flex-equipment {
-	@apply flex gap-4;
+	@apply flex flex-col items-center gap-3;
+}
+
+.flex-equipment > img {
+	@apply mt-1;
+}
+
+@media (width >= 768px) {
+	.flex-equipment {
+		@apply flex-row self-start;
+	}
+
+	.flex-equipment > img {
+		@apply mt-1.5 self-start;
+	}
 }
