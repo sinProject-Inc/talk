@@ -663,6 +663,8 @@
 				<div class="input flex flex-col gap-1 p-1">
 					<div
 						contenteditable="true"
+						role="textbox"
+						tabindex="0"
 						class="px-3 py-1 outline-none"
 						placeholder={$_('enter_new_text')}
 						bind:this={message_div_element}

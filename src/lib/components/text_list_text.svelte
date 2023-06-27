@@ -27,7 +27,14 @@
 		{is_last_text ? 'rounded-b-md' : ''}"
 	id={text.id.toString()}
 >
-	<div class="text-body w-full py-[10px]" on:click on:keydown dir={text_direction}>
+	<div
+		class="text-body w-full py-[10px]"
+		on:click
+		on:keydown
+		role="button"
+		tabindex="0"
+		dir={text_direction}
+	>
 		<p class="whitespace-pre-wrap">{text.text}</p>
 	</div>
 	{#if deletable}

@@ -24,6 +24,8 @@
 	class="pointer-events-auto fixed left-0 top-0 z-10 h-screen w-screen"
 	on:click={close}
 	on:keydown
+	role="button"
+	tabindex="0"
 />
 
 <div class="pointer-events-none fixed right-0 top-0 z-20 flex h-full justify-center">

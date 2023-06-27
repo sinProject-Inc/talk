@@ -154,6 +154,125 @@
     "content": "Books"
   },
   {
+    "path": "equipment-and-supplies",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\nWe will introduce the equipment and supplies we use and recommend.\n",
+    "heading": ""
+  },
+  {
+    "path": "equipment-and-supplies#mac-devices-and-accessories",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\nApple 2023 MacBook Pro M2 Pro チップ搭載ノートパソコン 14.2 インチ Liquid Retina XDR ディスプレイ、10 コアと 16 コア GPU、16GB ユニファイドメモリ, 512GB SSD ストレージ、バックライトキーボード、1080p FaceTime HD カメラ、iPhone や iPad との連係機能 -スペースグレイ\n",
+    "heading": "Mac Devices and Accessories"
+  },
+  {
+    "path": "equipment-and-supplies#displays-and-monitors",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\nLG モニター ディスプレイ 43UN700-BAJP 42.5 インチ/4K/HDR 対応/IPS 非光沢/HDMI×4,DP,USB Type-C/スピーカー(10W×2)/ブルーライト低減、フリッカーセーフ/リモコン付属 /3 年安心・無輝点保証\n",
+    "heading": "Displays and Monitors"
+  },
+  {
+    "path": "equipment-and-supplies#electronics-cables-and-chargers",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\nAnker 747 Charger (GaNPrime 150W) (USB PD 充電器 USB-A & USB-C 4 ポート)【独自技術 Anker GaNPrime 採用 / PowerIQ 4.0 搭載 / PPS 規格対応 / PSE 技術基準適合 / 折りたたみ式プラグ】MacBook PD 対応 Windows PC iPad iPhone Galaxy Android スマートフォン ノート PC 各種 その他機器対応 (ブラック)\n\nRAMPOW USB-C & USB-C ケーブル【100W PD 対応/USB 3.2 Gen 2x2-20Gbps データ転送】PD3.0/QC3.0 超高速充電 4K/60Hz 映像出力 超高耐久 type-c ケーブル MacBook Pro/iPad Pro/Google Pixel/Galaxy 等タイプ C 対応 在宅勤務/出張支援 ネイビー 2M\n\nエレコム HDMI ケーブル 2m スリム プレミアムハイスピード 4K 2K (60P)対応 ナイロンメッシュケーブル アルミコネクタ ブラック DH-HDP14ES20SBK\n",
+    "heading": "Electronics Cables and Chargers"
+  },
+  {
+    "path": "equipment-and-supplies#smartphone-gimbals-and-stabilizers",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\nDJI 【国内正規品】Osmo Mobile 6 スマホ用ジンバルスタビライザー、AI 編集＆自動追跡 3 軸スマホジンバル、内蔵延長ロッド、ポータブル&折りたたみ式、Android&iPhone 用ジンバル、Vlog スタビライザー、YouTube&TikTok 動画\n",
+    "heading": "Smartphone Gimbals and Stabilizers"
+  },
+  {
+    "path": "equipment-and-supplies#home-appliances",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\n東芝 過熱水蒸気オーブンレンジ 30L 石窯ドーム 350℃ 2 段調理 ER-XD7000(K) グランブラック フラットテーブル\n\nシャープ 加湿 空気清浄機 プラズマクラスター NEXT(50000) COCORO AIR 搭載 空気清浄 34 畳 ホワイト KI-PX75-W\n\nマキタ コードレス掃除機(充電式クリーナー) CL100DW\n",
+    "heading": "Home Appliances"
+  },
+  {
+    "path": "equipment-and-supplies#desk-furniture-and-accessories",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\n■ 集合 配線機能付き・ミーティングテーブル W2400xD1200 / ダーク N ATD2-2412-AF2 ミーティングデスク 会議用テーブル 会議机 【事業所様お届け商品】\n\nRAKU 昇降式テーブル デスク 折り畳み ガス圧昇降式 無階段調整 幅 120cm× 奥行 60cm コンパクト収納 キャスター付 ローテーブル ダイニングテーブル センターテーブル リフトテーブル (昇降テーブル（ブラウン）)\n\nタンスのゲン サイドテーブル 昇降式 幅 80cm キャスター ドリンクホルダー コンセント付き 高さ調節 ベッドテーブル ダークブラウン 41900017 (82937)\n",
+    "heading": "Desk Furniture and Accessories"
+  },
+  {
+    "path": "equipment-and-supplies#beverages-and-drinkware",
+    "title": "Equipment and Supplies",
+    "description": "We will introduce the equipment and supplies we use and recommend.",
+    "content": "\n\nネスカフェ エクセラ ボトルコーヒー 無糖 ラベルレス 900ml ×12 本【アイスコーヒー】【コーヒー ペットボトル】\n\nコカ・コーラゼロ ラベルレス 350mlPET×24 本\n\n生茶 [ラベルレス]キリン お茶 2L ペットボトル ×9 本\n\nコカ・コーラ やかんの麦茶 from 爽健美茶 ラベルレス 650mlPET ×24 本\n",
+    "heading": "Beverages and Drinkware"
+  },
+  {
+    "path": "equipment-and-supplies",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "equipment-and-supplies#mac-devices-and-accessories",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Mac Devices and Accessories",
+    "content": "Mac Devices and Accessories"
+  },
+  {
+    "path": "equipment-and-supplies#displays-and-monitors",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Displays and Monitors",
+    "content": "Displays and Monitors"
+  },
+  {
+    "path": "equipment-and-supplies#electronics-cables-and-chargers",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Electronics Cables and Chargers",
+    "content": "Electronics Cables and Chargers"
+  },
+  {
+    "path": "equipment-and-supplies#smartphone-gimbals-and-stabilizers",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Smartphone Gimbals and Stabilizers",
+    "content": "Smartphone Gimbals and Stabilizers"
+  },
+  {
+    "path": "equipment-and-supplies#home-appliances",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Home Appliances",
+    "content": "Home Appliances"
+  },
+  {
+    "path": "equipment-and-supplies#desk-furniture-and-accessories",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Desk Furniture and Accessories",
+    "content": "Desk Furniture and Accessories"
+  },
+  {
+    "path": "equipment-and-supplies#beverages-and-drinkware",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "Beverages and Drinkware",
+    "content": "Beverages and Drinkware"
+  },
+  {
+    "path": "equipment-and-supplies",
+    "title": "Equipment and Supplies",
+    "description": "",
+    "heading": "",
+    "content": "Equipment and Supplies"
+  },
+  {
     "path": "our-team-policy",
     "title": "Our Team Policy",
     "description": "We have posted our policies.",
@@ -271,6 +390,188 @@
     "description": "",
     "heading": "",
     "content": "Our Team Policy"
+  },
+  {
+    "path": "ngrok",
+    "title": "ngrok",
+    "description": "ngrok is a simplified API-first ingress-as-a-service that adds connectivity, security, and observability to your apps in one line",
+    "content": "\nngrok is a simplified API-first ingress-as-a-service that adds connectivity, security, and observability to your apps in one line.\n\nWe use ngrok during local development when we need to temporarily preview the display on a mobile device.\n",
+    "heading": ""
+  },
+  {
+    "path": "ngrok#installation",
+    "title": "ngrok",
+    "description": "ngrok is a simplified API-first ingress-as-a-service that adds connectivity, security, and observability to your apps in one line",
+    "content": "\n\nSign up at ngrok.com.\nSign in to ngrok.com.\nOpen Setup & Installation.\nRefer to the aforementioned page for instructions on how to download, install, and configure the authtoken.\n",
+    "heading": "Installation"
+  },
+  {
+    "path": "ngrok#fire-it-up",
+    "title": "ngrok",
+    "description": "ngrok is a simplified API-first ingress-as-a-service that adds connectivity, security, and observability to your apps in one line",
+    "content": "\n\nTo start a HTTP tunnel forwarding to your local port 5173, run this next:\n\nngrok http 5173\n",
+    "heading": "Fire it up"
+  },
+  {
+    "path": "ngrok",
+    "title": "ngrok",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "ngrok#installation",
+    "title": "ngrok",
+    "description": "",
+    "heading": "Installation",
+    "content": "Installation"
+  },
+  {
+    "path": "ngrok#fire-it-up",
+    "title": "ngrok",
+    "description": "",
+    "heading": "Fire it up",
+    "content": "Fire it up"
+  },
+  {
+    "path": "ngrok",
+    "title": "ngrok",
+    "description": "",
+    "heading": "",
+    "content": "ngrok"
+  },
+  {
+    "path": "updating-the-server",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\nWe update the server using the following procedure.\n",
+    "heading": ""
+  },
+  {
+    "path": "updating-the-server#github-issues",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nFirst, create an Issue on GitHub. We also have an issue template prepared for releases.\n",
+    "heading": "GitHub Issues"
+  },
+  {
+    "path": "updating-the-server#updating-version",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nYou can manage and change versions in package.json and package-lock.json easily using the npm version command.\n\nHere's how you can use it:\n\nnpm version\n\nIn this command, replace &lt;newversion&gt; with the new version number (e.g., 1.0.2). Running this command updates the version numbers in both package.json and package-lock.json to the version number you specify.\n\nAlternatively, you can use one of the following keywords in place of :\n\npatch: this increments the patch version (e.g., 1.0.1 -> 1.0.2)\nminor: this increments the minor version (e.g., 1.0.1 -> 1.1.0)\nmajor: this increments the major version (e.g., 1.0.1 -> 2.0.0)\n\nPlease note that running the npm version command will create a new commit including the version update and also tag it with the new version number (this behavior can be altered in the settings).\n",
+    "heading": "Updating version"
+  },
+  {
+    "path": "updating-the-server#pushing-and-merging",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nCreate a PR (Pull Request). In this case, since the issue is not closed, it is not necessary to rewrite the template.\nMerge the PR (Pull Request) without any checks.\nPush the created tag to origin.\n",
+    "heading": "Pushing and Merging"
+  },
+  {
+    "path": "updating-the-server#github",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nAttach the enhancement label to closed PRs that appear to be feature enhancements.\nOpen the release creation page on GitHub and click the Draft a new release button.\nSelect the newly created tag with Choose a tag.\nPress the Generate release notes button.\nPreview the automatically generated release notes to check for any problems.\nIf there are no problems, press the Publish release button to create the release.\n",
+    "heading": "GitHub"
+  },
+  {
+    "path": "updating-the-server#connecting-server",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nConnect to the server using the ssh @dev@sinpro-dev command.\n",
+    "heading": "Connecting Server"
+  },
+  {
+    "path": "updating-the-server#updating",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nExecute the following command.\n\ncd ~/dev/talk\ngit checkout main && git pull\nnpm i\nnpm run build\npm2 restart talk\n",
+    "heading": "Updating"
+  },
+  {
+    "path": "updating-the-server#checking",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nConnect to https://talk.sinpro.dev/\nConfirm that the version has been updated.\nConfirm that there are no issues with the display.\nConfirm that there are no issues with the operation.\n",
+    "heading": "Checking"
+  },
+  {
+    "path": "updating-the-server#announcement",
+    "title": "Updating the server",
+    "description": "We update the server using the following procedure.",
+    "content": "\n\nIf there are additions or updates to the documentation, announce them to the members.\nRequest the product manager to make an announcement on social media.\n",
+    "heading": "Announcement"
+  },
+  {
+    "path": "updating-the-server",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "updating-the-server#github-issues",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "GitHub Issues",
+    "content": "GitHub Issues"
+  },
+  {
+    "path": "updating-the-server#updating-version",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "Updating version",
+    "content": "Updating version"
+  },
+  {
+    "path": "updating-the-server#pushing-and-merging",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "Pushing and Merging",
+    "content": "Pushing and Merging"
+  },
+  {
+    "path": "updating-the-server#github",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "GitHub",
+    "content": "GitHub"
+  },
+  {
+    "path": "updating-the-server#connecting-server",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "Connecting Server",
+    "content": "Connecting Server"
+  },
+  {
+    "path": "updating-the-server#updating",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "Updating",
+    "content": "Updating"
+  },
+  {
+    "path": "updating-the-server#checking",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "Checking",
+    "content": "Checking"
+  },
+  {
+    "path": "updating-the-server#announcement",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "Announcement",
+    "content": "Announcement"
+  },
+  {
+    "path": "updating-the-server",
+    "title": "Updating the server",
+    "description": "",
+    "heading": "",
+    "content": "Updating the server"
   },
   {
     "path": "caddy",
@@ -1354,7 +1655,7 @@
     "path": "style-guide#async-code",
     "title": "Style Guide",
     "description": "This doc goes over some of the code style we use.",
-    "content": "\n\nPrefer writing async code with try and catch blocks and using await over using .then() and .catch().\n\nasync function foo(): Promise {\n\ttry {\n\t\tawait bar()\n\t} catch (error) {\n\t\tconsole.error(error)\n\t}\n}\n",
+    "content": "\n\nPrefer writing async code with try and catch blocks and using await.\n\nGood Example\n\npublic async get_hostname(): Promise {\n\tconst reverse_dns = util.promisify(dns.reverse)\n\n\ttry {\n\t\tconst hostnames = await reverse_dns(this._client_address)\n\t\treturn hostnames[0]\n\t} catch (e) {\n\t\tconsole.warn('Reverse DNS lookup failed.', e)\n\t\treturn ''\n\t}\n}\n\nBad Example\n\npublic async get_hostname(): Promise {\n\tconst hostname: string[] = await new Promise((resolve) => {\n\t\tdns.reverse(this._client_address, (e, hostnames) => {\n\t\t\tif (e) {\n\t\t\t\tconsole.warn('Reverse DNS lookup failed.', e)\n\t\t\t\tresolve([])\n\t\t\t} else {\n\t\t\t\tresolve(hostnames[0])\n\t\t\t}\n\t\t})\n\t})\n\n\treturn hostname\n}\n",
     "heading": "Async Code"
   },
   {
@@ -1627,8 +1928,15 @@
     "path": "tailwind-css#docs",
     "title": "Tailwind CSS",
     "description": "For designing user interfaces, we utilize Tailwind CSS.",
-    "content": "\n\nMore detailed information can be found in the Docs.\n\nTailwind CSS Docs\nTailwind CSS Installation Guide\nTailwind CSS Utility Guide\n",
+    "content": "\n\nMore detailed information can be found in the Docs.\n",
     "heading": "Docs"
+  },
+  {
+    "path": "tailwind-css#config",
+    "title": "Tailwind CSS",
+    "description": "For designing user interfaces, we utilize Tailwind CSS.",
+    "content": "\n\nBy adding the xs breakpoint, we can support devices with smaller screens like the iPhone SE.\n\nmodule.exports = {\n\tcontent: ['./src/*/.{html,js,svelte,ts}'],\n\ttheme: {\n\t\textend: {\n\t\t\tscreens: {\n\t\t\t\txs: '410px',\n\t\t\t},\n\t\t},\n\t},\n}\n\nTailwind CSS Docs\n",
+    "heading": "Config"
   },
   {
     "path": "tailwind-css",
@@ -1650,6 +1958,13 @@
     "description": "",
     "heading": "Docs",
     "content": "Docs"
+  },
+  {
+    "path": "tailwind-css#config",
+    "title": "Tailwind CSS",
+    "description": "",
+    "heading": "Config",
+    "content": "Config"
   },
   {
     "path": "tailwind-css",
@@ -1753,14 +2068,14 @@
     "path": "assets#images",
     "title": "Assets",
     "description": "We are using the assets from the following sites",
-    "content": "\n\nUnsplash\nPixels\n",
+    "content": "\n\nUnsplash\nPexels\n",
     "heading": "Images"
   },
   {
     "path": "assets#fonts",
     "title": "Assets",
     "description": "We are using the assets from the following sites",
-    "content": "\n\nGoogle Fonts\n",
+    "content": "\n\nDaFont\nGoogle Fonts\n",
     "heading": "Fonts"
   },
   {
@@ -2005,7 +2320,7 @@
     "path": "vscode-workspace-extensions",
     "title": "VSCode Workspace Extensions",
     "description": "Here are the VSCode extensions that we commonly use at sinProject.",
-    "content": "\nHere are the VSCode extensions that we commonly use at sinProject.\n\nView this file on GitHub >\n",
+    "content": "\nHere are the VSCode extensions that we commonly use at sinProject.\n\nView our extension setting file on GitHub >\n",
     "heading": ""
   },
   {
@@ -2324,6 +2639,41 @@
     "content": "VSCode Workspace Settings"
   },
   {
+    "path": "chrome-extensions",
+    "title": "Chrome Extensions",
+    "description": "Here are the Chrome extensions that we commonly use at sinProject.",
+    "content": "\nHere are the Chrome extensions that we commonly use at sinProject.\n",
+    "heading": ""
+  },
+  {
+    "path": "chrome-extensions#extensions",
+    "title": "Chrome Extensions",
+    "description": "Here are the Chrome extensions that we commonly use at sinProject.",
+    "content": "\n\nGoogle Translate\n\nView translations easily as you browse the web. By the Google Translate team.\n\nOutline Chrome Extension\n\nAdd an outline style and see the boundaries of every HTML element without affecting the layout (sizing or positioning).\n\nWappalyzer - Technology profiler\n\nWappalyzer is a technology profiler that shows you what websites are built with.\n\nSVG Export\n\nDownload SVGs from websites as SVGs, PNGs or JPEGs\n\nColorblindly\n\nSimulates colorblindness in your web browser.\n",
+    "heading": "Extensions"
+  },
+  {
+    "path": "chrome-extensions",
+    "title": "Chrome Extensions",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "chrome-extensions#extensions",
+    "title": "Chrome Extensions",
+    "description": "",
+    "heading": "Extensions",
+    "content": "Extensions"
+  },
+  {
+    "path": "chrome-extensions",
+    "title": "Chrome Extensions",
+    "description": "",
+    "heading": "",
+    "content": "Chrome Extensions"
+  },
+  {
     "path": "macos-settings",
     "title": "macOS Settings",
     "description": "Here are the macOS settings that we commonly use at sinProject.",
@@ -2348,14 +2698,14 @@
     "path": "macos-settings#finder",
     "title": "macOS Settings",
     "description": "Here are the macOS settings that we commonly use at sinProject.",
-    "content": "\n\nMenu > View > Show Path Bar\nMenu > Settings > Sidebar > [Account Name]: Checked\nMenu > Settings > Advanced > Show all filename extensions: Checked\n\nShow hidden files in Finder with Command + Shift + .\n",
+    "content": "\n\nMenu - View: Show Path Bar\nMenu - Settings - Sidebar - &lt;Account Name&gt;: Checked\nMenu - Settings - Advanced - Show all filename extensions: Checked\n\nShow hidden files in Finder with Command + Shift + .\n",
     "heading": "Finder"
   },
   {
     "path": "macos-settings#apps",
     "title": "macOS Settings",
     "description": "Here are the macOS settings that we commonly use at sinProject.",
-    "content": "\n\nHomebrew\nGoogle Japanese Input\n  Preferences: General > Space input style: Halfwidth\n  Open Keyboard Settings: Remove everything except ABC, Alphanumeric (Google), Hiragana (Google).\nAlfred\n  Appearance: Alfred Modern Dark\n  Advanced > Force Keyboard: Alphanumeric (Google)\nGoogle Chrome\nVSCode\nSlack\nLINE\n",
+    "content": "\n\nHomebrew\nGoogle Japanese Input\n  Preferences: General - Space input style: Halfwidth\n  Open Keyboard Settings: Remove everything except ABC, Alphanumeric (Google), Hiragana (Google).\nAlfred\n  Appearance: Alfred Modern Dark\n  Advanced - Force Keyboard: Alphanumeric (Google)\nGoogle Chrome\nVSCode\nSlack\nLINE\n",
     "heading": "Apps"
   },
   {

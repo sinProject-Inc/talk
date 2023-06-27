@@ -247,6 +247,8 @@
 	class="pointer-events-auto fixed left-0 top-0 z-10 h-screen w-screen"
 	on:click={close}
 	on:keydown
+	role="button"
+	tabindex="0"
 />
 
 <div
@@ -276,6 +278,8 @@
 							class="keyboard-shortcut flex h-[24px] w-full cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:!text-red-400 hover:!outline-red-400"
 							on:click={reset_search_query}
 							on:keydown
+							role="button"
+							tabindex="0"
 						>
 							<CloseIcon />
 						</div>
@@ -285,6 +289,8 @@
 					class="keyboard-shortcut flex h-[24px] cursor-pointer select-none items-center justify-center rounded-md px-[5px] text-[10px] outline outline-1 transition-all duration-200 hover:!text-primary-8 hover:!outline-primary-8 dark:hover:!text-primary-dark-8 dark:hover:!outline-primary-dark-8"
 					on:click={close}
 					on:keydown
+					role="button"
+					tabindex="0"
 				>
 					ESC
 				</div>
@@ -298,6 +304,8 @@
 						class="rounded-md px-2 py-2"
 						class:active={active_result_index === i}
 						on:mousemove={() => on_mouse_to_result(i)}
+						role="button"
+						tabindex="0"
 					>
 						<a class="block text-left" href={result.item.path} on:click={close}>
 							<div class="flex items-center gap-3 text-primary-5 dark:text-primary-dark-5">

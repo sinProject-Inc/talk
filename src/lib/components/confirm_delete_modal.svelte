@@ -39,7 +39,13 @@
 
 <svelte:window on:keydown={handle_keydown} />
 
-<div class="fixed left-0 top-0 h-full w-full bg-black/30" on:click={close} on:keydown />
+<div
+	class="fixed left-0 top-0 h-full w-full bg-black/30"
+	on:click={close}
+	on:keydown
+	role="button"
+	tabindex="0"
+/>
 
 <div
 	class="pointer-events-none fixed left-0 top-0 flex h-full w-full items-center justify-center px-4"
