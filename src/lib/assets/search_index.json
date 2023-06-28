@@ -479,7 +479,7 @@
     "path": "updating-the-server#connecting-server",
     "title": "Updating the server",
     "description": "We update the server using the following procedure.",
-    "content": "\n\nConnect to the server using the ssh @dev@sinpro-dev command.\n",
+    "content": "\n\nConnect to the server using the ssh dev@sinpro-dev command.\n",
     "heading": "Connecting Server"
   },
   {
