@@ -3,7 +3,7 @@
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
-	import { animations_enabled, is_min_width_768, mobile_menu_open } from '$lib/stores'
+	import { animations_enabled, is_min_width_768 } from '$lib/stores'
 	import { KeyboardShortcutHandler } from '$lib/view/keyboard_shortcut_handler'
 	import { WebLogger } from '$lib/view/log/web_logger'
 	import { onMount } from 'svelte'
@@ -49,14 +49,6 @@
 
 	function close_mobile_docs_side_bar(): void {
 		mobile_docs_side_bar_open = false
-	}
-
-	function open_mobile_menu_bar(): void {
-		$mobile_menu_open = true
-	}
-
-	function close_mobile_menu_bar(): void {
-		$mobile_menu_open = false
 	}
 
 	function create_search_shortcut(): void {

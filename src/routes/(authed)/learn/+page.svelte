@@ -263,6 +263,7 @@
 	})
 
 	/* eslint-disable @typescript-eslint/explicit-function-return-type */
+	/* eslint-disable svelte/no-at-html-tags */
 </script>
 
 <svelte:head>

@@ -28,4 +28,4 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: npm install
+      run: npm install --legacy-peer-deps
