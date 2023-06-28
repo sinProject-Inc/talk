@@ -486,7 +486,7 @@
     "path": "updating-the-server#updating",
     "title": "Updating the server",
     "description": "We update the server using the following procedure.",
-    "content": "\n\nExecute the following command.\n\ncd ~/dev/talk\ngit checkout main && git pull\nnpm i\nnpm run build\npm2 restart talk\n",
+    "content": "\n\nExecute the following command.\n\ncd ~/dev/talk\ngit checkout main && git pull\nnpm i --legacy-peer-deps\nnpm run build\npm2 restart talk\n",
     "heading": "Updating"
   },
   {

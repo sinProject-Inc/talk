@@ -24,6 +24,8 @@
 
 	$: current_page_title.set(data.page.title)
 	$: current_page_category.set(data.category)
+
+	/* eslint-disable svelte/no-at-html-tags */
 </script>
 
 <svelte:head>

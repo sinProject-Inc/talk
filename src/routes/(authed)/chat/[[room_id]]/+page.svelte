@@ -554,6 +554,8 @@
 
 		observer.disconnect()
 	})
+
+	/* eslint-disable svelte/no-at-html-tags */
 </script>
 
 <svelte:head>
@@ -595,7 +597,7 @@
 				class="glass-panel flex flex-1 flex-col gap-3 overflow-y-auto p-3"
 				bind:this={chat_log_div_element}
 			>
-				{#each chat_log_items as chat_log_item, i}
+				{#each chat_log_items as chat_log_item}
 					<div in:fly={{ y: 20 }} out:slide class="flex">
 						<div class="mr-4 w-10 pt-[2px]">
 							<img

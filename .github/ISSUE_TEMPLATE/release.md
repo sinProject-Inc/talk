@@ -38,7 +38,7 @@ assignees: ''
 - [ ] `ssh @dev@sinpro-dev` で接続する。
 - [ ] cd ~/dev/talk
 - [ ] git checkout main && git pull
-- [ ] npm i
+- [ ] npm i --legacy-peer-deps
 - [ ] npm run build
 - [ ] pm2 restart talk
 
