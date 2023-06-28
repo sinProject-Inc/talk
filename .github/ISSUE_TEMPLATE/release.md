@@ -35,7 +35,7 @@ assignees: ''
 
 ## Server
 
-- [ ] `ssh @dev@sinpro-dev` で接続する。
+- [ ] `ssh dev@sinpro-dev` で接続する。
 - [ ] cd ~/dev/talk
 - [ ] git checkout main && git pull
 - [ ] npm i --legacy-peer-deps

@@ -46,7 +46,7 @@ Please note that running the npm version command will create a new commit includ
 
 ## Connecting Server
 
-Connect to the server using the `ssh @dev@sinpro-dev` command.
+Connect to the server using the `ssh dev@sinpro-dev` command.
 
 ## Updating
 
