@@ -3,17 +3,17 @@
 	"short_name": "Talk",
 	"icons": [
 		{
-			"src": "./icon-144.png",
+			"src": "./icon-144.avif",
 			"type": "image/png",
 			"sizes": "144x144"
 		},
 		{
-			"src": "./icon-192.png",
+			"src": "./icon-192.avif",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "./icon-512.png",
+			"src": "./icon-512.avif",
 			"type": "image/png",
 			"sizes": "512x512"
 		}

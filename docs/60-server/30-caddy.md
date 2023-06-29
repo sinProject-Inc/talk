@@ -61,7 +61,7 @@ Add cache control:
 talk.example.dev {
 	reverse_proxy :3002
 
-	@static path *.avif *.woff2 *.png
+	@static path *.avif *.woff2
 	header @static Cache-Control "public, max-age=86400, must-revalidate"
 }
 ```

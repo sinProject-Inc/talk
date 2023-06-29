@@ -17,6 +17,8 @@ Add a path to the `.zshrc` file to make it easier to use.
 export PATH="$PATH:/Users/iwasakishinya/development/woff2"
 ```
 
+## How to use
+
 Move to the path where the font file is located and execute as follows.
 
 ```bash
