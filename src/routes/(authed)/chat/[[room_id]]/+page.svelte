@@ -129,7 +129,7 @@
 
 			registration.showNotification(`${App.company_and_app_name} - Chat`, {
 				body: notification_message,
-				icon: '/icon-192.png',
+				icon: '/icon-192.avif',
 			})
 
 			new Audio('./sound/notification-140376.mp3').play()
@@ -306,7 +306,7 @@
 	// function send_test_notification(): void {
 	// 	const title = 'Talk - Chat'
 	// 	const body = '通知テストです'
-	// 	const icon = '/icon-144.png'
+	// 	const icon = '/icon-144.avif'
 	// 	const options = { body, icon }
 	// 	const notification = new Notification(title, options)
 

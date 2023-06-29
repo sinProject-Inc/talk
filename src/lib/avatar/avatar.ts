@@ -23,7 +23,7 @@ export class Avatar {
 		try {
 			avatar_file_buffer = await fs.promises.readFile(avatar_file_path.path)
 		} catch (e) {
-			const default_avatar_path = 'src/lib/assets/default_avatar.png'
+			const default_avatar_path = 'src/lib/assets/default_avatar.avif'
 
 			avatar_file_buffer = await fs.promises.readFile(default_avatar_path)
 		}
