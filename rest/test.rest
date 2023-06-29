@@ -53,4 +53,7 @@ GET {{host}}/api/text/en-US/100
 GET https://talk.sinpro.dev/icon-144.png
 
 ###
-GET https://talk.sinpro.dev/fonts/press-start-2p.ttf
+GET https://talk.sinpro.dev/fonts/press-start-2p.woff2
+
+###
+GET http://localhost:5173/fonts/press-start-2p.woff2

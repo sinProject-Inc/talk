@@ -25,7 +25,7 @@
 <style type="postcss">
 	@font-face {
 		font-family: 'title';
-		src: url('/fonts/press-start-2p.ttf') format('truetype');
+		src: url('/fonts/press-start-2p.woff2');
 		font-display: swap;
 	}
 
