@@ -83,6 +83,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://talk.sinpro.dev/docs/jpg-png-to-avif</loc>
+  <lastmod>2023-06-25T07:13:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://talk.sinpro.dev/docs/ttf-to-woff2</loc>
   <lastmod>2023-06-25T07:13:15+00:00</lastmod>
   <priority>0.80</priority>
