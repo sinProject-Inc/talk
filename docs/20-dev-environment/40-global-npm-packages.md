@@ -17,5 +17,5 @@ npm list -g
 
 ## The packages we install globally
 
-- [npm-check-updates](https://github.com/raineorshine/npm-check-updates)
-- [typescript](https://www.typescriptlang.org/)
+- [npm-check-updates](./npm-check-updates)
+- [PM2](./pm2)
