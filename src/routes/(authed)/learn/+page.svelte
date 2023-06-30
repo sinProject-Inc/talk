@@ -8,6 +8,7 @@
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
+	import SocialMetaTags from '$lib/components/social_meta_tags.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { DefaultLocales } from '$lib/locale/default_locales'
@@ -30,7 +31,6 @@
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
-	import { MetaTags } from 'svelte-meta-tags'
 	import type { PageData } from './$types'
 	// import { version } from '$app/environment'
 
@@ -274,7 +274,7 @@
 	</style>
 </svelte:head>
 
-<MetaTags title={App.get_page_title('Learn')} description={App.description} />
+<SocialMetaTags title={App.get_page_title('Learn')} description={App.description} />
 
 <Navbar />
 

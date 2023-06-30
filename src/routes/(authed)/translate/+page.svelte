@@ -6,6 +6,7 @@
 	import SwapIcon from '$lib/components/icons/swap_icon.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
 	import Snackbar from '$lib/components/snackbar.svelte'
+	import SocialMetaTags from '$lib/components/social_meta_tags.svelte'
 	import TextListText from '$lib/components/text_list_text.svelte'
 	import TranslateBox from '$lib/components/translate/translate_box.svelte'
 	import VersionFooter from '$lib/components/version_footer.svelte'
@@ -27,7 +28,6 @@
 	import type { Locale, Text } from '@prisma/client'
 	import { onMount } from 'svelte'
 	import { _, locale, waitLocale } from 'svelte-i18n'
-	import { MetaTags } from 'svelte-meta-tags'
 	import type { PageData } from './$types'
 
 	export let data: PageData
@@ -345,7 +345,7 @@
 	</style>
 </svelte:head>
 
-<MetaTags title={App.get_page_title('Translate')} description={App.description} />
+<SocialMetaTags title={App.get_page_title('Translate')} description={App.description} />
 
 <Navbar />
 

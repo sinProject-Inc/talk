@@ -1,11 +1,11 @@
 <script>
-	import Navbar from '$lib/components/navbar.svelte'
-	import { MetaTags } from 'svelte-meta-tags'
 	import { App } from '$lib/app/app'
+	import Navbar from '$lib/components/navbar.svelte'
+	import SocialMetaTags from '$lib/components/social_meta_tags.svelte'
 	import VersionFooter from '$lib/components/version_footer.svelte'
 </script>
 
-<MetaTags title={App.app_name} description={App.description} />
+<SocialMetaTags title={App.app_name} description={App.description} />
 
 <Navbar />
 
