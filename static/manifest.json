@@ -4,19 +4,19 @@
 	"icons": [
 		{
 			"src": "./icon-144.avif",
-			"type": "image/avif",
+			"type": "image/png",
 			"sizes": "144x144",
 			"purpose": "any maskable"
 		},
 		{
 			"src": "./icon-192.avif",
-			"type": "image/avif",
+			"type": "image/png",
 			"sizes": "192x192",
 			"purpose": "any maskable"
 		},
 		{
 			"src": "./icon-512.avif",
-			"type": "image/avif",
+			"type": "image/png",
 			"sizes": "512x512",
 			"purpose": "any maskable"
 		}
@@ -24,7 +24,7 @@
 	"scope": "/",
 	"start_url": ".",
 	"display": "standalone",
-	"theme_color": "#a3222b",
-	"background_color": "#282828",
+	"theme_color": "#0F172A",
+	"background_color": "#0F172A",
 	"description": "sinProject Talk"
 }
