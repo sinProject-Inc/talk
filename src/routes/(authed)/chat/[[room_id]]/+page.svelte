@@ -18,6 +18,7 @@
 	import StopIcon from '$lib/components/icons/stop_icon.svelte'
 	import VoiceIcon from '$lib/components/icons/voice_icon.svelte'
 	import Navbar from '$lib/components/navbar.svelte'
+	import SocialMetaTags from '$lib/components/social_meta_tags.svelte'
 	import VersionFooter from '$lib/components/version_footer.svelte'
 	import { AppLocalStorage } from '$lib/locale/app_local_storage'
 	import { LocaleCode } from '$lib/locale/locale_code'
@@ -37,7 +38,6 @@
 	import { io } from 'socket.io-client'
 	import { onDestroy, onMount } from 'svelte'
 	import { _ } from 'svelte-i18n'
-	import { MetaTags } from 'svelte-meta-tags'
 	import { fly, slide } from 'svelte/transition'
 	import { v4 as uuidv4 } from 'uuid'
 	import type { PageData } from './$types'
@@ -566,7 +566,7 @@
 	</style>
 </svelte:head>
 
-<MetaTags title={App.get_page_title('Chat')} description={App.description} />
+<SocialMetaTags title={App.get_page_title('Chat')} description={App.description} />
 
 <div class="flex h-screen min-h-screen flex-col">
 	<Navbar />

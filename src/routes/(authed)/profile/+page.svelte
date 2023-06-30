@@ -2,9 +2,9 @@
 	import { App } from '$lib/app/app'
 	import { AvatarUrl } from '$lib/avatar/avatar_url'
 	import Navbar from '$lib/components/navbar.svelte'
+	import SocialMetaTags from '$lib/components/social_meta_tags.svelte'
 	import { UserId } from '$lib/user/user_id'
 	import { _ } from 'svelte-i18n'
-	import { MetaTags } from 'svelte-meta-tags'
 	import type { PageServerData } from './$types'
 
 	export let data: PageServerData
@@ -25,7 +25,7 @@
 	}
 </script>
 
-<MetaTags title={App.get_page_title('Profile')} description={App.description} />
+<SocialMetaTags title={App.get_page_title('Profile')} description={App.description} />
 
 <div>
 	<Navbar />
