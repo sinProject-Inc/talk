@@ -33,12 +33,12 @@
 		class="glass-panel pointer-events-auto ml-auto min-h-screen w-80 items-start rounded-none border-0 bg-primary-dark-8/90 pl-10 dark:bg-primary-8/90"
 	>
 		<div class="side-bar-navigation h-screen w-full overflow-y-scroll">
-			<IconButton class="absolute right-6 top-6" on:click={close}>
+			<IconButton class="absolute right-6 top-4" on:click={close}>
 				<CloseIcon />
 			</IconButton>
 
 			<div class="text-sm leading-6">
-				<ul class="pl-1 pt-8">
+				<ul class="pl-1 pt-6">
 					<li class="my-8">
 						<ul class="space-y-2">
 							<li>
