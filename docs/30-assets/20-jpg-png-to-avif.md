@@ -9,6 +9,8 @@ When we handle image files, we use [cavif-rs](https://github.com/kornelski/cavif
 
 A modern image format based on the AV1 video format. AVIF generally has better compression than WebP, JPEG, PNG and GIF and is designed to supersede them. AVIF competes with JPEG XL which has similar compression quality and is generally seen as more feature-rich than AVIF. (Source: [caniuse.com](https://caniuse.com/avif))
 
+AVIF provides superior compression to WebP, retaining high image quality at lower file sizes. It supports up to 12-bit color depth, offers better transparency handling, and ensures efficient encoding and decoding, making it a more advanced choice.
+
 ### Can I use AVIF
 
 Check browsers that support AVIF on [caniuse.com](https://caniuse.com/avif).
