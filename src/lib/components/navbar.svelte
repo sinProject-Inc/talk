@@ -3,13 +3,10 @@
 	import { App } from '$lib/app/app'
 	import { is_min_width_768, mobile_menu_open } from '$lib/stores'
 	import { createEventDispatcher } from 'svelte'
-	import AnimationSwitcher from './animation_switcher.svelte'
 	import DotIcon from './icons/dot_icon.svelte'
 	import SearchIcon from './icons/search_icon.svelte'
-	import MenuItemsSub from './menu_items_sub.svelte'
 	import NavItemTab from './nav_item_tab.svelte'
 	import ThemeSwitcher from './theme_switcher.svelte'
-	import VolumeSwitcher from './volume_switcher.svelte'
 
 	export let is_on_docs = false
 
@@ -43,7 +40,7 @@
 					<NavItemTab name="docs" />
 				</div>
 
-				{#if is_on_docs}
+				{#if is_on_docs && !$is_min_width_768}
 					<button
 						title="Search"
 						on:click={on_search_button_click}
@@ -52,28 +49,20 @@
 					>
 						<div class="h-nav-icon"><SearchIcon /></div>
 					</button>
-					<VolumeSwitcher />
-					{#if $is_min_width_768}
-						<AnimationSwitcher />
-					{/if}
 				{/if}
 				<ThemeSwitcher />
 
-				{#if $is_min_width_768}
-					<MenuItemsSub />
-				{:else}
-					<div class="h-5">
-						<button
-							class="glowing-icon"
-							title="More"
-							on:click={() => {
-								$mobile_menu_open = true
-							}}
-						>
-							<DotIcon />
-						</button>
-					</div>
-				{/if}
+				<div class="h-5">
+					<button
+						class="glowing-icon"
+						title="More"
+						on:click={() => {
+							$mobile_menu_open = true
+						}}
+					>
+						<DotIcon />
+					</button>
+				</div>
 			</nav>
 		</div>
 	</div>
