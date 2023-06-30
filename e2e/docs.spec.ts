@@ -57,6 +57,8 @@ test('close search modale with keyboard shortcut', async ({ page }) => {
 })
 
 test('open search modale with navbar button', async ({ page }) => {
+	page.setViewportSize({ width: 480, height: 600 })
+
 	await page.waitForLoadState('networkidle')
 	await page.waitForTimeout(500)
 
