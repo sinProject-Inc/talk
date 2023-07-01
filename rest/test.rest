@@ -57,3 +57,6 @@ GET https://talk.sinpro.dev/fonts/press-start-2p.woff2
 
 ###
 GET http://localhost:5173/fonts/press-start-2p.woff2
+
+###
+GET https://talk.sinpro.dev/icon-512.png
