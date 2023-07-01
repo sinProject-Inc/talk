@@ -42,7 +42,7 @@ do_stuff()
  * 2016-02-03: Removed type-checking (LI)
  * 2015-03-14: Added combine with type-checking (JR)
  */
-function combine(a, b) {
+function combine(a: number, b: number): number {
   return a + b;
 }
 ```

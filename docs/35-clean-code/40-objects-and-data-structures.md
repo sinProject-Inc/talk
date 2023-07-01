@@ -9,7 +9,7 @@ description: This is a guide to producing readable, reusable, and refactorable s
 class Circle {
   public radius: number;
 
-  constructor(radius: number) {
+  public constructor(radius: number) {
     this.radius = radius
   }
 }
@@ -17,6 +17,6 @@ class Circle {
 
 ```ts::Good
 class Circle {
-  constructor(private readonly _radius: number) {}
+  public constructor(private readonly _radius: number) {}
 }
 ```
