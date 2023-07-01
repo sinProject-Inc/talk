@@ -11,7 +11,7 @@
 	const url = $page.url.href
 	const type = $page.url.pathname === '/' ? 'website' : 'article'
 
-	const image_url = `${url_origin}/icon-512.avif`
+	const image_url = `${url_origin}/icon-512.png`
 	const image_alt = `${site_name} logo`
 
 	const site = '@iam_o_sin'
