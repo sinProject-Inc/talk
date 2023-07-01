@@ -108,7 +108,7 @@ export class Markdown {
 
 		md.renderer.rules.fence = function (tokens, idx): string {
 			const token = tokens[idx]
-			const [lang, filename] = (token.info || '').split(':')
+			const [lang, filename, title] = (token.info || '').split(':')
 
 			let highlighted_code = ''
 
@@ -121,6 +121,8 @@ export class Markdown {
 			} else {
 				highlighted_code = md.utils.escapeHtml(token.content)
 			}
+
+			const display_title = title || filename || hljs.getLanguage(lang)?.name
 
 			const github_icon_element = `
 				<svg
@@ -149,7 +151,7 @@ export class Markdown {
 						<div style="width:20px">
 							${github_icon_element}
 						</div>
-						${filename}
+						${display_title}
 					</a>
 				`
 				: `
@@ -173,7 +175,7 @@ export class Markdown {
 								<path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" fill="none" />
 							</svg>
 						</div>
-						${hljs.getLanguage(lang)?.name}
+						${display_title}
 					</div>
 				`
 
