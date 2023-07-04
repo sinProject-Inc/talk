@@ -21,6 +21,10 @@ We are using the assets from the following sites:
 - [DaFont](https://www.dafont.com/)
 - [Google Fonts](https://fonts.google.com/)
 
+## Illustration
+
+- [いらすとや](https://www.irasutoya.com/)
+
 ## Sounds
 
 - [pixabay](https://pixabay.com/)
