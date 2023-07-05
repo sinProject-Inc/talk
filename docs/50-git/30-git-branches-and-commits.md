@@ -3,6 +3,10 @@ title: Git Branches and Commits
 description: Write the issue number and issue title in kebab-case, connected with a hyphen.
 ---
 
+## Branching Strategy
+
+At first, we employed git-flow and managed multiple branches such as develop, feature, release, hotfix, and master. However, after years of operation and trial and error, we now simply use only the main branch as the integration branch and topic branches.
+
 ## Git branch naming conventions
 
 Write the issue number and issue title in kebab-case, connected with a hyphen.
