@@ -3,6 +3,30 @@ title: Functions
 description: This is a guide to producing readable, reusable, and refactorable software for TypeScript.
 ---
 
+## Use early return pattern
+
+```ts::Bad
+function foo(): void {
+  if (argument1.isValid()) {
+    if (argument2.isValid()) {
+      if (argument3.isValid()) {
+        // DO SOMETHING
+      }
+    }
+  }
+}
+```
+
+```ts::Good
+function foo(): void {
+  if (!argument1.isValid()) return
+  if (!argument2.isValid()) return
+  if (!argument3.isValid()) return
+
+  // DO SOMETHING
+}
+```
+
 ## Functions should do one thing
 
 ```ts::Bad

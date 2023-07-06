@@ -27,23 +27,37 @@ console.log('Hello')
 
 ## Use template literals
 
-```ts:Old-fashioned
+```ts::Old-fashioned
 const first_name = 'John'
 const last_name = 'Smith'
 
 console.log(first_name + ' ' + last_name)
 ```
 
-```ts:Good
+```ts::Good
 const first_name = 'John'
 const last_name = 'Smith'
 
 console.log(`${first_name} ${last_name}`)
 ```
 
+## Use white space for readability
+
+```ts::Bad
+for(let i=1;i<=10;i++){
+  // ...
+}
+```
+
+```ts::Good
+for (let i = 0; i <= 10; i++) {
+  // ...
+}
+```
+
 ## Use blank lines for readability
 
-```ts:Bad
+```ts::Bad
 function foo(): number {
   let sum = 0
   for (...) {
@@ -60,7 +74,7 @@ function bar(): void {
 }
 ```
 
-```ts:Good
+```ts::Good
 function foo(): void {
   let sum = 0
 

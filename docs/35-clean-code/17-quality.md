@@ -15,6 +15,19 @@ console.log('Hello world!')
 console.log('Hello, World!')
 ```
 
+## Don't commit code that cannot be executed
+
+```ts::Bad
+function foo(): void {
+ console.log(`Hello`)
+```
+
+```ts::Good
+function foo(): void {
+ console.log(`Hello`)
+}
+```
+
 ## Don't allow code clones
 
 ```ts::Bad

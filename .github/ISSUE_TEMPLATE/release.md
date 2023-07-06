@@ -48,7 +48,7 @@ assignees: ''
 
 ## 告知
 
-- [ ] ドキュメントの追加や更新があれば、 #give-and-take でアナウンスする。
+- [ ] [ドキュメントの追加や更新](https://github.com/sinProject-Inc/talk/commits/main/docs)があれば、 #give-and-take でアナウンスする。
 - [ ] SNS で告知するよう、プロダクトマネージャーに依頼する。
 
 ```markdown
