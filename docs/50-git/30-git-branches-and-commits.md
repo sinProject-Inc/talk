@@ -26,7 +26,7 @@ npm run branch "<branch-name> #<branch-number>"
 example:
 
 ```bash
-npm run create-branch "Docs: Correct English #990"
+npm run branch "Docs: Correct English #990"
 ```
 
 ## Commit message conventions
