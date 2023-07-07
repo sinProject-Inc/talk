@@ -7,9 +7,9 @@ description: This is a guide to producing readable, reusable, and refactorable s
 
 ```ts::Bad
 function foo(): void {
-  if (argument1.isValid()) {
-    if (argument2.isValid()) {
-      if (argument3.isValid()) {
+  if (argument1.is_valid()) {
+    if (argument2.is_valid()) {
+      if (argument3.is_valid()) {
         // DO SOMETHING
       }
     }
@@ -19,9 +19,9 @@ function foo(): void {
 
 ```ts::Good
 function foo(): void {
-  if (!argument1.isValid()) return
-  if (!argument2.isValid()) return
-  if (!argument3.isValid()) return
+  if (!argument1.is_valid()) return
+  if (!argument2.is_valid()) return
+  if (!argument3.is_valid()) return
 
   // DO SOMETHING
 }
