@@ -30,7 +30,8 @@ assignees: ''
 - [ ] [GitHub のリリース 作成ページ](https://github.com/sinProject-Inc/talk/releases)を開き、`Draft a new release` ボタンをクリックする。
 - [ ] `Choose a tag` で、新規作成したタグを選択する。
 - [ ] `Generate release notes` ボタンを押す。
-- [ ] 自動生成されたリリースノートを Preview して問題がないかを確認する。
+- [ ] 自動生成されたリリースノートの Release に関する項目を削除する。
+- [ ] Preview して問題がないかを確認する。
 - [ ] 問題なければ、`Publish release` ボタンを押してリリースを作成する。
 
 ## Server
