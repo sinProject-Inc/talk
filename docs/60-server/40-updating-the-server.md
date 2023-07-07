@@ -41,7 +41,8 @@ Please note that running the npm version command will create a new commit includ
 1. Open [the release creation page](https://github.com/sinProject-Inc/talk/releases) on GitHub and click the `Draft a new release` button.
 1. Select the newly created tag with `Choose a tag`.
 1. Press the `Generate release notes` button.
-1. Preview the automatically generated release notes to check for any problems.
+1. Delete the Release section of the automatically generated release notes.
+1. Preview to check for any problems.
 1. If there are no problems, press the `Publish release` button to create the release.
 
 ## Connecting Server
