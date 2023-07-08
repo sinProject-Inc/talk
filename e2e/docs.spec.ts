@@ -8,6 +8,7 @@ async function to_have_title(page: Page, title: string): Promise<void> {
 
 test.beforeEach(async ({ page }) => {
 	await page.goto(docs_base, { waitUntil: 'networkidle' })
+	await to_have_title(page, 'Portfolio')
 })
 
 test('root access', async ({ page }) => {
@@ -16,49 +17,45 @@ test('root access', async ({ page }) => {
 	// await expect(page).toHaveURL(`${docs_base}/introduction`)
 })
 
-// TODO: CIでテストが上手く通らないためコメントアウトしましたが、修正したほうが良い
-// test('access a page', async ({ page }) => {
-// 	await page.goto(`${docs_base}/about`, { waitUntil: 'networkidle' })
-// 	await to_have_title(page, 'About')
-// })
+test('access a page', async ({ page }) => {
+	await page.goto(`${docs_base}/about`, { waitUntil: 'networkidle' })
+	await to_have_title(page, 'About')
+})
 
-// async function to_have_text_on_next_page(page: Page, title: string): Promise<void> {
-// 	await page.getByTestId('next-page').click()
-// 	await to_have_title(page, title)
-// }
+async function to_have_text_on_next_page(page: Page, title: string): Promise<void> {
+	await page.getByTestId('next-page').click()
+	await to_have_title(page, title)
+}
 
-// TODO: CIでテストが上手く通らないためコメントアウトしましたが、修正したほうが良い
-// test('access next pages', async ({ page }) => {
-// 	await to_have_text_on_next_page(page, 'About')
-// })
+test('access next pages', async ({ page }) => {
+	await to_have_text_on_next_page(page, 'About')
+})
 
-// TODO: CIでテストが上手く通らないためコメントアウトしましたが、修正したほうが良い
-// test('open search modale with keyboard shortcut', async ({ page }) => {
-// 	await page.waitForLoadState('networkidle')
-// 	await page.waitForTimeout(500)
+test('open search modale with keyboard shortcut', async ({ page }) => {
+	await page.waitForLoadState('networkidle')
+	await page.waitForTimeout(500)
 
-// 	await page.keyboard.press('Control+KeyK')
+	await page.keyboard.press('Control+KeyK')
 
-// 	const search_modale = page.getByTestId('search-modale')
+	const search_modale = page.getByTestId('search-modale')
 
-// 	await expect(search_modale).toBeVisible()
-// })
+	await expect(search_modale).toBeVisible()
+})
 
-// TODO: CIでテストが上手く通らないためコメントアウトしましたが、修正したほうが良い
-// test('close search modale with keyboard shortcut', async ({ page }) => {
-// 	await page.waitForLoadState('networkidle')
-// 	await page.waitForTimeout(500)
+test('close search modale with keyboard shortcut', async ({ page }) => {
+	await page.waitForLoadState('networkidle')
+	await page.waitForTimeout(500)
 
-// 	await page.keyboard.press('Control+KeyK')
+	await page.keyboard.press('Control+KeyK')
 
-// 	const search_modale = page.getByTestId('search-modale')
+	const search_modale = page.getByTestId('search-modale')
 
-// 	await expect(search_modale).toBeVisible()
+	await expect(search_modale).toBeVisible()
 
-// 	await page.keyboard.press('Control+KeyK')
+	await page.keyboard.press('Control+KeyK')
 
-// 	await expect(search_modale).not.toBeVisible()
-// })
+	await expect(search_modale).not.toBeVisible()
+})
 
 test('open search modale with navbar button', async ({ page }) => {
 	page.setViewportSize({ width: 480, height: 600 })
