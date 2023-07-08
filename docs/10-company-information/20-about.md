@@ -29,6 +29,7 @@ sinProject Inc. is an software development company in Osaka, Japan. We primarily
 <div class="labels">
 	<span class="label">HTML</span>
 	<span class="label">CSS</span>
+	<span class="label">Markdown</span>
 	<span class="label">JavaScript</span>
 	<span class="label">TypeScript</span>
 	<span class="label">Dart</span>

@@ -12,6 +12,7 @@ description: sinProject Inc. is an software development company in Osaka, Japan.
 <div class="labels">
 	<span class="label">HTML</span>
 	<span class="label">CSS</span>
+	<span class="label">Markdown</span>
 	<span class="label">JavaScript</span>
 	<span class="label">TypeScript</span>
 	<span class="label">Svelte</span>
@@ -34,7 +35,7 @@ description: sinProject Inc. is an software development company in Osaka, Japan.
 	<span class="label">ESLint</span>
 </div>
 
-## Web application for B2B
+## Mill Test Report Search Engine
 
 A project in which we transitioned a B2B Windows application to a web application. Implemented features such as data search, quotation, and PDF output.
 
@@ -54,9 +55,9 @@ A project in which we transitioned a B2B Windows application to a web applicatio
 	<span class="label">ESLint</span>
 </div>
 
-## Web application for B2B 2
+## Sales Management System
 
-Replaced a sales management system created with Access with a web application.
+Replaced a Sales Management System created with Access with a web application.
 
 <div class="labels">
 	<span class="label">HTML</span>
@@ -205,7 +206,7 @@ A class library to improve the efficiency of business application development us
 	<span class="label">InputMan</span>
 </div>
 
-## Sales management system
+## Sales Management System
 
 <div class="labels">
 	<span class="label">VB.NET</span>
