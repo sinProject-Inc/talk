@@ -315,3 +315,18 @@ blockquote {
 		@apply mt-1.5 self-start;
 	}
 }
+
+.labels {
+	@apply my-4 flex flex-wrap gap-2;
+}
+
+.label {
+	@apply rounded-e-full rounded-s-full border-[1px] border-secondary px-3 py-0.5 text-xs text-secondary dark:border-secondary-dark dark:text-secondary-dark;
+}
+
+.youtube {
+	aspect-ratio: 16/9;
+	overflow: hidden;
+	width: 100%;
+	max-height: 30rem;
+}

@@ -1,5 +1,194 @@
 [
   {
+    "path": "app-structure",
+    "title": "App Structure",
+    "description": "This app consists the following screens. learn, translate, chat and docs.",
+    "content": "\nThis app consists the following screens:\n\nLearn\nTranslate\nChat\n",
+    "heading": ""
+  },
+  {
+    "path": "app-structure#learn",
+    "title": "App Structure",
+    "description": "This app consists the following screens. learn, translate, chat and docs.",
+    "content": "\n\nOn the Learn screen, you can select sentences and listen to how they are pronounced.\n\nAfter listening, you can check your own pronunciation through the app.\n\nYou can also register new sentences and add new translations.\n",
+    "heading": "Learn"
+  },
+  {
+    "path": "app-structure#translate",
+    "title": "App Structure",
+    "description": "This app consists the following screens. learn, translate, chat and docs.",
+    "content": "\n\nOn the Translate screen, people can have spoken conversations with other people who speak different languages.\n\nWhen you speak, your words will be displayed in the other party's language and you will hear their words in your own language.\n\nThis service allows you to converse in your own language and have a conversation with someone who speaks a different language.\n",
+    "heading": "Translate"
+  },
+  {
+    "path": "app-structure#chat",
+    "title": "App Structure",
+    "description": "This app consists the following screens. learn, translate, chat and docs.",
+    "content": "\n\nOn the Chat screen, people can converse through text online with people who speak different languages.\n\nEach user sends messages in their native language, and if the participants speak different languages, their messages will be automatically translated.\n\nAdditionally, when a participating member speaks in a different language, their message will be translated into the receiver's language.\n",
+    "heading": "Chat"
+  },
+  {
+    "path": "app-structure",
+    "title": "App Structure",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "app-structure#learn",
+    "title": "App Structure",
+    "description": "",
+    "heading": "Learn",
+    "content": "Learn"
+  },
+  {
+    "path": "app-structure#translate",
+    "title": "App Structure",
+    "description": "",
+    "heading": "Translate",
+    "content": "Translate"
+  },
+  {
+    "path": "app-structure#chat",
+    "title": "App Structure",
+    "description": "",
+    "heading": "Chat",
+    "content": "Chat"
+  },
+  {
+    "path": "app-structure",
+    "title": "App Structure",
+    "description": "",
+    "heading": "",
+    "content": "App Structure"
+  },
+  {
+    "path": "creating-a-project",
+    "title": "Creating a Project",
+    "description": "Prerequisites and Setting up the project",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "creating-a-project#prerequisites",
+    "title": "Creating a Project",
+    "description": "Prerequisites and Setting up the project",
+    "content": "\n\nMySQL Community Server 8.0.30 or higher\nNode.js 18.4.0 or higher\nnpm 8.13.2 or higher\n",
+    "heading": "Prerequisites"
+  },
+  {
+    "path": "creating-a-project#prerequisites-for-text-to-speech",
+    "title": "Creating a Project",
+    "description": "Prerequisites and Setting up the project",
+    "content": "\n\nSet up Google Cloud Text-to-Speech\n",
+    "heading": "Prerequisites for Text-to-Speech"
+  },
+  {
+    "path": "creating-a-project#prerequisites-for-translation",
+    "title": "Creating a Project",
+    "description": "Prerequisites and Setting up the project",
+    "content": "\n\nSet up DeepL API\n",
+    "heading": "Prerequisites for Translation"
+  },
+  {
+    "path": "creating-a-project#setting-up-the-project",
+    "title": "Creating a Project",
+    "description": "Prerequisites and Setting up the project",
+    "content": "\n\nHere are the steps:\n\nGet the project and setup:\n\nClone the repo to your current directory\ngit clone https://github.com/sinProject-Inc/talk.git\n\nInstall the dependencies\ncd /talk\nnpm install\n\nCreate a database with the name \"talk\"\nCreate a .env file by copying .env.example at the top level of the project\nRewrite the .env file with your environment variables\nPush the initial schema and data to the database:\n\nnpx prisma db push\nnpx prisma generate\nnpx prisma db seed\n\nInstall Redis, and run the command: redis-server\nRun locally\n\nStart the server and open the app in a new browser tab\nnpm run dev -- --open\n",
+    "heading": "Setting up the project"
+  },
+  {
+    "path": "creating-a-project",
+    "title": "Creating a Project",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "creating-a-project#prerequisites",
+    "title": "Creating a Project",
+    "description": "",
+    "heading": "Prerequisites",
+    "content": "Prerequisites"
+  },
+  {
+    "path": "creating-a-project#prerequisites-for-text-to-speech",
+    "title": "Creating a Project",
+    "description": "",
+    "heading": "Prerequisites for Text-to-Speech",
+    "content": "Prerequisites for Text-to-Speech"
+  },
+  {
+    "path": "creating-a-project#prerequisites-for-translation",
+    "title": "Creating a Project",
+    "description": "",
+    "heading": "Prerequisites for Translation",
+    "content": "Prerequisites for Translation"
+  },
+  {
+    "path": "creating-a-project#setting-up-the-project",
+    "title": "Creating a Project",
+    "description": "",
+    "heading": "Setting up the project",
+    "content": "Setting up the project"
+  },
+  {
+    "path": "creating-a-project",
+    "title": "Creating a Project",
+    "description": "",
+    "heading": "",
+    "content": "Creating a Project"
+  },
+  {
+    "path": "talk",
+    "title": "Talk",
+    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
+    "content": "\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n",
+    "heading": ""
+  },
+  {
+    "path": "talk#what-does-talk-offer-sinproject",
+    "title": "Talk",
+    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
+    "content": "\n\nTalk was created to establish coding conventions and development policies at sinProject Inc.\n\nThis guide covers various topics, such as how to use TypeScript, coding styles, GitHub workflows, defining GitHub Actions, login procedures, handling external APIs, and more. It serves as a comprehensive guideline for product development at sinProject.\n",
+    "heading": "What does Talk offer sinProject?"
+  },
+  {
+    "path": "talk#before-we-begin",
+    "title": "Talk",
+    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
+    "content": "An email address is required to use the service.\nIf you're reading this document to learn Svelte or SvelteKit, try the Svelte tutorial first.\nIf you get stuck, ask for help at @iam_o_sin on Twitter.\n",
+    "heading": "Before we begin"
+  },
+  {
+    "path": "talk",
+    "title": "Talk",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "talk#what-does-talk-offer-sinproject",
+    "title": "Talk",
+    "description": "",
+    "heading": "What does Talk offer sinProject?",
+    "content": "What does Talk offer sinProject?"
+  },
+  {
+    "path": "talk#before-we-begin",
+    "title": "Talk",
+    "description": "",
+    "heading": "Before we begin",
+    "content": "Before we begin"
+  },
+  {
+    "path": "talk",
+    "title": "Talk",
+    "description": "",
+    "heading": "",
+    "content": "Talk"
+  },
+  {
     "path": "docs-history",
     "title": "Docs History",
     "description": "We will provide a list and update history of the document files.",
@@ -472,7 +661,7 @@
     "path": "updating-the-server#github",
     "title": "Updating the server",
     "description": "We update the server using the following procedure.",
-    "content": "\n\nAttach the enhancement label to closed PRs that appear to be feature enhancements.\nOpen the release creation page on GitHub and click the Draft a new release button.\nSelect the newly created tag with Choose a tag.\nPress the Generate release notes button.\nPreview the automatically generated release notes to check for any problems.\nIf there are no problems, press the Publish release button to create the release.\n",
+    "content": "\n\nAttach the enhancement label to closed PRs that appear to be feature enhancements.\nOpen the release creation page on GitHub and click the Draft a new release button.\nSelect the newly created tag with Choose a tag.\nPress the Generate release notes button.\nDelete the Release section of the automatically generated release notes.\nPreview to check for any problems.\nIf there are no problems, press the Publish release button to create the release.\n",
     "heading": "GitHub"
   },
   {
@@ -598,7 +787,7 @@
     "path": "caddy#caddy-configuration",
     "title": "Caddy",
     "description": "Caddy is an open-source, HTTP/2-enabled web server written in Go.",
-    "content": "\n\nEdit the Caddyfile:\n\nsudo micro /etc/caddy/Caddyfile\n\nAdd your site configurations:\n\nexample.dev {\n\treverse_proxy :3001\n}\n\ntalk.example.dev {\n\treverse_proxy :3002\n}\n\nAdd cache control:\n\ntalk.example.dev {\n\treverse_proxy :3002\n\n\t@static path *.png *.jpg *.jpeg *.gif *.svg *.ico *.ttf *.woff\n\theader @static Cache-Control \"public, max-age=86400, must-revalidate\"\n}\n\nFinally, restart the Caddy service to apply the changes:\n\nsudo systemctl restart caddy\n\nMore info >\n",
+    "content": "\n\nEdit the Caddyfile:\n\nsudo micro /etc/caddy/Caddyfile\n\nAdd your site configurations:\n\nexample.dev {\n\treverse_proxy :3001\n}\n\ntalk.example.dev {\n\treverse_proxy :3002\n}\n\nAdd cache control:\n\ntalk.example.dev {\n\treverse_proxy :3002\n\n\t@static path *.avif *.woff2 *.png\n\theader @static Cache-Control \"public, max-age=86400, must-revalidate\"\n}\n\nFinally, restart the Caddy service to apply the changes:\n\nsudo systemctl restart caddy\n\nMore info >\n",
     "heading": "Caddy Configuration"
   },
   {
@@ -1141,6 +1330,13 @@
     "heading": ""
   },
   {
+    "path": "git-branches-and-commits#branching-strategy",
+    "title": "Git Branches and Commits",
+    "description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
+    "content": "\n\nAt first, we employed git-flow and managed multiple branches such as develop, feature, release, hotfix, and master. However, after years of operation and trial and error, we now simply use only the main branch as the integration branch and topic branches.\n",
+    "heading": "Branching Strategy"
+  },
+  {
     "path": "git-branches-and-commits#git-branch-naming-conventions",
     "title": "Git Branches and Commits",
     "description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
@@ -1151,7 +1347,7 @@
     "path": "git-branches-and-commits#script",
     "title": "Git Branches and Commits",
     "description": "Write the issue number and issue title in kebab-case, connected with a hyphen.",
-    "content": "\n\nWe have prepared a script to create branches issue names.\n\nnpm run create-branch \" #\"\n\nexample:\n\nnpm run create-branch \"Docs: Correct English #990\"\n",
+    "content": "\n\nWe have prepared a script to create branches issue names.\n\nnpm run branch \" #\"\n\nexample:\n\nnpm run branch \"Docs: Correct English #990\"\n",
     "heading": "Script"
   },
   {
@@ -1167,6 +1363,13 @@
     "description": "",
     "heading": "",
     "content": ""
+  },
+  {
+    "path": "git-branches-and-commits#branching-strategy",
+    "title": "Git Branches and Commits",
+    "description": "",
+    "heading": "Branching Strategy",
+    "content": "Branching Strategy"
   },
   {
     "path": "git-branches-and-commits#git-branch-naming-conventions",
@@ -1645,39 +1848,676 @@
     "content": "Vitest"
   },
   {
-    "path": "style-guide",
-    "title": "Style Guide",
-    "description": "This doc goes over some of the code style we use.",
-    "content": "\nThis doc goes over some of the code style we use.\n",
+    "path": "comments",
+    "title": "Comments",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
     "heading": ""
   },
   {
-    "path": "style-guide#async-code",
-    "title": "Style Guide",
-    "description": "This doc goes over some of the code style we use.",
-    "content": "\n\nPrefer writing async code with try and catch blocks and using await.\n\nGood Example\n\npublic async get_hostname(): Promise {\n\tconst reverse_dns = util.promisify(dns.reverse)\n\n\ttry {\n\t\tconst hostnames = await reverse_dns(this._client_address)\n\t\treturn hostnames[0]\n\t} catch (e) {\n\t\tconsole.warn('Reverse DNS lookup failed.', e)\n\t\treturn ''\n\t}\n}\n\nBad Example\n\npublic async get_hostname(): Promise {\n\tconst hostname: string[] = await new Promise((resolve) => {\n\t\tdns.reverse(this._client_address, (e, hostnames) => {\n\t\t\tif (e) {\n\t\t\t\tconsole.warn('Reverse DNS lookup failed.', e)\n\t\t\t\tresolve([])\n\t\t\t} else {\n\t\t\t\tresolve(hostnames[0])\n\t\t\t}\n\t\t})\n\t})\n\n\treturn hostname\n}\n",
-    "heading": "Async Code"
+    "path": "comments#prefer-self-explanatory-code-instead-of-comments",
+    "title": "Comments",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\n// Check if subscription is active.\nif (subscription.end_date > Date.now) {\n\t/* ... */\n}\n\nconst is_subscription_active = subscription.end_date > Date.now\n\nif (is_subscription_active) {\n  /* ... */\n}\n",
+    "heading": "Prefer self explanatory code instead of comments"
   },
   {
-    "path": "style-guide",
-    "title": "Style Guide",
+    "path": "comments#don-t-leave-commented-out-code-in-your-codebase",
+    "title": "Comments",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\ndo_stuff()\n// doOtherStuff()\n// doSomeMoreStuff()\n// doSoMuchStuff()\n\ndo_stuff()\n",
+    "heading": "Don't leave commented out code in your codebase"
+  },
+  {
+    "path": "comments#don-t-have-journal-comments",
+    "title": "Comments",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\n/**\n 2016-12-20: Removed monads, didn't understand them (RM)\n 2016-10-01: Improved using special monads (JP)\n 2016-02-03: Removed type-checking (LI)\n 2015-03-14: Added combine with type-checking (JR)\n */\nfunction combine(a: number, b: number): number {\n  return a + b;\n}\n\nfunction combine(a: number, b: number): number {\n  return a + b;\n}\n",
+    "heading": "Don't have journal comments"
+  },
+  {
+    "path": "comments",
+    "title": "Comments",
     "description": "",
     "heading": "",
     "content": ""
   },
   {
-    "path": "style-guide#async-code",
-    "title": "Style Guide",
+    "path": "comments#prefer-self-explanatory-code-instead-of-comments",
+    "title": "Comments",
     "description": "",
-    "heading": "Async Code",
-    "content": "Async Code"
+    "heading": "Prefer self explanatory code instead of comments",
+    "content": "Prefer self explanatory code instead of comments"
   },
   {
-    "path": "style-guide",
-    "title": "Style Guide",
+    "path": "comments#don-t-leave-commented-out-code-in-your-codebase",
+    "title": "Comments",
+    "description": "",
+    "heading": "Don't leave commented out code in your codebase",
+    "content": "Don't leave commented out code in your codebase"
+  },
+  {
+    "path": "comments#don-t-have-journal-comments",
+    "title": "Comments",
+    "description": "",
+    "heading": "Don't have journal comments",
+    "content": "Don't have journal comments"
+  },
+  {
+    "path": "comments",
+    "title": "Comments",
     "description": "",
     "heading": "",
-    "content": "Style Guide"
+    "content": "Comments"
+  },
+  {
+    "path": "error-handling",
+    "title": "Error handling",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "error-handling#always-use-error-for-throwing-or-rejecting",
+    "title": "Error handling",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction calculate_total(items: Item[]): number {\n  throw 'Not implemented.'\n}\n\nfunction calculate_total(items: Item[]): number {\n  throw new Error('Not implemented.')\n}\n",
+    "heading": "Always use Error for throwing or rejecting"
+  },
+  {
+    "path": "error-handling#don-t-ignore-caught-errors",
+    "title": "Error handling",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\ntry {\n  function_that_might_throw()\n} catch (error) {\n  console.log(error)\n}\n\ntry {\n  function_that_might_throw()\n} catch (error) {\n  // One option (more noisy than console.log):\n  console.error(error)\n  // Another option:\n  notify_user_of_error(error)\n  // Another option:\n  report_error_to_service(error)\n  // OR do all three!\n}\n",
+    "heading": "Don’t ignore caught errors"
+  },
+  {
+    "path": "error-handling",
+    "title": "Error handling",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "error-handling#always-use-error-for-throwing-or-rejecting",
+    "title": "Error handling",
+    "description": "",
+    "heading": "Always use Error for throwing or rejecting",
+    "content": "Always use Error for throwing or rejecting"
+  },
+  {
+    "path": "error-handling#don-t-ignore-caught-errors",
+    "title": "Error handling",
+    "description": "",
+    "heading": "Don’t ignore caught errors",
+    "content": "Don’t ignore caught errors"
+  },
+  {
+    "path": "error-handling",
+    "title": "Error handling",
+    "description": "",
+    "heading": "",
+    "content": "Error handling"
+  },
+  {
+    "path": "concurrency",
+    "title": "Concurrency",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "concurrency#use-promises-not-callbacks",
+    "title": "Concurrency",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\npublic async get_hostname(): Promise {\n\tconst hostname: string[] = await new Promise((resolve) => {\n\t\tdns.reverse(this._client_address, (e, hostnames) => {\n\t\t\tif (e) {\n\t\t\t\tconsole.warn('Reverse DNS lookup failed.', e)\n\t\t\t\tresolve([])\n\t\t\t} else {\n\t\t\t\tresolve(hostnames[0])\n\t\t\t}\n\t\t})\n\t})\n\n\treturn hostname\n}\n\npublic async get_hostname(): Promise {\n\tconst reverse_dns = util.promisify(dns.reverse)\n\n\ttry {\n\t\tconst hostnames = await reverse_dns(this._client_address)\n\t\treturn hostnames[0]\n\t} catch (e) {\n\t\tconsole.warn('Reverse DNS lookup failed.', e)\n\t\treturn ''\n\t}\n}\n",
+    "heading": "Use Promises, not callbacks"
+  },
+  {
+    "path": "concurrency",
+    "title": "Concurrency",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "concurrency#use-promises-not-callbacks",
+    "title": "Concurrency",
+    "description": "",
+    "heading": "Use Promises, not callbacks",
+    "content": "Use Promises, not callbacks"
+  },
+  {
+    "path": "concurrency",
+    "title": "Concurrency",
+    "description": "",
+    "heading": "",
+    "content": "Concurrency"
+  },
+  {
+    "path": "classes",
+    "title": "Classes",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "classes#classes-should-be-small",
+    "title": "Classes",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nclass Dashboard {\n  disable(): void { /* ... */ }\n  enable(): void { /* ... */ }\n  getVersion(): string { /* ... */ }\n  getLanguage(): string { /* ... */ }\n  setLanguage(language: string): void { /* ... */ }\n  // ...\n}\n\nclass Dashboard {\n  disable(): void { /* ... */ }\n  enable(): void { /* ... */ }\n  getVersion(): string { /* ... */ }\n}\n",
+    "heading": "Classes should be small"
+  },
+  {
+    "path": "classes",
+    "title": "Classes",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "classes#classes-should-be-small",
+    "title": "Classes",
+    "description": "",
+    "heading": "Classes should be small",
+    "content": "Classes should be small"
+  },
+  {
+    "path": "classes",
+    "title": "Classes",
+    "description": "",
+    "heading": "",
+    "content": "Classes"
+  },
+  {
+    "path": "objects-and-data-structures",
+    "title": "Objects and Data Structures",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "objects-and-data-structures#make-objects-have-private-protected-members",
+    "title": "Objects and Data Structures",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nclass Circle {\n  public radius: number;\n\n  public constructor(radius: number) {\n    this.radius = radius\n  }\n}\n\nclass Circle {\n  public constructor(private readonly _radius: number) {}\n}\n",
+    "heading": "Make objects have private/protected members"
+  },
+  {
+    "path": "objects-and-data-structures",
+    "title": "Objects and Data Structures",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "objects-and-data-structures#make-objects-have-private-protected-members",
+    "title": "Objects and Data Structures",
+    "description": "",
+    "heading": "Make objects have private/protected members",
+    "content": "Make objects have private/protected members"
+  },
+  {
+    "path": "objects-and-data-structures",
+    "title": "Objects and Data Structures",
+    "description": "",
+    "heading": "",
+    "content": "Objects and Data Structures"
+  },
+  {
+    "path": "functions",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "functions#use-early-return-pattern",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction foo(): void {\n  if (argument1.is_valid()) {\n    if (argument2.is_valid()) {\n      if (argument3.is_valid()) {\n        // DO SOMETHING\n      }\n    }\n  }\n}\n\nfunction foo(): void {\n  if (!argument1.is_valid()) return\n  if (!argument2.is_valid()) return\n  if (!argument3.is_valid()) return\n\n  // DO SOMETHING\n}\n",
+    "heading": "Use early return pattern"
+  },
+  {
+    "path": "functions#functions-should-do-one-thing",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction email_clients(clients: Client[]) {\n  clients.forEach((client) => {\n    const client_record = database.lookup(client)\n    if (client_record.is_active()) {\n      email(client)\n    }\n  })\n}\n\nfunction email_clients(clients: Client[]) {\n  clients.filter(is_active_client).forEach(email)\n}\n\nfunction is_active_client(client: Client) {\n  const client_record = database.lookup(client)\n  return client_record.is_active()\n}\n",
+    "heading": "Functions should do one thing"
+  },
+  {
+    "path": "functions#function-names-should-say-what-they-do",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction add_to_date(date: Date, month: number): Date {\n  // ...\n}\n\nconst date = new Date()\n\n// It's hard to tell from the function name what is added\nadd_to_date(date, 1)\n\nfunction add_month_to_date(date: Date, month: number): Date {\n  // ...\n}\n\nconst date = new Date()\n\nadd_month_to_date(date, 1)\n",
+    "heading": "Function names should say what they do"
+  },
+  {
+    "path": "functions#don-t-use-flags-as-function-parameters",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction create_file(name: string, temp: boolean) {\n  if (temp) {\n    fs.create(./temp/${name})\n  } else {\n    fs.create(name)\n  }\n}\n\nfunction create_temp_file(name: string) {\n  create_file(./temp/${name})\n}\n\nfunction create_file(name: string) {\n  fs.create(name)\n}\n",
+    "heading": "Don't use flags as function parameters"
+  },
+  {
+    "path": "functions#avoid-negative-conditionals",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction is_email_not_used(email: string): boolean {\n  // ...\n}\n\nif (is_email_not_used(email)) {\n  // ...\n}\n\nfunction is_email_used(email: string): boolean {\n  // ...\n}\n\nif (!is_email_used(node)) {\n  // ...\n}\n",
+    "heading": "Avoid negative conditionals"
+  },
+  {
+    "path": "functions#remove-dead-code",
+    "title": "Functions",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction old_request_module(url: string) {\n  // ...\n}\n\nfunction request_module(url: string) {\n  // ...\n}\n\nconst req = requestModule\n\nfunction request_module(url: string) {\n  // ...\n}\n\nconst req = requestModule\n",
+    "heading": "Remove dead code"
+  },
+  {
+    "path": "functions",
+    "title": "Functions",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "functions#use-early-return-pattern",
+    "title": "Functions",
+    "description": "",
+    "heading": "Use early return pattern",
+    "content": "Use early return pattern"
+  },
+  {
+    "path": "functions#functions-should-do-one-thing",
+    "title": "Functions",
+    "description": "",
+    "heading": "Functions should do one thing",
+    "content": "Functions should do one thing"
+  },
+  {
+    "path": "functions#function-names-should-say-what-they-do",
+    "title": "Functions",
+    "description": "",
+    "heading": "Function names should say what they do",
+    "content": "Function names should say what they do"
+  },
+  {
+    "path": "functions#don-t-use-flags-as-function-parameters",
+    "title": "Functions",
+    "description": "",
+    "heading": "Don't use flags as function parameters",
+    "content": "Don't use flags as function parameters"
+  },
+  {
+    "path": "functions#avoid-negative-conditionals",
+    "title": "Functions",
+    "description": "",
+    "heading": "Avoid negative conditionals",
+    "content": "Avoid negative conditionals"
+  },
+  {
+    "path": "functions#remove-dead-code",
+    "title": "Functions",
+    "description": "",
+    "heading": "Remove dead code",
+    "content": "Remove dead code"
+  },
+  {
+    "path": "functions",
+    "title": "Functions",
+    "description": "",
+    "heading": "",
+    "content": "Functions"
+  },
+  {
+    "path": "variables",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "variables#use-meaningful-and-pronounceable-variable-names",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconst yyyymmdstr = moment().format('YYYY/MM/DD')\n\nconst formatted_current_date = moment().format('YYYY/MM/DD')\n",
+    "heading": "Use meaningful and pronounceable variable names"
+  },
+  {
+    "path": "variables#use-searchable-names",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\n// What the heck is 86400000 for?\nsetTimeout(restart, 86400000)\n\n// Declare them as capitalized named constants.\nconst milliseconds_per_day = 60 * 60 * 24 * 1000 //86400000\n\nsetTimeout(restart, milliseconds_per_day)\n",
+    "heading": "Use searchable names"
+  },
+  {
+    "path": "variables#use-explanatory-variables",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconst user_map: Map\n\nfor (const key_value of user_map) {\n\t// ...\n}\n\nconst user_map: Map\n\nfor (const [id, user] of user_map) {\n\t// ...\n}\n",
+    "heading": "Use explanatory variables"
+  },
+  {
+    "path": "variables#avoid-mental-mapping",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconst c = get_count()\nconst u = get_user()\n\nconst count = get_count()\nconst user = get_user()\n",
+    "heading": "Avoid Mental Mapping"
+  },
+  {
+    "path": "variables#don-t-add-unneeded-context",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconst Car = {\n  car_make: \"Honda\",\n  car_model: \"Accord\",\n  car_color: \"Blue\"\n}\n\nfunction paint_car(car: Car, color: string): void {\n  car.car_color = color\n}\n\nconst Car = {\n  make: \"Honda\",\n  model: \"Accord\",\n  color: \"Blue\"\n}\n\nfunction paint_car(car: Car, color: string): void {\n  car.color = color\n}\n",
+    "heading": "Don't add unneeded context"
+  },
+  {
+    "path": "variables#use-default-parameters-instead-of-short-circuiting-or-conditionals",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction load_pages(count?: number) {\n  const load_count = count ?? 10\n  // ...\n}\n\nfunction load_pages(count: number = 10) {\n  // ...\n}\n",
+    "heading": "Use default parameters instead of short circuiting or conditionals"
+  },
+  {
+    "path": "variables#use-enum-to-document-the-intent",
+    "title": "Variables",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconst GENRE = {\n  ROMANTIC: 'romantic',\n  DRAMA: 'drama',\n  COMEDY: 'comedy',\n  DOCUMENTARY: 'documentary',\n}\n\nenum genre {\n  romantic,\n  drama,\n  comedy,\n  documentary,\n}\n",
+    "heading": "Use enum to document the intent"
+  },
+  {
+    "path": "variables",
+    "title": "Variables",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "variables#use-meaningful-and-pronounceable-variable-names",
+    "title": "Variables",
+    "description": "",
+    "heading": "Use meaningful and pronounceable variable names",
+    "content": "Use meaningful and pronounceable variable names"
+  },
+  {
+    "path": "variables#use-searchable-names",
+    "title": "Variables",
+    "description": "",
+    "heading": "Use searchable names",
+    "content": "Use searchable names"
+  },
+  {
+    "path": "variables#use-explanatory-variables",
+    "title": "Variables",
+    "description": "",
+    "heading": "Use explanatory variables",
+    "content": "Use explanatory variables"
+  },
+  {
+    "path": "variables#avoid-mental-mapping",
+    "title": "Variables",
+    "description": "",
+    "heading": "Avoid Mental Mapping",
+    "content": "Avoid Mental Mapping"
+  },
+  {
+    "path": "variables#don-t-add-unneeded-context",
+    "title": "Variables",
+    "description": "",
+    "heading": "Don't add unneeded context",
+    "content": "Don't add unneeded context"
+  },
+  {
+    "path": "variables#use-default-parameters-instead-of-short-circuiting-or-conditionals",
+    "title": "Variables",
+    "description": "",
+    "heading": "Use default parameters instead of short circuiting or conditionals",
+    "content": "Use default parameters instead of short circuiting or conditionals"
+  },
+  {
+    "path": "variables#use-enum-to-document-the-intent",
+    "title": "Variables",
+    "description": "",
+    "heading": "Use enum to document the intent",
+    "content": "Use enum to document the intent"
+  },
+  {
+    "path": "variables",
+    "title": "Variables",
+    "description": "",
+    "heading": "",
+    "content": "Variables"
+  },
+  {
+    "path": "quality",
+    "title": "Quality",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "quality#achieve-exactly-what-is-being-requested",
+    "title": "Quality",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nDisplay 'Hello, World!'\n\nconsole.log('Hello world!')\n\nconsole.log('Hello, World!')\n",
+    "heading": "Achieve exactly what is being requested"
+  },
+  {
+    "path": "quality#don-t-commit-code-that-cannot-be-executed",
+    "title": "Quality",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction foo(): void {\n console.log(Hello)\n\nfunction foo(): void {\n console.log(Hello)\n}\n",
+    "heading": "Don't commit code that cannot be executed"
+  },
+  {
+    "path": "quality#don-t-allow-code-clones",
+    "title": "Quality",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction check_odd_or_even(input_number: number): string {\n  if (input_number % 2 == 0) {\n    return ${input_number} is Even;\n  } else {\n    return ${input_number} is Odd;\n  }\n}\n\nfunction check_odd_or_even(input_number: number): string {\n  let result = input_number % 2 == 0 ? 'Even' : 'Odd';\n\n  return ${input_number} is ${result};\n}\n",
+    "heading": "Don't allow code clones"
+  },
+  {
+    "path": "quality",
+    "title": "Quality",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "quality#achieve-exactly-what-is-being-requested",
+    "title": "Quality",
+    "description": "",
+    "heading": "Achieve exactly what is being requested",
+    "content": "Achieve exactly what is being requested"
+  },
+  {
+    "path": "quality#don-t-commit-code-that-cannot-be-executed",
+    "title": "Quality",
+    "description": "",
+    "heading": "Don't commit code that cannot be executed",
+    "content": "Don't commit code that cannot be executed"
+  },
+  {
+    "path": "quality#don-t-allow-code-clones",
+    "title": "Quality",
+    "description": "",
+    "heading": "Don't allow code clones",
+    "content": "Don't allow code clones"
+  },
+  {
+    "path": "quality",
+    "title": "Quality",
+    "description": "",
+    "heading": "",
+    "content": "Quality"
+  },
+  {
+    "path": "format",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "",
+    "heading": ""
+  },
+  {
+    "path": "format#use-only-single-quotes",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconsole.log(\"Hello\")\nconsole.log('World')\n\nconsole.log('Hello')\nconsole.log('World')\n",
+    "heading": "Use only single quotes"
+  },
+  {
+    "path": "format#don-t-append-semicolons-at-the-end-of-lines",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconsole.log('Hello');\n\nconsole.log('Hello')\n",
+    "heading": "Don't append semicolons at the end of lines"
+  },
+  {
+    "path": "format#use-template-literals",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nconst first_name = 'John'\nconst last_name = 'Smith'\n\nconsole.log(first_name + ' ' + last_name)\n\nconst first_name = 'John'\nconst last_name = 'Smith'\n\nconsole.log(${first_name} ${last_name})\n",
+    "heading": "Use template literals"
+  },
+  {
+    "path": "format#use-white-space-for-readability",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfor(let i=1;i<=10;i++){\n  // ...\n}\n\nfor (let i = 0; i <= 10; i++) {\n  // ...\n}\n",
+    "heading": "Use white space for readability"
+  },
+  {
+    "path": "format#use-blank-lines-for-readability",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction foo(): number {\n  let sum = 0\n  for (...) {\n    const buz = ''\n    if (...) {\n      // ...\n    }\n    console.log(...)\n  }\n  return sum\n}\nfunction bar(): void {\n  // ...\n}\n\nfunction foo(): void {\n  let sum = 0\n\n  for (...) {\n    const buz = ''\n\n    if (...) {\n      // ...\n    }\n\n    console.log(...)\n  }\n\n  return sum\n}\n\nfunction bar(): void {\n  // ...\n}\n",
+    "heading": "Use blank lines for readability"
+  },
+  {
+    "path": "format#explicit-function-return-type",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction foo() {\n  // ...\n  return true;\n}\n\nfunction foo(): boolean {\n  // ...\n  return true;\n}\n",
+    "heading": "Explicit function return type"
+  },
+  {
+    "path": "format#don-t-allow-unreachable-code",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction foo(): boolean {\n  // ...\n  return true;\n  console.log('Hello');\n}\n\nfunction foo(): boolean {\n  // ...\n  return true;\n}\n",
+    "heading": "Don't allow unreachable code"
+  },
+  {
+    "path": "format#variable-names-argument-names-and-function-names-should-be-in-snake-case",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nfunction fooBar(pageCount: number): void {\n  const maxCount = 5\n  // ...\n}\n\nfunction foo_bar(page_count: number): void {\n  const max_count = 5\n  // ...\n}\n",
+    "heading": "Variable names, argument names, and function names should be in snake_case"
+  },
+  {
+    "path": "format#explicit-member-accessibility",
+    "title": "Format",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\n\nclass Foo {\n  bar(): void {\n    // ...\n  }\n}\n\nclass Foo {\n  public bar(): void {\n    // ...\n  }\n}\n",
+    "heading": "Explicit member accessibility"
+  },
+  {
+    "path": "format",
+    "title": "Format",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "format#use-only-single-quotes",
+    "title": "Format",
+    "description": "",
+    "heading": "Use only single quotes",
+    "content": "Use only single quotes"
+  },
+  {
+    "path": "format#don-t-append-semicolons-at-the-end-of-lines",
+    "title": "Format",
+    "description": "",
+    "heading": "Don't append semicolons at the end of lines",
+    "content": "Don't append semicolons at the end of lines"
+  },
+  {
+    "path": "format#use-template-literals",
+    "title": "Format",
+    "description": "",
+    "heading": "Use template literals",
+    "content": "Use template literals"
+  },
+  {
+    "path": "format#use-white-space-for-readability",
+    "title": "Format",
+    "description": "",
+    "heading": "Use white space for readability",
+    "content": "Use white space for readability"
+  },
+  {
+    "path": "format#use-blank-lines-for-readability",
+    "title": "Format",
+    "description": "",
+    "heading": "Use blank lines for readability",
+    "content": "Use blank lines for readability"
+  },
+  {
+    "path": "format#explicit-function-return-type",
+    "title": "Format",
+    "description": "",
+    "heading": "Explicit function return type",
+    "content": "Explicit function return type"
+  },
+  {
+    "path": "format#don-t-allow-unreachable-code",
+    "title": "Format",
+    "description": "",
+    "heading": "Don't allow unreachable code",
+    "content": "Don't allow unreachable code"
+  },
+  {
+    "path": "format#variable-names-argument-names-and-function-names-should-be-in-snake-case",
+    "title": "Format",
+    "description": "",
+    "heading": "Variable names, argument names, and function names should be in snake_case",
+    "content": "Variable names, argument names, and function names should be in snake_case"
+  },
+  {
+    "path": "format#explicit-member-accessibility",
+    "title": "Format",
+    "description": "",
+    "heading": "Explicit member accessibility",
+    "content": "Explicit member accessibility"
+  },
+  {
+    "path": "format",
+    "title": "Format",
+    "description": "",
+    "heading": "",
+    "content": "Format"
+  },
+  {
+    "path": "clean-code",
+    "title": "Clean Code",
+    "description": "This is a guide to producing readable, reusable, and refactorable software for TypeScript.",
+    "content": "\nThis is a guide to producing readable, reusable, and refactorable software for TypeScript.\n\nThis is an adaptation of Martin's book Clean Code for our team.\n\nWe also referred to clean-code-javascript and clean-code-typescript.\n",
+    "heading": ""
+  },
+  {
+    "path": "clean-code",
+    "title": "Clean Code",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "clean-code",
+    "title": "Clean Code",
+    "description": "",
+    "heading": "",
+    "content": "Clean Code"
   },
   {
     "path": "stylelint",
@@ -1876,6 +2716,209 @@
     "content": "TypeScript Config"
   },
   {
+    "path": "ttf-to-woff2",
+    "title": "TTF to WOFF2",
+    "description": "When we handle font files, we use google/woff2 to convert them to WOFF2 files.",
+    "content": "\nWhen we handle font files, we use google/woff2 to convert them to WOFF2 files.\n",
+    "heading": ""
+  },
+  {
+    "path": "ttf-to-woff2#woff-2-0-web-open-font-format",
+    "title": "TTF to WOFF2",
+    "description": "When we handle font files, we use google/woff2 to convert them to WOFF2 files.",
+    "content": "\n\nTrueType/OpenType font that provides better compression than WOFF 1.0.\n\nWOFF2 improves upon WOFF with more effective compression, reducing font file sizes by approximately 30%. This leads to faster load times, enhancing website performance. Additionally, it supports all variations of glyph, increasing its versatility.\n\nCan I use WOFF 2.0\n\nCheck browsers that support WOFF 2.0 on caniuse.com.\n",
+    "heading": "WOFF 2.0 - Web Open Font Format"
+  },
+  {
+    "path": "ttf-to-woff2#google-woff2",
+    "title": "TTF to WOFF2",
+    "description": "When we handle font files, we use google/woff2 to convert them to WOFF2 files.",
+    "content": "\nBuild & Run\n\nPlease refer to the GitHub of google/woff2.\n\nMake it even easier to use\n\nAdd a path to the .zshrc file to make it easier to use.\n\nexport PATH=\"$PATH:/Users/iwasakishinya/development/woff2\"\n\nHow to use\n\nMove to the path where the font file is located and execute as follows.\n\ncd ~/development/talk/static/fonts\nwoff2_compress my_font.ttf\n",
+    "heading": "google/woff2"
+  },
+  {
+    "path": "ttf-to-woff2",
+    "title": "TTF to WOFF2",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "ttf-to-woff2#woff-2-0-web-open-font-format",
+    "title": "TTF to WOFF2",
+    "description": "",
+    "heading": "WOFF 2.0 - Web Open Font Format",
+    "content": "WOFF 2.0 - Web Open Font Format"
+  },
+  {
+    "path": "ttf-to-woff2#google-woff2",
+    "title": "TTF to WOFF2",
+    "description": "",
+    "heading": "google/woff2",
+    "content": "google/woff2"
+  },
+  {
+    "path": "ttf-to-woff2",
+    "title": "TTF to WOFF2",
+    "description": "",
+    "heading": "",
+    "content": "TTF to WOFF2"
+  },
+  {
+    "path": "jpg-png-to-avif",
+    "title": "JPG/PNG to AVIF",
+    "description": "When we handle image files, we use cavif-rs / Squoosh to convert them to AVIF files.",
+    "content": "\nWhen we handle image files, we use cavif-rs / Squoosh to convert them to AVIF files.\n",
+    "heading": ""
+  },
+  {
+    "path": "jpg-png-to-avif#avif-image-format",
+    "title": "JPG/PNG to AVIF",
+    "description": "When we handle image files, we use cavif-rs / Squoosh to convert them to AVIF files.",
+    "content": "\n\nA modern image format based on the AV1 video format. AVIF generally has better compression than WebP, JPEG, PNG and GIF and is designed to supersede them. AVIF competes with JPEG XL which has similar compression quality and is generally seen as more feature-rich than AVIF. (Source: caniuse.com)\n\nAVIF provides superior compression to WebP, retaining high image quality at lower file sizes. It supports up to 12-bit color depth, offers better transparency handling, and ensures efficient encoding and decoding, making it a more advanced choice.\n\nCan I use AVIF\n\nCheck browsers that support AVIF on caniuse.com.\n",
+    "heading": "AVIF image format"
+  },
+  {
+    "path": "jpg-png-to-avif#cavif-rs",
+    "title": "JPG/PNG to AVIF",
+    "description": "When we handle image files, we use cavif-rs / Squoosh to convert them to AVIF files.",
+    "content": "\n\ncavif-rs can be easily executed in the terminal.\n\nInstall & Run\n\nPlease refer to the GitHub of cavif-rs.\n\nHow to use\n\nMove to the path where the image file is located and execute as follows.\n\ncd ~/development/talk/static\ncavif icon-512.png\n",
+    "heading": "cavif-rs"
+  },
+  {
+    "path": "jpg-png-to-avif#squoosh",
+    "title": "JPG/PNG to AVIF",
+    "description": "When we handle image files, we use cavif-rs / Squoosh to convert them to AVIF files.",
+    "content": "\n\nSquoosh is a web application. You can adjust settings while viewing the image quality on the screen.\n",
+    "heading": "Squoosh"
+  },
+  {
+    "path": "jpg-png-to-avif",
+    "title": "JPG/PNG to AVIF",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "jpg-png-to-avif#avif-image-format",
+    "title": "JPG/PNG to AVIF",
+    "description": "",
+    "heading": "AVIF image format",
+    "content": "AVIF image format"
+  },
+  {
+    "path": "jpg-png-to-avif#cavif-rs",
+    "title": "JPG/PNG to AVIF",
+    "description": "",
+    "heading": "cavif-rs",
+    "content": "cavif-rs"
+  },
+  {
+    "path": "jpg-png-to-avif#squoosh",
+    "title": "JPG/PNG to AVIF",
+    "description": "",
+    "heading": "Squoosh",
+    "content": "Squoosh"
+  },
+  {
+    "path": "jpg-png-to-avif",
+    "title": "JPG/PNG to AVIF",
+    "description": "",
+    "heading": "",
+    "content": "JPG/PNG to AVIF"
+  },
+  {
+    "path": "assets",
+    "title": "Assets",
+    "description": "We are using the assets from the following sites",
+    "content": "\nWe are using the assets from the following sites:\n",
+    "heading": ""
+  },
+  {
+    "path": "assets#icons",
+    "title": "Assets",
+    "description": "We are using the assets from the following sites",
+    "content": "\n\ntabler ICONS\nGoogle Fonts - Icons\nFreepik - Flaticon\n",
+    "heading": "Icons"
+  },
+  {
+    "path": "assets#images",
+    "title": "Assets",
+    "description": "We are using the assets from the following sites",
+    "content": "\n\nUnsplash\nPexels\n",
+    "heading": "Images"
+  },
+  {
+    "path": "assets#fonts",
+    "title": "Assets",
+    "description": "We are using the assets from the following sites",
+    "content": "\n\nDaFont\nGoogle Fonts\n",
+    "heading": "Fonts"
+  },
+  {
+    "path": "assets#illustration",
+    "title": "Assets",
+    "description": "We are using the assets from the following sites",
+    "content": "\n\nいらすとや\n",
+    "heading": "Illustration"
+  },
+  {
+    "path": "assets#sounds",
+    "title": "Assets",
+    "description": "We are using the assets from the following sites",
+    "content": "\n\npixabay\n",
+    "heading": "Sounds"
+  },
+  {
+    "path": "assets",
+    "title": "Assets",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "assets#icons",
+    "title": "Assets",
+    "description": "",
+    "heading": "Icons",
+    "content": "Icons"
+  },
+  {
+    "path": "assets#images",
+    "title": "Assets",
+    "description": "",
+    "heading": "Images",
+    "content": "Images"
+  },
+  {
+    "path": "assets#fonts",
+    "title": "Assets",
+    "description": "",
+    "heading": "Fonts",
+    "content": "Fonts"
+  },
+  {
+    "path": "assets#illustration",
+    "title": "Assets",
+    "description": "",
+    "heading": "Illustration",
+    "content": "Illustration"
+  },
+  {
+    "path": "assets#sounds",
+    "title": "Assets",
+    "description": "",
+    "heading": "Sounds",
+    "content": "Sounds"
+  },
+  {
+    "path": "assets",
+    "title": "Assets",
+    "description": "",
+    "heading": "",
+    "content": "Assets"
+  },
+  {
     "path": "warp",
     "title": "Warp",
     "description": "Warp is a blazingly fast, Rust-based terminal reimagined from the ground up to work like a modern app.",
@@ -2051,83 +3094,6 @@
     "content": "ChatGPT Prompts"
   },
   {
-    "path": "assets",
-    "title": "Assets",
-    "description": "We are using the assets from the following sites",
-    "content": "\nWe are using the assets from the following sites:\n",
-    "heading": ""
-  },
-  {
-    "path": "assets#icons",
-    "title": "Assets",
-    "description": "We are using the assets from the following sites",
-    "content": "\n\ntabler ICONS\nGoogle Fonts - Icons\nFreepik - Flaticon\n",
-    "heading": "Icons"
-  },
-  {
-    "path": "assets#images",
-    "title": "Assets",
-    "description": "We are using the assets from the following sites",
-    "content": "\n\nUnsplash\nPexels\n",
-    "heading": "Images"
-  },
-  {
-    "path": "assets#fonts",
-    "title": "Assets",
-    "description": "We are using the assets from the following sites",
-    "content": "\n\nDaFont\nGoogle Fonts\n",
-    "heading": "Fonts"
-  },
-  {
-    "path": "assets#sounds",
-    "title": "Assets",
-    "description": "We are using the assets from the following sites",
-    "content": "\n\npixabay\n",
-    "heading": "Sounds"
-  },
-  {
-    "path": "assets",
-    "title": "Assets",
-    "description": "",
-    "heading": "",
-    "content": ""
-  },
-  {
-    "path": "assets#icons",
-    "title": "Assets",
-    "description": "",
-    "heading": "Icons",
-    "content": "Icons"
-  },
-  {
-    "path": "assets#images",
-    "title": "Assets",
-    "description": "",
-    "heading": "Images",
-    "content": "Images"
-  },
-  {
-    "path": "assets#fonts",
-    "title": "Assets",
-    "description": "",
-    "heading": "Fonts",
-    "content": "Fonts"
-  },
-  {
-    "path": "assets#sounds",
-    "title": "Assets",
-    "description": "",
-    "heading": "Sounds",
-    "content": "Sounds"
-  },
-  {
-    "path": "assets",
-    "title": "Assets",
-    "description": "",
-    "heading": "",
-    "content": "Assets"
-  },
-  {
     "path": "customize-zsh",
     "title": "Customize Zsh",
     "description": "Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout...",
@@ -2226,6 +3192,13 @@
     "heading": "Docs"
   },
   {
+    "path": "sveltekit#creating-a-project",
+    "title": "SvelteKit",
+    "description": "For web application development, we utilize SvelteKit.",
+    "content": "\n\n$ npm create svelte@latest my-app\ncreate-svelte version 5.0.2\n┌ Welcome to SvelteKit!\n◆ Which Svelte app template?\n│ ○ SvelteKit demo app (A demo app showcasing some of the features of SvelteKit - play a word guessing game that works without JavaScript!)\n│ ● Skeleton project\n│ ○ Library project\n\n◆ Add type checking with TypeScript?\n│ ○ Yes, using JavaScript with JSDoc comments\n│ ● Yes, using TypeScript syntax\n│ ○ No\n\n◆ Select additional options (use arrow keys/space bar)\n│ ☑ Add ESLint for code linting\n│ ☑ Add Prettier for code formatting\n│ ☑ Add Playwright for browser testing\n│ ☑ Add Vitest for unit testing\n\n$ cd my-app\n$ npm install\n$ npm run dev\n",
+    "heading": "Creating a Project"
+  },
+  {
     "path": "sveltekit",
     "title": "SvelteKit",
     "description": "",
@@ -2247,11 +3220,67 @@
     "content": "Docs"
   },
   {
+    "path": "sveltekit#creating-a-project",
+    "title": "SvelteKit",
+    "description": "",
+    "heading": "Creating a Project",
+    "content": "Creating a Project"
+  },
+  {
     "path": "sveltekit",
     "title": "SvelteKit",
     "description": "",
     "heading": "",
     "content": "SvelteKit"
+  },
+  {
+    "path": "npm-check-updates",
+    "title": "npm-check-updates",
+    "description": "pm-check-updates upgrades your package.json dependencies to the latest versions, ignoring specified versions.",
+    "content": "\nnpm-check-updates upgrades your package.json dependencies to the latest versions, ignoring specified versions.\n",
+    "heading": ""
+  },
+  {
+    "path": "npm-check-updates#installation",
+    "title": "npm-check-updates",
+    "description": "pm-check-updates upgrades your package.json dependencies to the latest versions, ignoring specified versions.",
+    "content": "\n\ninstall globally:\n\nnpm install -g npm-check-updates\n",
+    "heading": "Installation"
+  },
+  {
+    "path": "npm-check-updates#usage",
+    "title": "npm-check-updates",
+    "description": "pm-check-updates upgrades your package.json dependencies to the latest versions, ignoring specified versions.",
+    "content": "\n\nShow all new dependencies (excluding peerDependencies) for the project in the current directory:\n\nncu\n\nUpgrade a project's package file:\n\nncu -u\n\nonly modifies package.json file. Run npm install to update your installed packages and package-lock.json:\n\nnpm install\n\nCheck global packages:\n\nncu -g\n",
+    "heading": "Usage"
+  },
+  {
+    "path": "npm-check-updates",
+    "title": "npm-check-updates",
+    "description": "",
+    "heading": "",
+    "content": ""
+  },
+  {
+    "path": "npm-check-updates#installation",
+    "title": "npm-check-updates",
+    "description": "",
+    "heading": "Installation",
+    "content": "Installation"
+  },
+  {
+    "path": "npm-check-updates#usage",
+    "title": "npm-check-updates",
+    "description": "",
+    "heading": "Usage",
+    "content": "Usage"
+  },
+  {
+    "path": "npm-check-updates",
+    "title": "npm-check-updates",
+    "description": "",
+    "heading": "",
+    "content": "npm-check-updates"
   },
   {
     "path": "global-npm-packages",
@@ -2278,7 +3307,7 @@
     "path": "global-npm-packages#the-packages-we-install-globally",
     "title": "Global NPM Packages",
     "description": "Installing NPM packages",
-    "content": "\n\nnpm-check-updates\ntypescript\n",
+    "content": "\n\nnpm-check-updates\nPM2\n",
     "heading": "The packages we install globally"
   },
   {
@@ -2751,234 +3780,297 @@
     "content": "macOS Settings"
   },
   {
-    "path": "app-structure",
-    "title": "App Structure",
-    "description": "This app consists the following screens. learn, translate, chat and docs.",
-    "content": "\nThis app consists the following screens:\n\nLearn\nTranslate\nChat\nDocs\n",
+    "path": "about",
+    "title": "About",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "",
     "heading": ""
   },
   {
-    "path": "app-structure#learn",
-    "title": "App Structure",
-    "description": "This app consists the following screens. learn, translate, chat and docs.",
-    "content": "\n\nOn the Learn screen, you can select sentences and listen to how they are pronounced.\n\nAfter listening, you can check your own pronunciation through the app.\n\nYou can also register new sentences and add new translations.\n",
-    "heading": "Learn"
+    "path": "about#sinproject",
+    "title": "About",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nsinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.\n\nFounded: October 2014\nCEO: sinYa Iwasaki\nOur affiliated banks include:\n  Mitsubishi UFJ Bank, Kujo Branch\n  Eiwa Shinkin Bank, Honcho Branch\nGoogle Map\nGitHub\n",
+    "heading": "sinProject"
   },
   {
-    "path": "app-structure#translate",
-    "title": "App Structure",
-    "description": "This app consists the following screens. learn, translate, chat and docs.",
-    "content": "\n\nOn the Translate screen, people can have spoken conversations with other people who speak different languages.\n\nWhen you speak, your words will be displayed in the other party's language and you will hear their words in your own language.\n\nThis service allows you to converse in your own language and have a conversation with someone who speaks a different language.\n",
-    "heading": "Translate"
+    "path": "about#our-business-activities-include",
+    "title": "About",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nIT consulting\nPlanning and proposing IT solutions\nDesigning and developing web applications\nDesigning and developing mobile applications\nDesigning and developing websites\nDesigning and developing Windows applications\nDesigning and developing games\nEducation and training of system engineers (teaching at vocational schools, training engineers from other companies)\n\n\n\tHTML\n\tCSS\n\tJavaScript\n\tTypeScript\n\tDart\n\tSwift\n\tKotlin\n\tJava\n\tPHP\n\tC#\n\tGo\n\tVB.NET\n\tVB 6.0\n\tC++\n\tC\n\tSvelte\n\tSvelteKit\n\tFlutter\n\tSpring Boot\n\tVue.js\n\tNuxt.js\n\tUnity\n\tThymeleaf\n\tjQuery\n\tJPA\n\tTailwind CSS\n\tBootstrap\n\t.NET Framework\n\tASP.NET\n\tASP\n\tWordPress\n\tEC-Cube\n\tAdSense\n\tElementor\n\tDuplicator\n\tGDPR\n\tMySQL\n\tSQL Server\n\tOracle\n\tSQLite\n\tPrisma\n\tRealm\n\tRedis\n\tWebSocket\n\tNode.js\n\tPM2\n\tCaddy\n\tGoogle Cloud Translation\n\tGoogle Cloud Text-to-Speech\n\tFirebase Analytics\n\tFirebase Crashlytics\n\tNIFCLOUD mobile backend\n\tAdMob\n\tLinux\n\tWindows\n\tiOS\n\tAndroid\n\tVPS\n\tVercel\n\tAmazon EC2\n\tAmazon S3\n\tVitest\n\tPlaywright\n\tPrettier\n\tESLint\n\tOCR\n\tDICOM\n\tPACS\n\tActiveReports\n\tSPREAD\n\tInputMan\n\tApp Store\n\tGoogle Play\n\tTestFlight\n\tDeployGate\n\tTwitter API\n\tVSCode\n\tXcode\n\tAndroid Studio\n\n",
+    "heading": "Our business activities include"
   },
   {
-    "path": "app-structure#chat",
-    "title": "App Structure",
-    "description": "This app consists the following screens. learn, translate, chat and docs.",
-    "content": "\n\nOn the Chat screen, people can converse through text online with people who speak different languages.\n\nEach user sends messages in their native language, and if the participants speak different languages, their messages will be automatically translated.\n\nAdditionally, when a participating member speaks in a different language, their message will be translated into the receiver's language.\n",
-    "heading": "Chat"
+    "path": "about#sinya-iwasaki",
+    "title": "About",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nBorn in Osaka, Japan, I discovered programming via FAMILY BASIC in elementary school and further explored it on an MSX2 in middle school.\n\nDropping out of university, I dived into the IT industry, developing web services, medical software, and cloud-based systems across three companies.\n\nAfter creating the popular \"Tweecha\" app during my freelance years, I'm now the CTO and CEO of sinProject, aiming to revolutionize the world with innovative services.\n\nTwitter\n",
+    "heading": "sinYa Iwasaki"
   },
   {
-    "path": "app-structure#docs",
-    "title": "App Structure",
-    "description": "This app consists the following screens. learn, translate, chat and docs.",
-    "content": "\n\nWe have the following documentation pages available:\n\nGetting Started - Introduction and usage guide for this app.\nDev Environment - An introduction to development methods for our services.\nTeam sinProject - An explanation of our development concepts.\n",
+    "path": "about#major-clients-in-no-particular-order",
+    "title": "About",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\n日鋼ステンレス株式会社\n株式会社アイアールディー\n株式会社ライズサービス\n株式会社ジェイアイティ\n株式会社ワールドビジネスパートナー\n株主会社にちようびる\n株式会社ファイナンシャルコンサルタント\nキュリオスエンジラボ株式会社\nバイオシグナル株式会社\nソフトキューブ株式会社\n株式会社東迎システムファクトリー\n株式会社 Def tribe\neach stage 株式会社 / フリーキャスター 清水健\nヒューマンアカデミー株式会社\n株式会社スカイラボ\nJUSETZ コンストラクターズ株式会社\n株式会社 TASKS\n株式会社ミューズアーク\nアール有限会社\n株式会社ドリーム ROSIEE\n株式会社ソフトウェーブ\n株式会社ジュピテック\n株式会社採用戦略研究所\nlifestyle consulting inc\nCAELU DESIGN OFFICE\n平松写真事務所\n歩 (エフ- ユー)\nCHUBEE Members\nクロイマジョ\n炭火焼鳥 喜心 江坂店\n炭火焼鳥 喜心 新町本店\n",
+    "heading": "Major clients (in no particular order)"
+  },
+  {
+    "path": "about#docs",
+    "title": "About",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nWe have the following documentation pages available:\n\nCompany Information - About our work and us\nDev Environment - An introduction to development methods for our services.\nAssets - About the assets we use\nCode Style - Our code style definition\nClean Code - Policy to keep the code beautiful\nTesting - The test frameworks we use\nGit - About handling Git\nServer - About server operation\nTeam sinProject - An explanation of our development concepts.\nTalk - Introduction and usage guide for Talk app.\n",
     "heading": "Docs"
   },
   {
-    "path": "app-structure",
-    "title": "App Structure",
+    "path": "about",
+    "title": "About",
     "description": "",
     "heading": "",
     "content": ""
   },
   {
-    "path": "app-structure#learn",
-    "title": "App Structure",
+    "path": "about#sinproject",
+    "title": "About",
     "description": "",
-    "heading": "Learn",
-    "content": "Learn"
+    "heading": "sinProject",
+    "content": "sinProject"
   },
   {
-    "path": "app-structure#translate",
-    "title": "App Structure",
+    "path": "about#our-business-activities-include",
+    "title": "About",
     "description": "",
-    "heading": "Translate",
-    "content": "Translate"
+    "heading": "Our business activities include",
+    "content": "Our business activities include"
   },
   {
-    "path": "app-structure#chat",
-    "title": "App Structure",
+    "path": "about#sinya-iwasaki",
+    "title": "About",
     "description": "",
-    "heading": "Chat",
-    "content": "Chat"
+    "heading": "sinYa Iwasaki",
+    "content": "sinYa Iwasaki"
   },
   {
-    "path": "app-structure#docs",
-    "title": "App Structure",
+    "path": "about#major-clients-in-no-particular-order",
+    "title": "About",
+    "description": "",
+    "heading": "Major clients (in no particular order)",
+    "content": "Major clients (in no particular order)"
+  },
+  {
+    "path": "about#docs",
+    "title": "About",
     "description": "",
     "heading": "Docs",
     "content": "Docs"
   },
   {
-    "path": "app-structure",
-    "title": "App Structure",
+    "path": "about",
+    "title": "About",
     "description": "",
     "heading": "",
-    "content": "App Structure"
+    "content": "About"
   },
   {
-    "path": "creating-a-project",
-    "title": "Creating a Project",
-    "description": "Prerequisites and Setting up the project",
+    "path": "portfolio",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
     "content": "",
     "heading": ""
   },
   {
-    "path": "creating-a-project#prerequisites",
-    "title": "Creating a Project",
-    "description": "Prerequisites and Setting up the project",
-    "content": "\n\nMySQL Community Server 8.0.30 or higher\nNode.js 18.4.0 or higher\nnpm 8.13.2 or higher\n",
-    "heading": "Prerequisites"
+    "path": "portfolio#talk",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n\nTalk - Docs\n\n\n\tHTML\n\tCSS\n\tJavaScript\n\tTypeScript\n\tSvelte\n\tSvelteKit\n\tTailwind CSS\n\tGoogle Cloud Translation\n\tGoogle Cloud Text-to-Speech\n\tMySQL\n\tPrisma\n\tRedis\n\tWebSocket\n\tNode.js\n\tPM2\n\tCaddy\n\tLinux\n\tVPS\n\tVitest\n\tPlaywright\n\tPrettier\n\tESLint\n\n",
+    "heading": "Talk"
   },
   {
-    "path": "creating-a-project#prerequisites-for-text-to-speech",
-    "title": "Creating a Project",
-    "description": "Prerequisites and Setting up the project",
-    "content": "\n\nSet up Google Cloud Text-to-Speech\n",
-    "heading": "Prerequisites for Text-to-Speech"
+    "path": "portfolio#mill-test-report-search-engine",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nA project in which we transitioned a B2B Windows application to a web application. Implemented features such as data search, quotation, and PDF output.\n\n\n\tHTML\n\tCSS\n\tJavaScript\n\tTypeScript\n\tSvelte\n\tSvelteKit\n\tMySQL\n\tSQLite\n\tNode.js\n\tVPS\n\tPlaywright\n\tPrettier\n\tESLint\n\n",
+    "heading": "Mill Test Report Search Engine"
   },
   {
-    "path": "creating-a-project#prerequisites-for-translation",
-    "title": "Creating a Project",
-    "description": "Prerequisites and Setting up the project",
-    "content": "\n\nSet up DeepL API\n",
-    "heading": "Prerequisites for Translation"
+    "path": "portfolio#sales-management-system",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nReplaced a Sales Management System created with Access with a web application.\n\n\n\tHTML\n\tCSS\n\tJavaScript\n\tTypeScript\n\tJava\n\tSpring Boot\n\tThymeleaf\n\tjQuery\n\tJPA\n\tBootstrap\n\tMySQL\n\tNode.js\n\tAmazon EC2\n\tAmazon S3\n\tPlaywright\n\tPrettier\n\tESLint\n\n",
+    "heading": "Sales Management System"
   },
   {
-    "path": "creating-a-project#setting-up-the-project",
-    "title": "Creating a Project",
-    "description": "Prerequisites and Setting up the project",
-    "content": "\n\nHere are the steps:\n\nGet the project and setup:\n\nClone the repo to your current directory\ngit clone https://github.com/sinProject-Inc/talk.git\n\nInstall the dependencies\ncd /talk\nnpm install\n\nCreate a database with the name \"talk\"\nCreate a .env file by copying .env.example at the top level of the project\nRewrite the .env file with your environment variables\nPush the initial schema and data to the database:\n\nnpx prisma db push\nnpx prisma generate\nnpx prisma db seed\n\nInstall Redis, and run the command: redis-server\nRun locally\n\nStart the server and open the app in a new browser tab\nnpm run dev -- --open\n",
-    "heading": "Setting up the project"
+    "path": "portfolio#quality-manager-for-mobile-applications",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nReviewed iOS apps created with Swift and Android apps created with Kotlin from design, UI, and code perspectives, ensuring quality.\n\n\n\tSwift\n\tKotlin\n\tAPI\n\tiOS\n\tAndroid\n\tApp Store\n\tGoogle Play\n\tTestFlight\n\tDeployGate\n\n",
+    "heading": "Quality manager for mobile applications"
   },
   {
-    "path": "creating-a-project",
-    "title": "Creating a Project",
+    "path": "portfolio#tweecha-txiicha-tweecha2",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nTweecha, Txiicha, and Tweecha2 were unofficial Twitter clients designed to enhance the Twitter experience. They offered various features such as saving images and videos, simultaneous retweeting and liking, as well as customizable color themes. Thanks to these features and custom elements, they held the top spot in the popularity charts for Android Twitter clients for three years. However, due to changes in Twitter's policies, these apps are no longer functional.\n\n\n\n\n\tJava\n\tKotlin\n\tFlutter\n\tDart\n\tTwitter API\n\tSQLite\n\tRealm\n\tFirebase Analytics\n\tFirebase Crashlytics\n\tAdMob\n\tAndroid\n\tiOS\n\tGoogle Play\n\tApp Store\n\n",
+    "heading": "Tweecha / Txiicha / Tweecha2"
+  },
+  {
+    "path": "portfolio#sinproject-menu-https-sinproject-net-menu",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nA web application that easily creates a menu for restaurants. It can also be utilized for businesses other than restaurants, such as personal portfolios.\n\n\n\tVue.js\n\tNuxt.js\n\tVercel\n\tFlutter\n\tDart\n\n",
+    "heading": "sinProject Menu"
+  },
+  {
+    "path": "portfolio#rolling-jewels",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nA game where you tilt your mobile device to roll the ball and aim for a high score.\n\n\n\n\n\tC#\n\tUnity\n\tAdMob\n\tAndroid\n\tiOS\n\tGoogle Play\n\tApp Store\n\n",
+    "heading": "Rolling Jewels"
+  },
+  {
+    "path": "portfolio#simple-web-games",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nWe tried creating web games with Flutter, and this is the result.\n\nNote Master\nFruity Quiz\nDino Master\nTodofuken Master\nAddition\nKokki Clicker\nColor Clicker\n\n\n\tFlutter\n\tDart\n\tNIFCLOUD mobile backend\n\n",
+    "heading": "Simple Web Games"
+  },
+  {
+    "path": "portfolio#sinproject-net",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nOur company website created with WordPress.\n\n\n\tWordPress\n\tAdSense\n\tElementor\n\tDuplicator\n\tGDPR\n\n",
+    "heading": "sinproject.net"
+  },
+  {
+    "path": "portfolio#medical-imaging-management-system",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nOur system allows centralized management of examination images from all modalities over the network from the operating room, providing comprehensive support for improving the productivity of radiological technologists' imaging operations.\n\nWith the version upgrade, we have improved operability and performance.\n\n\n\tC#\n\t.NET Framework\n\tSQL Server\n\tWindows\n\tDICOM\n\tPACS\n\n",
+    "heading": "Medical Imaging Management System"
+  },
+  {
+    "path": "portfolio#class-library-for-net-framework",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nA class library to improve the efficiency of business application development using the .NET Framework.\n\n\n\tC#\n\tVB.NET\n\t.NET Framework\n\tOracle\n\tSQL Server\n\tActiveReports\n\tSPREAD\n\tInputMan\n\n",
+    "heading": "Class library for .NET Framework"
+  },
+  {
+    "path": "portfolio#sales-management-system",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\n\n\tVB.NET\n\t.NET Framework\n\tOracle\n\tActiveReports\n\tSPREAD\n\tInputMan\n\n",
+    "heading": "Sales Management System"
+  },
+  {
+    "path": "portfolio#used-car-search-web-app",
+    "title": "Portfolio",
+    "description": "sinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.",
+    "content": "\n\nA system where general users can search and inquire about the used car data registered by each affiliated store on the website.\n\n\n\tVisualBasic 6.0\n\tASP\n\tSQL Server\n\tWindows NT\n\n",
+    "heading": "Used car search web app"
+  },
+  {
+    "path": "portfolio",
+    "title": "Portfolio",
     "description": "",
     "heading": "",
     "content": ""
   },
   {
-    "path": "creating-a-project#prerequisites",
-    "title": "Creating a Project",
+    "path": "portfolio#talk",
+    "title": "Portfolio",
     "description": "",
-    "heading": "Prerequisites",
-    "content": "Prerequisites"
+    "heading": "Talk",
+    "content": "Talk"
   },
   {
-    "path": "creating-a-project#prerequisites-for-text-to-speech",
-    "title": "Creating a Project",
+    "path": "portfolio#mill-test-report-search-engine",
+    "title": "Portfolio",
     "description": "",
-    "heading": "Prerequisites for Text-to-Speech",
-    "content": "Prerequisites for Text-to-Speech"
+    "heading": "Mill Test Report Search Engine",
+    "content": "Mill Test Report Search Engine"
   },
   {
-    "path": "creating-a-project#prerequisites-for-translation",
-    "title": "Creating a Project",
+    "path": "portfolio#sales-management-system",
+    "title": "Portfolio",
     "description": "",
-    "heading": "Prerequisites for Translation",
-    "content": "Prerequisites for Translation"
+    "heading": "Sales Management System",
+    "content": "Sales Management System"
   },
   {
-    "path": "creating-a-project#setting-up-the-project",
-    "title": "Creating a Project",
+    "path": "portfolio#quality-manager-for-mobile-applications",
+    "title": "Portfolio",
     "description": "",
-    "heading": "Setting up the project",
-    "content": "Setting up the project"
+    "heading": "Quality manager for mobile applications",
+    "content": "Quality manager for mobile applications"
   },
   {
-    "path": "creating-a-project",
-    "title": "Creating a Project",
+    "path": "portfolio#tweecha-txiicha-tweecha2",
+    "title": "Portfolio",
     "description": "",
-    "heading": "",
-    "content": "Creating a Project"
+    "heading": "Tweecha / Txiicha / Tweecha2",
+    "content": "Tweecha / Txiicha / Tweecha2"
   },
   {
-    "path": "introduction",
-    "title": "Introduction",
-    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
-    "content": "\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n",
-    "heading": ""
-  },
-  {
-    "path": "introduction#before-we-begin",
-    "title": "Introduction",
-    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
-    "content": "An email address is required to use the service.\nIf you're reading this document to learn Svelte or SvelteKit, try the Svelte tutorial first.\nIf you get stuck, ask for help at @iam_o_sin on Twitter.\n",
-    "heading": "Before we begin"
-  },
-  {
-    "path": "introduction#what-is-talk",
-    "title": "Introduction",
-    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
-    "content": "\n\nTalk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.\n",
-    "heading": "What is Talk?"
-  },
-  {
-    "path": "introduction#what-is-sinproject",
-    "title": "Introduction",
-    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
-    "content": "\n\nsinProject Inc. is an software development company in Osaka, Japan. We primarily use SvelteKit and TypeScript, but also work with other programming languages and frameworks.\n",
-    "heading": "What is sinProject?"
-  },
-  {
-    "path": "introduction#what-does-talk-offer-sinproject",
-    "title": "Introduction",
-    "description": "Talk is an app for conversing in real time with people who speak different languages. You can learn languages in addition to also having conversations through both voice and text.",
-    "content": "\n\nTalk was created to establish coding conventions and development policies at sinProject Inc.\n\nThis guide covers various topics, such as how to use TypeScript, coding styles, GitHub workflows, defining GitHub Actions, login procedures, handling external APIs, and more. It serves as a comprehensive guideline for product development at sinProject.\n",
-    "heading": "What does Talk offer sinProject?"
-  },
-  {
-    "path": "introduction",
-    "title": "Introduction",
+    "path": "portfolio#sinproject-menu-https-sinproject-net-menu",
+    "title": "Portfolio",
     "description": "",
-    "heading": "",
-    "content": ""
+    "heading": "sinProject Menu",
+    "content": "sinProject Menu"
   },
   {
-    "path": "introduction#before-we-begin",
-    "title": "Introduction",
+    "path": "portfolio#rolling-jewels",
+    "title": "Portfolio",
     "description": "",
-    "heading": "Before we begin",
-    "content": "Before we begin"
+    "heading": "Rolling Jewels",
+    "content": "Rolling Jewels"
   },
   {
-    "path": "introduction#what-is-talk",
-    "title": "Introduction",
+    "path": "portfolio#simple-web-games",
+    "title": "Portfolio",
     "description": "",
-    "heading": "What is Talk?",
-    "content": "What is Talk?"
+    "heading": "Simple Web Games",
+    "content": "Simple Web Games"
   },
   {
-    "path": "introduction#what-is-sinproject",
-    "title": "Introduction",
+    "path": "portfolio#sinproject-net",
+    "title": "Portfolio",
     "description": "",
-    "heading": "What is sinProject?",
-    "content": "What is sinProject?"
+    "heading": "sinproject.net",
+    "content": "sinproject.net"
   },
   {
-    "path": "introduction#what-does-talk-offer-sinproject",
-    "title": "Introduction",
+    "path": "portfolio#medical-imaging-management-system",
+    "title": "Portfolio",
     "description": "",
-    "heading": "What does Talk offer sinProject?",
-    "content": "What does Talk offer sinProject?"
+    "heading": "Medical Imaging Management System",
+    "content": "Medical Imaging Management System"
   },
   {
-    "path": "introduction",
-    "title": "Introduction",
+    "path": "portfolio#class-library-for-net-framework",
+    "title": "Portfolio",
+    "description": "",
+    "heading": "Class library for .NET Framework",
+    "content": "Class library for .NET Framework"
+  },
+  {
+    "path": "portfolio#sales-management-system",
+    "title": "Portfolio",
+    "description": "",
+    "heading": "Sales Management System",
+    "content": "Sales Management System"
+  },
+  {
+    "path": "portfolio#used-car-search-web-app",
+    "title": "Portfolio",
+    "description": "",
+    "heading": "Used car search web app",
+    "content": "Used car search web app"
+  },
+  {
+    "path": "portfolio",
+    "title": "Portfolio",
     "description": "",
     "heading": "",
-    "content": "Introduction"
+    "content": "Portfolio"
   }
 ]

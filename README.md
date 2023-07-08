@@ -10,7 +10,7 @@ This is a listening and speaking language learning app.
 
 ## Creating a Project
 
-👉 [**Creating a Project**](./docs/10-getting-started/20-creating-a-project.md)
+👉 [**Creating a Project**](https://github.com/sinProject-Inc/talk/docs/80-talk/20-creating-a-project.md)
 
 ## Feedback
 
