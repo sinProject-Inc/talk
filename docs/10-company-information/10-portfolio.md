@@ -55,7 +55,7 @@ A project in which we transitioned a B2B Windows application to a web applicatio
 	<span class="label">ESLint</span>
 </div>
 
-## Sales Management System
+## Web-based Sales Management System
 
 Replaced a Sales Management System created with Access with a web application.
 
@@ -206,7 +206,7 @@ A class library to improve the efficiency of business application development us
 	<span class="label">InputMan</span>
 </div>
 
-## Sales Management System
+## Sales Management System on Windows
 
 <div class="labels">
 	<span class="label">VB.NET</span>
