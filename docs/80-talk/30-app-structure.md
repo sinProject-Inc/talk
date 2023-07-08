@@ -8,7 +8,6 @@ This app consists the following screens:
 - [Learn](#learn)
 - [Translate](#translate)
 - [Chat](#chat)
-- [Docs](#docs)
 
 ## Learn
 
@@ -33,11 +32,3 @@ On the [Chat](/chat) screen, people can converse through text online with people
 Each user sends messages in their native language, and if the participants speak different languages, their messages will be automatically translated.
 
 Additionally, when a participating member speaks in a different language, their message will be translated into the receiver's language.
-
-## Docs
-
-We have the following documentation pages available:
-
-- [Getting Started](./) - Introduction and usage guide for this app.
-- [Dev Environment](./macos-settings) - An introduction to development methods for our services.
-- [Team sinProject](./our-team-policy) - An explanation of our development concepts.
