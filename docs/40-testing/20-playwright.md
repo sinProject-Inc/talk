@@ -38,8 +38,6 @@ const config: PlaywrightTestConfig = {
 	expect: {
 		timeout: 2000,
 	},
-	retries: 0,
-	workers: undefined,
 	reporter: [['html', { open: 'never' }]],
 	use: {
 		video: 'retain-on-failure',
