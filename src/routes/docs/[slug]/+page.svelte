@@ -69,14 +69,12 @@
 		<div class="content">
 			<h1 class="slide-fade-in glass-text-5">{data.page.title}</h1>
 
-			<div
-				class="glass-text-3 mb-5 text-sm font-semibold hover:text-primary-10 dark:hover:text-primary-dark-4"
-			>
+			<div class="mb-5 flex">
 				<a
 					href={git_path}
 					target="_blank"
 					rel="noreferrer"
-					class="flex items-center gap-1 border-none"
+					class="glass-text-3 flex items-center gap-1 border-none text-sm font-semibold hover:text-primary-10 dark:hover:text-primary-dark-4"
 					><div class="h-nav-icon">
 						<GithubIcon />
 					</div>
