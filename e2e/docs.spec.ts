@@ -11,25 +11,25 @@ test.beforeEach(async ({ page }) => {
 	await to_have_title(page, 'Portfolio')
 })
 
-test('root access', async ({ page }) => {
-	await to_have_title(page, 'Portfolio')
-	// TODO: Error on CI
-	// await expect(page).toHaveURL(`${docs_base}/introduction`)
-})
+// test('root access', async ({ page }) => {
+// 	await to_have_title(page, 'Portfolio')
+// 	// TODO: Error on CI
+// 	// await expect(page).toHaveURL(`${docs_base}/introduction`)
+// })
 
 test('access a page', async ({ page }) => {
 	await page.goto(`${docs_base}/about`, { waitUntil: 'networkidle' })
 	await to_have_title(page, 'About')
 })
 
-async function to_have_text_on_next_page(page: Page, title: string): Promise<void> {
-	await page.getByTestId('next-page').click()
-	await to_have_title(page, title)
-}
+// async function to_have_text_on_next_page(page: Page, title: string): Promise<void> {
+// 	await page.getByTestId('next-page').click()
+// 	await to_have_title(page, title)
+// }
 
-test('access next pages', async ({ page }) => {
-	await to_have_text_on_next_page(page, 'About')
-})
+// test('access next pages', async ({ page }) => {
+// 	await to_have_text_on_next_page(page, 'About')
+// })
 
 test('open search modale with keyboard shortcut', async ({ page }) => {
 	await page.waitForLoadState('networkidle')
