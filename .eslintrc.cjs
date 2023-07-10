@@ -32,6 +32,8 @@ module.exports = {
 		NodeListOf: false,
 	},
 	rules: {
+		semi: ['error', 'never', { beforeStatementContinuationChars: 'never' }],
+		'no-unexpected-multiline': 'error',
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
 		'@typescript-eslint/explicit-function-return-type': ['error'],
 		'no-console': ['error'],
