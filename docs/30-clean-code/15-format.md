@@ -3,7 +3,15 @@ title: Format
 description: This is a guide to producing readable, reusable, and refactorable software for TypeScript.
 ---
 
-## Use only single quotes
+## Use single quotes
+
+Indeed, each approach has its pros and cons. However, achieving consistency within a project is necessary.
+
+Ordinary string literals are delimited with single quotes ('), rather than double quotes (").
+
+> Tip: if a string contains a single quote character, consider using a template string to avoid having to escape the quote.
+
+For more information: [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html#features-strings-use-single-quotes)
 
 ```ts::Bad
 console.log("Hello")
@@ -16,6 +24,8 @@ console.log('World')
 ```
 
 ## Don't append semicolons at the end of lines
+
+For more information: [Don’t use Semicolons in TypeScript!](https://medium.com/@eugenkiss/dont-use-semicolons-in-typescript-474ccfe4bdb3)
 
 ```ts::General
 console.log('Hello');
