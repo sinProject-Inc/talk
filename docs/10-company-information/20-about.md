@@ -111,11 +111,11 @@ sinProject Inc. is an software development company in Osaka, Japan. We primarily
 
 ## sinYa Iwasaki
 
-Born in Osaka, Japan, I discovered programming via FAMILY BASIC in elementary school and further explored it on an MSX2 in middle school.
+Born in Osaka, Japan, he discovered programming via FAMILY BASIC in elementary school and further explored it on an MSX2 in middle school.
 
-Dropping out of university, I dived into the IT industry, developing web services, medical software, and cloud-based systems across three companies.
+After quitting university, he dived into the IT industry, developing web services, medical software, and cloud-based systems across three companies.
 
-After creating the popular "Tweecha" app during my freelance years, I'm now the CTO and CEO of sinProject, aiming to revolutionize the world with innovative services.
+After creating the popular "Tweecha" app during his freelance years, I'm now the CTO and CEO of sinProject, aiming to revolutionize the world with innovative services.
 
 - [Twitter](https://twitter.com/iam_o_sin)
 

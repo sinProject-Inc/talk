@@ -57,7 +57,7 @@ A project in which we transitioned a B2B Windows application to a web applicatio
 
 ## Web-based Sales Management System
 
-Replaced a Sales Management System created with Access with a web application.
+A project in which we replaced a sales management system created with Access with a modern web application.
 
 <div class="labels">
 	<span class="label">HTML</span>
@@ -81,7 +81,7 @@ Replaced a Sales Management System created with Access with a web application.
 
 ## Quality manager for mobile applications
 
-Reviewed iOS apps created with Swift and Android apps created with Kotlin from design, UI, and code perspectives, ensuring quality.
+We reviewed iOS apps created with Swift and Android apps created with Kotlin from design, UI, and code perspectives, ensuring quality.
 
 <div class="labels">
 	<span class="label">Swift</span>
@@ -120,7 +120,7 @@ Tweecha, Txiicha, and Tweecha2 were unofficial Twitter clients designed to enhan
 
 ## [sinProject Menu](https://sinproject.net/menu/)
 
-A web application that easily creates a menu for restaurants. It can also be utilized for businesses other than restaurants, such as personal portfolios.
+A web application that easily creates menus for restaurants. It can also be utilized for businesses other than restaurants, such as personal portfolios.
 
 <div class="labels">
 	<span class="label">Vue.js</span>
@@ -148,7 +148,7 @@ A game where you tilt your mobile device to roll the ball and aim for a high sco
 
 ## Simple Web Games
 
-We tried creating web games with Flutter, and this is the result.
+We made several web games with Flutter.
 
 - [Note Master](https://sinproject.net/teams/note-master/#/)
 - [Fruity Quiz](https://sinproject.net/teams/fruity-quiz/#/)
@@ -178,7 +178,7 @@ Our company website created with WordPress.
 
 ## Medical Imaging Management System
 
-Our system allows centralized management of examination images from all modalities over the network from the operating room, providing comprehensive support for improving the productivity of radiological technologists' imaging operations.
+This system allows centralized management of images from medical examinations from all facilities over the network from the operating room, providing comprehensive support for improving the productivity of radiological technologists' imaging operations.
 
 With the version upgrade, we have improved operability and performance.
 
