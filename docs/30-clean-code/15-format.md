@@ -5,9 +5,9 @@ description: This is a guide to producing readable, reusable, and refactorable s
 
 ## Use single quotes
 
-Indeed, each approach has its pros and cons. However, achieving consistency within a project is necessary.
+Both double quotes and single quotes has their own pros and cons. However, achieving consistency within a project is a necessity.
 
-Ordinary string literals are delimited with single quotes ('), rather than double quotes (").
+Delimit ordinary string literals with single quotes ('), rather than double quotes (").
 
 > Tip: if a string contains a single quote character, consider using a template string to avoid having to escape the quote.
 

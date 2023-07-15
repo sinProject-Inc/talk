@@ -32,7 +32,7 @@ module.exports = {
 
 [Enforce naming conventions for everything across a codebase.](https://typescript-eslint.io/rules/naming-convention/)
 
-- Set variable names, argument names, and function names to snake_case.
+- Define variable names, argument names, and function names with snake_case.
 - Prefix private variables with an underscore.
 
 ```js:.eslintrc.cjs
