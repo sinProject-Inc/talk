@@ -50,9 +50,6 @@
 							<li>
 								<NavItem name="chat" />
 							</li>
-							<li>
-								<NavItem name="docs" />
-							</li>
 						</ul>
 					</li>
 				</ul>

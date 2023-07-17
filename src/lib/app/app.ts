@@ -10,7 +10,7 @@ export class App {
 		return `${title} - ${App.app_name}`
 	}
 
-	public static get_docs_title(title: string): string {
-		return `${title} - ${App.company_and_app_name}`
-	}
+	// public static get_docs_title(title: string): string {
+	// 	return `${title} - ${App.company_and_app_name}`
+	// }
 }
