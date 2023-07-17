@@ -32,6 +32,7 @@ module.exports = {
 		NodeListOf: false,
 	},
 	rules: {
+		indent: ['error', 'tab', { SwitchCase: 1, ignoredNodes: ['ConditionalExpression'] }],
 		semi: ['error', 'never', { beforeStatementContinuationChars: 'never' }],
 		'no-unexpected-multiline': 'error',
 		'@typescript-eslint/explicit-member-accessibility': ['error'],
