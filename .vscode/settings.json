@@ -177,5 +177,6 @@
 		"no-hard-tabs": false
 	},
 	"files.eol": "\n",
-	"rest-client.previewResponseInUntitledDocument": true
+	"rest-client.previewResponseInUntitledDocument": true,
+	"editor.tabSize": 2
 }
