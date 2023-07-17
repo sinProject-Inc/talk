@@ -5,8 +5,9 @@ closes #ISSUE_NUMBER
 ## Tasks
 
 - [ ] Make sure "closes (issue number)" is written close to the top
-- [ ] Add reviewers
+- [ ] Attach the enhancement label for update tasks
 - [ ] Make sure CI completes successfully
+- [ ] Add reviewers
 - [ ] On Slack, mention the PR reviewer, write your thoughts on the issue, and inform them that the PR has been created
 
 # For the Reviewer

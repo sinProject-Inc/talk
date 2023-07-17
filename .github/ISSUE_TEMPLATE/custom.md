@@ -14,6 +14,7 @@ assignees: ''
 
 - [ ] Write each task for this issue using checkboxes
 - [ ] Write all verbal instructions as tasks
+- [ ] Add labels and assignees
 
 # Before Working on the Issue
 
