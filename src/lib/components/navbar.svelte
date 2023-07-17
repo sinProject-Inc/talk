@@ -37,7 +37,6 @@
 					<NavItemTab name="learn" />
 					<NavItemTab name="translate" />
 					<NavItemTab name="chat" />
-					<NavItemTab name="docs" />
 				</div>
 
 				{#if is_on_docs && !$is_min_width_768}

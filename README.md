@@ -8,6 +8,8 @@
 
 This is a listening and speaking language learning app.
 
+Visit: [talk.sinpro.dev](https://talk.sinpro.dev/)
+
 ## Creating a Project
 
 👉 [**Creating a Project**](https://github.com/sinProject-Inc/talk/docs/80-talk/20-creating-a-project.md)
