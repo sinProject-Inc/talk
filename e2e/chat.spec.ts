@@ -82,7 +82,7 @@ test.describe('after sign in', () => {
 		await expect(text).toBeFocused()
 
 		await text.fill(input)
-		await text.press('Enter')
+		await text.press('Meta+Enter')
 
 		const chat_name = page.getByTestId('chat_name').last()
 		const chat_message = page.getByTestId('chat_message').last()

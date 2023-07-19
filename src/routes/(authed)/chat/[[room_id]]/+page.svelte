@@ -203,12 +203,11 @@
 	async function on_keydown_message(event: KeyboardEvent): Promise<void> {
 		const event_key = new EventKey(event)
 
-		if (!event_key.is_enter) return
-
-		event.preventDefault()
-
-		web_logger.info(`on_enter_message: ${message}, name: ${name}`)
-		await send()
+		if (event_key.should_submit) {
+			event.preventDefault()
+			web_logger.info(`on_enter_message: ${message}, name: ${name}`)
+			await send()
+		}
 	}
 
 	async function set_app_locale(): Promise<void> {
