@@ -4,5 +4,3 @@ Disallow: /sign-in
 Disallow: /learn
 Disallow: /translate
 Disallow: /chat
-
-Sitemap: https://talk.sinpro.dev/sitemap.xml
