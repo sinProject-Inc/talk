@@ -53,7 +53,7 @@
 	function on_textarea_keydown(event: KeyboardEvent): void {
 		const event_key = new EventKey(event)
 
-		if (event_key.is_enter) {
+		if (event_key.should_submit) {
 			event.preventDefault()
 			dispatch('keydown_enter')
 		}

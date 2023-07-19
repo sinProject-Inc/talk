@@ -110,7 +110,7 @@ test.describe('after sign in', () => {
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('Hello')
-		await from_text_area.press('Enter')
+		await from_text_area.press('Meta+Enter')
 
 		await page.waitForTimeout(1000)
 
@@ -145,7 +145,7 @@ test.describe('after sign in', () => {
 		const dummy_text = 'a'.repeat(250)
 
 		await from_text_area.fill(dummy_text)
-		await from_text_area.press('Enter')
+		await from_text_area.press('Meta+Enter')
 
 		const bottom_textarea = page.getByRole('textbox').nth(1)
 
@@ -160,7 +160,7 @@ test.describe('after sign in', () => {
 		const dummy_text = 'a'.repeat(251)
 
 		await from_text_area.fill(dummy_text)
-		await from_text_area.press('Enter')
+		await from_text_area.press('Meta+Enter')
 
 		const bottom_textarea = page.getByRole('textbox').nth(1)
 
@@ -174,7 +174,7 @@ test.describe('after sign in', () => {
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('')
-		await from_text_area.press('Enter')
+		await from_text_area.press('Meta+Enter')
 
 		const button = page.getByTestId('delete_button').first().getByRole('button')
 
@@ -198,7 +198,7 @@ test.describe('after sign in', () => {
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('')
-		await from_text_area.press('Enter')
+		await from_text_area.press('Meta+Enter')
 
 		const button = page.getByTestId('tts_button').first().getByRole('button')
 
@@ -222,7 +222,7 @@ test.describe('after sign in', () => {
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('')
-		await from_text_area.press('Enter')
+		await from_text_area.press('Meta+Enter')
 
 		const button = page.getByTestId('copy_button').first().getByRole('button')
 
