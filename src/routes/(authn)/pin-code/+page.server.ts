@@ -63,7 +63,6 @@ export const actions: Actions = {
 			logger.error(`[pin-code] Failed to sign-in: ${email_address}]`, e)
 			return { credentials: true, missing: false, success: false }
 
-			// TODO: Show message on page
 			// throw redirect(302, '/sign-in')
 		}
 	},

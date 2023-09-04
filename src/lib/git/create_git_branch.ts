@@ -11,7 +11,7 @@ export class CreateGitBranch {
 
 	private _generate_branch_name(issue_string: string): string {
 		// Issue名と番号を抽出
-		const issue_parts = issue_string.match(/(.*)(#\d+)/)
+		const issue_parts = RegExp(/(.*)(#\d+)/).exec(issue_string)
 		if (!issue_parts) {
 			throw new Error('Invalid issue string format')
 		}
@@ -32,7 +32,7 @@ export class CreateGitBranch {
 			const { stdout, stderr } = await exec(`git checkout -b ${branch_name}`)
 
 			// eslint-disable-next-line no-console
-			console.log(stderr ? stderr : stdout)
+			console.log(stderr || stdout)
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.warn((error as Error).message)

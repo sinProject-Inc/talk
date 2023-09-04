@@ -8,7 +8,6 @@ import type { TargetLanguageCode } from 'deepl-node'
 export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const translation_text = new TranslationText(params.text)
-		// TODO: DeepLのAPIを使って翻訳する
 		const target_locale_code = new LocaleCode(params.target_locale_code?.trim() ?? 'en-US')
 		const deepl_translator = new DeeplTranslator(translation_text)
 		const translated_text = await deepl_translator.translate(
