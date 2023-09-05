@@ -13,7 +13,7 @@
 	<div class="flex h-[calc(100vh-var(--header-height))] flex-col items-center justify-center p-8">
 		<div class="font-title flex max-w-xl flex-col items-center gap-12">
 			<div class="text-3xl">Talk</div>
-			<div class="text-sm">PUSH MENU BUTTON!</div>
+			<div class="text-sm">PUSH MENU BUTTON</div>
 			<div class="text-sm">
 				Talk is an app for conversing in real time with people who speak different languages.
 			</div>
