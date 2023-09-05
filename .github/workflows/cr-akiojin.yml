@@ -1,0 +1,28 @@
+# https://github.com/akiojin/auto-review-github-action
+# https://qiita.com/akiojin/items/c7fce6084c558180eb0d
+name: Code Review by akiojin
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  review:
+    name: Code Review by auto-review-github-action
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Auto Review by OpenAI
+        uses: akiojin/auto-review-github-action@v1.1.1
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          target: 'html,css,ts,js,svelte,cjs,md,yml'
+          language: English
