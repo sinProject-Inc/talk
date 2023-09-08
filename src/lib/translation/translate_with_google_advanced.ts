@@ -1,7 +1,6 @@
 // TODO: node env に変更する
 import { LocaleCode } from '../locale/locale_code'
 import { TranslationServiceClient } from '@google-cloud/translate'
-import * as dotenv from 'dotenv'
 import { TranslationText } from './translation_text'
 import { TranslationLanguageCode } from './translation_language_code'
 import { logger } from '../app/logger'
@@ -21,8 +20,7 @@ export class TranslateWithGoogleAdvanced {
 		try {
 			const translation_client = new TranslationServiceClient()
 
-			dotenv.config()
-			const google_product_id = process.env.GOOGLE_PROJECT_ID
+			const google_product_id = import.meta.env.VITE_GOOGLE_PROJECT_ID
 
 			if (!google_product_id) {
 				logger.error('[env] GOOGLE_PROJECT_ID is undefined')
