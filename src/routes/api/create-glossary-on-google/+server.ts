@@ -1,5 +1,5 @@
 import { dev } from '$app/environment'
-import { VITE_GOOGLE_PROJECT_ID, GOOGLE_LOCATION } from '$env/static/private'
+import { GOOGLE_PROJECT_ID, GOOGLE_LOCATION } from '$env/static/private'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { json, type RequestHandler } from '@sveltejs/kit'
 
@@ -21,11 +21,11 @@ export const GET: RequestHandler = async () => {
 				inputUri: 'gs://talk-translation/glossary.csv',
 			},
 		},
-		name: `projects/${VITE_GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}/glossaries/${glossary_id}`,
+		name: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}/glossaries/${glossary_id}`,
 	}
 
 	const request = {
-		parent: `projects/${VITE_GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
+		parent: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
 		glossary,
 	}
 

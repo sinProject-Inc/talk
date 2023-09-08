@@ -1,4 +1,4 @@
-import { GOOGLE_LOCATION, VITE_GOOGLE_PROJECT_ID } from '$env/static/private'
+import { GOOGLE_LOCATION, GOOGLE_PROJECT_ID } from '$env/static/private'
 import { logger } from '$lib/app/logger'
 import { LocaleCode } from '$lib/locale/locale_code'
 import { TranslationText } from '$lib/translation/translation_text'
@@ -14,11 +14,11 @@ export const GET: RequestHandler = async ({ params }) => {
 		const translation_client = new TranslationServiceClient()
 
 		const glossary_config = {
-			glossary: `projects/${VITE_GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}/glossaries/glossary`,
+			glossary: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}/glossaries/glossary`,
 		}
 
 		const request = {
-			parent: `projects/${VITE_GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
+			parent: `projects/${GOOGLE_PROJECT_ID}/locations/${GOOGLE_LOCATION}`,
 			contents: [translation_text.text],
 			mimeType: 'text/plain',
 			sourceLocaleCode: source_locale_code.code,
