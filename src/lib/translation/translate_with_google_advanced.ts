@@ -23,7 +23,7 @@ export class TranslateWithGoogleAdvanced {
 			const google_product_id = import.meta.env.VITE_GOOGLE_PROJECT_ID
 
 			if (!google_product_id) {
-				logger.error('[env] GOOGLE_PROJECT_ID is undefined')
+				logger.error('[env] VITE_GOOGLE_PROJECT_ID is undefined')
 				return ''
 			}
 
