@@ -35,6 +35,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		}
 	} catch (error) {
 		logger.error(`[Google] Failed to translate: ${params.text}]`, error)
+
 		return json('')
 	}
 }

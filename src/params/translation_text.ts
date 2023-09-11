@@ -5,6 +5,7 @@ import type { ParamMatcher } from '@sveltejs/kit'
 export const match = ((param: string): boolean => {
 	try {
 		new TranslationText(param)
+
 		return true
 	} catch (e) {
 		// const { message } = e as Error

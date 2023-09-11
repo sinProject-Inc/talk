@@ -122,6 +122,7 @@
 
 		if (destination_locale_select_element.value === source_locale_select_element.value) {
 			switch_locales()
+
 			return
 		}
 
@@ -192,6 +193,7 @@
 
 		if (text_to_speech_url === new_text_to_speech_url) {
 			audio_element.currentTime = 0
+
 			try {
 				await audio_element.play()
 			} catch (error) {
@@ -251,6 +253,7 @@
 		} catch (err) {
 			if (err instanceof TextError) {
 				const message = $_(err.message_id)
+
 				partner_translate_box.set_value(message)
 			} else {
 				// eslint-disable-next-line no-console
@@ -315,11 +318,13 @@
 
 	async function on_copy(): Promise<void> {
 		const text = await navigator.clipboard.readText()
+
 		web_logger.info('on_copy: ' + text)
 
 		if (copied_snackbar_timeout) clearTimeout(copied_snackbar_timeout)
 
 		copied_snackbar_visible = true
+
 		copied_snackbar_timeout = window.setTimeout(() => {
 			copied_snackbar_visible = false
 		}, 2000)

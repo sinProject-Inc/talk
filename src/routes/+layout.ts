@@ -7,6 +7,7 @@ export const load: LayoutLoad = async () => {
 	if (!browser) return
 
 	const stored_locale = localStorage.getItem('from_locale') ?? 'en-US'
+
 	locale.set(stored_locale)
 
 	await waitLocale(stored_locale)

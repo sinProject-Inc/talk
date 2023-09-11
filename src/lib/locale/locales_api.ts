@@ -11,6 +11,7 @@ export class LocalesApi {
 
 	public async fetch(): Promise<Locale[]> {
 		const api = new Api(this._api_path, this._fetch)
+
 		return await api.fetch<Locale[]>()
 	}
 }

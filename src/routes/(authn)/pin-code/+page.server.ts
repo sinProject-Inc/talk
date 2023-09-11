@@ -15,6 +15,7 @@ import { sleep } from '$lib/general/system'
 export const load: PageServerLoad = async ({ locals, url, request }) => {
 	if (locals.user) {
 		const redirect_url = url.searchParams.get('redirect_url') || ' /'
+
 		throw redirect(302, redirect_url)
 	}
 
@@ -54,6 +55,7 @@ export const actions: Actions = {
 			if (!user) return { credentials: true, email_address, missing: false, success: false }
 
 			const pin_code = PinCode.generate()
+
 			send_mail(user, pin_code)
 
 			await Repository.auth_pin.save(user, pin_code)
@@ -61,6 +63,7 @@ export const actions: Actions = {
 			return { success: true, email_address, missing: false, credentials: false }
 		} catch (e) {
 			logger.error(`[pin-code] Failed to sign-in: ${email_address}]`, e)
+
 			return { credentials: true, missing: false, success: false }
 
 			// TODO: Show message on page

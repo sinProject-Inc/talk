@@ -39,6 +39,7 @@
 		if (listening) {
 			listening = false
 			dispatch('stop_listening')
+
 			return
 		} else {
 			listening = true
@@ -74,6 +75,7 @@
 
 	export function get_value(): string {
 		value = textarea_element.value
+
 		return value
 	}
 

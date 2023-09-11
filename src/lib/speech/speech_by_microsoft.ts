@@ -22,6 +22,7 @@ export class SpeechByMicrosoft implements Speech {
 
 		speech_config.speechSynthesisOutputFormat =
 			MicrosoftSpeechSdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3
+
 		speech_config.speechSynthesisVoiceName = this._voice_locale.name
 
 		const synthesizer = new MicrosoftSpeechSdk.SpeechSynthesizer(speech_config)
@@ -34,6 +35,7 @@ export class SpeechByMicrosoft implements Speech {
 						const audio = result.audioData
 						const uint8_array = new Uint8Array(audio)
 						const speech_sound = new SpeechSound(uint8_array)
+
 						resolve(speech_sound)
 					} else {
 						reject('No result')

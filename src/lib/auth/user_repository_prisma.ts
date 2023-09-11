@@ -30,6 +30,7 @@ export class UserRepositoryPrisma implements UserRepository {
 			return user
 		} catch (error) {
 			logger.error(`[DB] Failed to create user: ${email.address}`, error)
+
 			return undefined
 		}
 	}
@@ -46,6 +47,7 @@ export class UserRepositoryPrisma implements UserRepository {
 			return theme
 		} catch (error) {
 			logger.error(`[DB] Failed to update theme for user: ${user.email}`, error)
+
 			return undefined
 		}
 	}
@@ -65,6 +67,7 @@ export class UserRepositoryPrisma implements UserRepository {
 			return extension
 		} catch (error) {
 			logger.error(`[DB] Failed to update avatar extension for user: ${user.email}`, error)
+
 			return undefined
 		}
 	}

@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /// <reference types="@sveltejs/kit" />
 import { build, files, version } from '$service-worker'
+
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`
 
@@ -14,6 +15,7 @@ self.addEventListener('install', (event) => {
 	// Create a new cache and add all files to it
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE)
+
 		await cache.addAll(ASSETS)
 	}
 
