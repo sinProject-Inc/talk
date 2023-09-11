@@ -26,6 +26,7 @@ export class GetTextService {
 			if (e instanceof Error) {
 				if (e.message.includes('Unique constraint failed')) {
 					logger.warn(`[DB] text already saved: ${this._speech_text.text}`)
+
 					return await this.execute()
 				}
 			}

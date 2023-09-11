@@ -43,6 +43,7 @@
 				web_logger.info(
 					`on_submit: email: ${form?.email_address}, pin_code: ${pin_input_element.value}`
 				)
+
 				sending = true
 
 				return async ({ update }) => {

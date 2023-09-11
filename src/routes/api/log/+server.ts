@@ -20,6 +20,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	} catch (e) {
 		logger.info(`${client_address} [${request.method}] ${request.url}`)
 		logger.error(e)
+
 		return new Response(undefined, { status: 404 })
 	}
 }

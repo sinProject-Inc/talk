@@ -160,11 +160,13 @@
 
 		if (!name) {
 			name_element.focus()
+
 			return
 		}
 
 		if (!message) {
 			message_div_element.focus()
+
 			return
 		}
 
@@ -338,6 +340,7 @@
 		if (notification_permission !== 'granted') {
 			web_logger.info(`enable_notification: permission denied. name: ${name}`)
 			alert($_('please_allow_notification'))
+
 			return
 		}
 
@@ -374,6 +377,7 @@
 	function join(): void {
 		if (!name) {
 			name_element.focus()
+
 			return
 		}
 

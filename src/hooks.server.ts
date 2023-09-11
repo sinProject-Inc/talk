@@ -72,6 +72,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			logger.warn(
 				`${client_address} [API] Unauthorized API request: [${event.request.method}] ${event.url}`
 			)
+
 			return new Response('Unauthorized', { status: 401 })
 		}
 	}

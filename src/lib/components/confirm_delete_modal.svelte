@@ -20,6 +20,7 @@
 	function handle_keydown(event: KeyboardEvent): void {
 		if (event.key === 'Escape') {
 			close()
+
 			return
 		}
 	}

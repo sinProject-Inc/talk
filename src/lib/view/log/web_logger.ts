@@ -17,6 +17,7 @@ export class WebLogger {
 	private async _send(web_log: WebLog): Promise<void> {
 		if (!navigator.onLine) {
 			this._save_to_local_storage(web_log)
+
 			return
 		}
 
@@ -81,6 +82,7 @@ export class WebLogger {
 
 	public static handle_error(web_logger: WebLogger, event: ErrorEvent): void {
 		const message = `Unhandled Error: ${event.error.message}, stack: ${event.error.stack}, user_agent: ${navigator.userAgent}`
+
 		web_logger.error(message)
 	}
 
@@ -89,6 +91,7 @@ export class WebLogger {
 		event: PromiseRejectionEvent
 	): void {
 		const message = `Unhanded Rejection: ${event.reason.message}, stack: ${event.reason.stack}, user_agent: ${navigator.userAgent}`
+
 		web_logger.error(message)
 	}
 
@@ -98,6 +101,7 @@ export class WebLogger {
 		window.addEventListener('offline', () => WebLogger.handle_network_change(this))
 		window.addEventListener('online', () => WebLogger.handle_network_change(this))
 		window.addEventListener('error', (event) => WebLogger.handle_error(this, event))
+
 		window.addEventListener('unhandledrejection', (event) =>
 			WebLogger.handle_unhandled_rejection(this, event)
 		)

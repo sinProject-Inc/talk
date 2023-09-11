@@ -107,6 +107,7 @@ test.describe('after sign in', () => {
 	// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
 	test('adding text should display the translation', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('Hello')
@@ -140,6 +141,7 @@ test.describe('after sign in', () => {
 
 	test('translate 250 characters', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		const dummy_text = 'a'.repeat(250)
@@ -155,6 +157,7 @@ test.describe('after sign in', () => {
 
 	test('translate 251 characters', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		const dummy_text = 'a'.repeat(251)
@@ -171,6 +174,7 @@ test.describe('after sign in', () => {
 		await page.waitForTimeout(500)
 
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('')
@@ -183,6 +187,7 @@ test.describe('after sign in', () => {
 
 	test('having text enables delete button', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('Hello')
@@ -195,6 +200,7 @@ test.describe('after sign in', () => {
 
 	test('having no text disables tts button', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('')
@@ -207,6 +213,7 @@ test.describe('after sign in', () => {
 
 	test('having text enables tts button', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('Hello')
@@ -219,6 +226,7 @@ test.describe('after sign in', () => {
 
 	test('having no text disables copy button', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('')
@@ -231,6 +239,7 @@ test.describe('after sign in', () => {
 
 	test('having text enables copy button', async ({ page }) => {
 		await page.waitForSelector('.text-area')
+
 		const from_text_area = page.locator('.text-area').first()
 
 		await from_text_area.fill('Hello')
@@ -246,6 +255,7 @@ test.describe('after sign in', () => {
 
 		await page.route('/api/text/en/10', async (route) => {
 			const json = {}
+
 			await route.fulfill({ json })
 		})
 	}
@@ -253,7 +263,9 @@ test.describe('after sign in', () => {
 	async function fulfill_mock_text(page: Page, limit: number): Promise<void> {
 		await page.route('/api/text/en/10', async (route) => {
 			if (limit === 0) await route.fulfill({ json: {} })
+
 			const json = mock_data.slice(0, limit)
+
 			await route.fulfill({ json })
 		})
 	}

@@ -23,6 +23,7 @@ export async function get_pin_code_from_mail(): Promise<string> {
 	const connection = await imaps.connect(config)
 
 	await connection.openBox('INBOX')
+
 	const search_criteria = ['UNSEEN', ['HEADER', 'SUBJECT', '% is your PIN code']]
 	const fetch_options = {
 		bodies: ['HEADER', 'TEXT'],
@@ -32,9 +33,11 @@ export async function get_pin_code_from_mail(): Promise<string> {
 
 	const subjects: string[] = messages.map((message) => {
 		const header_part = message.parts.find((part) => part.which === 'HEADER')
+
 		if (header_part && header_part.body.subject) {
 			return header_part.body.subject[0]
 		}
+
 		return ''
 	})
 
