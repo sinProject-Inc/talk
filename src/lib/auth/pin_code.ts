@@ -1,6 +1,9 @@
 import { App } from '$lib/app/app'
+import { randomInt } from 'crypto'
 
 export class PinCode {
+	private static readonly _pin_code_chars = '0123456789'
+
 	private readonly _code: string
 
 	public constructor(code: string | undefined) {
@@ -16,12 +19,10 @@ export class PinCode {
 	}
 
 	public static generate(length = 6): PinCode {
-		const pin_code_chars = '0123456789'
-
 		let code = ''
 
 		while (code.length < length) {
-			code += pin_code_chars[Math.floor(Math.random() * pin_code_chars.length)]
+			code += PinCode._pin_code_chars[randomInt(PinCode._pin_code_chars.length)]
 		}
 
 		const pin_code = new PinCode(code)
