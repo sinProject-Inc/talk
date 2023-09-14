@@ -25,6 +25,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		return json(translations)
 	} catch (e) {
 		logger.error(`[DB] Failed to get translation: ${params.text}]`, e)
+
 		return new Response((e as Error).message, { status: 400 })
 	}
 }

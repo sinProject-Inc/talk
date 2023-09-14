@@ -15,6 +15,7 @@ export const GET: RequestHandler = async ({ params }): Promise<Response> => {
 		return response
 	} catch (error) {
 		logger.error(`[DB] Failed to find texts: ${params.locale_code}]`, error)
+
 		return json({ error: (error as Error).message })
 	}
 }

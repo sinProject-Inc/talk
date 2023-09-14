@@ -33,6 +33,7 @@ export const GET: RequestHandler = async ({ params, locals }): Promise<Response>
 		return response
 	} catch (error) {
 		logger.error(`[avatar] Failed to find avatar: ${params.user_id}]`, error)
+
 		return json({ error: (error as Error).message })
 	}
 }

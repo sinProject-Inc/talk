@@ -26,6 +26,7 @@ test('find_unique: exist', async () => {
 	}
 
 	await Repository.user.find_unique(email)
+
 	const user = await Repository.user.find_unique(email)
 
 	expect(user?.email).toEqual(email.address)

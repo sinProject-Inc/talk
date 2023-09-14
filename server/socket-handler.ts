@@ -155,6 +155,7 @@ async function find_room_members(io: Server, room_id: string): Promise<ChatMembe
 	const socket_ids = sockets.map((socket) => socket.id)
 
 	await chat_member_repository.delete_ghost(room_id, socket_ids)
+
 	const room_members = await chat_member_repository.find_many(room_id)
 
 	return room_members

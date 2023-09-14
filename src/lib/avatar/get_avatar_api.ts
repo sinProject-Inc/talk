@@ -11,6 +11,7 @@ export class GetAvatarApi {
 
 	public async fetch(): Promise<Avatar> {
 		const api = new Api(this._api_path)
+
 		return await api.fetch<Avatar>()
 	}
 }

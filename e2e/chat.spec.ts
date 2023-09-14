@@ -18,11 +18,13 @@ test.describe('after sign in', () => {
 
 	test('has page title', async ({ page }) => {
 		const title = page.getByRole('link', { name: 'Talk', exact: true })
+
 		await expect(title).toBeVisible()
 	})
 
 	test('init focus', async ({ page }) => {
 		const name = page.getByPlaceholder('Name')
+
 		await expect(name).toBeFocused()
 	})
 
@@ -58,6 +60,7 @@ test.describe('after sign in', () => {
 		await page.waitForTimeout(500)
 
 		const new_room_button = page.getByTestId('new-room-button')
+
 		await new_room_button.click()
 
 		await page.waitForLoadState('networkidle')
@@ -96,24 +99,28 @@ test.describe('after sign in', () => {
 	test('send message', async ({ page }) => {
 		const input = 'Hello World!'
 		const output = 'Hello World!'
+
 		await test_send(page, input, output)
 	})
 
 	test('trim message', async ({ page }) => {
 		const input = '\nHello World!\n'
 		const output = 'Hello World!'
+
 		await test_send(page, input, output)
 	})
 
 	test('indent message', async ({ page }) => {
 		const input = 'Hello World!\nHello World!'
 		const output = 'Hello World!\nHello World!'
+
 		await test_send(page, input, output)
 	})
 
 	test('excess indentions', async ({ page }) => {
 		const input = 'Hello World!\n\n\n\nHello World!'
 		const output = 'Hello World!\n\nHello World!'
+
 		await test_send(page, input, output)
 	})
 })

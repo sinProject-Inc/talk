@@ -15,6 +15,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		return json(result)
 	} catch (e) {
 		logger.error(`[DB] Failed to save translation: ${params.translation}]`, e)
+
 		return new Response((e as Error).message, { status: 400 })
 	}
 }

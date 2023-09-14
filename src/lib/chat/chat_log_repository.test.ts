@@ -19,6 +19,7 @@ test('save and find_many', async () => {
 		999999,
 		'test_message2'
 	)
+
 	await Repository.chat_log.save(chat_entity2)
 
 	const chat_logs = await Repository.chat_log.find_many()

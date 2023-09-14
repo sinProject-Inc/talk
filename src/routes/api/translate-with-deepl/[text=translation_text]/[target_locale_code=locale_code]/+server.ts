@@ -17,6 +17,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		return json(translated_text.text)
 	} catch (error) {
 		logger.error(`[DeepL] Failed to translate: ${params.text}]`, error)
+
 		return json('')
 	}
 }

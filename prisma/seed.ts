@@ -7,6 +7,7 @@ import { LocaleSeeder } from './seed/locale_seeder'
 import { RoleSeeder } from './seed/role_seeder'
 import { VoiceSeeder } from './seed/voice_seeder'
 import { logger } from '../src/lib/app/logger'
+
 const prisma = new PrismaClient()
 
 async function main(): Promise<void> {

@@ -108,6 +108,7 @@
 
 		if (from_locale_select_element.value === to_locale_select_element.value) {
 			switch_locales()
+
 			return
 		}
 
@@ -132,11 +133,13 @@
 	function validate_for_translation(): boolean {
 		if (from_locale_code.code === to_locale_code.code) {
 			translations = [`(${$_('select_different_language')})`]
+
 			return false
 		}
 
 		if (!selected_text) {
 			translations = [`(${$_('select_text_first')})`]
+
 			return false
 		}
 

@@ -9,10 +9,12 @@ export class ClientHostName {
 
 		try {
 			const hostnames = await reverse_dns(this._client_address)
+
 			return hostnames[0]
 		} catch (e) {
 			// eslint-disable-next-line no-console
 			console.warn('Reverse DNS lookup failed.', e)
+
 			return ''
 		}
 	}

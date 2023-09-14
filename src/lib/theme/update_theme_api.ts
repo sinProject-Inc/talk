@@ -11,6 +11,7 @@ export class UpdateThemeApi {
 
 	public async fetch(): Promise<Theme> {
 		const api = new Api(this._api_path)
+
 		return await api.fetch<Theme>()
 	}
 }

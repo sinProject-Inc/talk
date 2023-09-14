@@ -13,6 +13,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		return json(result)
 	} catch (error) {
 		logger.error(`[DB] Failed to save text: ${params.text}]`, error)
+
 		return json('')
 		// return new Response((error as Error).message, { status: 400 })
 	}

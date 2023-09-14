@@ -53,6 +53,7 @@ export class WebSpeechRecognition {
 		}
 
 		const speech_recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+
 		this._recognition = new speech_recognition()
 
 		this._recognition.lang = this._locale_code.code

@@ -72,6 +72,7 @@ function delete_avatars(user_id: UserId): void {
 	fs.readdirSync(AVATAR_DIR)
 		.filter((file) => {
 			const file_user_id = file.split('.')[0]
+
 			return file_user_id === String(user_id.id)
 		})
 		.forEach((file) => {

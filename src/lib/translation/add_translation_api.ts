@@ -22,6 +22,7 @@ export class AddTranslationApi {
 
 	public async fetch(): Promise<Text> {
 		const api = new Api(this._api_path)
+
 		return await api.fetch<Text>()
 	}
 }

@@ -7,6 +7,8 @@ closes #ISSUE_NUMBER
 - [ ] Make sure "closes (issue number)" is written close to the top
 - [ ] Attach the enhancement label for update tasks
 - [ ] Make sure CI completes successfully
+- [ ] Check everything written in the PR
+- [ ] Fix the issues pointed out by AI
 - [ ] Add reviewers
 - [ ] On Slack, mention the PR reviewer, write your thoughts on the issue, and inform them that the PR has been created
 

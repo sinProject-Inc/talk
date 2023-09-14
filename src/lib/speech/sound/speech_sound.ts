@@ -28,6 +28,7 @@ export class SpeechSound {
 
 	public async write(sound_id: SoundId): Promise<void> {
 		const sound_file_path = SoundFilePath.from_id(sound_id)
+
 		await fs.promises.writeFile(sound_file_path.path, this._data, 'binary')
 	}
 }

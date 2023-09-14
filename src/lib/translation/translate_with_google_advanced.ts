@@ -21,10 +21,12 @@ export class TranslateWithGoogleAdvanced {
 			const translation_client = new TranslationServiceClient()
 
 			dotenv.config()
+
 			const google_product_id = process.env.GOOGLE_PROJECT_ID
 
 			if (!google_product_id) {
 				logger.error('[env] GOOGLE_PROJECT_ID is undefined')
+
 				return ''
 			}
 
@@ -39,6 +41,7 @@ export class TranslateWithGoogleAdvanced {
 			}
 
 			const [response] = await translation_client.translateText(request)
+
 			if (!response.translations) return ''
 
 			const translated_text_string = response.translations[0].translatedText
@@ -48,6 +51,7 @@ export class TranslateWithGoogleAdvanced {
 			return translated_text_string
 		} catch (error) {
 			logger.error('[Google Translate] Failed:', error)
+
 			return ''
 		}
 	}
