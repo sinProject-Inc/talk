@@ -61,7 +61,7 @@ const config: PlaywrightTestConfig = {
 
 	/* Configure projects for major browsers */
 	projects: [
-		{ name: 'setup', testMatch: /[^.]*\.setup\.ts/ },
+		{ name: 'setup', testMatch: /[^.]{1,100}\.setup\.ts/ },
 
 		{
 			name: 'chromium',
