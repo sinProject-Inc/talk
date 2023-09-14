@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { App } from '$lib/app/app'
 	import Navbar from '$lib/components/navbar.svelte'
 	import SocialMetaTags from '$lib/components/social_meta_tags.svelte'
