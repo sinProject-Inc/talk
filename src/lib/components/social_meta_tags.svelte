@@ -26,7 +26,7 @@
 		title,
 		description,
 		images: [{ url: image_url, alt: image_alt }],
-		site_name,
+		siteName: site_name,
 	}}
 	twitter={{
 		site,
