@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { version } from '$app/environment'
 	import { App } from '$lib/app/app'
 </script>
