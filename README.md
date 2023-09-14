@@ -12,7 +12,7 @@ Visit: [talk.sinpro.dev](https://talk.sinpro.dev/)
 
 ## Creating a Project
 
-👉 [**Creating a Project**](https://github.com/sinProject-Inc/talk/docs/80-talk/20-creating-a-project.md)
+👉 [**Creating a Project**](https://sinpro.dev/docs/creating-a-project)
 
 ## Feedback
 
