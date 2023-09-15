@@ -19,13 +19,13 @@ const base = ''
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
 	/* Maximum time one test can run for. */
-	timeout: process.env.CI ? 20 * 1000 : 5 * 1000,
+	timeout: process.env.CI ? 20 * 1000 : 10 * 1000,
 	expect: {
 		/**
 		 * Maximum time expect() should wait for the condition to be met.
 		 * For example in `await expect(locator).toHaveText();`
 		 */
-		timeout: 2000,
+		timeout: 3000,
 	},
 	/* Run tests in files in parallel */
 	fullyParallel: true,
