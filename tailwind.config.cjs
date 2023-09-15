@@ -12,7 +12,6 @@ module.exports = {
 				'media-border': 'rgb(207, 217, 222)',
 				'header-background': 'rgba(239, 243, 244, 0.85)',
 				link: 'rgb(29,155,240)',
-				// TODO: swap dark and base
 				base: '#f1f5f9', // slate-100
 				'base-dark': '#0F172A', // slate-900
 				primary: {
