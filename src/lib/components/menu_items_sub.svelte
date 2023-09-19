@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { base } from '$app/paths'
 	import { page } from '$app/stores'
 	import { is_min_width_768 } from '$lib/stores'
