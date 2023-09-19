@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   check:
-    name: Check
+    name: Lint Check, Type Check, Svelte Check
     runs-on: ubuntu-latest
     # runs-on: ${{ matrix.runner }}
     # strategy:
@@ -55,7 +55,7 @@ jobs:
         run: npm run check
 
   tests:
-    name: Tests
+    name: Vitest Test, Playwright Test
     runs-on: ubuntu-latest
 
     timeout-minutes: 10
