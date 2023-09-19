@@ -5,7 +5,7 @@ closes #ISSUE_NUMBER
 ## Tasks
 
 - [ ] Make sure all checkboxes in the Issue content are checked
-- [ ] Make sure the PR title is in the format <Issue Title> <Issue Number>
+- [ ] Make sure the PR title is in the format `<Issue Title> <Issue Number>`
 - [ ] Make sure "closes (issue number)" is written close to the top
 - [ ] Attach the enhancement label for update tasks
 - [ ] Make sure CI completes successfully
