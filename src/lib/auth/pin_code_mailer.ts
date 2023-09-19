@@ -17,6 +17,7 @@ export class PinCodeMailer {
 			pass: GMAIL_PASS,
 		},
 	})
+
 	private readonly _from_email = new Email(GMAIL_USER)
 
 	public constructor(

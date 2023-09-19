@@ -30,6 +30,7 @@ export class CreateGitBranch {
 
 		return branch_name
 	}
+
 	private async _create_git_branch(branch_name: string): Promise<void> {
 		const exec = promisify(execCallback)
 

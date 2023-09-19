@@ -18,6 +18,7 @@ export class OSInfo {
 		'Mac',
 		'macOS',
 	]
+
 	private static readonly _windows_platforms = ['Win32', 'Win64', 'Windows', 'WinCE']
 	private static readonly _ios_platforms = ['iPhone', 'iPad', 'iPod']
 
