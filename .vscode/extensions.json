@@ -35,6 +35,11 @@
 		"formulahendry.code-runner",
 		"george-alisson.html-preview-vscode",
 		"naumovs.color-highlight",
-		"ms-vscode-remote.remote-ssh"
+		"ms-vscode-remote.remote-ssh",
+		"kisstkondoros.vscode-codemetrics",
+		"byi8220.indented-block-highlighting",
+		"sirtori.indenticator",
+		"sonarsource.sonarlint-vscode",
+		"yzhang.markdown-all-in-one"
 	]
 }
