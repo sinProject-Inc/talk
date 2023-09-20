@@ -27,6 +27,7 @@ export class Background {
 		purple,
 		purple2,
 	]
+
 	private _background_url: string
 
 	public constructor(private readonly _background_index: BackgroundIndex) {
