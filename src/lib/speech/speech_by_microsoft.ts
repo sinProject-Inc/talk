@@ -38,7 +38,7 @@ export class SpeechByMicrosoft implements Speech {
 
 						resolve(speech_sound)
 					} else {
-						reject('No result')
+						reject(new Error('No result'))
 					}
 				},
 				(error) => {

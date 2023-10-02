@@ -27,14 +27,12 @@ interface ISpeechRecognition extends EventTarget {
 	stop(): void
 }
 
-interface ISpeechRecognitionConstructor {
-	new (): ISpeechRecognition
-}
+type SpeechRecognitionConstructor = new () => ISpeechRecognition
 
 interface IWindow extends Window {
 	// eslint-disable-next-line @typescript-eslint/naming-convention
-	SpeechRecognition: ISpeechRecognitionConstructor
-	webkitSpeechRecognition: ISpeechRecognitionConstructor
+	SpeechRecognition: SpeechRecognitionConstructor
+	webkitSpeechRecognition: SpeechRecognitionConstructor
 }
 
 declare const window: IWindow

@@ -60,11 +60,3 @@ export const logger = createLogger({
 		console_transport,
 	],
 })
-
-// if (process.env.NODE_ENV !== 'production') {
-// logger.add(
-// 	new transports.Console({
-// 		format: format.combine(format.colorize({ all: true }), format.simple()),
-// 	})
-// )
-// }

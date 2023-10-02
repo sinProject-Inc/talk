@@ -1,11 +1,10 @@
-import { GMAIL_USER } from '$env/static/private'
-import { GMAIL_PASS } from '$env/static/private'
+import { GMAIL_PASS, GMAIL_USER } from '$env/static/private'
+import { App } from '$lib/app/app'
 import * as nodemailer from 'nodemailer'
 import type SMTPTransport from 'nodemailer/lib/smtp-transport'
 import { Email } from './email'
 import type { MailSubject } from './mail_subject'
 import type { PinCode } from './pin_code'
-import { App } from '$lib/app/app'
 
 export class PinCodeMailer {
 	private readonly _transporter = nodemailer.createTransport({

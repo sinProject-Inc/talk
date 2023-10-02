@@ -48,12 +48,6 @@ export class TextRepositoryPrisma implements TextRepository {
 		return texts
 	}
 
-	public async find_unique(text_id: TextId): Promise<Text | null> {
-		const text = await this._prisma_client.text.findUnique({ where: { id: text_id.id } })
-
-		return text
-	}
-
 	public async save(locale_code: LocaleCode, speech_text: SpeechText): Promise<Text> {
 		const locale_repository: LocaleRepository = new LocaleRepositoryPrisma(this._prisma_client)
 		const locale = await locale_repository.find_unique(locale_code)
