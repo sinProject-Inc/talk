@@ -1,5 +1,3 @@
-// TODO: TO E2E TEST
-
 // import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 // import { expect, test } from 'vitest'
 // import { TextsApi } from './texts_api'

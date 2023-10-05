@@ -41,7 +41,6 @@ export class TextRepositoryPrisma implements TextRepository {
 		const texts = await this._prisma_client.text.findMany({
 			where: { locale: { code: locale_code.code } },
 			orderBy: { updated_at: 'desc' },
-			// TODO: Make this more readable
 			...(limit && { take: limit.limit }),
 		})
 

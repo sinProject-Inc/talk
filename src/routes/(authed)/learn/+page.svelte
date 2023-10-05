@@ -181,9 +181,6 @@
 		add_translation_string = ''
 
 		await show_translation()
-		// TODO: 選択されているテキストを探す
-		// TODO: 翻訳を登録する
-		// TODO: 選択されているテキストと翻訳を関連付ける
 	}
 
 	async function add_text(): Promise<void> {

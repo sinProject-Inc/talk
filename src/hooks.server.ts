@@ -81,7 +81,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		logger.info(`${client_address} [${event.request.method}] ${event.url}`)
 	}
 
-	// TODO: 実際にこの値を利用する
 	const response = await resolve(event, {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		transformPageChunk: ({ html }) =>

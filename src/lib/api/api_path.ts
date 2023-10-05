@@ -28,8 +28,6 @@ export class ApiPath {
 	}
 
 	public connect_with_params(params: Record<string, string>): ApiPath {
-		// TODO: Do not use Record
-
 		const filtered_params = Object.fromEntries(
 			Object.entries(params).filter(([, value]) => value !== '')
 		)

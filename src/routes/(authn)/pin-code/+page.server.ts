@@ -66,7 +66,6 @@ export const actions: Actions = {
 
 			return { credentials: true, missing: false, success: false }
 
-			// TODO: Show message on page
 			// throw redirect(302, '/sign-in')
 		}
 	},

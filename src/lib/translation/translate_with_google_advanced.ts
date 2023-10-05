@@ -1,4 +1,3 @@
-// TODO: node env に変更する
 import { LocaleCode } from '../locale/locale_code'
 import { TranslationServiceClient } from '@google-cloud/translate'
 import * as dotenv from 'dotenv'
