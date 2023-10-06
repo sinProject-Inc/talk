@@ -10,6 +10,8 @@ assignees: ''
 
 - [ ]
 
+Estimated Time: XXmin
+
 # Writing the Issue
 
 - [ ] Write each task for this issue using checkboxes
