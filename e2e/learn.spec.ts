@@ -60,7 +60,6 @@ test.describe('after sign in', () => {
 		// }
 	})
 
-	// TODO: GitHub Actions で動作させるにはデータが必要
 	// test('If there is text on translate, there is text on main', async ({ page }) => {
 	// 	await page.waitForSelector('.text')
 	// 	const main_text_count = await page.locator('.text').count()

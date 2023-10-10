@@ -2,10 +2,7 @@ import type { UserId } from '../user/user_id'
 import { ApiPath } from '../api/api_path'
 
 export class AvatarUrl {
-	public constructor(
-		// TODO: Value Object
-		private readonly _user_id: UserId
-	) {}
+	public constructor(private readonly _user_id: UserId) {}
 
 	public get url(): string {
 		try {

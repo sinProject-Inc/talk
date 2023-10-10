@@ -23,7 +23,6 @@ test.describe('after sign in', () => {
 		await expect(page).toHaveTitle('Translate - Talk')
 	})
 
-	// TODO FIX TEST
 	// test('clicking a text in the history moves it into the box', async ({ page }) => {
 	// 	const history_text = page.locator('.text').first()
 	// 	const text = await history_text.innerText()
@@ -104,7 +103,6 @@ test.describe('after sign in', () => {
 		await expect(history_box).toBeVisible()
 	})
 
-	// TODO: GitHub Actions で動作させると、結果が空文字になる。翻訳ができていない？
 	test('adding text should display the translation', async ({ page }) => {
 		await page.waitForSelector('.text-area')
 
@@ -151,7 +149,6 @@ test.describe('after sign in', () => {
 
 		const bottom_textarea = page.getByRole('textbox').nth(1)
 
-		// TODO: CHANGE TEST!!!
 		await expect(bottom_textarea).toHaveValue(/[あa]/)
 	})
 

@@ -137,8 +137,6 @@ async function on_message(
 		socket.emit('message_acknowledged')
 	} catch (error) {
 		logger.error(`${client_address} [SOCKET] on_message error`, error)
-
-		// TODO: 再ログインを促す
 	}
 }
 

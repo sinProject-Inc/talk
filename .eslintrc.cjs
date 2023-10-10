@@ -113,7 +113,6 @@ module.exports = {
 				selector: ['variable'],
 				format: ['snake_case', 'UPPER_CASE'],
 			},
-			// TODO: 引数、関数、クラス、インターフェイス、enumのメンバー名のルール
 		],
 	},
 	overrides: [

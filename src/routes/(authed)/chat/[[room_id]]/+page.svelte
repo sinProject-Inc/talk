@@ -85,8 +85,6 @@
 	})
 
 	async function show_log_translation(chat_log_item: ChatLogItem): Promise<void> {
-		// TODO: English-US から GB への翻訳を考慮する
-
 		const speech_text = new SpeechText(chat_log_item.data.message)
 		const source_locale_code = new LocaleCode(chat_log_item.data.locale_code)
 		const target_locale_code = new LocaleCode(locale_select_element.value)
@@ -381,7 +379,6 @@
 			return
 		}
 
-		// TODO: RoomId を指定する
 		const join_data: JoinData = {
 			room_id: data.room_id,
 			name: name,
@@ -419,7 +416,6 @@
 	function leave(): void {
 		web_logger.info(`leave: ${name}`)
 
-		// TODO: leave
 		socket.emit('leave')
 
 		did_leave()

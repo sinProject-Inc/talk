@@ -5,8 +5,6 @@
 
 // MOTE: num run dev -- --host
 
-// TODO: create e2e TEST CODE !!!
-
 ###
 GET {{host}}
 

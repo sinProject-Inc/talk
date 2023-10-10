@@ -3,7 +3,6 @@ import { ApiPath } from '../api/api_path'
 
 export class TextToSpeechUrl {
 	public constructor(
-		// TODO: Value Object
 		private readonly _value: string,
 		private readonly _locale_code: LocaleCode
 	) {}
