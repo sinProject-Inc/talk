@@ -70,6 +70,7 @@
 		"typescript": "^5.2.2",
 		"user-agent-data-types": "^0.4.2",
 		"vite": "^4.4.9",
+		"vite-plugin-mkcert": "^1.16.0",
 		"vitest": "^0.34.4"
 	},
 	"type": "module",
