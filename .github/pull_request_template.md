@@ -16,10 +16,6 @@ closes #ISSUE_NUMBER
 
 # For the Reviewer
 
-## Before Reviewing
-
-- [ ] Write which PR you are reviewing on Slack
-
 ## Checks
 
 - [ ] Each task for the related issue are written and in checkboxes
