@@ -21,8 +21,6 @@ Estimated Time: XXmin
 # Before Working on the Issue
 
 - [ ] Assign yourself
-- [ ] Share your screen on Discord
-- [ ] Write which issue you are starting on Slack
 - [ ] Git: Fetch the latest main
 - [ ] Git: Create a branch with the name of the issue
 
