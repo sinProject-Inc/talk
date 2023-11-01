@@ -17,8 +17,15 @@ export class CreateGitBranch {
 			throw new Error('Invalid issue string format')
 		}
 
-		const issue_number = issue_parts[2].substring(1)
-		const replaced_issue_name = issue_parts[1].replaceAll(/[/_]/g, '-').trim()
+		const name_part = issue_parts[1]
+		const number_part = issue_parts[2]
+
+		if (!name_part || !number_part) {
+			throw new Error('Invalid issue string format')
+		}
+
+		const issue_number = number_part.substring(1)
+		const replaced_issue_name = name_part.replaceAll(/[/_]/g, '-').trim()
 		const issue_name = replaced_issue_name.replaceAll(/[^a-zA-Z0-9- .]/g, '').trim()
 		const kebab_case_issue_name = this._to_kebab_case(issue_name)
 
@@ -56,6 +63,12 @@ const args = process.argv.slice(2) // 最初の2つの要素はNode.jsの実行�
 
 if (args.length > 0) {
 	const issue_string = args[0]
+
+	if (!issue_string) {
+		// eslint-disable-next-line no-console
+		console.error('No branch string provided.')
+		process.exit(1)
+	}
 
 	try {
 		await new CreateGitBranch().exec(issue_string)

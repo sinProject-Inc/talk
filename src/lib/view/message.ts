@@ -1,7 +1,6 @@
 import { ValidText } from '../text/valid_text'
 
 export class Message {
-	private readonly _message: undefined
 	private readonly _text: string
 
 	public constructor(text: string) {
