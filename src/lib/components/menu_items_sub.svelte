@@ -26,7 +26,7 @@
 >
 	<div class="h-nav-icon"><GithubIcon /></div>
 </a>
-{#if $page.data.user}
+{#if $page.data['user']}
 	<a href="{base}/profile" class="flex items-center gap-1" title="Profile">
 		<div class="h-nav-icon"><ProfileIcon /></div>
 	</a>
