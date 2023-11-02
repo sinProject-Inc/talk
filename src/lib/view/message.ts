@@ -4,9 +4,7 @@ export class Message {
 	private readonly _text: string
 
 	public constructor(text: string) {
-		const valid_text = new ValidText(text)
-
-		this._text = valid_text.text
+		this._text = ValidText.validate(text)
 	}
 
 	public get text(): string {
