@@ -1,9 +1,9 @@
 import { Repository } from '$lib/app/repository'
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { Email } from './email'
 import { PinCode } from './pin_code'
 
-test('find', async () => {
+it('find', async () => {
 	const email = new Email('test2@example.com')
 	const pin_code = new PinCode('123456')
 	const user = await Repository.user.find_unique(email)

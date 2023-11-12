@@ -1,13 +1,13 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { PinCode } from './pin_code'
 
-test('undefined', () => {
+it('undefined', () => {
 	expect(() => {
 		new PinCode(undefined)
 	}).toThrow('PIN code is required')
 })
 
-test('[EMPTY]', () => {
+it('[EMPTY]', () => {
 	expect(() => {
 		new PinCode('')
 	}).toThrow('PIN code is required')
@@ -19,33 +19,33 @@ test('[EMPTY]', () => {
 // 	}).toThrow('PIN code is too short')
 // })
 
-test('just short enough', () => {
+it('just short enough', () => {
 	expect(() => {
 		PinCode.generate(6)
 	}).not.toThrow()
 })
 
-test('just long enough', () => {
+it('just long enough', () => {
 	expect(() => {
 		PinCode.generate(50)
 	}).not.toThrow()
 })
 
-test('long', () => {
+it('long', () => {
 	expect(() => {
 		PinCode.generate(51)
 	}).toThrow('PIN code is too long')
 })
 
-test('generate', () => {
+it('generate', () => {
 	expect(PinCode.generate().code).toHaveLength(6)
 })
 
-test('generate 8', () => {
+it('generate 8', () => {
 	expect(PinCode.generate(8).code).toHaveLength(8)
 })
 
-test('get_html have PIN code', () => {
+it('get_html have PIN code', () => {
 	const pin_code = PinCode.generate()
 	const code = pin_code.code
 	const html = pin_code.get_html()

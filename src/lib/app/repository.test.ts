@@ -1,6 +1,6 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { Repository } from './repository'
 
-test('context', async () => {
+it('context', async () => {
 	expect(Repository.context).toBeTruthy()
 })
