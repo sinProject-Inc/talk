@@ -1,34 +1,23 @@
 import { expect, test } from 'vitest'
 import { TextError } from './text_error'
 
-test('empty', () => {
-	expect(() => new TextError('')).toThrow('text is empty')
-})
+const test_cases = [
+	{ input: '', expected_error: 'text is empty' },
+	{ input: ' ', expected_error: 'text is empty' },
+	{ input: 'text', expected_message_id: 'text' },
+	{ input: ' text ', expected_message_id: 'text' },
+	{ input: ' text text ', expected_message_id: 'text text' },
+	{ input: '	text	', expected_message_id: 'text' },
+	{ input: '	text	text	', expected_message_id: 'text	text' },
+]
 
-test('space', () => {
-	expect(() => new TextError(' ')).toThrow('text is empty')
-})
-
-test('text', () => {
-	expect(new TextError('text').message_id).toEqual('text')
-})
-
-test('text with space', () => {
-	expect(new TextError(' text ').message_id).toEqual('text')
-})
-
-test('text with spaces', () => {
-	expect(new TextError(' text text ').message_id).toEqual('text text')
-})
-
-test('text with tab', () => {
-	expect(new TextError('	text	').message_id).toEqual('text')
-})
-
-test('text with tabs', () => {
-	expect(new TextError('	text	text	').message_id).toEqual('text	text')
-})
-
-test('message_id is text', () => {
-	expect(new TextError('text').message_id).toEqual('text')
-})
+test.each(test_cases)(
+	'TextError with input "%s"',
+	({ input, expected_error, expected_message_id }) => {
+		if (expected_error) {
+			expect(() => new TextError(input)).toThrow(expected_error)
+		} else {
+			expect(new TextError(input).message_id).toEqual(expected_message_id)
+		}
+	}
+)

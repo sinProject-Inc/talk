@@ -25,7 +25,7 @@
 
 		"isolatedModules": true,
 
-		"types": ["vite-plugin-pwa/info", "vitest/importMeta"]
+		"types": ["vitest/importMeta"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
