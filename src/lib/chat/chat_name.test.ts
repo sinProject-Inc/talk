@@ -1,10 +1,10 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { ChatName } from './chat_name'
 
-test('empty', () => {
+it('empty', () => {
 	expect(() => new ChatName('')).toThrow('ChatName must be at least 1 character long.')
 })
 
-test('en-US', () => {
+it('en-US', () => {
 	expect(new ChatName('Ryan').value).toEqual('Ryan')
 })

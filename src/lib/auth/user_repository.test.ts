@@ -1,8 +1,8 @@
 import { Repository } from '$lib/app/repository'
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { Email } from './email'
 
-test('find_unique: new', async () => {
+it('find_unique: new', async () => {
 	const email = new Email('test@example.com')
 
 	try {
@@ -16,7 +16,7 @@ test('find_unique: new', async () => {
 	expect(user?.email).toEqual(email.address)
 })
 
-test('find_unique: exist', async () => {
+it('find_unique: exist', async () => {
 	const email = new Email('testtest@example.com')
 
 	try {
