@@ -64,7 +64,7 @@ export const GET: RequestHandler = async ({ params }) => {
 	try {
 		const speech_sounds = await get_speech_sounds([speech_text], locale_code)
 
-		if (!speech_sounds || !speech_sounds[0]) throw new Error('speech_sounds is undefined')
+		if (!speech_sounds?.[0]) throw new Error('speech_sounds is undefined')
 		// // return new Response('success')
 
 		return new Response(speech_sounds[0].data, {

@@ -42,7 +42,7 @@ export class TranslateWithGoogleAdvanced {
 
 			const [response] = await translation_client.translateText(request)
 
-			if (!response.translations || !response.translations[0]) return ''
+			if (!response.translations?.[0]) return ''
 
 			const translated_text_string = response.translations[0].translatedText
 
