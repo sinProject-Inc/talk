@@ -1,8 +1,8 @@
 module.exports = {
 	apps: [
 		{
-			name: 'talk',
-			script: './server/index.ts',
+			name: 'sinpro-template-talk',
+			script: 'build',
 			interpreter: 'node',
 			interpreterArgs: '--loader tsx',
 			instances: '-1',
@@ -10,7 +10,7 @@ module.exports = {
 			watch: false,
 			ignore_watch: ['logs'],
 			env: {
-				PORT: 3002,
+				PORT: 3005,
 			},
 		},
 	],
