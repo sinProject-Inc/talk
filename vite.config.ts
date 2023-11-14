@@ -27,11 +27,17 @@ export default defineConfig({
 		include: ['src/**/*.test.ts'],
 		hookTimeout: 3000,
 		teardownTimeout: 0,
-		// coverage: {
-		// 	all: true,
-		// 	include: ['src/**/*.ts'],
-		// 	exclude: ['src/**/+*'],
-		// },
+		coverage: {
+			all: true,
+			include: ['src/**/*.ts'],
+			exclude: [
+				'src/**/+*.ts',
+				'src/app.d.ts',
+				'src/hooks.server.ts',
+				'src/lib/git/create_git_branch.ts',
+			],
+			reporter: ['lcov', 'text'],
+		},
 	},
 	server: {
 		host: true,
