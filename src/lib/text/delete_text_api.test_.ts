@@ -1,13 +1,13 @@
 // import { SpeechLanguageCode } from '$lib/speech/speech_language_code'
 // import { SpeechText } from '$lib/speech/speech_text'
-// import { expect, test } from 'vitest'
+// import { expect, it } from 'vitest'
 // import { AddTextApi } from './add_text_api'
 // import { DeleteTextApi } from './delete_text_api'
 // import { TextsApi } from './texts_api'
 
 // const origin = 'http://localhost:5173'
 
-// test('Delete text', async () => {
+// it('Delete text', async () => {
 // 	const speech_text = new SpeechText('test string here')
 // 	const speech_language_code = SpeechLanguageCode.create('en')
 

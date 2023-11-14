@@ -1,9 +1,9 @@
 import { Repository } from '$lib/app/repository'
 import { LocaleCode } from '$lib/locale/locale_code'
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { SpeechText } from '../speech_text'
 
-test('save', async () => {
+it('save', async () => {
 	const locale_code = LocaleCode.japanese_japan
 	const speech_text = new SpeechText('こんにちは')
 
