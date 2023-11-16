@@ -2,7 +2,7 @@ module.exports = {
 	apps: [
 		{
 			name: 'talk',
-			script: 'build',
+			script: './server/index.ts',
 			interpreter: 'node',
 			interpreterArgs: '--loader tsx',
 			instances: '-1',
@@ -10,7 +10,7 @@ module.exports = {
 			watch: false,
 			ignore_watch: ['logs'],
 			env: {
-				PORT: 3005,
+				PORT: 3002,
 			},
 		},
 	],
