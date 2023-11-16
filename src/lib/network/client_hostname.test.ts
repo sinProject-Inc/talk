@@ -1,5 +1,5 @@
 import { ClientHostName } from './client_hostname'
-import { describe, expect, test, vi } from 'vitest'
+import { expect, test, vi } from 'vitest'
 
 vi.mock('dns', async () => {
 	const actual_dns = (await vi.importActual('dns')) as typeof import('dns')
@@ -16,23 +16,21 @@ vi.mock('dns', async () => {
 	}
 })
 
-describe('ClientHostName', () => {
-	test('should return the hostname for a valid IP address', async () => {
-		const client_host_name = new ClientHostName('8.8.8.8')
-		const hostname = await client_host_name.reverse()
-		expect(hostname).toBe('dns.google')
-	})
+type Spec = {
+	ip: string
+	expected: string
+}
 
-	test('should return an empty string for an invalid IP address', async () => {
-		const client_host_name = new ClientHostName('999.999.999.999')
+const specs: Spec[] = [
+	{ ip: '8.8.8.8', expected: 'dns.google' },
+	{ ip: '999.999.999.999', expected: '' },
+]
 
-		let hostname
+test.each(specs)('new ClientHostName($ip) -> ($expected)', async (spec: Spec) => {
+	const { ip, expected } = spec
 
-		try {
-			hostname = await client_host_name.reverse()
-		} catch (error) {
-			hostname = ''
-		}
-		expect(hostname).toBe('')
-	})
+	const client_host_name = new ClientHostName(ip)
+	const hostname = await client_host_name.reverse()
+
+	expect(hostname).toBe(expected)
 })

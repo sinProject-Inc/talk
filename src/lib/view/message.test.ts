@@ -1,27 +1,30 @@
-// FILEPATH: /Users/morirei/Projects/talk/src/lib/view/message.test.ts
-
 import { expect, test } from 'vitest'
 import { Message } from './message'
 
-test('constructor with valid text', () => {
-	const message = new Message('valid text')
-	expect(message.text).toEqual('valid text')
-})
+type Spec = {
+	text: string
+	expected?: string
+	expected_error?: string
+}
 
-test('constructor with text containing spaces', () => {
-	const message = new Message(' valid text ')
-	expect(message.text).toEqual('valid text')
-})
+const specs: Spec[] = [
+	{ text: '', expected_error: 'text is empty' },
+	{ text: ' ', expected_error: 'text is empty' },
+	{ text: 'text', expected: 'text' },
+	{ text: ' text ', expected: 'text' },
+	{ text: ' text text ', expected: 'text text' },
+	{ text: '	text	', expected: 'text' },
+	{ text: '	text	text	', expected: 'text	text' },
+]
 
-test('constructor with empty text', () => {
-	expect(() => new Message('')).toThrow('text is empty')
-})
+test.each(specs)('new Message($text) -> ($expected) : (expected_error)', (spec: Spec) => {
+	const { text, expected, expected_error } = spec
 
-test('constructor with text containing only spaces', () => {
-	expect(() => new Message(' ')).toThrow('text is empty')
-})
+	if (expected_error) {
+		expect(() => new Message(text)).toThrow(expected_error)
 
-test('text getter', () => {
-	const message = new Message('valid text')
-	expect(message.text).toEqual('valid text')
+		return
+	}
+
+	expect(new Message(text).text).toEqual(expected)
 })

@@ -1,23 +1,30 @@
 import { expect, test } from 'vitest'
 import { TextError } from './text_error'
 
-const test_cases = [
+type Spec = {
+	input: string
+	expected_error?: string
+	expected?: string
+}
+
+const specs: Spec[] = [
 	{ input: '', expected_error: 'text is empty' },
 	{ input: ' ', expected_error: 'text is empty' },
-	{ input: 'text', expected_message_id: 'text' },
-	{ input: ' text ', expected_message_id: 'text' },
-	{ input: ' text text ', expected_message_id: 'text text' },
-	{ input: '	text	', expected_message_id: 'text' },
-	{ input: '	text	text	', expected_message_id: 'text	text' },
+	{ input: 'text', expected: 'text' },
+	{ input: ' text ', expected: 'text' },
+	{ input: ' text text ', expected: 'text text' },
+	{ input: '	text	', expected: 'text' },
+	{ input: '	text	text	', expected: 'text	text' },
 ]
 
-test.each(test_cases)(
-	'TextError with input "%s"',
-	({ input, expected_error, expected_message_id }) => {
-		if (expected_error) {
-			expect(() => new TextError(input)).toThrow(expected_error)
-		} else {
-			expect(new TextError(input).message_id).toEqual(expected_message_id)
-		}
+test.each(specs)('new TextError($input) -> ($expected) : (expected_error)', (spec: Spec) => {
+	const { input, expected, expected_error } = spec
+
+	if (expected_error) {
+		expect(() => new TextError(input)).toThrow(expected_error)
+
+		return
 	}
-)
+
+	expect(new TextError(input).message_id).toEqual(expected)
+})
