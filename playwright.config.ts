@@ -41,7 +41,8 @@ const config: PlaywrightTestConfig = {
 	reporter: [['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
-		baseURL: `http://127.0.0.1:5173${base}/`,
+		ignoreHTTPSErrors: true,
+		baseURL: `https://127.0.0.1:5173${base}/`,
 
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
 		actionTimeout: 0,
@@ -121,7 +122,8 @@ const config: PlaywrightTestConfig = {
 	webServer: [
 		{
 			command: 'npm run dev',
-			url: `http://127.0.0.1:5173${base}/`,
+			url: `https://127.0.0.1:5173${base}/`,
+			ignoreHTTPSErrors: true,
 			reuseExistingServer: !process.env.CI,
 		},
 		// {

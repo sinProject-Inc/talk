@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vitest/config'
 import inject_socket_io from './server/socket-handler'
+import mkcert from 'vite-plugin-mkcert'
 
 // # Dev
 // npm run dev
@@ -18,7 +19,7 @@ const web_socket = {
 }
 
 export default defineConfig({
-	plugins: [sveltekit(), web_socket],
+	plugins: [sveltekit(), web_socket, mkcert()],
 	define: {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		'import.meta.vitest': 'undefined',
