@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('index page has expected h1', async ({ page }) => {
+test('before sign in', async ({ page }) => {
 	await page.goto('/', { waitUntil: 'networkidle' })
-	expect(await page.textContent('h1')).toBe('Welcome to SvelteKit')
+	await expect(page).toHaveTitle('Talk')
 })
