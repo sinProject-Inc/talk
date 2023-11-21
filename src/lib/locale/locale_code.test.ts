@@ -1,14 +1,14 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { LocaleCode } from './locale_code'
 
-test('empty', () => {
+it('empty', () => {
 	expect(() => new LocaleCode('')).toThrow('LocaleCode is required')
 })
 
-test('en', () => {
+it('en', () => {
 	expect(() => new LocaleCode('en')).toThrow('LocaleCode must include a hyphen')
 })
 
-test('en-US', () => {
+it('en-US', () => {
 	expect(new LocaleCode('en-US').code).toEqual('en-US')
 })

@@ -21,7 +21,7 @@
 		"prepare": "husky install",
 		"typecheck": "tsc --noEmit",
 		"typecheck:why": "tsc --noEmit --explainFiles > explainTypes.txt",
-		"branch": "git checkout main && git pull && tsx ./src/lib/git/create_git_branch.ts"
+		"branch": "git checkout main && git pull && tsx ./src/scripts/create_git_branch.ts"
 	},
 	"prisma": {
 		"seed": "tsx prisma/seed.ts"

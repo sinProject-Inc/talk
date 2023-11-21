@@ -1,8 +1,8 @@
 import { Repository } from '$lib/app/repository'
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { ChatEntity } from './chat_entity'
 
-test('save and find_many', async () => {
+it('save and find_many', async () => {
 	const chat_entity = new ChatEntity('test_room_id', 'en-US', 'test_name', 999998, 'test_message')
 
 	const chat_log = await Repository.chat_log.save(chat_entity)
