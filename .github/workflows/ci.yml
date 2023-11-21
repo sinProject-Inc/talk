@@ -116,8 +116,8 @@ jobs:
         shell: bash
         run: npm run build
 
-      - name: Vitest Test
-        run: npm run test:ci
+      - name: Vitest Test and coverage
+        run: npx vitest run --coverage
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
