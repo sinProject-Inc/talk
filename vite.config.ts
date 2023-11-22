@@ -34,7 +34,7 @@ export default defineConfig({
 				'src/**/+*.ts',
 				'src/app.d.ts',
 				'src/hooks.server.ts',
-				'src/lib/git/create_git_branch.ts',
+				'src/scripts/create_git_branch.ts',
 			],
 			reporter: ['lcov', 'text'],
 		},
