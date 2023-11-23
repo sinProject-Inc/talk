@@ -72,7 +72,7 @@ async function get_translations(text: Text, translation_locale_codes: string[]):
 	await Promise.all(promises)
 }
 
-async function save(chat_entity: ChatEntity, io: Server, room_id: string): Promise<ChatLog> {
+async function save(chat_entity: ChatEntity, room_id: string): Promise<ChatLog> {
 	const chat_log = await save_chat_log(chat_entity)
 	const text = await get_text(chat_log)
 	const translation_locale_codes = await get_translation_locale_codes(room_id, chat_log.locale_code)
@@ -131,7 +131,7 @@ async function on_message(
 			received_message_set.message
 		)
 
-		const chat_log = await save(chat_entity, io, room_id)
+		const chat_log = await save(chat_entity, room_id)
 
 		io.to(room_id).emit('message', chat_log)
 		socket.emit('message_acknowledged')

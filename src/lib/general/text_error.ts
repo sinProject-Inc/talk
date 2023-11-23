@@ -4,9 +4,7 @@ export class TextError {
 	private readonly _message_id: string
 
 	public constructor(message_id: string) {
-		const valid_text = new ValidText(message_id)
-
-		this._message_id = valid_text.text
+		this._message_id = ValidText.validate(message_id)
 	}
 
 	public get message_id(): string {

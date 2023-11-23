@@ -31,7 +31,11 @@ export class Background {
 	private _background_url: string
 
 	public constructor(private readonly _background_index: BackgroundIndex) {
-		this._background_url = this._background_urls[_background_index.index]
+		if (this._background_urls[_background_index.index] === undefined) {
+			throw new Error('Invalid Background index')
+		} else {
+			this._background_url = this._background_urls[_background_index.index] as string
+		}
 	}
 
 	public static from_local_storage(): Background {

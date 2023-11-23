@@ -8,7 +8,7 @@ export class LocaleCode {
 		if (!code) throw new Error('LocaleCode is required')
 		if (!code.includes('-')) throw new Error('LocaleCode must include a hyphen')
 
-		const [language, country] = code.split('-')
+		const [language = '', country = ''] = code.split('-')
 
 		if (!/^[a-z]{2,3}$/.test(language)) {
 			throw new Error('Language code must be 2 or 3 lowercase letters')

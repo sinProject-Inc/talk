@@ -3,8 +3,8 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ params }) => {
 	const translate_with_google_advanced = new TranslateWithGoogleAdvanced(
-		params.text,
-		params.target_locale_code
+		params['text'],
+		params['target_locale_code']
 	)
 
 	const translated_text = await translate_with_google_advanced.execute()

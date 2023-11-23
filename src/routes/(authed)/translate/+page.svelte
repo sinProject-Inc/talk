@@ -216,7 +216,7 @@
 	}
 
 	function speak_by_text(texts: Text[], locale_code: LocaleCode): void {
-		if (texts.length === 0) return
+		if (texts.length === 0 || texts[0] === undefined) return
 
 		speak(texts[0].text, locale_code)
 	}
