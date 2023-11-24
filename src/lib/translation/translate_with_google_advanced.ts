@@ -22,7 +22,7 @@ export class TranslateWithGoogleAdvanced {
 
 			dotenv.config()
 
-			const google_product_id = process.env.GOOGLE_PROJECT_ID
+			const google_product_id = process.env['GOOGLE_PROJECT_ID']
 
 			if (!google_product_id) {
 				logger.error('[env] GOOGLE_PROJECT_ID is undefined')
@@ -42,7 +42,7 @@ export class TranslateWithGoogleAdvanced {
 
 			const [response] = await translation_client.translateText(request)
 
-			if (!response.translations) return ''
+			if (!response.translations?.[0]) return ''
 
 			const translated_text_string = response.translations[0].translatedText
 

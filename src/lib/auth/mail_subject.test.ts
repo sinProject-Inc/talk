@@ -1,13 +1,13 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { MailSubject } from './mail_subject'
 
-test('[EMPTY]', () => {
+it('[EMPTY]', () => {
 	expect(() => {
 		new MailSubject('')
 	}).toThrow('Mail subject is required')
 })
 
-test('Mail subject is too long', () => {
+it('Mail subject is too long', () => {
 	expect(() => {
 		new MailSubject(
 			'100 length message 100 length message100 length message100 length message100 length message100 length message'
@@ -15,6 +15,6 @@ test('Mail subject is too long', () => {
 	}).toThrow('Mail subject is too long')
 })
 
-test('normal subject', () => {
+it('normal subject', () => {
 	expect(new MailSubject('normal subject').subject).toBe('normal subject')
 })

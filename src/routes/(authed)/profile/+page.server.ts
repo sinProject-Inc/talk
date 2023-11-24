@@ -23,7 +23,7 @@ export const actions: Actions = {
 			if (!(image instanceof Blob)) throw new Error('not an image')
 
 			const image_data = new Uint8Array(await image.arrayBuffer())
-			const image_extension = image.type.split('/')[1]
+			const image_extension = image.type.split('/')[1] ?? ''
 			const avatar_extension = to_avatar_extension(image_extension)
 
 			await Repository.user.update_avatar_extension(user, avatar_extension)

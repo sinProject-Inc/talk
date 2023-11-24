@@ -12,4 +12,10 @@ export class ValidText {
 	public get text(): string {
 		return this._text
 	}
+
+	public static validate(text: string | undefined): string {
+		const instance = new ValidText(text)
+
+		return instance.text
+	}
 }

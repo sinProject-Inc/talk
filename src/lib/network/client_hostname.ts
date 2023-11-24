@@ -10,6 +10,8 @@ export class ClientHostName {
 		try {
 			const hostnames = await reverse_dns(this._client_address)
 
+			if (hostnames === undefined || !hostnames[0]) return ''
+
 			return hostnames[0]
 		} catch (e) {
 			// eslint-disable-next-line no-console

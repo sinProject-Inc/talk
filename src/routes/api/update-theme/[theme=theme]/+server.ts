@@ -5,9 +5,9 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ locals, params }) => {
 	try {
-		if (!params.theme) throw new Error('Theme not found')
+		if (!params['theme']) throw new Error('Theme not found')
 
-		const theme = params.theme as Theme
+		const theme = params['theme'] as Theme
 
 		const email = new Email(locals.user.email)
 		const user = await Repository.user.find_unique(email)

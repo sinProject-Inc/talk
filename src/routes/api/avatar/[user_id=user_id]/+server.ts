@@ -10,7 +10,7 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ params, locals }): Promise<Response> => {
 	try {
-		const user_id = UserId.from_string(params.user_id)
+		const user_id = UserId.from_string(params['user_id'])
 		const email = new Email(locals.user.email)
 		const user = await Repository.user.find_unique(email)
 
@@ -32,7 +32,7 @@ export const GET: RequestHandler = async ({ params, locals }): Promise<Response>
 
 		return response
 	} catch (error) {
-		logger.error(`[avatar] Failed to find avatar: ${params.user_id}]`, error)
+		logger.error(`[avatar] Failed to find avatar: ${params['user_id']}]`, error)
 
 		return json({ error: (error as Error).message })
 	}

@@ -9,21 +9,21 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		// "noImplicitAny": true,
-		// "strictNullChecks": true,
-		// "strictFunctionTypes": true,
-		// "strictBindCallApply": true,
-		// "strictPropertyInitialization": true,
-		// "noImplicitThis": true,
-		// "useUnknownInCatchVariables": true,
-		// "alwaysStrict": true,
 
+		// strictest: https://github.com/tsconfig/bases/blob/main/bases/strictest.json
+		// @tsconfig/strictestで追加されるcompilerOptionsを確認する https://blog.y-temp4.com/entry/tsconfig-strictest
+		"allowUnusedLabels": false,
 		"allowUnreachableCode": false,
 		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		// "noUncheckedIndexedAccess": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+
+		"isolatedModules": true,
 
 		"types": ["vitest/importMeta"]
 	}

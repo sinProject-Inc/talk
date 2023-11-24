@@ -1,27 +1,27 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { LifeTime } from './life_time'
 
-test('generate_zero', async () => {
+it('generate_zero', async () => {
 	expect(() => LifeTime.generate_zero()).toThrow('life_time_millisecond must be greater than 0')
 })
 
-test('generate_session', async () => {
+it('generate_session', async () => {
 	expect(await LifeTime.generate_session()).toBeTruthy()
 })
 
-test('generate_pin_code', async () => {
+it('generate_pin_code', async () => {
 	expect(await LifeTime.generate_pin_code()).toBeTruthy()
 })
 
-test('millisecond', async () => {
+it('millisecond', async () => {
 	expect((await LifeTime.generate_session()).millisecond).toEqual(1000 * 60 * 60 * 24 * 3)
 })
 
-test('second', async () => {
+it('second', async () => {
 	expect((await LifeTime.generate_session()).second).toEqual(60 * 60 * 24 * 3)
 })
 
-test('limit_date', async () => {
+it('limit_date', async () => {
 	const life_time = await LifeTime.generate_session()
 	const millisecond = life_time.millisecond
 	const now = new Date().getTime()

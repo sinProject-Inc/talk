@@ -58,12 +58,13 @@ async function get_speech_sounds(
 }
 
 export const GET: RequestHandler = async ({ params }) => {
-	const speech_text = new SpeechText(params.text)
-	const locale_code = new LocaleCode(params.locale_code)
+	const speech_text = new SpeechText(params['text'])
+	const locale_code = new LocaleCode(params['locale_code'])
 
 	try {
 		const speech_sounds = await get_speech_sounds([speech_text], locale_code)
 
+		if (!speech_sounds?.[0]) throw new Error('speech_sounds is undefined')
 		// // return new Response('success')
 
 		return new Response(speech_sounds[0].data, {
@@ -75,7 +76,7 @@ export const GET: RequestHandler = async ({ params }) => {
 			},
 		})
 	} catch (err) {
-		logger.error(`[speech] Failed to speech text: ${params.text}]`, err)
+		logger.error(`[speech] Failed to speech text: ${params['text']}]`, err)
 
 		if (err instanceof Error) {
 			return new Response(err.message, { status: 500 })

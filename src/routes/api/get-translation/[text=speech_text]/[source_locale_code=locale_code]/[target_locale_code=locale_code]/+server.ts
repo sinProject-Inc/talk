@@ -8,9 +8,9 @@ import { json, type RequestHandler } from '@sveltejs/kit'
 
 export const GET: RequestHandler = async ({ params }) => {
 	try {
-		const speech_text = new SpeechText(params.text)
-		const source_locale_code = new LocaleCode(params.source_locale_code)
-		const target_locale_code = new LocaleCode(params.target_locale_code)
+		const speech_text = new SpeechText(params['text'])
+		const source_locale_code = new LocaleCode(params['source_locale_code'])
+		const target_locale_code = new LocaleCode(params['target_locale_code'])
 
 		const get_text_service = new GetTextService(Repository.text, source_locale_code, speech_text)
 		const text = await get_text_service.execute()
@@ -24,7 +24,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 		return json(translations)
 	} catch (e) {
-		logger.error(`[DB] Failed to get translation: ${params.text}]`, e)
+		logger.error(`[DB] Failed to get translation: ${params['text']}]`, e)
 
 		return new Response((e as Error).message, { status: 400 })
 	}
