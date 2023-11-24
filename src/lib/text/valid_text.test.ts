@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { ValidText } from './valid_text'
 
 type Spec = {
@@ -18,7 +18,7 @@ const specs: Spec[] = [
 	{ input: '	text	text	', expected_message: 'text	text' },
 ]
 
-test.each(specs)('new ValidText($input) -> ($expected) : (expected_error)', (spec: Spec) => {
+it.each(specs)('new ValidText($input) -> ($expected) : (expected_error)', (spec: Spec) => {
 	const { input, expected_message, expected_error } = spec
 
 	if (expected_error) {
