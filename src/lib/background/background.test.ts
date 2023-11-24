@@ -1,5 +1,5 @@
 import { Background } from './background'
-import { expect, test } from 'vitest'
+import { expect, it } from 'vitest'
 import { BackgroundIndex } from './background_index'
 
 type Spec = {
@@ -15,7 +15,7 @@ const specs: Spec[] = [
 	{ name: 'negative', index: 12, error_message: 'Invalid Background index' },
 ]
 
-test.each(specs)(
+it.each(specs)(
 	'new Background($index).index ($name} -> ($expected) : ($error_message)',
 	(spec: Spec) => {
 		const { index, expected, error_message } = spec
