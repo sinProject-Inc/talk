@@ -2,8 +2,8 @@
 import * as imaps from 'imap-simple'
 
 export async function get_pin_code_from_mail(): Promise<string> {
-	const gmail_user = process.env.GMAIL_USER ?? ''
-	const gmail_password = process.env.GMAIL_PASS ?? ''
+	const gmail_user = process.env['GMAIL_USER'] ?? ''
+	const gmail_password = process.env['GMAIL_PASS'] ?? ''
 
 	// expect(gmail_user).toBeDefined()
 	// expect(gmail_password).toBeDefined()

@@ -1,4 +1,5 @@
-import { test, expect, Page } from '@playwright/test'
+import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {

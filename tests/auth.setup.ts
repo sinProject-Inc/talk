@@ -40,7 +40,7 @@ setup('sign in', async ({ page }) => {
 
 	await page.goto('./sign-in', { waitUntil: 'networkidle' })
 
-	const gmail_user = process.env.GMAIL_USER ?? ''
+	const gmail_user = process.env['GMAIL_USER'] ?? ''
 
 	// expect(gmail_user).toEqual('iam.o.sin@gmail.com')
 
