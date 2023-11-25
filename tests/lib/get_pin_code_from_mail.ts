@@ -44,7 +44,12 @@ export async function get_pin_code_from_mail(): Promise<string> {
 	// expect(subjects.length).toBeGreaterThan(0)
 
 	const latest_subject = subjects[subjects.length - 1]
+
+	if (!latest_subject) return ''
+
 	const pin_code = latest_subject.split(' ')[0]
+
+	if (!pin_code) return ''
 
 	return pin_code
 }

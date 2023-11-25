@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 	await page.locator('#language_1').selectOption('en-US')
 	await page.locator('#language_2').selectOption('ja-JP')
 
-	await page.waitForTimeout(process.env.CI ? 1000 : 500)
+	await page.waitForTimeout(process.env['CI'] ? 1000 : 500)
 })
 
 test('before sign in', async ({ page }) => {
@@ -49,7 +49,7 @@ test.describe('after sign in', () => {
 
 			box_heights.push(box.height)
 
-			if (box_heights.length > 0) {
+			if (box_heights.length > 0 && box_heights[0] && typeof box_heights[0] === 'number') {
 				await expect(box.height).toBeCloseTo(box_heights[0], 1)
 			}
 		}
@@ -71,7 +71,7 @@ test.describe('after sign in', () => {
 
 			box_heights.push(box.height)
 
-			if (box_heights.length > 0) {
+			if (box_heights.length > 0 && box_heights[0] && typeof box_heights[0] === 'number') {
 				await expect(box.height).toBeCloseTo(box_heights[0], 1)
 			}
 		}
