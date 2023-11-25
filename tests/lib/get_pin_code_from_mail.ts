@@ -34,7 +34,7 @@ export async function get_pin_code_from_mail(): Promise<string> {
 	const subjects: string[] = messages.map((message) => {
 		const header_part = message.parts.find((part) => part.which === 'HEADER')
 
-		if (header_part && header_part.body.subject) {
+		if (header_part?.body?.subject) {
 			return header_part.body.subject[0]
 		}
 

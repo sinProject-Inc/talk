@@ -50,7 +50,7 @@ test.describe('after sign in', () => {
 			box_heights.push(box.height)
 
 			if (box_heights.length > 0 && box_heights[0] && typeof box_heights[0] === 'number') {
-				await expect(box.height).toBeCloseTo(box_heights[0], 1)
+				expect(box.height).toBeCloseTo(box_heights[0], 1)
 			}
 		}
 	}

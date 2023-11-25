@@ -70,7 +70,7 @@ test.describe('after sign in', () => {
 		const room_id_div = page.getByTestId('room-id')
 		const room_id = await room_id_div.innerText()
 
-		await expect(room_id).not.toContain('lobby')
+		expect(room_id).not.toContain('lobby')
 		await expect(page).toHaveURL(`./chat/${room_id}`)
 	})
 
