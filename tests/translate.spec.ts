@@ -35,7 +35,7 @@ test.describe('after sign in', () => {
 	// 	await expect(bottom_textarea).toHaveValue(text)
 	// })
 
-	test('check main box heights', async ({ page }) => {
+	async function check_main_box_heights(page: Page): Promise<void> {
 		const glass_panels = page.locator('.main-box')
 		const count = await glass_panels.count()
 
@@ -53,28 +53,15 @@ test.describe('after sign in', () => {
 				await expect(box.height).toBeCloseTo(box_heights[0], 1)
 			}
 		}
+	}
+
+	test('check main box heights', async ({ page }) => {
+		await check_main_box_heights(page)
 	})
 
 	test('check main box heights on mobile', async ({ page }) => {
 		await page.setViewportSize({ width: 375, height: 812 })
-
-		const glass_panels = page.locator('.main-box')
-		const count = await glass_panels.count()
-
-		const box_heights: Array<number> = []
-
-		for (let i = 0; i < count; i++) {
-			const glass_panel = glass_panels.nth(i)
-			const box = await glass_panel.boundingBox()
-
-			if (!box) throw new Error('box is null')
-
-			box_heights.push(box.height)
-
-			if (box_heights.length > 0 && box_heights[0] && typeof box_heights[0] === 'number') {
-				await expect(box.height).toBeCloseTo(box_heights[0], 1)
-			}
-		}
+		await check_main_box_heights(page)
 	})
 
 	test('check if having no history hides box', async ({ page }) => {

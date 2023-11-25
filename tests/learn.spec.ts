@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
@@ -22,12 +23,21 @@ test.describe('after sign in', () => {
 	// })
 
 	test('from locale combo box', async ({ page }) => {
-		await expect(page.getByRole('combobox').nth(0)).toHaveValue('en-US')
+		await check_combo_box_value(page, 0, 'en-US')
 	})
 
 	test('to locale combo box', async ({ page }) => {
-		await expect(page.getByRole('combobox').nth(1)).toHaveValue('ja-JP')
+		await check_combo_box_value(page, 1, 'ja-JP')
 	})
+
+	async function check_combo_box_value(
+		page: Page,
+		combo_box_index: number,
+		expected_value: string
+	): Promise<void> {
+		const combo_box = page.getByRole('combobox').nth(combo_box_index)
+		await expect(combo_box).toHaveValue(expected_value)
+	}
 
 	test.describe('after sign in', () => {
 		test.use({ storageState: auth_file_path })
