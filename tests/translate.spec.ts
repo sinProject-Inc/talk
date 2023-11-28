@@ -183,56 +183,50 @@ test.describe('after sign in', () => {
 		await expect(button).toBeEnabled()
 	})
 
-	test('having no text disables tts button', async ({ page }) => {
+	async function setup_text_area(page: Page, text: string): Promise<void> {
 		await page.waitForSelector('.text-area')
 
 		const from_text_area = page.locator('.text-area').first()
+		await from_text_area.fill(text)
+		await from_text_area.press(text ? 'Enter' : 'Meta+Enter')
+	}
 
-		await from_text_area.fill('')
-		await from_text_area.press('Meta+Enter')
+	async function test_button_state(
+		page: Page,
+		button_test_id: string,
+		text: string,
+		should_be_enabled: boolean
+	): Promise<void> {
+		await setup_text_area(page, text)
 
-		const button = page.getByTestId('tts_button').first().getByRole('button')
+		const button = page.getByTestId(button_test_id).first().getByRole('button')
 
-		await expect(button).toBeDisabled()
-	})
+		if (should_be_enabled) {
+			await expect(button).toBeEnabled()
+		} else {
+			await expect(button).toBeDisabled()
+		}
+	}
 
-	test('having text enables tts button', async ({ page }) => {
-		await page.waitForSelector('.text-area')
+	interface Specs {
+		button_test_id: string
+		text: string
+		should_be_enabled: boolean
+	}
 
-		const from_text_area = page.locator('.text-area').first()
+	const specs: Specs[] = [
+		{ button_test_id: 'tts_button', text: '', should_be_enabled: false },
+		{ button_test_id: 'tts_button', text: 'Hello', should_be_enabled: true },
+		{ button_test_id: 'copy_button', text: '', should_be_enabled: false },
+		{ button_test_id: 'copy_button', text: 'Hello', should_be_enabled: true },
+	]
 
-		await from_text_area.fill('Hello')
-		await from_text_area.press('Enter')
-
-		const button = page.getByTestId('tts_button').first().getByRole('button')
-
-		await expect(button).toBeEnabled()
-	})
-
-	test('having no text disables copy button', async ({ page }) => {
-		await page.waitForSelector('.text-area')
-
-		const from_text_area = page.locator('.text-area').first()
-
-		await from_text_area.fill('')
-		await from_text_area.press('Meta+Enter')
-
-		const button = page.getByTestId('copy_button').first().getByRole('button')
-
-		await expect(button).toBeDisabled()
-	})
-
-	test('having text enables copy button', async ({ page }) => {
-		await page.waitForSelector('.text-area')
-
-		const from_text_area = page.locator('.text-area').first()
-
-		await from_text_area.fill('Hello')
-		await from_text_area.press('Enter')
-
-		const button = page.getByTestId('copy_button').first().getByRole('button')
-
-		await expect(button).toBeEnabled()
+	specs.forEach(({ button_test_id, text, should_be_enabled }) => {
+		test(`'${button_test_id}' should be ${
+			should_be_enabled ? 'enabled' : 'disabled'
+		} with text '${text}'`, async ({ page }) => {
+			await test_button_state(page, button_test_id, text, should_be_enabled)
+		})
 	})
 
 	async function clear_text(page: Page): Promise<void> {

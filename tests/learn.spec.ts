@@ -2,19 +2,23 @@ import { test, expect } from '@playwright/test'
 import type { Page } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
+async function run_test(page: Page, title: string): Promise<void> {
+	await expect(page).toHaveTitle(title)
+}
+
 test.beforeEach(async ({ page }) => {
 	await page.goto('./learn', { waitUntil: 'networkidle' })
 })
 
 test('before sign in', async ({ page }) => {
-	await expect(page).toHaveTitle('Sign in - Talk')
+	await run_test(page, 'Sign in - Talk')
 })
 
 test.describe('after sign in', () => {
 	test.use({ storageState: auth_file_path })
 
 	test('has title', async ({ page }) => {
-		await expect(page).toHaveTitle('Learn - Talk')
+		await run_test(page, 'Learn - Talk')
 	})
 
 	// test('sign in button', async ({ page }) => {
