@@ -18,3 +18,7 @@ node_modules
 playwright/.auth
 /actions-runner/
 nohup.out
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

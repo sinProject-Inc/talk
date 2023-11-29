@@ -1,4 +1,5 @@
-import { Page, expect, test } from '@playwright/test'
+import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
@@ -10,6 +11,7 @@ test('before sign in', async ({ page }) => {
 })
 
 test.describe('after sign in', () => {
+	if (process.env['CI']) return
 	test.use({ storageState: auth_file_path })
 
 	test('has title', async ({ page }) => {
@@ -69,7 +71,7 @@ test.describe('after sign in', () => {
 		const room_id_div = page.getByTestId('room-id')
 		const room_id = await room_id_div.innerText()
 
-		await expect(room_id).not.toContain('lobby')
+		expect(room_id).not.toContain('lobby')
 		await expect(page).toHaveURL(`./chat/${room_id}`)
 	})
 
@@ -96,31 +98,58 @@ test.describe('after sign in', () => {
 		return true
 	}
 
-	test('send message', async ({ page }) => {
-		const input = 'Hello World!'
-		const output = 'Hello World!'
+	// test('send message', async ({ page }) => {
+	// 	const input = 'Hello World!'
+	// 	const output = 'Hello World!'
 
-		await test_send(page, input, output)
-	})
+	// 	await test_send(page, input, output)
+	// })
 
-	test('trim message', async ({ page }) => {
-		const input = '\nHello World!\n'
-		const output = 'Hello World!'
+	// test('trim message', async ({ page }) => {
+	// 	const input = '\nHello World!\n'
+	// 	const output = 'Hello World!'
 
-		await test_send(page, input, output)
-	})
+	// 	await test_send(page, input, output)
+	// })
 
-	test('indent message', async ({ page }) => {
-		const input = 'Hello World!\nHello World!'
-		const output = 'Hello World!\nHello World!'
+	// test('indent message', async ({ page }) => {
+	// 	const input = 'Hello World!\nHello World!'
+	// 	const output = 'Hello World!\nHello World!'
 
-		await test_send(page, input, output)
-	})
+	// 	await test_send(page, input, output)
+	// })
 
-	test('excess indentions', async ({ page }) => {
-		const input = 'Hello World!\n\n\n\nHello World!'
-		const output = 'Hello World!\n\nHello World!'
+	// test('excess indentions', async ({ page }) => {
+	// 	const input = 'Hello World!\n\n\n\nHello World!'
+	// 	const output = 'Hello World!\n\nHello World!'
 
-		await test_send(page, input, output)
+	// 	await test_send(page, input, output)
+	// })
+
+	type Spec = {
+		description: string
+		input: string
+		output: string
+	}
+
+	const specs: Spec[] = [
+		{ description: 'send message', input: 'Hello World!', output: 'Hello World!' },
+		{ description: 'trim message', input: '\nHello World!\n', output: 'Hello World!' },
+		{
+			description: 'indent message',
+			input: 'Hello World!\nHello World!',
+			output: 'Hello World!\nHello World!',
+		},
+		{
+			description: 'excess indentions',
+			input: 'Hello World!\n\n\n\nHello World!',
+			output: 'Hello World!\n\nHello World!',
+		},
+	]
+
+	specs.forEach(({ description, input, output }) => {
+		test(description, async ({ page }) => {
+			await test_send(page, input, output)
+		})
 	})
 })

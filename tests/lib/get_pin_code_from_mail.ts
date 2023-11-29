@@ -2,8 +2,8 @@
 import * as imaps from 'imap-simple'
 
 export async function get_pin_code_from_mail(): Promise<string> {
-	const gmail_user = process.env.GMAIL_USER ?? ''
-	const gmail_password = process.env.GMAIL_PASS ?? ''
+	const gmail_user = process.env['GMAIL_USER'] ?? ''
+	const gmail_password = process.env['GMAIL_PASS'] ?? ''
 
 	// expect(gmail_user).toBeDefined()
 	// expect(gmail_password).toBeDefined()
@@ -34,7 +34,7 @@ export async function get_pin_code_from_mail(): Promise<string> {
 	const subjects: string[] = messages.map((message) => {
 		const header_part = message.parts.find((part) => part.which === 'HEADER')
 
-		if (header_part && header_part.body.subject) {
+		if (header_part?.body?.subject) {
 			return header_part.body.subject[0]
 		}
 
@@ -44,7 +44,12 @@ export async function get_pin_code_from_mail(): Promise<string> {
 	// expect(subjects.length).toBeGreaterThan(0)
 
 	const latest_subject = subjects[subjects.length - 1]
+
+	if (!latest_subject) return ''
+
 	const pin_code = latest_subject.split(' ')[0]
+
+	if (!pin_code) return ''
 
 	return pin_code
 }

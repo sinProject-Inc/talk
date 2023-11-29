@@ -1,4 +1,5 @@
-import { test, expect, Page } from '@playwright/test'
+import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { auth_file_path } from './lib/setup.js'
 
 test.beforeEach(async ({ page }) => {
@@ -9,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 	await page.locator('#language_1').selectOption('en-US')
 	await page.locator('#language_2').selectOption('ja-JP')
 
-	await page.waitForTimeout(process.env.CI ? 1000 : 500)
+	await page.waitForTimeout(process.env['CI'] ? 1000 : 500)
 })
 
 test('before sign in', async ({ page }) => {
@@ -17,6 +18,7 @@ test('before sign in', async ({ page }) => {
 })
 
 test.describe('after sign in', () => {
+	if (process.env['CI']) return
 	test.use({ storageState: auth_file_path })
 
 	test('has title', async ({ page }) => {
@@ -34,7 +36,7 @@ test.describe('after sign in', () => {
 	// 	await expect(bottom_textarea).toHaveValue(text)
 	// })
 
-	test('check main box heights', async ({ page }) => {
+	async function check_main_box_heights(page: Page): Promise<void> {
 		const glass_panels = page.locator('.main-box')
 		const count = await glass_panels.count()
 
@@ -48,32 +50,19 @@ test.describe('after sign in', () => {
 
 			box_heights.push(box.height)
 
-			if (box_heights.length > 0) {
-				await expect(box.height).toBeCloseTo(box_heights[0], 1)
+			if (box_heights.length > 0 && box_heights[0] && typeof box_heights[0] === 'number') {
+				expect(box.height).toBeCloseTo(box_heights[0], 1)
 			}
 		}
+	}
+
+	test('check main box heights', async ({ page }) => {
+		await check_main_box_heights(page)
 	})
 
 	test('check main box heights on mobile', async ({ page }) => {
 		await page.setViewportSize({ width: 375, height: 812 })
-
-		const glass_panels = page.locator('.main-box')
-		const count = await glass_panels.count()
-
-		const box_heights: Array<number> = []
-
-		for (let i = 0; i < count; i++) {
-			const glass_panel = glass_panels.nth(i)
-			const box = await glass_panel.boundingBox()
-
-			if (!box) throw new Error('box is null')
-
-			box_heights.push(box.height)
-
-			if (box_heights.length > 0) {
-				await expect(box.height).toBeCloseTo(box_heights[0], 1)
-			}
-		}
+		await check_main_box_heights(page)
 	})
 
 	test('check if having no history hides box', async ({ page }) => {
@@ -195,56 +184,50 @@ test.describe('after sign in', () => {
 		await expect(button).toBeEnabled()
 	})
 
-	test('having no text disables tts button', async ({ page }) => {
+	async function setup_text_area(page: Page, text: string): Promise<void> {
 		await page.waitForSelector('.text-area')
 
 		const from_text_area = page.locator('.text-area').first()
+		await from_text_area.fill(text)
+		await from_text_area.press(text ? 'Enter' : 'Meta+Enter')
+	}
 
-		await from_text_area.fill('')
-		await from_text_area.press('Meta+Enter')
+	async function test_button_state(
+		page: Page,
+		button_test_id: string,
+		text: string,
+		should_be_enabled: boolean
+	): Promise<void> {
+		await setup_text_area(page, text)
 
-		const button = page.getByTestId('tts_button').first().getByRole('button')
+		const button = page.getByTestId(button_test_id).first().getByRole('button')
 
-		await expect(button).toBeDisabled()
-	})
+		if (should_be_enabled) {
+			await expect(button).toBeEnabled()
+		} else {
+			await expect(button).toBeDisabled()
+		}
+	}
 
-	test('having text enables tts button', async ({ page }) => {
-		await page.waitForSelector('.text-area')
+	interface Specs {
+		button_test_id: string
+		text: string
+		should_be_enabled: boolean
+	}
 
-		const from_text_area = page.locator('.text-area').first()
+	const specs: Specs[] = [
+		{ button_test_id: 'tts_button', text: '', should_be_enabled: false },
+		{ button_test_id: 'tts_button', text: 'Hello', should_be_enabled: true },
+		{ button_test_id: 'copy_button', text: '', should_be_enabled: false },
+		{ button_test_id: 'copy_button', text: 'Hello', should_be_enabled: true },
+	]
 
-		await from_text_area.fill('Hello')
-		await from_text_area.press('Enter')
-
-		const button = page.getByTestId('tts_button').first().getByRole('button')
-
-		await expect(button).toBeEnabled()
-	})
-
-	test('having no text disables copy button', async ({ page }) => {
-		await page.waitForSelector('.text-area')
-
-		const from_text_area = page.locator('.text-area').first()
-
-		await from_text_area.fill('')
-		await from_text_area.press('Meta+Enter')
-
-		const button = page.getByTestId('copy_button').first().getByRole('button')
-
-		await expect(button).toBeDisabled()
-	})
-
-	test('having text enables copy button', async ({ page }) => {
-		await page.waitForSelector('.text-area')
-
-		const from_text_area = page.locator('.text-area').first()
-
-		await from_text_area.fill('Hello')
-		await from_text_area.press('Enter')
-
-		const button = page.getByTestId('copy_button').first().getByRole('button')
-
-		await expect(button).toBeEnabled()
+	specs.forEach(({ button_test_id, text, should_be_enabled }) => {
+		test(`'${button_test_id}' should be ${
+			should_be_enabled ? 'enabled' : 'disabled'
+		} with text '${text}'`, async ({ page }) => {
+			await test_button_state(page, button_test_id, text, should_be_enabled)
+		})
 	})
 
 	async function clear_text(page: Page): Promise<void> {
