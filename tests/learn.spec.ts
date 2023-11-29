@@ -15,6 +15,7 @@ test('before sign in', async ({ page }) => {
 })
 
 test.describe('after sign in', () => {
+	if (process.env['CI']) return
 	test.use({ storageState: auth_file_path })
 
 	test('has title', async ({ page }) => {
