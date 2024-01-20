@@ -70,7 +70,7 @@
 		"tsx": "^3.12.10",
 		"typescript": "^5.2.2",
 		"user-agent-data-types": "^0.4.2",
-		"vite": "^4.4.9",
+		"vite": "^4.5.2",
 		"vitest": "^0.34.6"
 	},
 	"type": "module",
